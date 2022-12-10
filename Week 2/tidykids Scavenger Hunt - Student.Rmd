@@ -1,0 +1,56 @@
+---
+title: "tidykids Scavenger Hunt"
+author: "Awesome Student"
+date: '2022-12-10'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidykids)
+
+```
+
+## `tidykids` scavenger hunt
+
+How many rows are there in the tidykids data set?
+
+```{r}
+
+```
+
+How many different types are there in the "variable" column?
+
+```{r}
+
+```
+
+
+What is the average spending on Pell Grants for Florida and California? Report this in $1,000s.
+
+```{r}
+
+```
+
+
+What was the adjusted amount spent on Child Tax Credit spending in Hawaii for the year 2010?
+
+```{r}
+
+```
+
+
+
+Stretch Challenges:
+
+What was the percentage change in higher ed spending in New York from 2015 to 2016?
+
+
+```{r}
+
+```
+
+
+**Bonus**: The adjusted spending is based on 2016 dollars. Adjust the spending to 2022 dollars. Then, make a line chart that plots the toal original and adjusted spending for all states across all years.
+
+Hint: https://github.com/stevecondylios/priceR 

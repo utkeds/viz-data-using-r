@@ -1,0 +1,95 @@
+---
+title: "Week 2 `tidykids` Walk Through"
+author: "Awesome Student"
+date: '2022-12-10'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+remotes::install_github("jrosen48/tidykids")
+```
+
+
+How can we load the `tidykids` package?
+
+```{r}
+
+```
+
+
+
+How can we view the data in R Studio as a spreadsheet?
+
+```{r}
+
+```
+
+
+How can we view the first 10 rows of tidykids?
+
+```{r}
+
+```
+
+How about the last 5 rows?
+
+```{r}
+
+```
+
+
+How can we see the structure of the data?
+
+```{r}
+
+```
+
+How can we list the column names?
+
+```{r}
+
+```
+
+How can we see the year range in the column `year`?
+
+```{r}
+
+```
+
+What are the variables listed in variable?
+
+```{r}
+
+```
+
+See the `tidykids` codebook to understand what these variables represent:
+https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
+
+The columns `raw`, `inf_adj`, and `inf_adj_per_child` are not named very clear. How can we rename them? Note that:
+
+- raw refers to the raw amount spent
+- inf_adj refers to the amount transformed to be in 2016 dollars for each year spent
+- inf_adj_perchild refers to the amount transformed to be in 2016 dollars for each year per child in $1000s spent
+
+```{r}
+
+```
+
+
+Let's return the average number of K-12 students and amount spent per child in each state for the the year 2000 and later.
+
+```{r}
+
+  
+```
+
+
+How can we visualize this as a bar chart?
+
+<!-- Colors from https://bookdown.org/hneth/ds4psy/D-3-apx-colors-basics.html -->
+
+```{r}
+
+```
+

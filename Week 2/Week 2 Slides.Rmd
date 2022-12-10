@@ -1,0 +1,637 @@
+---
+title: "STEM 591: Visualizing Data Using R"
+subtitle: "2023 Spring "
+author: "Dr. Joshua Rosenberg"
+institute: "University of Tennessee, Knoxville"
+date: "Week 2"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE
+)
+options(htmltools.preserve.raw = FALSE)
+library(tidyverse)
+```
+
+```{css, echo = FALSE}
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+```
+
+
+# Today's Agenda
+
+- Reading Discussion
+- R Fundamentals Code Walk Through
+- `ggplot` for visualizations
+- `tidykids` scavenger hunt
+- Weekly Assignment
+
+---
+
+# Reading Discussion
+
+
+**Cairo (2019), Chapter 1**
+**Healy (2018), Chapter 1**
+Guiding Questions:
+1. What are examples of visual encoding that Cairo and Healy present?
+--
+
+2. What new data viz-related terminology did you learn?
+--
+
+3. On the continuum between pure visual imagery and pure writing, where does data visualization fit?
+--
+
+4. In what ways does Healy's information align with Cairo's? 
+
+---
+
+# Reading Discussion
+
+.pull-left[
+5.Think back to the "What's wrong with this viz" activity. How is it related to Cairo's 5 steps to reading a data visualization?
+]
+
+.pull-right[
+<img src="https://i.redd.it/232ga4fs92t41.jpg" height="500px">
+]
+
+---
+
+# Reading Discussion
+
+.pull-left[
+6.How would you amend (if at all) Cairo's 5 steps to reading a visualization based on the information Healy presents?
+]
+
+.pull-right[
+
+**Reading a chart according to Cairo**
+
+1. Title, introduction (or caption), and source
+2. Measurements, units, scales, and legends
+3. Methods of visual encoding
+4. Read annotations
+5. Take a bird's-eye view to spot patterns, trends, and relationships
+]
+
+
+
+---
+class: center, middle, inverse
+
+# R Fundamentals
+
+## A Review
+
+<!-- This section is socratic - ask students what they think a function does, demonstrate it, expand on it -->
+
+---
+
+# R Fundamentals - A Review
+
+<!-- 1 -->
+
+Let's review some super common functions. Given the table on the left, what do the functions on the right do?
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  slice(1:5) %>%
+  select(1:5) %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `select(name, height)`
+]
+
+---
+
+# R Fundamentals - A Review
+
+<!-- 2 -->
+
+Let's review some super common functions. Given the table on the left, what do the functions on the right do?
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars <- starwars %>%
+  slice(1:5) %>%
+  select(1:5)
+
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `select(name, height)`
+Use this to **select columns**
+
+```{r}
+starwars %>%
+  select(name, height)
+```
+
+
+]
+
+---
+
+# R Fundamentals - A Review 
+
+<!-- e -->
+
+Let's review some super common functions. Given the table on the left, what do the functions on the right do?
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `select(name, height)`
+
+**Note** These are the same!
+
+```{r echo=TRUE, eval=FALSE}
+starwars %>%
+  select(name, height)
+
+select(starwars, name, height)
+
+```
+
+
+]
+---
+class: center, middle
+
+# R Fundamentals
+
+What the heck is `%>%` ?
+
+---
+
+# R Fundamentals - What the heck is `%>%` ?
+
+The pipe operator `%>%` connects functions together into a *chain* of step-by-step commands. It can be translated as **and then**.
+
+Below, R is written on the left and an English translation is written on the right:
+
+.pull-left[
+
+### R
+
+```{r echo=TRUE, EVAL = FALSE, warning=TRUE}
+starwars %>%
+  select(name, height) %>%
+  view()
+  
+```
+
+]
+
+.pull-right[
+
+### English
+
+1. Take the starwars data set *and then*  
+2. `select` the name and height columns *and then*  
+3. `view` the result in R Studio
+]
+
+
+---
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `filter(mass >= 50)`
+
+]
+
+---
+
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `filter(mass >= 50)`
+Use this to **filter rows**
+
+```{r}
+starwars %>%
+  filter(mass >= 50)
+```
+
+
+]
+
+---
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `str(starwars)`
+
+
+]
+
+
+---
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `str(starwars)`
+Use this to see the **structure** of an object
+```{r}
+str(starwars)
+```
+
+]
+
+---
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `head(starwars)`
+
+
+]
+---
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `head(starwars)`
+Use this to **see the first 10 (or more) rows**
+
+```{r}
+head(starwars, 1)
+head(starwars)
+```
+
+
+]
+---
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `rename("weight" = mass)`
+
+
+
+]
+---
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `rename("weight" = mass)`
+Use this to **rename** a column
+
+
+```{r}
+starwars %>%
+  rename("weight" = mass)
+```
+]
+
+---
+# R Fundamentals - A Review
+
+.pull-left[
+**An Example Data Frame**
+
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html")
+```
+]
+
+.pull-right[
+### `mutate` Challenge
+1. How many columns do we expect?
+2. What does each line do?
+3. Can we simplify it?
+
+
+```{r eval=FALSE, include=TRUE}
+starwars %>%
+  mutate(one = height^2) %>%
+  mutate(two = height*mass) %>%
+  mutate(hair_color = ifelse(is.na(hair_color),
+                             "unknown", hair_color))
+```
+]
+---
+
+# R Fundamentals - A Review
+
+### `mutate` Challenge
+
+```{r}
+starwars %>%
+  mutate(one = height^2) %>%
+  mutate(two = height*mass) %>%
+  mutate(hair_color = ifelse(is.na(hair_color),
+                             "unknown", hair_color))
+```
+
+---
+
+# R Fundamentals - A Review
+
+
+### `mutate` Challenge
+
+```{r}
+starwars %>%
+  mutate(one = height^2,
+         two = height*mass,
+         hair_color = ifelse(is.na(hair_color),
+                             "unknown", hair_color))
+```
+
+---
+class: middle, center, inverse
+
+# R Data Wrangling Walk-Through 
+
+<!-- Transition to R and "Week 2 Walkthrough.R". -->
+<!-- Write code together to get desired result. -->
+
+---
+class: middle, center, inverse
+
+# `ggplot` and Data Visualization in R 
+
+
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+`ggplot` offers a "grammar of graphics" for building data visualization in R.
+
+Data visualizations are built in **layers**.
+
+```{r fig.height=2}
+ggplot(starwars)
+```
+
+
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+
+
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Data is always the first layer:
+
+```{r fig.height=2}
+ggplot(starwars)
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Data is then **mapped** to various **aes**thetics (x, y, fill, shape, etc.):
+
+```{r fig.height=2}
+ggplot(starwars, aes(x=height, y=name))
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Then, we add **geom**etries, which are the shapes and visual encodings:
+
+```{r fig.height=2}
+ggplot(starwars, aes(x=height, y=name))+
+geom_col()
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can change the **aes**thetics by **fill**iling them with colors.
+
+```{r fig.height=2}
+ggplot(starwars, aes(x=height, y=name, fill=skin_color))+
+geom_col()
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can change the **geom**etries, too:
+
+```{r fig.height=2}
+ggplot(starwars, aes(x=height, y=name, fill=skin_color))+
+geom_point()
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+`fill` is for bars while `color` is for points and lines
+
+```{r fig.height=2}
+ggplot(starwars, aes(x=height, y=name, color=skin_color,
+                     shape=hair_color))+
+geom_point()
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can add other layers. Let's go crazy and make a *bad plot*:
+
+```{r fig.height=2}
+ggplot(starwars, aes(x=height, y=name, fill=mass, color=skin_color,
+                     shape=hair_color))+
+  geom_col()+
+  geom_point()+
+  scale_x_continuous(breaks=seq(1,200,100))+
+  labs(x="Name", y="Height", title="A Wild Starwars Chart")+
+  theme_minimal()+
+  theme(legend.position = "none")
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+class: middle, center, inverse
+
+# `tidykids` Scavenger Hunt
+
+## Work alone or with a partner to answer the questions with `tidykids`
+
+File: tidykids Scavenger Hunt
+
+---
+# Homework
+
+<small>
+.pull-left[
+
+## Reading
+
+**Knafflic, Chapter 2**  
+Knafflic refers to "graphs" and "visual displays of information". How did Cairo refer to them?
+
+When should one use a scatterplot, a stacked bar chart, or a large number value? 
+
+## Work Through
+
+**Healy, Chapter 3**
+
+This will help you better understand `ggplot` for data visualization.
+]
+.pull-right[
+## Assignment 1: `tidykids` visualization
+
+Using the `tidykids` dataset, you will ake a simple bar chart showing which category of spending per chuld has been highest, on average, for Tennessee.
+
+**Submit**: .rmd file  
+**Note**: See rubric on Assignment 1
+]
+</small>
