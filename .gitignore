@@ -3,5 +3,5 @@
 .RData
 .Ruserdata
 *.html
-/libs
-/*Slide_files
+"/libs
+*Slide_files
