@@ -1,0 +1,225 @@
+---
+title: "UTK Color Palette"
+author: "Colorful Student"
+date: '2022-12-21'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+Navigate to [this archive of the UTK color guidelines](https://web.archive.org/web/20210224024222/https://brand.utk.edu/standards/colors/).
+
+## Build a Data Frame of UTK Colors
+
+Use the primary and at least 5 accent colors.
+
+```{r}
+utk_data_frame <- tribble(~name,           ~hex,
+                          "orange",       "#FF8200",
+                          "smokey_gray",  "#58595B",
+                          "valley",       "#00746F",
+                          "globe",        "#E65933",
+                          "leconte",      "#8D2048",
+                          "regalia",      "#754A7E",
+                          "energy",       "#EE3E80",
+                          "fountain",     "#2197A9"
+                          )
+
+utk_data_frame
+```
+You can preview what these colors look like using the following code:
+
+```{r}
+utk_data_frame %>%
+  ggplot(aes(y=name, x=1, fill=hex))+
+  geom_tile()+
+  scale_fill_identity()
+```
+
+
+## Build a Named Vector of UTK Colors
+
+Use the same colors as above to make a named character vector
+```{r}
+utk_color_vector <- c(
+                          "orange"=       "#FF8200",
+                          "smokey_gray"=  "#58595B",
+                          "valley"=       "#00746F",
+                          "globe"=        "#E65933",
+                          "leconte"=      "#8D2048",
+                          "regalia"=      "#754A7E",
+                          "energy"=      "#EE3E80",
+                          "fountain"=     "#2197A9"
+                          )
+
+utk_color_vector
+```
+
+Faster method:
+
+```{r}
+utk_color_vector <- utk_data_frame$hex
+names(utk_color_vector) <- utk_data_frame$name
+
+utk_color_vector
+```
+
+## Using the UTK Color Vector
+
+Our hex values are mapped to color names. How can we use this with data?
+
+Introducing your first function. Run this code:
+
+```{r}
+utk_color <- function(...) {
+  cols <- c(...)
+
+  if (is.null(cols))
+    return (utk_color_vector)
+
+  unname(utk_color_vector[cols])
+}
+```
+
+Let's try it:
+
+```{r}
+utk_color("orange")
+utk_color("smokey_gray")
+```
+
+
+Let's apply it to some simple example data:
+
+```{r}
+# note this is another way to make a DIY data frame!
+set.seed(1983)
+example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(5:20, 5))
+example_data
+```
+
+Map each letter to a UTK color:
+
+```{r}
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, fill=letters))+
+  geom_col()+
+  scale_fill_manual(values=c("A" = utk_color("orange"),
+                             "B" = utk_color("valley"),
+                             "C" = utk_color("energy"),
+                             "D" = utk_color("regalia"),
+                             "E" = utk_color("fountain")
+  ))
+```
+
+## Data Viz Teardown
+
+<!-- Note: students can explore and run each plot below to figure out what the functions are doing. Give them 5-10 minutes, or have them work with partners. Then come back together and discuss each plot and what is going on. -->
+
+
+1. Fill vs Color
+
+```{r}
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, fill=letters))+
+  geom_col()
+```
+
+```{r}
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, color=letters))+
+  geom_col()
+```
+
+```{r}
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, fill=letters))+
+  geom_point(size=8)
+```
+
+```{r}
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, color=letters))+
+  geom_point(size=8)
+```
+
+2. What if fill is numeric?
+
+```{r}
+set.seed(1983)
+example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(5:20, 5))
+
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, fill=numbers))+
+  geom_col()
+```
+
+
+3. Which function below is controlling the colors?
+
+```{r}
+my_colors <- c("A" = utk_color("orange"),
+                             "B" = utk_color("valley"),
+                             "C" = utk_color("energy"),
+                             "D" = utk_color("regalia"),
+                             "E" = utk_color("fountain"))
+
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, color=letters))+
+  geom_point(size=8)+
+  scale_fill_manual(values = my_colors)+
+  scale_color_manual(values = my_colors)
+```
+
+
+4. What does `scale_fill_gradient` do?
+
+```{r}
+example_data %>%
+  ggplot(aes(x=numbers, y=reorder(letters, numbers), fill=numbers))+
+  geom_col()+
+  scale_fill_gradient(low=utk_color("fountain"), high=utk_color("energy"))
+```
+
+5. What does `scale_fill_gradientn` do?
+
+```{r}
+set.seed(123)
+example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(0:100, 5))
+
+example_data %>%
+  ggplot(aes(x=numbers, y=reorder(letters, numbers), fill=numbers))+
+  geom_col()+
+  scale_fill_gradientn(colors=utk_color("leconte", "fountain", "energy"))
+```
+
+6. What does `scale_fill_gradient2` do?
+
+```{r}
+set.seed(123)
+example_data <- data.frame(letters=LETTERS[1:5], numbers=c(0, sample(-10:10, 5)))
+
+example_data %>%
+  ggplot(aes(x=numbers, y=reorder(letters, numbers), fill=numbers))+
+  geom_col()+
+  scale_fill_gradient2(high=utk_color("orange"), mid="grey70", low=utk_color("fountain"))
+```
+
+7. What steps were used to create the graph's highlight?
+
+```{r}
+set.seed(1983)
+example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(5:20, 5))
+
+example_data %>%
+  ggplot(aes(x=numbers, y=reorder(letters, numbers), fill=letters))+
+  geom_col(show.legend = FALSE)+
+  scale_fill_manual(values=c("E" = utk_color("orange"), "grey90"))+
+  theme_minimal()+
+  labs(y=NULL,
+       title="A Plot Demonstrating Highlighting")
+```
+

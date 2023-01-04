@@ -1,0 +1,355 @@
+---
+title: "Circles"
+subtitle: "STEM 591: Visualizing Data Using R"
+author: "Dr. Joshua Rosenberg"
+institute: "University of Tennessee, Knoxville"
+date: "Week 6"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE
+)
+options(htmltools.preserve.raw = FALSE)
+library(tidyverse)
+```
+
+```{css, echo = FALSE}
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+```
+
+# Today's Agenda
+
+- Reading Discussion
+- Scatterplots in R
+- Visualizing Proportions
+
+---
+# Reading Discussion
+
+1. What different types of visualizations use circles? When are they useful?
+
+--
+
+<img src='https://clauswilke.com/dataviz/visualizing_associations_files/figure-html/blue-jays-scatter-sex-1.png' height=300px />
+
+--
+
+## Type: Scatterplot
+
+They are useful for showing **associations between two variables**.
+
+---
+
+# Reading Discussion
+
+1. What different types of visualizations use circles? When are they useful?
+
+--
+
+<img src='https://clauswilke.com/dataviz/visualizing_associations_files/figure-html/CO2-slopegraph-1.png' height=300px />
+
+--
+
+## Type: Slopegraph
+
+They are useful for showing **change from one time point to another**.
+
+---
+
+# Reading Discussion
+
+1. What different types of visualizations use circles? When are they useful?
+
+--
+
+<img src='https://clauswilke.com/dataviz/visualizing_proportions_files/figure-html/bundestag-pie-1.png' height=300px />
+
+--
+
+## Type: Pie Chart
+
+They are useful for showing **parts of a whole** when it emphasizes simple fractions.
+
+---
+
+# Scatterplots in R
+
+Scatterplots are quite simple to create in R. For today's examples, we will use the `palmerpenguin` package and its `penguins` data set, which contains measurements for different penguins in Antarctica.
+
+<img src='https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png' height=400px />
+
+```{r include=FALSE}
+library(palmerpenguins)
+```
+
+---
+
+
+First, we can use base R to simply plot all the data in a *scatterplot matrix*
+
+```{r fig.width=8, fig.height=5}
+plot(penguins)
+```
+
+This is not super useful, however.
+
+---
+# Scatterplots in R
+
+We can make a bivariate (two-variable) scatterplot using `geom_point()`.
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()
+```
+
+---
+
+# Scatterplots in R
+
+We can change the color of all dots simply with `color = `
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point(color="skyblue")
+```
+
+---
+
+# Scatterplots in R
+
+We can map the color to the penguin species by using `color` inside of `aes`
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species))+
+  geom_point()
+```
+
+---
+# Scatterplots in R
+
+We can also map the *shape* to a variable using `shape`
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species, shape=sex))+
+  geom_point()
+```
+
+---
+# Scatterplots in R
+
+We can separate this out by island using `facet_wrap`. This allows us to see very  clear relationships between flipper length and body mass.
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species, shape=sex))+
+  geom_point()+
+  facet_wrap(~island, nrow=1)
+```
+
+---
+# Scatterplots in R
+
+All of the colors and shapes can be controlled using `scale_color_manual` and `scale_shape_manual`. See list of shapes [here](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#polygons).
+
+.pull-left[
+
+```{r echo=TRUE, eval=FALSE}
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+]
+
+.pull-right[
+
+```{r fig.width = 8, fig.height=4, echo=FALSE}
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,
+                                "Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+]
+---
+
+# Scatterplots in R
+
+
+.pull-left[
+
+Scatterplots often are useful for **correlations**. It is possible to display not only the correlation but the slope of a line for each scatterplot. We can add the correlation coefficient with `ggpubr::stat_cor` and the regression line with `geom_smooth`
+
+```{r include=FALSE}
+library(ggpubr)
+```
+
+
+```{r echo=TRUE, eval=FALSE}
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  stat_cor()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+]
+
+.pull-right[
+
+```{r fig.width = 8, fig.height=4, echo=FALSE}
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  stat_cor()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+]
+---
+
+# Visualizing Proportions
+
+We will return to scatterplots shorttly. Before doing so, let's talk about proportions. Let's stick with `palmerpenguins` and get the proportion of number of penguins observed per island
+
+```{r}
+penguins %>%
+  group_by(island) %>%
+  count()
+```
+
+---
+
+# Visualizing Proportions
+
+We can make a proportion by using `mutate` and `prop.table()`:
+
+```{r}
+penguin_prop <- penguins %>%
+  group_by(island) %>%
+  count() %>%
+  ungroup() %>%
+  mutate(proportion = prop.table(n))
+
+penguin_prop
+```
+
+---
+
+# Visualizing Proportions
+
+We can visualize this in a few ways. For example, as **stacked bars**:
+
+```{r fig.height=5}
+penguin_prop %>%
+  ggplot(aes(x="", y=proportion, fill=island))+
+  geom_col()
+```
+
+---
+
+# Visualizing Proportions
+
+As **side-by-side** bars
+
+```{r fig.height=5}
+penguin_prop %>%
+  ggplot(aes(x="", y=proportion, fill=island))+
+  geom_col(position="dodge")
+```
+
+---
+
+# Visualizing Proportions
+
+Or as a **pie chart** using `coord_polar`
+
+```{r fig.height=5}
+penguin_prop %>%
+  ggplot(aes(x="", y=proportion, fill=island))+
+  geom_col()+
+  coord_polar("y", start=0)
+```
+
+---
+
+# Visualizing Proportions
+
+Let's get a bit fancier:
+
+```{r fig.height=4.5}
+penguin_prop %>%
+  ggplot(aes(x="", y=proportion, fill=island))+
+  geom_col()+
+  geom_text(aes(label=scales::percent(proportion)),
+            position = position_stack(vjust = 0.5),
+            size=5)+
+  coord_polar("y", start=0)+
+  theme_void()
+```
+
+---
+class: center, inverse, middle
+
+# Let's Practice!
+
+<!-- Driver/Navigator - pair off students via zoom, rotate -->
+
+Scatterplot scavenger hunt
+Vizualization practice
