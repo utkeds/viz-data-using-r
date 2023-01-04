@@ -353,3 +353,14 @@ class: center, inverse, middle
 
 Scatterplot scavenger hunt
 Vizualization practice
+
+---
+
+# Homework
+
+### Mini Project 1 is due next week!
+Please contact me if you have any quesitons or need help
+
+### Reading
+
+Please read and work through [Healy, chapter 5](https://socviz.co/workgeoms.html). Some of this will be review (and it is always good to review) but some will be new and it introduces our next topic: **text**!
