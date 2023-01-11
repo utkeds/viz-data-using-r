@@ -364,3 +364,5 @@ Please contact me if you have any quesitons or need help
 ### Reading
 
 Please read and work through [Healy, chapter 5](https://socviz.co/workgeoms.html). Some of this will be review (and it is always good to review) but some will be new and it introduces our next topic: **text**!
+
+Guiding question: As you read about the use of text in `ggplot`, think back to our first weeks of class. According to Cairo, what text should be used and where to aid in reading a visualization? 
