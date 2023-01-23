@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STEM 591: Visualizing Data Using R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Joshua Rosenberg" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# STEM 591: Visualizing Data Using R
+]
+.subtitle[
+## 2023 Spring
+]
+.author[
+### Dr. Joshua Rosenberg
+]
+.institute[
+### University of Tennessee, Knoxville
+]
+.date[
+### Week 1
+]
+
+---
+
+
+
+
+class: inverse
+
+# Today's Agenda
+
+- Getting to know each other
+- Course introduction
+- What's wrong with this viz?
+- Your First R Project
+- Your First Visualization
+
+---
+class: center, middle
+
+# Getting To Know Each Other
+
+---
+&lt;!-- Include personal introduction here --&gt;
+
+# Dr. Joshua Rosenberg
+
+---
+
+&lt;!-- Include personal introduction here --&gt;
+
+# Rita Swartzentruber
+
+---
+
+# Your turn!
+
+Complete the survey below.
+When you are done, we will look at the responses and discuss the results!
+
+&lt;!-- Edit the survey here: https://docs.google.com/forms/d/141E1rGJANoTyxuMH1lQOjxdp-35CQtk5q2q6nFfZBw4/edit --&gt;
+
+## [https://tiny.utk.edu/stem591](https://tiny.utk.edu/stem591)
+
+---
+
+background-image: url(https://learningsolutionsmag.com/sites/default/files/inline-images/7441_Figure2.png)
+class: bottom, center
+
+# What's wrong with this viz?
+
+---
+
+# What's wrong with this viz? (1/5)
+
+Look at the image and share what you think is wrong (or right) with the visualization
+
+
+![](https://moorparkreporter.com/wp-content/uploads/2020/03/VC-Combined.png)
+
+&lt;!-- 
+Suggestions for discussion: 
+
+COLORS: All are a form of blue for no apparent reason, difficult contrast between colors, same category has different colors
+
+SHAPE/SIZE: difficult to tell which slices are larger in left plot 
+
+VALUES: raw values instead of percentages shown
+
+Tip: these would be better as bar charts or faceted line charts. 
+--&gt;
+---
+
+# What's wrong with this viz? (2/5)
+
+
+&lt;img src="https://i.redd.it/232ga4fs92t41.jpg" height="500px"&gt;
+
+&lt;!-- 
+Suggestions for discussion:
+
+The major issue is the axes labels
+
+VALUES: What do these values mean? They seem like percentages. Percentages of what? We need a y-axis label
+
+FLAGS: Does everyone know all of these countries? Flags are clever, but could be difficult for many readers.
+
+--&gt;
+---
+# What's wrong with this viz? (3/5)
+
+
+![](https://preview.redd.it/02a6ghe2yyy91.png?width=960&amp;crop=smart&amp;auto=webp&amp;s=03e1fd7326697344897eed03356ee8d847fc2ec2)
+
+&lt;!-- 
+Suggestions for discussion:
+
+Yes looks bigger than No because of check mark.
+
+Use of two negatives makes this confusing.
+
+Tip: use color rather than an additional image to highlight winner or other meaningful data
+
+--&gt;
+---
+# What's wrong with this viz? (4/5)
+
+
+![](https://www.datapine.com/blog/wp-content/uploads/2014/06/Truncated-Y-Axis-Data-Visualizations-Designed-To-Mislead.jpg)
+
+&lt;!-- 
+Suggestions for discussion:
+
+Lack of zero axis makes it look like there is a major difference but the difference would mostly disappear if there was a zero axis start. 
+
+--&gt;
+---
+# What's wrong with this viz? (5/5)
+
+
+![](https://www.jotform.com/blog/wp-content/uploads/2021/02/image-47.png)
+&lt;!-- 
+Suggestions for discussion:
+
+Just no.
+
+--&gt;
+
+---
+class: inverse, middle, center
+
+# Your First R Project
+
+---
+
+# R Projects
+
+- R projects make organizing and accessing your work easy.
+- With R projects, you can move a project within your computer or from computer to computer and never worry about breaking file paths.
+- You can share a project with another person and it should work with no issues!
+
+---
+
+
+# Your First R Project
+
+For your first R project, you will create a project that you can use throughout the course. 
+
+Today, you will create:
+
+--
+
+- An R project somewhere on your computer called "STEM 531 - Data Visualization in R"
+--
+
+- A .Rproj file that opens R studio for your specific project
+--
+
+- A Week 1 folder
+--
+
+  - We will put a data set and R script in this folder when you make Your First Data Visualization
+  
+  &lt;!-- Begin hands-on walkthrough of creating an R project --&gt;
+---
+class: inverse, middle, center
+
+# Your First Data Visualization
+
+---
+
+# Your First Data Visualization
+
+We will access an R script that will
+
+--
+- install key R packages using `install.package()`,
+--
+
+- load key packages using `library()`,
+--
+
+- load a data set using `read_csv()`,
+--
+
+- and build a very simple visualization using `ggplot()`!
+
+--
+
+Plus a special surprise!
+
+---
+class: center, middle
+# Data File
+
+
+Step 1:
+
+Save [this data file](https://drive.google.com/uc?export=download&amp;id=10iLUo9Yo35valjPmhzlvVlvjx1cd1YQF) to your Week 1 folder.
+
+---
+class: center, middle
+
+# R Script
+
+Step 2:
+
+[Download this file](https://drive.google.com/uc?export=download&amp;id=1kra4FIlb342dp3qaKgbnaOJYrvdsMPH9) and unzip into into your Week 1 folder.
+
+---
+
+class: center, middle
+
+# Let's Go!
+
+&lt;!-- Hands-on portion of class --&gt;
+
+---
+# Homework
+
+.pull-left[
+## Read
+
+&lt;small&gt;
+**Cairo (2019), Chapter 1**
+**Healy (2018), Chapter 1**
+Guiding Questions:
+1. What are examples of visual encoding that Cairo and Healy present?
+2. What new data viz-related terminology did you learn?
+3. On the continuum between pure visual imagery and pure writing, where does data visualization fit?
+4. In what ways does Healy's information align with Cairo's? 
+5. Think back to the "What's wrong with this viz" activity. How is it related to Cairo's 5 steps to reading a data visualization?
+6. How would you amend (if at all) Cairo's 5 steps to reading a visualization based on the information Healy presents?
+&lt;/small&gt;
+]
+
+.pull-right[
+## Work Through: 
+&lt;small&gt;
+**Schmidt &amp; Boyd (2020), 2.1-2.10**
+
+These sections provide a basic overview of preparing and cleaning data in R. This should serve as a useful R crash course (or review) and cover some important tasks and functions we will be doing in each class.
+
+You should follow the examples provided as you read the text. Note any confusing functions, issues, or errors so we may discuss them in class.
+
+If needed, refer to Schmidt &amp; Boyd (2020) Chapter 1 (R Basics).&lt;/small&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
