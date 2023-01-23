@@ -1,7 +1,7 @@
 ---
 title: "STEM 591: Visualizing Data Using R"
 subtitle: "2023 Spring "
-author: "Dr. Joshua Rosenberg"
+author: "Joshua Rosenberg and Rita Swartzentruber"
 institute: "University of Tennessee, Knoxville"
 date: "Week 1"
 output:
@@ -27,6 +27,7 @@ class: inverse
 - What's wrong with this viz?
 - Your First R Project
 - Your First Visualization
+- Syllabus, office hours, and Q&A (let them percolate)
 
 ---
 class: center, middle
@@ -34,15 +35,39 @@ class: center, middle
 # Getting To Know Each Other
 
 ---
-<!-- Include personal introduction here -->
 
 # Dr. Joshua Rosenberg
 
+- Assistant Professor of STEM Education at UTK
+- Completed Ph.D. at Michigan State University
+- PI/Co-PI of several grants (NSF, IES, NIH)
+- Dad and Husband
+- Hiker, runner, gardener
+
 ---
 
-<!-- Include personal introduction here -->
-
 # Rita Swartzentruber
+
+- Master's student - Math Education
+- From Oregon, outdoor enthusiast 
+- Recently went to New Zealand for a delayed honeymoon
+
+---
+
+# A few examples from our work
+
+(Having R/RStudio troubles? Hop into a breakout)
+
+---
+
+# Thanks for completing the pre-course survey
+
+- *Concerns*: no experience, time management, unfamiliarity with coding 
+- *Favorite classes*: enthusiasm of instructor, real-world applications
+- *Modes of communication*: Email/Canvas, Slack
+- *Modality*: intentionally designing the course to be meaningful and useful to you
+- *Prior experiences*: none at all, a little bit for a project, a handful with more experience
+- *Your random facts*: super interesting!
 
 ---
 
@@ -57,10 +82,12 @@ When you are done, we will look at the responses and discuss the results!
 
 ---
 
-background-image: url(https://learningsolutionsmag.com/sites/default/files/inline-images/7441_Figure2.png)
+background-image: url(https://pbs.twimg.com/media/E4gQM7JXoAkzwjN?format=png&name=900x900)
 class: bottom, center
 
 # What's wrong with this viz?
+
+https://twitter.com/accidental__art
 
 ---
 
@@ -163,7 +190,7 @@ Today, you will create:
 
 --
 
-- An R project somewhere on your computer called "STEM 531 - Data Visualization in R"
+- An R project somewhere on your computer called something like "STEM 591 - Data Visualization in R"
 --
 
 - A .Rproj file that opens R studio for your specific project
@@ -187,7 +214,7 @@ class: inverse, middle, center
 We will access an R script that will
 
 --
-- install key R packages using `install.package()`,
+- install key R packages using `install.packages()`,
 --
 
 - load key packages using `library()`,
@@ -229,6 +256,12 @@ class: center, middle
 <!-- Hands-on portion of class -->
 
 ---
+
+# Syllabus
+
+[Link to syllabus](https://docs.google.com/document/d/1U2Ctg7EW2Yw9wb3aBm0dkIf4P9Tvei0V/edit#): https://docs.google.com/document/d/1U2Ctg7EW2Yw9wb3aBm0dkIf4P9Tvei0V/edit#
+
+---
 # Homework
 
 .pull-left[
@@ -258,3 +291,14 @@ You should follow the examples provided as you read the text. Note any confusing
 
 If needed, refer to Schmidt & Boyd (2020) Chapter 1 (R Basics).</small>
 ]
+
+---
+
+# Check out
+
+In randomly assigned base groups
+
+*What was the highlight of your break?*
+
+Someone create a discussion thread titled something like "Group 1's Discussion" here: https://utk.instructure.com/courses/170472/discussion_topics/1137019
+
