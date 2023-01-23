@@ -18,8 +18,6 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-<!-- Related folder on Google Drive: https://drive.google.com/drive/folders/17rMsft9XuGpvK4A8R0eGl3Nt3JkUJp43 -->
-
 class: inverse
 
 # Today's Agenda
@@ -58,6 +56,7 @@ When you are done, we will look at the responses and discuss the results!
 ## [https://tiny.utk.edu/stem591](https://tiny.utk.edu/stem591)
 
 ---
+
 background-image: url(https://learningsolutionsmag.com/sites/default/files/inline-images/7441_Figure2.png)
 class: bottom, center
 

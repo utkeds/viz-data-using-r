@@ -127,7 +127,7 @@ ggplot(data = gapminder_cleaned,
 
 ## Save the plot
 ```{r}
-ggsave(plot=last_plot(), filename = here("Week 1", "gapminder.jpg"), height = 6, width=10)
+ggsave(plot=last_plot(), filename = here("gapminder.jpg"), height = 6, width=10)
 ```
 
 ## Gapminder Viz: The Making Of
