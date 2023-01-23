@@ -42,6 +42,12 @@ class: center, middle
 
 ---
 
+<!-- Include personal introduction here -->
+
+# Rita Swartzentruber
+
+---
+
 # Your turn!
 
 Complete the survey below.
