@@ -627,6 +627,15 @@ File: tidykids Scavenger Hunt
 
 # Office hours, asking for help, and common solutions
 
+## Asking for help
+
+1. What question you're working on
+2. The code you are running (sharing screen/taking a screen shot is helpful!)
+3. The error you are receiving
+4. What steps you've taken to solve the problem yourself
+
+Hand off to Rita for more
+
 ---
 
 
