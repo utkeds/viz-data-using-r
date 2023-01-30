@@ -107,7 +107,7 @@ Suggestions for discussion:
 COLORS: All are a form of blue for no apparent reason, difficult contrast between colors, same category has different colors
 
 SHAPE/SIZE: difficult to tell which slices are larger in left plot 
-
+kil
 VALUES: raw values instead of percentages shown
 
 Tip: these would be better as bar charts or faceted line charts. 

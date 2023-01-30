@@ -33,7 +33,10 @@ library(tidyverse)
 
 # Today's Agenda
 
+- Syllabus
 - Reading Discussion
+- Review of the Schmidt and Boyd chapter
+- Reviewing three visualizations (Let's Jam!)
 - R Fundamentals Code Walk Through
 - `ggplot` for visualizations
 - `tidykids` scavenger hunt
@@ -41,41 +44,32 @@ library(tidyverse)
 
 ---
 
+# Syllabus
+
+[Link to syllabus](https://docs.google.com/document/d/1U2Ctg7EW2Yw9wb3aBm0dkIf4P9Tvei0V/edit#): https://docs.google.com/document/d/1U2Ctg7EW2Yw9wb3aBm0dkIf4P9Tvei0V/edit#
+
+---
+
+
 # Reading Discussion
 
 
 **Cairo (2019), Chapter 1**
 **Healy (2018), Chapter 1**
-Guiding Questions:
+
+Discussion Questions:
 1. What are examples of visual encoding that Cairo and Healy present?
 --
 
 2. What new data viz-related terminology did you learn?
 --
 
-3. On the continuum between pure visual imagery and pure writing, where does data visualization fit?
---
-
-4. In what ways does Healy's information align with Cairo's? 
-
 ---
 
 # Reading Discussion
 
 .pull-left[
-5.Think back to the "What's wrong with this viz" activity. How is it related to Cairo's 5 steps to reading a data visualization?
-]
-
-.pull-right[
-<img src="https://i.redd.it/232ga4fs92t41.jpg" height="500px">
-]
-
----
-
-# Reading Discussion
-
-.pull-left[
-6.How would you amend (if at all) Cairo's 5 steps to reading a visualization based on the information Healy presents?
+3.How would you amend (if at all) Cairo's 5 steps to reading a visualization based on the information Healy presents?
 ]
 
 .pull-right[
@@ -89,9 +83,27 @@ Guiding Questions:
 5. Take a bird's-eye view to spot patterns, trends, and relationships
 ]
 
+---
 
+class: center, middle, inverse
+
+# Let's Jam!
+
+[Link to Jamboard](https://jamboard.google.com/d/1vK4SCkkV-5Fee68JY82jadELe5AFR5rhOUWdeUoa8PM/edit?usp=sharing)
 
 ---
+
+## Review of the Schmidt and Boyd chapter
+
+Some themes:
+
+- Challenge: Switching between projects
+- Joy: Changing themes
+- Challenge: File types, file paths
+- Purpose: Tutorial, practice, additional perspectives
+
+---
+
 class: center, middle, inverse
 
 # R Fundamentals
@@ -109,7 +121,7 @@ class: center, middle, inverse
 Let's review some super common functions. Given the table on the left, what do the functions on the right do?
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -132,7 +144,7 @@ starwars %>%
 Let's review some super common functions. Given the table on the left, what do the functions on the right do?
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars <- starwars %>%
@@ -165,7 +177,7 @@ starwars %>%
 Let's review some super common functions. Given the table on the left, what do the functions on the right do?
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -207,14 +219,16 @@ Below, R is written on the left and an English translation is written on the rig
 
 ### R
 
-```{r echo=TRUE, EVAL = FALSE, warning=TRUE}
+```{r, echo=TRUE, EVAL = FALSE, warning=TRUE}
 starwars %>%
   select(name, height) %>%
-  view()
+  glimpse()
   
 ```
 
 ]
+
+--
 
 .pull-right[
 
@@ -230,7 +244,7 @@ starwars %>%
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -248,7 +262,7 @@ starwars %>%
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -272,7 +286,7 @@ starwars %>%
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -291,7 +305,7 @@ starwars %>%
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -312,7 +326,7 @@ str(starwars)
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -329,7 +343,7 @@ starwars %>%
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -339,7 +353,7 @@ starwars %>%
 
 .pull-right[
 ### `head(starwars)`
-Use this to **see the first 10 (or more) rows**
+Use this to **see the first 10 (or fewer/more) rows**
 
 ```{r}
 head(starwars, 1)
@@ -352,7 +366,7 @@ head(starwars)
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -370,7 +384,7 @@ starwars %>%
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -393,7 +407,7 @@ starwars %>%
 # R Fundamentals - A Review
 
 .pull-left[
-**An Example Data Frame**
+**An Example Data Frame - starwars**
 
 ```{r echo=FALSE}
 starwars %>%
@@ -517,7 +531,7 @@ ggplot(starwars, aes(x=height, y=name))
 .pull-left[
 Then, we add **geom**etries, which are the shapes and visual encodings:
 
-```{r fig.height=2}
+```{r, eval = TRUE, fig.height=2}
 ggplot(starwars, aes(x=height, y=name))+
 geom_col()
 ```
@@ -565,7 +579,7 @@ geom_point()
 .pull-left[
 `fill` is for bars while `color` is for points and lines
 
-```{r fig.height=2}
+```{r, fig.height=2}
 ggplot(starwars, aes(x=height, y=name, color=skin_color,
                      shape=hair_color))+
 geom_point()
@@ -580,9 +594,9 @@ geom_point()
 # `ggplot` and Data Visualization in R 
 
 .pull-left[
-We can add other layers. Let's go crazy and make a *bad plot*:
+We can add other layers. Let's go wild and make a *bad plot*:
 
-```{r fig.height=2}
+```{r, fig.height=2}
 ggplot(starwars, aes(x=height, y=name, fill=mass, color=skin_color,
                      shape=hair_color))+
   geom_col()+
@@ -596,8 +610,10 @@ ggplot(starwars, aes(x=height, y=name, fill=mass, color=skin_color,
 ]
 
 .pull-right[
+
 ![](gglayers.png)
 ]
+
 ---
 class: middle, center, inverse
 
@@ -608,6 +624,12 @@ class: middle, center, inverse
 File: tidykids Scavenger Hunt
 
 ---
+
+# Office hours, asking for help, and common solutions
+
+---
+
+
 # Homework
 
 <small>
@@ -625,11 +647,14 @@ When should one use a scatterplot, a stacked bar chart, or a large number value?
 **Healy, Chapter 3**
 
 This will help you better understand `ggplot` for data visualization.
+
+(no discussion question for this one)
+
 ]
 .pull-right[
 ## Assignment 1: `tidykids` visualization
 
-Using the `tidykids` dataset, you will ake a simple bar chart showing which category of spending per chuld has been highest, on average, for Tennessee.
+Using the `tidykids` dataset, you will make a simple bar chart showing which category of spending per chuld has been highest, on average, for Tennessee.
 
 **Submit**: .rmd file  
 **Note**: See rubric on Assignment 1

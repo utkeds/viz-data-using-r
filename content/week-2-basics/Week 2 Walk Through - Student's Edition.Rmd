@@ -1,6 +1,6 @@
 ---
 title: "Week 2 `tidykids` Walk Through"
-author: ""
+author: "Awesome Student"
 date: '2022-12-10'
 output: html_document
 ---
@@ -14,7 +14,7 @@ remotes::install_github("jrosen48/tidykids")
 How can we load the `tidykids` package?
 
 ```{r}
-library(tidykids)
+
 ```
 
 
@@ -22,52 +22,49 @@ library(tidykids)
 How can we view the data in R Studio as a spreadsheet?
 
 ```{r}
-view(tidykids)
+
 ```
 
 
 How can we view the first 10 rows of tidykids?
 
 ```{r}
-head(tidykids, n=10)
+
 ```
 
 How about the last 5 rows?
 
 ```{r}
-tail(tidykids, n=10)
+
 ```
 
 
 How can we see the structure of the data?
 
 ```{r}
-str(tidykids)
+
 ```
 
 How can we list the column names?
 
 ```{r}
-names(tidykids)
+
 ```
 
 How can we see the year range in the column `year`?
 
 ```{r}
-tidykids %>% count(year)
-table(tidykids$year)
+
 ```
 
 What are the variables listed in variable?
 
 ```{r}
-count(tidykids, variable)
-table(tidykids$variable)
+
 ```
 
 See the `tidykids` codebook to understand what these variables represent:
 https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
-
 
 The columns `raw`, `inf_adj`, and `inf_adj_per_child` are not named very clear. How can we rename them? Note that:
 
@@ -76,23 +73,15 @@ The columns `raw`, `inf_adj`, and `inf_adj_per_child` are not named very clear. 
 - inf_adj_perchild refers to the amount transformed to be in 2016 dollars for each year per child in $1000s spent
 
 ```{r}
-tidykids_clean <- tidykids %>%
-  rename("amount_spent" = raw,
-         "adjusted_amount_spent" = inf_adj,
-         "adjusted_amount_per_child" = inf_adj_perchild)
+
 ```
 
+**Note --- this next part is quite a bit more challenging!**
 
 Let's return the average number of K-12 students and amount spent per child in each state for the the year 2000 and later.
 
 ```{r}
-tidykids_summarized <- tidykids_clean %>%
-  filter(year >= 2000,
-         variable == "PK12ed") %>%
-  mutate(population = adjusted_amount_spent/adjusted_amount_per_child) %>%
-  group_by(state) %>%
-  summarize(avg_population = mean(population, na.rm=TRUE),
-            avg_per_child = mean(adjusted_amount_per_child, na.rm=TRUE))
+
   
 ```
 
@@ -102,16 +91,6 @@ How can we visualize this as a bar chart?
 <!-- Colors from https://bookdown.org/hneth/ds4psy/D-3-apx-colors-basics.html -->
 
 ```{r}
-tidykids_summarized %>%
-  arrange(-avg_per_child) %>%
-  slice(1:10) %>%
-  ggplot(aes(y=reorder(state, avg_per_child), 
-             x=avg_per_child,
-             #fill=state,
-             fill=avg_per_child,
-             label=scales::dollar(avg_per_child*1000)))+
-  geom_col()+
-  theme_minimal()+
-  scale_fill_gradient(low="grey90", high="deeppink4")
+
 ```
 
