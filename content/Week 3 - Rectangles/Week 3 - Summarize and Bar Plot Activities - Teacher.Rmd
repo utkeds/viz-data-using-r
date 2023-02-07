@@ -71,7 +71,7 @@ pk12ed_mean_by_state %>%
 
 #### Wired
 
-```{r}
+```{r, out.width = "70%"}
 pk12ed_mean_by_state %>%
   slice_max(mean, n=10) %>%
   ggplot(aes(y=reorder(state, mean), 

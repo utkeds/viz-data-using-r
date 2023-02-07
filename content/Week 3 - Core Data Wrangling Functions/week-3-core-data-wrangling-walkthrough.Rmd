@@ -1,0 +1,122 @@
+---
+title: "Week 3 - Walkthrough"
+author: "Your name"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1: Core R functions
+
+*1.1: Load the tidyverse*
+
+```{r}
+library()
+```
+
+*1.2: Read a CSV file with the data you are analyzing into your R session*
+
+```{r}
+read_csv("")
+```
+
+*1.3: Assign a name to the data you read into your R session using the assignment operator*
+
+```{r}
+<- read_csv("")
+```
+
+*1.4: glimpse() the data you assigned a name to*
+
+```{r}
+glimpse()
+```
+
+*1.5: Replace d with the name of the data you loaded to glimpse the data in an alternate way*
+
+```{r}
+d %>% 
+  glimpse()
+```
+
+## 2: Working with variables (columns)
+
+*2.1: rename() one variable in your data, with the aim of making the variable easier to type or understand*
+
+```{r}
+d %>% 
+  rename("" = )
+```
+
+*2.2: Using the code above, assign a name to the data with the renamed variable; glimpse the newly named data to check that it worked*
+
+```{r}
+
+```
+
+*2.3: select() three variables in your data and assign a name to the resulting data set that is returned*
+
+```{r}
+d %>% 
+  select()
+```
+
+*2.4: Using the new data frame you named in step 2.3, arrange() the rows of your data based on the values of a variable of your choosing*
+
+```{r}
+d %>% 
+  arrange()
+```
+
+*2.5: Again using the data you named in step 2.3, create a new variable, replacing new_var with a name you provide, that sums together two columns*
+
+```{r}
+ %>% 
+  mutate(new_var = )
+```
+
+## 3: Working with rows (observations) and using logical operators
+
+*3.1: filter() the data you read based on the values of a variable of your choosing so that only rows less than or equal to a specified value are returned, replacing d here and throughout with the name of the data you loaded*
+
+```{r}
+d %>% 
+  filter()
+```
+
+*3.2: filter() the data you read so that only a value equivalent to either one of two character strings is returned, replacing d here and throughout with the name of the data you loaded*
+
+```{r}
+d %>% 
+  filter()
+```
+
+*3.3: count() the number of times values for a variable of your choosing occur in your data*
+
+```{r}
+d %>% 
+  count()
+```
+
+*3.4: Group the rows in your data by replacing my_group with the name of a variable of your choosing and find the mean() of the values for each group*
+
+```{r}
+d %>% 
+  group_by(my_group) %>% 
+  summarize(mean_value = mean())
+```
+
+*3.5: Group the rows in your data by replacing my_group with the name of a variable of your choosing and find the sum() of the values for each group, then arranging the resulting values by a variable you specify*
+
+```{r}
+d %>% 
+  group_by(my_group) %>% 
+  summarize(mean_value = ) %>% 
+  arrange()
+
+## 4: Knit and share your report
+
+When complete, please knit the result to an HTML and submit that for the Week 3 Walkthrough in Canvas. 
+
+Nice job!
