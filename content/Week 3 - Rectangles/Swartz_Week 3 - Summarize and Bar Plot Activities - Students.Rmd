@@ -15,13 +15,20 @@ library(tidykids)
 
 > Work together as a class to complete the following code chunks in order to answer the questions.
 
+0. Change the units for inflation adjusted per child spending but multiplying by 1000.
+
+```{r}
+______ <- tidykids %>% #assign the output back to tidykids.
+  mutate(inf_adj_perchild = inf_adj_perchild*1000)
+```
+
 1. What was the mean raw spending per state for PK-12 educational spending?
 
 ```{r}
 pk12ed_mean_by_state <- tidykids %>%
   ______(variable == "PK12ed") %>%
   group_by(_____) %>%
-  summarize(mean = mean(raw))
+  summarize(mean_raw = mean(raw))
 ```
 
 2. What was the median spending on higher ed per person (per child) in the years 2014-2016? What are the top 5 states based on this spending?
@@ -29,9 +36,9 @@ pk12ed_mean_by_state <- tidykids %>%
 ```{r}
 highered_top_5 <- tidykids %>%
   filter(______ == "highered") %>%
-  filter(year %in% c(2016,2015,2014)) %>%
-  group_by(state, year) %>%
-  summarize(median = ______(inf_adj_perchild)*1000) %>%
+  filter(year %in% c(______,______,______)) %>%
+  group_by(state, ______) %>%
+  summarize(median = ______(inf_adj_perchild)) %>%
   ungroup() %>%
   group_by(state) %>%
   mutate(max = max(median)) %>%
@@ -44,9 +51,9 @@ highered_top_5 <- tidykids %>%
 ```{r}
 three_categories <- tidykids %>%
   ______(variable %in% c("pubhealth", "PK12ed", "parkrec")) %>%
-  filter(state %in% c("Florida", "California", "Tennessee", "Texas")) %>%
+  filter(state %in% c("______", "______", "______", "______")) %>%
   ______(state, variable) %>%
-  ______(mean = round(mean(inf_adj_perchild)*1000)) %>%
+  ______(mean = round(mean(inf_adj_perchild)), 2) %>%
   mutate(pct = round(prop.table(mean), 2))
 ```
 
@@ -55,24 +62,17 @@ three_categories <- tidykids %>%
 
 > Explore how to make simple (tired) and slightly more creative (wired) bar charts.
 
-### A Basic Bar Plot {.tabset}
+### A Basic Bar Plot 
 
 1. What was the mean raw spending per state for PK-12 educational spending?
 
 #### Tired
+*Create a bar chart with mean_raw spending by state.* 
 
 ```{r}
 pk12ed_mean_by_state %>%
-  slice_max(mean, n = 10) %>%
-  ggplot(aes(y = reorder(state, mean),  #reorder = order state by mean
-             x = ______)) +
-  geom_col()
-
-# What happens if we switch x and y?
-pk12ed_mean_by_state %>%
-  slice_max(mean, n = 10) %>%
-  ggplot(aes(x = reorder(______, -mean), # use the negative sign for the reverse order
-             y = ______)) +
+  slice_max(mean_raw, n = 10) %>%
+  ggplot(aes(x = ______, y = ______(______, ______))) + #reorder state values by mean_raw
   geom_col()
 ```
 
@@ -81,18 +81,17 @@ pk12ed_mean_by_state %>%
 ```{r}
 pk12ed_mean_by_state %>%
   slice_max(mean, n = 10) %>%
-  ______(aes(y= reorder(______, ______), 
-             x=mean)) +
+  ______(aes(x = ______, y = reorder(______, ______))) +
   geom_col() +
-  scale_x_continuous(labels=scales::dollar_format()) +
-  ylab(NULL) +
-  xlab("______") +
+  scale_x_continuous(labels=scales::dollar_format()) + #add a dollar sign to the x-axis labels
+  ylab(NULL) + #specify the y-axis label
+  xlab("______") + #specify the x-axis label
   ggtitle("Mean PK-12 Educational Spending",
           subtitle="Top 10 States") +
   theme_minimal()
 ```
 
-### A Side-by-Side or Dodged Bar Chart {.tabset}
+### A Side-by-Side or Dodged Bar Chart 
 
 2. What was the median spending on higher ed per person (per child) in the years 2014-2016? What are the top 5 states based on this spending?
 
@@ -101,8 +100,7 @@ pk12ed_mean_by_state %>%
 ```{r}
 highered_top_5 %>%
   ______(aes(x = state, y = median, alpha = year)) + 
-  ______(position = "dodge",
-           fill = "blue4")
+  ______(fill = "blue4")
 
 # use alpha for transparencies to distinguish years
 ```
@@ -110,24 +108,22 @@ highered_top_5 %>%
 #### Wired
 
 ```{r}
-# lines 122 and 123 seem really complicated and overwhelming for the level I perceive these students to be at. I would remove them but I'll let the final call be up to you! I have similar feelings for the previous "Wired" example.
 highered_top_5 %>%
   ggplot(aes(x = state, y = median, alpha = ______)) +
-  geom_col(position = "dodge",
-           fill = "blue4") +
-  ylab("Median Spending per Child")+
+  geom_col(position = "dodge", fill = "blue4") + # "dodge" changes the stack to be side-by-side rather than on top of itself
+  ylab("Median Spending per Child") +
   xlab("State/Year") +
   ggtitle("Median Spending State - 2014-2016",
-          subtitle="Top 5 States")+
-  scale_y_continuous(labels=scales::dollar_format()) +
-  guides(alpha=guide_legend(title="Year")) +
-  theme_minimal()+
-  theme(legend.position = "top",
-        panel.grid.major.x =  element_blank(),
-         panel.grid.minor.x =  element_blank())
+          subtitle="Top 5 States") +
+  scale_y_continuous(labels = scales::dollar_format()) + 
+  guides(alpha = guide_legend(title = "Year")) + #change the legend title
+  theme_minimal() +
+  theme(legend.position = "top", #changes the position of the legend (can be top, bottom, left, right)
+        panel.grid.major.x =  element_blank(), #removes major grid lines 
+         panel.grid.minor.x =  element_blank()) #removes minor grid lines 
 ```
 
-### Stacked Bar Plot {.tabset}
+### Stacked Bar Plot
 
 3. What is the proportion of average spending on public health, PK-12, and parks and recreation for FL, CA, TN, and TX?
 
@@ -136,24 +132,24 @@ highered_top_5 %>%
 
 ```{r}
 three_categories %>%
-  ______(aes(y = fct_rev(state), x = ______, fill = ______)) + 
-  geom_col()
+  ______(aes(______ = pct, ______ = state, fill = ______)) ______ 
+  ______()
 
-# fct_rev reverses the states. It can be used on text (characters and factors)
+
 ```
 
 #### Wired
 
 ```{r}
-three_categories %>%
-  ggplot(aes(y=fct_rev(state), x=pct, fill=variable))+
-  geom_col()+
-  labs(x=NULL,
-       y="Percent of Spending",
-       fill="Spending Type")+
-  geom_text(aes(label=scales::percent(pct)),
-                position=position_stack(vjust=.5))+
-  theme_minimal()+
+______ %>%
+  ggplot(______(x = ______, y = fct_rev(______), ______ = ______)) ______ # fct_rev reverses the states. It can be used on text (characters and factors)
+  geom_col() +
+  labs(x = NULL,
+       y = ______,
+       fill = ______) +
+  geom_text(aes(label=scales::percent(pct)), # adds percentage to each categorey 
+                position=position_stack(vjust=.5)) +
+  theme_minimal() +
   scale_x_continuous(labels=scales::percent_format(1))+
   theme(legend.position = "top")+
   scale_fill_manual(values=c("forestgreen", "dodgerblue1", "firebrick1"),
