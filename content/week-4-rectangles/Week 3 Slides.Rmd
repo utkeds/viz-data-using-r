@@ -1,0 +1,374 @@
+---
+title: "Rectangles"
+subtitle: "STEM 591: Visualizing Data Using R"
+author: "Dr. Joshua Rosenberg"
+institute: "University of Tennessee, Knoxville"
+date: "Week 3"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE
+)
+options(htmltools.preserve.raw = FALSE)
+library(tidyverse)
+```
+
+```{css, echo = FALSE}
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+```
+
+
+# Today's Agenda
+
+- Reading Discussion
+- R Fundamental: `summarize`
+- Data Viz Focus: Bar Charts!
+- Weekly Assignment 2: College Majors
+
+
+---
+class: center, middle
+
+# Name That Chart
+
+Based on the reading, what **type** of chart is it?
+What is it best **used for**?
+
+---
+
+# Name That Chart
+
+.pull-left-margin[
+
+![](https://chartio.com/assets/9bfb20/tutorials/charts/stacked-bar-charts/073137bf11f1c2226f68c3188128e28d66115622dcdecc9bc208a6d4117f53e8/stacked-bar-example-1.png)
+
+]
+
+
+
+--
+
+## Stacked Bar Chart
+
+--
+
+Useful for comparing categories **within groups**
+
+---
+
+# Name That Chart
+
+.pull-left-margin[
+
+![](https://static.wixstatic.com/media/5a367d_f395cc2cb2c149e4a3a0c0932d836a2c~mv2.jpeg/v1/fill/w_378,h_186,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/5a367d_f395cc2cb2c149e4a3a0c0932d836a2c~mv2.jpeg) 
+]
+
+--
+
+## Simple text  
+## Large numbers  
+## BAN (big ass numbers)
+
+--
+
+Useful for simple or important numbers, especially when you do not have many to show or if you want to highlight a specific number
+
+---
+
+# Name That Chart
+
+.pull-left-margin[
+
+![](https://exceljet.net/sites/default/files/styles/original_with_watermark/public/images/charttypes/100%20stacked%20bar%20chart.png)
+]
+
+
+--
+## 100% Stacked Bar Chart
+
+--
+To show percent of categories **within groups**
+
+---
+
+# Name That Chart
+
+.pull-left-margin[
+
+![](https://chartio.com/assets/2776c6/tutorials/charts/scatter-plots/5ef4b4eab0e56be55072a6db90f5f47cf8e46df371a9d94f9fc4819317c65a43/scatter-plot-options-2.png)
+]
+
+
+--
+
+## Scatter Plot
+
+--
+
+Showing the **relationship** between two things, especially (but not necessarily) between two numeric values
+
+---
+
+# Name That Chart
+
+.pull-left-margin[
+
+![](https://mode.com/resources/images/gallery/heat-map-og.png)
+]
+
+
+--
+
+## Heatmap
+
+--
+
+Useful for visualizing **tabular data**, such as correlations
+
+--
+
+What do the colors of this chart signal to you?  
+Does the color choice aid or impede mental processing?
+
+---
+
+# Name That Chart
+
+.pull-left-margin[
+
+![](https://www.tableau.com/sites/default/files/2021-06/DataGlossary_Icons_Pie%20Chart.jpg)
+]
+
+
+--
+
+## Pie chart
+
+--
+
+It is used to show a **proportion** of 100%.
+
+--
+
+They can be **useful IF** there are 3 or less slices.
+
+--
+
+Often poorly used. When in doubt - use a bar chart!
+
+---
+
+# Name That Chart
+
+.pull-left-margin[
+
+![](https://r-charts.com/en/evolution/newggslopegraph_files/figure-html/newggslopegraph.png)
+]
+
+
+--
+
+## Slope Graph
+
+--
+
+This is useful for **comparing two time periods** and showing change in some value
+
+---
+
+# Name That Chart
+
+.pull-left-margin[
+
+![](https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1586289462067-1IWGJB8J7XOY8TCADYHO/Area+chart+example.png?format=1000w)
+]
+
+
+--
+
+## Area Chart
+
+--
+
+Like a line chart, this is useful for **showing change over time**.
+
+---
+class: inverse, center, middle
+
+# R Fundamental: `summarize`
+
+Summarize each group to fewer rows using `dplyr` from the `tidyverse` family of packages
+
+---
+# R Fundamental: `summarize`
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidykids)
+library(tidyverse)
+```
+
+.pull-left[
+Here is the `tidykids` dataset.
+
+```{r}
+tidykids %>%
+  head(10) %>%
+  select(1:4)
+```
+]
+
+.pull-right[
+We can use `summarize` to group by a column and combine other columns
+]
+
+---
+
+# R Fundamental: `summarize`
+
+.pull-left[
+Here is the `tidykids` dataset for PK12ed.
+
+```{r include=FALSE}
+tidykids <- tidykids %>%
+  filter(variable == "PK12ed") %>%
+  select(1:4)
+```
+
+
+```{r}
+tidykids %>%
+  group_by(year) %>%
+  summarize(mean = mean(raw)) %>%
+  head(10)
+```
+]
+
+.pull-right[
+In this example, we:
+
+- Used `tidykids` *and then*
+- `Group`ed by year *and then*
+- Took the `mean` of each year
+
+]
+---
+# R Fundamental: `summarize`
+
+.pull-left[
+
+```{r}
+tidykids %>%
+  group_by(state) %>%
+  summarize(mean = mean(raw)) %>%
+  head(10)
+```
+]
+
+.pull-right[
+In this example, we:
+
+- Used `tidykids` *and then*
+- `Group`ed by state *and then*
+- Took the `mean` of each year
+
+]
+---
+# R Fundamental: `summarize`
+
+.pull-left[
+
+### We can use a number of different functions. The most useful are:
+
+sum()
+
+Center: mean(), median()
+
+Spread: sd(), IQR(), mad()
+
+Range: min(), max(), quantile()
+
+Count: n(), n_distinct()
+
+]
+
+.pull-right[
+
+```{r}
+tidykids %>%
+  group_by(state) %>%
+  summarize(the_mean = mean(raw),
+            a_median = median(raw),
+            and_a_min = min(raw)) %>%
+  head(10)
+```
+
+]
+---
+class: center, middle
+
+# R Fundamental: `summarize` code along
+
+Let's work to summarize `tidykids` and then build some bar plots using `ggplot`!
+
+---
+class: inverse
+
+# Assignment 2: College Majors
+
+Work with a partner to explore the **College Majors** data set that begins Assignment 2.
+
+## Driver & Navigator
+
+.pull-left[
+
+### Driver
+
+- Share your screen and display you R Studio
+- You type, run code, and follow the navigator
+- Contribute your ideas as well!
+]
+
+.pull-right[
+### Navigator
+
+- Take charge of the analysis
+- Tell the driver what to type
+- Listen to your partner's ideas as well!
+
+]
+---
+# Homework
+
+Complete **Assignment 2: College Majors** on your own or continue with your partner.
+
+.pull-left[
+
+**Read**
+Scherer (2018)
+Wilke (2019) 4 and 19
+]
+
+.pull-right[
+**Guiding Question**
+What are some primary considerations for choosing colors when designing data visualizations?
+]
+---

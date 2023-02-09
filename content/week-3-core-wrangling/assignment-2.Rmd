@@ -1,0 +1,86 @@
+---
+title: "Assignment 2"
+author: "your name"
+date: '2022-02-06'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1: Core R functions
+
+*First, load the tidyverse in the code chunk below*
+
+```{r}
+
+```
+
+*Next, read in the tidykids CSV data and assign it a name*
+
+```{r}
+
+```
+
+*Last, glimpse the data you read in and named*
+
+```{r}
+
+```
+
+## 2: Working with variables (columns)
+
+*Use select to choose the state, variable, year, and inf_adj_perchild variables, and then assign a name to the data that results*
+
+```{r}
+
+```
+
+*Rename the inf_adj_perchild variable to be a bit easier to understand (what the variable represents), again assigning a name to the data that results*
+
+```{r}
+
+```
+
+*Arrange the newly-renamed variable in descending order to see for which state, variable, and year spending was greatest*.
+
+```{r}
+
+```
+
+## 3: Working with rows (observations) and using logical operators
+
+*Filter the data to only include three states of your choosing, assigning a name to the data that results*
+
+```{r}
+
+```
+
+*Group the data by both state and year and then calculate the sum of the spending across variables, assigning a name to the output/data*
+
+```{r}
+
+```
+
+*Finally, create a plot that shows the sum of spending over time by state, replacing my_data with the output/data you named in the step immediately above, and replacing ___ with the names of variables for the x, y, and color aesthetics.* 
+
+```{r}
+ggplot(my_data, aes(x = ___, y = ___, color = ___)) +
+  geom_point() +
+  geom_line()
+```
+
+## Bonus: "Compose" a function
+
+*You may have found yourself repeatedly assigning the name to new output. A benefit of using the pipe is that you can "compose" functions together in a series, writing more efficient and easy to read code in the process. Can you compose together all of the data wrangling steps needed to wrangle the data you plotted above into a series?
+
+```{r}
+
+```
+
+## 4: Knit and share your report
+
+When complete, please knit the result to an HTML and submit that for the Week 3 Walkthrough in Canvas. 
+
+Nice job!

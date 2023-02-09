@@ -1,0 +1,154 @@
+---
+title: "Week 6 Practice"
+author: "Amazing Student"
+date: '2023-01-04'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+
+```
+
+# Part 1: Scatterplot Scavenger Hunt
+
+Using  `data` object below, we will do exploratory data analysis. The data contains 12 different data sets, labelled A-L in the "dataset" column, as well as x and y columns. 
+
+1. Begin by answering the questions in the "Summary Statistics" section. 
+2. Then, expore the data by generting scatterplots for each dataset in the "EDA Scatterplot" section.
+3. Answer the questions in the "EDA Findings" section.
+
+```{r}
+# load data
+data <- read_csv("Week 6/week_6_data.csv")
+```
+
+## Summary Statistics
+
+1. Using `group_by` and `summarize`, calculate mean of x, mean of y, standard deviation of x, standard deviation of y, and the correlation of x and y (hint: `cor`). 
+
+```{r}
+
+
+```
+
+2. After looking at the results, what do you notice about the data?
+
+3. Before making scatterplots for the data, make a prediction: will these scatterplots look the same or different?
+
+## EDA (Exploratory Data Analysis)
+
+Make a simple scatter plot for each data sets below. Optional: add a regression line using `geom_smooth(method = "lm")`
+
+```{r}
+
+```
+
+
+
+
+## EDA Findings
+
+1. Which data set creates the following:
+
+- A dinosaur:
+- A star:
+- An "X":
+- A bullseye:
+- A circle:
+
+2. Based on the summary statistics and the scatter plots, what can we conclude about the samples from which the data were drawn (or the data generating process).
+
+## EDA Extra
+
+Generate a single scatter plot based on 1 or 2 data sets and give it a quick data viz makeover with size, shape, and color changes. Be ready to share with the class.
+
+```{r}
+
+```
+
+
+
+## Part 2: Visualizing Proportions
+
+The College Majors dataset contains a column called `ShareWomen` which is the proportion of women graduating with the major indicated. We can use this value to derive the proportion of men. We can this use this to visualize various proportions of graduates.
+
+### Let's wrangle some data!
+
+```{r}
+recent_grads <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/recent-grads.csv") %>%
+  janitor::clean_names() %>% # make all names lower case
+  select(rank, major, major_category, share_women)
+```
+
+Using the `recent_grads` object, create a `share_men` column that represents the proportion of men for each row. Assign it to a data object called `recent_grads2`.
+
+```{r}
+
+```
+
+
+This data is in **wide** format, with each measurement (the proportion) in a separate column. We need to make it long, with each measurement in the same column. This makes it easier to analyze and visualize. 
+
+![](https://www.statology.org/wp-content/uploads/2021/12/wideLong1-1.png)
+
+We can use `pivot_longer` to accomplish this. We have seen this a few times already and will focus on it a bit later in class. Here is the simple code to transform our data set:
+
+```{r}
+recent_grads_long <- recent_grads2 %>%
+  pivot_longer(
+    share_women:share_men, # we will pivot these columns
+    names_to = "sex", # the name of the column that will indicate what these numbers refer to
+    values_to = "pct" # the name of the values column, pct is shorter than proporition!
+  )
+
+view(recent_grads_long)
+```
+
+Let's take it one more step and remove the word "share" from the "sex" column:
+
+```{r}
+recent_grads_clean <- recent_grads_long %>%
+  mutate(sex = str_remove(sex, "share_"))
+```
+
+
+#### Visualize a major
+
+Using the "major" column in `recent_grads_long`, select your major or one similar to yours. Then build three charts: side-by-side, stacked, and pie. Which do you think conveys the proporition of men vs women graduates best? Be ready to defend your answer.
+
+
+
+Stacked
+
+```{r}
+
+```
+
+Side-by-side
+
+```{r}
+
+```
+
+Pie chart
+```{r}
+
+```
+
+### DIY Wrangling
+
+Using the data set below, calculate the proportion of men vs women for each major_category. Pivot the data longer and the build a pie chart with proper labels and colors.
+
+```{r}
+data_to_use <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/recent-grads.csv") %>%
+  janitor::clean_names() %>% # make all names lower case
+  select(major_category, men, women, total)
+```
+
+```{r}
+
+```
+
