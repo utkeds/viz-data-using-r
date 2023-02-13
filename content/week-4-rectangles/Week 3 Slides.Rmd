@@ -3,7 +3,7 @@ title: "Rectangles"
 subtitle: "STEM 591: Visualizing Data Using R"
 author: "Dr. Joshua Rosenberg"
 institute: "University of Tennessee, Knoxville"
-date: "Week 3"
+date: "Week 4"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -39,18 +39,52 @@ library(tidyverse)
 
 # Today's Agenda
 
-- Reading Discussion
-- R Fundamental: `summarize`
-- Data Viz Focus: Bar Charts!
-- Weekly Assignment 2: College Majors
-
+1. Check in
+1. Name that chart!
+1. R Fundamental: `summarize` (and considerations for visualizing frequencies)
+1. Summarize and bar charts activity
+1. Next steps
+1. Check out
 
 ---
+class: inverse, center, middle
+
+# 1. Check in
+
+---
+
+## Data Jam
+
+Please add **two sticky notes** for **week 4**:
+
+https://jamboard.google.com/d/1vK4SCkkV-5Fee68JY82jadELe5AFR5rhOUWdeUoa8PM/edit?usp=sharing
+
+---
+
+class: inverse, center, middle
+
+# 2. Discussion reflection
+
+---
+
+## Key points in the discussion
+
+- xx
+
+---
+
+
+class: inverse, center, middle
+
+# 2. Name that chart!
+
+---
+
 class: center, middle
 
-# Name That Chart
+# Name that chart!
 
-Based on the reading, what **type** of chart is it?
+Based on the reading from last week, what **type** of chart is it?
 What is it best **used for**?
 
 ---
@@ -72,6 +106,7 @@ What is it best **used for**?
 --
 
 Useful for comparing categories **within groups**
+Key decision: ordering the bars based on a logical or suitable order (often not what the default is)
 
 ---
 
@@ -212,13 +247,13 @@ This is useful for **comparing two time periods** and showing change in some val
 Like a line chart, this is useful for **showing change over time**.
 
 ---
+
 class: inverse, center, middle
 
-# R Fundamental: `summarize`
-
-Summarize each group to fewer rows using `dplyr` from the `tidyverse` family of packages
+# 3. Summarize refresher
 
 ---
+
 # R Fundamental: `summarize`
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
@@ -270,8 +305,48 @@ In this example, we:
 - Took the `mean` of each year
 
 ]
+
+---
+
+# We can use different summary functions: max()
+
+```{r}
+tidykids %>%
+  group_by(year) %>%
+  summarize(max = max(raw)) %>%
+  head(10)
+```
+
+---
+
+# We can use different summary functions: max()
+
+*The name of the new summary statistic is entirely up to you!*
+
+```{r}
+tidykids %>%
+  group_by(year) %>%
+  summarize(my_max = max(raw)) %>%
+  head(10)
+```
+
+---
+
+# We can use different summary functions: median()
+
+*The key is that the summary function returns a single value*
+
+```{r}
+tidykids %>%
+  group_by(year) %>%
+  summarize(my_median = median(raw)) %>%
+  head(10)
+```
+
 ---
 # R Fundamental: `summarize`
+
+*We can specify practically any group*
 
 .pull-left[
 
@@ -302,15 +377,17 @@ sum()
 
 Center: mean(), median()
 
-Spread: sd(), IQR(), mad()
+Spread: sd(), var(), *note: not range()*
 
-Range: min(), max(), quantile()
+Range: min(), max()
 
-Count: n(), n_distinct()
+Count: n()
 
 ]
 
 .pull-right[
+
+*We can calculate multiple at once*
 
 ```{r}
 tidykids %>%
@@ -323,18 +400,22 @@ tidykids %>%
 
 ]
 ---
-class: center, middle
 
-# R Fundamental: `summarize` code along
+class: inverse, center, middle
 
-Let's work to summarize `tidykids` and then build some bar plots using `ggplot`!
+# 4. R Fundamental: `summarize` and plot code-along
 
 ---
-class: inverse
 
-# Assignment 2: College Majors
+class: inverse, center, middle
 
-Work with a partner to explore the **College Majors** data set that begins Assignment 2.
+# 5. Next steps
+
+---
+
+# Assignment 3: College Majors
+
+Time permitting, work with a partner to explore the **College Majors** data set that **begins** Assignment 3.
 
 ## Driver & Navigator
 
@@ -356,6 +437,7 @@ Work with a partner to explore the **College Majors** data set that begins Assig
 
 ]
 ---
+
 # Homework
 
 Complete **Assignment 2: College Majors** on your own or continue with your partner.
@@ -368,7 +450,13 @@ Wilke (2019) 4 and 19
 ]
 
 .pull-right[
-**Guiding Question**
-What are some primary considerations for choosing colors when designing data visualizations?
+**Reflection/guiding question**
+What are some primary considerations for choosing colors when designing data visualizations? **Please take notes on this in preparation for a discussion at the start of our next class!**.
+
 ]
+
 ---
+
+class: inverse, center, middle
+
+# Check out

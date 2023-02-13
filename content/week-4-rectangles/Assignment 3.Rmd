@@ -1,0 +1,78 @@
+---
+title: 'Assignment 3: College Majors'
+author: "Wonderful Student (change to your name!)"
+date: '(add the dates)'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# load your libraries here
+```
+
+
+```{r}
+# Access the data here:
+recent_grads <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/recent-grads.csv")
+
+```
+
+## Exploration
+
+Use the functions and techniques we have learned to become familiar with the data set.
+
+Note, for a data "dictionary", visit https://github.com/rfordatascience/tidytuesday/tree/master/data/2018/2018-10-16
+
+```{r}
+
+```
+
+## Summarize the Data
+
+Use the functions and techniques we learned to wrangle and prepare data in the last week for the following task.
+
+Note: Save each answer as an "object" to be used in your visualizations later.
+
+1. Which **major category** has the largest total number of women?
+
+```{r}
+women <- recent_grads %>%
+  group_by(Major_category) %>%
+  summarize(sum = sum(Women))
+```
+
+2. Explore the data further using summarize() using groups or variables of your choosing. Please try a different summary statistic than either the sum() or mean() functions we have used so far.
+
+```{r}
+
+```
+
+## Visualize the Data
+
+1. Using your first analysis, develop a **bar chart** that shows which major category has the largest total number of women
+
+
+```{r}
+
+```
+
+2. Using your own analysis from above, develop one additional bar chart of your choice. Try to go from "tired" to "wired" by using code from the examples provided!
+
+```{r}
+
+```
+
+When complete, please submit this document as an HTML report.
+
+---
+
+## Grading Rubric
+
+| Criteria                                | Yes/No |
+|:----------------------------------------|:--------|
+| The file knits without errors           |   &check;    |
+| Question 1 is answered correctly        |   []   |
+| Question 2 is answered correctly        |   []   |
+| There is a simple bar chart for Q1      |   []   |
+| There is a stacked bar chart for Q2     |   []   |
+| There is a third bar chart              |   []   |
