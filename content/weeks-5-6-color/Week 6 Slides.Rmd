@@ -13,7 +13,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-class: inverse
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -47,6 +46,157 @@ library(tidyverse)
 6. Next steps
 
 ---
+
+
+Let's add ideas together here: https://jamboard.google.com/d/1MJn8uJizaGONSIq6QLuTwc1jdTlbrtdKFdX12ATXNms/edit?usp=sharing
+
+---
+
+# Reading Discussion
+
+Based on these considerations, which color choice do you think best communicates the story in the data?
+
+<!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization -->
+
+![scale:320%](https://github.com/utkeds/2023-Spring-Data-Visualization-In-R/blob/main/content/weeks-5-6-color/color_examples/1.png?raw=true)
+
+<!-- Considerations: Colors should be consistent across visualizations -->
+
+---
+
+# Reading Discussion
+
+Based on these considerations, which color choice do you think best communicates the story in the data?
+
+<!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization -->
+
+![scale:320%](https://github.com/utkeds/2023-Spring-Data-Visualization-In-R/blob/main/content/weeks-5-6-color/color_examples/2.png?raw=true)
+
+---
+
+# Reading Discussion
+
+Based on these considerations, which color choice do you think best communicates the story in the data?
+
+<!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization -->
+
+
+![scale:320%](https://github.com/utkeds/2023-Spring-Data-Visualization-In-R/blob/main/content/weeks-5-6-color/color_examples/3.png?raw=true)
+<!-- Considerations: Colors should match cultural expectations (good/bad),
+the categories they represent (forest/lake) BUT not stereotype (female/male)
+-->
+---
+
+# Reading Discussion
+
+Based on these considerations, which color choice do you think best communicates the story in the data?
+
+<!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization -->
+
+
+![scale:320%](https://github.com/utkeds/2023-Spring-Data-Visualization-In-R/blob/main/content/weeks-5-6-color/color_examples/4.png?raw=true)
+<!-- Considerations: Lower=lighter, more=darker.  -->
+
+---
+
+# Reading Discussion
+
+Based on these considerations, which color choice do you think best communicates the story in the data?
+
+<!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization -->
+
+
+![scale:320%](https://github.com/utkeds/2023-Spring-Data-Visualization-In-R/blob/main/content/weeks-5-6-color/color_examples/5.png?raw=true)
+
+<!-- Considerations: Distinct categories should have distinct colors.-->
+
+---
+
+
+# Reading Discussion
+
+Based on these considerations, which color choice do you think best communicates the story in the data?
+
+<!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization -->
+
+
+![scale:320%](https://github.com/utkeds/2023-Spring-Data-Visualization-In-R/blob/main/content/weeks-5-6-color/color_examples/6.png?raw=true)
+<!-- Considerations: Diverging colors should be distinct -->
+---
+
+# Reading Discussion
+
+.pull-left[
+Based on these considerations, which color choice do you think best communicates the story in the data?
+
+<!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization -->
+]
+
+.pull-right[
+
+![scale:50%](https://github.com/utkeds/2023-Spring-Data-Visualization-In-R/blob/main/content/weeks-5-6-color/color_examples/8.png?raw=true)
+
+]
+<!-- Considerations: Always consider different forms of visual perception -->
+
+---
+
+### What are other options besides base R colors?
+
+
+.pull-left[
+
+One popular functions that come with `ggplot` is
+
+`scale_*_brewer` 
+
+Note that * refers to either `fill` or `color`.
+
+- `fill` is usually used with `geom_col`, `geom_bar`, `geom_area`, `geom_tile`
+- `color` is usually used with `geom_point` and `geom_line`
+]
+
+.pull-right[
+ **Qualitative Palette**
+
+```{r fig.height=2}
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, fill=letters))+
+  geom_col()+
+  scale_fill_brewer(type="qual", palette = "Accent")
+```
+
+Other palette options include: Dark2, Paired, Pastel1, Pastel2, Set1, Set2, Set3
+]
+---
+
+.pull-left[
+ **Sequential Palette**
+
+```{r fig.height=2}
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, fill=letters))+
+  geom_col()+
+  scale_fill_brewer(type="seq", palette = "BuGn", direction=-1)
+```
+
+Other colors include: Blues, BuPu, GnBu, Greens, Greys, Oranges, OrRd, PuBu, PuBuGn, PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd
+]
+
+.pull-right[
+ **Diverging Palette**
+
+```{r fig.height=2}
+example_data %>%
+  ggplot(aes(x=numbers, y=letters, fill=letters))+
+  geom_col()+
+  scale_fill_brewer(type="div", palette="PiYG")
+```
+Other palettes include: BrBG, PRGn, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral
+]
+
+---
+
 class: inverse, center, middle
 # Data Jam
 

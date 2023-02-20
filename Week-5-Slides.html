@@ -49,11 +49,9 @@ class: inverse
 # Today's Agenda
 
 1. Data Jam
-2. Reading Discussion
-3. Introduction to Mini Project 1!
-4. Building A Color Palette
-5. Colors in ggplot
-6. Next steps
+2. Introduction to Mini Project 1!
+3. Building A Color Palette
+4. Next steps
 
 ---
 
@@ -71,107 +69,22 @@ class: inverse, center, middle
 
 # Reading Discussion
 
-What are some primary considerations for choosing colors when designing data visualizations?
+**Read:**
+Scherer (2018)
+Wilke (2019) 4 and 19
 
----
-
-# Reading Discussion
-
-Based on these considerations, which color choice do you think best communicates the story in the data?
-
-&lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-
-![scale:320%](color_examples/1.png)
-
-&lt;!-- Considerations: Colors should be consistent across visualizations --&gt;
-
----
-
-# Reading Discussion
-
-Based on these considerations, which color choice do you think best communicates the story in the data?
-
-&lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-
-![scale:320%](color_examples/2.png)
-
----
-
-# Reading Discussion
-
-Based on these considerations, which color choice do you think best communicates the story in the data?
-
-&lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-
-
-![scale:320%](color_examples/3.png)
-&lt;!-- Considerations: Colors should match cultural expectations (good/bad),
-the categories they represent (forest/lake) BUT not stereotype (female/male)
---&gt;
----
-
-# Reading Discussion
-
-Based on these considerations, which color choice do you think best communicates the story in the data?
-
-&lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-
-
-![scale:320%](color_examples/4.png)
-&lt;!-- Considerations: Lower=lighter, more=darker.  --&gt;
-
----
-
-# Reading Discussion
-
-Based on these considerations, which color choice do you think best communicates the story in the data?
-
-&lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-
-
-![scale:320%](color_examples/5.png)
-
-&lt;!-- Considerations: Distinct categories should have distinct colors.--&gt;
-
----
-
-
-# Reading Discussion
-
-Based on these considerations, which color choice do you think best communicates the story in the data?
-
-&lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-
-
-![scale:320%](color_examples/7.png)
-&lt;!-- Considerations: Diverging colors should be distinct --&gt;
----
-
-# Reading Discussion
-
-.pull-left[
-Based on these considerations, which color choice do you think best communicates the story in the data?
-
-&lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-]
-
-.pull-right[
-
-![scale:50%](color_examples/8.png)
-
-]
-&lt;!-- Considerations: Always consider different forms of visual perception --&gt;
+Based on the readings from last week, what are some primary considerations for choosing colors when designing data visualizations?
 
 ---
 class: inverse, center, middle
-# 3. Mini Project 1
+# 2. Mini Project 1
 
 ## See **Mini Project 1.Rmd**
 &lt;!-- Go over assignment in document --&gt;
 ---
 
 class: inverse, center, middle
-# Building a Color Palette
+# 3. Building a Color Palette
 
 ---
 
@@ -180,7 +93,7 @@ class: inverse, center, middle
 .pull-left[
 ### Color Oracle is a free tool to help you quickly determine what your graphic looks like under different color blindness conditions
 
-Download and install it from https://colororacle.org/ 
+At this time, download and install it from https://colororacle.org/ 
 
 ]
 
@@ -205,11 +118,11 @@ How can we use colors in R?
 
 .pull-right[
 
-- Base R colors
-- Color Brewer
-- Viridis
-- Palette Packages
-- Bespoke color palettes!
+- Today: Base R colors
+- Next:
+  - Color Brewer
+  - Viridis
+  - Palette packages
 
 ]
 
@@ -218,9 +131,13 @@ How can we use colors in R?
 
 ## Base R Colors
 
-R comes pre-loaded with 657 colors!
+R comes pre-loaded with 657 _named_ colors!
 
-Use the command `colors()` to see all their names and visit http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf to see many of these colors.
+You can also specify _any_ color using a hex code.
+
+(*We had to look into this: In standard #RRGGBB notation, there are 256^3 color combinations available, or 16,777,216*)
+
+Use the command `colors()` to see all the named colors' names and visit http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf to see many of these colors.
 
 ---
 # Colors in R
@@ -237,21 +154,28 @@ You can simply use the name of the color in quotes.
 ```r
 example_data %&gt;%
   ggplot(aes(x=numbers, y=letters))+
-  geom_col(fill="skyblue")+
-  theme_void()
+  geom_col(fill="skyblue")
 ```
 ]
 
 .pull-right[
+
+```r
+example_data %&gt;%
+  ggplot(aes(x=numbers, y=letters))+
+  geom_col(fill="skyblue")+
+  theme_void()
+```
+
 ![](Week-5-Slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
 ]
 ---
 # Colors in R
 .pull-left[
 ## Using Base R Colors
 
-You can simply use the name of the color in quotes.
-
+You can simply use the name of the color in quotes, saying which bar you want to fill with which color
 
 
 ```r
@@ -260,8 +184,8 @@ example_data %&gt;%
   geom_col()+
   scale_fill_manual(values=c("A" = "skyblue",
                              "B" = "sandybrown",
-                             "C" = "palegreen1",
-                             "D" = "peachpuff1",
+                             "C" = "sandybrown",
+                             "D" = "sandybrown",
                              "E" = "maroon"))+
   theme_void()
 ```
@@ -336,7 +260,7 @@ This maps the color to the *data*.
 
 `scale_fill_manual()` allows you to manually select the `fill` colors.  
 
-Here, we are setting the values using a **named vector.**. `c()` creates a vector where the name "A" is equal to "skyblue" and so on.
+Here, we are setting the values using a **named vector**. `c()` creates a vector where the name "A" is equal to "skyblue" and so on.
 
 
 
@@ -369,73 +293,23 @@ It can be code along-style
 Note 2: It is more than likely this could be assigned as homework and continued in next class
 --&gt;
 
-
-### What are other options besides base R colors?
-
-
-.pull-left[
-
-One popular functions that come with `ggplot` is
-
-`scale_*_brewer` 
-
-Note that * refers to either `fill` or `color`.
-
-- `fill` is usually used with `geom_col`, `geom_bar`, `geom_area`, `geom_tile`
-- `color` is usually used with `gome_point` and `geom_line`
-]
-
-.pull-right[
- **Qualitative Palette**
-
-
-```r
-example_data %&gt;%
-  ggplot(aes(x=numbers, y=letters, fill=letters))+
-  geom_col()+
-  scale_fill_brewer(type="qual", palette = "Accent")
-```
-
-![](Week-5-Slides_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
-
-Other palette options include: Dark2, Paired, Pastel1, Pastel2, Set1, Set2, Set3
-]
 ---
 
-.pull-left[
- **Sequential Palette**
 
+class: inverse, center, middle
 
-```r
-example_data %&gt;%
-  ggplot(aes(x=numbers, y=letters, fill=letters))+
-  geom_col()+
-  scale_fill_brewer(type="seq", palette = "BuGn", direction=-1)
-```
-
-![](Week-5-Slides_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
-
-Other colors include: Blues, BuPu, GnBu, Greens, Greys, Oranges, OrRd, PuBu, PuBuGn, PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd
-]
-
-.pull-right[
- **Diverging Palette**
-
-
-```r
-example_data %&gt;%
-  ggplot(aes(x=numbers, y=letters, fill=letters))+
-  geom_col()+
-  scale_fill_brewer(type="div", palette="PiYG")
-```
-
-![](Week-5-Slides_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
-Other palettes include: BrBG, PRGn, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral
-]
+# 4. Next steps
 
 ---
 
-## Next steps
+For the next week:
+
+- Begin on Mini Project 1
+- Complete Week 5 Color Activities
+
+To check out:
+
+- Looking ahead, wou will complete a final project that involves developing a visualization with your own data or a data set of your choice. The goal of this project is to create a publication-ready visualization that demonstrates what you have learned throughout the course. **What data are you interested in using?**
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

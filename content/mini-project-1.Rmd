@@ -9,7 +9,7 @@ output: html_document
 
 Explore the School Diversity data set and design simple, colorful barcharts.
 
-The data for this mini project comes from the [Washington Post](https://www.washingtonpost.com/graphics/2019/local/school-diversity-data/#methodology). To Read more about the source of this data and access a data dictionary, [please click here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-09-24). 
+The data for this mini project comes from the [Washington Post](https://www.washingtonpost.com/graphics/2019/local/school-diversity-data/#methodology). To read more about the source of this data and access a data dictionary, [please click here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-09-24). 
 
 Using this data, you will demonstrate you ability to explore, summarize, and visualize a new data set. In other words, you will apply what we have learned so far to a data set you have not yet seen.
 
@@ -21,17 +21,6 @@ The three sections you must complete are as follows:
 
 - Visualize: Present simple but useful visualizations that depict interesting information in an aesthetically appealing way.
 
-## Grading Criteria
-
-| Criteria                                                            | Yes/No |
-|:--------------------------------------------------------------------|:-------|
-| The file knits without errors                                       |   []   |
-| Functions to explore the data are used correctly                    |   []   |
-| The data summarization answers each question the student asks       |   []   |
-| The information each visualization depicts is clear                 |   []   |
-| Each visualization employees proper color principles                |   []   |
-|                                                                     |   []   |
-
 # Explore
 
 ```{r setup, include=FALSE}
@@ -39,11 +28,11 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 # load packages here
 
-# the data
+# read the data
 school_diversity <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-09-24/school_diversity.csv")
 ```
 
-Demonstrate four different ways to explore a data set.
+Demonstrate four different ways to _explore_ the data, focusing on understanding: the columns, the rows, and some characteristics of the data (variable type, summary statistics, counts, etc.).
 
 ```{r}
 
@@ -51,7 +40,7 @@ Demonstrate four different ways to explore a data set.
 
 # Summarize
 
-Once you are familiar with the data, think of three questions you think the data can answer. Write the questions below and then summarize the data to answer those questions. Note: you will use those summaries in the Visualization section.
+Once you are familiar with the data, think of three questions you think the data can answer. Write the questions below and *then* use summarize (and other code) with the data to answer those questions. Note: you will use those summaries in the Visualization section.
 
 Question 1: 
 
@@ -94,6 +83,19 @@ Visualization 2
 
 Visualization 3
 
-```{r
+```{r}
 
-```}
+```
+
+Please submit your work **as an RMD document** (not an HTML file) in Canvas for Mini Project 1! Good work!
+
+## Grading Criteria
+
+| Criteria                                                            | Yes/No |
+|:--------------------------------------------------------------------|:-------|
+| The file knits without errors                                       |   []   |
+| Functions to explore the data are used correctly                    |   []   |
+| The data summarization answers each question the student asks       |   []   |
+| The information each visualization depicts is clear                 |   []   |
+| Each visualization employees proper color principles                |   []   |
+|                                                                     |   []   |

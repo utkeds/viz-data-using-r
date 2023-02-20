@@ -18,12 +18,13 @@ Use the primary and at least 5 accent colors.
 
 ```{r}
 utk_data_frame <- tribble(~name,           ~hex,
-                          "orange",       "#FF8200",
+                          "",       "#",
 
                           )
 
 utk_data_frame
 ```
+
 You can preview what these colors look like using the following code:
 
 ```{r}
@@ -33,8 +34,9 @@ utk_data_frame %>%
   scale_fill_identity()
 ```
 
+Wish to make any changes to your palette after seeing the appearance of the colors? Now is a good time to do so!
 
-## Build a Named Vector of UTK Colors
+## Build a named vector of UTK Colors
 
 Use the same colors as above to make a named character vector
 ```{r}
@@ -46,13 +48,11 @@ utk_color_vector <- c(
 utk_color_vector
 ```
 
-
-
 ## Using the UTK Color Vector
 
 Our hex values are mapped to color names. How can we use this with data?
 
-Introducing your first function. Run this code:
+Introducing your first custom function. Run this code:
 
 ```{r}
 utk_color <- function(...) {
@@ -72,16 +72,15 @@ utk_color("orange")
 utk_color("smokey_gray")
 ```
 
-
 Let's apply it to some simple example data:
 
 ```{r}
 # note this is another way to make a DIY data frame!
-example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(5:20, 5))
+example_data <- tibble(letters=LETTERS[1:5], numbers=sample(5:20, 5))
 example_data
 ```
 
-Map each letter to a UTK color:
+Map each letter to a different UTK color:
 
 ```{r}
 example_data %>%
@@ -94,3 +93,28 @@ example_data %>%
                              "E" = 
   ))
 ```
+
+## Build a named vector with colors of your own choosing
+
+Consider colors associated with your state, favorite professional sports team or art work, or simply colors that you like and thing are effective when used together. If you are having trouble, look at the `utk_color_vector` you created above. Note that you can select more than five colors.
+
+
+```{r}
+my_color_vector <- c(
+                          
+
+                          )
+
+my_color_vector
+```
+
+## Using your named color vector
+
+Next, use this to visualize `example_data` like you did above, with two changes:
+
+1. Reorder the bars based on their values
+2. Use just two or three of the colors in your named vector, with the aim of highlighting particular bars (with the caveat that this is just practice and the letters themselves are not highly meaningful!)
+
+## Knit!
+
+Please knit and submit
