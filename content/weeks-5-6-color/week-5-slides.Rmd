@@ -299,6 +299,8 @@ class: inverse, center, middle
 
 ---
 
+## Next steps
+
 For the next week:
 
 - Begin on Mini Project 1
