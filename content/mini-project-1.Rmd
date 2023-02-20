@@ -79,3 +79,21 @@ Keeping in mind all of the princples of visualization we have learned, all of th
 2. Use a custom or non-default color palette
 3. Use `theme_minimal` or another theme
 4. Have a title, using `ggtitle("title here")`
+
+Visualization 1
+
+```{r}
+
+```
+
+Visualization 2
+
+```{r}
+
+```
+
+Visualization 3
+
+```{r
+
+```}

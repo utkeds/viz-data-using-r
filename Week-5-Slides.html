@@ -45,50 +45,53 @@ class: inverse
   font-size: 70% !important;
 }
 &lt;/style&gt;
-&lt;!-- Note: Week 4 contains several activities and can be split between Weeks 4 and 5 --&gt;
 
 # Today's Agenda
 
-- Introduction to Mini Project 1!
-- Reading Discussion
-- Building A Color Palette
-- Colors in ggplot
-- Assignment 3: Data Viz Glow Up
+1. Data Jam
+2. Reading Discussion
+3. Introduction to Mini Project 1!
+4. Building A Color Palette
+5. Colors in ggplot
+6. Next steps
 
 ---
+
 class: inverse, center, middle
-# Mini Project 1
+# 1. Data Jam
 
-## See **Mini Project 1.Rmd**
-&lt;!-- Go over assignment in document --&gt;
+https://jamboard.google.com/d/1vK4SCkkV-5Fee68JY82jadELe5AFR5rhOUWdeUoa8PM/edit?usp=sharing
+
 ---
 
-class: middle, center
+class: inverse, center, middle
+# 2. Reading Discussion
 
+---
 
 # Reading Discussion
 
 What are some primary considerations for choosing colors when designing data visualizations?
 
 ---
+
 # Reading Discussion
 
 Based on these considerations, which color choice do you think best communicates the story in the data?
 
 &lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-
 
 ![scale:320%](color_examples/1.png)
 
 &lt;!-- Considerations: Colors should be consistent across visualizations --&gt;
 
 ---
+
 # Reading Discussion
 
 Based on these considerations, which color choice do you think best communicates the story in the data?
 
 &lt;!-- Based on https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization --&gt;
-
 
 ![scale:320%](color_examples/2.png)
 
@@ -158,6 +161,18 @@ Based on these considerations, which color choice do you think best communicates
 
 ]
 &lt;!-- Considerations: Always consider different forms of visual perception --&gt;
+
+---
+class: inverse, center, middle
+# 3. Mini Project 1
+
+## See **Mini Project 1.Rmd**
+&lt;!-- Go over assignment in document --&gt;
+---
+
+class: inverse, center, middle
+# Building a Color Palette
+
 ---
 
 # Color Blindness Tools
@@ -342,6 +357,19 @@ Note: a vector is similar to a single `c`olumn of data in a table.
 ]
 ---
 
+class: inverse, center, middle
+# DIY Color Palette
+
+Access the **Week 4 - Color Activities.Rmd** file.  
+Let's work together to build a custom palette!
+
+&lt;!-- Note 1: This was designed to be a whole class activity 
+It can be code along-style
+
+Note 2: It is more than likely this could be assigned as homework and continued in next class
+--&gt;
+
+
 ### What are other options besides base R colors?
 
 
@@ -404,270 +432,10 @@ example_data %&gt;%
 ![](Week-5-Slides_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 Other palettes include: BrBG, PRGn, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral
 ]
----
-### What are other options besides base R colors?
-
-.pull-left[
-Another set of more advanced options installed with `ggplot` include:
-
-
-- `scale_*_viridis_c` - used for continuous data
-- `scale_*_viridis_d` - used for discrete data
-
-
-]
-
-.pull-right[
-
-
-```r
-txsamp &lt;- subset(txhousing, city %in%
-  c("Houston", "Fort Worth", "San Antonio", "Dallas", "Austin"))
-d &lt;- ggplot(data = txsamp, aes(x = sales, y = median)) +
-   geom_point(aes(colour = city), size=3)
-
-d + scale_colour_viridis_d()
-```
-
-![](Week-5-Slides_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
-See [documentation](https://ggplot2.tidyverse.org/reference/scale_viridis.html) for other color options
-
-]
 
 ---
 
-### What are other options besides base R colors?
-
-
-You can install and use other color packages such as `tvthemes`, `hrbrthemes`,  `ghibli`, or even `LaCroixColoR`. See 
-
-See https://github.com/EmilHvitfeldt/r-color-palettes/blob/master/type-sorted-palettes.md for a list of R color packages
-
-
----
-
-# DIY Color Palette
-
-Today, we are going to build our own UTK color palette.
-
-Before we do that, however, let's learn a bit more about R data structures
-
-So far, we have mostly been working with **data frames**. A data frame is basically a table. It is made up of columns and rows. 
-
-Here is a 5x6 data frame. It is made up of 5 rows and 6 columns.
-
-
-```
-##        state variable year      raw  inf_adj inf_adj_perchild
-## 1    Alabama   PK12ed 2006  5478034  6450460         5.407319
-## 2     Alaska   PK12ed 2006  1509377  1777312         9.063065
-## 3    Arizona   PK12ed 2006  6367593  7497928         4.514059
-## 4   Arkansas   PK12ed 2006  3533593  4160854         5.643918
-## 5 California   PK12ed 2006 53012464 62422908         6.300954
-```
-
----
-
-A single column of data is known as a **vector**.
-
-
-```r
-tidykids$state
-```
-
-```
-##  [1] "Alabama"              "Alaska"               "Arizona"             
-##  [4] "Arkansas"             "California"           "Colorado"            
-##  [7] "Connecticut"          "Delaware"             "District of Columbia"
-## [10] "Florida"              "Georgia"              "Hawaii"              
-## [13] "Idaho"                "Illinois"             "Indiana"             
-## [16] "Iowa"                 "Kansas"               "Kentucky"            
-## [19] "Louisiana"            "Maine"                "Maryland"            
-## [22] "Massachusetts"        "Michigan"             "Minnesota"           
-## [25] "Mississippi"          "Missouri"             "Montana"             
-## [28] "Nebraska"             "Nevada"               "New Hampshire"       
-## [31] "New Jersey"           "New Mexico"           "New York"            
-## [34] "North Carolina"       "North Dakota"         "Ohio"                
-## [37] "Oklahoma"             "Oregon"               "Pennsylvania"        
-## [40] "Rhode Island"         "South Carolina"       "South Dakota"        
-## [43] "Tennessee"            "Texas"                "Utah"                
-## [46] "Vermont"              "Virginia"             "Washington"          
-## [49] "West Virginia"        "Wisconsin"            "Wyoming"
-```
-
----
-A vector may be a **character vector**, or it may be a **numeric vector**. A vector is never a mix of the two.
-
-
-```r
-tidykids$raw
-```
-
-```
-##  [1]  5478034  1509377  6367593  3533593 53012464  6030663  6540369
-##  [8]  1371464  1249522 20139820 12954745  1746947  1630908 18157336
-## [15]  8282807  3912787  3638783  4833044  5452463  1967346  8381601
-## [22] 10433393 14954186  7398479  3435402  7186329  1197600  2316795
-## [29]  2925532  2032198 19325792  2617114 41066200 10102342   811025
-## [36] 16757651  4282014  4654732 19235692  1857004  5571889   895339
-## [43]  6323037 31446936  2708136  1161429 11498811  7794498  2381525
-## [50]  8534939   951412
-```
-
-
----
-A character or numeric vector may also be **named**. Each element in the vector has a name. We saw this example with `scale_fill_manual`:
-
-
-```r
-c("A"  = "skyblue",
-   "B" = "sandybrown",
-   "C" = "palegreen1",
-   "D" = "peachpuff1",
-   "E" = "maroon")
-```
-
-```
-##            A            B            C            D            E 
-##    "skyblue" "sandybrown" "palegreen1" "peachpuff1"     "maroon"
-```
-
-
----
-Other common data structures include
-
-**matrices**
-
-
-```r
-m &lt;-  matrix(
-  c(4, 4, 4, 4),
-  nrow = 2,
-  ncol = 2)
-m
-```
-
-```
-##      [,1] [,2]
-## [1,]    4    4
-## [2,]    4    4
-```
-
-
-**lists**
-
-
-```r
-x &lt;- list(1, "a", TRUE, 1+4i)
-x
-```
-
-```
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] "a"
-## 
-## [[3]]
-## [1] TRUE
-## 
-## [[4]]
-## [1] 1+4i
-```
-
----
-
-# DIY Color Palette
-
-.pull-left[
-
-Let's explore the UTK brand color guidelines and use the information to build a UTK color palette. We will build a data frame (for practice) and then a character vector (for use). They will be quite similar.
-
-Navigate to [this archive of the UTK color guidelines](https://web.archive.org/web/20210224024222/https://brand.utk.edu/standards/colors/).
-
-(*Note*: The [current UTK color guidelines](https://brand.utk.edu/standards/colors/#:~:text=Using%20our%20signature%20color%20brings,allow%20our%20orange%20to%20shine) have removed the accent colors so we are accessing them via the Wayback machine, which archives snapshots of websites.)
-
-]
-
-.pull-right[
-
-You will see color swatches like this:
-
-![](color_examples/orange_swatch.png)
-]
----
-# DIY Color Palette
-
-.pull-left[
-
-- **CMYK** - Cyan, Magenta, Yellow, Key - used in color printing
-- **HEX** - 6-character alphanumeric color reference used in software and web design. All hex value should begin with a hashtag: *#FF8200*
-- **RGB** - Red, Green, Blue - a set of 3 numbers (0-250) to denote a color, used in software and web design
-- **PMS** - Pantone Matching System - a *proprietary* color system
-
-### Hex values are the easiest to work with!
-]
-
-.pull-right[
-
-
-You will see color swatches like this:
-
-![](color_examples/orange_swatch.png)
-
-]
----
-class: inverse, center, middle
-# DIY Color Palette
-
-Access the **Week 4 - Color Activities.Rmd** file.  
-Let's work together to build a custom palette!
-
-&lt;!-- Note 1: This was designed to be a whole class activity 
-It can be code along-style
-
-Note 2: It is more than likely this could be assigned as homework and continued in next class
---&gt;
-
----
-class: inverse, center, middle
-
-# Data Viz Tear Down
-
-Run the code at the bottom of **Week 4 - Color Activities.Rmd**
-
-Be ready to answer the questions and discuss the different functions and plots.
-
----
-# Weekly Assignment 3: Data Viz Glow Up
-
-
-
-Using our previous assignments, choose 3 visualizations and redesign them to use some of the color principles and techniques we discussed.
-
-The following represents assignment and grading criteria.
-
-- ☐ Submit a new Rmd that you create from scratch. This must run when I knit it.
-- ☐ Do not use default ggplot colors. Use base R colors or a package.
-- ☐ At least one of your plots must use a custom palette you develop.
-- ☐ At least one of your plots must map the color to a numeric dimension.
-
-
----
-# Readings
-
-.pull-left[
-**Read:**
-Wilke (2019), Chapter 10
-Wilke (2019), Chapter 12 
-]
-
-.pull-right[
-**Discussion Questions:**
-1. What different types of visualizations use circles? When are they useful?
-2. What are different ways to visualize parts of a whole?
-]
+## Next steps
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
