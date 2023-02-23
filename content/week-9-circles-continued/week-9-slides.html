@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Circles Continued</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Joshua Rosenberg" />
+    <script src="libs/header-attrs-2.19/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Circles Continued
+]
+.subtitle[
+## STEM 591: Visualizing Data Using R
+]
+.author[
+### Dr. Joshua Rosenberg
+]
+.institute[
+### University of Tennessee, Knoxville
+]
+.date[
+### Week 9
+]
+
+---
+
+class: inverse
+
+
+
+&lt;style type="text/css"&gt;
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+  margin-top: -20px;
+}
+
+.pull-right-margin {
+  margin-top: -20px;
+}
+
+.remark-code { /*Change made here*/
+    font-size: 70% !important;
+}
+&lt;/style&gt;
+
+# Today's Agenda
+
+- Data Viz &amp; R Review
+- Dots, Lollipops, and Barbells
+- Workout Wednesday
+
+---
+class: inverse, middle, center
+# Data Viz &amp; R Review
+
+## Go to www.kahoot.it and enter the code I give you
+
+&lt;!-- Note to Josh: Please make an account on Kahoot.com and copy this Kahoot: --&gt;
+&lt;!-- https://create.kahoot.it/share/data-viz-r-review/2997aa6f-c9a6-4545-9188-16afe313d841 --&gt;
+&lt;!-- You can add or modify anything. Practice running it before class. --&gt;
+
+---
+# Dots, Lollipops, and Barbells
+
+Dot plots, lollipop charts, and barbell charts are types of charts you can make with circles. However, they can be seen more like bar charts than scatter charts.
+
+Look at the following examples. How does the display of information change the story?
+When do you think each plot could be used?
+
+&lt;center&gt;
+&lt;img src="fake plots.jpg" width=70%&gt;
+&lt;/center&gt;
+
+---
+# Dot Plots
+.pull-left[
+
+A dot plot simply replaces a bar with a dot. It is situated at the end point of where the bar would have ended.
+
+An advantage of a dotplot is that there is less visual clutter. Lots of white space with a little color (the dot) is much easier to look at and tells the same story.
+]
+
+.pull-right[
+&lt;center&gt;
+&lt;img src="barvsdot.png" width=85%&gt;
+&lt;/center&gt;
+]
+
+---
+# Lollipop Plots
+
+This is almost the same as the dot plot and even a little closer to the bar chart. The dot indicates the value while the thin line allows you to see the distance from the 0-axis.
+
+
+&lt;center&gt;
+&lt;img src="bardotlollipop.svg" width=80%&gt;
+&lt;/center&gt;
+
+---
+# Barbell Plots
+
+.pull-left[
+
+Whereas the previous two plots are alternatives to bar charts, the barbell (or dumbbell) plot is something else entirely. 
+
+It allows you to plot multiple subcategories of a category and the line between the dots allows you to estimate a gap.
+]
+
+.pull-right[
+&lt;center&gt;
+&lt;img src="barbell.png" width=70%&gt;
+&lt;/center&gt;
+&lt;!-- From https://r-graph-gallery.com/web-extended-dumbbell-plot-ggplot2.html --&gt;
+]
+---
+class: inverse, middle, center
+# How do we make these in R? 
+
+## It's easy!
+---
+
+
+# From Bar to Dot
+
+With a bar plot, the magic is in `geom_col`:
+
+
+```r
+grad_data %&gt;%
+  ggplot(aes(x=Overall, y=Major_category))+
+  geom_col()
+```
+
+![](week-9-slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+
+# From Bar to Dot
+
+We can simply use `geom_point` and increase its size
+
+
+```r
+grad_data %&gt;%
+  ggplot(aes(x=Overall, y=Major_category))+
+  geom_point(size=5)
+```
+
+![](week-9-slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+---
+# From Dot to Lollipop
+
+If we wanted to add a line, we can use `geom_linerange()`. We will call it before `geom_point` so it is under the circle. `geom_linerange()`'s aesthethics that an xmin/xmax or ymin/ymax.
+
+&gt; Shapes appear in the order they are specified in the code
+
+
+```r
+grad_data %&gt;%
+  ggplot(aes(x=Overall, y=Major_category))+
+  geom_linerange(aes(xmin=0, xmax=Overall))+
+  geom_point(size=5)
+```
+
+![](week-9-slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+---
+# From Bar to Barbell
+
+There are a few ways to make a barbell plot. The simplest is if each column is a set of observations. This is not "tidy" data, but it is one way to do it:
+
+.pull-left[
+
+
+|Major_category |       Men|     Women|   Overall|
+|:--------------|---------:|---------:|---------:|
+|Business       | 51373.231| 48809.538| 100182.77|
+|Education      |  6470.375| 28475.188|  34945.56|
+|Engineering    | 14079.552|  4457.793|  18537.34|
+
+]
+
+.pull-right[
+
+First, let's draw our lines from Men to Women
+
+
+```r
+grad_data %&gt;%
+  ggplot(aes(y=Major_category))+
+  geom_linerange(aes(xmin=Women, xmax=Men))
+```
+
+![](week-9-slides_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+
+]
+
+
+---
+# From Bar to Barbell
+
+There are a few ways to make a barbell plot. The simplest is if each column is a set of observations. This is not "tidy" data, but it is one way to do it:
+
+.pull-left[
+
+Now, let's plot each column and give it a color.
+
+
+```r
+grad_data %&gt;%
+  ggplot(aes(y=Major_category))+
+  geom_linerange(aes(xmin=Women, xmax=Men))+
+  geom_point(aes(x=Men), color="purple", size=3)+
+  geom_point(aes(x=Women), color="orange", size=3)+
+  geom_point(aes(x=Overall), color="grey70", size=3)+
+  xlab("Average")
+```
+
+![](week-9-slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+One downside of using "wide" data is that there is no legend that can be easily added.
+
+A better alternative is to make the data "long".
+
+]
+---
+# From Bar to Barbell
+
+.pull-left[
+
+
+```r
+grad_data %&gt;%
+  slice(1:10) %&gt;%
+  knitr::kable()
+```
+
+
+
+|Major_category |       Men|     Women|   Overall|
+|:--------------|---------:|---------:|---------:|
+|Business       | 51373.231| 48809.538| 100182.77|
+|Education      |  6470.375| 28475.188|  34945.56|
+|Engineering    | 14079.552|  4457.793|  18537.34|
+
+]
+
+.pull-right[
+
+
+```r
+grad_data_long &lt;- grad_data %&gt;%
+  pivot_longer(c(Men:Overall),
+               names_to = "category", values_to="avg")
+
+grad_data_long %&gt;%
+  slice(1:10) %&gt;%
+  knitr::kable()
+```
+
+
+
+|Major_category |category |        avg|
+|:--------------|:--------|----------:|
+|Business       |Men      |  51373.231|
+|Business       |Women    |  48809.538|
+|Business       |Overall  | 100182.769|
+|Education      |Men      |   6470.375|
+|Education      |Women    |  28475.188|
+|Education      |Overall  |  34945.562|
+|Engineering    |Men      |  14079.552|
+|Engineering    |Women    |   4457.793|
+|Engineering    |Overall  |  18537.345|
+]
+---
+# From Bar to Barbell
+
+We can easily add the points from this data.
+
+```r
+grad_data_long %&gt;%
+  ggplot(aes(x=avg, y=Major_category, color=category))+
+  geom_point(size=3)
+```
+
+![](week-9-slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+However, getting the line requires a bit more preparation.
+
+---
+# From Bar to Barbell
+
+What we want to do is, for each major, find the minimum value and the maximum value but exclude the overall value, since we just want to draw a line between men and women.
+
+
+
+```r
+grad_data_long2 &lt;- grad_data_long %&gt;%
+  group_by(Major_category) %&gt;%
+  mutate(min = min(avg[category != "Overall"]),
+         max = max(avg[category != "Overall"]))
+
+grad_data_long2
+```
+
+```
+## # A tibble: 9 x 5
+## # Groups:   Major_category [3]
+##   Major_category category     avg    min    max
+##   &lt;chr&gt;          &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Business       Men       51373. 48810. 51373.
+## 2 Business       Women     48810. 48810. 51373.
+## 3 Business       Overall  100183. 48810. 51373.
+## 4 Education      Men        6470.  6470. 28475.
+## 5 Education      Women     28475.  6470. 28475.
+## 6 Education      Overall   34946.  6470. 28475.
+## 7 Engineering    Men       14080.  4458. 14080.
+## 8 Engineering    Women      4458.  4458. 14080.
+## 9 Engineering    Overall   18537.  4458. 14080.
+```
+
+`max(avg[category != "Overall"]))` means:
+
+- Take the maximum value of the "avg" column where "category" doesn't equal (`!=`) "Overall".
+
+---
+# From Bar to Barbell
+
+Now we are ready!
+
+
+```r
+grad_data_long2 %&gt;%
+  ggplot(aes(x=avg, y=Major_category, color=category))+
+  geom_linerange(aes(xmin=min, xmax=max), color="grey70")+
+  geom_point(size=3)
+```
+
+![](week-9-slides_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+There is almost no line between men and women in business. What does that tell us?
+
+---
+class: inverse, middle, center
+# Workout Wednesday 
+
+Workout Wednesday is like #TidyTuesday. It's an weekly online "event" on Twitter and other media where users make or remake data visualizations!
+
+## From Bar to Barbell
+---
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

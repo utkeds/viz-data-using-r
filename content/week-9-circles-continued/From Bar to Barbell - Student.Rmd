@@ -1,0 +1,173 @@
+---
+title: "From Bar to Barbell - Teacher"
+author: "Student"
+date: '2023-02-13'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+# load the data
+hbcu_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-02/hbcu_all.csv') %>%
+  janitor::clean_names() # make column names lower case
+```
+
+
+# Explore the Data
+
+```{r}
+names(hbcu_data)
+view(hbcu_data)
+summary(hbcu_data)
+skimr::skim(hbcu_data)
+```
+
+
+# Dot Plot
+
+## Make the Plot
+
+Make TWO simple dot plots of total enrollment by year.
+In plot 1, place year on the X axis. In plot 2, place year on the Y axis.
+
+```{r}
+# plot 1
+hbcu_data %>%
+  ggplot(aes(_____, _____))+
+  geom______(size=3)
+```
+
+
+```{r}
+# plot 2
+hbcu_data %>%
+  ggplot(aes(_____, _____))+
+  geom______(size=3)
+```
+
+## Answer the question:
+
+Which plot is easier to read? Why?
+
+
+
+
+
+## Improve the Plot
+
+Choose Plot 1 or 2 and copy the code below.
+Map color to enrollment. Choose an appropriate continuous palette.
+
+```{r}
+
+
+
+```
+
+
+### Answer the question
+
+By mapping color to a continuous value, how does it improve the visualization?
+
+
+
+
+
+# Lollipop Chart
+
+Take your chart from above and use `geom_linerange` to make it a dotplot.
+Choose 0 as your `ymin` or `xmin`.
+
+```{r}
+
+
+```
+
+
+### Answer The Question
+
+Do you like this plot? What can you do to reduce some of the weird space introduced by the lines? Look at the example below and alter your plot in the space below the example
+
+
+
+
+
+
+```{r}
+# example
+hbcu_data %>%
+  ggplot(aes(y=total_enrollment, x=year, color=total_enrollment))+
+  geom_linerange((aes(ymin=min(total_enrollment)-1000, 
+                      ymax=total_enrollment)),
+                 color="grey80")+
+  geom_point(size=3)+
+  scale_color_viridis_c(direction=-1, option = "inferno")+
+  theme_minimal()
+```
+
+
+```{r}
+# your plot
+```
+
+
+## Answer the Question
+
+Does changing this from a dot plot to a lollipop chart improve interpretation? Why or why not?
+
+
+
+
+# Barbell Plot
+
+## Barbell Plot 1 - Wide Data
+
+Make a barbell chart using Male and Female. 
+
+- Decide if year should be on the X or Y axis.
+- Decide if you should map color as a continuous or discrete.
+- Decide if you need to set the axis range using something like:
+ - `scale_x_continuous(limits=c(0, 200000))`
+
+```{r}
+
+
+  
+  
+```
+
+## Barbell Plot 2 - Long Data
+
+Transform the data from wide to long. The long data set should have a column for year, gender, and enrollment. The enrollment column should represent the number of students for each gender for each year.
+
+<!-- Note: sex not gender -->
+
+```{r}
+hbcu_data %>%
+  pivot_longer(_____:_____,
+               names_to = "sex",
+               values_to = "enrollment") -> hbcu_long
+```
+
+Using the long data, re-visualize the male and female HBCU enrollment in a barbell plot.
+
+
+```{r}
+hbcu_long %>%
+  group_by(_____) %>%
+  mutate(min = _____(enrollment),
+         max = _____(enrollment)) %>%
+  ggplot()
+```
+
+
+### Answer The Questions
+
+1. What are the advantages to using wide data? Long data?
+
+2. Of the three charts (dot, lollipop, barbell), which tells the best story of the HBCU data.
+
+3. What did you learn by visualizing the data?
+
