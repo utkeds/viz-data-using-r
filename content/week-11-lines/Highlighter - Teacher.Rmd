@@ -129,6 +129,7 @@ Take the code from above and give it a makeover:
 - Remove the strip background and make the panel titles bold
 - Change the panel background to white.
 - Try unrotating the years and see if you like `scale_x_discrete(guide = guide_axis(n.dodge = 2))`
+  - Check out this blog post for dealing with long x-axis labels: https://www.andrewheiss.com/blog/2022/06/23/long-labels-ggplot/
 
 ```{r}
 phd_field %>%
