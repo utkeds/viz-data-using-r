@@ -41,10 +41,9 @@ example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(5:20, 5))
 # Today's Agenda
 
 1. `rstudio::conf()` videos
-2. Data Jam
-3. Reading discussion
-4. Lecture: Beyond base colors
-5. Next steps and check out
+2. Reading discussion
+3. Lecture: Beyond base colors
+4. Next steps and check out
 
 ---
 
@@ -57,16 +56,7 @@ Claus Wilke: https://www.youtube.com/watch?v=6VTs7UaMyaw
 ---
 
 class: inverse, center, middle
-# 2. Data Jam
-
-https://jamboard.google.com/d/1vK4SCkkV-5Fee68JY82jadELe5AFR5rhOUWdeUoa8PM/edit?usp=sharing
-
-class: middle, center
-
----
-
-class: inverse, center, middle
-# 3. Reading Discussion
+# 2. Reading Discussion
 
 ---
 
@@ -166,7 +156,7 @@ Based on these considerations, which color choice do you think best communicates
 ---
 
 class: inverse, center, middle
-# 4. Beyond base colors
+# 3. Beyond base colors
 
 ---
 
@@ -275,28 +265,29 @@ Be ready to answer the questions and discuss the different functions and plots.
 
 class: inverse, center, middle
 
-# 5. Next Steps and Check-Out
+# 4. Next Steps and Check-Out
 
 ---
 
-# Weekly Assignment 3: Data Viz Glow Up
+# Assignment 5: Data Viz Glow Up
 
 Using our previous assignments, choose 1 visualization and redesign them to use some of the color principles and techniques we discussed.
 
 The following represents assignment and grading criteria.
 
-- ☐ Submit a new Rmd that you create from scratch. This must run when knitte.
+- ☐ Submit a new Rmd that you create from scratch. This must run when knitted.
 - ☐ Do not use default ggplot colors. Use base R colors or a package.
 - ☐ At least one of your plots must use a custom palette you develop.
 - ☐ At least one of your plots must map the color to a numeric dimension.
-
 
 ---
 
 ## Recap of last week
 
 Mini Project 1 quick check-in/reminder --- see **Mini Project 1.Rmd**
-Sharing color palettes
+  Mar 6 at 11:59am
+  
+Sharing color palettes --- **What did you consider when creating yours?**
 
 ---
 
@@ -304,12 +295,18 @@ Sharing color palettes
 
 .pull-left[
 **Read:**
-Wilke (2019), Chapter 10  
-Wilke (2019), Chapter 12  
+[Wilke (2019), Chapter 10](https://clauswilke.com/dataviz/visualizing-proportions.html)
+[Wilke (2019), Chapter 12](https://clauswilke.com/dataviz/visualizing-associations.html)
 ]
 
 .pull-right[
-**Discussion Questions:**
+**Discussion Questions (see Week 6 Discussion; choose one!):**
 1. What different types of visualizations use circles? When are they useful?
 2. What are different ways to visualize parts of a whole?
 ]
+
+--- 
+
+# Check out
+
+What is one thing you took away from today?
