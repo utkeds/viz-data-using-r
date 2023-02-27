@@ -1,5 +1,5 @@
 ---
-title: "UTK Color Palette"
+title: "Data Viz Teardown"
 author: "Colorful Student"
 date: '2022-12-21'
 output: html_document
@@ -9,9 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
-
-
-## Data Viz Teardown
 
 1. Fill vs Color
 

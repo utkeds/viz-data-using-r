@@ -1,7 +1,7 @@
 ---
 title: "UTK Color Palette"
-author: "Colorful Student"
-date: '2022-12-21'
+author: "Joshua"
+date: '2023-2-20'
 output: html_document
 ---
 
