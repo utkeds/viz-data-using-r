@@ -51,7 +51,8 @@ class: inverse, center, middle
 # 1. `rstudio::conf()` videos
 
 Kara Woo: https://www.youtube.com/watch?v=izV-qK3nlhA  
-Claus Wilke: https://www.youtube.com/watch?v=6VTs7UaMyaw  
+
+More details here: https://utk.instructure.com/courses/170472/discussion_topics/1164139
 
 ---
 
