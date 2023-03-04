@@ -1,5 +1,5 @@
 ---
-title: "Week 6 Practice"
+title: "Week 7 Practice"
 author: "Amazing Student"
 date: '2023-01-04'
 output: html_document
