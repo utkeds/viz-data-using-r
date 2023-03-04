@@ -67,7 +67,7 @@ Let's add ideas together here: https://jamboard.google.com/d/1MJn8uJizaGONSIq6QL
 
 ---
 
-# Reading Discussion
+# Reading Discussion (1)
 
 Based on these considerations, which color choice do you think best communicates the story in the data?
 
@@ -79,7 +79,7 @@ Based on these considerations, which color choice do you think best communicates
 
 ---
 
-# Reading Discussion
+# Reading Discussion (2)
 
 Based on these considerations, which color choice do you think best communicates the story in the data?
 
@@ -89,7 +89,7 @@ Based on these considerations, which color choice do you think best communicates
 
 ---
 
-# Reading Discussion
+# Reading Discussion (3)
 
 Based on these considerations, which color choice do you think best communicates the story in the data?
 
@@ -102,7 +102,7 @@ the categories they represent (forest/lake) BUT not stereotype (female/male)
 -->
 ---
 
-# Reading Discussion
+# Reading Discussion (4)
 
 Based on these considerations, which color choice do you think best communicates the story in the data?
 
@@ -114,7 +114,7 @@ Based on these considerations, which color choice do you think best communicates
 
 ---
 
-# Reading Discussion
+# Reading Discussion (5)
 
 Based on these considerations, which color choice do you think best communicates the story in the data?
 
@@ -128,7 +128,7 @@ Based on these considerations, which color choice do you think best communicates
 ---
 
 
-# Reading Discussion
+# Reading Discussion (6)
 
 Based on these considerations, which color choice do you think best communicates the story in the data?
 
@@ -139,7 +139,7 @@ Based on these considerations, which color choice do you think best communicates
 <!-- Considerations: Diverging colors should be distinct -->
 ---
 
-# Reading Discussion
+# Reading Discussion (7)
 
 .pull-left[
 Based on these considerations, which color choice do you think best communicates the story in the data?

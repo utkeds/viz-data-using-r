@@ -8,6 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+set.seed(1983)
+example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(5:20, 5))
 ```
 
 1. Fill vs Color
@@ -39,8 +41,7 @@ example_data %>%
 2. What if fill is numeric?
 
 ```{r}
-set.seed(1983)
-example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(5:20, 5))
+
 
 example_data %>%
   ggplot(aes(x=numbers, y=letters, fill=numbers))+
@@ -89,8 +90,7 @@ example_data %>%
 6. What does `scale_fill_gradient2` do?
 
 ```{r}
-set.seed(123)
-example_data <- data.frame(letters=LETTERS[1:5], numbers=c(0, sample(-10:10, 5)))
+example_data <- data.frame(letters=LETTERS[1:6], numbers=c(0, sample(-10:10, 5)))
 
 example_data %>%
   ggplot(aes(x=numbers, y=reorder(letters, numbers), fill=numbers))+
@@ -101,8 +101,7 @@ example_data %>%
 7. What steps were used to create the graph's highlight?
 
 ```{r}
-set.seed(1983)
-example_data <- data.frame(letters=LETTERS[1:5], numbers=sample(5:20, 5))
+example_data <- data.frame(letters=LETTERS[1:6], numbers=c(0, sample(-10:10, 5)))
 
 example_data %>%
   ggplot(aes(x=numbers, y=reorder(letters, numbers), fill=letters))+
