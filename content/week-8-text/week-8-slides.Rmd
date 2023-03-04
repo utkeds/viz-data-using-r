@@ -205,13 +205,8 @@ We will do more work with text *as part of a visualization*.
 
 However, before doing so, let's work with **text as a part of the data**.
 
-## Week 7 - Text Activities.Rmd
+## Week 7 - Text Activities - Student.Rmd
 
 ---
-class: inverse, middle, center
 
-# Mini Project 2
-
-
-## See **Mini Project 1.Rmd**
-<!-- Go over assignment in document -->
+# Check out
