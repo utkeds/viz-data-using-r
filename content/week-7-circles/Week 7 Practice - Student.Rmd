@@ -17,12 +17,12 @@ library(tidyverse)
 Using  `data` object below, we will do exploratory data analysis. The data contains 12 different data sets, labelled A-L in the "dataset" column, as well as x and y columns. 
 
 1. Begin by answering the questions in the "Summary Statistics" section. 
-2. Then, expore the data by generting scatterplots for each dataset in the "EDA Scatterplot" section.
+2. Then, explore the data by generating scatterplots for each dataset in the "EDA Scatterplot" section.
 3. Answer the questions in the "EDA Findings" section.
 
 ```{r}
 # load data
-data <- read_csv("Week 6/week_6_data.csv")
+data <- read_csv("Week 7/week_7_data.csv") # note - make sure your sub-folder is named Week 7 --- or edit this to precisely match the name of the folder 
 ```
 
 ## Summary Statistics
@@ -83,28 +83,27 @@ recent_grads <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data
   select(rank, major, major_category, share_women)
 ```
 
-Using the `recent_grads` object, create a `share_men` column that represents the proportion of men for each row. Assign it to a data object called `recent_grads2`.
+Using the `recent_grads` object, mutate a new `share_men` column that represents the proportion of men for each row. Assign it to a data object called `recent_grads2`.
 
 ```{r}
 
 ```
 
-
 This data is in **wide** format, with each measurement (the proportion) in a separate column. We need to make it long, with each measurement in the same column. This makes it easier to analyze and visualize. 
 
 ![](https://www.statology.org/wp-content/uploads/2021/12/wideLong1-1.png)
 
-We can use `pivot_longer` to accomplish this. We have seen this a few times already and will focus on it a bit later in class. Here is the simple code to transform our data set:
+We can use `pivot_longer` to accomplish this. We have seen this a few times already and will focus on it a bit later in class. Here is the code to transform our data set:
 
 ```{r}
 recent_grads_long <- recent_grads2 %>%
   pivot_longer(
     share_women:share_men, # we will pivot these columns
     names_to = "sex", # the name of the column that will indicate what these numbers refer to
-    values_to = "pct" # the name of the values column, pct is shorter than proporition!
+    values_to = "pct" # the name of the values column, pct is shorter than proportion!
   )
 
-view(recent_grads_long)
+recent_grads_long
 ```
 
 Let's take it one more step and remove the word "share" from the "sex" column:
@@ -114,12 +113,9 @@ recent_grads_clean <- recent_grads_long %>%
   mutate(sex = str_remove(sex, "share_"))
 ```
 
-
 #### Visualize a major
 
-Using the "major" column in `recent_grads_long`, select your major or one similar to yours. Then build three charts: side-by-side, stacked, and pie. Which do you think conveys the proporition of men vs women graduates best? Be ready to defend your answer.
-
-
+Using the "major" column in `recent_grads_long`, select your major or one similar to yours. Then build three charts: side-by-side, stacked, and pie. Which do you think conveys the proportion of men vs. women graduates best? Be ready to defend your answer.
 
 Stacked
 
@@ -134,21 +130,11 @@ Side-by-side
 ```
 
 Pie chart
-```{r}
-
-```
-
-### DIY Wrangling
-
-Using the data set below, calculate the proportion of men vs women for each major_category. Pivot the data longer and the build a pie chart with proper labels and colors.
-
-```{r}
-data_to_use <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/recent-grads.csv") %>%
-  janitor::clean_names() %>% # make all names lower case
-  select(major_category, men, women, total)
-```
 
 ```{r}
 
 ```
 
+## fin
+
+Please knit and submit for the [Week 7 practice](https://utk.instructure.com/courses/170472)! 

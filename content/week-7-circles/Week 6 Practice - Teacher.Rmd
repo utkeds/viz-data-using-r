@@ -131,7 +131,7 @@ recent_grads_long <- recent_grads2 %>%
     values_to = "pct" # the name of the values column, pct is shorter than proporition!
   )
 
-view(recent_grads_long)
+# view(recent_grads_long)
 ```
 
 Let's take it one more step and remove the word "share" from the "sex" column:
@@ -174,6 +174,14 @@ stat_grads %>%
   ggplot(aes(x="", y=pct, fill=sex))+
   geom_col()+
   coord_polar("y")
+```
+
+Density plot
+
+```{r}
+stat_grads %>%
+  ggplot(aes(x="", y=pct, fill=sex))+
+  geom_density()
 ```
 
 ### DIY Wrangling
