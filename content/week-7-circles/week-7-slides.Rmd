@@ -38,9 +38,18 @@ library(tidyverse)
 
 # Today's Agenda
 
+- Data Jam
 - Reading Discussion
 - Scatterplots in R
 - Visualizing Proportions
+
+---
+
+# Data Jam
+
+Link: https://jamboard.google.com/d/1WUypMQOSDbvUMNblCQC1xEVQDjSvOHnJNPWEYigOg3I/edit?usp=sharing
+
+In four rooms
 
 ---
 # Reading Discussion
@@ -369,15 +378,27 @@ Vizualization practice
 
 ---
 
-# Homework
+# Check out
 
-### Task
+### Reminders
 
 Assignment 5 due this Friday (Mar. 10)
 
 Mini project one due today (Mar. 6)
 
 Discussion 6 due today (Mar. 6)
+
+### Longer term
+
+Foundations of Educational Data Science I to be offered Fall 2023 (M, 12 - 2:30 pm)
+
+Graduate Certificate Program: https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/
+
+---
+
+# Check out 
+
+### Looking ahead
 
 Enjoy spring break!
 
