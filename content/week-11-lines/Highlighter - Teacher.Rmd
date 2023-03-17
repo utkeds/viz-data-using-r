@@ -1,0 +1,156 @@
+---
+title: "Highlighter"
+author: "Student"
+date: '2023-02-24'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# The Data
+
+```{r}
+phd_field <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv")
+```
+
+The data comes from the Survey of Earned Doctorates and is provided via [a #TidyTuesday repo](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-19).
+
+### Explore the data set
+
+```{r}
+
+```
+
+
+# Chart 1 - A single line
+
+Make a *simple* line chart of total number of PhD graduates per year
+
+```{r}
+phd_field %>%
+  group_by(year) %>%
+  summarize(n = sum(n_phds, na.rm=TRUE)) %>%
+  ggplot(aes(x=year, y=n))+
+  geom_line()
+```
+
+
+# Chart 2 - Area Under the Line
+
+Change this line chart so that the line is slightly thicker and there is a "cyan4" shaded area under the line. Set the limits to 1000 under the min and over max of the data
+
+```{r}
+year_summary <- phd_field %>%
+  group_by(year) %>%
+  summarize(n = sum(n_phds, na.rm=TRUE))
+  
+year_summary %>%
+  ggplot(aes(x=as.factor(year), y=n, group=1))+
+  geom_line(size=1.2)+
+  geom_area(fill="cyan4")+
+  coord_cartesian(ylim = c(min(year_summary$n)-1000, max(year_summary$n)+1000))
+```
+
+# Chart 3 - One Line Per Group
+
+Make a line chart like above, however, there should be one line per `broad_field`. Drop the "Other" category. There should be 6 categories total.
+
+```{r}
+phd_field %>%
+  filter(broad_field != "Other") %>%
+  group_by(year, broad_field) %>%
+  summarize(n = sum(n_phds, na.rm=TRUE)) %>%
+  ggplot(aes(x=as.factor(year), y=n, color=broad_field,
+             group=broad_field))+
+  geom_line()
+```
+
+# Chart 4 - Labelled Lines
+
+Let's use `gghighlight` to label each line. Simply add `gghighlight()` to the end of the code you wrote above. The default option is kind of ugly. You can alter the `label_params` following examples from [here](https://ggrepel.slowkow.com/articles/examples.html) OR you can try different label styles as listed under `line_label_type` [here ](https://yutannihilation.github.io/gghighlight/reference/gghighlight.html)
+
+```{r}
+library(gghighlight)
+
+phd_field %>%
+  filter(broad_field != "Other") %>%
+  group_by(year, broad_field) %>%
+  summarize(n = sum(n_phds, na.rm=TRUE)) %>%
+  ggplot(aes(x=as.factor(year), y=n, color=broad_field,
+             group=broad_field))+
+  geom_line()+
+  gghighlight(line_label_type = "text_path")
+```
+# Chart 5 - Facet Per Broad Field
+
+Using the code from Chart 3 above, facet the chart so there is one line per facet. There should be 2 rows. Remove the legend. Rotate the year text by 90.
+
+```{r}
+phd_field %>%
+  filter(broad_field != "Other") %>%
+  group_by(year, broad_field) %>%
+  summarize(n = sum(n_phds, na.rm=TRUE)) %>%
+  ggplot(aes(x=as.factor(year), y=n, color=broad_field,
+             group=broad_field))+
+  geom_line()+
+  facet_wrap(~broad_field, nrow=2)+
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 90))
+```
+
+# Chart 6 - Facet and Highlight
+
+Add `gghighlight` to the code from Chart 5 and remove the text labels.
+
+```{r}
+phd_field %>%
+  filter(broad_field != "Other") %>%
+  group_by(year, broad_field) %>%
+  summarize(n = sum(n_phds, na.rm=TRUE)) %>%
+  ggplot(aes(x=as.factor(year), y=n, color=broad_field,
+             group=broad_field))+
+  geom_line()+
+  gghighlight(use_direct_label=FALSE)+
+  facet_wrap(~broad_field, nrow=2)+
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 90))
+```
+
+# Final Plot
+
+Awesome! You are now a **highlighter**.
+
+Take the code from above and give it a makeover:
+- Change the line colors
+- Add a title and other labels
+- Remove the strip background and make the panel titles bold
+- Change the panel background to white.
+- Try unrotating the years and see if you like `scale_x_discrete(guide = guide_axis(n.dodge = 2))`
+  - Check out this blog post for dealing with long x-axis labels: https://www.andrewheiss.com/blog/2022/06/23/long-labels-ggplot/
+
+```{r}
+phd_field %>%
+  filter(broad_field != "Other") %>%
+  group_by(year, broad_field) %>%
+  summarize(n = sum(n_phds, na.rm=TRUE)) %>%
+  ggplot(aes(x=as.factor(year), y=n, color=broad_field,
+             group=broad_field))+
+  geom_line()+
+  gghighlight(use_direct_label=FALSE)+
+  facet_wrap(~broad_field, nrow=2)+
+  viridis::scale_color_viridis(discrete = TRUE, option = "H")+
+  labs(title="Number of PhD Graduates per Year by Broad Field",
+       caption="Data from the NSF",
+       x=NULL, y=NULL)+
+  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 0),
+        strip.background = element_blank(),
+        strip.text = element_text(face="bold"),
+        panel.background = element_rect(fill="white"))
+```
+
+

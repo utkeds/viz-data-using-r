@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Lines</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Joshua Rosenberg" />
+    <script src="libs/header-attrs-2.19/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Lines
+]
+.subtitle[
+## STEM 591: Visualizing Data Using R
+]
+.author[
+### Dr. Joshua Rosenberg
+]
+.institute[
+### University of Tennessee, Knoxville
+]
+.date[
+### Week 11
+]
+
+---
+
+class: inverse
+
+
+
+&lt;style type="text/css"&gt;
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+&lt;/style&gt;
+
+# Today's Agenda
+
+- Bad Plot / Good Plot Shareout
+- Reading Discussion
+- Time**lines**
+- Highlighter Activity
+- Final Project
+
+---
+class:middle,center
+
+# Bad Plot / Good Plot
+
+# Shareout
+
+---
+# Reading Discussion
+
+1. Let's talk about the zero baseline. When are they appropriate? What are they inappropriate? In your discussion, consider the following two charts:
+
+.pull-left[
+![](Week-11-Slides_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+![](Week-11-Slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+# Reading Discussion
+
+1. Let's talk about the zero baseline. When are they appropriate? What are they inappropriate?
+2. The following charts depict the same data in several ways. What were the design principles behind the differences? Can you relate that to the gestalt princples were read about in Knafflic?
+
+![](wilkecharts.png)
+
+---
+# Time**lines**
+
+Today we are going to talk about timeseries data and how to make time**lines** - line charts - from them. In addition, we will look at how to make area charts and how to make line charts when there are multiple groups, using a special package called `gghighlight`.
+
+---
+# Time**lines**
+
+Consider that we already know how to graph timeseries data with `geom_col()` and `geom_point`:
+
+
+
+.pull-left[
+
+```r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y))+
+  geom_col()
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+```r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y))+
+  geom_point()
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+]
+
+---
+# Time**lines**
+
+Can you guess how to make a line chart?
+
+--
+
+
+```r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y))+
+  geom_line()
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+---
+# Time**lines**
+
+Hmmm. Notice that `x` is wrapped in `as.factor()`? This is because `x` is numeric. If we treat it numerically, we would get some non-date like axis labels:
+
+--
+
+.pull-left[
+Note the ".5"'s on the x-axis.
+
+```r
+data %&gt;%
+  ggplot(aes(x=x, y=y))+
+  geom_line()
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+Note the addition of `group=1`
+
+```r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y, group=1))+
+  geom_line()
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+]
+
+---
+# Time**lines**
+
+How could we add points to this timeline?  
+Hint: Remember, ggplots are built in layers:
+
+--
+
+Voila!
+
+
+```r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y, group=1))+
+  geom_line()+
+  geom_point()
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+# Time**lines**
+
+We can easily make this into an area chart, too. However, note that `geom_area` acts like a rectangle or polygon - it uses the fill aesthetic *AND* it starts at a zero baseline
+
+.pull-left[
+
+
+```r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y, group=1))+
+  geom_area()+
+  geom_point()
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+```r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y, group=1))+
+  geom_area(alpha=.3)+
+  geom_line()+
+  coord_cartesian(ylim=c(45000,56000))
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+]
+
+---
+# Timelines With Multiple Groups
+
+What if you have multiple groups and want to show multiple lines?  
+If you do not have many lines, we can do the following:
+
+
+.pull=left[
+
+```r
+mg_data
+```
+
+```
+##     y    x groups
+## 1  11 2010      A
+## 2  12 2011      A
+## 3  13 2012      A
+## 4  14 2013      A
+## 5  15 2014      A
+## 6  16 2015      A
+## 7  17 2016      A
+## 8  18 2017      A
+## 9  19 2018      A
+## 10 20 2019      A
+## 11 20 2010      Z
+## 12 19 2011      Z
+## 13 18 2012      Z
+## 14 17 2013      Z
+## 15 16 2014      Z
+## 16 15 2015      Z
+## 17 14 2016      Z
+## 18 13 2017      Z
+## 19 12 2018      Z
+## 20 11 2019      Z
+```
+
+]
+.pull-right[
+
+```r
+mg_data %&gt;%
+  ggplot(aes(x=x, y=y, color=groups))+
+  geom_line(size=2)
+```
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+]
+
+---
+# Timelines With Multiple Groups
+
+What about many groups?
+
+--
+
+![](Week-11-Slides_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+--
+
+This doesn't seem right, does it?
+
+---
+
+How about this? It's not perfect - there are data viz principles to consider. But, we can do it.
+
+
+
+
+&lt;img src="gghighlight_example.png" width="4000" /&gt;
+---
+class:inverse,middle,center
+
+# Highlighter
+
+We will work with the PhD Graduates data set and make different time-series charts, including one like the previous (but better)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
