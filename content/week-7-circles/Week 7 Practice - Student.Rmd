@@ -1,7 +1,7 @@
 ---
 title: "Week 7 Practice"
-author: "Amazing Student"
-date: '2023-01-04'
+author: "Josh R."
+date: '2023-03-06'
 output: html_document
 ---
 
@@ -22,7 +22,7 @@ Using  `data` object below, we will do exploratory data analysis. The data conta
 
 ```{r}
 # load data
-data <- read_csv("Week 7/week_7_data.csv") # note - make sure your sub-folder is named Week 7 --- or edit this to precisely match the name of the folder 
+data <- read_csv("week_7_data.csv") # note - make sure your sub-folder is named Week 7 --- or edit this to precisely match the name of the folder 
 ```
 
 ## Summary Statistics
@@ -30,8 +30,13 @@ data <- read_csv("Week 7/week_7_data.csv") # note - make sure your sub-folder is
 1. Using `group_by` and `summarize`, calculate mean of x, mean of y, standard deviation of x, standard deviation of y, and the correlation of x and y (hint: `cor`). 
 
 ```{r}
-
-
+data %>% 
+  group_by(dataset) %>% 
+  summarize(mean_x = mean(x),
+            mean_y = mean(y),
+            std_x = sd(x),
+            std_y = sd(y),
+            r = cor(x, y))
 ```
 
 2. After looking at the results, what do you notice about the data?
@@ -43,7 +48,36 @@ data <- read_csv("Week 7/week_7_data.csv") # note - make sure your sub-folder is
 Make a simple scatter plot for each data sets below. Optional: add a regression line using `geom_smooth(method = "lm")`
 
 ```{r}
+data %>% 
+  filter(dataset == 1) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point()
 
+data %>% 
+  filter(dataset == 2) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point()
+
+data %>% 
+  filter(dataset == 3) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point()
+
+data %>% 
+  filter(dataset == 3) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point()
+```
+
+```{r}
+ggplot(data, aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(~dataset)
+
+data %>% 
+  ggplot(aes(x=x, y=y))+
+  geom_point()+
+  facet_wrap("dataset", nrow = 3)
 ```
 
 
@@ -66,7 +100,13 @@ Make a simple scatter plot for each data sets below. Optional: add a regression 
 Generate a single scatter plot based on 1 or 2 data sets and give it a quick data viz makeover with size, shape, and color changes. Be ready to share with the class.
 
 ```{r}
-
+data %>%
+  filter(dataset == 4)%>%
+  ggplot(aes(x = x, y = y, size = y, color = x))+
+  geom_point(shape = 17) +
+  scale_color_gradientn(colors=c("darkorange", "purple", "cyan4"))+
+  theme_void()+
+  theme(legend.position = "none")
 ```
 
 

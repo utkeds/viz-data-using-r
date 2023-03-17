@@ -3,7 +3,7 @@ title: "Text"
 subtitle: "STEM 591: Visualizing Data Using R"
 author: "Dr. Joshua Rosenberg"
 institute: "University of Tennessee, Knoxville"
-date: "Week 7"
+date: "Week 9"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -205,8 +205,41 @@ We will do more work with text *as part of a visualization*.
 
 However, before doing so, let's work with **text as a part of the data**.
 
-## Week 7 - Text Activities - Student.Rmd
+## Week 9 - Text Activities - Student.Rmd
 
 ---
 
 # Check out
+
+Reminders:
+
+### Reminders
+
+Assignment 5 due this Friday (Mar. 10)
+
+Mini project one due today (Mar. 6)
+
+Discussion 6 due today (Mar. 6)
+
+### Longer term
+
+Foundations of Educational Data Science I to be offered Fall 2023 (M, 12 - 2:30 pm)
+
+Graduate Certificate Program: https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/
+
+---
+
+# Check out 
+
+### Looking ahead
+
+Enjoy spring break!
+
+If you wish, you can work ahead by starting on (or finishing!) Mini-Project 2
+
+See **Mini Project 2.Rmd**
+<!-- Go over mini project 2 in document -->
+
+- Mini Project 2
+
+What's one thing you took away from this week
