@@ -1,0 +1,302 @@
+---
+title: "Circles Continued"
+subtitle: "STEM 591: Visualizing Data Using R"
+author: "Dr. Joshua Rosenberg"
+institute: "University of Tennessee, Knoxville"
+date: "Week 9"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE
+)
+options(htmltools.preserve.raw = FALSE)
+library(tidyverse)
+```
+
+```{css, echo = FALSE}
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+  margin-top: -20px;
+}
+
+.pull-right-margin {
+  margin-top: -20px;
+}
+
+.remark-code { /*Change made here*/
+    font-size: 70% !important;
+}
+```
+
+# Today's Agenda
+
+- Data Viz & R Review
+- Dots, Lollipops, and Barbells
+- Workout Wednesday
+
+---
+class: inverse, middle, center
+# Data Viz & R Review
+
+## Go to www.kahoot.it and enter the code I give you
+
+<!-- Note to Josh: Please make an account on Kahoot.com and copy this Kahoot: -->
+<!-- https://create.kahoot.it/share/data-viz-r-review/2997aa6f-c9a6-4545-9188-16afe313d841 -->
+<!-- You can add or modify anything. Practice running it before class. -->
+
+---
+# Dots, Lollipops, and Barbells
+
+Dot plots, lollipop charts, and barbell charts are types of charts you can make with circles. However, they can be seen more like bar charts than scatter charts.
+
+Look at the following examples. How does the display of information change the story?
+When do you think each plot could be used?
+
+<center>
+<img src="fake plots.jpg" width=70%>
+</center>
+
+---
+# Dot Plots
+.pull-left[
+
+A dot plot simply replaces a bar with a dot. It is situated at the end point of where the bar would have ended.
+
+An advantage of a dotplot is that there is less visual clutter. Lots of white space with a little color (the dot) is much easier to look at and tells the same story.
+]
+
+.pull-right[
+<center>
+<img src="barvsdot.png" width=85%>
+</center>
+]
+
+---
+# Lollipop Plots
+
+This is almost the same as the dot plot and even a little closer to the bar chart. The dot indicates the value while the thin line allows you to see the distance from the 0-axis.
+
+
+<center>
+<img src="bardotlollipop.svg" width=80%>
+</center>
+
+---
+# Barbell Plots
+
+.pull-left[
+
+Whereas the previous two plots are alternatives to bar charts, the barbell (or dumbbell) plot is something else entirely. 
+
+It allows you to plot multiple subcategories of a category and the line between the dots allows you to estimate a gap.
+]
+
+.pull-right[
+<center>
+<img src="barbell.png" width=70%>
+</center>
+<!-- From https://r-graph-gallery.com/web-extended-dumbbell-plot-ggplot2.html -->
+]
+---
+class: inverse, middle, center
+# How do we make these in R? 
+
+## It's easy!
+---
+```{r include=FALSE}
+recent_grads <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/recent-grads.csv") 
+
+grad_data <- recent_grads %>%
+  group_by(Major_category) %>%
+  summarize(Men = mean(Men),
+            Women = mean(Women),
+            Overall = mean(Total)) %>%
+  filter(Major_category %in% c("Business", "Education", "Engineering"))
+```
+
+# From Bar to Dot
+
+With a bar plot, the magic is in `geom_col`:
+
+```{r fig.height=4}
+grad_data %>%
+  ggplot(aes(x=Overall, y=Major_category))+
+  geom_col()
+```
+
+---
+
+# From Bar to Dot
+
+We can simply use `geom_point` and increase its size
+
+```{r fig.height=4}
+grad_data %>%
+  ggplot(aes(x=Overall, y=Major_category))+
+  geom_point(size=5)
+```
+---
+# From Dot to Lollipop
+
+If we wanted to add a line, we can use `geom_linerange()`. We will call it before `geom_point` so it is under the circle. `geom_linerange()`'s aesthethics that an xmin/xmax or ymin/ymax.
+
+> Shapes appear in the order they are specified in the code
+
+```{r, fig.height=4}
+grad_data %>%
+  ggplot(aes(x=Overall, y=Major_category))+
+  geom_linerange(aes(xmin=0, xmax=Overall))+
+  geom_point(size=5)
+```
+---
+# From Bar to Barbell
+
+There are a few ways to make a barbell plot. The simplest is if each column is a set of observations. This is not "tidy" data, but it is one way to do it:
+
+.pull-left[
+
+```{r echo=FALSE}
+grad_data %>%
+  slice(1:10) %>%
+  knitr::kable()
+```
+
+]
+
+.pull-right[
+
+First, let's draw our lines from Men to Women
+
+```{r fig.height=3}
+grad_data %>%
+  ggplot(aes(y=Major_category))+
+  geom_linerange(aes(xmin=Women, xmax=Men))
+```
+
+
+]
+
+
+---
+# From Bar to Barbell
+
+There are a few ways to make a barbell plot. The simplest is if each column is a set of observations. This is not "tidy" data, but it is one way to do it:
+
+.pull-left[
+
+Now, let's plot each column and give it a color.
+
+```{r fig.height=3}
+grad_data %>%
+  ggplot(aes(y=Major_category))+
+  geom_linerange(aes(xmin=Women, xmax=Men))+
+  geom_point(aes(x=Men), color="purple", size=3)+
+  geom_point(aes(x=Women), color="orange", size=3)+
+  geom_point(aes(x=Overall), color="grey70", size=3)+
+  xlab("Average")
+  
+```
+
+]
+
+.pull-right[
+
+One downside of using "wide" data is that there is no legend that can be easily added.
+
+A better alternative is to make the data "long".
+
+]
+---
+# From Bar to Barbell
+
+.pull-left[
+
+```{r}
+grad_data %>%
+  slice(1:10) %>%
+  knitr::kable()
+```
+
+]
+
+.pull-right[
+
+```{r}
+grad_data_long <- grad_data %>%
+  pivot_longer(c(Men:Overall),
+               names_to = "category", values_to="avg")
+
+grad_data_long %>%
+  slice(1:10) %>%
+  knitr::kable()
+```
+]
+---
+# From Bar to Barbell
+
+We can easily add the points from this data.
+```{r fig.height=3}
+grad_data_long %>%
+  ggplot(aes(x=avg, y=Major_category, color=category))+
+  geom_point(size=3)
+```
+
+However, getting the line requires a bit more preparation.
+
+---
+# From Bar to Barbell
+
+What we want to do is, for each major, find the minimum value and the maximum value but exclude the overall value, since we just want to draw a line between men and women.
+
+
+```{r}
+grad_data_long2 <- grad_data_long %>%
+  group_by(Major_category) %>%
+  mutate(min = min(avg[category != "Overall"]),
+         max = max(avg[category != "Overall"]))
+
+grad_data_long2
+
+```
+
+`max(avg[category != "Overall"]))` means:
+
+- Take the maximum value of the "avg" column where "category" doesn't equal (`!=`) "Overall".
+
+---
+# From Bar to Barbell
+
+Now we are ready!
+
+```{r fig.height=4}
+grad_data_long2 %>%
+  ggplot(aes(x=avg, y=Major_category, color=category))+
+  geom_linerange(aes(xmin=min, xmax=max), color="grey70")+
+  geom_point(size=3)
+
+```
+
+There is almost no line between men and women in business. What does that tell us?
+
+---
+class: inverse, middle, center
+# Workout Wednesday 
+
+Workout Wednesday is like #TidyTuesday. It's an weekly online "event" on Twitter and other media where users make or remake data visualizations!
+
+## From Bar to Barbell
+---
+
