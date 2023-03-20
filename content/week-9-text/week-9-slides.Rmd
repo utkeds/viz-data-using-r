@@ -287,6 +287,8 @@ tidykids_example %>%
   scale_x_continuous(limits=c(0,6000))
 ```
 
+---
+
 # Adding Text with `ggplot`
 
 ```{r, fig.height=3.5, echo = FALSE}
