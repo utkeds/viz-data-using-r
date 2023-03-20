@@ -17,7 +17,7 @@ library(tidyverse)
 Let's load our data, which are assignments and scores from a number of university science classes.
 
 ```{r}
-data <- read_csv(here::here("Week 7 - Text", "science_course_data.csv"))
+data <- read_csv("science_course_data.csv")
 ```
 
 Let's first take a look at the columns:

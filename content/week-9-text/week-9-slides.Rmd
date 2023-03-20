@@ -13,7 +13,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-class: inverse
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -38,16 +37,40 @@ library(tidyverse)
 
 # Today's Agenda
 
+- Data Jam
 - Reading Discussion
 - Using Text in `ggplot`
-- Working with Text in R
-- Mini Project 2 Introduction
+- Assignment 6 (together and independently)
+- Check out
 
 ---
+
+class: inverse, middle, center
+
+# Data Jam
+
+---
+
+# Data Jam
+
+Together: https://www.drought.gov/current-conditions
+
+You pick a state: https://www.drought.gov/states
+
+Jamboard: https://jamboard.google.com/d/1DgHaGG2LM6HjG0h3e1aTb6yyo401_kUX0nvPyCN833A/edit?usp=sharing
+
+---
+
+class: inverse, middle, center
+
+# Reading Discussion
+
+---
+
 # Reading Discussion
 
 .pull-left[
-**According to Cairo, what text should be used on a visualization and why? **
+**According to Cairo, what text should be used in a visualization and why? **
 ]
 
 .pull-right[
@@ -71,7 +94,7 @@ Note that:
 - There is a caption
 - All text is horizontal (the way we naturally read)
 
-All of this is easy to do with `ggplot`!
+All of this is easy to do with `ggplot` (as we'll see shortly)!
 ]
 
 .pull-right[
@@ -81,7 +104,9 @@ All of this is easy to do with `ggplot`!
 
 ---
 
-# Working with Text Data
+class: inverse, middle, center
+
+# Working with Text Data in ggplot2
 
 ---
 
@@ -108,9 +133,25 @@ tidykids_example %>%
 
 # Adding Text with `ggplot`
 
+```{r, fig.height=4, eval = FALSE}
+tidykids_example %>%
+  ggplot(aes(y=variable, x=inf_adj_perchild*1000))+
+  geom_col(fill="darkgreen")+
+  labs(title="Tennessee State Expenditures in 2000",
+       subtitle = "Data from the Urban Institute",
+       y=NULL,
+       x="Spending per Person",
+       caption="Based on 2016 dollars")
+```
+
+---
+
+
+# Adding Text with `ggplot`
+
 We can easily add primary labels using the `labs` function in ggplot.
 
-```{r, fig.height=4}
+```{r, fig.height=4, echo = FALSE}
 tidykids_example %>%
   ggplot(aes(y=variable, x=inf_adj_perchild*1000))+
   geom_col(fill="darkgreen")+
@@ -125,9 +166,9 @@ tidykids_example %>%
 
 # Adding Text with `ggplot`
 
-If we switch the x and y axis, the y-axis label is difficult to read. Visualization readers should not have to tilt their heads sideways.
+If we switch the x and y axis, the y-axis label is difficult to read. Visualization readers should not have to tilt their heads sideways!
 
-```{r, fig.height=4}
+```{r, fig.height=4, eval = FALSE}
 tidykids_example %>%
   ggplot(aes(x=variable, y=inf_adj_perchild*1000))+
   geom_col(fill="darkgreen")+
@@ -139,11 +180,43 @@ tidykids_example %>%
 ```
 
 ---
+
+# Adding Text with `ggplot`
+
+```{r, fig.height=4, echo = FALSE}
+tidykids_example %>%
+  ggplot(aes(x=variable, y=inf_adj_perchild*1000))+
+  geom_col(fill="darkgreen")+
+  labs(title="Tennessee State Expenditures in 2000",
+       subtitle = "Data from the Urban Institute",
+       x=NULL,
+       y="Spending per Person",
+       caption="Based on 2016 dollars")
+```
+
+---
+
 # Adding Text with `ggplot`
 
 We can style the `theme` of the y axis title. We can set the `angle` to 0, and the `v`ertical ad`just`ment to .5 (i.e., center). We can add `\n`, which is interpreted as a line break.
 
-```{r, fig.height=4}
+```{r, fig.height=4, eval = FALSE}
+tidykids_example %>%
+  ggplot(aes(x=variable, y=inf_adj_perchild*1000))+
+  geom_col(fill="darkgreen")+
+  labs(title="Tennessee State Expenditures in 2000",
+       subtitle = "Data from the Urban Institute",
+       x=NULL,
+       y="Spending\nper Person",
+       caption="Based on 2016 dollars")+
+  theme(axis.title.y = element_text(angle=0, vjust=.5))
+```
+
+---
+
+# Adding Text with `ggplot`
+
+```{r, fig.height=4, echo = FALSE}
 tidykids_example %>%
   ggplot(aes(x=variable, y=inf_adj_perchild*1000))+
   geom_col(fill="darkgreen")+
@@ -161,7 +234,25 @@ tidykids_example %>%
 
 We can also label the bars with the values using `geom_text`. `hjust` places the label outside of the bars, and the plot was expanded to 6000 on the x-axis to prevent the top bar's label from being cut off.
 
-```{r, fig.height=3.5}
+```{r, fig.height=3.5, eval = FALSE}
+tidykids_example %>%
+  ggplot(aes(y=variable, x=inf_adj_perchild*1000))+
+  geom_col(fill="darkgreen")+
+  geom_text(aes(label = scales::dollar(inf_adj_perchild*1000,1),
+                hjust=-.8))+
+  labs(title="Tennessee State Expenditures in 2000",
+       subtitle = "Data from the Urban Institute",
+       y=NULL,
+       x="Spending per Person",
+       caption="Based on 2016 dollars")+
+  scale_x_continuous(limits=c(0,6000))
+```
+
+---
+
+# Adding Text with `ggplot`
+
+```{r, fig.height=3.5, echo = FALSE}
 tidykids_example %>%
   ggplot(aes(y=variable, x=inf_adj_perchild*1000))+
   geom_col(fill="darkgreen")+
@@ -182,7 +273,23 @@ tidykids_example %>%
 
 Because `geom_text` is a geometry, we can specify colors and size, either within the `aes`thetics, or outside of it. For this data, it makes sense to specify it outside `aes()`
 
-```{r, fig.height=3.5}
+```{r, fig.height=3.5, eval = FALSE}
+tidykids_example %>%
+  ggplot(aes(y=variable, x=inf_adj_perchild*1000))+
+  geom_col(fill="darkgreen")+
+  geom_text(aes(label = scales::dollar(inf_adj_perchild*1000,1),
+                hjust=-.2), color="grey20", size=8)+
+  labs(title="Tennessee State Expenditures in 2000",
+       subtitle = "Data from the Urban Institute",
+       y=NULL,
+       x="Spending per Person",
+       caption="Based on 2016 dollars")+
+  scale_x_continuous(limits=c(0,6000))
+```
+
+# Adding Text with `ggplot`
+
+```{r, fig.height=3.5, echo = FALSE}
 tidykids_example %>%
   ggplot(aes(y=variable, x=inf_adj_perchild*1000))+
   geom_col(fill="darkgreen")+
@@ -201,11 +308,13 @@ class: inverse, middle, center
 
 # Wrangling Text
 
-We will do more work with text *as part of a visualization*.
+---
 
-However, before doing so, let's work with **text as a part of the data**.
+# Assignment 6 (together and independently)
 
-## Week 9 - Text Activities - Student.Rmd
+Let's work with **text as a part of the data**.
+
+## Assignment 6
 
 ---
 
@@ -213,33 +322,22 @@ However, before doing so, let's work with **text as a part of the data**.
 
 Reminders:
 
-### Reminders
+### Before break
 
-Assignment 5 due this Friday (Mar. 10)
+**Mini project 1** due before break (Mar. 6) - grading soon  
 
-Mini project one due today (Mar. 6)
-
-Discussion 6 due today (Mar. 6)
-
-### Longer term
-
-Foundations of Educational Data Science I to be offered Fall 2023 (M, 12 - 2:30 pm)
-
-Graduate Certificate Program: https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/
-
----
-
-# Check out 
+**Assignment 5** due before break (Mar. 10) - grading this and assignment 4 soon
 
 ### Looking ahead
 
-Enjoy spring break!
+- **Assignment 6** due before our next class (by 3/27, 11:59 am)
 
-If you wish, you can work ahead by starting on (or finishing!) Mini-Project 2
+- **Mini Project 2.Rmd** (Due in two weeks, 4/3, 11:59 am)
 
-See **Mini Project 2.Rmd**
-<!-- Go over mini project 2 in document -->
+- **Reading - Wickham (2023)**: https://ggplot2-book.org/annotations.html
 
-- Mini Project 2
+---
 
-What's one thing you took away from this week
+# Check out
+
+What is a meta-goal (a goal above and beyond specific goals you wish to achieve) you have for the next eight weeks?
