@@ -314,15 +314,11 @@ class: inverse, middle, center
 
 # Assignment 6 (together and independently)
 
-Let's work with **text as a part of the data**.
-
-## Assignment 6
+Let's work with **text as labels** and **text as a part of the data**.
 
 ---
 
 # Check out
-
-Reminders:
 
 ### Before break
 
