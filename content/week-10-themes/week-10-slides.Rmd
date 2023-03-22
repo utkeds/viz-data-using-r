@@ -225,7 +225,7 @@ class: inverse
 
 .pull-left[
 
-You will use **any** past data sets to design two plots. One will be a **good plot**: a beautiful masterpiece with excellent color choices and styled non-data ink. The other will be a **bad plot**: a disasterpiece eyesore with geoms, colors, and theme elements from the nethwerworld. 
+You will use an example plot (about penguins) as the basis for modifying many parts of a theme
 
 The purpose of this assignment is to learn how to manipulate all elements of ggplot, for better or for worse.
 
