@@ -58,15 +58,6 @@ grad_data <- recent_grads %>%
 
 1. What are several good rules of thumb when it comes to creating legends? (Refer to the text, if you can.)
 2. Why does Wilke use the terms redundant "coding"?
-3. What do the following terms represent:
-  1. Proximity
-  2. Similarity
-  3. Enclosure
-  4. Closure
-  5. Continuity
-  6. Connection
-  7. Cognitive Load
-
 
 ---
 
@@ -253,6 +244,12 @@ Bad Plot Example
 ![](https://pbs.twimg.com/media/FA48BEYVEBEUhmL?format=jpg&name=medium)
 
 ]
+
+---
+
+# Mini Project 2
+
+What questions do you have? What concerns do you have?
 
 ---
 # Reading

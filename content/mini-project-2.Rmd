@@ -5,13 +5,13 @@ date: '2022-12-23'
 output: html_document
 ---
 
-# Assignment Introduction
+## Assignment Introduction
 
 Many of the data sets we have encountered in this course so far have been curated as part of #TidyTuesday. TidyTuesday is a weekly Twitter-based activity in which users are encouraged to develop creative graphs on newly-posted data by using `ggplot`. This provides users with an opportunity to sharpen their data visualization skills. 
 
 Along with posting the graphics they create, users also typically post the code they used to develop the graphics. This provides an excellent learning opportunity for the online data viz community.
 
-You are going to capitalize on this shared code and improve your own data vizualizaiton skills. Here are the steps for this project:
+You are going to capitalize on this shared code and improve your own data visualization skills. Here are the steps for this project:
 
 1. Access [tidytuesday.rocks](https://nsgrantham.shinyapps.io/tidytuesdayrocks/), which is an interface to TidyTuesday posts on Twitter, organized by data set or users.
 
@@ -38,20 +38,17 @@ Let's goooo!
 | Each visualization employees a technique students learned from their data viz tear down.   |   []   |
 |                                                                     |   []   |
 
-## Reflection
+## Reflect
 
 Link the the TidyTuesday tweet(s) you tore down:
 
 - [title](link)
 
 >Prompt: In 1-3 paragraphs, explain the data visualization techniques (technical and/or aesthetic) you learned from this exercise and how you plan apply it to your own data visualization.
-## Application
 
+## Apply
 
-
-## Application
-
-This data set comes from the National Center for Educational Statistics, curated on TidyTueday. [See this link for more information and a data dictionary](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-02-02/readme.md). The data is based on Historic Black Colleges and Universities (HBCUs), specifically:
+This data set comes from the National Center for Educational Statistics, curated on TidyTuesday. [See this link for more information and a data dictionary](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-02-02/readme.md). The data is based on Historic Black Colleges and Universities (HBCUs), specifically:
 
 - High school completion and bachelor's degree attainment among persons age 25 and over by race/ethnicity & sex 1910-2016
 - Fall enrollment in degree-granting historically Black colleges and universities (HBCU)
@@ -96,9 +93,13 @@ Question 3:
 
 ### Visualize
 
-Keeping in mind all of the princples of visualization we have learned, all of the `ggplot` functions we have practiced, and all of the visualization code you have seen, and **what you learned from the TidyTuesday data viz tear down**, develop a visualization that uses the data above. Each visualization should:
+Keeping in mind all of the principles of visualization we have learned, all of the `ggplot` functions we have practiced, and all of the visualization code you have seen, and **what you learned from the TidyTuesday data viz tear down**, develop a visualization that uses the data above. Each visualization should:
 
 1. Present the information clearly
 2. Use a custom or non-default color palette
 3. Use `theme_minimal` or another theme
 4. Have a title, using `ggtitle("title here")`
+
+### Submit
+
+To submit this document, please knit to HTML file and upload the resulting HTML file for Mini Project 2.

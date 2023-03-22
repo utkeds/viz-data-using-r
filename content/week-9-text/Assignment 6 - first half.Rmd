@@ -89,13 +89,14 @@ midwest %>%
 ### Viewing the built-in us_rent_income dataset (hint: type the name in the box below)
 
 ```{r}
-
+us_rent_income
 ```
 
 ### Remove the moe and GEOID variables from the data set (hint: use select and the minus symbol to remove a column) and then save the results back to us_rent_income
 
 ```{r}
-
+us_rent_income <- us_rent_income %>% 
+  select(-moe, -GEOID)
 ```
 
 ### Pivot the data set to be in "wide" format using pivot_wider, replacing xx below with variable and yy with estimate, saving the results back to us_rent_income after
@@ -108,13 +109,14 @@ us_rent_income <- us_rent_income %>%
 ### Create a new variable, rent_yearly, that is equal to rent multiplied by 12
 
 ```{r}
-
+us_rent_income <- us_rent_income %>% 
+  mutate(rent_yearly = rent * 12)
 ```
 
 ### Create a scatterplot with x representing income and y representing rent; label the points using geom_text()
 
 ```{r}
-
+us_rent_income
 ```
 
 ### Create a scatterplot with x representing income and y representing rent; label the points using geom_text_repel()
@@ -132,7 +134,12 @@ us_rent_income <- us_rent_income %>%
 ### Bonus: Use mutate() to create a new variable, prop_of_income, that represents the proportion of income made up by rent; then, make the state NAME equal to NA if this proportion is less than .50 and use geom_text() to visualize the result (which should only include text for states with a proportion greater than .50).
 
 ```{r}
-
+us_rent_income %>% 
+  mutate(prop_of_income = rent_yearly / income) %>% 
+  mutate(NAME = ifelse(prop_of_income < .50, NA, NAME)) %>% 
+  ggplot(aes(x = income, y = rent_yearly, label = NAME)) +
+  geom_point() +
+  geom_text(hjust = -.25)
 ```
 
 ## Done!
