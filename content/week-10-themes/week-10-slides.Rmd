@@ -46,37 +46,33 @@ grad_data <- recent_grads %>%
 
 # Today's Agenda
 
+- Guest speaker: Dr. Anthony Schmidt
 - Reading Discussion
-- Data Ink
-- `ggplot` Anatomy
-- Modifying Themes Practice
-- Good Plot/Bad Plot
+- `ggplot` Themes Anatomy 
+- Modifying Themes Practice and In-Class Task
+- Check out
 
 ---
-# Reading Discussion
 
+# Guest Speaker
+
+[Dr. Anthony Schmidt](https://www.anthonyschmidt.co/)
+PhD in Evaluation, Statistics, and Methodology, UTK, 2022
+Senior Data Scientist, Amplify
+Previously a Data Visualization Researcher, CUPA-HR
+
+```{r, include = FALSE}
+knitr::include_graphics("https://www.anthonyschmidt.co/authors/admin/avatar_huff1ed6896198b0fec737662a3a2ae29b_909407_250x250_fill_q90_lanczos_center.jpg")
+```
+
+---
+
+# Reading Discussion
 
 1. What are several good rules of thumb when it comes to creating legends? (Refer to the text, if you can.)
-2. Why does Wilke use the terms redundant "coding"?
 
 ---
 
-# Reading Discussion
-
-.pull-left[
-
-The chart on the right is neither wonderful nor terrible.
-
-Based on the readings from this week and prior discussions, what principles of good visualization does this chart exhibit? What principles does it violate?
-
-How would you improve this chart?
-]
-
-.pull-right[
-
-![](example-chart.png)
-] 
----
 # Data Ink
 
 One interesting concept in data visualization is the concept of **data ink**, devised by William Tufte. From the [Infovis Wiki](https://infovis-wiki.net/wiki/Data-Ink_Ratio):
@@ -90,8 +86,6 @@ One interesting concept in data visualization is the concept of **data ink**, de
 ---
 # Data Ink
 
-Which chart would you consider better?
-
 .pull-left[
 ## A
 
@@ -103,26 +97,7 @@ Which chart would you consider better?
 ![](high.png)
 ]
 ---
-# Data Ink
 
-Which chart would you consider better?
-
-.pull-left[
-## Low Data-Ink Ratio
-
-This graph has a lot of non-data ink: background, grid lines, border, etc.
-
-![](low.png)
-]
-
-.pull-right[
-## High Data-Ink Ratio
-
-This graph has more data than non-data, i.e. the data is the focus and the other elements aid in understanding the data.
-
-![](high.png)
-]
----
 # Data Ink
 
 ## This weeks focus is non-data ink.
@@ -167,8 +142,6 @@ p +
         axis.text.y = element_text(size=10),
         legend.background = element_rect(fill="blue"),
         axis.ticks = element_line(color="red"))
-
-p
 ```
 ]
 ---
@@ -177,6 +150,8 @@ p
 We have already seen that we can modify labels and text using `geom_text()` and `labs()`. We can also use `scale_*_continuous(labels=scales::comma_format()` or similar to control how continuous labels look.
 
 Other important elements  can be easily manipulated using `theme()`
+
+---
 
 ![](ggplot-theme-elements.png)
 
@@ -190,9 +165,10 @@ Then, we specify the element function, e.g., if it is a text element, we will ca
 Inside of the function, we can specify colors (for lines and text), fill for rectangles, font size, font face, font family, text angle, etc. Here is an example:
 
 ---
+
 # `ggplot` **THEME** Anatomy
 
-```{r fig.height=5}
+```{r fig.height=3}
 p +
   ggtitle("Plot title")+
   theme(axis.text.y = element_text(size=10,
@@ -252,9 +228,28 @@ Bad Plot Example
 What questions do you have? What concerns do you have?
 
 ---
-# Reading
 
 
-Cairo (2019), Chapter 2
+# Check out
 
-Wilke (2019), Chapter 13 
+### Grading
+
+- **Mini project 1** due before break (Mar. 6) - grading now
+
+- **Grading all other assignments should be done (or is done)**
+
+### Looking ahead
+
+- **Assignment 6** due today
+
+- **Mini Project 2.Rmd** (Due in one weeks, 4/3, 11:59 am)
+
+- **Reading - Cairo (2019), chapter 2**
+
+- **Reading: Wilke (2019), chapter 13**
+
+---
+
+# Check out
+
+What is one alt-ac career you would consider? Why (briefly - less than one sentence!).
