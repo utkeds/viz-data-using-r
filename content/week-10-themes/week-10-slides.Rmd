@@ -46,11 +46,12 @@ grad_data <- recent_grads %>%
 
 # Today's Agenda
 
-- Guest speaker: Dr. Anthony Schmidt
-- Reading Discussion
-- `ggplot` Themes Anatomy 
-- Modifying Themes Practice and In-Class Task
-- Check out
+- Guest speaker: Dr. Anthony Schmidt. 
+- Reading Discussion. 
+- Survey. 
+- `ggplot` Themes Anatomy. 
+- Modifying Themes Practice and In-Class Task. 
+- Check out. 
 
 ---
 
@@ -70,6 +71,19 @@ knitr::include_graphics("https://www.anthonyschmidt.co/authors/admin/avatar_huff
 # Reading Discussion
 
 1. What are several good rules of thumb when it comes to creating legends? (Refer to the text, if you can.)
+
+---
+
+# Mid-semester feedback
+
+- More effective breakouts. 
+- Faster pacing. 
+- Troubleshooting. 
+- Upcoming assignments. 
+- Application. 
+- Readings cold be better. 
+- Structure introducing tidyverse better. 
+- Maps. 
 
 ---
 
