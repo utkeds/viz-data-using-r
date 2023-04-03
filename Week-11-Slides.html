@@ -4,7 +4,7 @@
     <title>Lines</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dr. Joshua Rosenberg" />
-    <script src="libs/header-attrs-2.19/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -215,8 +215,8 @@ data %&gt;%
 ```r
 data %&gt;%
   ggplot(aes(x=as.factor(x), y=y, group=1))+
-  geom_area(alpha=.3)+
   geom_line()+
+  geom_area(alpha=.3)+ #note: adding this alpha may or may not display correctly - the area may dissappear
   coord_cartesian(ylim=c(45000,56000))
 ```
 
