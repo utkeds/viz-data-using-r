@@ -1,0 +1,543 @@
+---
+title: "Graphic Design"
+subtitle: "STEM 591: Visualizing Data Using R"
+author: "Dr. Joshua Rosenberg"
+institute: "University of Tennessee, Knoxville"
+date: "Week 12"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE
+)
+options(htmltools.preserve.raw = FALSE)
+library(tidyverse)
+```
+
+```{css, echo = FALSE}
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.pull-left-small {
+  float: left;
+  width: 40%;
+}
+
+.pull-right-big {
+  float: right;
+  width: 60%;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+
+.utk {
+  background-color: #FF8200;
+  color: #58595B;
+}
+
+.utk h1 {
+  color: #58595B;
+  text-shadow: 0 0 20px #FFFFFF;
+}
+
+.utk a {
+color: #FFF
+}
+```
+
+# Today's Agenda
+
+- Warm-Up
+- Reading Discussion
+- Data Visualization Checklist
+- Final Project Introduction
+- Chart Layout in R
+
+
+---
+class:utk
+
+# Warm-Up
+
+## Take ~10 minutes to explore the following examples of different data visualization formats:
+
+- [Chart/Graph](https://github.com/gkaramanis/tidytuesday/tree/master/2019/2019-week-23)
+- [Infographic](https://github.com/Z3tt/TidyTuesday/tree/main/plots/2020_04)
+- [Dashboard](https://cedric-scherer.shinyapps.io/TidyTuesday_2020_36_Crop_Yields/)
+- [App](https://nz-stefan.shinyapps.io/commute-explorer-2/)
+
+Note: all of these are made with R
+
+## What are the differences between these formats??
+
+---
+
+# Reading Discussion: Wilke
+
+### Small Multiples
+
+--
+
+> 1\. When should these be used?
+ 
+--
+
+> 2\. Is a chart with small multiples still just a chart or is it an infographic?
+ 
+--
+
+> 3\. We have seen the code for producing small multiples. What is the function we can use in `ggplot`?
+
+--
+
+### Compound Figures
+
+> 4\. What is a compound figure and when should it be used?
+
+> 5\. Do you think using a compound figure transforms a chart into an infographic or dashboard? Why or why not?
+
+**Spoiler Alert**: We can build compound figures with the `patchwork` package!
+
+---
+# Reading Discussion: Knafflic
+
+.pull-left-small[
+
+Define:
+> 1. Affordances
+> 2. Accessibility
+> 3. Aesthetics
+
+Look at Figure 5.5 
+
+> A. Consider data visualization principles we have discussed from previous readings. What principles are being employed in the "after"?
+
+<!-- Note: We began the course with Cairo's tips for reading a data visualization. Try to get students to connect to that as well. There are a lot of readings that can be applied here, as well as concepts such as data ink. The point is to help forge connections between this graphic, the Knafflic reading, and what we have done earlier in the semester. It primes students for the checklist activity. -->
+
+> B. What functions could you use in `ggplot` to create that "after" chart?
+
+]
+
+.pull-right-big [
+### Figure 5.5
+![](knafflic5.5.png)
+]
+
+---
+
+# Reading Discussion: Emery
+
+Emery outlines 7 steps for the data visualization design process. For each of the steps below, decide if we have discussed it in class. Give an important takeaway for that step. Recall a key R function as well, if applicable.
+
+<!-- Note: This is an "interactive" table, meaning you can click and type in the box. This is to aid whole-class note-taking. -->
+
+| Step                      | Discussed?                      | Tip                           | Code
+|:--------------------------|:--------------------------------|:------------------------------|:----------------------------|
+| Step 1: Analyze Your Audience    |   <input type="checkbox">       | <textarea rows="2" cols="25"></textarea> |<textarea rows="2" cols="25"></textarea>|
+| Step 2: Choose the Right Chart  |   <input type="checkbox">       | <textarea rows="2" cols="25"></textarea> |<textarea rows="2" cols="25"></textarea>|
+|Step 4: Declutter  |   <input type="checkbox">       | <textarea rows="2" cols="25"></textarea> |<textarea rows="2" cols="25"></textarea>|
+| Step 5: Clarify Your Message with Color   |   <input type="checkbox">       | <textarea rows="2" cols="25"></textarea> |<textarea rows="2" cols="25"></textarea>|
+| Step 6: Clarify Your Message with Text |   <input type="checkbox">       | <textarea rows="2" cols="25"></textarea> |<textarea rows="2" cols="25"></textarea>|
+| Step 7: Are You Doing It Right?! Test Your Draft        |   <input type="checkbox">       | <textarea rows="2" cols="25"></textarea> |<textarea rows="2" cols="25"></textarea>|
+
+---
+class:inverse
+# Design a Data Visualization Checklist
+
+### Given a whole semesters' worth of data viz knowhow, how would you assess a data visualization?  
+### What principles and practices would you want to see employed?
+
+Work with a small group to develop a checklist or rubric that can be used to evaluate any data visualization **based on the principles and practices** we have read this semester.
+
+1. One student should make a copy of [this Google doc](https://docs.google.com/document/d/1_XwzuyJ1MH04AKo_a-6TdwWZNGnRTDHPQcIrxvbJtlI/copy) to get started.
+2. Share it with your group members and myself (jrosen8@utk.edu)
+3. Work together to create at least 5 criteria for evaluation. Define each criteria clearly.
+4. For each criteria you create, cite the appropriate reading (e.g., Cairo, Wilke, Knafflic, etc.). 
+5. For each criteria you create, decide how that individual criteria will be assessed: checklist, 1-3, 0-4. 
+ - What do numeric ratings mean? E.g, does 1 mean "poor", "missing", "needs improvement" or something more in-depth?
+6. If possible, group your criteria together under headings, e.g., "Information", "Layout", etc.
+ 
+---
+background-image: url("gather.jpg")
+background-position: right bottom
+# STEM 591 Final Project
+
+You will select a **data set of your choice**. You will explore, analyze, and summarize your data set, creating **three data visualizations** that tell a story about this data. You may create three separate charts or build an infographic, or any combination.
+
+You will upload your data source and Rmd file. You will also place your three visualizations into a PDF, PPT, or Google Slide deck.
+
+On D-A-T-E, we will meet in a virtual space called **gather.town** and you will participate in a poster presentation event:
+
+- Session 1 - Half the class will be presenters in online booths while the other half, along with instructors/special guests, will visit presenters and discuss the visualizations. Presenters should discuss the story of the data, using the visualizations as aids. Presenters should only speak for 1-2 minutes, and take time to answer any questions or interact with the other attendees.
+- Session 2 - Roles will switch
+
+All materials must be uploaded to canvas by D-A-T-E.
+
+These will then be placed in "booths" on **gather.town**. 
+
+A **gather.town** instruction video is forthcoming.
+
+---
+background-image: url("gather.jpg")
+background-position: right bottom
+# STEM 591 Final Project
+
+### How will you be graded on this? I'm glad you asked!
+
+In addition to a checklist of basic requirements (e.g., code can be reproduced, all 3 data visualizations are different, etc.), I will select criteria to evaluate your data visualizations from today's activity! I will choose criteria from different groups and implement or adapt the ratings you created, as well.
+
+I will provide an updated project rubric within the next few days.
+
+---
+# Design with `ggplot`
+
+There are many ways to better design your data visualizations in `ggplot`.
+
+A key way is to ensure you employ principles of color, text, and shape to make your data visualization as readable as possible.
+
+One function that can facilitate this is `facet_wrap()`, which we have seen a few times.
+
+
+---
+
+# Small Multiples with `facet_wrap`
+
+For this example, we will use the `palmerpenguins` package.
+
+```{r include=FALSE}
+library(palmerpenguins)
+
+flipper_hist_1 <- 
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()
+
+
+flipper_hist_2 <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  facet_wrap(~species)+
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Distribution of flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  theme(legend.position = "none")
+```
+
+
+.pull-left[
+
+No Small Multiples
+
+```{r echo=FALSE, fig.height=4}
+flipper_hist_1
+```
+
+
+]
+
+.pull-right[
+
+Small Multiples
+
+```{r echo=FALSE, fig.height=4}
+flipper_hist_2
+```
+
+]
+
+---
+# Small Multiples with `facet_wrap`
+
+## How did we do it?
+
+To create, the regular plot, we used the following code
+
+.pull-left[
+```{r eval=FALSE, include=TRUE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  # position = "identity" this overlaps 
+  # rather than stacks the bars
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()
+```
+
+]
+
+.pull-right[
+```{r echo=FALSE, fig.height=3}
+flipper_hist_1
+```
+
+
+]
+
+---
+
+# Small Multiples with `facet_wrap`
+
+Now we can use `facet_wrap` to make small multiples
+
+.pull-left[
+```{r eval=FALSE, include=TRUE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species)+
+  theme(legend.position = "none")
+```
+
+]
+
+.pull-right[
+```{r echo=FALSE, fig.height=3}
+flipper_hist_2
+```
+
+
+]
+
+---
+
+# Small Multiples with `facet_wrap`
+
+Main Arguments:
+`facet_wrap`(~facet_variables, nrow, ncol, scales)
+
+<!-- 
+Teaching note: explain the following 
+- facet_variable, we can facet by one or more variables. With two variables, we simply use the + sign 
+
+ -nrow specifies how many rows 
+-n col specifies how many columns 
+
+-scales can be "free", "free_x", or "free_y" and allows the axes to vary based on the facet
+-->
+
+.pull-left[
+```{r eval=FALSE, include=TRUE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species, nrow=3, scales="free_y")+
+  theme(legend.position = "none")
+```
+
+```{r eval=TRUE, include=FALSE}
+flipper_hist_3 <- ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species, nrow=3, scales="free_y")+
+  theme(legend.position = "none")
+```
+
+]
+
+.pull-right[
+```{r echo=FALSE, fig.height=5}
+flipper_hist_3
+```
+
+
+]
+
+---
+
+# Compound Figures with `patchwork`
+
+Rather than using a design element *within* a plot, what if we wanted to connect multiple plots together?
+
+We can use the `patchwork` package!
+
+Let's begin with two separate plots.
+
+---
+
+# Compound Figures with `patchwork`
+
+.pull-left[
+```{r echo=FALSE, fig.height=4}
+flipper_hist_2
+```
+
+]
+
+.pull-right[
+
+```{r include=FALSE}
+mass_flipper <- ggplot(data = penguins, 
+                       aes(x = flipper_length_mm,
+                           y = body_mass_g)) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 3,
+             alpha = 0.8) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin size, Palmer Station LTER",
+       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
+       x = "Flipper length (mm)",
+       y = "Body mass (g)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme_minimal()+
+  theme(legend.position = c(0.2, 0.7),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot")
+```
+
+```{r echo=FALSE, fig.height=4}
+mass_flipper
+```
+]
+
+---
+# Compound Figures with `patchwork`
+
+.pull-left[
+```{r eval=FALSE, include=TRUE}
+library(patchwork)
+flipper_hist_2 + mass_flipper
+```
+
+```{r include=FALSE}
+library(patchwork)
+combined_plot_1 <- flipper_hist_2 + mass_flipper
+```
+
+]
+
+.pull-right[
+
+```{r echo=FALSE, fig.height=4}
+combined_plot_1
+```
+
+
+]
+
+---
+
+# Compound Figures with `patchwork`
+
+To add two plots next to each other, we use `+` or `|`
+
+To add two plots on top of each other, we use `/`
+
+
+We can also set different widths and heights using:
+
+```
++ plot_layout(widths = c(2, 1),
+heights = c(2, 1))
+```
+
+> This means the first plot is 2x the size of the second.
+
+There are many other ways we can control the layout. I recommend checking out the [`patchwork` documentation on controlling layout](https://patchwork.data-imaginist.com/articles/guides/layout.html).
+---
+# Compound Figures with `patchwork`
+Here is an example using R's built-in `mtcars` data:
+
+.pull-left[
+```{r include=FALSE}
+p1 <- ggplot(mtcars) + 
+  geom_point(aes(mpg, disp)) + 
+  ggtitle('Plot 1')
+
+p2 <- ggplot(mtcars) + 
+  geom_boxplot(aes(gear, disp, group = gear)) + 
+  ggtitle('Plot 2')
+
+p3 <- ggplot(mtcars) + 
+  geom_point(aes(hp, wt, colour = mpg)) + 
+  ggtitle('Plot 3')
+
+p4 <- ggplot(mtcars) + 
+  geom_bar(aes(gear)) + 
+  facet_wrap(~cyl) + 
+  ggtitle('Plot 4')
+
+p1a <- ggplot(mtcars) + 
+  geom_point(aes(mpg, disp, colour = mpg, size = wt)) + 
+  ggtitle('Plot 1a')
+```
+
+```{r}
+patchwork_example <- p1 + p2 + p3 + p4 + 
+  plot_layout(widths = c(2, 1),
+              guides = 'collect' ) +
+   plot_annotation(
+     title = 'The surprising truth about mtcars')
+```
+
+
+]
+
+.pull-right[
+```{r echo=FALSE, fig.height=5}
+patchwork_example
+```
+
+]
+
+---
+# Assignment 6: "Infographic"
+
+This week's assignment is quite simple. You are going to re-ruse some of your old graphs and create psuedo-infographics in order to practice making small multiples and compound graphics.
+
