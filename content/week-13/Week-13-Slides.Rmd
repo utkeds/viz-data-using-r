@@ -1,0 +1,249 @@
+---
+title: "Distributions"
+subtitle: "STEM 591: Visualizing Data Using R"
+author: "Dr. Joshua Rosenberg"
+institute: "University of Tennessee, Knoxville"
+date: "Week 13"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse, middle, center
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE
+)
+options(htmltools.preserve.raw = FALSE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{css, echo = FALSE}
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+```
+
+
+# What is this?
+<img src="joydivisionplot.jpg" height="500px"/>
+
+---
+
+# What is this?
+
+.pull-left[
+
+<img src="joydivisionplot.jpg" height="400px"/>
+
+]
+
+.pull-right[
+- This is the cover to Joy Division's 1979 album *Unknown Pleasures*
+- The plot depicts the radio emissions of a rotating neutron star.
+- Each line is a pulse given when it turns
+- Together, it is a **distribution** of emissions from different pulses
+- This visualization - or the album cover - has reached iconic status and can often be seen on clothing
+
+<!-- https://en.wikipedia.org/wiki/Unknown_Pleasures -->
+]
+---
+# Today's Agenda
+
+- Discussion
+- Histograms and other basic distributions
+- Density and Ridgeline Plots
+- Activity
+
+---
+
+# Discussion
+
+---
+# Histograms and other distributions
+
+What do you think the following graphs show?
+
+.pull-left[
+
+```{r, fig.height=5}
+hist(penguins$body_mass_g)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+boxplot(penguins$body_mass_g)
+```
+
+]
+---
+# Histograms and other distributions
+
+Wait...where is `ggplot`?
+
+<!-- Students may not have seen some of base R's plot functions. Now is a good chance to introduce these two and what the $ means.
+
+Reference: https://bookdown.org/rdpeng/exdata/the-base-plotting-system-1.html
+-->
+
+.pull-left[
+
+```{r, fig.height=5}
+hist(penguins$body_mass_g)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+boxplot(penguins$body_mass_g)
+```
+
+]
+
+---
+# Histograms and other distributions
+
+You can easily split out the plot with `fill`
+
+.pull-left[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(x=body_mass_g, fill=species))+
+  geom_histogram(binwidth = 200, position = "identity", alpha=.6)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(y=body_mass_g, fill=species))+
+  geom_boxplot()
+```
+
+]
+
+---
+.pull-left[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_histogram(binwidth = 200)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(y=body_mass_g))+
+  geom_boxplot()
+```
+
+]
+
+---
+
+# Density and Ridgeline Plots
+
+Sometimes you want to know the shape of your distribution, but you do not want a histogram.
+
+```{r, fig.height=2}
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_density()
+```
+
+Note:
+Plotting a histogram and density curve together takes a bit more work:
+
+
+```{r echo=FALSE, fig.height=2}
+ggplot(penguins, aes(x=body_mass_g))+
+geom_histogram(binwidth=100, colour="black", 
+               aes(y=..density..))+
+stat_function(fun=dnorm,
+                         color="red",
+                         args=list(mean=mean(penguins$body_mass_g,
+                                             na.rm=TRUE), 
+                                   sd=sd(penguins$body_mass_g,
+                                         na.rm=TRUE)))
+
+```
+
+---
+# Ridgeline Plots
+
+We can easily get a bit fancier with the `ggridges` package:
+
+```{r, fig.height=5}
+library(ggridges)
+ggplot(penguins, aes(x=body_mass_g, y=island))+
+  geom_density_ridges()
+```
+
+---
+# Ridgeline Plots
+
+How can ridgeline plots be useful?
+
+.pull-left[
+
+Imagine a **long** dataset like this:
+
+```{r}
+penguins_long <- penguins %>%
+  rownames_to_column("id") %>%
+  pivot_longer(bill_length_mm:body_mass_g,
+               names_to="stat_type", values_to="stat")
+
+head(penguins_long, n=10)
+```
+
+
+]
+
+We can easily see a certain variable is not distributed the same.
+
+**Why do you think this is?**
+
+.pull_right[
+```{r, fig.height=4}
+ggplot(penguins_long, aes(x=stat, y=stat_type))+
+  geom_density_ridges()
+```
+
+]
+
+---
+
+# Activity - Pilot and Navigator
+
+You will work in small groups (breakout rooms) where one student is a pilot and the other students are navigators:
+
+- The **pilot** will share their screen and type the code
+- The **navigators** will tell the pilot what to type (the pilot can help, too)
+
+Access the Week 13 Distributions Activity.Rmd document.
+
+<!-- Note: This instructional material is shorter in case you need time to discuss the project -->
