@@ -3,7 +3,7 @@ title: "Lines"
 subtitle: "STEM 591: Visualizing Data Using R"
 author: "Dr. Joshua Rosenberg"
 institute: "University of Tennessee, Knoxville"
-date: "Week 11"
+date: "Week 12"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -39,7 +39,7 @@ library(tidyverse)
 
 # Today's Agenda
 
-- Bad Plot / Good Plot Shareout
+- Data Jam
 - Reading Discussion
 - Time**lines**
 - Highlighter Activity
@@ -48,9 +48,18 @@ library(tidyverse)
 ---
 class:middle,center
 
-# Bad Plot / Good Plot
+# Data Jam
 
-# Shareout
+
+---
+
+# Mini Project 1 Feedback
+
+Slides:
+
+Overall feedback: Excellent work!
+
+Process: Revise and resubmit for up to one-half of the credit loss
 
 ---
 # Reading Discussion
@@ -228,6 +237,7 @@ mg_data
 ```
 
 ]
+
 .pull-right[
 ```{r}
 mg_data %>%
@@ -295,3 +305,15 @@ class:inverse,middle,center
 # Highlighter
 
 We will work with the PhD Graduates data set and make different time-series charts, including one like the previous (but better)
+
+---
+
+# Check out
+
+**Grading:**: Mini Project 2, Assignment 6, Week 10 In-class Activity
+
+**To do**: Assignment 7: Highlighter
+
+**Final project**: 
+
+**STEM 680:**
