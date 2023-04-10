@@ -118,17 +118,6 @@ data %>%
 ---
 # Time**lines**
 
-Can you guess how to make a line chart?
-
-```{r, fig.height=3}
-data %>%
-  ggplot(aes(x=as.factor(x), y = y))+
-  geom_line()
-```
-
----
-# Time**lines**
-
 Hmmm. Notice that `x` is wrapped in `as.factor()`? This is because `x` is numeric. If we treat it numerically, we would get some non-date like axis labels:
 
 --
@@ -208,7 +197,9 @@ mg_data <- data.frame(y=c(seq(11,20,1), rev(seq(11,20,1))),
                       groups=c(rep("A", 10), rep("Z", 10)))
 
 ```
+
 .pull=left[
+
 ```{r}
 mg_data
 ```
