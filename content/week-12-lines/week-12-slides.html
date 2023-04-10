@@ -220,40 +220,24 @@ If you do not have many lines, we can do the following:
 
 
 
-.pull=left[
 
 
 ```r
-mg_data
+mg_data %&gt;% head()
 ```
 
 ```
-##     y    x groups
-## 1  11 2010      A
-## 2  12 2011      A
-## 3  13 2012      A
-## 4  14 2013      A
-## 5  15 2014      A
-## 6  16 2015      A
-## 7  17 2016      A
-## 8  18 2017      A
-## 9  19 2018      A
-## 10 20 2019      A
-## 11 20 2010      Z
-## 12 19 2011      Z
-## 13 18 2012      Z
-## 14 17 2013      Z
-## 15 16 2014      Z
-## 16 15 2015      Z
-## 17 14 2016      Z
-## 18 13 2017      Z
-## 19 12 2018      Z
-## 20 11 2019      Z
+##    y    x groups
+## 1 11 2010      A
+## 2 12 2011      A
+## 3 13 2012      A
+## 4 14 2013      A
+## 5 15 2014      A
+## 6 16 2015      A
 ```
 
-]
+---
 
-.pull-right[
 
 ```r
 mg_data %&gt;%
@@ -262,20 +246,16 @@ mg_data %&gt;%
 ```
 
 ![](week-12-slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
-]
 
 ---
+
 # Timelines With Multiple Groups
-
-What about many groups?
-
---
 
 ![](week-12-slides_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 --
 
-This doesn't seem right, does it?
+This doesn't seem right!
 
 ---
 
@@ -298,7 +278,10 @@ We will work with the PhD Graduates data set and make different time-series char
 
 **Grading:**: Mini Project 2, Assignment 6, Week 10 In-class Activity
 
-**To do**: Assignment 7: Highlighter (by Friday, April 14)
+**To do**: 
+
+- Assignment 7: Highlighter (by Friday, April 14). 
+- Reading: Knaflic, c5 (Define: affordances, accessibility, and aesthetics); Wilke, c21 (What is a small multiple and when should it be used? What is a compound figure and when should it be used?)
 
 **Final project**: Minor change: Submit HTML
 

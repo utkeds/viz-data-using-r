@@ -82,7 +82,7 @@ phd_field %>%
   ggplot(aes(x=as.factor(year), y=n, color=broad_field,
              group=broad_field))+
   geom_line()+
-  gghighlight(line_label_type = "text_path")
+  gghighlight()
 ```
 # Chart 5 - Facet Per Broad Field
 

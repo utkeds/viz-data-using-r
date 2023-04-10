@@ -198,28 +198,22 @@ mg_data <- data.frame(y=c(seq(11,20,1), rev(seq(11,20,1))),
 
 ```
 
-.pull=left[
 
 ```{r}
-mg_data
+mg_data %>% head()
 ```
 
-]
+---
 
-.pull-right[
-```{r}
+```{r, echo = TRUE}
 mg_data %>%
   ggplot(aes(x=x, y=y, color=groups))+
   geom_line(size=2)
 ```
-]
 
 ---
+
 # Timelines With Multiple Groups
-
-What about many groups?
-
---
 
 ```{r echo=FALSE}
 phd_field <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv")
@@ -235,7 +229,7 @@ phd_field %>%
 
 --
 
-This doesn't seem right, does it?
+This doesn't seem right!
 
 ---
 
@@ -280,7 +274,10 @@ We will work with the PhD Graduates data set and make different time-series char
 
 **Grading:**: Mini Project 2, Assignment 6, Week 10 In-class Activity
 
-**To do**: Assignment 7: Highlighter (by Friday, April 14)
+**To do**: 
+
+- Assignment 7: Highlighter (by Friday, April 14). 
+- Reading: Knaflic, c5 (Define: affordances, accessibility, and aesthetics); Wilke, c21 (What is a small multiple and when should it be used? What is a compound figure and when should it be used?)
 
 **Final project**: Minor change: Submit HTML
 
