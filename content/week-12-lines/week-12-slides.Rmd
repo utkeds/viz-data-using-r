@@ -274,12 +274,11 @@ We will work with the PhD Graduates data set and make different time-series char
 
 **Grading:**: Mini Project 2, Assignment 6, Week 10 In-class Activity
 
-**To do**: 
+**To do - Assignment 7**: Highlighter (by Friday, April 14) 
 
-- Assignment 7: Highlighter (by Friday, April 14). 
-- Reading: Knaflic, c5 (Define: affordances, accessibility, and aesthetics); Wilke, c21 (What is a small multiple and when should it be used? What is a compound figure and when should it be used?)
+**To do: Readings:** *Knaflic, c5* (Define: affordances, accessibility, and aesthetics); *Wilke, c21* (What is a small multiple and when should it be used? What is a compound figure and when should it be used?)
 
-**Final project**: Minor change: Submit HTML
+**Final project**: Minor change: Submit HTML: Task for next week: discussion
 
 **STEM 680:** Mondays, 12:00 - 2:30 pm
 
