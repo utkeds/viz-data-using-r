@@ -50,63 +50,47 @@ class:middle,center
 
 # Data Jam
 
+https://jamboard.google.com/d/1Xu73OGA5shTjwQiKOqWazzJT0_1jv28F4rhnd6f5Ln0/edit?usp=sharing
 
 ---
 
 # Mini Project 1 Feedback
 
-Slides:
+Examples: https://docs.google.com/presentation/d/1aPUVXaiZ8hjGJtWN6euxKstwcQI6zx0TSfBa9H642Sc/edit?usp=sharing
 
 Overall feedback: Excellent work!
 
-Process: Revise and resubmit for up to one-half of the credit loss
+Process: Revise and resubmit to receive up to full credit (minus 10 points)
 
 ---
+
 # Reading Discussion
 
-1. Let's talk about the zero baseline. When are they appropriate? What are they inappropriate? In your discussion, consider the following two charts:
+How could this chart be improved?
 
-.pull-left[
-```{r echo=FALSE, fig.height=4}
-data.frame(y=c(.75, .80), x=c("A", "B")) %>%
-  ggplot(aes(x=x, y=y))+
-  geom_col(fill="cyan4")+
-  theme_minimal()+
-  labs(x=NULL, y=NULL)+
-  scale_y_continuous(labels=scales::percent_format())+
-  coord_cartesian(ylim=c(.74,.81))
-```
-
-
-]
-
-.pull-right[
-```{r echo=FALSE, fig.height=4}
-
-data.frame(y=c(4.8,5.1,4.9,4.8,5.2,5.2,5.3,5.4,5.1,5.5)*10000, x=seq(1,10,1)) %>%
-  ggplot(aes(x=x, y=y))+
-  geom_line(fill="cyan4")+
-  theme_minimal()+
-  labs(x=NULL, y=NULL)+
-  scale_y_continuous(labels=scales::dollar_format())+
-  coord_cartesian(ylim=c(0,100000))
-```
-
-
-]
+![](no-lines.png)
 
 ---
+
 # Reading Discussion
 
-1. Let's talk about the zero baseline. When are they appropriate? What are they inappropriate?
-2. The following charts depict the same data in several ways. What were the design principles behind the differences? Can you relate that to the gestalt princples were read about in Knafflic?
+Which of the four charts below are effective? Why?
 
 ![](wilkecharts.png)
 
 ---
+
+# Reading Discussion
+
+How could this chart be improved?
+
+![](groups.png)
+
+---
 # Time**lines**
 
-Today we are going to talk about timeseries data and how to make time**lines** - line charts - from them. In addition, we will look at how to make area charts and how to make line charts when there are multiple groups, using a special package called `gghighlight`.
+Today we are going to talk about timeseries data and how to make time**lines** - line charts - from them. 
+In addition, we will look at how to make area charts and how to make line charts when there are multiple groups, using a special package called `gghighlight`.
 
 ---
 # Time**lines**
@@ -312,8 +296,10 @@ We will work with the PhD Graduates data set and make different time-series char
 
 **Grading:**: Mini Project 2, Assignment 6, Week 10 In-class Activity
 
-**To do**: Assignment 7: Highlighter
+**To do**: Assignment 7: Highlighter (by Friday, April 14)
 
-**Final project**: 
+**Final project**: Minor change: Submit HTML
 
-**STEM 680:**
+**STEM 680:** Mondays, 12:00 - 2:30 pm
+
+*What's one thing you took away from today?*
