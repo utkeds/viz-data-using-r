@@ -246,4 +246,4 @@ You will work in small groups (breakout rooms) where one student is a pilot and 
 
 Access the Week 13 Distributions Activity.Rmd document.
 
-<!-- Note: This instructional material is shorter in case you need time to discuss the project -->
+<!-- Note: This instructional material is shorter in case you need time to discuss the project in class -->
