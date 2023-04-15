@@ -1,0 +1,83 @@
+---
+title: "Week 13 Distributions Activity"
+author: "Awesome Student"
+date: '2023-04-06'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggridges)
+```
+
+For this assignment, we are going to look at tuition and fees by college/university for 2018-2019, along with school type, degree length, state, in-state vs out-of-state from the [Chronicle of Higher Education](https://www.chronicle.com/interactives/tuition-and-fees.
+
+```{r}
+
+tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
+```
+
+## Become Familiar with the Data
+
+As with any data set, your first step is to become familiar with the variables, values, and structure of the data:
+
+```{r}
+
+```
+
+
+## Building Distributions
+
+### What does the distribution of in-state tuition look like across all states and college/university types? Make a simple histogram and a simple boxplot.
+
+```{r}
+hist(tuition_cost$in_state_tuition)
+```
+
+
+```{r}
+boxplot(tuition_cost$in_state_tuition)
+```
+
+Write a sentence or two to describe your findings:
+
+
+### How does the distribution of in-state tuition vary by college/university types? Use `ggplot` to make a histogram. Use `fill` and a facet.
+
+```{r}
+ggplot(tuition_cost, aes(x=in_state_tuition, fill=type))+
+  geom_histogram(position = "identity")+
+  facet_wrap(~type)
+```
+
+Write a sentence or two to describe your findings:
+
+
+### Let's look at the distribution of *out-of-state* tuition across 10 states. Decide on a method to select 10 states (top 10 highest average tuitions, 10 states in the southeast, etc.). Then use the `ggridges` package to show the distribution of tutition for each state. 
+
+Use the [`ggridges` documentation](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html) to do the following:
+
+- Make the density ridges overlap slightly with the ones above/below
+- Fill the density curve with a gradient and set the color of the gradient
+- Add a median line to each state's density curve
+- **Bonus**: Don't let the ridges touch AND add a raincloud plot below each ridge
+
+All of these can be done by simply following and copying code from the `ggridges` documentation
+
+```{r}
+tuition_cost %>%
+  inner_join(
+    tuition_cost %>%
+    drop_na(state) %>%
+    group_by(state) %>%
+    summarize(mean = mean(out_of_state_tuition)) %>%
+    slice_max(order_by = mean, n=10)) %>%
+  ggplot(aes(x=out_of_state_tuition, y=state, fill=stat(x)))+
+  geom_density_ridges_gradient(scale=.5,
+                               quantile_lines = TRUE, quantiles = 2,
+                               jittered_points = TRUE, position = "raincloud")+
+  scale_fill_viridis_c(name = "Temp. [F]", option = "C")
+```
+
+
