@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Graphic Design</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Joshua Rosenberg" />
+    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Graphic Design
+]
+.subtitle[
+## STEM 591: Visualizing Data Using R
+]
+.author[
+### Dr. Joshua Rosenberg
+]
+.institute[
+### University of Tennessee, Knoxville
+]
+.date[
+### Week 12
+]
+
+---
+
+class: inverse
+
+
+
+&lt;style type="text/css"&gt;
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.pull-left-small {
+  float: left;
+  width: 40%;
+}
+
+.pull-right-big {
+  float: right;
+  width: 60%;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+
+.utk {
+  background-color: #FF8200;
+  color: #58595B;
+}
+
+.utk h1 {
+  color: #58595B;
+  text-shadow: 0 0 20px #FFFFFF;
+}
+
+.utk a {
+color: #FFF
+}
+&lt;/style&gt;
+
+# Today's Agenda
+
+- Warm-Up
+- Reading Discussion
+- Data Visualization Checklist
+- Final Project Introduction
+- Chart Layout in R
+
+
+---
+class:utk
+
+# Warm-Up
+
+## Take ~10 minutes to explore the following examples of different data visualization formats:
+
+- [Chart/Graph](https://github.com/gkaramanis/tidytuesday/tree/master/2019/2019-week-23)
+- [Infographic](https://github.com/Z3tt/TidyTuesday/tree/main/plots/2020_04)
+- [Dashboard](https://cedric-scherer.shinyapps.io/TidyTuesday_2020_36_Crop_Yields/)
+- [App](https://nz-stefan.shinyapps.io/commute-explorer-2/)
+
+Note: all of these are made with R
+
+## What are the differences between these formats??
+
+---
+
+# Reading Discussion: Wilke
+
+### Small Multiples
+
+--
+
+&gt; 1\. When should these be used?
+ 
+--
+
+&gt; 2\. Is a chart with small multiples still just a chart or is it an infographic?
+ 
+--
+
+&gt; 3\. We have seen the code for producing small multiples. What is the function we can use in `ggplot`?
+
+--
+
+### Compound Figures
+
+&gt; 4\. What is a compound figure and when should it be used?
+
+&gt; 5\. Do you think using a compound figure transforms a chart into an infographic or dashboard? Why or why not?
+
+**Spoiler Alert**: We can build compound figures with the `patchwork` package!
+
+---
+# Reading Discussion: Knafflic
+
+.pull-left-small[
+
+Define:
+&gt; 1. Affordances
+&gt; 2. Accessibility
+&gt; 3. Aesthetics
+
+Look at Figure 5.5 
+
+&gt; A. Consider data visualization principles we have discussed from previous readings. What principles are being employed in the "after"?
+
+&lt;!-- Note: We began the course with Cairo's tips for reading a data visualization. Try to get students to connect to that as well. There are a lot of readings that can be applied here, as well as concepts such as data ink. The point is to help forge connections between this graphic, the Knafflic reading, and what we have done earlier in the semester. It primes students for the checklist activity. --&gt;
+
+&gt; B. What functions could you use in `ggplot` to create that "after" chart?
+
+]
+
+.pull-right-big [
+### Figure 5.5
+![](knafflic5.5.png)
+]
+
+---
+
+# Reading Discussion: Emery
+
+Emery outlines 7 steps for the data visualization design process. For each of the steps below, decide if we have discussed it in class. Give an important takeaway for that step. Recall a key R function as well, if applicable.
+
+&lt;!-- Note: This is an "interactive" table, meaning you can click and type in the box. This is to aid whole-class note-taking. --&gt;
+
+| Step                      | Discussed?                      | Tip                           | Code
+|:--------------------------|:--------------------------------|:------------------------------|:----------------------------|
+| Step 1: Analyze Your Audience    |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
+| Step 2: Choose the Right Chart  |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
+|Step 4: Declutter  |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
+| Step 5: Clarify Your Message with Color   |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
+| Step 6: Clarify Your Message with Text |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
+| Step 7: Are You Doing It Right?! Test Your Draft        |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
+
+---
+class:inverse
+# Design a Data Visualization Checklist
+
+### Given a whole semesters' worth of data viz knowhow, how would you assess a data visualization?  
+### What principles and practices would you want to see employed?
+
+Work with a small group to develop a checklist or rubric that can be used to evaluate any data visualization **based on the principles and practices** we have read this semester.
+
+1. One student should make a copy of [this Google doc](https://docs.google.com/document/d/1_XwzuyJ1MH04AKo_a-6TdwWZNGnRTDHPQcIrxvbJtlI/copy) to get started.
+2. Share it with your group members and myself (jrosen8@utk.edu)
+3. Work together to create at least 5 criteria for evaluation. Define each criteria clearly.
+4. For each criteria you create, cite the appropriate reading (e.g., Cairo, Wilke, Knafflic, etc.). 
+5. For each criteria you create, decide how that individual criteria will be assessed: checklist, 1-3, 0-4. 
+ - What do numeric ratings mean? E.g, does 1 mean "poor", "missing", "needs improvement" or something more in-depth?
+6. If possible, group your criteria together under headings, e.g., "Information", "Layout", etc.
+ 
+---
+background-image: url("gather.jpg")
+background-position: right bottom
+# STEM 591 Final Project
+
+You will select a **data set of your choice**. You will explore, analyze, and summarize your data set, creating **three data visualizations** that tell a story about this data. You may create three separate charts or build an infographic, or any combination.
+
+You will upload your data source and Rmd file. You will also place your three visualizations into a PDF, PPT, or Google Slide deck.
+
+On D-A-T-E, we will meet in a virtual space called **gather.town** and you will participate in a poster presentation event:
+
+- Session 1 - Half the class will be presenters in online booths while the other half, along with instructors/special guests, will visit presenters and discuss the visualizations. Presenters should discuss the story of the data, using the visualizations as aids. Presenters should only speak for 1-2 minutes, and take time to answer any questions or interact with the other attendees.
+- Session 2 - Roles will switch
+
+All materials must be uploaded to canvas by D-A-T-E.
+
+These will then be placed in "booths" on **gather.town**. 
+
+A **gather.town** instruction video is forthcoming.
+
+---
+background-image: url("gather.jpg")
+background-position: right bottom
+# STEM 591 Final Project
+
+### How will you be graded on this? I'm glad you asked!
+
+In addition to a checklist of basic requirements (e.g., code can be reproduced, all 3 data visualizations are different, etc.), I will select criteria to evaluate your data visualizations from today's activity! I will choose criteria from different groups and implement or adapt the ratings you created, as well.
+
+I will provide an updated project rubric within the next few days.
+
+---
+# Design with `ggplot`
+
+There are many ways to better design your data visualizations in `ggplot`.
+
+A key way is to ensure you employ principles of color, text, and shape to make your data visualization as readable as possible.
+
+One function that can facilitate this is `facet_wrap()`, which we have seen a few times.
+
+
+---
+
+# Small Multiples with `facet_wrap`
+
+For this example, we will use the `palmerpenguins` package.
+
+
+
+
+.pull-left[
+
+No Small Multiples
+
+![](week-13-slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+Small Multiples
+
+![](week-13-slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+]
+
+---
+# Small Multiples with `facet_wrap`
+
+## How did we do it?
+
+To create, the regular plot, we used the following code
+
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  # position = "identity" this overlaps 
+  # rather than stacks the bars
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()
+```
+
+]
+
+.pull-right[
+![](week-13-slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+
+# Small Multiples with `facet_wrap`
+
+Now we can use `facet_wrap` to make small multiples
+
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species)+
+  theme(legend.position = "none")
+```
+
+]
+
+.pull-right[
+![](week-13-slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+
+# Small Multiples with `facet_wrap`
+
+Main Arguments:
+`facet_wrap`(~facet_variables, nrow, ncol, scales)
+
+&lt;!-- 
+Teaching note: explain the following 
+- facet_variable, we can facet by one or more variables. With two variables, we simply use the + sign 
+
+ -nrow specifies how many rows 
+-n col specifies how many columns 
+
+-scales can be "free", "free_x", or "free_y" and allows the axes to vary based on the facet
+--&gt;
+
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species, nrow=3, scales="free_y")+
+  theme(legend.position = "none")
+```
+
+
+
+]
+
+.pull-right[
+![](week-13-slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+
+# Compound Figures with `patchwork`
+
+Rather than using a design element *within* a plot, what if we wanted to connect multiple plots together?
+
+We can use the `patchwork` package!
+
+Let's begin with two separate plots.
+
+---
+
+# Compound Figures with `patchwork`
+
+.pull-left[
+![](week-13-slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+
+
+![](week-13-slides_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+]
+
+---
+# Compound Figures with `patchwork`
+
+.pull-left[
+
+```r
+library(patchwork)
+flipper_hist_2 + mass_flipper
+```
+
+
+
+]
+
+.pull-right[
+
+![](week-13-slides_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+
+# Compound Figures with `patchwork`
+
+To add two plots next to each other, we use `+` or `|`
+
+To add two plots on top of each other, we use `/`
+
+
+We can also set different widths and heights using:
+
+```
++ plot_layout(widths = c(2, 1),
+heights = c(2, 1))
+```
+
+&gt; This means the first plot is 2x the size of the second.
+
+There are many other ways we can control the layout. I recommend checking out the [`patchwork` documentation on controlling layout](https://patchwork.data-imaginist.com/articles/guides/layout.html).
+---
+# Compound Figures with `patchwork`
+Here is an example using R's built-in `mtcars` data:
+
+.pull-left[
+
+
+
+```r
+patchwork_example &lt;- p1 + p2 + p3 + p4 + 
+  plot_layout(widths = c(2, 1),
+              guides = 'collect' ) +
+   plot_annotation(
+     title = 'The surprising truth about mtcars')
+```
+
+
+]
+
+.pull-right[
+![](week-13-slides_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+]
+
+---
+# Assignment 6: "Infographic"
+
+This week's assignment is quite simple. You are going to re-ruse some of your old graphs and create psuedo-infographics in order to practice making small multiples and compound graphics.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -3,7 +3,7 @@ title: "Graphic Design"
 subtitle: "STEM 591: Visualizing Data Using R"
 author: "Dr. Joshua Rosenberg"
 institute: "University of Tennessee, Knoxville"
-date: "Week 12"
+date: "Week 13"
 output:
   xaringan::moon_reader:
     lib_dir: libs
