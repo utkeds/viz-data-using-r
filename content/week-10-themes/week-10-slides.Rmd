@@ -1,0 +1,269 @@
+---
+title: "Themes"
+subtitle: "STEM 591: Visualizing Data Using R"
+author: "Dr. Joshua Rosenberg"
+institute: "University of Tennessee, Knoxville"
+date: "Week 10"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE
+)
+options(htmltools.preserve.raw = FALSE)
+library(tidyverse)
+recent_grads <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/college-majors/recent-grads.csv") 
+
+grad_data <- recent_grads %>%
+  group_by(Major_category) %>%
+  summarize(Men = mean(Men),
+            Women = mean(Women),
+            Overall = mean(Total)) %>%
+  filter(Major_category %in% c("Business", "Education", "Engineering"))
+```
+
+```{css, echo = FALSE}
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+```
+
+# Today's Agenda
+
+- Guest speaker: Dr. Anthony Schmidt. 
+- Reading Discussion. 
+- Survey. 
+- `ggplot` Themes Anatomy. 
+- Modifying Themes Practice and In-Class Task. 
+- Check out. 
+
+---
+
+# Guest Speaker
+
+[Dr. Anthony Schmidt](https://www.anthonyschmidt.co/)
+PhD in Evaluation, Statistics, and Methodology, UTK, 2022
+Senior Data Scientist, Amplify
+Previously a Data Visualization Researcher, CUPA-HR
+
+```{r, include = FALSE}
+knitr::include_graphics("https://www.anthonyschmidt.co/authors/admin/avatar_huff1ed6896198b0fec737662a3a2ae29b_909407_250x250_fill_q90_lanczos_center.jpg")
+```
+
+---
+
+# Reading Discussion
+
+1. What are several good rules of thumb when it comes to creating legends? (Refer to the text, if you can.)
+
+---
+
+# Mid-semester feedback
+
+- More effective breakouts. 
+- Faster pacing. 
+- Troubleshooting. 
+- Upcoming assignments. 
+- Application. 
+- Readings cold be better. 
+- Structure introducing tidyverse better. 
+- Maps. 
+
+---
+
+# Data Ink
+
+One interesting concept in data visualization is the concept of **data ink**, devised by William Tufte. From the [Infovis Wiki](https://infovis-wiki.net/wiki/Data-Ink_Ratio):
+
+> Tufte refers to data-ink as the **non-erasable ink** used for the presentation of data. If data-ink would be removed from the image, the graphic would lose the content. 
+
+> Non-Data-Ink is accordingly the ink that does not transport the information but it is used for **scales, labels and edges**. 
+
+> The data-ink ratio is the proportion of Ink that is used to present actual data compared to the total amount of ink (or pixels) used in the entire display. (Ratio of Data-Ink to non-Data-Ink).
+
+---
+# Data Ink
+
+.pull-left[
+## A
+
+![](low.png)
+]
+
+.pull-right[
+## B
+![](high.png)
+]
+---
+
+# Data Ink
+
+## This weeks focus is non-data ink.
+
+Non-data ink refers to the content that supports the data but does not deliver the quantitative information itself: background, grid lines, ticks, labels, legends, etc.
+
+---
+# `ggplot` Anatomy
+
+.pull-left[
+Recall that a plot made with `ggplot` is composed of numerous layers - all elements that make up the theme. And, we link these layers using `+`.
+
+]
+
+.pull-right[
+
+
+![](gglayers.png)
+]
+---
+
+# `ggplot` **THEME** Anatomy
+
+.pull-left[
+
+```{r fig.height=3}
+p <- grad_data %>%
+  ggplot(aes(x=Overall, y=Major_category, fill=Major_category))+
+  geom_col()
+
+p
+```
+
+
+]
+
+.pull-right[
+
+```{r fig.height=3}
+p +
+  theme(axis.text.x = element_text(size=5),
+        axis.text.y = element_text(size=10),
+        legend.background = element_rect(fill="blue"),
+        axis.ticks = element_line(color="red"))
+```
+]
+---
+# `ggplot` **THEME** Anatomy
+
+We have already seen that we can modify labels and text using `geom_text()` and `labs()`. We can also use `scale_*_continuous(labels=scales::comma_format()` or similar to control how continuous labels look.
+
+Other important elements  can be easily manipulated using `theme()`
+
+---
+
+![](ggplot-theme-elements.png)
+
+---
+# `ggplot` **THEME** Anatomy
+
+When we modify a theme, we specify the element name, e.g., `axis.text` or `axis.text.x` or `axis.text.y` (what do you think these modify?). 
+
+Then, we specify the element function, e.g., if it is a text element, we will call it `element_text()`. If it is a rectangular element, we use `element_rect()`. If we want to remove something, we can use `element_blank()`
+
+Inside of the function, we can specify colors (for lines and text), fill for rectangles, font size, font face, font family, text angle, etc. Here is an example:
+
+---
+
+# `ggplot` **THEME** Anatomy
+
+```{r fig.height=3}
+p +
+  ggtitle("Plot title")+
+  theme(axis.text.y = element_text(size=10,
+                                   face="bold",
+                                   angle=60,
+                                   color="pink",
+                                   margin=margin(r=50)),
+        plot.title = element_text(size=20, face="italic"),
+        axis.title = element_blank())
+```
+
+---
+class: inverse
+
+# Modifying Themes Practice
+.pull-left[
+### Today, you will be provided with data, a simple plot, a list of resources, and a target plot.
+
+#### Your task will be to use the data and resources to transform the plot into the target.
+]
+
+.pull-right[
+![](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
+
+]
+
+---
+
+# Assignment: **Bad Plot/Good Plot**
+
+.pull-left[
+
+You will use an example plot (about penguins) as the basis for modifying many parts of a theme
+
+The purpose of this assignment is to learn how to manipulate all elements of ggplot, for better or for worse.
+
+> Credit: We got the idea for badplot from UT's own Dr. Drew Steen (Microbiology)
+
+<!-- Note to teacher: it might be worth going through these tweets to see what ggplot is capable of, for better or for worse -->
+
+Check out #badplot on Twitter:
+[1](https://twitter.com/drdrewsteen/status/1593728366133190656),
+[2](https://twitter.com/GeoffZahn/status/1445159932282617856)
+
+]
+
+.pull-right[
+Bad Plot Example
+![](https://pbs.twimg.com/media/FA48BEYVEBEUhmL?format=jpg&name=medium)
+
+]
+
+---
+
+# Mini Project 2
+
+What questions do you have? What concerns do you have?
+
+---
+
+
+# Check out
+
+### Grading
+
+- **Mini project 1** due before break (Mar. 6) - grading now
+
+- **Grading all other assignments should be done (or is done)**
+
+### Looking ahead
+
+- **Assignment 6** due today
+
+- **Mini Project 2.Rmd** (Due in one weeks, 4/3, 11:59 am)
+
+- **Reading - Cairo (2019), chapter 2**
+
+- **Reading: Wilke (2019), chapter 13**
+
+---
+
+# Check out
+
+What is one alt-ac career you would consider? Why (briefly - less than one sentence!).

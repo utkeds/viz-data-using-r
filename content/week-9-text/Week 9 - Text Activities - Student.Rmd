@@ -1,0 +1,135 @@
+---
+title: "Week 7 - Working with Text - Teacher"
+author: "Amazing Student"
+date: '2023-01-11'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Working Together
+
+Let's load our data, which are assignments and scores from a number of university science classes.
+
+```{r}
+data <- read_csv(here::here("Week-9-text", "science_course_data.csv"))
+```
+
+Let's first take a look at the columns:
+
+```{r}
+_____(data)
+```
+
+
+And now lets look at the contents of those columns:
+
+```{r}
+____(data)
+data %>% _____(course_section_orig_id)
+data %>% _____(gradebook_item)
+```
+
+We have A LOT of different assignments. But, we can categorize them based on their names. For example, we can likely make the follwing categories: use these recurring keywords to make several categories:
+
+- quiz, test, assessment
+- discussion board, discussion, db
+- lab
+- ?
+
+We will call categorize everything everything else as assignments.
+
+So, how can we do this?
+
+We can use the `stringr` package that gets loaded with the `tidyverse` to work with strings.
+
+Specifically, we are going to use the following two functions right now:
+
+`str_to_lower` - makes text lowercase
+`str_detect` - finds text based on a given pattern
+
+```{r}
+clean_data <- data %>%
+  #create new columns
+  _____(
+    # make a "clean" lowercase version of the gradebook items
+    gradebook_item_clean = _____(gradebook_item),
+    # detect certain patterns are return a category name
+    category = case_when (
+      str_detect(gradebook_item_clean, "_____") ~ "quiz",
+      str_detect(gradebook_item_clean, "_____") ~ "discussion",
+      str_detect(gradebook_item_clean, "_____") ~ "lab",
+      TRUE ~ "assignment"
+    ),
+     .after="gradebook_item")
+```
+
+Let's check our data and see if we need to revise any categories:
+
+```{r}
+_____(clean_data)
+```
+
+
+What if we wanted to replace all instances of the word "db" with "discussion board"? We can use `str_replace` (which replaces the first occurence of a pattern in a string) or `str_replace_all` (which replaces all occurences within a string):
+
+```{r}
+db <- data %>%
+  mutate(gradebook_item_clean = _____(gradebook_item, 
+                                            "_____", "Discussion Board"),
+         .after="gradebook_item")
+
+view(db)
+```
+
+What if we wanted to separate the courses from their section numbers? We can use `separate` from `tidyr`/`tidyverse` for that!
+
+```{r}
+course_section <- data %>%
+  separate(course_section_orig_id,
+           into = c("_____", "_____"),
+           sep = "_____",
+           extra = "merge")
+```
+
+
+What if we just wanted a simple data frame of course, section, student, and final grade?
+
+```{r}
+final_grades <- course_section %>%
+  distinct(_____, _____, _____, _____)
+```
+
+
+# Try It
+
+<!-- Note to teacher: this section is intended to be done individually or with a partner/small group. Students can work on the assignment during class and share the results  -->
+
+1. Recode the dataset to make a new category for non-discussion board writing assignments.
+
+```{r}
+
+```
+
+
+2. Recode quizzes, tests, assessments, and exams separatley. Use R to summarize these types of assignments and decide if they should be categorized together or kept separate based on their points possible.
+
+```{r}
+
+
+
+```
+
+Conclusion:
+
+
+3. Make a visualization of the average final score per course. In your visualization, include a title, subtitle, x-axis, y-axis. Include the final score for each course as text in the visualization.
+
+```{r}
+
+
+```
+

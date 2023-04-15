@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Themes</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Joshua Rosenberg" />
+    <script src="libs/header-attrs-2.18/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Themes
+]
+.subtitle[
+## STEM 591: Visualizing Data Using R
+]
+.author[
+### Dr. Joshua Rosenberg
+]
+.institute[
+### University of Tennessee, Knoxville
+]
+.date[
+### Week 10
+]
+
+---
+
+class: inverse
+
+
+
+&lt;style type="text/css"&gt;
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+&lt;/style&gt;
+
+# Today's Agenda
+
+- Reading Discussion
+- Data Ink
+- `ggplot` Anatomy
+- Modifying Themes Practice
+- Good Plot/Bad Plot
+
+---
+# Reading Discussion
+
+
+1. What are several good rules of thumb when it comes to creating legends? (Refer to the text, if you can.)
+2. Why does Wilke use the terms redundant "coding"?
+
+---
+
+# Reading Discussion
+
+.pull-left[
+
+The chart on the right is neither wonderful nor terrible.
+
+Based on the readings from this week and prior discussions, what principles of good visualization does this chart exhibit? What principles does it violate?
+
+How would you improve this chart?
+]
+
+.pull-right[
+
+![](example-chart.png)
+] 
+---
+# Data Ink
+
+One interesting concept in data visualization is the concept of **data ink**, devised by William Tufte. From the [Infovis Wiki](https://infovis-wiki.net/wiki/Data-Ink_Ratio):
+
+&gt; Tufte refers to data-ink as the **non-erasable ink** used for the presentation of data. If data-ink would be removed from the image, the graphic would lose the content. 
+
+&gt; Non-Data-Ink is accordingly the ink that does not transport the information but it is used for **scales, labels and edges**. 
+
+&gt; The data-ink ratio is the proportion of Ink that is used to present actual data compared to the total amount of ink (or pixels) used in the entire display. (Ratio of Data-Ink to non-Data-Ink).
+
+---
+# Data Ink
+
+Which chart would you consider better?
+
+.pull-left[
+## A
+
+![](low.png)
+]
+
+.pull-right[
+## B
+![](high.png)
+]
+---
+# Data Ink
+
+Which chart would you consider better?
+
+.pull-left[
+## Low Data-Ink Ratio
+
+This graph has a lot of non-data ink: background, grid lines, border, etc.
+
+![](low.png)
+]
+
+.pull-right[
+## High Data-Ink Ratio
+
+This graph has more data than non-data, i.e. the data is the focus and the other elements aid in understanding the data.
+
+![](high.png)
+]
+---
+# Data Ink
+
+## This weeks focus is non-data ink.
+
+Non-data ink refers to the content that supports the data but does not deliver the quantitative information itself: background, grid lines, ticks, labels, legends, etc.
+
+---
+# `ggplot` Anatomy
+
+.pull-left[
+Recall that a plot made with `ggplot` is composed of numerous layers - all elements that make up the theme. And, we link these layers using `+`.
+
+]
+
+.pull-right[
+
+
+![](gglayers.png)
+]
+---
+
+# `ggplot` **THEME** Anatomy
+
+.pull-left[
+
+
+```r
+p &lt;- grad_data %&gt;%
+  ggplot(aes(x=Overall, y=Major_category, fill=Major_category))+
+  geom_col()
+
+p
+```
+
+![](Week-10-Slides_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+
+```r
+p +
+  theme(axis.text.x = element_text(size=5),
+        axis.text.y = element_text(size=10),
+        legend.background = element_rect(fill="blue"),
+        axis.ticks = element_line(color="red"))
+```
+
+![](Week-10-Slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+```r
+p
+```
+
+![](Week-10-Slides_files/figure-html/unnamed-chunk-3-2.png)&lt;!-- --&gt;
+]
+---
+# `ggplot` **THEME** Anatomy
+
+We have already seen that we can modify labels and text using `geom_text()` and `labs()`. We can also use `scale_*_continuous(labels=scales::comma_format()` or similar to control how continuous labels look.
+
+Other important elements  can be easily manipulated using `theme()`
+
+![](ggplot-theme-elements.png)
+
+---
+# `ggplot` **THEME** Anatomy
+
+When we modify a theme, we specify the element name, e.g., `axis.text` or `axis.text.x` or `axis.text.y` (what do you think these modify?). 
+
+Then, we specify the element function, e.g., if it is a text element, we will call it `element_text()`. If it is a rectangular element, we use `element_rect()`. If we want to remove something, we can use `element_blank()`
+
+Inside of the function, we can specify colors (for lines and text), fill for rectangles, font size, font face, font family, text angle, etc. Here is an example:
+
+---
+# `ggplot` **THEME** Anatomy
+
+
+```r
+p +
+  ggtitle("Plot title")+
+  theme(axis.text.y = element_text(size=10,
+                                   face="bold",
+                                   angle=60,
+                                   color="pink",
+                                   margin=margin(r=50)),
+        plot.title = element_text(size=20, face="italic"),
+        axis.title = element_blank())
+```
+
+![](Week-10-Slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+class: inverse
+
+# Modifying Themes Practice
+.pull-left[
+### Today, you will be provided with data, a simple plot, a list of resources, and a target plot.
+
+#### Your task will be to use the data and resources to transform the plot into the target.
+]
+
+.pull-right[
+![](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
+
+]
+
+---
+
+# Assignment: **Bad Plot/Good Plot**
+
+.pull-left[
+
+You will use **any** past data sets to design two plots. One will be a **good plot**: a beautiful masterpiece with excellent color choices and styled non-data ink. The other will be a **bad plot**: a disasterpiece eyesore with geoms, colors, and theme elements from the nethwerworld. 
+
+The purpose of this assignment is to learn how to manipulate all elements of ggplot, for better or for worse.
+
+&gt; Credit: We got the idea for badplot from UT's own Dr. Drew Steen (Microbiology)
+
+&lt;!-- Note to teacher: it might be worth going through these tweets to see what ggplot is capable of, for better or for worse --&gt;
+
+Check out #badplot on Twitter:
+[1](https://twitter.com/drdrewsteen/status/1593728366133190656),
+[2](https://twitter.com/GeoffZahn/status/1445159932282617856)
+
+]
+
+.pull-right[
+Bad Plot Example
+![](https://pbs.twimg.com/media/FA48BEYVEBEUhmL?format=jpg&amp;name=medium)
+
+]
+
+---
+
+# Mini Project 2
+
+What questions do you have? What concerns do you have?
+
+---
+# Reading
+
+
+Cairo (2019), Chapter 2
+
+Wilke (2019), Chapter 13 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+---
+title: "Modifying Themes Practice"
+author: "Student"
+date: '2023-02-23'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## The Data
+
+Today, we will take a break from educational data so we can focus on coding. We will use the fabulous `palmerpenguins` package, which contains data on penguin sex and species from several islands in Antarctica.
+
+## The Starter Plot
+
+```{r}
+penguins %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species),
+             size = 3,
+             alpha = 0.8) +
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = "purple",
+                                "Gentoo" = "cyan4"))
+```
+
+## Resources
+
+
+1. [Modifying Components of a Theme](https://ggplot2.tidyverse.org/reference/theme.html)
+2. [`ggplot` Theme Elements Demonstration](https://henrywang.nl/ggplot2-theme-elements-demonstration/)
+3. [Axis Manipulation](https://r-graph-gallery.com/238-custom-layout-axis-ggplot2.html)
+4. [Background Manipulation](https://r-graph-gallery.com/240-custom-layout-background-ggplot2.html)
+5. [Building a nice legend](https://r-graph-gallery.com/239-custom-layout-legend-ggplot2.html)
+6. [Title manipulation](https://r-graph-gallery.com/289-control-ggplot2-title.html)
+7. Google is your friend!
+
+## The Target
+
+![](target_plot.png)
+
+### Plot Tips:
+- `scales::comma_format()`
+- `labs`
+- Don't forget about `hjust` and `vjust`
+- Font size on axis and legend titles is 10
+- Axis titles are italic
+- The plot title is bold
+- The major grid lines are `"grey90"`
+- The plot caption is `"cyan4"`
+- Both the title and caption positions are aligned to the plot
+- The legend position is set using `legend.position = c(x, y),` where x and y range from 0-1.
+- When you are done, save your plot like so:
+
+`ggsave(last_plot(), width=10, height=6, file="penguin_plot.png")`
+
+## Let's goooooooo!
+
+```{r}
+penguins %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species),
+             size = 3,
+             alpha = 0.8) +
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = "purple",
+                                "Gentoo" = "cyan4"))
+```
