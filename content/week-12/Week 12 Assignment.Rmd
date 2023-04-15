@@ -1,0 +1,31 @@
+---
+title: "Design Assignment"
+author: "Awesome Student"
+date: '2023-04-05'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(patchwork)
+```
+
+This week's assignment is quite simple. You are going to re-ruse some of your old graphs and create psuedo-infographics in order to practice making small multiples and compound graphics.
+
+
+
+## Small Multiples
+
+Using a previous data set (and analysis), develop a data visualization that uses small multiples. To add a little pizazz and style your facets, consult these resources:
+
+- http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
+- https://www.datanovia.com/en/blog/how-to-change-ggplot-facet-labels/
+
+
+
+
+
+## Compound Plots
+
+Using a previous data set and related analyses and/or visualizations, combine separate plots using `patchwork`. If you need additional help, please check out its documentation: https://patchwork.data-imaginist.com/index.html
