@@ -36,8 +36,60 @@ library(palmerpenguins)
 }
 ```
 
+# Today's Class
+
+For today's class, we are going to do something different.
+
+We are going to meet in gather.town to become familiar with the environment we will use for our final presentations.
+
+---
+
+# gather.town
+
+gather.town is an 8-bit virtual communication environment. It is like Zoom with the ability to navigate in and out of different conversations with different people - all in an interactive environment.
+
+![](gatherexample.jpg)
+
+---
+# gather.town
+
+In gather.town, distance determines if you can communicate with another invidividual.
+
+![](gathertoofar.png)
+---
+In gather.town, distance determines if you can communicate with another invidividual.
+
+![](gatherclose.png)
+
+---
+
+
+# Today's Class
+
+You will navigate to https://tiny.utk.edu/2023dvp (password `dataviz`). When you arrive, use your keyboard to navigate to the classroom portal and enter the classroom space.
+
+![](gatherstep1.png)
+
+---
+# In the Classroom Space
+
+![](gatherclassroomspaces.png)
+
+---
+class: inverse, middle, center
+
+# Let's goooooooo!
+
+## [tiny.utk.edu/2023dvp](https://tiny.utk.edu/2023dvp)
+
+pwd: dataviz
+
+
+---
 
 # What is this?
+
+
 <img src="joydivisionplot.jpg" height="500px"/>
 
 ---
