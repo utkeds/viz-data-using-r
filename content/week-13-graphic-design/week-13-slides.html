@@ -72,28 +72,24 @@ color: #FFF
 
 # Today's Agenda
 
-- Warm-Up
-- Reading Discussion
-- Data Visualization Checklist
-- Final Project Introduction
-- Chart Layout in R
+- Reading Discussion. 
+- Final Project tasks:
+  - Updates to one another. 
+  - Checklist. 
+  - Next steps. 
+- Chart Design in R
 
 
 ---
-class:utk
 
-# Warm-Up
+# Reading Discussion: Knafflic
 
-## Take ~10 minutes to explore the following examples of different data visualization formats:
+### Define
+&gt; 1. Affordances
+&gt; 2. Accessibility
+&gt; 3. Aesthetics
 
-- [Chart/Graph](https://github.com/gkaramanis/tidytuesday/tree/master/2019/2019-week-23)
-- [Infographic](https://github.com/Z3tt/TidyTuesday/tree/main/plots/2020_04)
-- [Dashboard](https://cedric-scherer.shinyapps.io/TidyTuesday_2020_36_Crop_Yields/)
-- [App](https://nz-stefan.shinyapps.io/commute-explorer-2/)
-
-Note: all of these are made with R
-
-## What are the differences between these formats??
+Using these definitions, please provide an example of each.
 
 ---
 
@@ -103,74 +99,35 @@ Note: all of these are made with R
 
 --
 
-&gt; 1\. When should these be used?
+&gt; 1\. When should these be used? What are some pitfalls surrounding their use?
  
---
-
-&gt; 2\. Is a chart with small multiples still just a chart or is it an infographic?
- 
---
-
-&gt; 3\. We have seen the code for producing small multiples. What is the function we can use in `ggplot`?
-
 --
 
 ### Compound Figures
 
-&gt; 4\. What is a compound figure and when should it be used?
-
-&gt; 5\. Do you think using a compound figure transforms a chart into an infographic or dashboard? Why or why not?
+&gt; 2\. What is a compound figure and when should it be used?
 
 **Spoiler Alert**: We can build compound figures with the `patchwork` package!
 
 ---
-# Reading Discussion: Knafflic
 
-.pull-left-small[
+# STEM 591 Final Project Plans
 
-Define:
-&gt; 1. Affordances
-&gt; 2. Accessibility
-&gt; 3. Aesthetics
+In groups, briefly (2 min. max per person) discuss your plans:
 
-Look at Figure 5.5 
+- What data you are planning to use
+- What plans (if any) you have for the three visualizations you will create
+- What challenges you anticipate or questions you have
 
-&gt; A. Consider data visualization principles we have discussed from previous readings. What principles are being employed in the "after"?
-
-&lt;!-- Note: We began the course with Cairo's tips for reading a data visualization. Try to get students to connect to that as well. There are a lot of readings that can be applied here, as well as concepts such as data ink. The point is to help forge connections between this graphic, the Knafflic reading, and what we have done earlier in the semester. It primes students for the checklist activity. --&gt;
-
-&gt; B. What functions could you use in `ggplot` to create that "after" chart?
-
-]
-
-.pull-right-big [
-### Figure 5.5
-![](knafflic5.5.png)
-]
+Plan for one person to share with the group any common anticipated challenges or questions.
 
 ---
 
-# Reading Discussion: Emery
-
-Emery outlines 7 steps for the data visualization design process. For each of the steps below, decide if we have discussed it in class. Give an important takeaway for that step. Recall a key R function as well, if applicable.
-
-&lt;!-- Note: This is an "interactive" table, meaning you can click and type in the box. This is to aid whole-class note-taking. --&gt;
-
-| Step                      | Discussed?                      | Tip                           | Code
-|:--------------------------|:--------------------------------|:------------------------------|:----------------------------|
-| Step 1: Analyze Your Audience    |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
-| Step 2: Choose the Right Chart  |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
-|Step 4: Declutter  |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
-| Step 5: Clarify Your Message with Color   |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
-| Step 6: Clarify Your Message with Text |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
-| Step 7: Are You Doing It Right?! Test Your Draft        |   &lt;input type="checkbox"&gt;       | &lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt; |&lt;textarea rows="2" cols="25"&gt;&lt;/textarea&gt;|
-
----
 class:inverse
+
 # Design a Data Visualization Checklist
 
-### Given a whole semesters' worth of data viz knowhow, how would you assess a data visualization?  
-### What principles and practices would you want to see employed?
+### Given a whole semesters' worth of data viz knowhow, how would you assess a data visualization? Which principles and practices would you want to see employed?
 
 Work with a small group to develop a checklist or rubric that can be used to evaluate any data visualization **based on the principles and practices** we have read this semester.
 
@@ -181,28 +138,25 @@ Work with a small group to develop a checklist or rubric that can be used to eva
 5. For each criteria you create, decide how that individual criteria will be assessed: checklist, 1-3, 0-4. 
  - What do numeric ratings mean? E.g, does 1 mean "poor", "missing", "needs improvement" or something more in-depth?
 6. If possible, group your criteria together under headings, e.g., "Information", "Layout", etc.
- 
+
 ---
+
 background-image: url("gather.jpg")
 background-position: right bottom
-# STEM 591 Final Project
+# STEM 591 Final Project 
 
 You will select a **data set of your choice**. You will explore, analyze, and summarize your data set, creating **three data visualizations** that tell a story about this data. You may create three separate charts or build an infographic, or any combination.
 
 You will upload your data source and Rmd file. You will also place your three visualizations into a PDF, PPT, or Google Slide deck.
 
-On D-A-T-E, we will meet in a virtual space called **gather.town** and you will participate in a poster presentation event:
+On May 8, we will meet in a virtual space called **gather.town** and you will participate in a poster presentation event.
 
-- Session 1 - Half the class will be presenters in online booths while the other half, along with instructors/special guests, will visit presenters and discuss the visualizations. Presenters should discuss the story of the data, using the visualizations as aids. Presenters should only speak for 1-2 minutes, and take time to answer any questions or interact with the other attendees.
-- Session 2 - Roles will switch
+All materials must be uploaded to canvas by 12:00 pm on Friday, May 5.
 
-All materials must be uploaded to canvas by D-A-T-E.
-
-These will then be placed in "booths" on **gather.town**. 
-
-A **gather.town** instruction video is forthcoming.
+These will then be placed in "booths" on **gather.town**. A **gather.town** instruction video is forthcoming.
 
 ---
+
 background-image: url("gather.jpg")
 background-position: right bottom
 # STEM 591 Final Project
@@ -211,19 +165,140 @@ background-position: right bottom
 
 In addition to a checklist of basic requirements (e.g., code can be reproduced, all 3 data visualizations are different, etc.), I will select criteria to evaluate your data visualizations from today's activity! I will choose criteria from different groups and implement or adapt the ratings you created, as well.
 
-I will provide an updated project rubric within the next few days.
+I will provide an updated project rubric before our next class.
 
 ---
+
+background-image: url("gather.jpg")
+background-position: right bottom
+# STEM 591 Final Project
+
+### Next steps
+
+In the *Elaborated Final Project Plans* Discussion, please:
+
+- Share a _rendered_ HTML file that you will use for your final project. 
+- In it, include the following four sections (using level 2 headings; ##):
+  - Which data set you plan to use. 
+  - Code to load the data into R and code to explore the data (at a very high level - the goal being to understand the dimensions of the data, variable types, and number of rows and columns); if you do not have access to your data yet, this can be "template" code for when you do, but please work to gain access to the data if at all possible. 
+  - Which visualizations you plan to create. 
+  - What questions you have or what challenges you anticipate. 
+  
+  
+This is not meant to be perfect; it is to be used for a conversation next week!
+
+Submit: https://utk.instructure.com/courses/170472/assignments/1528780. 
+
+Signup for consultation now: https://docs.google.com/spreadsheets/d/1Jc7doerzPYw_42nVWJG0b_B2OIEz3qMlp6l8_zu1NfM/edit?usp=sharing.
+
+---
+
 # Design with `ggplot`
 
 There are many ways to better design your data visualizations in `ggplot`.
 
 A key way is to ensure you employ principles of color, text, and shape to make your data visualization as readable as possible.
 
-One function that can facilitate this is `facet_wrap()`, which we have seen a few times.
+Additionally, we'll explore:
 
+- composite plots
+- faceting
+- annotations
 
 ---
+
+# Compound Figures with `patchwork`
+
+Rather than using a design element *within* a plot, what if we wanted to connect multiple plots together?
+
+We can use the `patchwork` package!
+
+Let's begin with two separate plots.
+
+---
+
+# Compound Figures with `patchwork`
+
+.pull-left[
+![](week-13-slides_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+
+
+![](week-13-slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+# Compound Figures with `patchwork`
+
+.pull-left[
+
+```r
+library(patchwork)
+flipper_hist_2 + mass_flipper
+```
+
+
+
+]
+
+.pull-right[
+
+![](week-13-slides_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+
+]
+
+---
+
+# Compound Figures with `patchwork`
+
+To add two plots next to each other, we use `+` or `|`
+
+To add two plots on top of each other, we use `/`
+
+
+We can also set different widths and heights using:
+
+```
++ plot_layout(widths = c(2, 1),
+heights = c(2, 1))
+```
+
+&gt; This means the first plot is 2x the size of the second.
+
+There are many other ways we can control the layout. I recommend checking out the [`patchwork` documentation on controlling layout](https://patchwork.data-imaginist.com/articles/guides/layout.html).
+---
+
+# Compound Figures with `patchwork`
+
+Here is an example using R's built-in `mtcars` data:
+
+.pull-left[
+
+
+
+```r
+patchwork_example &lt;- p1 + p2 + p3 + p4 + 
+  plot_layout(widths = c(2, 1),
+              guides = 'collect' ) +
+   plot_annotation(
+     title = 'The surprising truth about mtcars')
+```
+
+
+]
+
+.pull-right[
+![](week-13-slides_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
 
 # Small Multiples with `facet_wrap`
 
@@ -236,7 +311,7 @@ For this example, we will use the `palmerpenguins` package.
 
 No Small Multiples
 
-![](week-13-slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](week-13-slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 
 ]
@@ -245,7 +320,7 @@ No Small Multiples
 
 Small Multiples
 
-![](week-13-slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](week-13-slides_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -277,7 +352,7 @@ ggplot(data = penguins,
 ]
 
 .pull-right[
-![](week-13-slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](week-13-slides_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 
 ]
@@ -309,7 +384,7 @@ ggplot(data = penguins,
 ]
 
 .pull-right[
-![](week-13-slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](week-13-slides_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 
 
 ]
@@ -354,106 +429,87 @@ ggplot(data = penguins,
 ]
 
 .pull-right[
-![](week-13-slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
-
-
-]
-
----
-
-# Compound Figures with `patchwork`
-
-Rather than using a design element *within* a plot, what if we wanted to connect multiple plots together?
-
-We can use the `patchwork` package!
-
-Let's begin with two separate plots.
-
----
-
-# Compound Figures with `patchwork`
-
-.pull-left[
-![](week-13-slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
-
-]
-
-.pull-right[
-
-
-
-![](week-13-slides_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
-]
-
----
-# Compound Figures with `patchwork`
-
-.pull-left[
-
-```r
-library(patchwork)
-flipper_hist_2 + mass_flipper
-```
-
-
-
-]
-
-.pull-right[
-
-![](week-13-slides_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
-
-
-]
-
----
-
-# Compound Figures with `patchwork`
-
-To add two plots next to each other, we use `+` or `|`
-
-To add two plots on top of each other, we use `/`
-
-
-We can also set different widths and heights using:
-
-```
-+ plot_layout(widths = c(2, 1),
-heights = c(2, 1))
-```
-
-&gt; This means the first plot is 2x the size of the second.
-
-There are many other ways we can control the layout. I recommend checking out the [`patchwork` documentation on controlling layout](https://patchwork.data-imaginist.com/articles/guides/layout.html).
----
-# Compound Figures with `patchwork`
-Here is an example using R's built-in `mtcars` data:
-
-.pull-left[
-
-
-
-```r
-patchwork_example &lt;- p1 + p2 + p3 + p4 + 
-  plot_layout(widths = c(2, 1),
-              guides = 'collect' ) +
-   plot_annotation(
-     title = 'The surprising truth about mtcars')
-```
-
-
-]
-
-.pull-right[
 ![](week-13-slides_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
+
 ]
 
 ---
+
+# Annotations:  _a geom_ without data.
+
+Here's a plot:
+
+
+```r
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()
+```
+
+&lt;img src="week-13-slides_files/figure-html/unnamed-chunk-21-1.png" width="30%" /&gt;
+
+---
+
+# Annotations: Example
+
+
+```r
+p + 
+  annotate("text", x = 3, y = 30, 
+             label = "These cars are fuel-efficient")
+```
+
+&lt;img src="week-13-slides_files/figure-html/unnamed-chunk-22-1.png" width="30%" /&gt;
+
+---
+
+# Annotations: Fancier
+
+
+```r
+p + annotate("text", x = 3, y = 30, 
+             label = "These cars are fuel-efficient") +
+  annotate("rect", xmin = 1.25, xmax = 2.5, ymin = 25, ymax = 35,
+  alpha = .2) +
+  theme_minimal()
+```
+
+&lt;img src="week-13-slides_files/figure-html/unnamed-chunk-23-1.png" width="30%" /&gt;
+
+---
+
+# Annotations: Fancier
+
+
+```r
+p + annotate("text", x = 3, y = 30, 
+             label = "These cars are fuel-efficient",
+             family = "Palatino") + # more here: http://www.cookbook-r.com/Graphs/Fonts/
+  annotate("rect", xmin = 1.25, xmax = 2.5, ymin = 25, ymax = 35,
+  alpha = .2, fill = "yellow") +
+  theme_minimal()
+```
+
+&lt;img src="week-13-slides_files/figure-html/unnamed-chunk-24-1.png" width="30%" /&gt;
+
+---
+
 # Assignment 6: "Infographic"
 
 This week's assignment is quite simple. You are going to re-ruse some of your old graphs and create psuedo-infographics in order to practice making small multiples and compound graphics.
 
+---
+
+# Check out
+
+Tasks:
+
+- **Assignment 8**: due before our next class
+- **Elaborated final project plans**: due before our next class
+
+- *Check out question*: What's one thing that excites you about the final project?
+
+See you next week!
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
