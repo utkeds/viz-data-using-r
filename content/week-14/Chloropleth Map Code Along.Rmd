@@ -1,0 +1,184 @@
+---
+title: "Building a Chloropleth Map Code Along"
+author: "Awesome Student"
+date: '2023-04-12'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(sf) # special feature - spatial data functions
+school_diversity <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-09-24/school_diversity.csv")
+
+```
+
+
+For this task, we are going to use us school diversity data from the National Center for Education Statistics (NCES) via [#TidyTuesday](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-09-24). Visit that link for more information on the data set.
+
+We are going to use this data to make TWO chloropleth maps: a map of diversity by TN school district and a map of average diversity by state.
+
+A chloropleth map = also known as a heatmap, uses color to depict a continuous variable and fills a geographic shape (a county, state, or country) with that color, allowing comparisons across shapes.
+
+
+# Inspect data
+
+```{r}
+names(school_diversity)
+view(school_diversity)
+```
+
+### Get TN data only
+
+Let's use the latest date available in the data set: 2016-2017.
+
+```{r}
+tn_schools <- school_diversity %>%
+  filter(ST == "TN",
+         SCHOOL_YEAR == "2016-2017") %>%
+  janitor::clean_names()
+```
+
+
+### Calculate Diversity
+
+Let's calculate the Simpson's Diversity Index for each LEA (school district). The higher the value, the more diverse the group is. It is derived from the US Census calculations. See http://dpanther2.fiu.edu/itis/diversityIndex.html
+
+```{r}
+diversity <- function(x) {
+  
+  pop <- sum(x, na.rm=TRUE)
+  proportions <- x/pop
+  d = 1-sum(proportions^2)
+  return(d)
+}
+
+
+tn_diversity <- tn_schools %>%
+  # make a wide table
+  pivot_longer(aian:multi,
+               names_to = "group",
+               values_to="n") %>%
+  # estimate population numbers from total and proporitions
+  mutate(n = (n/100)*total) %>%
+  group_by(leaid, lea_name) %>%
+  summarize(diversity_index = diversity(n))
+```
+
+# Get TN school districts
+
+We can access TN school districts via its shapefiles - a file format that stores geographic location information.
+
+Visit https://www.census.gov/cgi-bin/geo/shapefiles/index.php and download the Unified School District shapefiles for Tennessee for the 2016 school year. Extract the files into a folder called "shapefiles". There are numerous files. Please extract them all.
+
+```{r}
+# read in the shapefile data
+tnsf <- read_sf("shapefiles/tl_2016_47_unsd.shp") %>%
+  janitor::clean_names()
+
+# Note, you may also be able to use the leaidr  package to get similar files
+# https://rfortherestofus.com/resource/leaidr/
+# devtools::install_github("ivelasq/leaidr")
+# library(leaidr)
+# tnlea_map <- lea_get("tn")
+```
+
+### Join Data and Shapefiles
+
+Connect the diversity data to the geographic data.
+
+```{r}
+names(tn_diversity)
+names(tnsf)
+
+tn_map_data <- tnsf %>%
+  left_join(tn_diversity, by = c("geoid" = "leaid"))
+```
+
+
+# Make a Map
+
+Use `geom_sf` to plot the geographic data and `coord_sf` to ensure the correct map proporitions
+
+```{r}
+ggplot() + 
+  geom_sf(data = map_data, 
+          color = "#616161", # line color
+          aes(fill=diversity_index)) +
+  coord_sf()+
+  scale_fill_viridis_c(direction=-1,# darker = more diversity
+                       labels=scales::percent_format(),
+                       name="Diversity\nIndex")+ 
+  ggtitle("Tennessee School District Diversity - 2016-17")+
+  theme_minimal()+
+  theme(axis.text = element_blank())
+```
+
+
+# Make it Interactive
+
+We can use the `plotly` package to turn this into a simple interactive map.
+
+```{r}
+tn_diversity_map <- ggplot() + 
+  geom_sf(data = map_data, 
+          color = "#616161", # line color
+          aes(fill=diversity_index,
+              # This will be used in the tooltip of the plotly interactive map
+              text=paste0(str_to_title(lea_name), "\n",
+                          scales::percent(diversity_index,2)
+                          ))) +
+  coord_sf()+
+     scale_fill_viridis_c(direction=-1,# darker = more diversity
+                       labels=scales::percent_format(),
+                       name="Diversity\nIndex")+ 
+  ggtitle("Tennessee School District Diversity - 2016-17")+
+  theme_minimal()+
+  theme(axis.text = element_blank())
+
+# install.packages("plotly")
+library(plotly)
+tn_diversity_map %>%
+  ggplotly(tooltip="text")
+```
+
+# Let's Make an Interactive Map of the US
+
+This map will use the highcharter package to make it interactive
+
+```{r}
+library(highcharter)
+
+us_diversity <- school_diversity %>%
+  janitor::clean_names() %>%
+  filter(school_year == "2016-2017") %>%
+   pivot_longer(aian:multi,
+               names_to = "group",
+               values_to="n") %>%
+  # estimate population numbers from total and proporitions
+  mutate(n = (n/100)*total) %>%
+  group_by(st, lea_name) %>%
+  summarize(diversity_index = diversity(n)) %>%
+  group_by(st) %>%
+  summarize(avg_diversity = mean(diversity_index, na.rm=TRUE)*100)
+```
+
+
+```{r}
+mapdata <- get_data_from_map(download_map_data("countries/us/us-all")) %>%
+    rename(state = `postal-code`) #this is the state abbreviation
+
+hcmap("countries/us/us-all", data = us_diversity,
+      name = "Average Diversity", value = "avg_diversity", 
+      joinBy = c("postal-code", "st"),
+      borderColor = "transparent") %>%
+  hc_colorAxis(dataClasses = color_classes(c(seq(0, 100, by = 10)))) %>% 
+  hc_legend(layout = "vertical", align = "right",
+            floating = TRUE, valueDecimals = 0, valueSuffix = "%") %>%
+  hc_tooltip(valueDecimals = 2,
+             valueSuffix = "%") %>%
+  hc_title(text = "Diversity in American School Districts (2017)",
+           margin = -5,
+           style = list(fontSize = "18pt", useHTML = TRUE)) %>%
+  hc_subtitle(text = "The following chart represents the average school district diversity of each state.")
+```

@@ -1,0 +1,180 @@
+---
+title: "City Map with Points"
+author: "Awesome Student"
+date: '2023-04-12'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(osmdata)
+library(ggmap)
+```
+
+For this map, we are going to use OpenStreetMap data to make a map of a city, with its major and minor roads, along with its waterways. Then, we will place points of interest over this map.
+
+The example below uses Knoxville, but you can change it to any city.
+
+## Get Geographic Information
+
+`osm` allows us to download map features for specific locations. For example, the code below gets major streets and highways in Knoxville:
+
+```{r}
+knoxville <- getbb("Knoxville") # get the long and lat bounding box of Knoxville
+
+
+big_streets <- knoxville %>%
+  opq() %>% # build a query
+  add_osm_feature(key = "highway", # get highways - use available_features() to see all features
+                  value = c("motorway", "primary", "motorway_link", "primary_link")) %>% # highway type - use available_tags("highway") to see all values
+  osmdata_sf() # return query as sf object
+```
+
+Let's peek at what we downloaded:
+
+```{r}
+ggplot() +
+  geom_sf(data = big_streets$osm_lines)
+```
+
+
+
+## Let's add more features:
+
+```{r}
+small_streets <- knoxville %>%
+  opq()%>%
+  add_osm_feature(key = "highway", 
+                  value = c("residential", "living_street",
+                            "unclassified",
+                            "service", "footway"
+                  )) %>%
+  osmdata_sf()
+
+rivers <- knoxville %>%
+  opq()%>%
+  add_osm_feature(key = "waterway", value = "river") %>%
+  osmdata_sf()
+```
+
+Let's see our map so far:
+
+```{r}
+knox_map_base <- ggplot() +
+  # big streest
+  geom_sf(data = big_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "#FF8200",
+          size = .5,
+          alpha = .8)+
+  # small streets
+  geom_sf(data = small_streets$osm_lines,
+          inherit.aes = FALSE,
+          color = "#FF8200",
+          size = .3,
+          alpha = .6)+
+  # rivers
+  geom_sf(data = rivers$osm_lines,
+          inherit.aes = FALSE,
+          color = "#d5eded",
+          size = 1)+
+  # set size of map area based on coordinates in the knoxville bounding box
+  coord_sf(xlim = knoxville[1,], # min and max longitude
+           ylim = knoxville[2,], # min and max latitude
+           expand = FALSE)+
+    theme_void() # this will take a min or two to run
+
+knox_map_base
+```
+
+## Now, let's add points of important-to-us places. We will make a data frame of points AND assign a importance value to each point. Try to pick points around the city so that the points are not clustered too closely together. Use google maps to get long and lat coordinates.
+
+```{r}
+points <- tribble(~place, ~lat, ~lng, ~importance,
+                  "UTK", 35.953784326578294, -83.92917438947131, 4,
+                  "Hey Bear", 35.94397365766588, -84.08270983115794, 2,
+                  "Ijams", 35.95140142065843, -83.86993653043997, 3,
+                  "Zoo Knoxville", 36.00209751412412, -83.88594686662032, 3)
+```
+
+
+# View the Final Map
+
+Note: this may take a minute or longer to build.
+
+```{r}
+knox_map_base + 
+  geom_point(data=points, aes(x=lng, y=lat, size=importance),
+             alpha=.8,
+             fill="#2197A9", color="white", pch=21,
+             inherit.aes = F,
+             show.legend = FALSE)+
+  labs(title="Knoxville, TN")+
+  theme(plot.title = element_text(size=20, face="bold", hjust=.5))
+```
+
+
+```{r}
+# save a high-quality version of the map
+ggsave(plot=last_plot(),
+       file="knoxville.pdf", units="in", width = 10, height=8)
+```
+
+
+
+# Let's make a similar - but possibly cooler - map using the `rcityviews` package
+
+```{r}
+# remotes::install_github("koenderks/rcityviews", dependencies = TRUE)
+library(rcityviews)
+
+# find Knoxille
+list_cities(match = "Knox")
+
+# make the map- this may take a while
+cityview(name = "Knoxville", zoom = 1)
+
+
+# Let's change the theme (following the websites example)
+# https://github.com/koenderks/rcityviews#create-your-own-in-r
+myTheme <- list(
+  colors = list(
+    background = "#232323",
+    water = NA,
+    landuse = NA,
+    contours = NA,
+    streets = "#FF8200",
+    rails = c("#FF8200", "#232323"),
+    buildings = NA,
+    text = "#ffffff",
+    waterlines = NA
+  ),
+  font = list(
+    family = "serif",
+    face = "bold",
+    append = "\u2014"
+  ),
+  size = list(
+    borders = list(
+      contours = 0.3,
+      water = 0.4,
+      canal = 0.5,
+      river = 0.6
+    ),
+    streets = list(
+      path = 0.2,
+      residential = 0.4,
+      structure = 0.5,
+      tertiary = 0.7,
+      secondary = 0.8,
+      primary = 0.9,
+      motorway = 1,
+      rails = 0.75,
+      runway = 3
+    )
+  )
+)
+cityview(name = "Knoxville", zoom = 0.5, theme = myTheme)
+```
+
