@@ -146,7 +146,7 @@ boxplot(penguins$body_mass_g)
 
 ]
 ---
-# Histograms and other distributions
+# The classics
 
 Wait...where is `ggplot`?
 
@@ -174,7 +174,7 @@ boxplot(penguins$body_mass_g)
 
 ---
 
-# Histograms and other distributions
+# The classics
 
 .pull-left[
 
@@ -198,9 +198,9 @@ ggplot(penguins, aes(y=body_mass_g))+
 
 ---
 
-# Density plots
+# A (relative) newcomer
 
-```{r}
+```{r, fig.height = 5}
 ggplot(penguins, aes(x=body_mass_g))+
   geom_density()
 ```
@@ -260,7 +260,7 @@ ggplot(penguins, aes(y=body_mass_g, fill=species))+
 
 *set alpha*
 
-```{r}
+```{r, fig.height = 5}
 ggplot(penguins, aes(x=body_mass_g, fill=species))+
   geom_density(alpha = .25)
 ```
@@ -269,7 +269,7 @@ ggplot(penguins, aes(x=body_mass_g, fill=species))+
 
 # Multiple plots; Violin plots
 
-```{r}
+```{r, fig.height = 5}
 ggplot(penguins, aes(x = species, y=body_mass_g))+
   geom_violin()
 ```
@@ -328,13 +328,14 @@ penguins_long <- penguins %>%
   pivot_longer(bill_length_mm:body_mass_g,
                names_to="stat_type", values_to="stat")
 
-head(penguins_long, n=10)
+head(penguins_long, n=5)
 ```
 
 ]
 
 .pull_right[
-```{r, fig.height=4}
+
+```{r, fig.height=3}
 ggplot(penguins_long, aes(x=stat, y=stat_type))+
   geom_density_ridges()
 ```
@@ -350,7 +351,7 @@ You will work in small groups (breakout rooms) where one student is a pilot and 
 - The **pilot** will share their screen and type the code
 - The **navigators** will tell the pilot what to type (the pilot can help, too)
 
-Access the Week 15 Distributions Activity.Rmd document.
+Access the Week 15 Distributions Activity.Rmd document; submit with both members' names.
 
 <!-- Note: This instructional material is shorter in case you need time to discuss the project in class -->
 
@@ -359,11 +360,28 @@ Access the Week 15 Distributions Activity.Rmd document.
 # Mapping
 
 - Chloropleth 
-- Lat/lon points
+- Lat/lon points (street map code along)
 
-Check the _Optional Module (Mapping)_ module in CAnvas
+Check the _Optional Module (Mapping)_ module in Canvas
 
 ---
 
-
 # Logistics
+
+**Final Project Submissions**
+You will upload your knitted .HTML file to Canvas. You will also place your three visualizations into a PDF, PPT, or Google Slide deck and upload it to Canvas. Here is a useful code snippet for good slide-sized output:
+
+```{r}
+ggsave(plot=last_plot(), width=10, height=8, file="your_file_name.jpg")
+```
+
+**Poster Presentation Event**
+
+Session 1 - Half the class will be presenters in online booths while the other half, along with instructors/special guests, will visit presenters and discuss the visualizations. 
+
+Presenters should discuss the story of the data, using the visualizations as aids. 
+Presenters should only speak for 1-2 minutes and take time to answer any questions or interact with the other attendees who appear in their booth.
+This presentation style mimics actual poster presentations that occur at many conferences.
+During Session 2, roles will switch. Presenters will be attendees and student attendees will become presenters.
+
+In order to make using this virtual space as easy as possible, all materials must be uploaded to canvas by Friday, 5/5. Your materials will then be placed in booths in gather.town.
