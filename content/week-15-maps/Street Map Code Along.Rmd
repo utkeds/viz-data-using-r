@@ -153,6 +153,7 @@ myTheme <- list(
   font = list(
     family = "serif",
     face = "bold",
+    scale = 0.5,
     append = "\u2014"
   ),
   size = list(
@@ -176,5 +177,6 @@ myTheme <- list(
   )
 )
 cityview(name = "Knoxville", zoom = 0.5, theme = myTheme)
+# cityview(name = "Knoxville", zoom = 0.5, theme = myTheme, filename="knoxville.png")
 ```
 
