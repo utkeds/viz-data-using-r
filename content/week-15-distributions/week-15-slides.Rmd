@@ -3,7 +3,7 @@ title: "Distributions"
 subtitle: "STEM 591: Visualizing Data Using R"
 author: "Dr. Joshua Rosenberg"
 institute: "University of Tennessee, Knoxville"
-date: "Week 13"
+date: "Week 15"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -44,25 +44,24 @@ We are going to meet in gather.town to become familiar with the environment we w
 
 ---
 
-# gather.town
+<!-- # gather.town -->
 
-gather.town is an 8-bit virtual communication environment. It is like Zoom with the ability to navigate in and out of different conversations with different people - all in an interactive environment.
+<!-- gather.town is an 8-bit virtual communication environment. It is like Zoom with the ability to navigate in and out of different conversations with different people - all in an interactive environment. -->
 
 ![](gatherexample.jpg)
 
 ---
-# gather.town
+<!--# gather.town -->
 
-In gather.town, distance determines if you can communicate with another invidividual.
+<!-- In gather.town, distance determines if you can communicate with another invidividual. -->
 
 ![](gathertoofar.png)
 ---
-In gather.town, distance determines if you can communicate with another invidividual.
+<!-- In gather.town, distance determines if you can communicate with another invidividual. -->
 
 ![](gatherclose.png)
 
 ---
-
 
 # Today's Class
 
@@ -114,14 +113,16 @@ pwd: dataviz
 ---
 # Today's Agenda
 
-- Discussion
+- MP #2 Feedback
 - Histograms and other basic distributions
 - Density and Ridgeline Plots
 - Activity
 
 ---
 
-# Discussion
+# MP #2 Feedback
+
+[Slides](https://docs.google.com/presentation/d/1xtbE_ResQp4Zr0KehRzD6Bg15LvwHeGhNlqs9iWVgq0/edit?usp=sharing): https://docs.google.com/presentation/d/1xtbE_ResQp4Zr0KehRzD6Bg15LvwHeGhNlqs9iWVgq0/edit?usp=sharing
 
 ---
 # Histograms and other distributions
@@ -172,7 +173,65 @@ boxplot(penguins$body_mass_g)
 ]
 
 ---
+
 # Histograms and other distributions
+
+.pull-left[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_histogram(binwidth = 200)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(y=body_mass_g))+
+  geom_boxplot()
+```
+
+]
+
+
+---
+
+# Density plots
+
+```{r}
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_density()
+```
+
+---
+
+# Histograms vs. Density plots
+
+.pull-left[
+
+### Histograms
+
+- How it works: *bin* and count observations
+- Key consideration: How many bins (defaults are often but not always suitable)
+- Historically important, but somewhat replaced by newer techniques
+
+]
+
+.pull-right[
+
+### Density plots
+
+- How it works: uses fancy math to _estimate_ a curve that represents the distribution of the data
+- Key consideration: avoiding representing made-up data points
+- Can be a little hard to straightforwardly interpret
+
+]
+
+---
+
+# Multiple distributions: Histograms and box plots
 
 You can easily split out the plot with `fill`
 
@@ -196,24 +255,24 @@ ggplot(penguins, aes(y=body_mass_g, fill=species))+
 ]
 
 ---
-.pull-left[
 
-```{r, fig.height=5}
-ggplot(penguins, aes(x=body_mass_g))+
-  geom_histogram(binwidth = 200)
+# Multiple plots; Overlapping densities
+
+*set alpha*
+
+```{r}
+ggplot(penguins, aes(x=body_mass_g, fill=species))+
+  geom_density(alpha = .25)
 ```
 
+---
 
-]
+# Multiple plots; Violin plots
 
-.pull-right[
-
-```{r, fig.height=5}
-ggplot(penguins, aes(y=body_mass_g))+
-  geom_boxplot()
+```{r}
+ggplot(penguins, aes(x = species, y=body_mass_g))+
+  geom_violin()
 ```
-
-]
 
 ---
 
@@ -272,12 +331,7 @@ penguins_long <- penguins %>%
 head(penguins_long, n=10)
 ```
 
-
 ]
-
-We can easily see a certain variable is not distributed the same.
-
-**Why do you think this is?**
 
 .pull_right[
 ```{r, fig.height=4}
@@ -296,6 +350,20 @@ You will work in small groups (breakout rooms) where one student is a pilot and 
 - The **pilot** will share their screen and type the code
 - The **navigators** will tell the pilot what to type (the pilot can help, too)
 
-Access the Week 13 Distributions Activity.Rmd document.
+Access the Week 15 Distributions Activity.Rmd document.
 
 <!-- Note: This instructional material is shorter in case you need time to discuss the project in class -->
+
+---
+
+# Mapping
+
+- Chloropleth 
+- Lat/lon points
+
+Check the _Optional Module (Mapping)_ module in CAnvas
+
+---
+
+
+# Logistics

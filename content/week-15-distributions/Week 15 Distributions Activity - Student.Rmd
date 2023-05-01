@@ -1,0 +1,90 @@
+---
+title: "Week 15 Distributions Activity"
+author: "Awesome Student"
+date: '2023-04-06'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggridges)
+```
+
+For this assignment, we are going to look at tuition and fees by college/university for 2018-2019, along with school type, degree length, state, in-state vs out-of-state from the [Chronicle of Higher Education](https://www.chronicle.com/interactives/tuition-and-fees.
+
+```{r}
+
+tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
+```
+
+## Become Familiar with the Data
+
+As with any data set, your first step is to become familiar with the variables, values, and structure of the data:
+
+```{r}
+
+```
+
+
+## Building Distributions
+
+### What does the distribution of in-state tuition look like across all states and college/university types? Make a simple histogram, simple boxplot, and density plot -- one in each of the three code chunks below.
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+Write a sentence or two to describe your findings:
+
+
+### How does the distribution of in-state tuition vary by college/university types? 
+
+Use `ggplot` to make a histogram. Use `fill` and a facet (faceting the same variable you `fill` on.
+
+```{r}
+
+```
+
+Now, use `ggplot` to make a density plot, setting `fill` and `alpha` (like in today's slides).
+
+```{r}
+
+```
+
+Now, use `ggplot` to make a violin plot.
+
+```{r}
+
+```
+
+Write a sentence or two to describe your findings, noting which of the three graphs you created you think is _most_ effective and why.
+
+
+
+### Bonus (optional!): Ridgeline
+
+Let's look at the distribution of *out-of-state* tuition across 10 states. Manually filter the data to include these states --- or use another technique of your choosing to filter the data to only include ten states. You may also wish to remove the cases for which the `state` is NA.
+
+Use the [`ggridges` documentation](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html) and the `geom_density_ridgeline()` function to create a ridege line plot.
+
+```{r}
+
+```
+
+What do you notice about this plot? Write a sentence or two to summarize a take-away:
+
+
+
+## Knit and submit as HTML
+
+Vóila!

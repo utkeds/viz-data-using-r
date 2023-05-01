@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Distributions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Joshua Rosenberg" />
+    <script src="libs/header-attrs-2.21/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Distributions
+]
+.subtitle[
+## STEM 591: Visualizing Data Using R
+]
+.author[
+### Dr. Joshua Rosenberg
+]
+.institute[
+### University of Tennessee, Knoxville
+]
+.date[
+### Week 15
+]
+
+---
+
+class: inverse, middle, center
+
+
+&lt;style type="text/css"&gt;
+.pull-left-margin {
+  float: left;
+  width: 47%;
+  margin-right: 50px;
+}
+
+.remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+&lt;/style&gt;
+
+# Today's Class
+
+For today's class, we are going to do something different.
+
+We are going to meet in gather.town to become familiar with the environment we will use for our final presentations.
+
+---
+
+&lt;!-- # gather.town --&gt;
+
+&lt;!-- gather.town is an 8-bit virtual communication environment. It is like Zoom with the ability to navigate in and out of different conversations with different people - all in an interactive environment. --&gt;
+
+![](gatherexample.jpg)
+
+---
+&lt;!--# gather.town --&gt;
+
+&lt;!-- In gather.town, distance determines if you can communicate with another invidividual. --&gt;
+
+![](gathertoofar.png)
+---
+&lt;!-- In gather.town, distance determines if you can communicate with another invidividual. --&gt;
+
+![](gatherclose.png)
+
+---
+
+# Today's Class
+
+You will navigate to https://tiny.utk.edu/2023dvp (password `dataviz`). When you arrive, use your keyboard to navigate to the classroom portal and enter the classroom space.
+
+![](gatherstep1.png)
+
+---
+# In the Classroom Space
+
+![](gatherclassroomspaces.png)
+
+---
+class: inverse, middle, center
+
+# Let's goooooooo!
+
+## [tiny.utk.edu/2023dvp](https://tiny.utk.edu/2023dvp)
+
+pwd: dataviz
+
+
+---
+
+# What is this?
+
+
+&lt;img src="joydivisionplot.jpg" height="500px"/&gt;
+
+---
+
+# What is this?
+
+.pull-left[
+
+&lt;img src="joydivisionplot.jpg" height="400px"/&gt;
+
+]
+
+.pull-right[
+- This is the cover to Joy Division's 1979 album *Unknown Pleasures*
+- The plot depicts the radio emissions of a rotating neutron star.
+- Each line is a pulse given when it turns
+- Together, it is a **distribution** of emissions from different pulses
+- This visualization - or the album cover - has reached iconic status and can often be seen on clothing
+
+&lt;!-- https://en.wikipedia.org/wiki/Unknown_Pleasures --&gt;
+]
+---
+# Today's Agenda
+
+- MP #2 Feedback
+- Histograms and other basic distributions
+- Density and Ridgeline Plots
+- Activity
+
+---
+
+# MP #2 Feedback
+
+[Slides](https://docs.google.com/presentation/d/1xtbE_ResQp4Zr0KehRzD6Bg15LvwHeGhNlqs9iWVgq0/edit?usp=sharing): https://docs.google.com/presentation/d/1xtbE_ResQp4Zr0KehRzD6Bg15LvwHeGhNlqs9iWVgq0/edit?usp=sharing
+
+---
+# Histograms and other distributions
+
+What do you think the following graphs show?
+
+.pull-left[
+
+
+```r
+hist(penguins$body_mass_g)
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+
+```r
+boxplot(penguins$body_mass_g)
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+]
+---
+# Histograms and other distributions
+
+Wait...where is `ggplot`?
+
+&lt;!-- Students may not have seen some of base R's plot functions. Now is a good chance to introduce these two and what the $ means.
+
+Reference: https://bookdown.org/rdpeng/exdata/the-base-plotting-system-1.html
+--&gt;
+
+.pull-left[
+
+
+```r
+hist(penguins$body_mass_g)
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+
+```r
+boxplot(penguins$body_mass_g)
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# Histograms and other distributions
+
+.pull-left[
+
+
+```r
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_histogram(binwidth = 200)
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+
+```r
+ggplot(penguins, aes(y=body_mass_g))+
+  geom_boxplot()
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+]
+
+
+---
+
+# Density plots
+
+
+```r
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_density()
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+---
+
+# Histograms vs. Density plots
+
+.pull-left[
+
+### Histograms
+
+- How it works: *bin* and count observations
+- Key consideration: How many bins (defaults are often but not always suitable)
+- Historically important, but somewhat replaced by newer techniques
+
+]
+
+.pull-right[
+
+### Density plots
+
+- How it works: uses fancy math to _estimate_ a curve that represents the distribution of the data
+- Key consideration: avoiding representing made-up data points
+- Can be a little hard to straightforwardly interpret
+
+]
+
+---
+
+# Multiple distributions: Histograms and box plots
+
+You can easily split out the plot with `fill`
+
+.pull-left[
+
+
+```r
+ggplot(penguins, aes(x=body_mass_g, fill=species))+
+  geom_histogram(binwidth = 200, position = "identity", alpha=.6)
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+
+```r
+ggplot(penguins, aes(y=body_mass_g, fill=species))+
+  geom_boxplot()
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# Multiple plots; Overlapping densities
+
+*set alpha*
+
+
+```r
+ggplot(penguins, aes(x=body_mass_g, fill=species))+
+  geom_density(alpha = .25)
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+
+# Multiple plots; Violin plots
+
+
+```r
+ggplot(penguins, aes(x = species, y=body_mass_g))+
+  geom_violin()
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+---
+
+# Density and Ridgeline Plots
+
+Sometimes you want to know the shape of your distribution, but you do not want a histogram.
+
+
+```r
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_density()
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+Note:
+Plotting a histogram and density curve together takes a bit more work:
+
+
+![](week-15-slides_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+# Ridgeline Plots
+
+We can easily get a bit fancier with the `ggridges` package:
+
+
+```r
+library(ggridges)
+ggplot(penguins, aes(x=body_mass_g, y=island))+
+  geom_density_ridges()
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+
+---
+# Ridgeline Plots
+
+How can ridgeline plots be useful?
+
+.pull-left[
+
+Imagine a **long** dataset like this:
+
+
+```r
+penguins_long &lt;- penguins %&gt;%
+  rownames_to_column("id") %&gt;%
+  pivot_longer(bill_length_mm:body_mass_g,
+               names_to="stat_type", values_to="stat")
+
+head(penguins_long, n=10)
+```
+
+```
+## # A tibble: 10 × 7
+##    id    species island    sex     year stat_type           stat
+##    &lt;chr&gt; &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt;
+##  1 1     Adelie  Torgersen male    2007 bill_length_mm      39.1
+##  2 1     Adelie  Torgersen male    2007 bill_depth_mm       18.7
+##  3 1     Adelie  Torgersen male    2007 flipper_length_mm  181  
+##  4 1     Adelie  Torgersen male    2007 body_mass_g       3750  
+##  5 2     Adelie  Torgersen female  2007 bill_length_mm      39.5
+##  6 2     Adelie  Torgersen female  2007 bill_depth_mm       17.4
+##  7 2     Adelie  Torgersen female  2007 flipper_length_mm  186  
+##  8 2     Adelie  Torgersen female  2007 body_mass_g       3800  
+##  9 3     Adelie  Torgersen female  2007 bill_length_mm      40.3
+## 10 3     Adelie  Torgersen female  2007 bill_depth_mm       18
+```
+
+]
+
+.pull_right[
+
+```r
+ggplot(penguins_long, aes(x=stat, y=stat_type))+
+  geom_density_ridges()
+```
+
+![](week-15-slides_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+# Activity - Pilot and Navigator
+
+You will work in small groups (breakout rooms) where one student is a pilot and the other students are navigators:
+
+- The **pilot** will share their screen and type the code
+- The **navigators** will tell the pilot what to type (the pilot can help, too)
+
+Access the Week 15 Distributions Activity.Rmd document.
+
+&lt;!-- Note: This instructional material is shorter in case you need time to discuss the project in class --&gt;
+
+---
+
+# Mapping
+
+- Chloropleth 
+- Lat/lon points
+
+Check the _Optional Module (Mapping)_ module in CAnvas
+
+---
+
+
+# Logistics
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
