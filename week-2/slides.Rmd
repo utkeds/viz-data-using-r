@@ -1,5 +1,5 @@
 ---
-title: "Week 1 Slides"
+title: "Week 2 Slides"
 subtitle: "What's this course about?"
 author: "**Joshua Rosenberg and Isabella Velásquez**"
 output:
