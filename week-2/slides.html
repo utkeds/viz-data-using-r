@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Week 1 Slides</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Joshua Rosenberg and Isabella Velásquez" />
+    <script src="slides_files/header-attrs-2.25/header-attrs.js"></script>
+    <script src="slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Press Ctrl+C to Copy"})</script>
+    <link href="slides_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+    <link href="slides_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="slides_files/panelset-0.2.6/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Week 1 Slides
+]
+.subtitle[
+## What’s this course about?
+]
+.author[
+### <strong>Joshua Rosenberg and Isabella Velásquez</strong>
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+# Purpose and Agenda
+
+This week, we answer the following question: What's this class all about?
+
+## What we'll do in this presentation
+
+- Recap: survey, introductions
+- Readings highlight
+- Key concept #1: The big picture of the course
+- Key concept #2: Building on intuition, formalizing
+- Walkthrough: creating a viz with ggplot2
+- What's next: weekly assignment and reading
+
+---
+
+# Recap
+
+- [Survey feedback](https://docs.google.com/document/d/1Mi3IvXGzrk7PzZ4Tc1wdHzGL7iB_tKLVE7gfJo20dJg/edit?usp=sharing)
+- Introductions: 
+  - Helpful!
+  - Also hilarious: Mom was a professional basketball player, foster dog fail, bear attack, winner of a Trader Joe's pie eating contest
+  - And interesting: Foraging, hiking, playing basketball, reading, teaching music
+  - *And* incisive: "In undergrad and grade school, I was terrified of STEM courses despite loving the material covered. **Now, I don’t beat myself-up about not immediately understanding a topic or having bugs in my programs**. Instead, I let myself enjoy the learning curve"
+
+---
+
+# Introductions
+
+- Associate Professor of STEM Education at UTK
+- Completed Ph.D. at Michigan State University
+- PI/Co-PI of several grants (NSF, IES)
+- Dad and Husband
+- **My style**: Authentic, wanting you to push yourself and responding accordingly, open to your feedback; treating this like a research group and treating you as colleagues
+- Your names and area (in chat)
+
+---
+
+# A few examples
+
+- [Column chart](https://journals.sagepub.com/doi/full/10.1177/2042753016672351)
+- [Time series](https://journals.sagepub.com/doi/full/10.1177/23328584211024261)
+- [Map](https://littlekidsbigadventures.com/abrams-creek.html)
+
+---
+
+# Reading highlights
+
+**What are some characteristics of bad data visualizations, drawing on the ideas elaborated in Healy's chapter?**
+
+*Common Issues*: You identified several common issues in bad data visualizations, including poor aesthetic choices (clutter, inappropriate color schemes, excessive design elements), misleading or deceptive representations (misuse of scales, selective data presentation, inappropriate graph types), and perceptual problems (adding unnecessary dimensions, poor readability).
+
+*Specific Examples*: Some responses pointed to specific bad practices, such as using 3D components unnecessarily, overcrowding visuals with too much information, and using inappropriate types of graphs for the given data.
+
+*Conceptual/Theoretical Insights*: A few responses referenced theoretical frameworks or specific literature, like Healy's chapter, discussing bad visualizations in terms of bad taste, bad data, and bad perception. They also mentioned the importance of considering human perception in design, such as the Hermann grid effect and color distinctions.
+
+---
+
+# Reading Highlights
+
+**Confusion or issues when reading/working Estrellado et al. (2020), Chapter 6.**
+
+*Technical Challenges*: You faced technical issues, such as difficulties in installing packages (esp. dataedu) and updating the R console. Others mentioned confusion about specific R functions and operations, like the use of the pipe operator and dealing with function conflicts between packages.
+
+*Learning Points*: Several responses shared new learning points from the chapter, such as discovering new functions (backtick for handling spaces in names, clean_names() function), appreciating the inclusion of practical examples, and valuing the introduction to new concepts (like the "function" ability in RStudio).
+
+*Ease of Understanding*: A number of responses found the chapter easy to understand and follow, appreciating the clear instructions and the helpfulness of the content in reinforcing your understanding of data science fundamentals.
+
+*Application of Concepts*: Some responses showed applying the concepts learned, experimenting with examples from the chapter, and expressing interest in exploring certain packages and functions further.
+
+---
+
+# Key concept #1
+
+**The big picture of the course**
+
+- Big picture, 16 weeks
+  - Weekly assignment
+  - Weekly reading
+  - Two semi-structured mini projects
+  - One self-directed project
+- Weekly class - 90-120 minutes
+  - Recap of last week, with discussion of key challenges and successes
+  - Discussion or discussion highlight (when discussion is done in advance)
+  - Key concept(s)
+  - Code-along
+  - What's next
+  - Then Q&amp;A
+
+Let's look at [the syllabus](https://docs.google.com/document/d/1HjOQ9Pgkg4JSQhgUX8NGjX6hJIHyOE9Q/edit#heading=h.y5e0ybp1dm8j) together; comments welcomed (in the, aloud, or in chat)
+
+---
+
+# Key concept #2
+
+**Building on and formalizing intuition**
+
+There are four major objectives for this course - with the first building on your intiutions and early thoughts:
+
+- **Understanding the core theory** behind effective data visualization
+- Developing confidence in R coding fundamentals
+- Being capable with using R’s visualization-specific functions, especially ggplot2 and its extensions
+- Becoming confident in the applications of the skills you learn to your own work
+
+---
+
+background-image: url(https://pbs.twimg.com/media/E4gQM7JXoAkzwjN?format=png&amp;name=900x900)
+class: bottom, center
+
+# What's wrong with this viz?
+
+https://twitter.com/accidental__art
+
+---
+
+# What's wrong with this viz? (1/5)
+
+Look at the image and share what you think is wrong (or right) with the visualization
+
+
+![](https://moorparkreporter.com/wp-content/uploads/2020/03/VC-Combined.png)
+
+&lt;!-- 
+Suggestions for discussion: 
+
+COLORS: All are a form of blue for no apparent reason, difficult contrast between colors, same category has different colors
+
+SHAPE/SIZE: difficult to tell which slices are larger in left plot 
+kil
+VALUES: raw values instead of percentages shown
+
+Tip: these would be better as bar charts or faceted line charts. 
+--&gt;
+---
+
+# What's wrong with this viz? (2/5)
+
+
+&lt;img src="https://i.redd.it/232ga4fs92t41.jpg" height="500px"&gt;
+
+&lt;!-- 
+Suggestions for discussion:
+
+The major issue is the axes labels
+
+VALUES: What do these values mean? They seem like percentages. Percentages of what? We need a y-axis label
+
+FLAGS: Does everyone know all of these countries? Flags are clever, but could be difficult for many readers.
+
+--&gt;
+---
+# What's wrong with this viz? (3/5)
+
+
+![](https://preview.redd.it/02a6ghe2yyy91.png?width=960&amp;crop=smart&amp;auto=webp&amp;s=03e1fd7326697344897eed03356ee8d847fc2ec2)
+
+&lt;!-- 
+Suggestions for discussion:
+
+Yes looks bigger than No because of check mark.
+
+Use of two negatives makes this confusing.
+
+Tip: use color rather than an additional image to highlight winner or other meaningful data
+
+--&gt;
+---
+# What's wrong with this viz? (4/5)
+
+
+![](https://www.datapine.com/blog/wp-content/uploads/2014/06/Truncated-Y-Axis-Data-Visualizations-Designed-To-Mislead.jpg)
+
+&lt;!-- 
+Suggestions for discussion:
+
+Lack of zero axis makes it look like there is a major difference but the difference would mostly disappear if there was a zero axis start. 
+
+--&gt;
+
+---
+
+**What's wrong with this viz? (5/5)**
+
+![](https://www.jotform.com/blog/wp-content/uploads/2021/02/image-47.png)
+
+---
+
+# Code-along
+
+.panelset[
+
+.panel[.panel-name[ggplot()]
+
+- we use `ggplot()` to start our plotting of the built-in `penguins` dataset from the palmerpenguins package
+
+
+```r
+library(tidyverse) # let's load the tidyverse, loading ggplot2 &amp; other packages
+library(palmerpenguins) # make sure to install with install.packages() first
+
+ggplot(penguins)
+```
+
+or 
+
+
+```r
+penguins %&gt;% 
+    ggplot()
+```
+
+*This won't do... much (yet!)*
+
+]
+
+.panel[.panel-name[aes()]
+
+- add on to our initial code by specifying the _aesthetic mapping_ with `aes()`
+- specifically, let's tell R what the *x* variable is - let's pick _any_ numeric variable from the data set
+
+
+```r
+glimpse(penguins) # to see which variables are numeric
+
+ggplot(penguins, aes(x = body_mass_g) # can change to another!
+```
+
+**Still not doing much!**
+
+]
+
+.panel[.panel-name[geom_*]
+
+- Last, specify the geometric object you want to use to represent the variable you mapped to an aesthetic
+- Let's try a histogram!
+- We always add *layers* onto ggplot2 plots with the `+` operator
+
+
+```r
+ggplot(penguins, aes(x = body_mass_g) +
+           geom_histogram()
+```
+
+*Voilà!*
+
+]
+
+.panel[.panel-name[geom_*]
+
+- Let's expand on what we've done by examining _two_ variables, one we "map" to *x*, another to *y*
+- We'll see how the bill length and depth of penguins relate, using a different geom to do so with a scatterplot
+
+
+```r
+ggplot(penguins, aes(x = bill_length_mm, 
+                     y = bill_depth_mm) +
+           geom_point()
+```
+
+*Voilà (take two)!*
+
+]
+
+.panel[.panel-name[a 3rd variable]
+
+- Part of the joy of ggplot2 is the flexibility you have in how you can modify a plot
+- What if we want to visualize a third variable? 
+    - We have several aesthetic features we can "map" this third variable to, including the size, shape, and color of points
+
+
+```r
+ggplot(penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           color = species) +
+           geom_point()
+```
+
+*Voilà (take three)!*
+
+]
+
+.panel[.panel-name[More additions]
+
+- The sky is the limit! 
+- We can also add other geoms to our plot, like one representing the _slope_ of the relation between *x* and *y*
+- Furthermore, we can easily _theme_ out plot
+
+
+```r
+ggplot(penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           color = species)) +
+    geom_point() +
+    geom_smooth(method = "lm") +
+    theme_bw()
+```
+
+]
+
+]
+
+---
+
+# What's next?
+
+.panelset[
+
+
+.panel[.panel-name[Weekly Assignment]
+
+- We'll be doing more with ggplot2 this week
+  - In fact, we'll be doing more all semester
+  - I'll let you know when it's really important to understand the specifics of the ggplot2 code you're running; it's not yet!
+- See the assignment in Canvas
+- Cool output, straightforward in terms of the coding
+  - The intent is to become familiarized with R Markdown and the assignment process
+  - . . . and see some cool output illustrating what you can do with R &amp; ggplot2!
+
+]
+
+.panel[.panel-name[Data]
+
+- We'll use a dataset you'll need to download and move to a folder in RStudio; let's do that together now
+- Specifically, we'll be using [gapminder](https://www.gapminder.org/) data at the country-level
+
+]
+
+.panel[.panel-name[Reading(s)]
+
+&gt; Healy (2018), [chapter 2](https://socviz.co/gettingstarted.html#gettingstarted)
+
+Linked in Canvas, as well as here.
+
+]
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

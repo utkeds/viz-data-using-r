@@ -1,0 +1,108 @@
+
+
+<div id="install-packages" class="section level2">
+<h2>Install Packages</h2>
+<p>Packages perform different jobs in R. Packages allow you to use specific functions in R. They allow R to do new things.</p>
+<p>Before we can use a package, we need to install it. We can install it using <code>install.packages("package_name")</code>. We only need to run this the first time we install a package.</p>
+<p>For our first visualization, we are going to install:</p>
+<ul>
+<li><code>tidyverse</code> - used for loading and wrangling data</li>
+<li><code>here</code> - used to easily access files within a project</li>
+</ul>
+</div>
+<div id="load-packages" class="section level2">
+<h2>Load Packages</h2>
+<p>Here, please load the tidyverse and here packages (using the library function).</p>
+<pre class="r"><code>library(tidyverse)
+library(here)</code></pre>
+</div>
+<div id="load-data" class="section level2">
+<h2>Load Data</h2>
+</div>
+<div id="data-downloaded-from-httpsdrive.google.comucexportdownloadid10iluo9yo35valjpmhzlvvlvjx1cd1yqf-or-on-canvas." class="section level1">
+<h1>Data downloaded from <a href="https://drive.google.com/uc?export=download&amp;id=10iLUo9Yo35valjPmhzlvVlvjx1cd1YQF" class="uri">https://drive.google.com/uc?export=download&amp;id=10iLUo9Yo35valjPmhzlvVlvjx1cd1YQF</a> (or on Canvas).</h1>
+<p>Then, store the data <strong>in the same folder as this file</strong>, preferably in a folder for this week (i.e., week-1, see below).</p>
+<p>Please replace XXX with the name gapminder_data, as we will be using that in the next code chunk</p>
+<pre class="r"><code>gapminder_data &lt;- read_csv(here(&quot;week-1&quot;, &quot;gapminder.csv&quot;))</code></pre>
+<div id="prepare-data" class="section level2">
+<h2>Prepare Data</h2>
+<pre class="r"><code>gapminder_cleaned &lt;- gapminder_data %&gt;% 
+  # select only the year 2007
+  filter(year == &quot;2007&quot;) %&gt;%
+  # change columns
+  mutate(
+    # Place any country in Oceania in Asia
+    continent = ifelse(continent == &quot;Oceania&quot;, &quot;Asia&quot;, as.character(continent)),
+    # Create the factor order for the continents
+    continent = factor(continent, levels=c(&quot;Asia&quot;, &quot;Americas&quot;, &quot;Europe&quot;, &quot;Africa&quot;))
+  ) </code></pre>
+</div>
+<div id="build-a-visualization" class="section level2">
+<h2>Build a Visualization</h2>
+<p><em>Note:</em> Visualization based on example from <a href="https://ggplot2tutor.com/tutorials/gapminder" class="uri">https://ggplot2tutor.com/tutorials/gapminder</a></p>
+<pre class="r"><code>ggplot(data = gapminder_cleaned, 
+       aes(x = gdpPercap, 
+           y = lifeExp)) +
+      annotate(&quot;text&quot;, x = 4000, y = 45, hjust = 0.5,
+           size = 85, color = &quot;grey80&quot;,
+           label = &quot;2007&quot;, alpha = .3)+
+  geom_point(aes(size = pop, fill = continent),
+             shape = 21,
+             color = &quot;black&quot;)+
+  guides(size = &quot;none&quot;,
+         fill = guide_legend(override.aes = list(size = 5)))+
+  scale_fill_manual(values = c(&quot;Asia&quot; = &quot;#c15dcb&quot;,
+                                &quot;Americas&quot; = &quot;#057575&quot;,
+                                &quot;Africa&quot; = &quot;#ff7500&quot; ,
+                                &quot;Europe&quot; = &quot;#1E90FF&quot;),
+                     name=NULL) +
+  scale_x_log10(breaks = c(0500, 1000, 2000, 4000,
+                           8000, 16000, 32000, 64000))+
+  scale_y_continuous(breaks = seq(0, 120, by = 10))+
+  scale_size_continuous(range = c(1, 30))+
+  annotate(&quot;curve&quot;, x = 2500, xend = 2014, y = 39, yend = 46.9, 
+           color = &quot;#606F7B&quot;, linetype = 2, size = .2,  curvature = 0.5)+
+  annotate(&quot;text&quot;, x = 2300, y = 30, hjust = 0,
+           size = 3.5,
+           label = paste0(&quot;Nigeria had a life expectancy of\n&quot;,
+                          &quot;46.9 years and an annual income of&quot;,
+                          &quot;\n$2014 per year per person in 2007&quot;))+
+    labs(
+    x = &quot;Income&quot;,
+    y = &quot;Life expectancy&quot;,
+    title = &quot;Life Expectancy and Income in 2007&quot;,
+    subtitle = paste0(&quot;In the following visualization you can see the relationship between income and life expectancy among all countries in 2007.&quot;,
+                      &quot;\nAfrican countries are still lagging behind in terms of general life expectancy. The European and American countries&quot;,
+                      &quot;\nare the healthiest and richest countries in the world.&quot;),
+    caption = &quot;per person (GDP/capita, PPP$ inflation-adjusted)&quot;
+  ) +
+  theme(
+    panel.background =element_rect(fill=&quot;white&quot;, color=&quot;white&quot;), 
+    plot.margin = unit(rep(1, 4), &quot;cm&quot;),
+    plot.title = element_text(size=14, face=&quot;bold&quot;),
+    plot.caption = element_text(size=8, color=&quot;grey50&quot;),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(size = 0.2, 
+                                    color = &quot;#e5e5e5&quot;),
+    axis.title.y = element_text(margin = margin(r = 15), 
+                                size = 11),
+    axis.title.x = element_text(margin = margin(t = 15), 
+                                size = 11),
+    axis.line = element_line(color = &quot;#999999&quot;, 
+                             size = 0.2),
+    legend.position = &quot;top&quot;
+  ) +
+  coord_cartesian(ylim = c(0, 100))</code></pre>
+<p><img src="/week-1-intro/Week 1 Files/My%20First%20Data%20Visualization_files/figure-html/unnamed-chunk-5-1.png" width="960" /></p>
+</div>
+<div id="save-the-plot" class="section level2">
+<h2>Save the plot</h2>
+<pre class="r"><code>ggsave(plot=last_plot(), filename = here(&quot;week-1&quot;, &quot;gapminder.jpg&quot;), height = 6, width=10)</code></pre>
+<p>Make sure you can view it - try double-clicking it (or copying the file). It’s yours to keep!</p>
+</div>
+<div id="gapminder-viz-the-making-of" class="section level2">
+<h2>Gapminder Viz: The Making Of</h2>
+<p>The following was made with the <a href="https://github.com/thebioengineer/camcorder"><code>camcorder</code></a> package and shows each ggplot function (the code before the <code>+</code> signs) run one after the other.</p>
+<p><img src="gapminder_making_of.gif" /><!-- --></p>
+</div>
+</div>
