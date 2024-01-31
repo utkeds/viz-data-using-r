@@ -239,15 +239,112 @@ Lack of zero axis makes it look like there is a major difference but the differe
 
 # Code-along
 
-1. Data downloaded from https://drive.google.com/uc?export=download&id=10iLUo9Yo35valjPmhzlvVlvjx1cd1YQF (or on Canvas). 
+.panelset[
 
-2. Download My First Data Visualization.Rmd
+.panel[.panel-name[Downl]
 
-3. Save both in the same folder named week-2 within your class RStudio Project
+- we use `ggplot()` to start our plotting of the built-in `penguins` dataset from the palmerpenguins package
 
-4. Read in the file
+```{r, eval = FALSE, echo = TRUE}
+library(tidyverse) # let's load the tidyverse, loading ggplot2 & other packages
+library(palmerpenguins) # make sure to install with install.packages() first
 
-5. Run one or more lines of code
+ggplot(penguins)
+```
+
+or 
+
+```{r, eval = FALSE, echo = TRUE}
+penguins %>% 
+    ggplot()
+```
+
+*This won't do... much (yet!)*
+
+]
+
+.panel[.panel-name[aes()]
+
+- add on to our initial code by specifying the _aesthetic mapping_ with `aes()`
+- specifically, let's tell R what the *x* variable is - let's pick _any_ numeric variable from the data set
+
+```{r, eval = FALSE, echo = TRUE}
+glimpse(penguins) # to see which variables are numeric
+
+ggplot(penguins, aes(x = body_mass_g) # can change to another!
+```
+
+**Still not doing much!**
+
+]
+
+.panel[.panel-name[geom_*]
+
+- Last, specify the geometric object you want to use to represent the variable you mapped to an aesthetic
+- Let's try a histogram!
+- We always add *layers* onto ggplot2 plots with the `+` operator
+
+```{r, eval = FALSE, echo = TRUE}
+ggplot(penguins, aes(x = body_mass_g) +
+           geom_histogram()
+```
+
+*Voilà!*
+
+]
+
+.panel[.panel-name[geom_*]
+
+- Let's expand on what we've done by examining _two_ variables, one we "map" to *x*, another to *y*
+- We'll see how the bill length and depth of penguins relate, using a different geom to do so with a scatterplot
+
+```{r, eval = FALSE, echo = TRUE}
+ggplot(penguins, aes(x = bill_length_mm, 
+                     y = bill_depth_mm) +
+           geom_point()
+```
+
+*Voilà (take two)!*
+
+]
+
+.panel[.panel-name[a 3rd variable]
+
+- Part of the joy of ggplot2 is the flexibility you have in how you can modify a plot
+- What if we want to visualize a third variable? 
+    - We have several aesthetic features we can "map" this third variable to, including the size, shape, and color of points
+
+```{r, eval = FALSE, echo = TRUE}
+ggplot(penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           color = species) +
+           geom_point()
+```
+
+*Voilà (take three)!*
+
+]
+
+.panel[.panel-name[More additions]
+
+- The sky is the limit! 
+- We can also add other geoms to our plot, like one representing the _slope_ of the relation between *x* and *y*
+- Furthermore, we can easily _theme_ out plot
+
+```{r, eval = FALSE, echo = TRUE}
+ggplot(penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           color = species)) +
+    geom_point() +
+    geom_smooth(method = "lm") +
+    theme_bw()
+```
+
+]
+
+]
 
 ---
 
