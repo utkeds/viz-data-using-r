@@ -1,7 +1,7 @@
 ---
-title: "Assignment 2"
+title: "Exploring gapminder with dplyr: Assignment 2"
 author: "your name"
-date: '2022-02-06'
+date: '2023-02-07'
 output: html_document
 ---
 
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-*Next, read in the tidykids CSV data and assign it a name*
+*Next, read in the gapminder CSV data and assign it a name*
 
 ```{r}
 
@@ -31,19 +31,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 2: Working with variables (columns)
 
-*Use select to choose the state, variable, year, and inf_adj_perchild variables, and then assign a name to the data that results*
+*Use select to choose three variables of your choosing*
 
 ```{r}
 
 ```
 
-*Rename the inf_adj_perchild variable to be a bit easier to understand (what the variable represents), again assigning a name to the data that results*
-
-```{r}
-
-```
-
-*Arrange the newly-renamed variable in descending order to see for which state, variable, and year spending was greatest*.
+*Using the original data (not the one with three variables of your choosing), rename the pop variable to be a bit easier to understand (what the variable represents), assigning a name to the data that results*
 
 ```{r}
 
@@ -51,53 +45,66 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 3: Working with rows (observations) and using logical operators
 
-*Filter the data to only include three states of your choosing, assigning a name to the data that results*
+*Filter the data to only include three countries of your choosing, assigning a name to the data that results*
 
 ```{r}
 
 ```
 
-# R Fundamentals - A Review
-
-
-## `tidykids` scavenger hunt
-
-How many rows are there in the tidykids data set?
+*Filter the data to only values above or below a year of your choosing, assigning a name to the data that results. Add a sentence interpreting what you found.*
 
 ```{r}
 
 ```
 
-How many different types are there in the "variable" column?
+## 4: Scavenger hunt
+
+*Which country-year combination has the life-expectancy? Arrange the newly-renamed variable in descending order to see for which country and year its value is greatest. Add a sentence interpreting what you are noticing from your output below the code chunk*.
 
 ```{r}
 
 ```
 
-
-What is the average spending on Pell Grants for Florida and California?
-
-```{r}
-
-```
-
-
-What was the adjusted amount spent on Child Tax Credit spending in Hawaii for the year 2010?
-
-```{r}
-
-```
- 
-## Bonus: "Compose" a function
-
-*You may have found yourself repeatedly assigning the name to new output. A benefit of using the pipe is that you can "compose" functions together in a series, writing more efficient and easy to read code in the process. Can you compose together all of the data wrangling steps needed to wrangle the data you plotted above into a series?
+*For a year of your choosing, which continent has the most countries?* 
 
 ```{r}
 
 ```
 
-## 4: Knit and share your report
+*What was the GDP per capita of the U.S. in 1980 and 1990?*
 
-When complete, please knit the result to an HTML and submit that for the Week 3 Walkthrough in Canvas. 
+```{r}
+
+```
+
+## 5: *fin*
+
+*Freestyle: Use any of the functions you have used to investigate the data. Add a few sentences on what you did and what you found. You can think bigger picture here about the data and what you can (or cannot!) learn from it*
+
+```{r}
+
+```
+
+*Optionally, create a ggplot2 plot with the data.*
+
+```{r}
+
+```
+
+## 6: Reflect, knit, and share your report
+
+How did this assignment go? What went well --- or what was tricky? Briefly (a sentence or two is fine!) reflect below.
+
+**Reflections:**
+
+When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 3 in Canvas. Please note, you are only submitting the HTML output for this assignment.  
 
 Nice job!
+
+**Rubric**
+
+Name is added: 2 points
+File knits to an HTML: 8 points
+Code chunks have appropriate output: 5 points
+Interpretations and reflection are added: 5 points
+Total: 30 points

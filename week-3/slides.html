@@ -60,12 +60,13 @@ This week, we answer the following question: What's this class all about?
 
 # Recap
 
-- Last week, we:
+Last week, we:
+
   - Reviewed the [syllabus](https://docs.google.com/document/d/1FItWUb46iL5cxvFW6TIf02BDtt7Q0I_OE-aS_HhOSIw/edit)
   - Discussed two key concepts: #1) the repetitive structure of the coruse and 2) how the theoretically-focused aspect of this course will build on your intuitions
   - Did a code-along that led into the assignment
   - Read a chapter by Healy
-  
+
 ---
 
 # A bit more introductions
@@ -90,936 +91,25 @@ https://utk.instructure.com/courses/196893/external_tools/1509
 
 # Reading discussion
 
-1. The reading emphasizes the idea that "everything is an object" in R. Discuss how this concept influences the way data scientists approach problem-solving and coding in R.
-2. How does the use of packages, like tidyverse and ggplot2, enhance the capabilities of R for data visualization? Discuss the importance of community-contributed packages in the R ecosystem.
+Link to [reading](https://socviz.co/gettingstarted.html#gettingstarted)
 
----
----
+- What is one thing you took away from this reading about how and why R Markdown and R work the way they do?
+- What was confusing about the reading?
 
-class: center, middle, inverse
-
-# R Fundamentals
-
-## A Review
-
-&lt;!-- This section is socratic - ask students what they think a function does, demonstrate it, expand on it --&gt;
-
----
-
-# Data Wrangling Fundamentals
-
-&lt;!-- 1 --&gt;
-
-Let's review some super common functions. Given the table on the left, what do the functions on the right do?
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `select(name, height)`
-]
-
----
-
-# Data Wrangling Fundamentals
-
-&lt;!-- 2 --&gt;
-
-Let's review some super common functions. Given the table on the left, what do the functions on the right do?
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `select(name, height)`
-Use this to **select columns**
-
-
-```
-## # A tibble: 5 × 2
-##   name           height
-##   &lt;chr&gt;           &lt;int&gt;
-## 1 Luke Skywalker    172
-## 2 C-3PO             167
-## 3 R2-D2              96
-## 4 Darth Vader       202
-## 5 Leia Organa       150
-```
-
-
-]
-
----
-
-# Data Wrangling Fundamentals 
-
-&lt;!-- e --&gt;
-
-Let's review some super common functions. Given the table on the left, what do the functions on the right do?
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `select(name, height)`
-
-**Note** These are the same!
-
-
-```r
-starwars %&gt;%
-  select(name, height)
-
-select(starwars, name, height)
-```
-
-
-]
----
-class: center, middle
-
-# R Fundamentals
-
-What the heck is `%&gt;%` ?
-
----
-
-# R Fundamentals - What the heck is `%&gt;%` ?
-
-The pipe operator `%&gt;%` connects functions together into a *chain* of step-by-step commands. It can be translated as **and then**.
-
-Below, R is written on the left and an English translation is written on the right:
-
-.pull-left[
-
-### R
-
-
-```r
-starwars %&gt;%
-  select(name, height) %&gt;%
-  glimpse()
-```
-
-```
-## Rows: 5
-## Columns: 2
-## $ name   &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vad…
-## $ height &lt;int&gt; 172, 167, 96, 202, 150
-```
-
-]
-
---
-
-.pull-right[
-
-### English
-
-1. Take the starwars data set *and then*  
-2. `select` the name and height columns *and then*  
-3. `view` the result in R Studio
-]
+https://jamboard.google.com/d/169YPYiQ7z39Pm1XFxxaEvu-cBJs5FkXjNTbjjyKHgec/edit?usp=sharing
 
 
 ---
-# Data Wrangling Fundamentals
 
-.pull-left[
-**An Example Data Frame - starwars**
+# Key concept #1: Core dplyr "verbs"
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
+- `rename()`
+- `select()`
+- `filter()`
+- `count()`
+- `glimpse()`
 
-.pull-right[
-### `filter(mass &gt;= 50)`
-
-]
-
----
-
-# Data Wrangling Fundamentals
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `filter(mass &gt;= 50)`
-Use this to **filter rows**
-
-
-```
-## # A tibble: 3 × 5
-##   name           height  mass hair_color skin_color
-##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
-## 1 Luke Skywalker    172    77 blond      fair      
-## 2 C-3PO             167    75 &lt;NA&gt;       gold      
-## 3 Darth Vader       202   136 none       white
-```
-
-
-]
-
----
-# Data Wrangling Fundamentals
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `str(starwars)`
-
-
-]
-
-
----
-# Data Wrangling Fundamentals
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `str(starwars)`
-Use this to see the **structure** of an object
-
-```
-## tibble [5 × 5] (S3: tbl_df/tbl/data.frame)
-##  $ name      : chr [1:5] "Luke Skywalker" "C-3PO" "R2-D2" "Darth Vader" ...
-##  $ height    : int [1:5] 172 167 96 202 150
-##  $ mass      : num [1:5] 77 75 32 136 49
-##  $ hair_color: chr [1:5] "blond" NA NA "none" ...
-##  $ skin_color: chr [1:5] "fair" "gold" "white, blue" "white" ...
-```
-
-]
-
----
-# Data Wrangling Fundamentals
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `head(starwars)`
-
-
-]
----
-# Data Wrangling Fundamentals
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `head(starwars)`
-Use this to **see the first 10 (or fewer/more) rows**
-
-
-```
-## # A tibble: 1 × 5
-##   name           height  mass hair_color skin_color
-##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
-## 1 Luke Skywalker    172    77 blond      fair
-```
-
-```
-## # A tibble: 5 × 5
-##   name           height  mass hair_color skin_color 
-##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
-## 1 Luke Skywalker    172    77 blond      fair       
-## 2 C-3PO             167    75 &lt;NA&gt;       gold       
-## 3 R2-D2              96    32 &lt;NA&gt;       white, blue
-## 4 Darth Vader       202   136 none       white      
-## 5 Leia Organa       150    49 brown      light
-```
-
-
-]
----
-# Data Wrangling Fundamentals
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `rename("weight" = mass)`
-
-
-
-]
----
-# Data Wrangling Fundamentals
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `rename("weight" = mass)`
-Use this to **rename** a column
-
-
-
-```
-## # A tibble: 5 × 5
-##   name           height weight hair_color skin_color 
-##   &lt;chr&gt;           &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
-## 1 Luke Skywalker    172     77 blond      fair       
-## 2 C-3PO             167     75 &lt;NA&gt;       gold       
-## 3 R2-D2              96     32 &lt;NA&gt;       white, blue
-## 4 Darth Vader       202    136 none       white      
-## 5 Leia Organa       150     49 brown      light
-```
-]
-
----
-# Data Wrangling Fundamentals
-
-.pull-left[
-**An Example Data Frame - starwars**
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; height &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mass &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; hair_color &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; skin_color &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Luke Skywalker &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 172 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; blond &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fair &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; C-3PO &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; gold &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R2-D2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white, blue &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Darth Vader &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 136 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; none &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; white &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Leia Organa &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 150 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; brown &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; light &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
-.pull-right[
-### `mutate` Challenge
-1. How many columns do we expect?
-2. What does each line do?
-3. Can we simplify it?
-
-
-
-]
----
-
-# Data Wrangling Fundamentals
-
-### `mutate` Challenge
-
-
-```
-## # A tibble: 5 × 7
-##   name           height  mass hair_color skin_color    one   two
-##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
-## 1 Luke Skywalker    172    77 blond      fair        29584 13244
-## 2 C-3PO             167    75 unknown    gold        27889 12525
-## 3 R2-D2              96    32 unknown    white, blue  9216  3072
-## 4 Darth Vader       202   136 none       white       40804 27472
-## 5 Leia Organa       150    49 brown      light       22500  7350
-```
-
----
-
-# Data Wrangling Fundamentals
-
-
-### `mutate` Challenge
-
-
-```
-## # A tibble: 5 × 7
-##   name           height  mass hair_color skin_color    one   two
-##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
-## 1 Luke Skywalker    172    77 blond      fair        29584 13244
-## 2 C-3PO             167    75 unknown    gold        27889 12525
-## 3 R2-D2              96    32 unknown    white, blue  9216  3072
-## 4 Darth Vader       202   136 none       white       40804 27472
-## 5 Leia Organa       150    49 brown      light       22500  7350
-```
+**We'll explore these in much more detail in the code-along**
 
 ---
 
@@ -1027,33 +117,61 @@ Use this to **rename** a column
 
 These are super handy:
 
-**stringr**: an R package for working with character strings
-**forcats**: an R package for working with factors
+**stringr**: an R package for working with character strings, e.g. `str_detect()`
+**forcats**: an R package for working with factors, e.g. `fct_relevel()`
 
 ---
 
-# stringr
+# stringr with dplyr
 
 
+```r
+library(tidyverse)
+
+# Sample data
+people &lt;- tibble(
+  name = c("John Doe", "Jane Doe", "Alice Johnson", "Bob Smith"),
+  email = c("john.doe@example.com", "jane.doe@example.net", "alice.j@example.org", "bob.smith@example.com")
+)
+
+people %&gt;%
+  mutate(
+    is_alice = str_detect(name, "Alice"), # detecting a particular string
+    domain = str_extract(email, "@.*$"), # Extracting email domains
+  )
+```
 
 ---
 
 # forcats
 
 
+```r
+# Sample data
+survey &lt;- tibble(
+  respondent = c(1, 2, 3, 4, 5),
+  satisfaction = c("Satisfied", "Neutral", "Dissatisfied", "Very Satisfied", "Neutral"),
+                        levels = c("Very Dissatisfied", "Dissatisfied", "Neutral", "Satisfied", "Very Satisfied")
+)
+
+# Using forcats functions within dplyr to manipulate factors
+survey %&gt;%
+  mutate(
+    satisfactor = as.factor(satisfaction),
+    satisfaction_reordered = fct_relevel(satisfaction, "Very Satisfied", "Satisfied"), # Reordering factor levels
+    satisfaction_collapsed = fct_collapse(satisfaction, Other = c("Neutral", "Dissatisfied", "Very Dissatisfied")) # Collapsing certain levels into 'Other'
+  ) %&gt;%
+  count(satisfaction_collapsed) # Counting the occurrence of each level
+```
 
 ---
+
 # R Data Wrangling Code-along
 
-Check out the Week 3 Code-along
-
-.panelset[
-
-
-.panel[.panel-name[Weekly Assignment]
-
-]
-]
+- Download the `Week 3 Code-along.Rmd` file
+- Save this to a `week-3` folder in your RStudio project
+- Copy over the **gapfinder.csv** data into the `week-3` folder (*n.b.*, you can have a single copy of your data for your entire project; this is just to keep things easy for now)
+- Open the `Week 3 Code-along.Rmd` file and ... code-along!
 
 ---
 
@@ -1064,29 +182,25 @@ Check out the Week 3 Code-along
 
 .panel[.panel-name[Weekly Assignment]
 
-- We'll be doing more with ggplot2 this week
-  - In fact, we'll be doing more all semester
-  - I'll let you know when it's really important to understand the specifics of the 
+- This week, we'll build on what we've done in the code-along
 ]
 
 .panel[.panel-name[Data]
 
-- We'll use a dataset you'll need to download and move to a folder in RStudio; let's do that together now
-- Specifically, we'll be using [gapminder](https://www.gapminder.org/) data at the country-level
+- We'll again be using [gapminder](https://www.gapminder.org/) data
 
 ]
 
 .panel[.panel-name[Reading(s)]
 
-&gt; Healy (2018), [chapter 2](https://socviz.co/gettingstarted.html#gettingstarted)
+&gt; Knaflic (2015), introduction and c1
 
-Linked in Canvas, as well as here.
 
 ]
 
 .panel[.panel-name[Office hours]
 
-- Friday at 2:00 pm with Josh
+- Friday at 1:00 pm with Josh, via the class Zoom 
 - Also via calendly from Josh: https://calendly.com/joshuamrosenberg/15-minute-meeting
 
 ]
