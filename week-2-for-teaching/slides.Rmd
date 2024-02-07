@@ -183,6 +183,7 @@ VALUES: raw values instead of percentages shown
 
 Tip: these would be better as bar charts or faceted line charts. 
 -->
+
 ---
 
 # What's wrong with this viz? (2/5)

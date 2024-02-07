@@ -1,0 +1,26 @@
+---
+title: "Example in class"
+output: html_document
+date: "2024-01-31"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+R markdown documents consists of text, like this!
+
+And code, like the following:
+
+```{r}
+library(tidyverse)
+
+starwars
+
+starwars %>% 
+  select(name, height, mass) %>% 
+  filter(mass >= 100) %>% 
+  arrange(desc(mass))
+```
+
+We can interpret the code. Above, we wrote some code to select just the columns we needed and to filter it based on a condition to explore the data. We saw that Jabba weighs way more than other characters.

@@ -150,10 +150,10 @@ knitr::include_graphics("gapminder_making_of.gif")
 
 |                     | Points Possible | Points Earned |
 |---------------------|-----------------|---------------|
-| File knits to HTML  | 5               |               |
-| Name is added       | 2               |               |
-| Rmd is submitted.   | 2               |               |
-| jpg is submitted    |               |
+| File knits to HTML  | 15              |               |
+| Name is added       | 5               |               |
+| Rmd is submitted.   | 5               |               |
+| jpg is submitted    | 5               |
 
 
 ## Knit and Submit
