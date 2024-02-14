@@ -295,7 +295,7 @@ ggplot(starwars, aes(x=height, y=name, fill=mass, color=skin_color,
 
 .panel[.panel-name[1]
 
-```{r}
+```{r, echo = TRUE}
 library(tidyverse)
 tk <- read_csv("tidykids.csv")
 ```
