@@ -1,10 +1,12 @@
 ---
 title: "Week 3 - Walkthrough"
-author: "Your name"
+author: "Josh"
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 ## 1: Core R functions
@@ -12,32 +14,37 @@ knitr::opts_chunk$set(echo = TRUE)
 *1.1: Load the tidyverse*
 
 ```{r}
-library()
+# install.packages("tidyverse) - make sure to comment out install.packages
+library(tidyverse)
 ```
 
 *1.2: Read a CSV file with the data you are analyzing into your R session*
 
 ```{r}
-read_csv("")
+read_csv("gapminder.csv")
 ```
 
 *1.3: Assign a name to the data you read into your R session using the assignment operator*
 
 ```{r}
-<- read_csv("")
+gap <- read_csv("gapminder.csv")
+
+gap <- gap %>% 
+  select(-...1)
 ```
 
 *1.4: glimpse() the data you assigned a name to*
 
 ```{r}
-glimpse()
+glimpse(gap)
 ```
 
 *1.5: Replace d with the name of the data you loaded to glimpse the data in an alternate way*
 
 ```{r}
-d %>% 
+gap %>% 
   glimpse()
+
 ```
 
 ## 2: Working with variables (columns)
@@ -45,35 +52,40 @@ d %>%
 *2.1: rename() one variable in your data, with the aim of making the variable easier to type or understand*
 
 ```{r}
-d %>% 
-  rename("" = )
+# specify what we rename the variable to within ""
+
+gap %>% 
+  rename("gdp" = gdpPercap,
+         "life_exp" = lifeExp)
 ```
 
 *2.2: Using the code above, assign a name to the data with the renamed variable; glimpse the newly named data to check that it worked*
 
 ```{r}
-
+gap <- gap %>% 
+  rename("gdp" = gdpPercap,
+         "life_exp" = lifeExp)
 ```
 
 *2.3: select() three variables in your data and assign a name to the resulting data set that is returned*
 
 ```{r}
-d %>% 
-  select()
+gap_subset <- gap %>% 
+  select(country, year, life_exp)
 ```
 
 *2.4: Using the new data frame you named in step 2.3, arrange() the rows of your data based on the values of a variable of your choosing*
 
 ```{r}
-d %>% 
-  arrange()
+gap %>% 
+  arrange(desc(life_exp))
 ```
 
 *2.5: Again using the data you named in step 2.3, create a new variable, replacing new_var with a name you provide, that sums together two columns*
 
 ```{r}
- %>% 
-  mutate(new_var = )
+gap %>% 
+  mutate(life_exp_plus_gdp = life_exp + gdp)
 ```
 
 ## 3: Working with rows (observations) and using logical operators
@@ -81,22 +93,25 @@ d %>%
 *3.1: filter() the data you read based on the values of a variable of your choosing so that only rows less than or equal to a specified value are returned, replacing d here and throughout with the name of the data you loaded*
 
 ```{r}
-d %>% 
-  filter()
+gap_filtered <- gap %>% 
+  filter(year == 2007)
 ```
 
 *3.2: filter() the data you read so that only a value equivalent to either one of two character strings is returned, replacing d here and throughout with the name of the data you loaded*
 
 ```{r}
-d %>% 
-  filter()
+gap %>% 
+  filter(continent == "Asia" | continent == "Europe")
 ```
 
 *3.3: count() the number of times values for a variable of your choosing occur in your data*
 
 ```{r}
-d %>% 
-  count()
+gap %>% 
+  count(year)
+
+gap <- gap %>% 
+  mutate(year = as.integer(year))
 ```
 
 ## 4: Knit and share your report

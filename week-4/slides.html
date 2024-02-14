@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Week 4 Slides</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Joshua Rosenberg and Isabella Velásquez" />
+    <script src="slides_files/header-attrs-2.25/header-attrs.js"></script>
+    <script src="slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Press Ctrl+C to Copy"})</script>
+    <link href="slides_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+    <link href="slides_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="slides_files/panelset-0.2.6/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Week 4 Slides
+]
+.subtitle[
+## How does ggplot2 work?
+]
+.author[
+### <strong>Joshua Rosenberg and Isabella Velásquez</strong>
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+# Purpose and Agenda
+
+This week, we answer the following question: How does ggplot2 work?
+
+## What we'll do in this presentation
+
+- Example viz
+- Recap
+- Reading discussion highlights
+- Key concept #1 - ggplot2
+- Code-along: tidykids and ggplot2
+- What’s next
+
+---
+
+## What do you notice? What do you wonder?
+
+![](week-4-example.jpeg)
+
+---
+
+# Recap
+
+- We focused last week on data wrangling/dplyr, especially: `select()`, `rename()`, `filter()`, `arrange()`, and a few other core functions (`&lt;-`, `read_csv()`, `count()`)
+- Assignment 3 challenges:
+  - Composing (putting together across multiple lines) functions
+  - Using conditional logic within `filter()`
+  - `count()`
+  - Confusing wording
+- Assignment 3 achievements:
+  - Cool plots!
+  - Success, for the most part
+
+---
+
+# Reading Recap
+
+- The importance of understanding the audience ("who") to tailor the data presentation effectively, considering their interests, context, and how they interpret data.
+- The necessity of selecting the right story or message ("what") from the data to communicate with the audience, ensuring it aligns with their needs and prompts desired actions or understanding.
+- The significance of the delivery method ("how") in conveying the message, utilizing appropriate data visualization techniques and tools to capture the audience's attention and enhance their understanding. 
+
+---
+
+# Key concept #1: `ggplot` and Data Visualization in R 
+
+.pull-left[
+
+- At the highest level, ggplot2 works as follows:
+1. Specify *what* your data is
+2. Specify *which* relationships you want to visualize
+3. Specify *how* you want those relationships to appear
+
+]
+
+.pull-right[
+
+- Here is an example:
+1. I want to use the gapminder data
+2. I want my _x-axis_ to represent the year, and my _y-axis_ to represent a variable of interest (e.g., GDP)
+3. I want to represent each data point with a _point_
+
+That's it!
+
+]
+
+---
+
+## An illustration
+
+
+```r
+library(tidyverse)
+library(gapminder)
+
+ggplot(gapminder, # step 1
+       aes(x = year, y = gdpPercap)) + # step 2
+  geom_point() # step 3
+```
+
+![](slides_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+
+## Wranging and visualizing go together
+
+
+```r
+gapminder %&gt;% # step 1
+  filter(country == "United States") %&gt;% # step 1 (again - we're wrangling the *data*)
+  ggplot(aes(x = year, y = gdpPercap)) + # step 2
+  geom_point() # step 3
+```
+
+---
+.pull-left[
+`ggplot` offers a "grammar of graphics" for building data visualization in R.
+
+Data visualizations are built in **layers**.
+
+![](slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+
+
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Data is always the first layer:
+
+![](slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Data is then **mapped** to various **aes**thetics (x, y, fill, shape, etc.):
+
+![](slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Then, we add **geom**etries, which are the shapes and visual encodings:
+
+![](slides_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can change the **aes**thetics by **fill**iling them with colors.
+
+![](slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can change the **geom**etries, too:
+
+![](slides_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+`fill` is for bars while `color` is for points and lines
+
+![](slides_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can add other layers. Let's go wild and make a *bad plot*:
+
+![](slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+![](gglayers.png)
+]
+
+---
+
+# ggplot2 Code-along
+
+
+.panelset[
+
+
+.panel[.panel-name[Getting setup]
+
+- Download the `tidykids.csv` data in the Week 4 module
+- Create a `.R` file for this code-along, named e.g. `week-4-code-along.R` --- and save this in your RStudio project for the class!
+- Code along!
+- Later, submit for participation credit
+
+]
+
+.panel[.panel-name[1]
+
+
+
+]
+
+.panel[.panel-name[2]
+
+Can we find the `PK12ed` spending in Tennessee?
+
+]
+
+
+.panel[.panel-name[3]
+
+Can we find the `PK12ed` spending in Tennessee, arranged by year, with the output assigned a particular name for later use?
+
+Aside: STEM 691 rules for assignment; use an `&lt;-` if...:
+
+1. You want to use the output of your code in later steps
+1. You are creating a version of the data you want to use in later steps
+]
+
+
+.panel[.panel-name[4]
+
+Plot `PK12ed` spending over time?
+
+]
+
+.panel[.panel-name[5]
+
+Change the axis-labels, title, and subtitle to communicate a point to an audience of state legislators, lobbyists, and citizens interested in K-12 educational funding?
+
+]
+
+]
+
+---
+
+# What's next?
+
+.pull-left[
+
+## Readings
+
+**Healy, Chapter 3**
+**Optional: ggplot2 and the grammar of graphics**
+
+*both linked in Canvas*
+
+]
+.pull-right[
+
+## Assignments/Tasks
+
+**Assignment 4: Creating plots with the tidykids data**
+
+**Doing more: Sharing *interesting* graphs for the beginning of class - discussion** (2 points for sharing, 3 additional points of selected)
+**Practice coding: Additional tutorials - discussion** (5 points for either completing and sharing a brief reflection or pointing out a big or ussue)
+
+]
+
+---
+
+# Check out
+
+- What's one thing you took away from today?
+- What's one thing you want to learn more about?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

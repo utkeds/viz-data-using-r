@@ -1,0 +1,367 @@
+---
+title: "Week 4 Slides"
+subtitle: "How does ggplot2 work?"
+author: "**Joshua Rosenberg and Isabella Velásquez**"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+
+style_duo_accent(
+  primary_color = "#FF8200",
+  secondary_color = "#58595B",
+  link_color = "blue",
+  title_slide_text_color = "#222943",
+  title_slide_background_color = "#ededed",
+  title_slide_background_image = "https://brand.utk.edu/wp-content/uploads/2019/02/University-HorizRightLogo-RGB.png",
+  title_slide_background_position = "bottom",
+  title_slide_background_size = "30%"
+)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r, echo=FALSE}
+# then load all the relevant packages
+pacman::p_load(pacman, knitr, tidyverse, readxl)
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+# these allow any code snippets to be copied to the clipboard so they 
+# can be pasted easily
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+# Purpose and Agenda
+
+This week, we answer the following question: How does ggplot2 work?
+
+## What we'll do in this presentation
+
+- Example viz
+- Recap
+- Reading discussion highlights
+- Key concept #1 - ggplot2
+- Code-along: tidykids and ggplot2
+- What’s next
+
+---
+
+## What do you notice? What do you wonder?
+
+![](week-4-example.jpeg)
+
+---
+
+# Recap
+
+- We focused last week on data wrangling/dplyr, especially: `select()`, `rename()`, `filter()`, `arrange()`, and a few other core functions (`<-`, `read_csv()`, `count()`)
+- Assignment 3 challenges:
+  - Composing (putting together across multiple lines) functions
+  - Using conditional logic within `filter()`
+  - `count()`
+  - Confusing wording
+- Assignment 3 achievements:
+  - Cool plots!
+  - Success, for the most part
+
+---
+
+# Reading Recap
+
+- The importance of understanding the audience ("who") to tailor the data presentation effectively, considering their interests, context, and how they interpret data.
+- The necessity of selecting the right story or message ("what") from the data to communicate with the audience, ensuring it aligns with their needs and prompts desired actions or understanding.
+- The significance of the delivery method ("how") in conveying the message, utilizing appropriate data visualization techniques and tools to capture the audience's attention and enhance their understanding. 
+
+---
+
+# Key concept #1: `ggplot` and Data Visualization in R 
+
+.pull-left[
+
+- At the highest level, ggplot2 works as follows:
+1. Specify *what* your data is
+2. Specify *which* relationships you want to visualize
+3. Specify *how* you want those relationships to appear
+
+]
+
+.pull-right[
+
+- Here is an example:
+1. I want to use the gapminder data
+2. I want my _x-axis_ to represent the year, and my _y-axis_ to represent a variable of interest (e.g., GDP)
+3. I want to represent each data point with a _point_
+
+That's it!
+
+]
+
+---
+
+## An illustration
+
+```{r, eval = TRUE, echo = TRUE, fig.height=4}
+library(tidyverse)
+library(gapminder)
+
+ggplot(gapminder, # step 1
+       aes(x = year, y = gdpPercap)) + # step 2
+  geom_point() # step 3
+```
+
+---
+
+## Wranging and visualizing go together
+
+```{r, eval = FALSE, echo = TRUE, fig.height=4}
+gapminder %>% # step 1
+  filter(country == "United States") %>% # step 1 (again - we're wrangling the *data*)
+  ggplot(aes(x = year, y = gdpPercap)) + # step 2
+  geom_point() # step 3
+
+```
+
+---
+.pull-left[
+`ggplot` offers a "grammar of graphics" for building data visualization in R.
+
+Data visualizations are built in **layers**.
+
+```{r fig.height=5}
+ggplot(starwars)
+```
+
+
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+
+
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Data is always the first layer:
+
+```{r fig.height=5}
+ggplot(starwars)
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Data is then **mapped** to various **aes**thetics (x, y, fill, shape, etc.):
+
+```{r fig.height=5}
+ggplot(starwars, aes(x=height, y=name))
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+Then, we add **geom**etries, which are the shapes and visual encodings:
+
+```{r, eval = TRUE, fig.height=5}
+ggplot(starwars, aes(x=height, y=name))+
+  geom_col()
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can change the **aes**thetics by **fill**iling them with colors.
+
+```{r fig.height=5}
+ggplot(starwars, aes(x=height, y=name, fill=skin_color))+
+  geom_col()
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can change the **geom**etries, too:
+
+```{r fig.height=5}
+ggplot(starwars, aes(x=height, y=name, fill=skin_color))+
+  geom_point()
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+`fill` is for bars while `color` is for points and lines
+
+```{r, fig.height=5}
+ggplot(starwars, aes(x=height, y=name, color=skin_color,
+                     shape=hair_color))+
+  geom_point()
+```
+
+]
+
+.pull-right[
+![](gglayers.png)
+]
+---
+# `ggplot` and Data Visualization in R 
+
+.pull-left[
+We can add other layers. Let's go wild and make a *bad plot*:
+
+```{r, fig.height=5}
+ggplot(starwars, aes(x=height, y=name, fill=mass, color=skin_color,
+                     shape=hair_color))+
+  geom_col()+
+  geom_point()+
+  scale_x_continuous(breaks=seq(1,200,100))+
+  labs(x="Name", y="Height", title="A Wild Starwars Chart")+
+  theme_minimal()+
+  theme(legend.position = "none")
+```
+
+]
+
+.pull-right[
+
+![](gglayers.png)
+]
+
+---
+
+# ggplot2 Code-along
+
+
+.panelset[
+
+
+.panel[.panel-name[Getting setup]
+
+- Download the `tidykids.csv` data in the Week 4 module
+- Create a `.R` file for this code-along, named e.g. `week-4-code-along.R` --- and save this in your RStudio project for the class!
+- Code along!
+- Later, submit for participation credit
+
+]
+
+.panel[.panel-name[1]
+
+```{r}
+library(tidyverse)
+tk <- read_csv("tidykids.csv")
+```
+
+]
+
+.panel[.panel-name[2]
+
+Can we find the `PK12ed` spending in Tennessee?
+
+]
+
+
+.panel[.panel-name[3]
+
+Can we find the `PK12ed` spending in Tennessee, arranged by year, with the output assigned a particular name for later use?
+
+Aside: STEM 691 rules for assignment; use an `<-` if...:
+
+1. You want to use the output of your code in later steps
+1. You are creating a version of the data you want to use in later steps
+]
+
+
+.panel[.panel-name[4]
+
+Plot `PK12ed` spending over time?
+
+]
+
+.panel[.panel-name[5]
+
+Change the axis-labels, title, and subtitle to communicate a point to an audience of state legislators, lobbyists, and citizens interested in K-12 educational funding?
+
+]
+
+]
+
+---
+
+# What's next?
+
+.pull-left[
+
+## Readings
+
+**Healy, Chapter 3**
+**Optional: ggplot2 and the grammar of graphics**
+
+*both linked in Canvas*
+
+]
+.pull-right[
+
+## Assignments/Tasks
+
+**Assignment 4: Creating plots with the tidykids data**
+
+**Doing more: Sharing *interesting* graphs for the beginning of class - discussion** (2 points for sharing, 3 additional points of selected)
+**Practice coding: Additional tutorials - discussion** (5 points for either completing and sharing a brief reflection or pointing out a big or ussue)
+
+]
+
+---
+
+# Check out
+
+- What's one thing you took away from today?
+- What's one thing you want to learn more about?
