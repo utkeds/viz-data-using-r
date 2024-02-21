@@ -64,7 +64,7 @@ This week, we answer the following question: How do I visualize amounts?
 
 ## What do you notice? What do you wonder?
 
-![](images/week-5-png)
+![](images/week-5-example.png)
 
 ---
 
