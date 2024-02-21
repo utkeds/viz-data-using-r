@@ -1,0 +1,97 @@
+---
+title: "Assignment 4"
+name: "xx"
+output: html_document
+date: "xx"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This assignment will be a little more open-ended than past assignments, given the growth in your confidence using R for _data wrangling_, and your initial efforts with in visualizing your data.
+
+## 1. Get set up
+
+First, change the name and date in the front matter. Then, save this file into a folder with the tidykids data, which can be found on Canvas (or may already be downloaded). 
+
+Then read the tidykids data into R, and assign a name to the data. 
+
+## 2. Explore the data
+
+Use one or more techniques (up to you) to explore the data, such as `glimpse()`, simply printing the name of the data, the `describe()` function from the psych package, etc. Do so below, adding one or more lines of interpretation of what you see (e.g., the data's dimensions, any issues with variable names, etc.).
+
+```{r}
+
+```
+
+## 3. Graph 1: A scatterplot
+
+Similar to what we created in the walkthrough, create a scatterplot. For this scatter plot, keep things simple, doing so for a single state and a single variable. Note that in the next step, you'll extend this graph a bit. Note that the codebook is here: https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
+
+Let the open-endedness be fun, not a burden here - in your work, I am looking for effort, not perfect code or output.
+
+```{r}
+
+```
+
+## 4. Graph 2: Modifications
+
+Next, copy the code (and code chunk) from above to give you a starting point for several modifications. Specifically:
+
+- Change the x- and y-axis labels (use the `labs()` function to add a layer to your ggplot2 code)
+- Change the theme
+- Filter the data to only include certain years (with the specific years entirely up to you - this is just practice with combining data wrangling and visualizing)
+- Optionally, you can make any other changes you wish, but these are not necessary for now
+- Add one or two sentences beneath the code chunk you have added interpreting what you found and what you might want to investigate next
+
+## 5. Add a line
+
+Copy the code above, adding either a connecting line or an interpolated line to your points. 
+
+## 6. Graph 4: Histogram
+
+This may be more of a challenge. Consulting the ggplot2 cheat sheet (see the module in Canvas) as a support, create a histogram for a single variable. Change one of the axis labels and add a title and/or subtitle, again using the `labs()` function.
+
+```{r}
+
+```
+
+## 7. Reach: Create _any graph of your choosing_ 
+
+The requirements are:
+
+- State _who_ your intended audience is (before any code in a code chunk)
+- Use a variable that is different from any you used above
+- Include a different state than the one(s) you used above, or use multiple states
+- Share _what_ you planned to show and _how_ you showed it (after your code chunk and output)
+- Have fun with this! Any other changes (or absence of changes) are up to you!
+
+## 8. Reflection
+
+When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 3 in Canvas. 
+
+Please note, you are only submitting the HTML output for this assignment.  
+
+If you see a warning at the top of your output related to your version of packages, it likely means you should update R. Please do this!
+
+Nice job on this - this was close to an authentic analysis, and we're just getting started with ggplot2!
+
+## 9. Bonus
+
+Each variable in the `variable` column of the `tidykids` data set represents a different type of spending. Which type of adjusted spending per child, on average in $1,000s, is highest for Tennessee? 
+
+**Make a simple bar chart showing this. Color the barchart by the average.**
+
+```{r}
+
+```
+
+**Rubric**
+
+Name is added: 2 points
+File knits to an HTML: 8 points
+Code chunks have appropriate output: 15 points
+Interpretations and reflection are added: 5 points
+Bonus: 5 points
+Total: 30 points

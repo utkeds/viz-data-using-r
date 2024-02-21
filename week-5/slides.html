@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Week 5 Slides</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Joshua Rosenberg and Isabella Velásquez" />
+    <script src="slides_files/header-attrs-2.25/header-attrs.js"></script>
+    <script src="slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Press Ctrl+C to Copy"})</script>
+    <link href="slides_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+    <link href="slides_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="slides_files/panelset-0.2.6/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Week 5 Slides
+]
+.subtitle[
+## How do I visualize amounts?
+]
+.author[
+### <strong>Joshua Rosenberg and Isabella Velásquez</strong>
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+# Purpose and Agenda
+
+This week, we answer the following question: How do I visualize amounts?
+
+## What we'll do in this presentation
+
+- Example viz
+- Recap
+- Reading discussion highlights
+- Key concept #1 - visualizing amounts
+- Code-along: creating bar and column charts
+- What’s next
+
+---
+
+## What do you notice? What do you wonder?
+
+![](images/week-5-png)
+
+---
+
+# Recap
+
+- We focused on how to use ggplot2 in terms of a) `ggplot()`, b) `aes()`, and c) `geom_**()`
+- Assignment:
+  - Pretty open-ended! 
+  - Wins and challenges to be discussed after the reading discussion
+- Reading: Healy
+
+---
+
+![](gglayers.png)
+
+---
+
+# Reading Discussion
+
+- Room 1: What is "tidy data"? Why is it important?
+- Room 2: What do aesthetic mappings (`aes`) do? Provide an example of a mapping and an appropriate "geom" based on it.
+- Room 3: How are layers added to a ggplot2 plot? Provide an example of 3 different layers from the chapter.
+- Room 4: What is the difference between mapping and setting aesthetics?
+- Room 5: What are some considerations for saving plots created with ggplot2?
+
+*In breakout rooms, add one or more sticky notes summarizing your key discussion points here: https://jamboard.google.com/d/1TDObNOTCpJ-k-2R4eR2OFoib-SkMEASDdJUuMiz0Pxs/viewer*
+
+*Elect one person to share that point with the whole group*
+
+---
+
+# Assignments wins and challenges
+
+## Wins
+
+## Challenges
+
+---
+
+# Key concept #1: Visualizing amounts
+
+Key principles:
+
+- Ensure you have the right data
+- Make the labels readable
+- Order bars in a logical manner
+- Stack, dodge, or facet, when appropriate
+- Theme to finish
+
+---
+
+## Ensure you have the right data:
+
+- Data should be single values that represent *amounts*: a quantitative value for each category; often this requires using `count()` or `group_by()` and `summarize()`, first!
+- If you have a _distribution_ of amounts, then a bar chart may not work
+
+&lt;img src="https://clauswilke.com/dataviz/visualizing_amounts_files/figure-html/boxoffice-vertical-1.png" height="10%" /&gt;
+
+---
+
+## Make the labels readable
+
+- A critical challenge with bar charts is that the labels of the categories are hard to read (or overlapping)
+  
+![](slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+- Two options: 1) Use `coord_flip()` to switch the _x_ and _y_ axes or 2) Rotate the axis labels (not typically recommended, but occasionally appropriate)
+
+---
+
+# Better!
+
+![](slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+---
+
+## Order bars in a logical manner
+
+- Often, the categories' default order is not helpful (or logical!)
+- We can use `reorder()` to address this
+  - FROM: `ggplot(aes(x = eye_color, y = n)) +`
+  - TO: `ggplot(aes(x = reorder(eye_color, n), y = n)) +`
+
+![](slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+## Stack, dodge, or facet
+
+= Stacking, dodging, and faceting are helpful ways of representing more than one amount per category
+- Generally, these are appropriate for more representing more complex data that still involves amounts
+- Stacking: Useful when the sum of the amounts represented by the individual stacked bars and the individual bars' values are of interest
+- Dodging (grouping): Useful when we want to draw out comparisons for amounts within a category
+- Faceting: Useful in similar cases as dodging; can be helpful when you have _many_ comparisons or categories
+
+---
+
+# Stacking
+
+- `geom_col(position = "stack")`
+
+&lt;img src="https://clauswilke.com/dataviz/visualizing_amounts_files/figure-html/titanic-passengers-by-class-sex-1.png" height="10%" /&gt;
+
+---
+
+# Dodging (grouping)
+
+- `geom_col(position = "dodge")`
+
+&lt;img src="https://clauswilke.com/dataviz/visualizing_amounts_files/figure-html/income-by-race-age-dodged-1.png" height="10%" /&gt;
+
+---
+
+# Faceting
+
+- `geom_col() + facet_wrap(~)`
+
+&lt;img src="https://clauswilke.com/dataviz/visualizing_amounts_files/figure-html/income-by-age-race-faceted-1.png" height="10%" /&gt;
+
+---
+
+## Theme to finish
+
+
+```r
+library(ggthemes)
+
+data_to_plot &lt;- starwars %&gt;% 
+  mutate(eye_color = as.factor(eye_color)) %&gt;% 
+  mutate(eye_color = fct_lump_min(eye_color,  min = 2)) %&gt;% 
+  count(eye_color)
+
+data_to_plot %&gt;% 
+  ggplot(aes(x = reorder(eye_color, n), y = n)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = "Number of Characters", y = "Eye Color", 
+       title = "Starwars Characters' Eye Colors") +
+  theme_tufte() +
+  theme(text = element_text(size = 16))
+```
+
+---
+
+# Code-along
+
+
+.panelset[
+
+
+.panel[.panel-name[tidykids]
+
+Let's use the tidykids data to start from scratch:
+
+
+
+- Ensure you have the right data: pick a state -- `filter()`
+- Make the labels readable: `coord_flip()`
+- Order bars in a logical manner: `reorder()`
+- Stack, dodge, or facet, when appropriate: let's viz multiple states
+- Theme to finish: pick a theme with ggthemes
+
+]
+
+
+.panel[.panel-name[starwars]
+
+Let's start by working through the last plot, line-by-line
+
+
+```r
+library(tidyverse)
+library(ggthemes)
+
+data_to_plot &lt;- starwars %&gt;% 
+  mutate(eye_color = as.factor(eye_color)) %&gt;% 
+  mutate(eye_color = fct_lump_min(eye_color,  min = 2)) %&gt;% 
+  count(eye_color)
+
+data_to_plot %&gt;% 
+  ggplot(aes(x = reorder(eye_color, n), y = n)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = "Number of Characters", y = "Eye Color", 
+       title = "Starwars Characters' Eye Colors") +
+  theme_tufte() +
+  theme(text = element_text(size = 16))
+```
+
+]
+
+.panel[.panel-name[heatmap]
+
+Let's create a heatmap using tidykids data for PK12ed spending across states
+
+]
+
+
+]
+
+---
+
+# What's next?
+
+.pull-left[
+
+## Readings
+
+**[Healy, Chapter 6](https://clauswilke.com/dataviz/visualizing-amounts.html#dot-plots-and-heatmaps)**
+**Optional: [Healy, Chapter 2](https://clauswilke.com/dataviz/visualizing-amounts.html#dot-plots-and-heatmaps)
+
+*both linked in Canvas*
+
+]
+.pull-right[
+
+## Assignments/Tasks
+
+**Assignment 5: Visualizing amounts**
+  - Using tidykids again due to familiarity
+
+]
+
+---
+
+# Check out
+
+- What's one thing you took away from today?
+- What's one thing you want to learn more about?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
