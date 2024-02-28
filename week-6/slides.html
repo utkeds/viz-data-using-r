@@ -48,16 +48,14 @@ This week, we answer the following question: How do I visualize amounts?
 
 ## What we'll do in this presentation
 
-- Example graphs
-- Recap
-- Reading discussion - very brief
+- Sample graph
 - Key concept #1 - Histograms
 - Key concept #2 - Points
 - Key concept #3 - Which graph to choose when?
-- Code-along
+- Code-along - 
 - What's next
-  - Assignment - points and distributions
-  - Reading 
+  - Assignment
+  - Readings
 
 ---
 
@@ -66,26 +64,45 @@ This week, we answer the following question: How do I visualize amounts?
 is a positive feature of this graph?
 is a negative feature
 
-![](images/week-6-example.png)
+![](week-6-ex-1.png)
 
 ---
 
 # Recap
 
-- We focused on creating column (or bar charts)
+- We focused on creating column (or bar charts):
+  - "standard"
+  - dodged
+  - stacked
+  - and faceted
+- We discussed some principles for creating effective bar chart 
 - Assignment:
-  - You created a variety of bar charts using tiddykids
-- Reading: Healy on different types of bar charts
+  - You created a variety of bar charts using tidykids (for the last time!)
+- Reading: Healy's [chapter on different types of bar charts](https://clauswilke.com/dataviz/visualizing-amounts.html)
 
 ---
 
-# Reading summary
+## Assignment recap
+
+![](week-6-ex-2-a.png)
+
+---
+
+## Assignment recap
+
+![](week-6-ex-2-b.png)
+
+---
+
+## Assignment recap
+
+![](week-6-ex-2-c.png)
 
 ---
 
 # Key concept #1: Histograms
 
-# Histograms and other distributions
+## Histograms and other distributions
 
 What do you think the following graphs show?
 
@@ -308,8 +325,6 @@ ggplot(penguins, aes(x=body_mass_g, y=island))+
 
 How can ridgeline plots be useful?
 
-.pull-left[
-
 Imagine a **long** dataset like this:
 
 
@@ -318,24 +333,7 @@ penguins_long &lt;- penguins %&gt;%
   rownames_to_column("id") %&gt;%
   pivot_longer(bill_length_mm:body_mass_g,
                names_to="stat_type", values_to="stat")
-
-head(penguins_long, n=5)
 ```
-
-```
-## # A tibble: 5 × 7
-##   id    species island    sex     year stat_type           stat
-##   &lt;chr&gt; &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt;
-## 1 1     Adelie  Torgersen male    2007 bill_length_mm      39.1
-## 2 1     Adelie  Torgersen male    2007 bill_depth_mm       18.7
-## 3 1     Adelie  Torgersen male    2007 flipper_length_mm  181  
-## 4 1     Adelie  Torgersen male    2007 body_mass_g       3750  
-## 5 2     Adelie  Torgersen female  2007 bill_length_mm      39.5
-```
-
-]
-
-.pull_right[
 
 
 ```r
@@ -345,12 +343,20 @@ ggplot(penguins_long, aes(x=stat, y=stat_type))+
 
 ![](slides_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 
-]
+---
+
+# Key concept #2: Scatterplots
+
+Scatterplots are quite simple to create in R. For today's examples, we will again use the `palmerpenguin` package and its `penguins` data set.
+
+&lt;img src='https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png' height=400px /&gt;
+
 
 
 ---
 
-# Key concept #2: Scatterplots
+
+# Scatterplots in R
 
 Scatterplots are quite simple to create in R. For today's examples, we will use the `palmerpenguin` package and its `penguins` data set, which contains measurements for different penguins in Antarctica.
 
@@ -360,18 +366,6 @@ Scatterplots are quite simple to create in R. For today's examples, we will use 
 
 ---
 
-# Key concept #3
-
-- When to use columns - amounts (and possibly proportions)
-- When to use points - x and y, or time, or certain amounts
-- When to use distributions - to visualize spread
-- What are some other core chart types? Lines and smoothed lines
-
-???
-
-Reflection: I don’t understand the difference between geom_bar() and geom_col(). I would like to better understand the arguments for the different geom functions and when you need things in certain orders as you build out your plot/why they need to be in the particular order. For example, I’ve noticed it matters where you put your theme vs theme for text orientation. I care about this one in particular as I prefer to rotate my axis labels over altering the graph orientation in my own figures.
-
----
 
 First, we can use base R to simply plot all the data in a *scatterplot matrix*
 
@@ -380,7 +374,7 @@ First, we can use base R to simply plot all the data in a *scatterplot matrix*
 plot(penguins)
 ```
 
-![](slides_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 This is not super useful, however.
 
@@ -397,7 +391,7 @@ penguins %&gt;%
   geom_point()
 ```
 
-![](slides_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -413,7 +407,7 @@ penguins %&gt;%
   geom_point(color="skyblue")
 ```
 
-![](slides_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -430,7 +424,7 @@ penguins %&gt;%
   geom_point()
 ```
 
-![](slides_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
 
 ---
 # Scatterplots in R
@@ -446,7 +440,7 @@ penguins %&gt;%
   geom_point()
 ```
 
-![](slides_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 ---
 # Scatterplots in R
@@ -463,7 +457,7 @@ penguins %&gt;%
   facet_wrap(~island, nrow=1)
 ```
 
-![](slides_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 
 ---
 # Scatterplots in R
@@ -489,15 +483,12 @@ penguins %&gt;%
 
 .pull-right[
 
-![](slides_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+![](slides_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
 
 ]
 ---
 
 # Scatterplots in R
-
-
-.pull-left[
 
 Scatterplots often are useful for **correlations**. It is possible to display not only the correlation but the slope of a line for each scatterplot. We can add the correlation coefficient with `ggpubr::stat_cor()` and the regression line with `geom_smooth()`
 
@@ -519,13 +510,136 @@ penguins %&gt;%
                                 "Gentoo" = 18))
 ```
 
-]
+---
 
-.pull-right[
+# Scatterplots in R
 
-![](slides_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
 
-]
+![](slides_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+
+---
+# Scatterplots in R
+
+We can make a bivariate (two-variable) scatterplot using `geom_point()`.
+
+
+
+```r
+penguins %&gt;%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()
+```
+
+![](slides_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+
+---
+
+# Scatterplots in R
+
+We can change the color of all dots simply with `color = `
+
+
+
+```r
+penguins %&gt;%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point(color="skyblue")
+```
+
+![](slides_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
+
+---
+
+# Scatterplots in R
+
+We can map the color to the penguin species by using `color` inside of `aes`
+
+
+
+```r
+penguins %&gt;%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species))+
+  geom_point()
+```
+
+![](slides_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+
+---
+# Scatterplots in R
+
+We can also map the *shape* to a variable using `shape`
+
+
+
+```r
+penguins %&gt;%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species, shape=sex))+
+  geom_point()
+```
+
+![](slides_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
+
+---
+# Scatterplots in R
+
+We can separate this out by island using `facet_wrap`. This allows us to see very  clear relationships between flipper length and body mass.
+
+
+
+```r
+penguins %&gt;%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species, shape=sex))+
+  geom_point()+
+  facet_wrap(~island, nrow=1)
+```
+
+![](slides_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+
+---
+# Scatterplots in R
+
+All of the colors and shapes can be controlled using `scale_color_manual` and `scale_shape_manual`. See list of shapes [here](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#polygons).
+
+
+```r
+penguins %&gt;% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+---
+
+# Scatterplots in R
+
+![](slides_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+
+---
+
+# Key concept #3
+
+**Which `geom_` should I use for which purpose
+
+- When to use columns or bars?
+  - Visualizing amounts across categories
+  - *Stacking*: Useful when the sum of the amounts represented by the bars if of interest
+  - *Dodging* (grouping): Useful when we want to draw out comparisons within a category
+  - *Faceting*: Useful in similar cases as dodging
+- When to use points?
+  - associations between x and y (and z)
+  - certain amounts (when the bars are all similar lengths)
+  - for time-related data
+- When to use histograms, density plots, and the like?
+  - to visualize the distribution of data
+  - can also be used to visualize multiple distributions
 
 ---
 
@@ -545,6 +659,10 @@ Let's use two new data sets, both related to colleges:
 We will read both in in a new way - copy this code!
 
 
+```r
+library(readxl) # install.packages("readxl")
+d &lt;- read_excel("https://github.com/utkeds/viz-data-using-r/raw/main/US-News-Rankings-Universities-2020.xlsx")
+```
 
 ]
 
