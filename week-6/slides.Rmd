@@ -630,36 +630,25 @@ penguins %>%
 
 .panel[.panel-name[college data]
 
-Let's use two new data sets, both related to colleges: 
-
-- college completion rates (from the NCES)
+Let's use a new data set: college completion rates (from the NCES)
 - U.S News and World Report college rankings (from Reiter)
 
-We will read both in in a new way - copy this code!
+We will read both in in a new way - copy this code! Please download the `.xlsx` file from the week 6 module
 
 ```{r, eval = FALSE}
 library(readxl) # install.packages("readxl")
-d <- read_excel("https://github.com/utkeds/viz-data-using-r/raw/main/US-News-Rankings-Universities-2020.xlsx)
-```
 
-]
-
-.panel[.panel-name[college completion]
-
-Let's use `college_completion` to generate plots with points and lines
-
-```{r, eval = FALSE}
-college_completion
+rankings <- read_excel("US-News-Rankings-Universities-2020.xlsx")
 ```
 
 ]
 
 .panel[.panel-name[rankings]
 
-Let's use `rankings`` to generate histograms
+Let's use `rankings`` to generate histograms and points
 
 ```{r, eval = FALSE}
-rankins
+rankings
 ```
 
 ]
