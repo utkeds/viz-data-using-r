@@ -5,7 +5,15 @@ author: ""
 date: ""
 ---
 
+# Loading, setting up
+
+Please add your name and the data above
+
 # Points
+
+```{r}
+
+```
 
 # Histograms
 
@@ -13,7 +21,7 @@ For this assignment, we are going to look at tuition and fees by college/univers
 
 ```{r}
 
-tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
+
 ```
 
 ## Become Familiar with the Data
@@ -67,17 +75,6 @@ Now, use `ggplot` to make a violin plot.
 
 Write a sentence or two to describe your findings, noting which of the three graphs you created you think is _most_ effective and why.
 
-
-
-### Bonus (optional!): Ridgeline
-
-Let's look at the distribution of *out-of-state* tuition across 10 states. Manually filter the data to include these states --- or use another technique of your choosing to filter the data to only include ten states. You may also wish to remove the cases for which the `state` is NA.
-
-Use the [`ggridges` documentation](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html) and the `geom_density_ridgeline()` function to create a ridege line plot.
-
-```{r}
-
-```
 
 What do you notice about this plot? Write a sentence or two to summarize a take-away:
 
