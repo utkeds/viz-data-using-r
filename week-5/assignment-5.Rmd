@@ -1,0 +1,73 @@
+---
+title: "Assignment 5"
+name: "xx"
+output: html_document
+date: "xx"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This assignment is also fairly open-ended. Please consult the slides, particularly the description of the five principles or considerations for visualizing amounts: https://utkeds.github.io/viz-data-using-r/week-5/slides.html
+
+As a reminder, the five considerations are:
+
+1. Ensure you have the right data
+2. Make the labels readable
+3. Order bars in a logical manner
+4. Stack, dodge, or facet, when appropriate
+5. Theme to finish
+
+## 1. Get set up
+
+This is the same as last week, with a bit of a ... twist. Since it's the same, you can copy your code! For that reason, no code chunk is provided here; please add it and all others that you will need for this assignment! Here are the instructions, but copy at will: it's a good coding practice to re-use code that does what you need it to! 
+
+First, change the name and date in the front matter. Then, save this file into a folder with the tidykids data, which can be found on Canvas (or may already be downloaded). Then read the tidykids data into R, and assign a name to the data. 
+
+## 2. Explore the data
+
+Like above, you can copy and paste your code from the last assignment. Here, make one addition to what you did to explore the data last week.
+
+## 3. Graph 1: An effective visualization of amounts
+
+Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., column) chart, keeping in mind the aofrementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
+
+## 4. Graph 2: Modifying Graph 1
+
+If you haven't yet, please *set* the color of your bars using its hex code or name (run `colors()` for names, and use any number of web-based tools to find the hex code, e.g.: https://htmlcolorcodes.com/color-picker/)
+
+## 5. Graph 3: Create a stacked, dodged, or faceted bar chart
+
+Please create a stacked, dodged, or faceted bar chart, again keeping in mind the (other) four considerations. You may find the recording and walkthrough (both uploaded to Canvas) helpful. Please add 1-2 sentences interpreting what you've found. Please note, you may need to manipulate the data using various dplyr functions to successfully complete this step. It may be a challenge, but for this and the next graph, perfection is not the goal! Getting a feel for when and how to create this kinds of plots is, so try to create something sensible as a first attempt at doing so.
+
+## 6. Graph 4: Set a theme 
+
+Using any of the graphs you have created so far, install ggthemes (or another package that provides themes, if you wish) and add the theme to your plot.
+
+## 7. Graph 5: - Histogram!
+
+Histograms were challenging last week. Try again this week using the starwars data set (it is built in and can be accessed by typing `starwars`). Note that you only set one aesthetic (either `x` or `y`) and then use `geom_histogram()`. 
+
+## 8. Bonus: Create a different stacked, dodged, or faceted bar chart
+
+Optionally and to push yourself, either change the graph you created for Graph 3 - or create a new graph - using a different type of bar chart than then one you have created. For example, if you created a stacked bar chart, create either a dodged or faceted bar chart. Again, perfection is absolutely not the goal.
+
+## 9. Bonus: Create a bar chart with your data
+
+Again, optionally, read in and create a bar chart with your data. Add a sentence or two interpreting what you found. 
+
+## 10. Reflection
+
+When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 5 in Canvas.  Please note, you are only submitting the HTML output for this assignment.  
+
+Please add a sentence or two next reflecting on this assignment. What went well, what was challenging, and what do you want to dive deeper into?
+
+**Rubric**
+
+Name is added: 2 points
+File knits to an HTML: 8 points
+Code chunks have appropriate output: 15 points
+Interpretations and reflection are added: 5 points
+Bonus: 5 points
+Total: 30 points

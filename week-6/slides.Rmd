@@ -1,0 +1,574 @@
+---
+title: "Week 6 Slides"
+subtitle: "How do I know which graph to create in which situation?"
+author: "**Joshua Rosenberg and Isabella Velásquez**"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+
+style_duo_accent(
+  primary_color = "#FF8200",
+  secondary_color = "#58595B",
+  link_color = "blue",
+  title_slide_text_color = "#222943",
+  title_slide_background_color = "#ededed",
+  title_slide_background_image = "https://brand.utk.edu/wp-content/uploads/2019/02/University-HorizRightLogo-RGB.png",
+  title_slide_background_position = "bottom",
+  title_slide_background_size = "30%"
+)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, echo=FALSE}
+# then load all the relevant packages
+pacman::p_load(pacman, knitr, tidyverse, readxl)
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+# these allow any code snippets to be copied to the clipboard so they 
+# can be pasted easily
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+# Purpose and Agenda
+
+This week, we answer the following question: How do I visualize amounts?
+
+## What we'll do in this presentation
+
+- Example graphs
+- Recap
+- Reading discussion - very brief
+- Key concept #1 - Histograms
+- Key concept #2 - Points
+- Key concept #3 - Which graph to choose when?
+- Code-along
+- What's next
+  - Assignment - points and distributions
+  - Reading 
+
+---
+
+## What do you think . . . 
+
+is a positive feature of this graph?
+is a negative feature
+
+![](images/week-6-example.png)
+
+---
+
+# Recap
+
+- We focused on creating column (or bar charts)
+- Assignment:
+  - You created a variety of bar charts using tiddykids
+- Reading: Healy on different types of bar charts
+
+---
+
+# Reading summary
+
+---
+
+# Key concept #1: Histograms
+
+# Histograms and other distributions
+
+What do you think the following graphs show?
+
+.pull-left[
+
+```{r, include = FALSE}
+library(palmerpenguins)
+```
+
+```{r, fig.height=5}
+hist(penguins$body_mass_g)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+boxplot(penguins$body_mass_g)
+```
+
+]
+---
+# The classics
+
+Wait...where is `ggplot`?
+
+<!-- Students may not have seen some of base R's plot functions. Now is a good chance to introduce these two and what the $ means.
+
+Reference: https://bookdown.org/rdpeng/exdata/the-base-plotting-system-1.html
+-->
+
+.pull-left[
+
+```{r, fig.height=5}
+hist(penguins$body_mass_g)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+boxplot(penguins$body_mass_g)
+```
+
+]
+
+---
+
+# The classics
+
+.pull-left[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_histogram(binwidth = 200)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(y=body_mass_g))+
+  geom_boxplot()
+```
+
+]
+
+
+---
+
+# A (relative) newcomer
+
+```{r, fig.height = 5}
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_density()
+```
+
+---
+
+# Histograms vs. Density plots
+
+.pull-left[
+
+### Histograms
+
+- How it works: *bin* and count observations
+- Key consideration: How many bins (defaults are often but not always suitable)
+- Historically important, but somewhat replaced by newer techniques
+
+]
+
+.pull-right[
+
+### Density plots
+
+- How it works: uses fancy math to _estimate_ a curve that represents the distribution of the data
+- Key consideration: avoiding representing made-up data points
+- Can be a little hard to straightforwardly interpret
+
+]
+
+---
+
+# Multiple distributions: Histograms and box plots
+
+You can easily split out the plot with `fill`
+
+.pull-left[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(x=body_mass_g, fill=species))+
+  geom_histogram(binwidth = 200, position = "identity", alpha=.6)
+```
+
+
+]
+
+.pull-right[
+
+```{r, fig.height=5}
+ggplot(penguins, aes(y=body_mass_g, fill=species))+
+  geom_boxplot()
+```
+
+]
+
+---
+
+# Multiple plots; Overlapping densities
+
+*set alpha*
+
+```{r, fig.height = 5}
+ggplot(penguins, aes(x=body_mass_g, fill=species))+
+  geom_density(alpha = .25)
+```
+
+---
+
+# Multiple plots; Violin plots
+
+```{r, fig.height = 5}
+ggplot(penguins, aes(x = species, y=body_mass_g))+
+  geom_violin()
+```
+
+---
+
+# Density and Ridgeline Plots
+
+Sometimes you want to know the shape of your distribution, but you do not want a histogram.
+
+```{r, fig.height=2}
+ggplot(penguins, aes(x=body_mass_g))+
+  geom_density()
+```
+
+Note:
+Plotting a histogram and density curve together takes a bit more work:
+
+
+```{r echo=FALSE, fig.height=2}
+ggplot(penguins, aes(x=body_mass_g))+
+geom_histogram(binwidth=100, colour="black", 
+               aes(y=..density..))+
+stat_function(fun=dnorm,
+                         color="red",
+                         args=list(mean=mean(penguins$body_mass_g,
+                                             na.rm=TRUE), 
+                                   sd=sd(penguins$body_mass_g,
+                                         na.rm=TRUE)))
+
+```
+
+---
+# Ridgeline Plots
+
+We can easily get a bit fancier with the `ggridges` package:
+
+```{r, fig.height=5}
+library(ggridges)
+ggplot(penguins, aes(x=body_mass_g, y=island))+
+  geom_density_ridges()
+```
+
+---
+# Ridgeline Plots
+
+How can ridgeline plots be useful?
+
+.pull-left[
+
+Imagine a **long** dataset like this:
+
+```{r}
+penguins_long <- penguins %>%
+  rownames_to_column("id") %>%
+  pivot_longer(bill_length_mm:body_mass_g,
+               names_to="stat_type", values_to="stat")
+
+head(penguins_long, n=5)
+```
+
+]
+
+.pull_right[
+
+```{r, fig.height=3}
+ggplot(penguins_long, aes(x=stat, y=stat_type))+
+  geom_density_ridges()
+```
+
+]
+
+
+---
+
+# Key concept #2: Scatterplots
+
+Scatterplots are quite simple to create in R. For today's examples, we will use the `palmerpenguin` package and its `penguins` data set, which contains measurements for different penguins in Antarctica.
+
+<img src='https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png' height=400px />
+
+```{r include=FALSE}
+library(palmerpenguins)
+```
+
+---
+
+# Key concept #3
+
+- When to use columns - amounts (and possibly proportions)
+- When to use points - x and y, or time, or certain amounts
+- When to use distributions - to visualize spread
+- What are some other core chart types? Lines and smoothed lines
+
+???
+
+Reflection: I don’t understand the difference between geom_bar() and geom_col(). I would like to better understand the arguments for the different geom functions and when you need things in certain orders as you build out your plot/why they need to be in the particular order. For example, I’ve noticed it matters where you put your theme vs theme for text orientation. I care about this one in particular as I prefer to rotate my axis labels over altering the graph orientation in my own figures.
+
+---
+
+First, we can use base R to simply plot all the data in a *scatterplot matrix*
+
+```{r fig.width=8, fig.height=5}
+plot(penguins)
+```
+
+This is not super useful, however.
+
+---
+# Scatterplots in R
+
+We can make a bivariate (two-variable) scatterplot using `geom_point()`.
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()
+```
+
+---
+
+# Scatterplots in R
+
+We can change the color of all dots simply with `color = `
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point(color="skyblue")
+```
+
+---
+
+# Scatterplots in R
+
+We can map the color to the penguin species by using `color` inside of `aes`
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species))+
+  geom_point()
+```
+
+---
+# Scatterplots in R
+
+We can also map the *shape* to a variable using `shape`
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species, shape=sex))+
+  geom_point()
+```
+
+---
+# Scatterplots in R
+
+We can separate this out by island using `facet_wrap`. This allows us to see very  clear relationships between flipper length and body mass.
+
+
+```{r fig.width=8, fig.height=3}
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
+             color=species, shape=sex))+
+  geom_point()+
+  facet_wrap(~island, nrow=1)
+```
+
+---
+# Scatterplots in R
+
+All of the colors and shapes can be controlled using `scale_color_manual` and `scale_shape_manual`. See list of shapes [here](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#polygons).
+
+.pull-left[
+
+```{r echo=TRUE, eval=FALSE}
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+]
+
+.pull-right[
+
+```{r fig.width = 8, fig.height=4, echo=FALSE}
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,
+                                "Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+]
+---
+
+# Scatterplots in R
+
+
+.pull-left[
+
+Scatterplots often are useful for **correlations**. It is possible to display not only the correlation but the slope of a line for each scatterplot. We can add the correlation coefficient with `ggpubr::stat_cor()` and the regression line with `geom_smooth()`
+
+```{r include=FALSE}
+library(ggpubr)
+```
+
+
+```{r echo=TRUE, eval=FALSE}
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  stat_cor()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+]
+
+.pull-right[
+
+```{r fig.width = 8, fig.height=4, echo=FALSE}
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
+             color=species, shape=species)) +
+  geom_point(size = 3,alpha = 0.8) +
+  stat_cor()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Adelie" = "darkorange",
+                                "Chinstrap" = 
+  "purple","Gentoo" = "cyan4")) +
+  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
+                                "Gentoo" = 18))
+```
+
+]
+
+---
+
+# Code-along
+
+
+.panelset[
+
+
+.panel[.panel-name[college data]
+
+Let's use two new data sets, both related to colleges: 
+
+- college completion rates (from the NCES)
+- U.S News and World Report college rankings (from Reiter)
+
+We will read both in in a new way - copy this code!
+
+```{r, eval = FALSE}
+
+```
+
+]
+
+.panel[.panel-name[college completion]
+
+Let's use `college_completion` to generate plots with points and lines
+
+```{r, eval = FALSE}
+college_completion
+```
+
+]
+
+.panel[.panel-name[rankings]
+
+Let's use `rankings`` to generate histograms
+
+```{r, eval = FALSE}
+rankins
+```
+
+]
+
+]
+
+---
+
+# What's next?
+
+.pull-left[
+
+## Readings
+
+**[Healy, Chapter 7](https://clauswilke.com/dataviz/histograms-density-plots.html)**
+**[Healy, Chapter 12](https://clauswilke.com/dataviz/visualizing-associations.html)**
+
+*both linked in Canvas*
+
+]
+.pull-right[
+
+## Assignments/Tasks
+
+**Assignment 6: Visualizing points and distributions**
+  - Using college completion and college rankings data
+
+]
+
+---
+
+# Check out
+
+- What's one thing you took away from today?
+- What's one thing you want to learn more about?

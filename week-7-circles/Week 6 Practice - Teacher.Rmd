@@ -139,6 +139,8 @@ Let's take it one more step and remove the word "share" from the "sex" column:
 ```{r}
 recent_grads_clean <- recent_grads_long %>%
   mutate(sex = str_remove(sex, "share_"))
+
+recent_grads_clean
 ```
 
 

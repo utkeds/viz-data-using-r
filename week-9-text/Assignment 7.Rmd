@@ -1,0 +1,140 @@
+---
+title: "Assignment 6"
+output: html_document
+author: "Joshua R."
+date: "2023-03-19"
+---
+
+## All together now
+
+### Loading tidyverse and ggrepel (may need to install the first time using install.packages)
+
+```{r}
+library(tidyverse)
+# install.packages("ggrepel")
+library(ggrepel)
+```
+
+### Viewing the built-in midwest dataset
+
+```{r}
+midwest
+```
+
+### Selecting two variables - poptotal and percbelowpoverty - as well as county and state
+
+```{r}
+midwest <- midwest %>% 
+  select(poptotal, percbelowpoverty, county, state)
+
+midwest
+```
+
+### Doing some text wrangling with stringr
+
+**https://stringr.tidyverse.org/**
+
+```{r}
+# str_to_sentence("ocala")
+# str_to_title("ocala wayne")
+
+midwest <- midwest %>% 
+  mutate(county = str_to_lower(county),
+         county = tools::toTitleCase(county),
+         county = str_c(county, ", ", state))
+
+midwest <- midwest %>% 
+  select(-state)
+
+midwest
+```
+
+### Plotting poptotal by percbelowpoverty with labels: geom_text()
+
+```{r}
+midwest %>% 
+  ggplot(aes(x = poptotal, y = percbelowpoverty, label = county)) +
+  geom_point() +
+  geom_text()
+```
+
+### Plotting poptotal by percbelowpoverty with labels: geom_text_repel()
+
+```{r}
+midwest %>% 
+  ggplot(aes(x = poptotal, y = percbelowpoverty, label = county)) +
+  geom_point() +
+  geom_text_repel(max.overlaps = 20)
+```
+
+### Plotting poptotal by percbelowpoverty with labels: geom_text_repel() and labs()
+
+```{r}
+options(scipen = 10000000)
+
+midwest %>% 
+  ggplot(aes(x = poptotal, y = percbelowpoverty, label = county)) +
+  geom_point() +
+  geom_text_repel(max.overlaps = 20) +
+  labs(title = "Poverty Rate by Population",
+       subtitle = "In Five Midwest States",
+       x = "Population",
+       y = "Percentage Below Poverty",
+       caption = "Most counties are small and with relatively low poverty rates") +
+  theme_minimal()
+```
+
+## Independently
+
+### Viewing the built-in us_rent_income dataset (hint: type the name in the box below)
+
+```{r}
+
+```
+
+### Remove the moe and GEOID variables from the data set (hint: use select and the minus symbol to remove a column) and then save the results back to us_rent_income
+
+```{r}
+
+```
+
+### Pivot the data set to be in "wide" format using pivot_wider, replacing xx below with variable and yy with estimate, saving the results back to us_rent_income after
+
+```{r}
+us_rent_income <- us_rent_income %>% 
+  pivot_wider(names_from = variable, values_from = estimate)
+```
+
+### Create a new variable, rent_yearly, that is equal to rent multiplied by 12
+
+```{r}
+
+```
+
+### Create a scatterplot with x representing income and y representing rent; label the points using geom_text()
+
+```{r}
+
+```
+
+### Create a scatterplot with x representing income and y representing rent; label the points using geom_text_repel()
+
+```{r}
+
+```
+
+### Create a scatterplot with x representing income and y representing rent; label the points using geom_text_repel() and labs() (i.e., change the title, subtitle, caption, and x and y axis labels)
+
+```{r}
+
+```
+
+### Bonus: Use mutate() to create a new variable, prop_of_income, that represents the proportion of income made up by rent; then, make the state NAME equal to NA if this proportion is less than .50 and use geom_text() to visualize the result (which should only include text for states with a proportion greater than .50).
+
+```{r}
+
+```
+
+## Done!
+
+Please knit to HTML and submit for Assignment 4
