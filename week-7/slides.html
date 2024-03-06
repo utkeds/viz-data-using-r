@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Week 6 Slides</title>
+    <title>Week 7 Slides</title>
     <meta charset="utf-8" />
     <meta name="author" content="Joshua Rosenberg and Isabella Velásquez" />
-    <script src="slides_files/header-attrs-2.25/header-attrs.js"></script>
+    <script src="slides_files/header-attrs-2.26/header-attrs.js"></script>
     <script src="slides_files/clipboard-2.0.6/clipboard.min.js"></script>
     <link href="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
@@ -20,10 +20,10 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Week 6 Slides
+# Week 7 Slides
 ]
 .subtitle[
-## How do I know which graph to create in which situation?
+## How and when do use lines and curves?
 ]
 .author[
 ### <strong>Joshua Rosenberg and Isabella Velásquez</strong>
@@ -44,18 +44,19 @@ class: center, middle, inverse, title-slide
 
 # Purpose and Agenda
 
-This week, we answer the following question: How do I visualize amounts?
+This week, we answer the following question: How and when do use lines and curves?
 
 ## What we'll do in this presentation
 
 - Sample graph
-- Key concept #1 - Histograms
-- Key concept #2 - Points
-- Key concept #3 - Which graph to choose when?
-- Code-along - 
-- What's next
-  - Assignment
-  - Readings
+- Recap
+- Assignment recap
+- Discussion summary
+- Key concept #1 - Lines and curves
+- Code-along
+- Mini project
+- Reflection/brief survey
+- What's next: Mini project
 
 ---
 
@@ -64,582 +65,239 @@ This week, we answer the following question: How do I visualize amounts?
 is a positive feature of this graph?
 is a negative feature
 
-![](week-6-ex-1.png)
+![](week-7-ex.jpeg)
 
+---
+
+# Another (less effective)
+
+![](week-7-ex-1.jpeg)
 ---
 
 # Recap
 
-- We focused on creating column (or bar charts):
-  - "standard"
-  - dodged
-  - stacked
-  - and faceted
-- We discussed some principles for creating effective bar chart 
-- Assignment:
-  - You created a variety of bar charts using tidykids (for the last time!)
-- Reading: Healy's [chapter on different types of bar charts](https://clauswilke.com/dataviz/visualizing-amounts.html)
+- We stepped back a bit and asked, which graph do we create when?
+- We explored ways of visualizing distributions (histograms, density plots, boxplots, violin plots a bit) and scatter plots and their accoutrements
+- You used a fairly complex dataset on U.S. news rankings
 
 ---
 
 ## Assignment recap
 
-![](week-6-ex-2-a.png)
+![](week-7-ex-2-a.png)
 
 ---
 
 ## Assignment recap
 
-![](week-6-ex-2-b.png)
+![](week-7-ex-2-b.png)
 
 ---
 
 ## Assignment recap
 
-![](week-6-ex-2-c.png)
+![](week-7-ex-2-c.png)
 
 ---
 
-# Key concept #1: Histograms
+## Assignment recap
 
-## Histograms and other distributions
+![](week-7-ex-2-d.png)
 
-What do you think the following graphs show?
+---
+
+## Assignment recap
+
+![](week-7-ex-2-e.png)
+
+---
+
+# Discussion summary
+
+Which geom is best? It depends!
+
+&gt; The tidykids dataset could be represented in a variety of different visualizations. For example, a histogram would work to visualize the inflation adjusted amount per child that Tennessee spent on the Pell grant between 1997 and 2016. If we wanted to compare how much the inflation adjusted amount per child spent on the Pell grant was for different states in the south, we could create a density plot with different lines and shades for each state, showing the data over a range of years.
+
+&gt; When looking at multiple large datasets, such as the tree box plot shared by a classmate,  box-plots are extremely useful for comparing data distributions simultaneously.
+
+---
+
+# Key concept: Lines and curves
+
+How could this chart be improved?
+
+![](no-lines.png)
+
+---
+
+# Reading Discussion
+
+How could this chart be improved?
+
+![](groups.png)
+
+---
+# Time**lines**
+
+Today we are going to talk about timeseries data and how to make time**lines** - line charts - from them. 
+In addition, we will look at how to make area charts and how to make line charts when there are multiple groups.
+
+---
+# Time**lines**
+
+## Overall principles 
+
+1. Connecting lines can visually connect individual data points that have a temporal pattern
+2. Fitted lines can show the more general trend over time
+3. You can add a variety of fitted lines, including linear, quadratic, and smooth lines and curves
+4. When you add lines, you don't always need to add points
+5. With multiple groups, lines are nearly essential
+
+Let's dive in, illustrate, and practice
+
+---
+
+# Time**lines**
+
+Consider that we already know how to graph timeseries data with `geom_col()` and `geom_point`:
+
+
 
 .pull-left[
 
-
-
-
 ```r
-hist(penguins$body_mass_g)
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y))+
+  geom_col()
 ```
 
 ![](slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
-
 
 ]
 
 .pull-right[
 
-
 ```r
-boxplot(penguins$body_mass_g)
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y))+
+  geom_point()
 ```
 
 ![](slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ]
+
 ---
-# The classics
+# Time**lines**
 
-Wait...where is `ggplot`?
+How could we add lines to these points?
 
-&lt;!-- Students may not have seen some of base R's plot functions. Now is a good chance to introduce these two and what the $ means.
-
-Reference: https://bookdown.org/rdpeng/exdata/the-base-plotting-system-1.html
---&gt;
-
-.pull-left[
-
-
-```r
-hist(penguins$body_mass_g)
-```
+Hint: Remember, ggplots are built in layers:
 
 ![](slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
+---
+# Time**lines**
 
-]
-
-.pull-right[
-
-
-```r
-boxplot(penguins$body_mass_g)
-```
+Voila!
 
 ![](slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
-]
-
 ---
+# Time**lines**
 
-# The classics
+We can easily make this into an area chart, too. However, note that `geom_area` acts like a bar or column - it uses the fill aesthetic *AND* it starts at a zero baseline, which may elide important differences between data points. 
 
 .pull-left[
 
 
 ```r
-ggplot(penguins, aes(x=body_mass_g))+
-  geom_histogram(binwidth = 200)
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y, group=1))+
+  geom_area()+
+  geom_point()
 ```
 
 ![](slides_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
-
 ]
 
 .pull-right[
 
-
 ```r
-ggplot(penguins, aes(y=body_mass_g))+
-  geom_boxplot()
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y, group=1))+
+  geom_line()+
+  geom_area(alpha=.3)+
+  coord_cartesian(ylim=
+                    c(45000,56000))
 ```
 
 ![](slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
-
 ]
-
 
 ---
 
-# A (relative) newcomer
-
-
-```r
-ggplot(penguins, aes(x=body_mass_g))+
-  geom_density()
-```
+# Timelines With Many Groups
 
 ![](slides_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
----
-
-# Histograms vs. Density plots
-
-.pull-left[
-
-### Histograms
-
-- How it works: *bin* and count observations
-- Key consideration: How many bins (defaults are often but not always suitable)
-- Historically important, but somewhat replaced by newer techniques
-
-]
-
-.pull-right[
-
-### Density plots
-
-- How it works: uses fancy math to _estimate_ a curve that represents the distribution of the data
-- Key consideration: avoiding representing made-up data points
-- Can be a little hard to straightforwardly interpret
-
-]
 
 ---
 
-# Multiple distributions: Histograms and box plots
+# Curves
 
-You can easily split out the plot with `fill`
+- A critical difference is between *connecting* lines and *fitted* lines, or curves
+- *Connecting line*: Connects the points (slide 17 as one of several examples)
+- *Fitted lines*: Can take different forms: linear, quadratic, interpolated using fancy math
 
-.pull-left[
+---
 
 
 ```r
-ggplot(penguins, aes(x=body_mass_g, fill=species))+
-  geom_histogram(binwidth = 200, position = "identity", alpha=.6)
+data %&gt;% 
+  ggplot(aes(x = x, y = y)) +
+  geom_smooth(method = "lm", se = FALSE) + # often helpful
+  geom_point()
 ```
 
 ![](slides_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
-
-]
-
-.pull-right[
+---
 
 
 ```r
-ggplot(penguins, aes(y=body_mass_g, fill=species))+
-  geom_boxplot()
+data %&gt;% 
+  ggplot(aes(x = x, y = y)) +
+  # fits quadratic curve using linear regression
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE) + 
+  geom_point()
 ```
 
 ![](slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
-]
-
 ---
-
-# Multiple plots; Overlapping densities
-
-*set alpha*
 
 
 ```r
-ggplot(penguins, aes(x=body_mass_g, fill=species))+
-  geom_density(alpha = .25)
+data %&gt;% 
+  ggplot(aes(x = x, y = y)) +
+   # by default, uses a flexible way to create a smooth curve 
+  geom_smooth(se = FALSE) +
+  geom_point()
 ```
 
 ![](slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
-
+ 
 ---
 
-# Multiple plots; Violin plots
-
-
-```r
-ggplot(penguins, aes(x = species, y=body_mass_g))+
-  geom_violin()
-```
-
-![](slides_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
-
----
-
-# Density and Ridgeline Plots
-
-Sometimes you want to know the shape of your distribution, but you do not want a histogram.
-
-
-```r
-ggplot(penguins, aes(x=body_mass_g))+
-  geom_density()
-```
-
-![](slides_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
-
-Note:
-Plotting a histogram and density curve together takes a bit more work:
-
-
-![](slides_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
-
----
-# Ridgeline Plots
-
-We can easily get a bit fancier with the `ggridges` package:
-
-
-```r
-library(ggridges)
-ggplot(penguins, aes(x=body_mass_g, y=island))+
-  geom_density_ridges()
-```
-
-![](slides_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
-
----
-# Ridgeline Plots
-
-How can ridgeline plots be useful?
-
-Imagine a **long** dataset like this:
-
-
-```r
-penguins_long &lt;- penguins %&gt;%
-  rownames_to_column("id") %&gt;%
-  pivot_longer(bill_length_mm:body_mass_g,
-               names_to="stat_type", values_to="stat")
-```
-
-
-```r
-ggplot(penguins_long, aes(x=stat, y=stat_type))+
-  geom_density_ridges()
-```
-
-![](slides_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
-
----
-
-# Key concept #2: Scatterplots
-
-Scatterplots are quite simple to create in R. For today's examples, we will again use the `palmerpenguin` package and its `penguins` data set.
-
-&lt;img src='https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png' height=400px /&gt;
-
-
-
----
-
-
-# Scatterplots in R
-
-Scatterplots are quite simple to create in R. For today's examples, we will use the `palmerpenguin` package and its `penguins` data set, which contains measurements for different penguins in Antarctica.
-
-&lt;img src='https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png' height=400px /&gt;
-
-
-
----
-
-
-First, we can use base R to simply plot all the data in a *scatterplot matrix*
-
-
-```r
-plot(penguins)
-```
-
-![](slides_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
-
-This is not super useful, however.
-
----
-# Scatterplots in R
-
-We can make a bivariate (two-variable) scatterplot using `geom_point()`.
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
-  geom_point()
-```
-
-![](slides_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
-
----
-
-# Scatterplots in R
-
-We can change the color of all dots simply with `color = `
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
-  geom_point(color="skyblue")
-```
-
-![](slides_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
-
----
-
-# Scatterplots in R
-
-We can map the color to the penguin species by using `color` inside of `aes`
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
-             color=species))+
-  geom_point()
-```
-
-![](slides_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
-
----
-# Scatterplots in R
-
-We can also map the *shape* to a variable using `shape`
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
-             color=species, shape=sex))+
-  geom_point()
-```
-
-![](slides_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
-
----
-# Scatterplots in R
-
-We can separate this out by island using `facet_wrap`. This allows us to see very  clear relationships between flipper length and body mass.
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
-             color=species, shape=sex))+
-  geom_point()+
-  facet_wrap(~island, nrow=1)
-```
-
-![](slides_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
-
----
-# Scatterplots in R
-
-All of the colors and shapes can be controlled using `scale_color_manual` and `scale_shape_manual`. See list of shapes [here](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#polygons).
-
-.pull-left[
-
-
-```r
-penguins %&gt;% 
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
-             color=species, shape=species)) +
-  geom_point(size = 3,alpha = 0.8) +
-  scale_color_manual(values = c("Adelie" = "darkorange",
-                                "Chinstrap" = 
-  "purple","Gentoo" = "cyan4")) +
-  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
-                                "Gentoo" = 18))
-```
-
-]
-
-.pull-right[
-
-![](slides_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
-
-]
----
-
-# Scatterplots in R
-
-Scatterplots often are useful for **correlations**. It is possible to display not only the correlation but the slope of a line for each scatterplot. We can add the correlation coefficient with `ggpubr::stat_cor()` and the regression line with `geom_smooth()`
-
-
-
-
-
-```r
-penguins %&gt;% 
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
-             color=species, shape=species)) +
-  geom_point(size = 3,alpha = 0.8) +
-  stat_cor()+
-  geom_smooth(method="lm")+
-  scale_color_manual(values = c("Adelie" = "darkorange",
-                                "Chinstrap" = 
-  "purple","Gentoo" = "cyan4")) +
-  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
-                                "Gentoo" = 18))
-```
-
----
-
-# Scatterplots in R
-
-
-![](slides_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
-
----
-# Scatterplots in R
-
-We can make a bivariate (two-variable) scatterplot using `geom_point()`.
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
-  geom_point()
-```
-
-![](slides_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
-
----
-
-# Scatterplots in R
-
-We can change the color of all dots simply with `color = `
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
-  geom_point(color="skyblue")
-```
-
-![](slides_files/figure-html/unnamed-chunk-33-1.png)&lt;!-- --&gt;
-
----
-
-# Scatterplots in R
-
-We can map the color to the penguin species by using `color` inside of `aes`
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
-             color=species))+
-  geom_point()
-```
-
-![](slides_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
-
----
-# Scatterplots in R
-
-We can also map the *shape* to a variable using `shape`
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
-             color=species, shape=sex))+
-  geom_point()
-```
-
-![](slides_files/figure-html/unnamed-chunk-35-1.png)&lt;!-- --&gt;
-
----
-# Scatterplots in R
-
-We can separate this out by island using `facet_wrap`. This allows us to see very  clear relationships between flipper length and body mass.
-
-
-
-```r
-penguins %&gt;%
-  ggplot(aes(x=flipper_length_mm, y=body_mass_g,
-             color=species, shape=sex))+
-  geom_point()+
-  facet_wrap(~island, nrow=1)
-```
-
-![](slides_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
-
----
-# Scatterplots in R
-
-All of the colors and shapes can be controlled using `scale_color_manual` and `scale_shape_manual`. See list of shapes [here](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#polygons).
-
-
-```r
-penguins %&gt;% 
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g,
-             color=species, shape=species)) +
-  geom_point(size = 3,alpha = 0.8) +
-  scale_color_manual(values = c("Adelie" = "darkorange",
-                                "Chinstrap" = 
-  "purple","Gentoo" = "cyan4")) +
-  scale_shape_manual(values = c("Adelie" = 17,"Chinstrap" = 19,
-                                "Gentoo" = 18))
-```
-
----
-
-# Scatterplots in R
-
-![](slides_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
-
----
-
-# Key concept #3
-
-**Which `geom_` should I use for which purpose
-
-- When to use columns or bars?
-  - Visualizing amounts across categories
-  - *Stacking*: Useful when the sum of the amounts represented by the bars if of interest
-  - *Dodging* (grouping): Useful when we want to draw out comparisons within a category
-  - *Faceting*: Useful in similar cases as dodging
-- When to use points?
-  - associations between x and y (and z)
-  - certain amounts (when the bars are all similar lengths)
-  - for time-related data
-- When to use histograms, density plots, and the like?
-  - to visualize the distribution of data
-  - can also be used to visualize multiple distributions
+# Overall principles 
+
+1. Connecting lines can visually connect individual data points that have a temporal pattern
+2. Fitted lines can show the more general trend over time
+3. You can add a variety of fitted lines, including linear, quadratic, and smooth lines and curves
+4. When you add lines, you don't always need to add points
+5. With multiple groups, lines are nearly essential
 
 ---
 
@@ -649,30 +307,36 @@ penguins %&gt;%
 .panelset[
 
 
-.panel[.panel-name[college data]
+.panel[.panel-name[rankings data]
 
-Let's use a new data set: college completion rates (from the NCES)
-- U.S News and World Report college rankings (from Reiter)
+We'll use the **U.S News and World Report college rankings data** (from Reiter)
 
-We will read both in in a new way - copy this code! Please download the `.xlsx` file from the week 6 module
+We will read this in a new way - copy this code! Please download the `.xlsx` file. 
 
-
-```r
-library(readxl) # install.packages("readxl")
-
-rankings &lt;- read_excel("US-News-Rankings-Universities-2020.xlsx")
-```
+Let's first look at it.
 
 ]
 
-.panel[.panel-name[rankings]
+.panel[.panel-name[2020 data prep]
 
-Let's use `rankings`` to generate histograms and points
+Let's work together through `2020-us-news-prep.R`
 
+]
 
-```r
-rankings
-```
+.panel[.panel-name[single ranking]
+
+Let's create a visualization of a single schools' ranking:
+  - Connected lines
+  - Fitted lines
+
+]
+
+.panel[.panel-name[several rankings]
+
+Let's create a visualization of several schools' ranking:
+  - Connected lines
+  - Fitted lines
+  - Top 25
 
 ]
 
@@ -682,24 +346,21 @@ rankings
 
 # What's next?
 
-.pull-left[
-
-## Readings
-
-**[Healy, Chapter 7](https://clauswilke.com/dataviz/histograms-density-plots.html)**
-**[Healy, Chapter 12](https://clauswilke.com/dataviz/visualizing-associations.html)**
-
-*both linked in Canvas*
-
-]
-.pull-right[
-
 ## Assignments/Tasks
 
-**Assignment 6: Visualizing points and distributions**
-  - Using college completion and college rankings data
+**Mini Project #1** - due the Friday after we return from spring break (3/22 @ 11:59 pm)
 
-]
+---
+
+# Reflection/brief survey
+
+- [Syllabus](https://docs.google.com/document/d/1HjOQ9Pgkg4JSQhgUX8NGjX6hJIHyOE9Q/edit#heading=h.y5e0ybp1dm8j)
+- Survey (2-3 min. max): https://forms.gle/dQMQGu6Hr9kevqMq7
+- A brief reflection:
+  - In my first or second year, emailed my department chair asking for a letter of recommendation 2-3 days before it was needed
+  - She said: no big deal! It happens to all of us
+  - Planfulness and restfulness are good, but sometimes life happens and we have to do our best
+  - I appreciate you doing your best, sharing input with me, and me trying my best
 
 ---
 

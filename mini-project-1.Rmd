@@ -7,44 +7,28 @@ output: html_document
 
 # Assignment Introduction
 
-Explore the School Diversity data set and design simple, useful charts
+Explore the U.S. News and World Report ranking data using the data created by Reiter. 
 
-The data for this mini project comes from the [Washington Post](https://www.washingtonpost.com/graphics/2019/local/school-diversity-data/#methodology). 
-
-To read more about the source of this data and access a data dictionary, [please view this link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-09-24). 
-
-Using this data, you will demonstrate you ability to explore, summarize, and visualize a new data set. In other words, you will apply what we have learned so far to a data set you have not yet seen.
+Please briefly read about the *National University Rankings* Excel data set here:
+https://andyreiter.com/datasets/
 
 The three sections you must complete are as follows:
 
-1. Explore: Demonstrate different ways to explore a data set and become familiar with its contents.
+1. *Explore*: Demonstrate different ways to explore a data set and become familiar with its contents.
 
-2. Summarize: Use various `dplyr` functions to filter, condense, aggregate, and transform the data set into various objects that can be used for visualization
+2. *Summarize*: Use various `dplyr` functions to filter, condense, aggregate, and transform the data set into various objects that can be used for visualization
 
-3. Visualize: Present simple but useful visualizations that depict interesting information in an aesthetically appealing way.
+3. *Visualize*: Present simple but useful visualizations that depict interesting information in an aesthetically appealing way.
+
+This is quite open-ended; there are many different sheets (individual files) within the Excel workbook. Which you use is up to you. Code to prepare the 2020 (the last sheet) and national rankings (the first) are provided in this week's module.
 
 # Explore
 
-Here, explore using non-data visualization meansPlease
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-
-# load packages here
-
-# read the data
-school_diversity <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-09-24/school_diversity.csv")
-```
-
-Demonstrate four different ways to _explore_ the data, focusing on understanding: the columns, the rows, and some characteristics of the data (variable type, summary statistics, counts, etc.).
-
-```{r}
-
-```
+Here, load and then explore using non-data visualization means. How many rows and columns are there? What do you notice about the data - what is present and what is missing? Add 3-5 bullet pointed notes below one or more code chunks for this step.
 
 # Summarize
 
-Once you are familiar with the data, think of three questions you think the data can answer. Write the questions below and *then* use summarize (and other code) with the data to answer those questions. Note: you will use those summaries in the Visualization section.
+Once you are familiar with the data, think of two questions you think the data can answer. Write the questions below and *then* use summarize (and other code) to just begin to explore them. Note: you will build upon the summaries in the Visualization section. Note, this doesn't have to be very fleshed out or rigorous: this is about narrowing your exploration in light of questions you could ask of the data.
 
 Question 1: 
 
@@ -53,12 +37,6 @@ Question 1:
 ```
 
 Question 2: 
-
-```{r}
-
-```
-
-Question 3: 
 
 ```{r}
 
@@ -85,13 +63,15 @@ Visualization 2
 
 ```
 
-Visualization 3
+## Reflection
 
-```{r}
+Please add a few sentences reflecting on what went well and what was a challenge.
 
-```
+## Knit and submit
 
-Please submit your work **as an RMD document** (not an HTML file) in Canvas for Mini Project 1! Good work!
+Be sure to add your name and date. This time, please change the title to something of your choosing that you think captures the work you have done.
+
+Please submit your work as an HTML file in Canvas for Mini Project 1! Good work!
 
 ## Grading Criteria
 
