@@ -7,21 +7,25 @@ output: html_document
 
 # Assignment Introduction
 
-Explore the School Diversity data set and design simple, colorful barcharts.
+Explore the School Diversity data set and design simple, useful charts
 
-The data for this mini project comes from the [Washington Post](https://www.washingtonpost.com/graphics/2019/local/school-diversity-data/#methodology). To read more about the source of this data and access a data dictionary, [please click here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-09-24). 
+The data for this mini project comes from the [Washington Post](https://www.washingtonpost.com/graphics/2019/local/school-diversity-data/#methodology). 
+
+To read more about the source of this data and access a data dictionary, [please view this link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-09-24). 
 
 Using this data, you will demonstrate you ability to explore, summarize, and visualize a new data set. In other words, you will apply what we have learned so far to a data set you have not yet seen.
 
 The three sections you must complete are as follows:
 
-- Explore: Demonstrate different ways to explore a data set and become familiar with its contents.
+1. Explore: Demonstrate different ways to explore a data set and become familiar with its contents.
 
-- Summarize: Use various `dplyr` functions to filter, condense, aggregate, and transform the data set into various objects that can be used for visualization
+2. Summarize: Use various `dplyr` functions to filter, condense, aggregate, and transform the data set into various objects that can be used for visualization
 
-- Visualize: Present simple but useful visualizations that depict interesting information in an aesthetically appealing way.
+3. Visualize: Present simple but useful visualizations that depict interesting information in an aesthetically appealing way.
 
 # Explore
+
+Here, explore using non-data visualization meansPlease
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -62,7 +66,7 @@ Question 3:
 
 # Visualize
 
-Keeping in mind all of the princples of visualization we have learned, all of the `ggplot` functions we have practiced, and all of the visualization code you have seen, develop a visualization that uses the data above. Each visualization should:
+Keeping in mind all of the principles of visualization we have learned, all of the `ggplot` functions we have practiced, and all of the visualization code you have seen, develop a visualization that uses the data above. Each visualization should:
 
 1. Present the information clearly
 2. Use a custom or non-default color palette

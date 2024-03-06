@@ -41,3 +41,4 @@ us_news %>%
 
 us_news %>% 
   write_csv("us-news-rankings-2020-processed.csv")
+p

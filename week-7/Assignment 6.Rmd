@@ -1,0 +1,82 @@
+---
+title: "Assignment 6: Points and Distributions"
+output: html_document
+author: ""
+date: ""
+---
+
+## 1. Loading, setting up
+
+Please add your name and the date above. 
+
+Did you know you can read CSV files on the Internet directly into R? Use the code below to do that. Then, print the object `rankings` to ensure it read in correctly. As mentioned in class, you may use your own data if you wish!
+
+```{r}
+rankings <- read_csv("https://raw.githubusercontent.com/utkeds/viz-data-using-r/master/us-news-rankings-2020-processed.csv")
+```
+As with any data set, your first step is to become familiar with the variables, values, and structure of the data. So, in a code chunk below this text, use a few functions to explore the data, focusing on getting a grip on the number of rows and columns and the meaning of the rows and columns. 
+
+## 2. A basic histogram
+
+Create a code chunk and write ggplot2 code to create a histogram for a single variable. You may want to play around with several variables; some may have more variability than others. Furthermore, the ranking variables won't have any kind of normal distribution, so these may be worth avoiding for this and the next few steps that focus upon visualizing distributions. In addition to choosing a variable. justify with a few lines of text your choice for the `binwidth` or `bins` arguments of `geom_histogram()`. 
+
+## 3. A basic density plot
+
+Using the same variable, create a density plot. 
+
+## 4. A basic boxplot
+
+One last time - please create a box plot!
+
+## 5. A histogram or density graph for public and private schools
+
+Use `fill` to plot multiple distributions for public and private schools. You may wish to filter the data to communicate the key take-away about these schools. Recall that if you create a histogram, you will need to specify the `position` argument as well as `alpha`, e.g. `geom_histogram(position = "identity", alpha = .05)`. Be sure to play around with the alpha value so that the distributions appear in an easy-to-view way. **For this graph, please pay attention to theming and labels.**
+
+```{r}
+
+```
+
+Please add a few sentences here reflecting on your graph. What do you notice and can you claim based upon it?
+
+- 
+- 
+
+## 6. Scatterplot
+
+Now, please create a scatterplot using two or more numeric variables. Carefully select the variables to learn something interesting about their association.
+
+## 7. Scatterplot plus color
+
+Color the points by a third variable of your choosing, again selecting this with the aim of revealing a pattern of note or interest in the data.
+
+## 8. Scatterplot plus color and shape
+
+Use the `public_private` variable to use different shapes for the points. **For this graph, please pay attention to theming and labels.**
+
+That's it! The next two graphs are optional reaches for you to push further, if you like. Please do complete the reflection (step #11), too.
+
+## 9. Optional Reach #1
+
+Add a line for your association. Try adding the equation for the line (consult the slides to see how!).
+
+## 10. Optional Reach #2
+
+Use ggridges, box plots, or some other geom (or technique) suitable for visualizing many distributions. Note, you may need to re-work your data to be in "long" form for this to work!
+
+
+## 11. Reflection
+
+Important: After you knit, check the HTML file. Does it appear as you intended? Does any output print that is too long? Is your version of R needing to be updated? Do your name and date appear? Share any questions you have in Canvas about fine-tuning your .Rmd output.
+
+Submit for Assignment 6 in Canvas. 
+
+Please add a sentence or two next reflecting on this assignment. What went well, what was challenging, and what do you want to dive deeper into?
+
+**Rubric**
+
+Name is added: 2 points
+File knits to an HTML: 8 points
+Code chunks have appropriate output: 15 points
+Interpretations and reflection are added: 5 points
+Bonus: 5 points
+Total: 30 points
