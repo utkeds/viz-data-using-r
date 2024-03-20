@@ -20,9 +20,9 @@ knitr:
 
 - Intro
 - Mid-semester feedback
-- Themes and colors
-- Themes
-- Colors
+- This week and next
+- Topic 1: Themes
+- Topic 2: Colors
 - What's next
 
 # Intro
@@ -42,8 +42,6 @@ Take a sad plot...
 ![](images/sadplot.png)
 
 :::
-
-. . .
 
 ::: {.column width="50%"}
 
@@ -79,13 +77,31 @@ To use this table with {ggplot2}, we need to first reshape the data to have one 
 
 ## Today's data: Instructional staff employment trends
 
+We use `pivot_longer()` from {tidyr} to make the data 'longer'.
+
+![](images/tidyr-longer-wider.gif){fig-align="center"}
+
+## Today's data: Instructional staff employment trends
+
+```r
+pivot_longer(data, cols, names_to = "name")
+```
+
+* The first argument is `data` 
+* The second argument, `cols`, is where you specify which columns to pivot into longer format – in this case all columns except for `year`
+* The third argument, names_to, is a string specifying the name of the column to create from the data stored in the column names of data – in this case `faculty_type`
+
+## Today's data: Instructional staff employment trends
+
 ```{r}
 library(dplyr)
 library(tidyr)
 
 staff_long <- staff %>%
   pivot_longer(cols = -year, names_to = "faculty_type") %>%
-  mutate(year = as.numeric(year))
+  mutate(date = as.Date(paste0(year, "-01-01")))
+
+staff_long
 ```
 
 # Topic 1: Themes
@@ -116,7 +132,7 @@ Today, we'll be focusing on `theme()`.
 
 ![](images/theme.png){fig-align="center"}
 
-## Themes and non-data ink
+## Themes and non-data ink {.smaller}
 
 The 'theme' involves editing the content that supports the data but does not deliver the quantitative information itself: background, grid lines, ticks, labels, legends, etc. -- "non-data ink".
 
@@ -359,6 +375,7 @@ p +
 Can also add on to an existing theme:
 
 ```{r}
+#| code-line-numbers: |2
 p +
   theme_minimal() +
   theme(plot.title = element_text(size = 70),
@@ -390,7 +407,7 @@ colors()
 Use the name of the color in quotes:
 
 ```{r}
-#| code-line-numbers: |3
+#| code-line-numbers: "|3"
 staff_long %>%
   ggplot(aes(x = faculty_type, y = value)) +
   geom_col(fill = "royalblue")
@@ -402,21 +419,22 @@ What if you put `fill = "royalblue"` inside of `aes()`?
 
 ## Built-in colors
 
-Outside of `aes()`, `fill` maps to the geometry, *not* the data.
+Inside of `aes()`, `fill` maps to the data, *not* the geometry.
 
 ```{r}
-#| code-line-numbers: |3
+#| code-line-numbers: "|2"
 staff_long %>%
   ggplot(aes(x = faculty_type, y = value, fill = "royalblue")) +
   geom_col()
 ```
 
-## Built-in colors {.smaller}
+## Built-in colors
 
 You can specify colors for specific values using `scale_fill_manual` and a named vector:
 
 ```{r}
 #| eval: false
+#| code-line-numbers: "|4-11|"
 staff_long %>%
   ggplot(aes(x = faculty_type, y = value)) +
   geom_col() +
@@ -457,10 +475,11 @@ Why are there no colors?
 
 ## Built-in colors
 
-You can specify colors for specific values using `scale_fill_manual` and a named vector **as long as `fill` are mapped to the data**:
+You can specify colors for specific values using `scale_fill_manual` and a named vector **as long as `fill` is mapped to the data**:
 
 ```{r}
-#| error: true
+#| eval: false
+#| code-line-numbers: "|2,4-11"
 staff_long %>%
   ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
   geom_col() +
@@ -477,9 +496,31 @@ staff_long %>%
 
 ## Built-in colors
 
+You can specify colors for specific values using `scale_fill_manual` and a named vector **as long as `fill` is mapped to the data**:
+
+```{r}
+#| error: true
+#| echo: false
+staff_long %>%
+  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+  geom_col() +
+  scale_fill_manual(
+    values = c(
+      "full_time_non_tenure_track" = "skyblue",
+      "full_time_tenure_track" = "peachpuff1",
+      "full_time_tenured" = "palegreen1",
+      "grad_student" = "sandybrown",
+      "part_time" = "maroon"
+    )
+  )
+```
+
+## Built-in colors {.smaller}
+
 What about our earlier line graph?
 
 ```{r}
+#| code-line-numbers: "|2,4"
 #| error: true
 staff_long %>%
   ggplot(aes(x = year, y = value, color = faculty_type)) +
@@ -495,11 +536,12 @@ staff_long %>%
   )
 ```
 
-## Built-in colors
+## Built-in colors {.smaller}
 
 We need to make sure we're mapping the correct aesthetic:
 
 ```{r}
+#| code-line-numbers: "|2,4"
 staff_long %>%
   ggplot(aes(x = year, y = value, color = faculty_type)) +
   geom_line() +
@@ -516,7 +558,7 @@ staff_long %>%
 
 ## {ggplot2} palette packages
 
-There are a ton of amazing palette packages out there! Here is an example from MetBrewer:
+There are a ton of amazing palette packages out there! Here is an example from [MetBrewer](https://github.com/BlakeRMills/MetBrewer):
 
 ```{r}
 library(MetBrewer)
@@ -524,13 +566,15 @@ library(MetBrewer)
 staff_long %>%
   ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
   geom_col() +
-  scale_fill_manual(values=met.brewer("Hokusai1"))
+  scale_fill_manual(values = met.brewer("Hokusai1"))
 ```
 
 ## {ggplot2} palette packages
 
+Let's try the [Egypt](https://github.com/BlakeRMills/MetBrewer?tab=readme-ov-file#egypt) palette:
+
 ```{r}
-#| error: true
+#| eval: false
 library(MetBrewer)
 
 staff_long %>%
@@ -541,13 +585,26 @@ staff_long %>%
 
 . . .
 
+```{r}
+#| echo: false
+#| error: true
+library(MetBrewer)
+
+staff_long %>%
+  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+  geom_col() +
+  scale_fill_manual(values = met.brewer("Egypt"))
+```
+
+<br>
+<br>
 Why didn't this work?
 
 ## {ggplot2} palette packages
 
 The {viridis} package provides continuous palettes:
 
-![](images/viridis.png)
+![](images/viridis.png){fig-align="center"}
 
 ## viridis
 
@@ -557,7 +614,6 @@ Let's see it in action:
 library(viridis)
 
 staff_long %>%
-  mutate(date = as.Date(paste0(year, "-01-01"))) |> 
   ggplot(aes(x = date, y = value, color = value)) +
   geom_point() +
   scale_color_viridis()
@@ -565,7 +621,21 @@ staff_long %>%
 
 ## viridis
 
-Let's see it in action:
+How about with our bar chart?
+
+```{r}
+#| eval: false
+library(viridis)
+
+staff_long %>%
+  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+  geom_col() +
+  scale_fill_viridis()
+```
+
+## viridis
+
+How about with our bar chart?
 
 ```{r}
 #| error: true
@@ -577,7 +647,8 @@ staff_long %>%
   scale_fill_viridis()
 ```
 
-. . .
+<br>
+<br>
 
 Why didn't it work? Let's check out the documentation: <https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html>
 
@@ -586,19 +657,7 @@ Why didn't it work? Let's check out the documentation: <https://cran.r-project.o
 viridis uses **continuous** palettes and our data is **discrete**.
 
 ```{r}
-library(viridis)
-
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
-  geom_col() +
-  scale_fill_viridis_d()
-```
-
-## viridis
-
-How would you
-
-```{r}
+#| code-line-numbers: "|6"
 library(viridis)
 
 staff_long %>%
@@ -624,6 +683,7 @@ staff_long %>%
 How would you use viridis on our line graph? Answer: `scale_color_viridis_d()`.
 
 ```{r}
+#| code-line-numbers: "6"
 library(viridis)
 
 staff_long %>%
@@ -647,9 +707,26 @@ staff_long %>%
 
 This is a fantastic resource: <https://github.com/EmilHvitfeldt/r-color-palettes>
 
-# Best practices
+# Accessibility
 
-## Accessibility
+## Colors
+
+Some people do not possess the usual complement of color receptors and so can distinguish fewer colors than others.
+
+* Because of this, it is important to consider how a color palette will look to people with common forms of color blindness.
+
+You also want to check the contrast between colors to make text legible for visitors with low vision.
+
+* WebAIM checker: https://webaim.org/resources/contrastchecker/
+
+## Colors
+
+There are tools to help check your palettes:
+
+* Vischeck.com
+* {dichromat} and {colorBlindness} packages simulate color blindness
+
+![](images/colorblindness.png){fig-align="center"}
 
 # Code along
 
@@ -662,3 +739,9 @@ This is a fantastic resource: <https://github.com/EmilHvitfeldt/r-color-palettes
   * Top Ten Chart Dos and Don’ts by Angela Zoss
 
 * Assignment: Take a sad plot and make it better
+
+# Attribution for materials used today
+
+* Data Science in a Box by Mine Çetinkaya-Rundel
+* https://datasciencebox.org/
+* License: Creative Commons Attribution-ShareAlike 4.0 International
