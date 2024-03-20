@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.543">
+
+  <meta name="author" content="Joshua Rosenberg and Isabella Velásquez">
+  <title>Week 08 - STEM 691</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {  background-color: #f8f8f8; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ef2929; } /* Alert */
+    code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #204a87; } /* Attribute */
+    code span.bn { color: #0000cf; } /* BaseN */
+    code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4e9a06; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #8f5902; font-style: italic; } /* Comment */
+    code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+    code span.dt { color: #204a87; } /* DataType */
+    code span.dv { color: #0000cf; } /* DecVal */
+    code span.er { color: #a40000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #0000cf; } /* Float */
+    code span.fu { color: #204a87; font-weight: bold; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+    code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+    code span.ot { color: #8f5902; } /* Other */
+    code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+    code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+    code span.ss { color: #4e9a06; } /* SpecialString */
+    code span.st { color: #4e9a06; } /* String */
+    code span.va { color: #000000; } /* Variable */
+    code span.vs { color: #4e9a06; } /* VerbatimString */
+    code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#4B4B4B" class="quarto-title-block center">
+  <h1 class="title">Week 08 - STEM 691</h1>
+  <p class="subtitle">Themes and fonts in {ggplot2}</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Joshua Rosenberg and Isabella Velásquez 
+</div>
+</div>
+</div>
+
+</section>
+<section id="todays-agenda" class="title-slide slide level1 center">
+<h1>Today’s Agenda</h1>
+<ul>
+<li>Intro</li>
+<li>Mid-semester feedback</li>
+<li>Themes and colors</li>
+<li>Themes</li>
+<li>Colors</li>
+<li>What’s next</li>
+</ul>
+</section>
+
+<section id="intro" class="title-slide slide level1 center">
+<h1>Intro</h1>
+
+</section>
+
+<section>
+<section id="mid-semester-feedback" class="title-slide slide level1 center">
+<h1>Mid-semester feedback</h1>
+<p>Passing to Josh!</p>
+</section>
+<section id="this-week-and-next-week" class="slide level2">
+<h2>This week and next week</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Take a sad plot…</p>
+<p><img data-src="images/sadplot.png"></p>
+</div><p>. . .</p><div class="column" style="width:50%;">
+<p>And make it better!</p>
+<p><img data-src="images/better.png"></p>
+</div>
+</div>
+</section>
+<section id="todays-data-instructional-staff-employment-trends" class="slide level2">
+<h2>Today’s data: Instructional staff employment trends</h2>
+<p>The American Association of University Professors (AAUP) is a nonprofit membership association of faculty and other academic professionals. This report compiled by the AAUP shows trends in instructional staff employees between 1975 and 2011.</p>
+</section>
+<section id="todays-data-instructional-staff-employment-trends-1" class="slide level2">
+<h2>Today’s data: Instructional staff employment trends</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># remotes::install_github("tidyverse/dsbox")</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">library</span>(dsbox)</span>
+<span id="cb1-3"><a href=""></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-4"><a href=""></a></span>
+<span id="cb1-5"><a href=""></a>staff <span class="ot">&lt;-</span> dsbox<span class="sc">::</span>instructors</span>
+<span id="cb1-6"><a href=""></a><span class="fu">head</span>(staff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+   year full_time_tenured full_time_tenure_track full_time_non_tenure_track
+  &lt;dbl&gt;             &lt;dbl&gt;                  &lt;dbl&gt;                      &lt;dbl&gt;
+1  1975              29                     16.1                       10.3
+2  1989              27.6                   11.4                       14.1
+3  1993              25                     10.2                       13.6
+4  1995              24.8                    9.6                       13.6
+5  1999              21.8                    8.9                       15.2
+6  2001              20.3                    9.2                       15.5
+# ℹ 2 more variables: part_time &lt;dbl&gt;, grad_student &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="todays-data-instructional-staff-employment-trends-2" class="slide level2">
+<h2>Today’s data: Instructional staff employment trends</h2>
+<p>To use this table with {ggplot2}, we need to first reshape the data to have one variable for faculty type and one variable for year (convert from ‘wide’ to ‘long’).</p>
+<p><strong>How do we do this?</strong></p>
+</section>
+<section id="todays-data-instructional-staff-employment-trends-3" class="slide level2">
+<h2>Today’s data: Instructional staff employment trends</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href=""></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb3-3"><a href=""></a></span>
+<span id="cb3-4"><a href=""></a>staff_long <span class="ot">&lt;-</span> staff <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"faculty_type"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="topic-1-themes" class="title-slide slide level1 center">
+<h1>Topic 1: Themes</h1>
+
+</section>
+<section id="recap-from-last-week" class="slide level2">
+<h2>Recap from last week</h2>
+<p>Timelines with {ggplot2}</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-2"><a href=""></a></span>
+<span id="cb4-3"><a href=""></a>p <span class="ot">&lt;-</span> staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href=""></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb4-6"><a href=""></a></span>
+<span id="cb4-7"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="recall-ggplot2-anatomy" class="slide level2">
+<h2>Recall ggplot2 anatomy</h2>
+<p>Plots made with {ggplot2} are made of numerous layers.</p>
+
+<img data-src="images/gglayers.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="recall-ggplot2-anatomy-1" class="slide level2">
+<h2>Recall ggplot2 anatomy</h2>
+<p>Today, we’ll be focusing on <code>theme()</code>.</p>
+
+<img data-src="images/theme.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="themes-and-non-data-ink" class="slide level2">
+<h2>Themes and non-data ink</h2>
+<p>The ‘theme’ involves editing the content that supports the data but does not deliver the quantitative information itself: background, grid lines, ticks, labels, legends, etc. – “non-data ink”.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/low.png"></p>
+<figcaption>Low data-ink ratio</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/high.png"></p>
+<figcaption>High data-ink ratio</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p><a href="https://infovis-wiki.net/wiki/Data-Ink_Ratio">Edward Tufte Principles of Data Visualization</a></p>
+</div></aside></section>
+<section id="increasing-the-data-ink-ratio" class="slide level2">
+<h2>Increasing the data-ink ratio</h2>
+
+<img data-src="images/data-ink.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="why-worry-about-the-data-ink-ratio" class="slide level2 smaller">
+<h2>Why worry about the data-ink ratio?</h2>
+<p>Some believe that a higher data-ink ratio is better because it allows the audience to focus on the data rather than unnecessary elements that do not contribute to the message.</p>
+<div class="fragment">
+<p>This is a subjective take!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/mona.jpg" class="quarto-figure quarto-figure-center" width="350"></p>
+</figure>
+</div>
+
+</div>
+<aside><div>
+<p>Source: Mona Chalabi</p>
+</div></aside></section></section>
+<section>
+<section id="pre-built-themes" class="title-slide slide level1 center">
+<h1>Pre-built themes</h1>
+
+</section>
+<section id="built-in-themes" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Built-in themes</h2>
+<p>{ggplot2} comes with a number of built-in themes:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb5-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb5-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="built-in-themes-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Built-in themes</h2>
+<p>{ggplot2} comes with seven built-in themes, including:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb6-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb6-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="built-in-themes-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Built-in themes</h2>
+<p>{ggplot2} comes with seven built-in themes, including:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb7-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb7-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="built-in-themes-3" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Built-in themes</h2>
+<p>{ggplot2} comes with seven built-in themes, including:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb8-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb8-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-packages" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Theme packages</h2>
+<p>Community-contributed packages provide even more themes:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb9-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb9-2" class="hljs-ln-code"><a href=""></a></span>
+<span id="cb9-3" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb9-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_tufte</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-packages-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Theme packages</h2>
+<p>Community-contributed packages provide even more themes:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb10-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb10-2" class="hljs-ln-code"><a href=""></a></span>
+<span id="cb10-3" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb10-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_solarized</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-packages-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Theme packages</h2>
+<p>Community-contributed packages provide even more themes:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb11-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb11-2" class="hljs-ln-code"><a href=""></a></span>
+<span id="cb11-3" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb11-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_excel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="finding-theme-packages" class="slide level2">
+<h2>Finding theme packages</h2>
+<ul>
+<li>hrbrthemes</li>
+<li>ggtech</li>
+<li>pilot</li>
+</ul>
+<p>Really great source at: <a href="https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics" class="uri">https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics</a></p>
+</section></section>
+<section>
+<section id="custom-themes" class="title-slide slide level1 center">
+<h1>Custom themes</h1>
+
+</section>
+<section id="theme-anatomy" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb12-1" class="hljs-ln-code"><a href=""></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb12-2" class="hljs-ln-code"><a href=""></a>  staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb12-3" class="hljs-ln-code"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb12-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb12-5" class="hljs-ln-code"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Instructional staff employment trends"</span>)</span>
+<span id="cb12-6" class="hljs-ln-code"><a href=""></a></span>
+<span id="cb12-7" class="hljs-ln-code"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-anatomy-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<h3 id="make-the-title-16-point-and-bold">Make the title 16 point and bold</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb13-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb13-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-3" class="hljs-ln-code"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>)</span>
+<span id="cb13-4" class="hljs-ln-code"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-anatomy-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<h3 id="place-legend-on-the-bottom">Place legend on the bottom</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb14-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb14-3" class="hljs-ln-code"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb14-4" class="hljs-ln-code"><a href=""></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb14-5" class="hljs-ln-code"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-anatomy-3" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<h3 id="make-the-background-white">Make the background white</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb15-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-3" class="hljs-ln-code"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb15-4" class="hljs-ln-code"><a href=""></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb15-5" class="hljs-ln-code"><a href=""></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
+<span id="cb15-6" class="hljs-ln-code"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-anatomy-reference-guide" class="slide level2">
+<h2><code>theme()</code> anatomy reference guide</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/ggplot_elements.png" class="quarto-figure quarto-figure-center" width="725"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Source: https://bookdown.org/alapo/learnr/data-visualisation.html</p>
+<p>Full list of elements available at ggplot2.tidyverse.org/reference/theme</p>
+</div></aside></section></section>
+<section>
+<section id="modifying-theme-components" class="title-slide slide level1 center">
+<h1>Modifying theme components</h1>
+<p>To modify an individual theme component, use code like <code>plot + theme(element.name = element_function())</code>.</p>
+</section>
+<section id="modifying-theme-components-1" class="slide level2">
+<h2>Modifying theme components</h2>
+<p>Four basic types of built-in element functions:</p>
+<ul>
+<li><code>element_text()</code> draws labels and headings:</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb16-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="modifying-theme-components-2" class="slide level2">
+<h2>Modifying theme components</h2>
+<p>Four basic types of built-in element functions:</p>
+<ul>
+<li><code>element_line()</code> draws lines by color, linewidth and linetype:</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="modifying-theme-components-3" class="slide level2">
+<h2>Modifying theme components</h2>
+<p>Four basic types of built-in element functions:</p>
+<ul>
+<li><code>element_rect()</code> draws rectangles, mostly used for backgrounds</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb18-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="modifying-theme-components-4" class="slide level2">
+<h2>Modifying theme components</h2>
+<p>Four basic types of built-in element functions:</p>
+<ul>
+<li><code>element_blank()</code> draws nothing</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb19-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="modifying-theme-components-5" class="slide level2">
+<h2>Modifying theme components</h2>
+<p>Modify multiple theme components in the same <code>theme()</code></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb20-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
+<span id="cb20-3"><a href=""></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>),</span>
+<span id="cb20-4"><a href=""></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
+<span id="cb20-5"><a href=""></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="modifying-theme-components-6" class="slide level2">
+<h2>Modifying theme components</h2>
+<p>Can also add on to an existing theme:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb21-2"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-3"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
+<span id="cb21-4"><a href=""></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>),</span>
+<span id="cb21-5"><a href=""></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
+<span id="cb21-6"><a href=""></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<p>What happens if you put <code>theme()</code> before <code>theme_minimal()</code>?</p>
+</div>
+</section></section>
+<section id="code-along" class="title-slide slide level1 center">
+<h1>Code along</h1>
+
+</section>
+
+<section>
+<section id="topic-2-colors" class="title-slide slide level1 center">
+<h1>Topic 2: Colors</h1>
+
+</section>
+<section id="built-in-colors" class="slide level2 smaller">
+<h2>Built-in colors</h2>
+<ul>
+<li>R comes pre-loaded with 657 named colors</li>
+<li>You can also specify any color using a hex code (#RRGGBB)</li>
+<li>Use the <code>colors()</code> command to see the available named colors</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">colors</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "white"                "aliceblue"            "antiquewhite"        
+  [4] "antiquewhite1"        "antiquewhite2"        "antiquewhite3"       
+  [7] "antiquewhite4"        "aquamarine"           "aquamarine1"         
+ [10] "aquamarine2"          "aquamarine3"          "aquamarine4"         
+ [13] "azure"                "azure1"               "azure2"              
+ [16] "azure3"               "azure4"               "beige"               
+ [19] "bisque"               "bisque1"              "bisque2"             
+ [22] "bisque3"              "bisque4"              "black"               
+ [25] "blanchedalmond"       "blue"                 "blue1"               
+ [28] "blue2"                "blue3"                "blue4"               
+ [31] "blueviolet"           "brown"                "brown1"              
+ [34] "brown2"               "brown3"               "brown4"              
+ [37] "burlywood"            "burlywood1"           "burlywood2"          
+ [40] "burlywood3"           "burlywood4"           "cadetblue"           
+ [43] "cadetblue1"           "cadetblue2"           "cadetblue3"          
+ [46] "cadetblue4"           "chartreuse"           "chartreuse1"         
+ [49] "chartreuse2"          "chartreuse3"          "chartreuse4"         
+ [52] "chocolate"            "chocolate1"           "chocolate2"          
+ [55] "chocolate3"           "chocolate4"           "coral"               
+ [58] "coral1"               "coral2"               "coral3"              
+ [61] "coral4"               "cornflowerblue"       "cornsilk"            
+ [64] "cornsilk1"            "cornsilk2"            "cornsilk3"           
+ [67] "cornsilk4"            "cyan"                 "cyan1"               
+ [70] "cyan2"                "cyan3"                "cyan4"               
+ [73] "darkblue"             "darkcyan"             "darkgoldenrod"       
+ [76] "darkgoldenrod1"       "darkgoldenrod2"       "darkgoldenrod3"      
+ [79] "darkgoldenrod4"       "darkgray"             "darkgreen"           
+ [82] "darkgrey"             "darkkhaki"            "darkmagenta"         
+ [85] "darkolivegreen"       "darkolivegreen1"      "darkolivegreen2"     
+ [88] "darkolivegreen3"      "darkolivegreen4"      "darkorange"          
+ [91] "darkorange1"          "darkorange2"          "darkorange3"         
+ [94] "darkorange4"          "darkorchid"           "darkorchid1"         
+ [97] "darkorchid2"          "darkorchid3"          "darkorchid4"         
+[100] "darkred"              "darksalmon"           "darkseagreen"        
+[103] "darkseagreen1"        "darkseagreen2"        "darkseagreen3"       
+[106] "darkseagreen4"        "darkslateblue"        "darkslategray"       
+[109] "darkslategray1"       "darkslategray2"       "darkslategray3"      
+[112] "darkslategray4"       "darkslategrey"        "darkturquoise"       
+[115] "darkviolet"           "deeppink"             "deeppink1"           
+[118] "deeppink2"            "deeppink3"            "deeppink4"           
+[121] "deepskyblue"          "deepskyblue1"         "deepskyblue2"        
+[124] "deepskyblue3"         "deepskyblue4"         "dimgray"             
+[127] "dimgrey"              "dodgerblue"           "dodgerblue1"         
+[130] "dodgerblue2"          "dodgerblue3"          "dodgerblue4"         
+[133] "firebrick"            "firebrick1"           "firebrick2"          
+[136] "firebrick3"           "firebrick4"           "floralwhite"         
+[139] "forestgreen"          "gainsboro"            "ghostwhite"          
+[142] "gold"                 "gold1"                "gold2"               
+[145] "gold3"                "gold4"                "goldenrod"           
+[148] "goldenrod1"           "goldenrod2"           "goldenrod3"          
+[151] "goldenrod4"           "gray"                 "gray0"               
+[154] "gray1"                "gray2"                "gray3"               
+[157] "gray4"                "gray5"                "gray6"               
+[160] "gray7"                "gray8"                "gray9"               
+[163] "gray10"               "gray11"               "gray12"              
+[166] "gray13"               "gray14"               "gray15"              
+[169] "gray16"               "gray17"               "gray18"              
+[172] "gray19"               "gray20"               "gray21"              
+[175] "gray22"               "gray23"               "gray24"              
+[178] "gray25"               "gray26"               "gray27"              
+[181] "gray28"               "gray29"               "gray30"              
+[184] "gray31"               "gray32"               "gray33"              
+[187] "gray34"               "gray35"               "gray36"              
+[190] "gray37"               "gray38"               "gray39"              
+[193] "gray40"               "gray41"               "gray42"              
+[196] "gray43"               "gray44"               "gray45"              
+[199] "gray46"               "gray47"               "gray48"              
+[202] "gray49"               "gray50"               "gray51"              
+[205] "gray52"               "gray53"               "gray54"              
+[208] "gray55"               "gray56"               "gray57"              
+[211] "gray58"               "gray59"               "gray60"              
+[214] "gray61"               "gray62"               "gray63"              
+[217] "gray64"               "gray65"               "gray66"              
+[220] "gray67"               "gray68"               "gray69"              
+[223] "gray70"               "gray71"               "gray72"              
+[226] "gray73"               "gray74"               "gray75"              
+[229] "gray76"               "gray77"               "gray78"              
+[232] "gray79"               "gray80"               "gray81"              
+[235] "gray82"               "gray83"               "gray84"              
+[238] "gray85"               "gray86"               "gray87"              
+[241] "gray88"               "gray89"               "gray90"              
+[244] "gray91"               "gray92"               "gray93"              
+[247] "gray94"               "gray95"               "gray96"              
+[250] "gray97"               "gray98"               "gray99"              
+[253] "gray100"              "green"                "green1"              
+[256] "green2"               "green3"               "green4"              
+[259] "greenyellow"          "grey"                 "grey0"               
+[262] "grey1"                "grey2"                "grey3"               
+[265] "grey4"                "grey5"                "grey6"               
+[268] "grey7"                "grey8"                "grey9"               
+[271] "grey10"               "grey11"               "grey12"              
+[274] "grey13"               "grey14"               "grey15"              
+[277] "grey16"               "grey17"               "grey18"              
+[280] "grey19"               "grey20"               "grey21"              
+[283] "grey22"               "grey23"               "grey24"              
+[286] "grey25"               "grey26"               "grey27"              
+[289] "grey28"               "grey29"               "grey30"              
+[292] "grey31"               "grey32"               "grey33"              
+[295] "grey34"               "grey35"               "grey36"              
+[298] "grey37"               "grey38"               "grey39"              
+[301] "grey40"               "grey41"               "grey42"              
+[304] "grey43"               "grey44"               "grey45"              
+[307] "grey46"               "grey47"               "grey48"              
+[310] "grey49"               "grey50"               "grey51"              
+[313] "grey52"               "grey53"               "grey54"              
+[316] "grey55"               "grey56"               "grey57"              
+[319] "grey58"               "grey59"               "grey60"              
+[322] "grey61"               "grey62"               "grey63"              
+[325] "grey64"               "grey65"               "grey66"              
+[328] "grey67"               "grey68"               "grey69"              
+[331] "grey70"               "grey71"               "grey72"              
+[334] "grey73"               "grey74"               "grey75"              
+[337] "grey76"               "grey77"               "grey78"              
+[340] "grey79"               "grey80"               "grey81"              
+[343] "grey82"               "grey83"               "grey84"              
+[346] "grey85"               "grey86"               "grey87"              
+[349] "grey88"               "grey89"               "grey90"              
+[352] "grey91"               "grey92"               "grey93"              
+[355] "grey94"               "grey95"               "grey96"              
+[358] "grey97"               "grey98"               "grey99"              
+[361] "grey100"              "honeydew"             "honeydew1"           
+[364] "honeydew2"            "honeydew3"            "honeydew4"           
+[367] "hotpink"              "hotpink1"             "hotpink2"            
+[370] "hotpink3"             "hotpink4"             "indianred"           
+[373] "indianred1"           "indianred2"           "indianred3"          
+[376] "indianred4"           "ivory"                "ivory1"              
+[379] "ivory2"               "ivory3"               "ivory4"              
+[382] "khaki"                "khaki1"               "khaki2"              
+[385] "khaki3"               "khaki4"               "lavender"            
+[388] "lavenderblush"        "lavenderblush1"       "lavenderblush2"      
+[391] "lavenderblush3"       "lavenderblush4"       "lawngreen"           
+[394] "lemonchiffon"         "lemonchiffon1"        "lemonchiffon2"       
+[397] "lemonchiffon3"        "lemonchiffon4"        "lightblue"           
+[400] "lightblue1"           "lightblue2"           "lightblue3"          
+[403] "lightblue4"           "lightcoral"           "lightcyan"           
+[406] "lightcyan1"           "lightcyan2"           "lightcyan3"          
+[409] "lightcyan4"           "lightgoldenrod"       "lightgoldenrod1"     
+[412] "lightgoldenrod2"      "lightgoldenrod3"      "lightgoldenrod4"     
+[415] "lightgoldenrodyellow" "lightgray"            "lightgreen"          
+[418] "lightgrey"            "lightpink"            "lightpink1"          
+[421] "lightpink2"           "lightpink3"           "lightpink4"          
+[424] "lightsalmon"          "lightsalmon1"         "lightsalmon2"        
+[427] "lightsalmon3"         "lightsalmon4"         "lightseagreen"       
+[430] "lightskyblue"         "lightskyblue1"        "lightskyblue2"       
+[433] "lightskyblue3"        "lightskyblue4"        "lightslateblue"      
+[436] "lightslategray"       "lightslategrey"       "lightsteelblue"      
+[439] "lightsteelblue1"      "lightsteelblue2"      "lightsteelblue3"     
+[442] "lightsteelblue4"      "lightyellow"          "lightyellow1"        
+[445] "lightyellow2"         "lightyellow3"         "lightyellow4"        
+[448] "limegreen"            "linen"                "magenta"             
+[451] "magenta1"             "magenta2"             "magenta3"            
+[454] "magenta4"             "maroon"               "maroon1"             
+[457] "maroon2"              "maroon3"              "maroon4"             
+[460] "mediumaquamarine"     "mediumblue"           "mediumorchid"        
+[463] "mediumorchid1"        "mediumorchid2"        "mediumorchid3"       
+[466] "mediumorchid4"        "mediumpurple"         "mediumpurple1"       
+[469] "mediumpurple2"        "mediumpurple3"        "mediumpurple4"       
+[472] "mediumseagreen"       "mediumslateblue"      "mediumspringgreen"   
+[475] "mediumturquoise"      "mediumvioletred"      "midnightblue"        
+[478] "mintcream"            "mistyrose"            "mistyrose1"          
+[481] "mistyrose2"           "mistyrose3"           "mistyrose4"          
+[484] "moccasin"             "navajowhite"          "navajowhite1"        
+[487] "navajowhite2"         "navajowhite3"         "navajowhite4"        
+[490] "navy"                 "navyblue"             "oldlace"             
+[493] "olivedrab"            "olivedrab1"           "olivedrab2"          
+[496] "olivedrab3"           "olivedrab4"           "orange"              
+[499] "orange1"              "orange2"              "orange3"             
+[502] "orange4"              "orangered"            "orangered1"          
+[505] "orangered2"           "orangered3"           "orangered4"          
+[508] "orchid"               "orchid1"              "orchid2"             
+[511] "orchid3"              "orchid4"              "palegoldenrod"       
+[514] "palegreen"            "palegreen1"           "palegreen2"          
+[517] "palegreen3"           "palegreen4"           "paleturquoise"       
+[520] "paleturquoise1"       "paleturquoise2"       "paleturquoise3"      
+[523] "paleturquoise4"       "palevioletred"        "palevioletred1"      
+[526] "palevioletred2"       "palevioletred3"       "palevioletred4"      
+[529] "papayawhip"           "peachpuff"            "peachpuff1"          
+[532] "peachpuff2"           "peachpuff3"           "peachpuff4"          
+[535] "peru"                 "pink"                 "pink1"               
+[538] "pink2"                "pink3"                "pink4"               
+[541] "plum"                 "plum1"                "plum2"               
+[544] "plum3"                "plum4"                "powderblue"          
+[547] "purple"               "purple1"              "purple2"             
+[550] "purple3"              "purple4"              "red"                 
+[553] "red1"                 "red2"                 "red3"                
+[556] "red4"                 "rosybrown"            "rosybrown1"          
+[559] "rosybrown2"           "rosybrown3"           "rosybrown4"          
+[562] "royalblue"            "royalblue1"           "royalblue2"          
+[565] "royalblue3"           "royalblue4"           "saddlebrown"         
+[568] "salmon"               "salmon1"              "salmon2"             
+[571] "salmon3"              "salmon4"              "sandybrown"          
+[574] "seagreen"             "seagreen1"            "seagreen2"           
+[577] "seagreen3"            "seagreen4"            "seashell"            
+[580] "seashell1"            "seashell2"            "seashell3"           
+[583] "seashell4"            "sienna"               "sienna1"             
+[586] "sienna2"              "sienna3"              "sienna4"             
+[589] "skyblue"              "skyblue1"             "skyblue2"            
+[592] "skyblue3"             "skyblue4"             "slateblue"           
+[595] "slateblue1"           "slateblue2"           "slateblue3"          
+[598] "slateblue4"           "slategray"            "slategray1"          
+[601] "slategray2"           "slategray3"           "slategray4"          
+[604] "slategrey"            "snow"                 "snow1"               
+[607] "snow2"                "snow3"                "snow4"               
+[610] "springgreen"          "springgreen1"         "springgreen2"        
+[613] "springgreen3"         "springgreen4"         "steelblue"           
+[616] "steelblue1"           "steelblue2"           "steelblue3"          
+[619] "steelblue4"           "tan"                  "tan1"                
+[622] "tan2"                 "tan3"                 "tan4"                
+[625] "thistle"              "thistle1"             "thistle2"            
+[628] "thistle3"             "thistle4"             "tomato"              
+[631] "tomato1"              "tomato2"              "tomato3"             
+[634] "tomato4"              "turquoise"            "turquoise1"          
+[637] "turquoise2"           "turquoise3"           "turquoise4"          
+[640] "violet"               "violetred"            "violetred1"          
+[643] "violetred2"           "violetred3"           "violetred4"          
+[646] "wheat"                "wheat1"               "wheat2"              
+[649] "wheat3"               "wheat4"               "whitesmoke"          
+[652] "yellow"               "yellow1"              "yellow2"             
+[655] "yellow3"              "yellow4"              "yellowgreen"         </code></pre>
+</div>
+</div>
+</section>
+<section id="built-in-colors-1" class="slide level2">
+<h2>Built-in colors</h2>
+<p>Use the name of the color in quotes:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"royalblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<p>What if you put <code>fill = "royalblue"</code> inside of <code>aes()</code>?</p>
+</div>
+</section>
+<section id="built-in-colors-2" class="slide level2">
+<h2>Built-in colors</h2>
+<p>Outside of <code>aes()</code>, <code>fill</code> maps to the geometry, <em>not</em> the data.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> <span class="st">"royalblue"</span>)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href=""></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="built-in-colors-3" class="slide level2 smaller">
+<h2>Built-in colors</h2>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href=""></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb26-5"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb26-6"><a href=""></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb26-7"><a href=""></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb26-8"><a href=""></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb26-9"><a href=""></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb26-10"><a href=""></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb26-11"><a href=""></a>    )</span>
+<span id="cb26-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="built-in-colors-4" class="slide level2 smaller">
+<h2>Built-in colors</h2>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector:</p>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Why are there no colors?</p>
+</section>
+<section id="built-in-colors-5" class="slide level2">
+<h2>Built-in colors</h2>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> are mapped to the data</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb27-4"><a href=""></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb27-5"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb27-6"><a href=""></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb27-7"><a href=""></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb27-8"><a href=""></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb27-9"><a href=""></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb27-10"><a href=""></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb27-11"><a href=""></a>    )</span>
+<span id="cb27-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="built-in-colors-6" class="slide level2">
+<h2>Built-in colors</h2>
+<p>What about our earlier line graph?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb28-4"><a href=""></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb28-5"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb28-6"><a href=""></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb28-7"><a href=""></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb28-8"><a href=""></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb28-9"><a href=""></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb28-10"><a href=""></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb28-11"><a href=""></a>    )</span>
+<span id="cb28-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="built-in-colors-7" class="slide level2">
+<h2>Built-in colors</h2>
+<p>We need to make sure we’re mapping the correct aesthetic:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href=""></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb29-5"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb29-6"><a href=""></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb29-7"><a href=""></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb29-8"><a href=""></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb29-9"><a href=""></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb29-10"><a href=""></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb29-11"><a href=""></a>    )</span>
+<span id="cb29-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="ggplot2-palette-packages" class="slide level2">
+<h2>{ggplot2} palette packages</h2>
+<p>There are a ton of amazing palette packages out there! Here is an example from MetBrewer:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb30-2"><a href=""></a></span>
+<span id="cb30-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb30-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb30-6"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">met.brewer</span>(<span class="st">"Hokusai1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="ggplot2-palette-packages-1" class="slide level2">
+<h2>{ggplot2} palette packages</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb31-2"><a href=""></a></span>
+<span id="cb31-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb31-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb31-6"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Egypt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `palette()`:
+! Insufficient values in manual scale. 5 needed but only 4 provided.</code></pre>
+</div>
+</div>
+<div class="fragment">
+<p>Why didn’t this work?</p>
+</div>
+</section>
+<section id="ggplot2-palette-packages-2" class="slide level2">
+<h2>{ggplot2} palette packages</h2>
+<p>The {viridis} package provides continuous palettes:</p>
+
+<img data-src="images/viridis.png" class="r-stretch"></section>
+<section id="viridis" class="slide level2">
+<h2>viridis</h2>
+<p>Let’s see it in action:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">library</span>(viridis)</span>
+<span id="cb33-2"><a href=""></a></span>
+<span id="cb33-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(year, <span class="st">"-01-01"</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb33-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">color =</span> value)) <span class="sc">+</span></span>
+<span id="cb33-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb33-7"><a href=""></a>  <span class="fu">scale_color_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-31-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="viridis-1" class="slide level2">
+<h2>viridis</h2>
+<p>Let’s see it in action:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">library</span>(viridis)</span>
+<span id="cb34-2"><a href=""></a></span>
+<span id="cb34-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb34-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb34-6"><a href=""></a>  <span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `scale_fill_gradientn()`:
+! Discrete values supplied to continuous scale.
+ℹ Example values: "full_time_tenured", "full_time_tenure_track",
+  "full_time_non_tenure_track", "part_time", and "grad_student"</code></pre>
+</div>
+</div>
+<div class="fragment">
+<p>Why didn’t it work? Let’s check out the documentation: <a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html" class="uri">https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html</a></p>
+</div>
+</section>
+<section id="viridis-2" class="slide level2">
+<h2>viridis</h2>
+<p>viridis uses <strong>continuous</strong> palettes and our data is <strong>discrete</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">library</span>(viridis)</span>
+<span id="cb36-2"><a href=""></a></span>
+<span id="cb36-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb36-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb36-6"><a href=""></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-33-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="viridis-3" class="slide level2">
+<h2>viridis</h2>
+<p>How would you</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">library</span>(viridis)</span>
+<span id="cb37-2"><a href=""></a></span>
+<span id="cb37-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb37-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb37-6"><a href=""></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="viridis-4" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">viridis</h2>
+<p>How would you use viridis on our line graph?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb38-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(viridis)</span>
+<span id="cb38-2" class="hljs-ln-code"><a href=""></a></span>
+<span id="cb38-3" class="hljs-ln-code"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb38-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb38-5" class="hljs-ln-code"><a href=""></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-35-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="viridis-5" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">viridis</h2>
+<p>How would you use viridis on our line graph? Answer: <code>scale_color_viridis_d()</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb39-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(viridis)</span>
+<span id="cb39-2" class="hljs-ln-code"><a href=""></a></span>
+<span id="cb39-3" class="hljs-ln-code"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb39-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb39-5" class="hljs-ln-code"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb39-6" class="hljs-ln-code"><a href=""></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="checklist-of-tips" class="slide level2">
+<h2>Checklist of tips</h2>
+<ul>
+<li>Make sure to map to the data appropriately in <code>aes()</code> if you are mapping to data; otherwise, it will map to geometry</li>
+<li>Make sure your <code>color</code> or <code>fill</code> match, i.e., you are not trying to apply <code>color</code> to a <code>fill</code> aesthetic</li>
+<li>Make sure that if you are using a discrete palette, you have enough values</li>
+<li>Make sure that you are not trying to apply a continuous palette to discrete values</li>
+</ul>
+</section>
+<section id="finding-palette-packages" class="slide level2">
+<h2>Finding palette packages</h2>
+<ul>
+<li>MetBrewer</li>
+<li>wesanderson</li>
+<li>severance</li>
+</ul>
+<p>This is a fantastic resource: <a href="https://github.com/EmilHvitfeldt/r-color-palettes" class="uri">https://github.com/EmilHvitfeldt/r-color-palettes</a></p>
+</section></section>
+<section>
+<section id="best-practices" class="title-slide slide level1 center">
+<h1>Best practices</h1>
+
+</section>
+<section id="accessibility" class="slide level2">
+<h2>Accessibility</h2>
+</section></section>
+<section id="code-along-1" class="title-slide slide level1 center">
+<h1>Code along</h1>
+
+</section>
+
+<section id="whats-next" class="title-slide slide level1 center">
+<h1>What’s next</h1>
+<ul>
+<li><p>Reading:</p>
+<ul>
+<li>Fundamentals of Data Visualization by Claus O. Wilke</li>
+<li>Data Visualization Principles: Lessons from Tufte by Mike Pantoliano</li>
+<li>Top Ten Chart Dos and Don’ts by Angela Zoss</li>
+</ul></li>
+<li><p>Assignment: Take a sad plot and make it better</p></li>
+</ul>
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
