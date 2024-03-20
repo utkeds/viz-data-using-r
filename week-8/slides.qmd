@@ -39,7 +39,7 @@ Passing to Josh!
 
 Take a sad plot...
 
-![](images/sadplot.png)
+![](images/sadplot.png){width=400px}
 
 :::
 
@@ -47,11 +47,23 @@ Take a sad plot...
 
 And make it better!
 
-![](images/better.png)
+![](images/better.png){width=400px}
 
 :::
 
 ::::
+
+::: aside
+Source: Alison Hill, [Take a Sad Plot & Make It Better](https://www.apreshill.com/talk/2019-rladies-melbourne/), 2019
+:::
+
+## This week and next week
+
+![](images/canvas.png){fig-align="center"}
+
+::: aside
+Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinystats.github.io/teacups-giraffes-and-statistics/)
+:::
 
 ## Today's data: Instructional staff employment trends
 
@@ -79,7 +91,11 @@ To use this table with {ggplot2}, we need to first reshape the data to have one 
 
 We use `pivot_longer()` from {tidyr} to make the data 'longer'.
 
-![](images/tidyr-longer-wider.gif){fig-align="center"}
+![](images/tidyr-longer-wider.gif){fig-align="center" width=350px}
+
+::: aside
+Source: [tidyexplain](https://www.garrickadenbuie.com/project/tidyexplain/#pivot-wider-and-longer) by Garrick Aden-Buie
+:::
 
 ## Today's data: Instructional staff employment trends
 
@@ -743,5 +759,5 @@ There are tools to help check your palettes:
 # Attribution for materials used today
 
 * Data Science in a Box by Mine Çetinkaya-Rundel
-* https://datasciencebox.org/
-* License: Creative Commons Attribution-ShareAlike 4.0 International
+* <https://datasciencebox.org/>
+* License: [Creative Commons Attribution-ShareAlike 4.0 International](https://datasciencebox.org/license)
