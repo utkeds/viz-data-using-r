@@ -1,0 +1,88 @@
+---
+title: "Assignment 8: Themes and Colors"
+output: html_document
+author: ""
+date: ""
+---
+
+**Please add your name and the date above.**
+
+## Introduction
+
+Fisheries and Aquaculture Department of the Food and Agriculture Organization of the United Nations collects data on fisheries production of countries. [This Wikipedia page](https://en.wikipedia.org/wiki/Fishing_industry_by_country) lists fishery production of countries for 2016. For each country tonnage from capture and aquaculture are listed. Note that countries whose total harvest was less than 100,000 tons are not included in the visualization.
+
+A researcher shared with you the following visualization they created based on these data: https://datasciencebox.org/course-materials/lab-instructions/lab-06/img/fisheries.png
+
+Can you help them make improve them? 
+
+## 1. Brainstorming
+
+First, brainstorm how you would improve these visualizations. Write up the changes/decisions you made as bullet points. It’s ok if some of your improvements are aspirational, i.e. you don’t know how to implement it, but you think it’s a good idea.
+
+- [Brainstorm idea 1]
+- [Brainstorm idea 2]
+- [Brainstorm idea 3]
+
+## 1. Load and view data
+
+Please install the Data Science in a Box package by running `remotes::install_github("tidyverse/dsbox")` in your console.
+
+```{r}
+library(dsbox)
+
+fisheries <- dsbox::fisheries
+```
+
+Please check out the data, either by running `View(fisheries)` or running the code below:
+
+```{r}
+dplyr::glimpse(fisheries)
+```
+
+Write out three exploratory details about the data:
+
+1. [DETAIL 1]
+
+2. [DETAIL 2]
+
+3. [DETAIL 3]
+
+Is this data in long or wide format?
+
+- [YOUR ANSWER]
+
+## 2. Visualize the data
+
+Create a new data visualization for these data that implements what we learned in class. Please be sure to do the following:
+
+- Add a pre-built {ggplot2} theme
+- Add 2 theme changes of your choice (title, gridlines, etc.)
+- Add a color palette of your choice from an external package (not built into {ggplot2}). Many options are available here: <https://github.com/EmilHvitfeldt/r-color-palettes>
+- Move the legend to the bottom
+
+If you have any questions, please reach out to ivelasq@gmail.com!
+
+## 3. Reflection
+
+Important: After you knit, check the HTML file. 
+
+- Does it appear as you intended?
+- Does any output print that is too long?
+- Do your name and date appear?
+
+Share any questions you have in Canvas about fine-tuning your .Rmd output.
+
+## 4. Submit
+
+Submit for Assignment 8 in Canvas. 
+
+**Rubric**
+
+Name is added: 2 points
+File knits to an HTML: 4 points
+Three brainstorm ideas: 6 points (2 each)
+Three exploratory details: 3 points (1 each)
+Data format response is correct: 2 points
+Visualization + theme/color edits: 15 points
+
+Total: 30 points
