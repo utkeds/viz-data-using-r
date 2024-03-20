@@ -59,7 +59,7 @@ Source: Alison Hill, [Take a Sad Plot & Make It Better](https://www.apreshill.co
 
 ## This week and next week
 
-![](images/canvas.png){fig-align="center"}
+![](images/canvas.png){fig-align="center" width=500px}
 
 ::: aside
 Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinystats.github.io/teacups-giraffes-and-statistics/)
