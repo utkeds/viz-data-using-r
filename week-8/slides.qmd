@@ -1,5 +1,5 @@
 ---
-subtitle: "Themes and fonts in {ggplot2}"
+subtitle: "Themes and colors in {ggplot2}"
 title: "Week 08 - STEM 691"
 author: "Joshua Rosenberg and Isabella Velásquez"
 format:
@@ -349,7 +349,7 @@ Four basic types of built-in element functions:
 
 ```{r}
 p +
-  theme(panel.grid.major = element_line(colour = "black"))
+  theme(panel.grid.major = element_line(color = "black"))
 ```
 
 ## Modifying theme components
@@ -381,7 +381,7 @@ Modify multiple theme components in the same `theme()`
 ```{r}
 p +
   theme(plot.title = element_text(size = 70),
-        panel.grid.major = element_line(colour = "black"),
+        panel.grid.major = element_line(color = "black"),
         plot.background = element_rect(color = "red", linewidth = 2),
         axis.title.x = element_blank())
 ```
