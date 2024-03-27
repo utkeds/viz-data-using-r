@@ -564,8 +564,8 @@ p
 
 ## What's next
 
-* Assignment: We will be using the DC Bikeshare data to create a visualization and add text.
-* Reading:
+* Assignment: We will be using the DC Bikeshare data to create a visualization and add text (*due before the next class*).
+* Reading (and *discussion post due before the next class*):
   * Redundant Coding by C. Wilke
   * Unspoken Rules of Visualization
 
