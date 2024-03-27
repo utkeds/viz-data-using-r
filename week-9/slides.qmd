@@ -1,5 +1,5 @@
 ---
-subtitle: "Fonts and labels in {ggplot2}"
+subtitle: "Text and fonts in {ggplot2}"
 title: "Week 09 - STEM 691"
 author: "Joshua Rosenberg and Isabella Velásquez"
 format:
