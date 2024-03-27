@@ -453,8 +453,8 @@ The `family` aesthetic provides the name of a font. This aesthetic does allow yo
 ```{r}
 #| code-line-numbers: "|2-3"
 p <- p +
-  theme(plot.caption = element_text(size = 6,
-                                    family = "serif"))
+  theme(plot.title = element_text(size = 18,
+                                  family = "serif"))
 ```
 
 ## `family` aesthetic {.smaller}
