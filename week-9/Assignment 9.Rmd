@@ -133,6 +133,6 @@ Submit for Assignment 9 in Canvas.
 - Answer #1 correct: 2 points
 - Recode code is correct: 4 points (2 each)
 - Mutate code is correct: 3 points (1 each)
-- Visualization + theme/color edits: 15 points (5 each)
+- Visualization + text/font edits: 15 points (5 each)
 
 Total: 30 points
