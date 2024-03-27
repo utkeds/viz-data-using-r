@@ -97,7 +97,7 @@ dcbikeshare <- ___ |>
 
 Recreate the following visualization:
 
-![](https://minecr.shinyapps.io/dsbox-06-dcbikeshare/_w_95bf3fda/06-dcbikeshare_files/figure-html/unnamed-chunk-1-1.png)
+![](https://github.com/utkeds/viz-data-using-r/blob/main/week-9/images/assignment-viz.png)
 
 ```{r}
 
