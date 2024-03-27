@@ -18,7 +18,6 @@ knitr:
 
 # Today's agenda
 
-- Mini project feedback
 - Recap
 - Themes + text
 - `scale_*_*`
@@ -26,8 +25,6 @@ knitr:
 - Fonts
 - What's next
 - Checkout
-
-# Mini-project feedback
 
 # Recap
 

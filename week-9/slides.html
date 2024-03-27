@@ -8,7 +8,7 @@
 <link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.543">
+  <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Joshua Rosenberg and Isabella Velásquez">
   <title>Week 09 - STEM 691</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,17 +60,18 @@
       }
     pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
     div.sourceCode
-      {  background-color: #f8f8f8; }
+      { color: #000000; background-color: #f8f8f8; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
+    code span { color: #000000; } /* Normal */
     code span.al { color: #ef2929; } /* Alert */
     code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #204a87; } /* Attribute */
+    code span.at { color: #c4a000; } /* Attribute */
     code span.bn { color: #0000cf; } /* BaseN */
     code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #4e9a06; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
+    code span.cn { color: #000000; } /* Constant */
     code span.co { color: #8f5902; font-style: italic; } /* Comment */
     code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
     code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -79,14 +80,14 @@
     code span.er { color: #a40000; font-weight: bold; } /* Error */
     code span.ex { } /* Extension */
     code span.fl { color: #0000cf; } /* Float */
-    code span.fu { color: #204a87; font-weight: bold; } /* Function */
+    code span.fu { color: #000000; } /* Function */
     code span.im { } /* Import */
     code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
     code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
     code span.ot { color: #8f5902; } /* Other */
     code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-    code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+    code span.sc { color: #000000; } /* SpecialChar */
     code span.ss { color: #4e9a06; } /* SpecialString */
     code span.st { color: #4e9a06; } /* String */
     code span.va { color: #000000; } /* Variable */
@@ -219,8 +220,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -404,7 +404,6 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="todays-agenda" class="title-slide slide level1 center">
 <h1>Today’s agenda</h1>
 <ul>
-<li>Mini project feedback</li>
 <li>Recap</li>
 <li>Themes + text</li>
 <li><code>scale_*_*</code></li>
@@ -413,11 +412,6 @@ Joshua Rosenberg and Isabella Velásquez
 <li>What’s next</li>
 <li>Checkout</li>
 </ul>
-</section>
-
-<section id="mini-project-feedback" class="title-slide slide level1 center">
-<h1>Mini-project feedback</h1>
-
 </section>
 
 <section>
@@ -429,7 +423,7 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>{ggplot2} is our canvas</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/canvas.png" class="quarto-figure quarto-figure-center" width="500"></p>
+<p><img data-src="images/canvas.png" width="500"></p>
 </figure>
 </div>
 
@@ -478,7 +472,7 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>{ggplot2} is our canvas</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/canvas.png" class="quarto-figure quarto-figure-center" width="500"></p>
+<p><img data-src="images/canvas.png" width="500"></p>
 </figure>
 </div>
 
@@ -517,19 +511,19 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="todays-data-instructional-staff-employment-trends" class="slide level2 smaller">
 <h2>Today’s data: Instructional staff employment trends</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># remotes::install_github("tidyverse/dsbox")</span></span>
-<span id="cb1-2"><a href=""></a><span class="fu">library</span>(dsbox)</span>
-<span id="cb1-3"><a href=""></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-4"><a href=""></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-5"><a href=""></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-6"><a href=""></a></span>
-<span id="cb1-7"><a href=""></a>staff <span class="ot">&lt;-</span> dsbox<span class="sc">::</span>instructors</span>
-<span id="cb1-8"><a href=""></a></span>
-<span id="cb1-9"><a href=""></a>staff_long <span class="ot">&lt;-</span> staff <span class="sc">%&gt;%</span></span>
-<span id="cb1-10"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"faculty_type"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-11"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(year, <span class="st">"-01-01"</span>)))</span>
-<span id="cb1-12"><a href=""></a></span>
-<span id="cb1-13"><a href=""></a>staff_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># remotes::install_github("tidyverse/dsbox")</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dsbox)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>staff <span class="ot">&lt;-</span> dsbox<span class="sc">::</span>instructors</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>staff_long <span class="ot">&lt;-</span> staff <span class="sc">%&gt;%</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"faculty_type"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(year, <span class="st">"-01-01"</span>)))</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a>staff_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 55 × 4
     year faculty_type               value date      
@@ -551,57 +545,57 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="visualizing-the-instructors-dataset" class="slide level2">
 <h2>Visualizing the <code>instructors</code> dataset</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href=""></a><span class="fu">library</span>(MetBrewer)</span>
-<span id="cb3-3"><a href=""></a></span>
-<span id="cb3-4"><a href=""></a>p <span class="ot">&lt;-</span> staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2011</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb3-7"><a href=""></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>p <span class="ot">&lt;-</span> staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2011</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualizing-the-instructors-dataset-1" class="slide level2">
 <h2>Visualizing the <code>instructors</code> dataset</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="editing-colors" class="slide level2">
 <h2>Editing colors</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb5-2"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Hokusai1"</span>,</span>
-<span id="cb5-3"><a href=""></a>                                        <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Hokusai1"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>                                        <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="editing-colors-1" class="slide level2">
 <h2>Editing colors</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="adding-some-text" class="slide level2">
 <h2>Adding some text</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|4-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-2"><a href=""></a></span>
-<span id="cb7-3"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb7-4"><a href=""></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-5"><a href=""></a>    <span class="at">title =</span> <span class="st">"Instructional staff employment trends"</span>,</span>
-<span id="cb7-6"><a href=""></a>    <span class="at">caption =</span> <span class="st">"Source: American Association of University Professors (AAUP)"</span>,</span>
-<span id="cb7-7"><a href=""></a>    <span class="at">y =</span> <span class="st">"Proportion"</span></span>
-<span id="cb7-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|4-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">title =</span> <span class="st">"Instructional staff employment trends"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">caption =</span> <span class="st">"Source: American Association of University Professors (AAUP)"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">y =</span> <span class="st">"Proportion"</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="adding-some-text-1" class="slide level2">
 <h2>Adding some text</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section>
 <section id="themes-text" class="title-slide slide level1 center">
 <h1>Themes + text</h1>
@@ -610,7 +604,7 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="recap-themes-in-ggplot2-anatomy" class="slide level2">
 <h2>Recap: Themes in {ggplot2} anatomy</h2>
 
-<img data-src="images/theme.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="images/theme.png" class="r-stretch quarto-figure-center"></section>
 <section id="what-does-theme-allow-us-to-edit" class="slide level2">
 <h2>What does <code>theme()</code> allow us to edit?</h2>
 <p>The ‘theme’ involves editing the content that supports the data but does not deliver the quantitative information itself: “data ink”.</p>
@@ -636,22 +630,22 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="theme-allows-us-to-edit-our-data-ink" class="slide level2">
 <h2><code>theme()</code> allows us to edit our data ink</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="|3|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
-<span id="cb9-2"><a href=""></a>  <span class="fu">theme</span>(</span>
-<span id="cb9-3"><a href=""></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-4"><a href=""></a>    <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-5"><a href=""></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-6"><a href=""></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb9-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="|3|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="theme-allows-us-to-edit-our-data-ink-1" class="slide level2">
 <h2><code>theme()</code> allows us to edit our data ink</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-also-allows-us-to-edit-text-elements" class="slide level2">
 <h2><code>theme()</code> also allows us to edit text elements</h2>
 <ul>
@@ -659,8 +653,8 @@ Joshua Rosenberg and Isabella Velásquez
 <li>You can control the font <code>family</code>, <code>face</code>, <code>colour</code>, <code>size</code> (in points), <code>hjust</code>, <code>vjust</code>, <code>angle</code> (in degrees) and <code>lineheight</code>.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb11-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> .<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> .<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <aside><div>
@@ -669,10 +663,10 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="theme-also-allows-us-to-edit-text-elements-1" class="slide level2">
 <h2><code>theme()</code> also allows us to edit text elements</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section>
 <section id="scale__" class="title-slide slide level1 center">
 <h1>scale_*_*</h1>
@@ -682,39 +676,39 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>Editing axes</h2>
 <p>We can edit the start/end of axes using <code>scale_*_*</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb13-2"><a href=""></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Proportion"</span>,</span>
-<span id="cb13-3"><a href=""></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="editing-axes-1" class="slide level2">
 <h2>Editing axes</h2>
 <p>We can edit the start/end of axes using <code>scale_*_*</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="editing-axes-2" class="slide level2">
 <h2>Editing axes</h2>
 <p>We can also use <code>scale_*_*</code> to edit the labels on the axes.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="2|3|4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb15-2"><a href=""></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"Full Time Non-Tenure Track"</span>, </span>
-<span id="cb15-3"><a href=""></a>                              <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"Full Time Tenure Track"</span>,</span>
-<span id="cb15-4"><a href=""></a>                              <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"Full Time Tenured"</span>,</span>
-<span id="cb15-5"><a href=""></a>                              <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"Grad Student"</span>,</span>
-<span id="cb15-6"><a href=""></a>                              <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"Part Time"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="2|3|4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"Full Time Non-Tenure Track"</span>, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>                              <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"Full Time Tenure Track"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>                              <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"Full Time Tenured"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>                              <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"Grad Student"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6"></a>                              <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"Part Time"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="editing-axes-3" class="slide level2">
 <h2>Editing axes</h2>
 <p>We can also use <code>scale_*_*</code> to edit the labels on the axes.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section id="code-along" class="title-slide slide level1 center">
 <h1>Code along</h1>
 
@@ -728,7 +722,7 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="recap-geoms-in-ggplot2-anatomy" class="slide level2">
 <h2>Recap: Geoms in {ggplot2} anatomy</h2>
 
-<img data-src="images/geoms.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="images/geoms.png" class="r-stretch quarto-figure-center"></section>
 <section id="what-do-geoms-allow-us-to-do" class="slide level2">
 <h2>What do geoms allow us to do?</h2>
 <ul>
@@ -736,11 +730,11 @@ Joshua Rosenberg and Isabella Velásquez
 <li>And also, text!</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg, <span class="at">label =</span> <span class="fu">rownames</span>(mtcars))) <span class="sc">+</span> </span>
-<span id="cb17-2"><a href=""></a>  <span class="fu">geom_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg, <span class="at">label =</span> <span class="fu">rownames</span>(mtcars))) <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="text-geoms-1" class="slide level2">
 <h2>Text geoms</h2>
 <p>Text geoms are useful for labeling plots. They can be used by themselves as scatterplots or in combination with other geoms, for example, for labeling points or for annotating the height of bars.</p>
@@ -756,114 +750,114 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="geom_text" class="slide level2">
 <h2><code>geom_text()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>p <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(value <span class="sc">/</span> <span class="dv">100</span>)),</span>
-<span id="cb18-2"><a href=""></a>              <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
-<span id="cb18-3"><a href=""></a>              <span class="at">size =</span> <span class="fl">3.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="|1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>p <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(value <span class="sc">/</span> <span class="dv">100</span>)),</span>
+<span id="cb18-2"><a href="#cb18-2"></a>              <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>              <span class="at">size =</span> <span class="fl">3.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="geom_label" class="slide level2">
 <h2><code>geom_label()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>p <span class="sc">+</span> <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(value <span class="sc">/</span> <span class="dv">100</span>)),</span>
-<span id="cb19-2"><a href=""></a>               <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
-<span id="cb19-3"><a href=""></a>               <span class="at">size =</span> <span class="fl">3.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>p <span class="sc">+</span> <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(value <span class="sc">/</span> <span class="dv">100</span>)),</span>
+<span id="cb19-2"><a href="#cb19-2"></a>               <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb19-3"><a href="#cb19-3"></a>               <span class="at">size =</span> <span class="fl">3.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="annotate" class="slide level2">
 <h2><code>annotate()</code></h2>
 <p>To add labels at specified points, use <code>annotate()</code> with <code>annotate(geom = "text", ...)</code> or <code>annotate(geom = "label", ...)</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="|2-10|3|5-6|7-8|9|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb20-2"><a href=""></a>  <span class="fu">annotate</span>(</span>
-<span id="cb20-3"><a href=""></a>    <span class="at">geom =</span> <span class="st">"text"</span>,</span>
-<span id="cb20-4"><a href=""></a>    <span class="at">label =</span> <span class="st">"Part-time faculty proportion has increased</span><span class="sc">\n</span><span class="st">from x% in 1975 to x% in 2011."</span>,</span>
-<span id="cb20-5"><a href=""></a>    <span class="at">x =</span> <span class="fl">5.5</span>,</span>
-<span id="cb20-6"><a href=""></a>    <span class="at">y =</span> <span class="dv">60</span>,</span>
-<span id="cb20-7"><a href=""></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb20-8"><a href=""></a>    <span class="at">colour =</span> <span class="st">"#C6473E"</span>,</span>
-<span id="cb20-9"><a href=""></a>    <span class="at">hjust =</span> <span class="st">"right"</span></span>
-<span id="cb20-10"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="|2-10|3|5-6|7-8|9|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>p <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="at">label =</span> <span class="st">"Part-time faculty proportion has increased</span><span class="sc">\n</span><span class="st">from x% in 1975 to x% in 2011."</span>,</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    <span class="at">x =</span> <span class="fl">5.5</span>,</span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="at">y =</span> <span class="dv">60</span>,</span>
+<span id="cb20-7"><a href="#cb20-7"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="at">colour =</span> <span class="st">"#C6473E"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9"></a>    <span class="at">hjust =</span> <span class="st">"right"</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="annotate-1" class="slide level2">
 <h2><code>annotate()</code></h2>
 <p>What if instead of hard coding our numbers, we calculate it from our data?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>pt_pct_1975 <span class="ot">&lt;-</span> </span>
-<span id="cb21-2"><a href=""></a>  staff_long <span class="sc">%&gt;%</span> </span>
-<span id="cb21-3"><a href=""></a>  <span class="fu">filter</span>(faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>, year <span class="sc">==</span> <span class="st">"1975"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-4"><a href=""></a>  <span class="fu">pull</span>(value)</span>
-<span id="cb21-5"><a href=""></a></span>
-<span id="cb21-6"><a href=""></a>pt_pct_2011 <span class="ot">&lt;-</span> </span>
-<span id="cb21-7"><a href=""></a>  staff_long <span class="sc">%&gt;%</span> </span>
-<span id="cb21-8"><a href=""></a>  <span class="fu">filter</span>(faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>, year <span class="sc">==</span> <span class="st">"2011"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-9"><a href=""></a>  <span class="fu">pull</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>pt_pct_1975 <span class="ot">&lt;-</span> </span>
+<span id="cb21-2"><a href="#cb21-2"></a>  staff_long <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">filter</span>(faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>, year <span class="sc">==</span> <span class="st">"1975"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">pull</span>(value)</span>
+<span id="cb21-5"><a href="#cb21-5"></a></span>
+<span id="cb21-6"><a href="#cb21-6"></a>pt_pct_2011 <span class="ot">&lt;-</span> </span>
+<span id="cb21-7"><a href="#cb21-7"></a>  staff_long <span class="sc">%&gt;%</span> </span>
+<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">filter</span>(faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>, year <span class="sc">==</span> <span class="st">"2011"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">pull</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="annotate-2" class="slide level2">
 <h2><code>annotate()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|7|8|9|10|11|12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>p <span class="ot">&lt;-</span></span>
-<span id="cb22-2"><a href=""></a>  p <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(value <span class="sc">/</span> <span class="dv">100</span>)),</span>
-<span id="cb22-3"><a href=""></a>                <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
-<span id="cb22-4"><a href=""></a>                <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
-<span id="cb22-5"><a href=""></a>  <span class="fu">annotate</span>(</span>
-<span id="cb22-6"><a href=""></a>    <span class="at">geom =</span> <span class="st">"text"</span>,</span>
-<span id="cb22-7"><a href=""></a>    <span class="at">label =</span> <span class="fu">paste0</span>(</span>
-<span id="cb22-8"><a href=""></a>      <span class="st">"Part-time faculty proportion has increased</span><span class="sc">\n</span><span class="st">from "</span>,</span>
-<span id="cb22-9"><a href=""></a>      scales<span class="sc">::</span><span class="fu">percent</span>(pt_pct_1975 <span class="sc">/</span> <span class="dv">100</span>),</span>
-<span id="cb22-10"><a href=""></a>      <span class="st">" in 1975 to "</span>,</span>
-<span id="cb22-11"><a href=""></a>      scales<span class="sc">::</span><span class="fu">percent</span>(pt_pct_2011 <span class="sc">/</span> <span class="dv">100</span>),</span>
-<span id="cb22-12"><a href=""></a>      <span class="st">" in 2011."</span></span>
-<span id="cb22-13"><a href=""></a>    ),</span>
-<span id="cb22-14"><a href=""></a>    <span class="at">x =</span> <span class="fl">5.5</span>,</span>
-<span id="cb22-15"><a href=""></a>    <span class="at">y =</span> <span class="dv">60</span>,</span>
-<span id="cb22-16"><a href=""></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb22-17"><a href=""></a>    <span class="at">colour =</span> <span class="st">"#C6473E"</span>,</span>
-<span id="cb22-18"><a href=""></a>    <span class="at">hjust =</span> <span class="st">"right"</span></span>
-<span id="cb22-19"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|7|8|9|10|11|12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>p <span class="ot">&lt;-</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  p <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(value <span class="sc">/</span> <span class="dv">100</span>)),</span>
+<span id="cb22-3"><a href="#cb22-3"></a>                <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb22-4"><a href="#cb22-4"></a>                <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb22-6"><a href="#cb22-6"></a>    <span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7"></a>    <span class="at">label =</span> <span class="fu">paste0</span>(</span>
+<span id="cb22-8"><a href="#cb22-8"></a>      <span class="st">"Part-time faculty proportion has increased</span><span class="sc">\n</span><span class="st">from "</span>,</span>
+<span id="cb22-9"><a href="#cb22-9"></a>      scales<span class="sc">::</span><span class="fu">percent</span>(pt_pct_1975 <span class="sc">/</span> <span class="dv">100</span>),</span>
+<span id="cb22-10"><a href="#cb22-10"></a>      <span class="st">" in 1975 to "</span>,</span>
+<span id="cb22-11"><a href="#cb22-11"></a>      scales<span class="sc">::</span><span class="fu">percent</span>(pt_pct_2011 <span class="sc">/</span> <span class="dv">100</span>),</span>
+<span id="cb22-12"><a href="#cb22-12"></a>      <span class="st">" in 2011."</span></span>
+<span id="cb22-13"><a href="#cb22-13"></a>    ),</span>
+<span id="cb22-14"><a href="#cb22-14"></a>    <span class="at">x =</span> <span class="fl">5.5</span>,</span>
+<span id="cb22-15"><a href="#cb22-15"></a>    <span class="at">y =</span> <span class="dv">60</span>,</span>
+<span id="cb22-16"><a href="#cb22-16"></a>    <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb22-17"><a href="#cb22-17"></a>    <span class="at">colour =</span> <span class="st">"#C6473E"</span>,</span>
+<span id="cb22-18"><a href="#cb22-18"></a>    <span class="at">hjust =</span> <span class="st">"right"</span></span>
+<span id="cb22-19"><a href="#cb22-19"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="annotate-3" class="slide level2">
 <h2><code>annotate()</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="ggtext" class="slide level2">
 <h2>{ggtext}</h2>
 <p>The {ggtext} package provides improved text rendering support for {ggplot2}.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|3-8|11-12,16|13,15|14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">library</span>(ggtext)</span>
-<span id="cb24-2"><a href=""></a></span>
-<span id="cb24-3"><a href=""></a>prop_pt <span class="ot">&lt;-</span></span>
-<span id="cb24-4"><a href=""></a>  staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> value <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-6"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2011</span>,</span>
-<span id="cb24-7"><a href=""></a>         faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-8"><a href=""></a>  <span class="fu">pull</span>(prop)</span>
-<span id="cb24-9"><a href=""></a></span>
-<span id="cb24-10"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb24-11"><a href=""></a>  <span class="fu">labs</span>(</span>
-<span id="cb24-12"><a href=""></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(</span>
-<span id="cb24-13"><a href=""></a>      <span class="st">"Part-timers made up &lt;b&gt;&lt;span style = 'color:#C6473E;'&gt;"</span>,</span>
-<span id="cb24-14"><a href=""></a>      scales<span class="sc">::</span><span class="fu">percent</span>(prop_pt),</span>
-<span id="cb24-15"><a href=""></a>      <span class="st">"&lt;/span&gt;&lt;/b&gt; of faculty in 2011"</span></span>
-<span id="cb24-16"><a href=""></a>    )</span>
-<span id="cb24-17"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb24-18"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|3-8|11-12,16|13,15|14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a>prop_pt <span class="ot">&lt;-</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>  staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> value <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2011</span>,</span>
+<span id="cb24-7"><a href="#cb24-7"></a>         faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a>  <span class="fu">pull</span>(prop)</span>
+<span id="cb24-9"><a href="#cb24-9"></a></span>
+<span id="cb24-10"><a href="#cb24-10"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-12"><a href="#cb24-12"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(</span>
+<span id="cb24-13"><a href="#cb24-13"></a>      <span class="st">"Part-timers made up &lt;b&gt;&lt;span style = 'color:#C6473E;'&gt;"</span>,</span>
+<span id="cb24-14"><a href="#cb24-14"></a>      scales<span class="sc">::</span><span class="fu">percent</span>(prop_pt),</span>
+<span id="cb24-15"><a href="#cb24-15"></a>      <span class="st">"&lt;/span&gt;&lt;/b&gt; of faculty in 2011"</span></span>
+<span id="cb24-16"><a href="#cb24-16"></a>    )</span>
+<span id="cb24-17"><a href="#cb24-17"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-18"><a href="#cb24-18"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="ggtext-1" class="slide level2">
 <h2>{ggtext}</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section id="code-along-1" class="title-slide slide level1 center">
 <h1>Code along</h1>
 
@@ -878,18 +872,18 @@ Joshua Rosenberg and Isabella Velásquez
 <h2><code>family</code> aesthetic</h2>
 <p>The <code>family</code> aesthetic provides the name of a font. This aesthetic does allow you to use the name of a system font, but some care is required. There are only three fonts that are guaranteed to work everywhere: “sans” (the default), “serif”, or “mono”.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|2-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb26-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,</span>
-<span id="cb26-3"><a href=""></a>                                  <span class="at">family =</span> <span class="st">"serif"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|2-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,</span>
+<span id="cb26-3"><a href="#cb26-3"></a>                                  <span class="at">family =</span> <span class="st">"serif"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="family-aesthetic-1" class="slide level2 smaller">
 <h2><code>family</code> aesthetic</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="using-other-fonts" class="slide level2">
 <h2>Using other fonts</h2>
 <p>Text drawing is handled differently by each graphics device (GD):</p>
@@ -924,33 +918,33 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>Using Google fonts with {showtext}</h2>
 <p>Changing <code>text</code> edits the font family for the plot fonts.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="|3|5|8-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">library</span>(showtext)</span>
-<span id="cb28-2"><a href=""></a></span>
-<span id="cb28-3"><a href=""></a><span class="fu">font_add_google</span>(<span class="at">name =</span> <span class="st">"Open Sans"</span>, <span class="at">family =</span> <span class="st">"open-sans"</span>)</span>
-<span id="cb28-4"><a href=""></a></span>
-<span id="cb28-5"><a href=""></a><span class="fu">showtext_auto</span>()</span>
-<span id="cb28-6"><a href=""></a></span>
-<span id="cb28-7"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb28-8"><a href=""></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>,</span>
-<span id="cb28-9"><a href=""></a>                            <span class="at">family =</span> <span class="st">"open-sans"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="|3|5|8-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="fu">font_add_google</span>(<span class="at">name =</span> <span class="st">"Open Sans"</span>, <span class="at">family =</span> <span class="st">"open-sans"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb28-6"><a href="#cb28-6"></a></span>
+<span id="cb28-7"><a href="#cb28-7"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>,</span>
+<span id="cb28-9"><a href="#cb28-9"></a>                            <span class="at">family =</span> <span class="st">"open-sans"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="using-google-fonts-with-showtext-2" class="slide level2">
 <h2>Using Google fonts with {showtext}</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="using-google-fonts-with-showtext-3" class="slide level2">
 <h2>Using Google fonts with {showtext}</h2>
 <p>You can specify fonts for different plot elements, as well.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|1|4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">font_add_google</span>(<span class="at">name =</span> <span class="st">"Schoolbell"</span>, <span class="at">family =</span> <span class="st">"bell"</span>)</span>
-<span id="cb30-2"><a href=""></a></span>
-<span id="cb30-3"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb30-4"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,</span>
-<span id="cb30-5"><a href=""></a>                                  <span class="at">family =</span> <span class="st">"bell"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|1|4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">font_add_google</span>(<span class="at">name =</span> <span class="st">"Schoolbell"</span>, <span class="at">family =</span> <span class="st">"bell"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a></span>
+<span id="cb30-3"><a href="#cb30-3"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,</span>
+<span id="cb30-5"><a href="#cb30-5"></a>                                  <span class="at">family =</span> <span class="st">"bell"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -969,10 +963,10 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="using-google-fonts-with-showtext-4" class="slide level2">
 <h2>Using Google fonts with {showtext}</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="using-custom-fonts-with-showtext" class="slide level2">
 <h2>Using custom fonts with {showtext}</h2>
 <p><code>font_add()</code> adds a font file like <code>.ttf</code></p>
@@ -981,21 +975,21 @@ Joshua Rosenberg and Isabella Velásquez
 <li><code>regular</code> is the font file path</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="|1-2|5-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">font_add</span>(<span class="at">family =</span> <span class="st">"Asenine"</span>,</span>
-<span id="cb32-2"><a href=""></a>         <span class="at">regular =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"week-9"</span>, <span class="st">"ASENINE_.ttf"</span>))</span>
-<span id="cb32-3"><a href=""></a></span>
-<span id="cb32-4"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb32-5"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,</span>
-<span id="cb32-6"><a href=""></a>                                     <span class="at">family =</span> <span class="st">"Asenine"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="|1-2|5-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">font_add</span>(<span class="at">family =</span> <span class="st">"Asenine"</span>,</span>
+<span id="cb32-2"><a href="#cb32-2"></a>         <span class="at">regular =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"week-9"</span>, <span class="st">"ASENINE_.ttf"</span>))</span>
+<span id="cb32-3"><a href="#cb32-3"></a></span>
+<span id="cb32-4"><a href="#cb32-4"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>,</span>
+<span id="cb32-6"><a href="#cb32-6"></a>                                     <span class="at">family =</span> <span class="st">"Asenine"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="using-custom-fonts-with-showtext-1" class="slide level2">
 <h2>Using custom fonts with {showtext}</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="other-helpful-packages-for-text" class="slide level2">
 <h2>Other helpful packages for text</h2>
 <ul>
@@ -1029,10 +1023,8 @@ Joshua Rosenberg and Isabella Velásquez
 <li><a href="https://datasciencebox.org/" class="uri">https://datasciencebox.org/</a></li>
 <li>License: <a href="https://datasciencebox.org/license">Creative Commons Attribution-ShareAlike 4.0 International</a></li>
 </ul>
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
-</div>
 </div>
 </section>
     </div>
@@ -1061,6 +1053,7 @@ Joshua Rosenberg and Isabella Velásquez
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1359,9 +1352,10 @@ Joshua Rosenberg and Isabella Velásquez
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1371,17 +1365,8 @@ Joshua Rosenberg and Isabella Velásquez
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
