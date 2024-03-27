@@ -792,13 +792,13 @@ Joshua Rosenberg and Isabella Velásquez
 <p>What if instead of hard coding our numbers, we calculate it from our data?</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>pt_pct_1975 <span class="ot">&lt;-</span> </span>
-<span id="cb21-2"><a href=""></a>  staff_long <span class="sc">|&gt;</span> </span>
-<span id="cb21-3"><a href=""></a>  <span class="fu">filter</span>(faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>, year <span class="sc">==</span> <span class="st">"1975"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href=""></a>  staff_long <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href=""></a>  <span class="fu">filter</span>(faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>, year <span class="sc">==</span> <span class="st">"1975"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb21-4"><a href=""></a>  <span class="fu">pull</span>(value)</span>
 <span id="cb21-5"><a href=""></a></span>
 <span id="cb21-6"><a href=""></a>pt_pct_2011 <span class="ot">&lt;-</span> </span>
-<span id="cb21-7"><a href=""></a>  staff_long <span class="sc">|&gt;</span> </span>
-<span id="cb21-8"><a href=""></a>  <span class="fu">filter</span>(faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>, year <span class="sc">==</span> <span class="st">"2011"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb21-7"><a href=""></a>  staff_long <span class="sc">%&gt;%</span> </span>
+<span id="cb21-8"><a href=""></a>  <span class="fu">filter</span>(faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>, year <span class="sc">==</span> <span class="st">"2011"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb21-9"><a href=""></a>  <span class="fu">pull</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -840,10 +840,10 @@ Joshua Rosenberg and Isabella Velásquez
 <div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|3-8|11-12,16|13,15|14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">library</span>(ggtext)</span>
 <span id="cb24-2"><a href=""></a></span>
 <span id="cb24-3"><a href=""></a>prop_pt <span class="ot">&lt;-</span></span>
-<span id="cb24-4"><a href=""></a>  staff_long <span class="sc">|&gt;</span></span>
-<span id="cb24-5"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> value <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href=""></a>  staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> value <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb24-6"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2011</span>,</span>
-<span id="cb24-7"><a href=""></a>         faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-7"><a href=""></a>         faculty_type <span class="sc">==</span> <span class="st">"part_time"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb24-8"><a href=""></a>  <span class="fu">pull</span>(prop)</span>
 <span id="cb24-9"><a href=""></a></span>
 <span id="cb24-10"><a href=""></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
