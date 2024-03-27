@@ -58,7 +58,7 @@ We would like our `season` variable to be a factor variable where we can see tha
 ```{r}
 library(dplyr)
 
-dcbikeshare <- dsbox::dcbikeshare |>
+dcbikeshare <- dsbox::dcbikeshare %>%
   mutate(
     season = case_when(
       season == 1 ~ "winter",
@@ -84,7 +84,7 @@ Could you recode:
 Calculate raw temperature, feeling temperature, humidity, and windspeed as their values given in the dataset multiplied by the maximum raw values stated in the codebook for each variable. Instead of writing over the existing variables, create new ones called `temperature_raw`, `feeling_temperature_raw`, `humidity_raw`, `windspeed_raw.`
 
 ```{r}
-dcbikeshare <- ___ |>
+dcbikeshare <- ___ %>%
   mutate(
     temperature_raw = temp * 41,
     feeling_temperature_raw = atemp * ___,

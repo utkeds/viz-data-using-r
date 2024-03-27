@@ -369,13 +369,13 @@ What if instead of hard coding our numbers, we calculate it from our data?
 
 ```{r}
 pt_pct_1975 <- 
-  staff_long |> 
-  filter(faculty_type == "part_time", year == "1975") |> 
+  staff_long %>% 
+  filter(faculty_type == "part_time", year == "1975") %>% 
   pull(value)
 
 pt_pct_2011 <- 
-  staff_long |> 
-  filter(faculty_type == "part_time", year == "2011") |> 
+  staff_long %>% 
+  filter(faculty_type == "part_time", year == "2011") %>% 
   pull(value)
 ```
 
@@ -419,10 +419,10 @@ The {ggtext} package provides improved text rendering support for {ggplot2}.
 library(ggtext)
 
 prop_pt <-
-  staff_long |>
-  mutate(prop = value / 100) |>
+  staff_long %>%
+  mutate(prop = value / 100) %>%
   filter(year == 2011,
-         faculty_type == "part_time") |>
+         faculty_type == "part_time") %>%
   pull(prop)
 
 p <- p +
