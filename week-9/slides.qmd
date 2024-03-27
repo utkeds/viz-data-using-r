@@ -259,8 +259,7 @@ We can edit the start/end of axes using `scale_*_*`.
 ```{r}
 #| code-line-numbers: "|2|3"
 p <- p +
-  scale_y_continuous(name = "Proportion",
-                     limits = c(0, 100))
+  scale_y_continuous(limits = c(0, 100))
 ```
 
 ## Editing axes
