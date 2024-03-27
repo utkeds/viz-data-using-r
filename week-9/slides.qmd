@@ -1,0 +1,583 @@
+---
+subtitle: "Fonts and labels in {ggplot2}"
+title: "Week 09 - STEM 691"
+author: "Joshua Rosenberg and Isabella Velásquez"
+format:
+  revealjs:
+    theme: simple
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+---
+
+# Today's agenda
+
+- Mini project feedback
+- Recap
+- Themes + text
+- `scale_*_*`
+- Text geoms
+- Fonts
+- What's next
+- Checkout
+
+# Mini-project feedback
+
+# Recap
+
+## {ggplot2} is our canvas
+
+![](images/canvas.png){fig-align="center" width=500px}
+
+::: aside
+Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinystats.github.io/teacups-giraffes-and-statistics/)
+:::
+
+## Recap {.smaller}
+
+:::: columns
+
+::: {.column width="50%"}
+### Themes
+
+- Themes are the content that supports the data but does not deliver the quantitative information itself
+- Can use {ggplot2}'s built-in themes, community-contributed packages, or customize our own using `theme()`
+
+:::
+
+::: {.column width="50%"}
+### Colors
+
+- Colors are used to customize your visualization
+- Can use R's built-in colors, community-contributed palettes, or customize our own using `scale_*_manual` 
+:::
+
+::::
+
+## Examples from Assignment 8
+
+![](images/assignment.png)
+
+## Discussion
+
+What guidelines from the readings resonated with you? Which ones did not?
+
+- Lessons from Tufte
+- Charts Do's and Don't's
+- Color Basics
+
+Please add at least three cards to the Jamboard with your name:
+
+https://bit.ly/viz-jamboard
+
+# Today's lesson
+
+## {ggplot2} is our canvas
+
+![](images/canvas.png){fig-align="center" width=500px}
+
+::: aside
+Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinystats.github.io/teacups-giraffes-and-statistics/)
+:::
+
+## Text and visualization
+
+> “Make words and visuals work together effectively — not just showing the data, but explaining the data; helping readers become more visually literate, and reinforcing the main messages the graphic is displaying.”
+
+--- Alberto Cairo
+
+## Text and visualization
+
+:::: columns
+
+::: {.column width="50%"}
+
+- There is a title and a subtitle
+- There is a easy to understand legend
+- There are defined x- and y-axes
+- There is an annotation
+- There is a caption
+- All text is horizontal (the way we naturally read)
+
+:::
+
+::: {.column width="50%"}
+
+![](images/cairo_example.png){width=400px}
+:::
+
+::::
+
+# Text and fonts
+
+## Today's data: Instructional staff employment trends {.smaller}
+
+```{r}
+#| echo: true
+# remotes::install_github("tidyverse/dsbox")
+library(dsbox)
+library(readr)
+library(dplyr)
+library(tidyr)
+
+staff <- dsbox::instructors
+
+staff_long <- staff %>%
+  pivot_longer(cols = -year, names_to = "faculty_type") %>%
+  mutate(date = as.Date(paste0(year, "-01-01")))
+
+staff_long
+```
+
+## Visualizing the `instructors` dataset
+
+```{r}
+#| code-line-numbers: "|5"
+library(ggplot2)
+library(MetBrewer)
+
+p <- staff_long %>%
+  filter(year == 2011) %>%
+  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+  geom_col()
+```
+
+## Visualizing the `instructors` dataset
+
+```{r}
+p
+```
+
+## Editing colors
+
+```{r}
+#| code-line-numbers: "|3"
+p <- p +
+  scale_fill_manual(values = met.brewer("Hokusai1",
+                                        direction = -1))
+```
+
+## Editing colors
+
+```{r}
+p
+```
+
+## Adding some text
+
+```{r}
+#| code-line-numbers: "|4-8"
+library(ggplot2)
+
+p <- p +
+  labs(
+    title = "Instructional staff employment trends",
+    caption = "Source: American Association of University Professors (AAUP)",
+    y = "Proportion"
+  )
+```
+
+## Adding some text
+
+```{r}
+p
+```
+
+# Themes + text
+
+## Recap: Themes in {ggplot2} anatomy
+
+![](images/theme.png){fig-align="center"}
+
+## What does `theme()` allow us to edit?
+
+The 'theme' involves editing the content that supports the data but does not deliver the quantitative information itself: "data ink".
+
+- Text
+
+. . .
+
+- Rectangles
+
+. . .
+
+- Lines
+
+. . .
+
+- Draw nothing
+
+## `theme()` allows us to edit our data ink
+
+```{r}
+#| code-line-numbers: "|3|4|5|6"
+p <- p + 
+  theme(
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    axis.title.x = element_blank(),
+    legend.position = "none"
+  )
+```
+
+## `theme()` allows us to edit our data ink
+
+```{r}
+p
+```
+
+## `theme()` also allows us to edit text elements
+
+- `element_text()` sets the font size, colour and face of text elements like `plot.title`.
+- You can control the font `family`, `face`, `colour`, `size` (in points), `hjust`, `vjust`, `angle` (in degrees) and `lineheight`.
+
+```{r}
+#| code-line-numbers: "|2"
+p <- p +
+  theme(axis.text.x = element_text(angle = 45, vjust = .5))
+```
+
+::: aside
+More details on the parameters can be found in `vignette("ggplot2-specs")`.
+:::
+
+## `theme()` also allows us to edit text elements
+
+```{r}
+p
+```
+
+# scale_*_*
+
+## Editing axes
+
+We can edit the start/end of axes using `scale_*_*`.
+
+```{r}
+#| code-line-numbers: "|2|3"
+p <- p +
+  scale_y_continuous(name = "Proportion",
+                     limits = c(0, 100))
+```
+
+## Editing axes
+
+We can edit the start/end of axes using `scale_*_*`.
+
+```{r}
+p
+```
+
+## Editing axes
+
+We can also use `scale_*_*` to edit the labels on the axes.
+
+```{r}
+#| code-line-numbers: "2|3|4-6"
+p <- p +
+  scale_x_discrete(labels = c("full_time_non_tenure_track" = "Full Time Non-Tenure Track", 
+                              "full_time_tenure_track" = "Full Time Tenure Track",
+                              "full_time_tenured" = "Full Time Tenured",
+                              "grad_student" = "Grad Student",
+                              "part_time" = "Part Time"))
+```
+
+## Editing axes
+
+We can also use `scale_*_*` to edit the labels on the axes.
+
+```{r}
+p
+```
+
+# Code along
+
+# Text geoms
+
+## Recap: Geoms in {ggplot2} anatomy
+
+![](images/geoms.png){fig-align="center"}
+
+## What do geoms allow us to do?
+
+- **geoms**: Geometric objects like points, lines, bars
+- And also, text!
+
+```{r}
+ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) + 
+  geom_text()
+```
+
+## Text geoms
+
+Text geoms are useful for labeling plots. They can be used by themselves as scatterplots or in combination with other geoms, for example, for labeling points or for annotating the height of bars.
+
+- `geom_text()` adds text to the plot
+- `geom_label()` draws a rectangle behind the text
+- `annotate()` adds labels at specified points
+
+::: aside
+{ggplot2} text documentation: <https://ggplot2.tidyverse.org/reference/geom_text.html>
+:::
+
+## `geom_text()`
+
+```{r}
+#| code-line-numbers: "|1|2|3"
+p + geom_text(aes(label = scales::percent(value / 100)),
+              vjust = -0.5,
+              size = 3.5)
+```
+
+## `geom_label()`
+
+```{r}
+#| code-line-numbers: "|1"
+p + geom_label(aes(label = scales::percent(value / 100)),
+               vjust = -0.5,
+               size = 3.5)
+```
+
+## `annotate()`
+
+To add labels at specified points, use `annotate()` with `annotate(geom = "text", ...)` or `annotate(geom = "label", ...)`.
+
+```{r}
+#| code-line-numbers: "|2-10|3|5-6|7-8|9|4"
+#| eval: false
+p +
+  annotate(
+    geom = "text",
+    label = "Part-time faculty proportion has increased\nfrom x% in 1975 to x% in 2011.",
+    x = 5.5,
+    y = 60,
+    size = 3,
+    colour = "#C6473E",
+    hjust = "right"
+  )
+```
+
+## `annotate()`
+
+What if instead of hard coding our numbers, we calculate it from our data?
+
+```{r}
+pt_pct_1975 <- 
+  staff_long |> 
+  filter(faculty_type == "part_time", year == "1975") |> 
+  pull(value)
+
+pt_pct_2011 <- 
+  staff_long |> 
+  filter(faculty_type == "part_time", year == "2011") |> 
+  pull(value)
+```
+
+## `annotate()`
+
+```{r}
+#| code-line-numbers: "|7|8|9|10|11|12"
+p <-
+  p + geom_text(aes(label = scales::percent(value / 100)),
+                vjust = -0.5,
+                size = 3.5) +
+  annotate(
+    geom = "text",
+    label = paste0(
+      "Part-time faculty proportion has increased\nfrom ",
+      scales::percent(pt_pct_1975 / 100),
+      " in 1975 to ",
+      scales::percent(pt_pct_2011 / 100),
+      " in 2011."
+    ),
+    x = 5.5,
+    y = 60,
+    size = 3,
+    colour = "#C6473E",
+    hjust = "right"
+  )
+```
+
+## `annotate()`
+
+```{r}
+p
+```
+
+## {ggtext}
+
+The {ggtext} package provides improved text rendering support for {ggplot2}.
+
+```{r}
+#| code-line-numbers: "|3-8|11-12,16|13,15|14"
+library(ggtext)
+
+prop_pt <-
+  staff_long |>
+  mutate(prop = value / 100) |>
+  filter(year == 2011,
+         faculty_type == "part_time") |>
+  pull(prop)
+
+p <- p +
+  labs(
+    subtitle = paste0(
+      "Part-timers made up <b><span style = 'color:#C6473E;'>",
+      scales::percent(prop_pt),
+      "</span></b> of faculty in 2011"
+    )
+  ) +
+  theme(plot.subtitle = ggtext::element_markdown())
+```
+
+## {ggtext}
+
+```{r}
+p
+```
+
+# Code along
+
+# Fonts
+
+## `family` aesthetic
+
+The `family` aesthetic provides the name of a font. This aesthetic does allow you to use the name of a system font, but some care is required. There are only three fonts that are guaranteed to work everywhere: “sans” (the default), “serif”, or “mono”.
+
+```{r}
+#| code-line-numbers: "|2-3"
+p <- p +
+  theme(plot.caption = element_text(size = 6,
+                                    family = "serif"))
+```
+
+## `family` aesthetic {.smaller}
+
+```{r}
+p
+```
+
+## Using other fonts
+
+Text drawing is handled differently by each graphics device (GD):
+
+- `windows()` (for Windows)
+- `quartz()` (for Macs)
+- `x11()` (mostly for Linux)
+- `RStudioGD()` within RStudio
+
+The devices do not specify fonts in the same way, so if you want a font to work everywhere you need to configure the devices in different ways.
+
+## Using other fonts
+
+Two packages simplify fonts a bit:
+
+- {showtext}, https://github.com/yixuan/showtext, by Yixuan Qiu, makes GD-independent plots by rendering all text as polygons
+- {extrafont}, https://github.com/wch/extrafont, by Winston Chang, converts fonts to a standard format that all devices can use
+
+## Using Google fonts with {showtext}
+
+- `font_add_google(name, family)` adds a font
+  - `name` is the name of the font searched in Google Fonts
+  - `family` is the name you assign
+- The `showtext_auto()` function tells R to render text using {showtext}
+
+## Using Google fonts with {showtext}
+
+Changing `text` edits the font family for the plot fonts.
+
+```{r}
+#| code-line-numbers: "|3|5|8-9"
+library(showtext)
+
+font_add_google(name = "Open Sans", family = "open-sans")
+
+showtext_auto()
+
+p <- p +
+  theme(text = element_text(size = 9,
+                            family = "open-sans"))
+```
+
+## Using Google fonts with {showtext}
+
+```{r}
+p
+```
+
+## Using Google fonts with {showtext}
+
+You can specify fonts for different plot elements, as well.
+
+```{r}
+#| code-line-numbers: "|1|4-5"
+font_add_google(name = "Schoolbell", family = "bell")
+
+p <- p +
+  theme(plot.title = element_text(size = 18,
+                                  family = "bell"))
+```
+
+::: {.callout-tip}
+You may need to install additional packages when running `font_add_google()`. When I tried this on a fresh Windows install, I had to install {jsonlite} and {curl}.
+:::
+
+## Using Google fonts with {showtext}
+
+```{r}
+p
+```
+
+## Using custom fonts with {showtext}
+
+`font_add()` adds a font file like `.ttf`
+
+- `family` is the family name of the font
+- `regular` is the font file path
+
+```{r}
+#| code-line-numbers: "|1-2|5-6"
+font_add(family = "Asenine",
+         regular = here::here("week-9", "ASENINE_.ttf"))
+
+p <- p +
+  theme(plot.title = element_text(size = 18,
+                                     family = "Asenine"))
+```
+
+## Using custom fonts with {showtext}
+
+```{r}
+p
+```
+
+## Other helpful packages for text
+
+- {ggrepel} - repel overlapping text labels
+- {ggforce} - extends {ggplot2} in various ways
+- {gghighlight} - direct labeling in {ggplot2}
+- {ggfittext} - fit text into boxes
+- {directlabels} - puts labels close to data
+
+## What's next
+
+* Assignment: We will be using the DC Bikeshare data to create a visualization and add text.
+* Reading:
+  * Redundant Coding by C. Wilke
+  * Unspoken Rules of Visualization
+
+# Check out
+
+When can text be used effectively in visualization/when can it be used inefficiently?
+
+# Attribution for materials used today
+
+* Data Science in a Box by Mine Çetinkaya-Rundel
+* <https://datasciencebox.org/>
+* License: [Creative Commons Attribution-ShareAlike 4.0 International](https://datasciencebox.org/license)
