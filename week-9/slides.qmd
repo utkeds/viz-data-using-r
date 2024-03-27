@@ -176,7 +176,7 @@ p <- p +
   labs(
     title = "Instructional staff employment trends",
     caption = "Source: American Association of University Professors (AAUP)",
-    y = "Proportion"
+    y = "Percentage"
   )
 ```
 
@@ -350,7 +350,7 @@ To add labels at specified points, use `annotate()` with `annotate(geom = "text"
 p +
   annotate(
     geom = "text",
-    label = "Part-time faculty proportion has increased\nfrom x% in 1975 to x% in 2011.",
+    label = "Part-time faculty percentage has increased\nfrom x% in 1975 to x% in 2011.",
     x = 5.5,
     y = 60,
     size = 3,
@@ -386,7 +386,7 @@ p <-
   annotate(
     geom = "text",
     label = paste0(
-      "Part-time faculty proportion has increased\nfrom ",
+      "Part-time faculty percentage has increased\nfrom ",
       scales::percent(pt_pct_1975 / 100),
       " in 1975 to ",
       scales::percent(pt_pct_2011 / 100),
@@ -501,6 +501,10 @@ p <- p +
                             family = "open-sans"))
 ```
 
+::: {.callout-tip}
+You may need to install additional packages when running `font_add_google()`. When I tried this on a fresh Windows install, I had to install {jsonlite} and {curl}.
+:::
+
 ## Using Google fonts with {showtext}
 
 ```{r}
@@ -519,10 +523,6 @@ p <- p +
   theme(plot.title = element_text(size = 18,
                                   family = "bell"))
 ```
-
-::: {.callout-tip}
-You may need to install additional packages when running `font_add_google()`. When I tried this on a fresh Windows install, I had to install {jsonlite} and {curl}.
-:::
 
 ## Using Google fonts with {showtext}
 
@@ -560,6 +560,13 @@ p
 - {gghighlight} - direct labeling in {ggplot2}
 - {ggfittext} - fit text into boxes
 - {directlabels} - puts labels close to data
+
+## Accessibility
+
+- Sufficient labels
+- Do not rely on color alone
+- Label significant parts of the graph
+- Use labels and legends that clearly mark and distinguish the data points
 
 ## What's next
 
