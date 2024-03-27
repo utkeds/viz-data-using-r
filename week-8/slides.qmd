@@ -696,7 +696,7 @@ staff_long %>%
 
 ## viridis  {auto-animate="true"}
 
-How would you use viridis on our line graph? Answer: `scale_color_viridis_d()`.
+How would you use viridis on our line graph? Answer: `scale_color_viridis(discrete = TRUE)`.
 
 ```{r}
 #| code-line-numbers: "6"
