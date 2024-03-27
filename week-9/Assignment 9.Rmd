@@ -95,9 +95,7 @@ dcbikeshare <- ___ |>
 
 ## 4. Recreating this visualization
 
-Recreate the following visualization:
-
-![](https://minecr.shinyapps.io/dsbox-06-dcbikeshare/_w_95bf3fda/06-dcbikeshare_files/figure-html/unnamed-chunk-1-1.png)
+Recreate the following visualization: https://github.com/utkeds/viz-data-using-r/blob/main/week-9/images/assignment-viz.png
 
 ```{r}
 
@@ -111,7 +109,6 @@ Edit this visualization, using what we learned in class. Please be sure to do th
 - Increase the y-axis scale slightly
 - Add an annotation at the highest temperature
 - Edit the font of any element in the visualization
-- Add a color palette
 
 BONUS: Use {ggtext} in the subtitle.
 
