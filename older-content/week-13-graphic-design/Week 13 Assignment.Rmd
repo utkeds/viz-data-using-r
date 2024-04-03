@@ -1,7 +1,7 @@
 ---
-title: "Design Assignment"
-author: "Awesome Student"
-date: '2023-04-05'
+title: "Week 10 Assignment"
+author: ""
+date: ''
 output: html_document
 ---
 
@@ -14,8 +14,13 @@ library(patchwork)
 This week's assignment is quite simple. You are going to re-ruse some of your old graphs in order to practice making compound graphics and small multiples and using annotations.
 
 
+## Compound Plots with patchwork
 
-## Small Multiples
+Using a previous data set and related analyses and/or visualizations, combine separate plots using `patchwork`. For some additional functionality (or examples), check out its documentation: https://patchwork.data-imaginist.com/index.html
+
+
+
+## Small Multiples with facet_wrap()
 
 Using a previous data set (and analysis), develop a data visualization that uses small multiples. To add a little pizazz and style your facets, consider consulting these resources:
 
@@ -23,18 +28,8 @@ Using a previous data set (and analysis), develop a data visualization that uses
 - https://www.datanovia.com/en/blog/how-to-change-ggplot-facet-labels/
 
 
-
-
-
-## Compound Plots
-
-Using a previous data set and related analyses and/or visualizations, combine separate plots using `patchwork`. For some additional functionality (or examples), check out its documentation: https://patchwork.data-imaginist.com/index.html
-
-
-
-
-
-
 ## Annotations
 
-Again using a previous data set and related analyses and/or visualizations add two or more annotation layers to a plot.
+Again using a previous data set and related analyses and/or visualizations, add two or more annotation layers to a plot OR use gghighlight.
+
+

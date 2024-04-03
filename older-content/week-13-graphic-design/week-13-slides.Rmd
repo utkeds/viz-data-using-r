@@ -18,7 +18,8 @@ class: inverse
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
 	message = FALSE,
-	warning = FALSE
+	warning = FALSE,
+	eval = TRUE
 )
 options(htmltools.preserve.raw = FALSE)
 library(tidyverse)
@@ -58,6 +59,34 @@ library(tidyverse)
 .utk a {
 color: #FFF
 }
+```
+
+```{r, include = FALSE}
+library(palmerpenguins)
+
+flipper_hist_1 <- 
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()
+
+
+flipper_hist_2 <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  facet_wrap(~species)+
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Distribution of flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  theme(legend.position = "none")
 ```
 
 # Today's Agenda
@@ -528,8 +557,10 @@ flipper_hist_3
 Here's a plot:
 
 ```{r,  out.width = "30%"}
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
   geom_point()
+
+p
 ```
 
 ---

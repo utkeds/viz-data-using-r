@@ -1,0 +1,86 @@
+
+## Compound Figures with `patchwork`
+
+p1 <- ggplot(mtcars) + 
+  geom_point(aes(mpg, disp)) + 
+  ggtitle('Plot 1')
+
+p2 <- ggplot(mtcars) + 
+  geom_boxplot(aes(gear, disp, group = gear)) + 
+  ggtitle('Plot 2')
+
+p3 <- ggplot(mtcars) + 
+  geom_point(aes(hp, wt, colour = mpg)) + 
+  ggtitle('Plot 3')
+
+p4 <- ggplot(mtcars) + 
+  geom_bar(aes(gear)) + 
+  facet_wrap(~cyl) + 
+  ggtitle('Plot 4')
+
+
+patchwork_example <- p1 + p2 + p3 + p4 + 
+  plot_layout(widths = c(2, 1),
+              guides = 'collect' ) +
+   plot_annotation(
+     title = 'The surprising truth about mtcars')
+
+.pull-right[
+```{r echo=FALSE, fig.height=5}
+patchwork_example
+```
+
+]
+
+
+.pull-left[
+```{r eval=FALSE, include=TRUE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species, nrow=3, scales="free_y")+
+  theme(legend.position = "none")
+```
+
+```{r eval=TRUE, include=FALSE}
+flipper_hist_3 <- ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species, nrow=3, scales="free_y")+
+  theme(legend.position = "none")
+```
+
+]
+
+.pull-right[
+```{r echo=FALSE, fig.height=5}
+flipper_hist_3
+```
+
+
+## Annotations: Fancier
+
+```{r, out.width = "30%"}
+p + annotate("text", x = 3, y = 30, 
+             label = "These cars are fuel-efficient",
+             family = "Palatino") + # more here: http://www.cookbook-r.com/Graphs/Fonts/
+  annotate("rect", xmin = 1.25, xmax = 2.5, ymin = 25, ymax = 35,
+  alpha = .2, fill = "yellow") +
+  theme_minimal()
+```
