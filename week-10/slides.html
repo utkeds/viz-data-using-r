@@ -455,16 +455,20 @@ Joshua Rosenberg and Isabella Velásquez
 <img data-src="images/ex-2.png" class="r-stretch"></section>
 <section id="reading-takeaways" class="slide level2">
 <h2>Reading takeaways</h2>
-<p><strong>Redundant Coding by C. Wilke</strong> - The importance of making data visualizations more accessible employing strategies beyond color coding, such as coordinating colors with shapes, direct labeling, and reordering legends to match the chart data. - The concept of <em>redundant coding</em>, which involves using additional visual elements like shapes in conjunction with colors - Direct labeling is advocated over the use of legends to reduce the burden on the reader - The reliance solely on color for data differentiation can be problematic and that incorporating multiple visual cues can broaden the audience</p>
+<p><strong>Redundant Coding by C. Wilke</strong></p>
+<ul>
+<li>The concept of <em>redundant coding</em>, which involves using additional visual elements like shapes in conjunction with colors</li>
+<li>Direct labeling is advocated over the use of legends to reduce the burden on the reader</li>
+<li>The reliance solely on color for data differentiation can be problematic and that incorporating multiple visual cues can broaden the audience</li>
+</ul>
 </section>
 <section id="reading-takeaways-1" class="slide level2">
 <h2>Reading takeaways</h2>
 <p><strong>Unspoken Rules of Visualization by C. Fung</strong></p>
 <ul>
-<li>The importance of adhering to conventional practices unless deviating for a specific, justified reason.</li>
-<li>How certain “unspoken rules,” like starting bar chart axes at zero and maintaining conventional axis labeling, significantly impact the audience’s understanding and interpretation of the data presented.</li>
-<li>The need for clear and purposeful deviations from standard practices is highlighted, with an emphasis on ensuring that any such deviations serve to enhance, rather than confuse, the message of the data visualization.</li>
-<li>The need to balance between following traditional visualization rules to avoid confusion and breaking these rules when it serves a clear purpose in conveying the data more effectively.</li>
+<li>The importance of adhering to conventional practices unless deviating for a specific reason.</li>
+<li>How certain “unspoken rules,” like starting bar chart axes at zero and maintaining conventional axis labeling, impact the audience’s understanding and interpretation of the data</li>
+<li>The need for clear and purposeful deviations from standard practices (balance!)</li>
 </ul>
 </section></section>
 <section>
@@ -507,20 +511,15 @@ Joshua Rosenberg and Isabella Velásquez
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="compound-figures-with-patchwork-2" class="slide level2">
 <h2>Compound Figures with <code>patchwork</code></h2>
-<p>To add two plots next to each other, we use <code>+</code> or <code>|</code></p>
-<p>To add two plots on top of each other, we use <code>/</code></p>
+<p>To add two plots next to each other, we use <code>+</code> or <code>|</code>. To add two plots on top of each other, we use <code>/</code></p>
 <p>We can also set different widths and heights using:</p>
-<pre><code>+ plot_layout(widths = c(2, 1),
-heights = c(2, 1))</code></pre>
-<blockquote>
+<pre><code>+ plot_layout(widths = c(2, 1), heights = c(2, 1))</code></pre>
 <p>This means the first plot is 2x the size of the second.</p>
-</blockquote>
-<p>There are many other ways we can control the layout. I recommend checking out the <a href="https://patchwork.data-imaginist.com/articles/guides/layout.html"><code>patchwork</code> documentation on controlling layout</a>.</p>
+<p>More is in the <a href="https://patchwork.data-imaginist.com/articles/guides/layout.html"><code>patchwork</code> documentation on controlling layout</a>.</p>
 </section>
 <section id="small-multiples-with-facet_wrap" class="slide level2">
 <h2>Small Multiples with <code>facet_wrap</code></h2>
 <p>For this example, we will use the <code>palmerpenguins</code> package.</p>
-<p>No Small Multiples</p>
 
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="small-multiples-with-facet_wrap-1" class="slide level2">
@@ -548,7 +547,6 @@ heights = c(2, 1))</code></pre>
 <section id="small-multiples-with-facet_wrap-3" class="slide level2">
 <h2>Small Multiples with <code>facet_wrap</code></h2>
 <p>To create the faceted plot, we used the following code</p>
-<p>Main Arguments: <code>facet_wrap(~facet_variables, nrow, ncol, scales)</code></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, </span>
 <span id="cb4-2"><a href="#cb4-2"></a>       <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
@@ -561,7 +559,7 @@ heights = c(2, 1))</code></pre>
 <span id="cb4-9"><a href="#cb4-9"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
 <span id="cb4-10"><a href="#cb4-10"></a>       <span class="at">title =</span> <span class="st">"Distribution of flipper lengths"</span>)<span class="sc">+</span></span>
 <span id="cb4-11"><a href="#cb4-11"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species)<span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span></span>
 <span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -606,7 +604,7 @@ heights = c(2, 1))</code></pre>
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="annotations-gghighlight-1" class="slide level2">
 <h2>Annotations: gghighlight</h2>
-<p>Learn much more at: https://cran.r-project.org/web/packages/gghighlight/vignettes/gghighlight.html</p>
+<p>Learn much more <a href="https://cran.r-project.org/web/packages/gghighlight/vignettes/gghighlight.html">here</a></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(d) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> idx, <span class="at">y =</span> value, <span class="at">colour =</span> type)) <span class="sc">+</span> <span class="co"># ahh!</span></span>
@@ -620,15 +618,21 @@ heights = c(2, 1))</code></pre>
 </section>
 
 <section>
-<section id="final-project-plans" class="title-slide slide level1 center">
-<h1>Final Project Plans</h1>
-
+<section id="mini-project-final-project-plans" class="title-slide slide level1 center">
+<h1>Mini Project Final Project Plans</h1>
+<p><a href="https://utk.instructure.com/courses/196893/assignments/1779345?module_item_id=3994393">Assignment</a></p>
+<p>In groups, briefly (2 min. max per person) discuss your plans:</p>
+<ul>
+<li>What data you are planning to use</li>
+<li>What plans (if any) you have for the three visualizations you will create</li>
+<li>What challenges you anticipate or questions you have</li>
+</ul>
 </section>
 <section id="whats-next" class="slide level2">
 <h2>What’s next</h2>
 <ul>
 <li>Assignment</li>
-<li>Reading</li>
+<li>Mini Project #2 (planning for the final project)</li>
 </ul>
 </section></section>
 <section id="check-out" class="title-slide slide level1 center">

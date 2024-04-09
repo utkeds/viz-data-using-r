@@ -32,6 +32,9 @@ Using a previous data set (and analysis), develop a data visualization that uses
 Again using a previous data set and related analyses and/or visualizations, add two or more annotation layers to a plot OR use gghighlight.
 
 
+```{r}
+data
+```
 
 ## Reflection
 

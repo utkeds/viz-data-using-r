@@ -292,12 +292,20 @@ ggplot(d) +
 # Code along
 
 
-# Final Project Plans
+# Mini Project Final Project Plans
+
+[Assignment](https://utk.instructure.com/courses/196893/assignments/1779345?module_item_id=3994393)
+
+In groups, briefly (2 min. max per person) discuss your plans:
+
+- What data you are planning to use
+- What plans (if any) you have for the three visualizations you will create
+- What challenges you anticipate or questions you have
 
 ## What's next
 
 * Assignment
-* Reading
+* Mini Project #2 (planning for the final project)
 
 # Check out
 

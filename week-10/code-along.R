@@ -1,6 +1,7 @@
 library(tidyverse)
 library(palmerpenguins)
 library(gghighlight)
+library(patchwork)
 
 ## Compound Figures with `patchwork`
 
@@ -21,10 +22,10 @@ p4 <- ggplot(mtcars) +
   facet_wrap(~cyl) + 
   ggtitle('Plot 4')
 
-
-patchwork_example <- p1 + p2 + p3 + p4 + 
+p1 + p2 + p3 + p4 + 
   plot_layout(widths = c(2, 1),
-              guides = 'collect' ) +
+              nrow = 2,
+              guides = 'collect') +
    plot_annotation(
      title = 'The surprising truth about mtcars')
 
@@ -41,8 +42,10 @@ ggplot(data = penguins,
        y = "Frequency",
        title = "Distribution of flipper lengths")+
   theme_minimal()+
-  facet_wrap(~species, nrow=3, scales="free_y")+
+  facet_wrap(~species, ncol = 3, scales="free_y")+
   theme(legend.position = "none")
+
+# facet_grid - for multiple variables (cross-tabulation)
 
 # annotations with mtcars
 
@@ -66,6 +69,8 @@ d <- purrr::map_dfr(
   )
 )
 
+d <- as_tibble(d)
+
 ggplot(d) +
   geom_line(aes(x = idx, y = value, colour = type)) # ahh!
 
@@ -78,5 +83,5 @@ ggplot(d_filtered) +
   geom_line(aes(idx, value, colour = type))
 
 ggplot(d) +
-  geom_line(aes(x = idx, y = value, colour = type)) + # ahh!
-  gghighlight(min(value) < -20)
+  geom_line(aes(x = idx, y = value, colour = type)) +
+  gghighlight(type %in% c("j", "m", "r"))
