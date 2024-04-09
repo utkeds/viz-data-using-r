@@ -108,7 +108,7 @@ Edit this visualization, using what we learned in class. Please be sure to do th
 - 1 `element_text()` edit
 - Increase the y-axis scale slightly
 - Add an annotation at the highest temperature
-- Edit the font of any element in the visualization
+- Edit the font family of any element in the visualization
 
 BONUS: Use {ggtext} in the subtitle.
 
