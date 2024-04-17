@@ -46,6 +46,17 @@ dat <-
 
 # Final project discussion/updates
 
+## Quick discussion
+
+In breakout rooms, please discuss (around one sentence each):
+
+- A description of the data set you plan to use
+- Where you are in terms of progress on code to read and start to explore the data
+- Which visualizations you plan to create 
+- What questions you have or what challenges you anticipate
+
+*Then* please discuss 1-2 punchlines to share with the class
+
 # Mapping with ggplot2
 
 ## Making maps
@@ -56,7 +67,7 @@ Map making — the art of cartography — is an ancient skill involving communic
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("~/R/viz-data-using-r/week-13/early-world-map.jpg")
+knitr::include_graphics("early-world-map.jpg")
 ```
 
 ## Making maps that show data
@@ -67,7 +78,7 @@ In addition to being fun and creative, cartography also has important practical 
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("~/R/viz-data-using-r/week-13/airbnb-occupancy-eclipse.png")
+knitr::include_graphics("airbnb-occupancy-eclipse.png")
 ```
 
 # Making maps that show data
@@ -76,7 +87,7 @@ knitr::include_graphics("~/R/viz-data-using-r/week-13/airbnb-occupancy-eclipse.p
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("~/R/viz-data-using-r/week-13/heatmap_2x.png")
+knitr::include_graphics("heatmap_2x.png")
 ```
 
 ## Discussion
@@ -305,7 +316,7 @@ Let's say we want to map the Zoning districts from Knox County (available here: 
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("~/R/viz-data-using-r/week-13/knox.png")
+knitr::include_graphics("knox.png")
 ```
 
 ## Reading shapefiles
@@ -316,7 +327,7 @@ Save all the files in the same folder:
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("~/R/viz-data-using-r/week-13/files.png")
+knitr::include_graphics("files.png")
 ```
 
 ## Reading shapefiles
@@ -353,7 +364,7 @@ Geographical heat maps, also known as choropleth maps, are one way of visualizin
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("~/R/viz-data-using-r/week-13/photo.png")
+knitr::include_graphics("photo.png")
 ```
 
 ## Joining data with long/lat data
@@ -553,6 +564,37 @@ ggplot(data = joined_state_data) +
     geom_point(data = points_data,
                aes(x = Longitude, y = Latitude))
 ```
+
+# Classes next fall!
+
+## 680
+
+STEM 680: Foundations of Educational Data Science I (3 credits) – Mon., 12:00 – 2:30 pm, online and synchronous
+
+Intended to support graduate-level students to be able to apply data science methods to topics of teaching, learning, and educational systems. Introduces students to the data science software and programming language R. Course activities focusing on preparing, using, and visualizing complex data sources for analysis using the tidyverse suite of R packages. Data ethics are foregrounded. Includes an introduction to text analysis/Natural Language Processing. No pre-requisites or programming experience is required.
+
+## 685
+
+STEM 685: Foundations of Educational Data Science II (3 credits) – Thurs., 9:00 – 11:00 am, online and synchronous
+
+Intended to support graduate students to use data science methods to study new technology-based environments, such as online courses, educational technology platforms, and social media-based networks. Advanced data visualization and social network analysis techniques are emphasized. More advanced methods around writing custom functions and using machine learning for analyzing complex data sources are introduced. Course involves the use of the statistical software R.
+
+## 691
+
+STEM 691: Visualizing Data Using R (3 credits) – Tues., 3:00– 5:00 pm, online and synchronous
+
+Intended to support students to create static visualizations (e.g., visualizations for inclusion in presentations and publications) and dynamic visualizations (e.g., those that can allow researchers and others to interact with the visualization). Will use educational examples and data sets but is open to students across programs. Course involves the use of the statistical software R.
+
+## Incoming faculty
+
+[Kelly Boles](https://cset.stanford.edu/about/our-team/kelly-boles)
+[Hanall Sung](https://ed.unc.edu/people/hanall-sung/)
+
+## Grad certificate
+
+The University of Tennessee, Knoxville, offers an online graduate certificate in Educational Data Science for students interested in digital data collection, analysis, visualization, and more in educational settings. The certificate can be added to current graduate students’ studies or pursued as a stand-alone certificate for graduate-level students.
+
+Link: https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/
 
 # Wrap up
 
