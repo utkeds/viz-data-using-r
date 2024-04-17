@@ -70,9 +70,9 @@ Map making — the art of cartography — is an ancient skill involving communic
 knitr::include_graphics("early-world-map.jpg")
 ```
 
-## Making maps that show data
+## Visualizing data with maps
 
-In addition to being fun and creative, cartography also has important practical applications. A carefully crafted map can be the best way of communicating the results of your work.
+In addition to being fun and creative, cartography also has important practical applications. A carefully crafted map can be the best way of visualizing data.
 
 ```{r}
 #| echo: false
@@ -81,7 +81,7 @@ In addition to being fun and creative, cartography also has important practical 
 knitr::include_graphics("airbnb-occupancy-eclipse.png")
 ```
 
-# Making maps that show data
+## Visualizing data with maps
 
 ```{r}
 #| echo: false
