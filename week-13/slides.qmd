@@ -42,7 +42,6 @@ dat <-
 - Finding geometries: tigris and `st_read()`
 - Creating choropleth maps
 - Layering geoms
-- Adding other geoms
 
 # Final project discussion/updates
 
@@ -70,9 +69,9 @@ Map making — the art of cartography — is an ancient skill involving communic
 knitr::include_graphics("early-world-map.jpg")
 ```
 
-## Making maps that show data
+## Visualizing data with maps
 
-In addition to being fun and creative, cartography also has important practical applications. A carefully crafted map can be the best way of communicating the results of your work.
+In addition to being fun and creative, cartography also has important practical applications. A carefully crafted map can be the best way of visualizing data.
 
 ```{r}
 #| echo: false
@@ -81,7 +80,7 @@ In addition to being fun and creative, cartography also has important practical 
 knitr::include_graphics("airbnb-occupancy-eclipse.png")
 ```
 
-# Making maps that show data
+## Visualizing data with maps
 
 ```{r}
 #| echo: false
@@ -264,6 +263,12 @@ TIGER stands for *Topologically Integrated Geographic Encoding and Referencing* 
 - Statistical entities
 - Geographic features
 
+```{r}
+#| eval: false
+install.packages("tigris")
+```
+
+
 ## The tigris package
 
 tigris functions return simple features objects with a default year of 2021.
@@ -434,7 +439,7 @@ This is how you join the `world_map` and `regions_data` together:
 
 ```{r}
 joined_world_data <- left_join(world_map, regions_data, by = "region")
-joined_world_data
+head(joined_world_data)
 ```
 
 ## Joining data with long/lat data
@@ -542,27 +547,25 @@ joined_state_data <- left_join(state_map, state_data, join_by("region" == "state
 ## Create a choropleth map of the U.S.
 
 ```{r}
-ggplot(data = joined_state_data) +
-  geom_map(map = joined_state_data,
-           aes(x = long,
-               y = lat,
-               fill = value,
-               map_id = region)) +
-    coord_fixed(1.3)
+ggplot(data = joined_state_data, aes(x = long, y = lat, fill = value, group = region)) +
+  geom_polygon() +
+  coord_quickmap()
+```
+
+## Adding points to a map
+
+```{r}
+head(points_data)
 ```
 
 ## Adding points to a map
 
 ```{r}
 ggplot(data = joined_state_data) +
-  geom_map(map = joined_state_data,
-           aes(x = long,
-               y = lat,
-               fill = value,
-               map_id = region)) +
-    coord_fixed(1.3) +
-    geom_point(data = points_data,
-               aes(x = Longitude, y = Latitude))
+  geom_polygon(aes(x = long, y = lat, fill = value, group = region)) +
+  geom_point(data = points_data,
+             aes(x = Longitude, y = Latitude)) +
+  coord_quickmap()
 ```
 
 # Classes next fall!
@@ -608,3 +611,5 @@ Link: https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/
 * The USAboundaries package, https://github.com/ropensci/USAboundaries contains state, county and zip code data for the US
 * The rnaturalearth package (South 2017) bundles up the free, high-quality data from https://naturalearthdata.com/
 * The osmar package, https://cran.r-project.org/package=osmar wraps up the OpenStreetMap API so you can access a wide range of vector data including individual streets and buildings
+
+# Office hours
