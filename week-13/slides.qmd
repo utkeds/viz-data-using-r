@@ -608,3 +608,5 @@ Link: https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/
 * The USAboundaries package, https://github.com/ropensci/USAboundaries contains state, county and zip code data for the US
 * The rnaturalearth package (South 2017) bundles up the free, high-quality data from https://naturalearthdata.com/
 * The osmar package, https://cran.r-project.org/package=osmar wraps up the OpenStreetMap API so you can access a wide range of vector data including individual streets and buildings
+
+# Office hours
