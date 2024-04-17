@@ -410,7 +410,6 @@ Joshua Rosenberg and Isabella Velásquez
 <li>Finding geometries: tigris and <code>st_read()</code></li>
 <li>Creating choropleth maps</li>
 <li>Layering geoms</li>
-<li>Adding other geoms</li>
 </ul>
 </section>
 
@@ -709,6 +708,9 @@ First 10 features:
 <li>Statistical entities</li>
 <li>Geographic features</li>
 </ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"tigris"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="the-tigris-package-2" class="slide level2">
 <h2>The tigris package</h2>
@@ -718,15 +720,15 @@ First 10 features:
 <li>In some cases, this subsetting is optional; in other cases, state and/or county arguments will be required.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">library</span>(tigris)</span>
-<span id="cb17-2"><a href=""></a></span>
-<span id="cb17-3"><a href=""></a>tn_districts <span class="ot">&lt;-</span> <span class="fu">school_districts</span>(<span class="st">"Tennessee"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">library</span>(tigris)</span>
+<span id="cb18-2"><a href=""></a></span>
+<span id="cb18-3"><a href=""></a>tn_districts <span class="ot">&lt;-</span> <span class="fu">school_districts</span>(<span class="st">"Tennessee"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="the-tigris-package-3" class="slide level2">
 <h2>The tigris package</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>tn_districts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>tn_districts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 126 features and 14 fields
 Geometry type: MULTIPOLYGON
@@ -774,11 +776,11 @@ First 10 features:
 <h2>The tigris package</h2>
 <p>We can plot our output from tigris using ggplot2 and <code>geom_sf()</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">ggplot</span>(tn_districts) <span class="sc">+</span> </span>
-<span id="cb20-2"><a href=""></a>  <span class="fu">geom_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">ggplot</span>(tn_districts) <span class="sc">+</span> </span>
+<span id="cb21-2"><a href=""></a>  <span class="fu">geom_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="reading-shapefiles" class="title-slide slide level1 center">
 <h1>Reading shapefiles</h1>
@@ -820,9 +822,9 @@ First 10 features:
 <li>name of the shapefile</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>knox_zones <span class="ot">&lt;-</span></span>
-<span id="cb21-2"><a href=""></a>    <span class="fu">st_read</span>(<span class="at">dsn =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"week-13"</span>, <span class="st">"shapefiles"</span>),</span>
-<span id="cb21-3"><a href=""></a>            <span class="st">"Knoxville-Knox_County_Zoning"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>knox_zones <span class="ot">&lt;-</span></span>
+<span id="cb22-2"><a href=""></a>    <span class="fu">st_read</span>(<span class="at">dsn =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"week-13"</span>, <span class="st">"shapefiles"</span>),</span>
+<span id="cb22-3"><a href=""></a>            <span class="st">"Knoxville-Knox_County_Zoning"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `Knoxville-Knox_County_Zoning' from data source 
   `/Users/ivelasq/R/viz-data-using-r/week-13/shapefiles' using driver `ESRI Shapefile'
@@ -838,12 +840,12 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <section id="reading-shapefiles-6" class="slide level2">
 <h2>Reading shapefiles</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> knox_zones) <span class="sc">+</span></span>
-<span id="cb23-2"><a href=""></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb23-3"><a href=""></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> knox_zones) <span class="sc">+</span></span>
+<span id="cb24-2"><a href=""></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb24-3"><a href=""></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section id="code-along" class="title-slide slide level1 center">
 <h1>Code along</h1>
 
@@ -863,8 +865,8 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <h2>Joining data with long/lat data</h2>
 <p>Let’s say we’re using the <code>world_map</code> data from maps:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
-<span id="cb24-2"><a href=""></a><span class="fu">head</span>(world_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
+<span id="cb25-2"><a href=""></a><span class="fu">head</span>(world_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       long      lat group order region subregion
 1 -69.89912 12.45200     1     1  Aruba      &lt;NA&gt;
@@ -880,17 +882,17 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <h2>Joining data with long/lat data</h2>
 <p>We can plot the world using <code>geom_polygon()</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">ggplot</span>(world_map, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
-<span id="cb26-2"><a href=""></a>  <span class="fu">geom_polygon</span>() <span class="sc">+</span></span>
-<span id="cb26-3"><a href=""></a>  <span class="fu">coord_quickmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">ggplot</span>(world_map, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href=""></a>  <span class="fu">geom_polygon</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href=""></a>  <span class="fu">coord_quickmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="joining-data-with-longlat-data-2" class="slide level2">
 <h2>Joining data with long/lat data</h2>
 <p>Now, we have a dataset called <code>regions_data</code> with corresponding data:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">head</span>(regions_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">head</span>(regions_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       region value
 1       Aruba   514
@@ -909,7 +911,7 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <p>Keep all rows from <code>x</code>, and all columns from <code>x</code> and <code>y</code>. Rows in <code>x</code> with no match in <code>y</code> will have <code>NA</code> values in the new columns.</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"left-join.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"left-join.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="left-join.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section>
@@ -918,15 +920,15 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <p>We can join the data based on their common key (<code>region</code>) using dplyr’s <code>left_join()</code></p>
 <p>Syntax:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">left_join</span>(x, y, <span class="at">by =</span> <span class="st">"key"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">left_join</span>(x, y, <span class="at">by =</span> <span class="st">"key"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="joining-data-with-longlat-data-5" class="slide level2">
 <h2>Joining data with long/lat data</h2>
 <p>This is how you join the <code>world_map</code> and <code>regions_data</code> together:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>joined_world_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(world_map, regions_data, <span class="at">by =</span> <span class="st">"region"</span>)</span>
-<span id="cb31-2"><a href=""></a><span class="fu">head</span>(joined_world_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>joined_world_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(world_map, regions_data, <span class="at">by =</span> <span class="st">"region"</span>)</span>
+<span id="cb32-2"><a href=""></a><span class="fu">head</span>(joined_world_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       long      lat group order region subregion value
 1 -69.89912 12.45200     1     1  Aruba      &lt;NA&gt;   514
@@ -945,12 +947,12 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <li>Be sure to include in your <code>aes()</code> since it’s referring to data</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">ggplot</span>(joined_world_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb33-2"><a href=""></a>  <span class="fu">geom_polygon</span>() <span class="sc">+</span></span>
-<span id="cb33-3"><a href=""></a>  <span class="fu">coord_quickmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">ggplot</span>(joined_world_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href=""></a>  <span class="fu">geom_polygon</span>() <span class="sc">+</span></span>
+<span id="cb34-3"><a href=""></a>  <span class="fu">coord_quickmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="layering-geoms" class="title-slide slide level1 center">
 <h1>Layering geoms</h1>
@@ -960,7 +962,7 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <h2>Long/lat dataset</h2>
 <p>Let’s say we have another dataset with longitude/latitude data for different points:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">head</span>(state_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">head</span>(state_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       long      lat group order  region subregion
 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;
@@ -970,7 +972,7 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;
 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">head</span>(state_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">head</span>(state_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        state value
 1     alabama   514
@@ -985,24 +987,24 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <section id="create-a-map-of-the-u.s." class="slide level2">
 <h2>Create a map of the U.S.</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>state_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
-<span id="cb38-2"><a href=""></a></span>
-<span id="cb38-3"><a href=""></a>joined_state_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(state_map, state_data, <span class="fu">join_by</span>(<span class="st">"region"</span> <span class="sc">==</span> <span class="st">"state"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>state_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
+<span id="cb39-2"><a href=""></a></span>
+<span id="cb39-3"><a href=""></a>joined_state_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(state_map, state_data, <span class="fu">join_by</span>(<span class="st">"region"</span> <span class="sc">==</span> <span class="st">"state"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-a-choropleth-map-of-the-u.s." class="slide level2">
 <h2>Create a choropleth map of the U.S.</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> joined_state_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">fill =</span> value, <span class="at">group =</span> region)) <span class="sc">+</span></span>
-<span id="cb39-2"><a href=""></a>  <span class="fu">geom_polygon</span>() <span class="sc">+</span></span>
-<span id="cb39-3"><a href=""></a>  <span class="fu">coord_quickmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> joined_state_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">fill =</span> value, <span class="at">group =</span> region)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href=""></a>  <span class="fu">geom_polygon</span>() <span class="sc">+</span></span>
+<span id="cb40-3"><a href=""></a>  <span class="fu">coord_quickmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-35-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="adding-points-to-a-map" class="slide level2">
 <h2>Adding points to a map</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="fu">head</span>(points_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="fu">head</span>(points_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   Place.Name           Latitude Longitude
@@ -1019,14 +1021,14 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <section id="adding-points-to-a-map-1" class="slide level2">
 <h2>Adding points to a map</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> joined_state_data) <span class="sc">+</span></span>
-<span id="cb42-2"><a href=""></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">fill =</span> value, <span class="at">group =</span> region)) <span class="sc">+</span></span>
-<span id="cb42-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> points_data,</span>
-<span id="cb42-4"><a href=""></a>             <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude)) <span class="sc">+</span></span>
-<span id="cb42-5"><a href=""></a>  <span class="fu">coord_quickmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> joined_state_data) <span class="sc">+</span></span>
+<span id="cb43-2"><a href=""></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">fill =</span> value, <span class="at">group =</span> region)) <span class="sc">+</span></span>
+<span id="cb43-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> points_data,</span>
+<span id="cb43-4"><a href=""></a>             <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude)) <span class="sc">+</span></span>
+<span id="cb43-5"><a href=""></a>  <span class="fu">coord_quickmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="classes-next-fall" class="title-slide slide level1 center">
 <h1>Classes next fall!</h1>

@@ -42,7 +42,6 @@ dat <-
 - Finding geometries: tigris and `st_read()`
 - Creating choropleth maps
 - Layering geoms
-- Adding other geoms
 
 # Final project discussion/updates
 
@@ -263,6 +262,12 @@ TIGER stands for *Topologically Integrated Geographic Encoding and Referencing* 
 - Legal entities
 - Statistical entities
 - Geographic features
+
+```{r}
+#| eval: false
+install.packages("tigris")
+```
+
 
 ## The tigris package
 
