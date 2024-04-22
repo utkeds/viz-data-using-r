@@ -33,8 +33,9 @@ With tidycensus, R users can request geometry along with attributes for their Ce
 - Run `library(tidycensus)`,
 - Uncomment line below and paste your key where it says YOUR KEY GOES HERE.
 - Follow the instructions.
+- Delete the line containing your API key before knitting the assignment.
 
-Once an API key is installed, you can obtain decennial Census or ACS data with a single function call.
+Once an API key is installed, you can obtain decennial Census or ACS data with a single function call. PLEASE DELETE LINE 42 AFTER RUNNING `census_api_key()`!
 
 ```{r}
 library(tidycensus)
@@ -149,10 +150,10 @@ Submit for Assignment 13 in Canvas.
 
 **Rubric**
 
-- Name is added: 2 points
-- Section 1: 5 points
+- API key is not included in the HTML: 5 points
+- Section 1: 3 points
 - Section 3: 5 points
-- Section 4: 6 points
+- Section 4: 5 points
 - Section 5: 12 points (4 each)
 
 Total: 30 points
