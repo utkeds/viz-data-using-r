@@ -69,22 +69,28 @@ To ensure you receive full credit, please upload or share a link to your present
 
 As with most design-related things, it depends on the goals and the audience of your visualization.
 
+
+::: aside
+https://vimeo.com/182590214
+:::
+
 ## Interactivity
 
+:::: {.columns}
+
+::: {.column width="40%"}
 - Immersion
-
-. . .
-
 - Flexibility
-
-. . .
-
 - Zooming, hover-over, pop-ups
+:::
 
+::: {.column width="60%"}
+![](snow.gif)
+:::
 
+::::
 
-
-## Packages for interactive maps in R
+## Packages for interactive maps in R {background-image="logos.png"}
 
 - plotly + ggplot
 - leaflet
@@ -100,19 +106,31 @@ Other packages include:
 
 The rgbif package accesses data from the Global Biodiversity Information Facility (GBIF).
 
+:::: {.columns}
+
+::: {.column width="60%"}
+
 ```{r}
+# install.packages("rgbif"
 library(tidyverse)
 library(rgbif)
 ```
 
+:::
+
+::: {.column width="40%"}
+![](rgbif.png)
+:::
+::::
+
 ## Species Occurrence data
 
-Let's say we want to download data on the Monarch butterfly.
+Let's say we want to download data on the Monarch butterfly 🦋
 
 ```{r}
-dan_ple <- rgbif::occ_data(
-  scientificName = 'Danaus plexippus'
-)
+#| code-line-numbers: "|2|4"
+dan_ple <- 
+  rgbif::occ_data(scientificName = 'Danaus plexippus')
 
 dan_ple_dat <- dan_ple$data
 glimpse(dan_ple_dat)
@@ -123,9 +141,10 @@ glimpse(dan_ple_dat)
 The package rnaturalearth provides a map of countries of the entire world.
 
 - Use `ne_countries` to pull country data and choose the scale (rnaturalearthhires is necessary for scale = "large")
-- Recall the simple feature (sf) standard of data
+- Return the simple feature (sf) standard of data
 
 ```{r}
+#| code-line-numbers: "|3|4"
 # install.packages("rnaturalearth")
 # install.packages("rnaturalearthdata")
 library(rnaturalearth)
@@ -134,11 +153,12 @@ world <- ne_countries(scale = "medium", returnclass = "sf")
 class(world)
 ```
 
-## Making a map {.smaller}
+## Making a static map: base {.smaller}
 
 First, let's start with creating a base map of the world using ggplot2's `geom_sf()`.
 
 ```{r}
+#| code-line-numbers: "|2|"
 library(ggplot2)
 theme_set(theme_minimal())
 
@@ -146,9 +166,9 @@ ggplot(data = world) +
     geom_sf()
 ```
 
-## Making a map {.smaller}
+## Making a static map: aesthetics {.smaller}
 
-Reminder that sf geometries are no different than regular geometries, and can be displayed with the same level of control on their attributes:
+Remember that sf geometries are no different than regular geometries, and can be displayed with the same level of control on their attributes:
 
 ```{r}
 ggplot(data = world) + 
@@ -157,27 +177,51 @@ ggplot(data = world) +
             fill = "#0C1337")
 ```
 
-## Making a map
+## Making a static map: layer data
 
 We can layer the Monarch butterfly data from `dan_ple_dat`:
 
 - Add a new points geometry with `geom_point()`
-- Specify the data (since it differs from `world`) with `data`
-- Map longitude/latitude to the data with `aes()`
 
-## Making a map {.smaller}
+. . .
+
+- Specify the data (since it differs from `world`) with `data`
+
+. . .
+
+- Map longitude/latitude to the data with `aes()`
+  - Variables are called decimalLongitude / decimalLatitude
+
+## Making a static map: layer data
 
 ```{r}
+#| eval: false
+#| code-line-numbers: "|5|6,7|8"
 ggplot(data = world) + 
     geom_sf(color = "white", 
             linewidth = 0.1,
             fill = "#0C1337") +
   geom_point(data = dan_ple_dat,
              aes(x = decimalLongitude,
-                 y = decimalLatitude))
+                 y = decimalLatitude),
+             color = "#FFD580")
 ```
 
-## Making a static map
+## Making a static map: layer data
+
+```{r}
+#| echo: false
+ggplot(data = world) + 
+    geom_sf(color = "white", 
+            linewidth = 0.1,
+            fill = "#0C1337") +
+  geom_point(data = dan_ple_dat,
+             aes(x = decimalLongitude,
+                 y = decimalLatitude),
+             color = "#FFD580")
+```
+
+## Making a static map: aesthetics
 
 We can layer edit the points according to life stage (`lifeStage`) by specifying `color` in `aes()`.
 
@@ -186,9 +230,11 @@ We can layer edit the points according to life stage (`lifeStage`) by specifying
 Anything not mapped to the data can be put outside of `aes()`
 :::
 
-## Making a static map {}
+## Making a static map: aesthetics
 
 ```{r}
+#| eval: false
+#| code-line-numbers: "|8"
 ggplot(data = world) + 
     geom_sf(color = "white",
             linewidth = 0.1,
@@ -196,8 +242,21 @@ ggplot(data = world) +
   geom_point(data = dan_ple_dat,
              aes(x = decimalLongitude,
                  y = decimalLatitude,
-                 color = lifeStage),
-             size = 0.5)
+                 color = lifeStage))
+```
+
+## Making a static map: aesthetics
+
+```{r}
+#| echo: false
+ggplot(data = world) + 
+    geom_sf(color = "white",
+            linewidth = 0.1,
+            fill = "#0C1337") +
+  geom_point(data = dan_ple_dat,
+             aes(x = decimalLongitude,
+                 y = decimalLatitude,
+                 color = lifeStage))
 ```
 
 # Adding interactivity
@@ -211,6 +270,11 @@ plotly is an R package for creating interactive web-based graphs via the open so
 library(plotly)
 ```
 
+
+::: aside
+[Getting Started with Plotly in ggplot2](https://plotly.com/ggplot2/getting-started/)
+:::
+
 ## ggplot2 + plotly
 
 Use the function `ggplotly()` to draw the graph with `plotly.js`.
@@ -219,9 +283,10 @@ Use the function `ggplotly()` to draw the graph with `plotly.js`.
 
 ## ggplot2 + plotly
 
-Wrap your plot in `ggplotly()`:
+Wrap your plot `p` in `ggplotly()`:
 
 ```{r}
+#| code-line-numbers: "|1|13"
 #| eval: false
 p <- ggplot(data = world) +
   geom_sf(color = "white",
@@ -257,6 +322,10 @@ p <- ggplot(data = world) +
 ggplotly(p)
 ```
 
+## ggplotly gallery
+
+[Gallery](https://plotly.com/ggplot2/)
+
 # Code along
 
 ## Leaftlet
@@ -266,9 +335,13 @@ Leaflet is an open-source JavaScript library for interactive maps.
 - Simplicity, performance, and usability
 - Lots of plugins and documentation
 
+::: aside
+[Leaflet](https://leafletjs.com/)
+:::
+
 ## The leaflet package
 
-Leaflet is a JavaScript library used to build web mapping applications. The leaflet R package makes it easy to create Leaflet maps from R.
+The leaflet R package makes it easy to create Leaflet maps from R.
 
 ```{r}
 # install.packages("leaflet")
@@ -283,26 +356,50 @@ Create a base map with `addTiles()`.
 leaflet() %>% addTiles()
 ```
 
-## The leaflet package: tiles {.smaller}
+## The leaflet package: adding components
+
+The different components of the map can be added using the pipe operator `%>%`.
+
+. . .
+
+However, some operations require the use of base R.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### dplyr
+
+```r
+mtcars %>% 
+  pull(hp)
+```
+:::
+
+::: {.column width="50%"}
+### base R
+
+```r
+mtcars$hp
+```
+:::
+::::
+
+## The leaflet package: provider tiles {.smaller}
 
 Specify different tile options with `addProviderTiles`
 
 - A list of free tiles is available at <https://leaflet-extras.github.io/leaflet-providers/preview/>
 
 ```{r}
-leaflet() %>% addProviderTiles(providers$Esri.NatGeoWorldMa)
+#| code-line-numbers: "|2|"
+leaflet() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMa)
 ```
-
-## The leaflet package: zoom
-
-- The different components of the map can be added using the pipe operator `%>%`.
 
 ## The leaflet package: zoom
  
 ```{r}
-library(leaflet)
-library(dplyr)
-
+#| code-line-numbers: "|3|"
 leaflet() %>% 
   addProviderTiles(providers$Esri.NatGeoWorldMa) %>% 
   setView(lng = -83.9294, lat = 35.9546, zoom = 14)
@@ -312,9 +409,8 @@ leaflet() %>%
 
 We can do things like add markers and tooltips.
 
-## The leaflet package: markers and tooltips
-
 ```{r}
+#| code-line-numbers: "|4|5|"
 leaflet() %>%
   addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
   setView(lng = -83.9294, lat = 35.9546, zoom = 14) %>%
@@ -324,7 +420,12 @@ leaflet() %>%
 
 ## The leaflet package: bringing in data
 
+Add data when initializing the `leaflet()` function
+
+- `~` tells leaflet to look at the data
+
 ```{r}
+#| code-line-numbers: "|1|7,8,9|"
 #| eval: false
 leaflet(dan_ple_dat) %>%
   addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
@@ -334,7 +435,7 @@ leaflet(dan_ple_dat) %>%
   addCircles(
     ~ decimalLongitude,
     ~ decimalLatitude,
-    popup = dan_ple_dat$scientificName
+    popup =  ~ scientificName
   ) 
 ```
 
@@ -350,13 +451,14 @@ leaflet(dan_ple_dat) %>%
   addCircles(
     ~ decimalLongitude,
     ~ decimalLatitude,
-    popup = dan_ple_dat$scientificName
+    popup =  ~ scientificName
   ) 
 ```
 
 ## The leaflet package: customizing maps
 
 ```{r}
+#| code-line-numbers: "|10-14|"
 #| eval: false
 leaflet(dan_ple_dat) %>%
   addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
@@ -366,7 +468,7 @@ leaflet(dan_ple_dat) %>%
   addCircles(
     ~ decimalLongitude,
     ~ decimalLatitude,
-    popup = dan_ple_dat$scientificName,
+    popup =  ~ scientificName,
     weight = 9,
     radius = 40,
     color = "#ffa500",
@@ -387,7 +489,7 @@ leaflet(dan_ple_dat) %>%
   addCircles(
     ~ decimalLongitude,
     ~ decimalLatitude,
-    popup = dan_ple_dat$scientificName,
+    popup =  ~ scientificName,
     weight = 9,
     radius = 40,
     color = "#ffa500",
@@ -398,7 +500,10 @@ leaflet(dan_ple_dat) %>%
 
 ## The leaflet package: adding polygons
 
+Specify a color scale for your polygons with `fillColor`.
+
 ```{r}
+#| code-line-numbers: "|3-7|4|5|6|"
 #| eval: false
 leaflet(data = world) %>%
   addTiles() %>%
@@ -423,6 +528,8 @@ leaflet(data = world) %>%
 ```
 
 ## The leaflet package: making a choropleth
+
+We have current GDP in U.S. dollars in the `world` data:
 
 ```{r}
 world %>% 
@@ -435,13 +542,19 @@ world %>%
 Specify a color palette and a domain:
 
 ```{r}
+#| code-line-numbers: "|1|2|"
 pal <- colorNumeric("YlOrRd",
                     domain = world$gdp_md)
 ```
 
 ## The leaflet package: making a choropleth
 
+Add the colors to your polygons by using `pal` and the variable you are using to fill the polygons (`gdp_md`).
+
+- `~` tells leaflet to look at the data
+
 ```{r}
+#| code-line-numbers: "|7|"
 #| eval: false
 leaflet(data = world) %>%
   addTiles() %>%
@@ -472,6 +585,7 @@ leaflet(data = world) %>%
 ## The leaflet package: add labels
 
 ```{r}
+#| code-line-numbers: "|1-3|12"
 #| eval: false
 labels <- paste0(
   "<strong>", world$name, "</strong><br/>GDP: ", world$gdp_md) %>% lapply(htmltools::HTML)
