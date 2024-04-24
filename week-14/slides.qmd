@@ -23,7 +23,6 @@ knitr:
 - Revisit static maps
 - Interactive maps with plotly
 - Interactive maps with leaflet
-- Publishing interactive maps
 
 # Final projects
 
