@@ -1,0 +1,52 @@
+library(tidyverse)
+library(rgbif)
+library(rnaturalearth)
+library(ggplot2)
+theme_set(theme_minimal())
+
+cat <- rgbif::occ_data(scientificName = 'Felis catus')
+
+cat_dat <- cat$data
+glimpse(cat_dat)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+
+ggplot(data = world) +
+  geom_sf()
+
+glimpse(world)
+# country under name
+
+cat_dat |> select(country)
+
+cat_dat_sum <-
+  cat_dat |>
+  group_by(country) |>
+  summarize(country_count = n()) |>
+  ungroup() |>
+  mutate(country = case_when(country == "Russian Federation" ~ "Russia",
+                             country == "United Kingdom of Great Britain and Northern Ireland" ~ "United Kingdom",
+                             country == "Korea, Republic of" ~ "Korea",
+                             .default = country))
+
+cat_world <-
+  left_join(world, cat_dat_sum, by = join_by(name == country))
+
+ggplot(data = cat_world) +
+  geom_sf(aes(fill = country_count),
+          linewidth = 0.1,
+          color = "white")
+
+ggplot(data = cat_world) +
+  geom_sf(aes(fill = country_count,
+              label = name),
+          linewidth = 0.1,
+          color = "white") +
+  geom_point(data = cat_dat,
+             aes(x = decimalLongitude,
+                 y = decimalLatitude),
+             size = 0.1) -> p
+
+ggplotly(p)
+

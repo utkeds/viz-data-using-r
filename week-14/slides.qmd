@@ -1,0 +1,520 @@
+---
+subtitle: "Interactive maps with R"
+title: "Week 14 - STEM 691"
+author: "Joshua Rosenberg and Isabella Velásquez"
+format:
+  revealjs:
+    theme: simple
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+---
+
+## Agenda
+
+- Final projects
+- Interactive maps
+- Revisit static maps
+- Interactive maps with plotly
+- Interactive maps with leaflet
+- Publishing interactive maps
+
+# Final projects
+
+## Rubric
+
+Given a whole semesters' worth of data viz know-how, how would you assess a data visualization? Which principles and practices would you want to see employed?
+
+We've come up with a starting point: 
+
+<https://bit.ly/stem691-rubric>
+
+## Small group discussion
+
+In small groups in a breakout room, please discuss 3-5 things that you would like to either change or modify. You can make suggestions related to the Major Categories, Expectations, or Point Value. 
+
+**Discuss for five minutes and return to the whole group with a plan for how to share.**
+
+## Process {.scrollable}
+
+For next week, you will need to develop up to three slides. Here are the requirements:
+
+- Presenters should discuss the story of the data, using the visualizations as aids. 
+- Your presentation should be no more than 3 slides
+- Your presentation should take **3 minutes or fewer**
+- Presenters should only speak for 1-2 minutes and take time to answer any questions or interact with the other attendees who appear in their booth.
+- This presentation style mimics actual poster presentations that occur at many conferences.
+
+## Process
+
+You can use Google Slides, Powerpoint, Keynote, or another tool. 
+
+To ensure you receive full credit, please upload or share a link to your presentation by 9:00 am on Wednesday, May 1 for the Final Project assignment:
+
+<https://utk.instructure.com/courses/196893/assignments/1779345>
+
+# Interactive maps in R
+
+## Interactivity
+
+- New York Times graphics editor Gregor Aisch noted that only 10 to 15 percent of readers who visit an interactive visualization on their site actually click on anything. 
+-  Is it worth the time and effort to make these things? 
+
+. . .
+
+As with most design-related things, it depends on the goals and the audience of your visualization.
+
+## Interactivity
+
+- Immersion
+
+. . .
+
+- Flexibility
+
+. . .
+
+- Zooming, hover-over, pop-ups
+
+
+
+
+## Packages for interactive maps in R
+
+- plotly + ggplot
+- leaflet
+
+Other packages include:
+
+- ggigraph + ggplot
+- highcharter
+
+# Revisit static maps
+
+## Species Occurrence data
+
+The rgbif package accesses data from the Global Biodiversity Information Facility (GBIF).
+
+```{r}
+library(tidyverse)
+library(rgbif)
+```
+
+## Species Occurrence data
+
+Let's say we want to download data on the Monarch butterfly.
+
+```{r}
+dan_ple <- rgbif::occ_data(
+  scientificName = 'Danaus plexippus'
+)
+
+dan_ple_dat <- dan_ple$data
+glimpse(dan_ple_dat)
+```
+
+## Download the world map data from rnaturalearth {.smaller}
+
+The package rnaturalearth provides a map of countries of the entire world.
+
+- Use `ne_countries` to pull country data and choose the scale (rnaturalearthhires is necessary for scale = "large")
+- Recall the simple feature (sf) standard of data
+
+```{r}
+# install.packages("rnaturalearth")
+# install.packages("rnaturalearthdata")
+library(rnaturalearth)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+```
+
+## Making a map {.smaller}
+
+First, let's start with creating a base map of the world using ggplot2's `geom_sf()`.
+
+```{r}
+library(ggplot2)
+theme_set(theme_minimal())
+
+ggplot(data = world) +
+    geom_sf()
+```
+
+## Making a map {.smaller}
+
+Reminder that sf geometries are no different than regular geometries, and can be displayed with the same level of control on their attributes:
+
+```{r}
+ggplot(data = world) + 
+    geom_sf(color = "white", 
+            linewidth = 0.1,
+            fill = "#0C1337")
+```
+
+## Making a map
+
+We can layer the Monarch butterfly data from `dan_ple_dat`:
+
+- Add a new points geometry with `geom_point()`
+- Specify the data (since it differs from `world`) with `data`
+- Map longitude/latitude to the data with `aes()`
+
+## Making a map {.smaller}
+
+```{r}
+ggplot(data = world) + 
+    geom_sf(color = "white", 
+            linewidth = 0.1,
+            fill = "#0C1337") +
+  geom_point(data = dan_ple_dat,
+             aes(x = decimalLongitude,
+                 y = decimalLatitude))
+```
+
+## Making a static map
+
+We can layer edit the points according to life stage (`lifeStage`) by specifying `color` in `aes()`.
+
+
+::: {.callout-note}
+Anything not mapped to the data can be put outside of `aes()`
+:::
+
+## Making a static map {}
+
+```{r}
+ggplot(data = world) + 
+    geom_sf(color = "white",
+            linewidth = 0.1,
+            fill = "#0C1337") +
+  geom_point(data = dan_ple_dat,
+             aes(x = decimalLongitude,
+                 y = decimalLatitude,
+                 color = lifeStage),
+             size = 0.5)
+```
+
+# Adding interactivity
+
+## ggplot2 + plotly
+
+plotly is an R package for creating interactive web-based graphs via the open source JavaScript graphing library `plotly.js`.
+
+```{r}
+# install.packages("plotly")
+library(plotly)
+```
+
+## ggplot2 + plotly
+
+Use the function `ggplotly()` to draw the graph with `plotly.js`.
+
+- Printing the Plotly object will render the chart locally in your web browser or in the RStudio viewer
+
+## ggplot2 + plotly
+
+Wrap your plot in `ggplotly()`:
+
+```{r}
+#| eval: false
+p <- ggplot(data = world) +
+  geom_sf(color = "white",
+          linewidth = 0.1,
+          fill = "#0C1337") +
+  geom_point(
+    data = dan_ple_dat,
+    aes(x = decimalLongitude,
+        y = decimalLatitude,
+        color = lifeStage),
+    size = 0.5
+  )
+
+ggplotly(p)
+```
+
+## ggplot2 + plotly
+
+```{r}
+#| echo: false
+p <- ggplot(data = world) +
+  geom_sf(color = "white",
+          linewidth = 0.1,
+          fill = "#0C1337") +
+  geom_point(
+    data = dan_ple_dat,
+    aes(x = decimalLongitude,
+        y = decimalLatitude,
+        color = lifeStage),
+    size = 0.5
+  )
+
+ggplotly(p)
+```
+
+# Code along
+
+## Leaftlet
+
+Leaflet is an open-source JavaScript library for interactive maps.
+
+- Simplicity, performance, and usability
+- Lots of plugins and documentation
+
+## The leaflet package
+
+Leaflet is a JavaScript library used to build web mapping applications. The leaflet R package makes it easy to create Leaflet maps from R.
+
+```{r}
+# install.packages("leaflet")
+library(leaflet)
+```
+ 
+## The leaflet package: base map
+
+Create a base map with `addTiles()`.
+
+```{r}
+leaflet() %>% addTiles()
+```
+
+## The leaflet package: tiles {.smaller}
+
+Specify different tile options with `addProviderTiles`
+
+- A list of free tiles is available at <https://leaflet-extras.github.io/leaflet-providers/preview/>
+
+```{r}
+leaflet() %>% addProviderTiles(providers$Esri.NatGeoWorldMa)
+```
+
+## The leaflet package: zoom
+
+- The different components of the map can be added using the pipe operator `%>%`.
+
+## The leaflet package: zoom
+ 
+```{r}
+library(leaflet)
+library(dplyr)
+
+leaflet() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMa) %>% 
+  setView(lng = -83.9294, lat = 35.9546, zoom = 14)
+```
+
+## The leaflet package: markers and tooltips
+
+We can do things like add markers and tooltips.
+
+## The leaflet package: markers and tooltips
+
+```{r}
+leaflet() %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
+  setView(lng = -83.9294, lat = 35.9546, zoom = 14) %>%
+  addMarkers(lng = -83.9294, lat = 35.9546,
+             popup = "<a href='https://www.utk.edu/'>University of Tennessee, Knoxville</a>")
+```
+
+## The leaflet package: bringing in data
+
+```{r}
+#| eval: false
+leaflet(dan_ple_dat) %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) %>% 
+  addCircles(
+    ~ decimalLongitude,
+    ~ decimalLatitude,
+    popup = dan_ple_dat$scientificName
+  ) 
+```
+
+## The leaflet package: bringing in data
+
+```{r}
+#| echo: false
+leaflet(dan_ple_dat) %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) %>% 
+  addCircles(
+    ~ decimalLongitude,
+    ~ decimalLatitude,
+    popup = dan_ple_dat$scientificName
+  ) 
+```
+
+## The leaflet package: customizing maps
+
+```{r}
+#| eval: false
+leaflet(dan_ple_dat) %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) %>% 
+  addCircles(
+    ~ decimalLongitude,
+    ~ decimalLatitude,
+    popup = dan_ple_dat$scientificName,
+    weight = 9,
+    radius = 40,
+    color = "#ffa500",
+    stroke = TRUE,
+    fillOpacity = 0.8
+  ) 
+```
+
+## The leaflet package: customizing maps
+
+```{r}
+#| echo: false
+leaflet(dan_ple_dat) %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) %>% 
+  addCircles(
+    ~ decimalLongitude,
+    ~ decimalLatitude,
+    popup = dan_ple_dat$scientificName,
+    weight = 9,
+    radius = 40,
+    color = "#ffa500",
+    stroke = TRUE,
+    fillOpacity = 0.8
+  ) 
+```
+
+## The leaflet package: adding polygons
+
+```{r}
+#| eval: false
+leaflet(data = world) %>%
+  addTiles() %>%
+  addPolygons(
+    fillColor = topo.colors(10, alpha = NULL),
+    stroke = FALSE,
+    label = ~ name
+  )
+```
+
+## The leaflet package: adding polygons
+
+```{r}
+#| echo: false
+leaflet(data = world) %>%
+  addTiles() %>%
+  addPolygons(
+    fillColor = topo.colors(10, alpha = NULL),
+    stroke = FALSE,
+    label = ~ name
+  )
+```
+
+## The leaflet package: making a choropleth
+
+```{r}
+world %>% 
+  select(name, gdp_md) %>% 
+  head()
+```
+
+## The leaflet package: making a choropleth
+
+Specify a color palette and a domain:
+
+```{r}
+pal <- colorNumeric("YlOrRd",
+                    domain = world$gdp_md)
+```
+
+## The leaflet package: making a choropleth
+
+```{r}
+#| eval: false
+leaflet(data = world) %>%
+  addTiles() %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 2) %>% 
+  addPolygons(
+    fillColor = ~ pal(gdp_md),
+    stroke = FALSE
+  )
+```
+
+## The leaflet package: making a choropleth
+
+```{r}
+#| echo: false
+leaflet(data = world) %>%
+  addTiles() %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 2) %>% 
+  addPolygons(
+    fillColor = ~ pal(gdp_md),
+    stroke = FALSE
+  )
+```
+
+## The leaflet package: add labels
+
+```{r}
+#| eval: false
+labels <- paste0(
+  "<strong>", world$name, "</strong><br/>GDP: ", world$gdp_md) %>% lapply(htmltools::HTML)
+
+leaflet(data = world) %>%
+  addTiles() %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 2) %>% 
+  addPolygons(
+    fillColor = ~ pal(gdp_md),
+    stroke = FALSE,
+    label = labels
+  )
+```
+
+## The leaflet package: add labels
+
+```{r}
+#| echo: false
+labels <- paste0(
+  "<strong>", world$name, "</strong><br/>GDP: ", world$gdp_md) %>% lapply(htmltools::HTML)
+
+leaflet(data = world) %>%
+  addTiles() %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 2) %>% 
+  addPolygons(
+    fillColor = ~ pal(gdp_md),
+    stroke = FALSE,
+    label = labels
+  )
+```
+
+# Code along
+ 
+# What's next?
+
+Assignment 12 will walk you through creating a Leaflet map.
+
+- Please reach out with any issues!
+
+Final projects!
+ 
