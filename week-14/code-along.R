@@ -25,10 +25,14 @@ cat_dat_sum <-
   group_by(country) |>
   summarize(country_count = n()) |>
   ungroup() |>
-  mutate(country = case_when(country == "Russian Federation" ~ "Russia",
-                             country == "United Kingdom of Great Britain and Northern Ireland" ~ "United Kingdom",
-                             country == "Korea, Republic of" ~ "Korea",
-                             .default = country))
+  mutate(
+    country = case_when(
+      country == "Russian Federation" ~ "Russia",
+      country == "United Kingdom of Great Britain and Northern Ireland" ~ "United Kingdom",
+      country == "Korea, Republic of" ~ "Korea",
+      .default = country
+    )
+  )
 
 cat_world <-
   left_join(world, cat_dat_sum, by = join_by(name == country))
@@ -50,3 +54,24 @@ ggplot(data = cat_world) +
 
 ggplotly(p)
 
+library(leaflet)
+
+pal <- colorBin("viridis",
+                bin = 3,
+                domain = cat_world$country_count)
+
+leaflet(cat_world) %>%
+  # Choose another tile
+  addProviderTiles(providers$Esri.NatGeoWorldMa) %>%
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) %>%
+  addPolygons(fillColor = ~ pal(country_count),
+              label = ~ country_count) %>%
+  addCircleMarkers(data = cat_dat,
+                   ~ decimalLongitude,
+                   ~ decimalLatitude,
+                   popup = "CAT!")
+
+labels <- paste0("<strong>Number of cats spotted: </strong><br/>",
+                 cat_world$country_count) %>% lapply(htmltools::HTML)
