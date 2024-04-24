@@ -146,7 +146,7 @@ Share any questions you have in Canvas about fine-tuning your .Rmd output.
 
 ## 7. Submit
 
-Submit for Assignment 13 in Canvas. 
+Submit for Assignment 11 in Canvas. 
 
 **Rubric**
 
