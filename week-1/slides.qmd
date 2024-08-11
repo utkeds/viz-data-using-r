@@ -1,0 +1,214 @@
+---
+subtitle: "Course Introduction"
+title: "Week 1 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: powerT_block.png
+      data-background-size: 15%
+      data-background-position: 50% 18%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+---
+
+```{r setup, include=FALSE}
+
+```
+
+# Welcome!
+
+## Today's agenda
+<hr>
+- Syllabus review
+- Canvas review
+- Norms
+- Introductions
+- Pre-course surveys
+- Tutorial / discussion review
+- Cairo (2013) discussion/activity
+- Looking ahead
+
+## Syllabus Review
+<hr>
+- [Syllabus](https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing) is available on Canvas. 
+- Living document: may be updated throughout the semester. 
+- If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
+  - Email/Slack to let me know, please!
+
+## Canvas Review
+<hr>
+- [Canvas](https://utk.instructure.com/courses/213032) = Primary platform for this course.
+- All materials you need will be posted here.
+- "Module" page is home base.
+- If an item is missing, please let me know.
+
+## Getting Help
+<hr>
+- Many ways to get help:
+  1. Class Slack ([eddatascienceatutk.slack.com](https://eddatascienceatutk.slack.com/))
+  2. AI/ChatGPT (see syllabus for policy)
+  3. Email
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Introductions
+
+## Kelly's Introduction
+<hr>
+
+::: {layout="[3,2]" .small-font}
+- Assistant Professor of Educational Data Science
+- Completed Ph.D. at Stanford University
+- Originally from [Greene Co, TN]{.green}
+- Research interests: 
+  - spatial equity in learning opportunity
+  - rural education
+  - teacher learning
+  - data science
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+#| fig-cap:
+#|  - "Greene & Knox Counties, TN"
+#| fig-height: 4
+library(tidyverse)
+library(ussf)
+library(sf)
+us_counties18sf_tn <- subset(boundaries(geography="county"),STATEFP %in% c("47"))
+us_counties18_easttn <- subset(us_counties18sf_tn,COUNTYFP %in% c("091","163","019","171",
+                                                          "179","073","067",
+                                                          "013","057","063","029",
+                                                          "089","025","173",
+                                                          "155","151","001","129",
+                                                          "145","105","123","009"))
+
+
+us_counties18_greeneco <- subset(us_counties18sf_tn,COUNTYFP %in% c("059"))
+us_counties18_knoxco <- subset(us_counties18sf_tn,COUNTYFP %in% c("093"))
+us_states18sf <- subset(boundaries(geography="state"), STATEFP %in% c("47"))
+
+
+greene_co_tn <- ggplot() +
+  geom_sf(data=us_counties18_easttn, fill="#ffffff", color="#262626", lwd=.5, show.legend=NA)+
+  geom_sf(data=us_counties18_greeneco, fill="#7B8400", color="#262626", lwd=.5, show.legend=NA)+
+  geom_sf(data=us_counties18_knoxco, fill="#FF8300", color="#262626", lwd=.5, show.legend=NA)+
+  geom_sf(data=us_states18sf, fill=NA, color="#262626", lwd=1, show.legend = NA)+
+  theme(text = element_text(family="Roboto Condensed"),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        legend.key = element_blank(),
+        legend.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.background = element_blank())
+
+greene_co_tn
+```
+
+:::
+
+## Your Introductions
+<hr>
+- Name
+- Program
+- Research interests
+- Something you did/learned this summer
+  - fun
+  - interesting
+  - restful
+
+# Today's Work
+
+## Pre-Course Surveys—Recap
+<hr>
+:::{layout="[3,2]"}
+- Fill this in
+- Add a graph of something
+:::
+
+## Tutorials 1, 2, & Discussion
+<hr>
+- From the Wk 1 discussion:
+  - add something here
+  - and here
+  
+## Cairo (2013), Chapter 1
+<hr>
+["The role of an information architect is to anticipate this [visualization decoding] process and generate order before people's brains try to do it on their own "
+<br>
+<br>
+(p. 17)]{.fragment}
+<br>
+<br>
+[Visualizations are, in their very essence:
+<br>1. Extensions of ourselves (and thus our argument)
+<br>2. Means to reach goals
+<br>
+<br>
+(p. 22)]{.fragment}
+
+## Discussion/Activity
+<hr>
+For each visualization:
+
+:::{.small-font}
+- What is the goal of the information architect?
+  - *If clear* (general agreement):
+    - Does the visual align well with the goal?
+    - Is it convincing?
+    - How could it be further improved?
+  - *If unclear* (some disagreement):
+    - What elements of the visual are conflicting?
+    - How could the visual be improved to better clarify the potential goal(s)?
+
+:::
+
+## Breakout Rooms & Miro
+<hr>
+- Using your breakout room #, go to the corresponding Miro board linked in Canvas.
+
+## Cairo (2013), Chapter 2
+<hr>
+:::{.small-font}
+*On visualizations as tools:*
+<br>
+<br>
+"It is tempting to propose rock-solid rules—if you want to show change through time, use a time-series chart; if you need to compare, use a bar chart; or to display correlation, use a scatterplot... But reality is complex... What is really important is to remember that no matter how creative and innovative you wish to be in your graphics and visualizations, the first thing you must do... is **ask yourself what users are likely to try to do with your tool.**
+:::
+<br>
+(Cairo, 2013, p. 43)
+
+
+# Looking Ahead
+
+## Next week
+<hr>
+- Week 1 Assignment
+  - Project, Packages, Functions, Data
+- Readings & Discussion
+  - Healy (2018), Chs. 1 & 2
+  - Estrellado (2020), Ch. 6
+  - Week 2 Discussion
+
