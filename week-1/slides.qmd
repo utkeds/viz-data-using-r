@@ -206,7 +206,7 @@ For each visualization:
 ## Next week
 <hr>
 - Week 1 Assignment
-  - Project, Packages, Functions, Data
+  - Projects, Packages, Functions, Data
 - Readings & Discussion
   - Healy (2018), Chs. 1 & 2
   - Estrellado (2020), Ch. 6
