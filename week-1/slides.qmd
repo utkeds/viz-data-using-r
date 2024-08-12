@@ -209,6 +209,6 @@ For each visualization:
   - Projects, Packages, Functions, Data
 - Readings & Discussion
   - Healy (2018), Chs. 1 & 2
-  - Estrellado (2020), Ch. 6
+  - Estrellado et al. (2020), Ch. 6
   - Week 2 Discussion
 
