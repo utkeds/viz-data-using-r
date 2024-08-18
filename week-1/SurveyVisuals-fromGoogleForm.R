@@ -3,8 +3,7 @@
 library(googlesheets4)
 library(tidyverse)
 library(ggtext)
-
-#Export as 1300x650
+library(grid)
 
 # Authenticate and save the token to a file
 gs4_auth(
@@ -18,7 +17,7 @@ df <- read_sheet("https://docs.google.com/spreadsheets/d/1FsM0BXtfrT-x5wGUBNW0QN
 how_often_graphs <- df |>
   select(c(1:3)) |>
   pivot_longer(cols = everything(), names_to = "Question", values_to = "Response") |>
-  mutate(Response = fct_relevel(Response,c("Never", "Less than once per year", "Several times per year", "Monthly", "Daily")),
+  mutate(Response = fct_relevel(Response,c("Never", "Less than once per year", "Several times per year", "Monthly", "Weekly", "Daily")),
          Question = fct_relevel(Question,c("How often do you currently use each of the following? [Statistical software with a point-and-click graphical user interface (e.g., SPSS, SAS)]",
                                            "How often do you currently use each of the following? [Spreadsheet software (e.g., Excel, Google Sheets)]",
                                            "How often do you currently use each of the following? [Data analysis notebooks (e.g., R Markdown, Jupyter Notebook) or programming languages (e.g., R, python)]")),
@@ -51,6 +50,8 @@ how_often_graphs <- df |>
         panel.spacing = unit(3,"lines"))+
   coord_flip()+
   facet_wrap(~Question)
+
+ggsave("Week-1/how_often_graphs.png", how_often_graphs, width = 1250, height = 700, units = "px", dpi = 96)
 
 level_of_confidence_graphs <- df |>
   select(c(4:6)) |>
@@ -88,3 +89,5 @@ level_of_confidence_graphs <- df |>
         panel.spacing = unit(3,"lines"))+
   coord_flip()+
   facet_wrap(~Question)
+
+ggsave("Week-1/level_of_confidence_graphs.png", level_of_confidence_graphs, width = 1250, height = 700, units = "px", dpi = 96)

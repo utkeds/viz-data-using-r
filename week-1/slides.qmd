@@ -143,10 +143,11 @@ greene_co_tn
 
 ## Pre-Course Surveys—Recap
 <hr>
-:::{layout="[3,2]"}
-- Fill this in
-- Add a graph of something
-:::
+![](how_often_graphs.png)
+
+## Pre-Course Surveys—Recap
+<hr>
+![](level_of_confidence_graphs.png)
 
 ## Tutorials 1, 2, & Discussion
 <hr>
