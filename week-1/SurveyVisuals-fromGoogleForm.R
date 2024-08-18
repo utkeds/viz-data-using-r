@@ -13,7 +13,6 @@ gs4_auth(
 df <- read_sheet("https://docs.google.com/spreadsheets/d/1FsM0BXtfrT-x5wGUBNW0QNA3ia-0DCzeP6nxfrK9Fzw/edit?gid=478049066#gid=478049066") |>
   select(c(9:14))
 
-
 how_often_graphs <- df |>
   select(c(1:3)) |>
   pivot_longer(cols = everything(), names_to = "Question", values_to = "Response") |>

@@ -149,11 +149,15 @@ greene_co_tn
 <hr>
 ![](level_of_confidence_graphs.png)
 
-## Tutorials 1, 2, & Discussion
+## Fund Things From Discussion
 <hr>
-- From the Wk 1 discussion:
-  - add something here
-  - and here
+:::{layout="[1,1], [1,1], [1,1]"}
+- Squirrels as entertainment
+- Writing a novel
+- Moved a lot (13 cities!)
+
+![](Squirrel.png){width=10%}
+:::
   
 ## Cairo (2013), Chapter 1
 <hr>
