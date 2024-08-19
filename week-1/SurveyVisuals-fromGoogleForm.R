@@ -3,13 +3,12 @@
 library(googlesheets4)
 library(tidyverse)
 library(ggtext)
-library(grid)
 
-# Authenticate and save the token to a file
+# Authenticate with Google
 gs4_auth(
   scopes = "https://www.googleapis.com/auth/spreadsheets.readonly")
 
-#Import six variables from the Google Form
+#Import six variables from the Google Form Student Survey
 df <- read_sheet("https://docs.google.com/spreadsheets/d/1FsM0BXtfrT-x5wGUBNW0QNA3ia-0DCzeP6nxfrK9Fzw/edit?gid=478049066#gid=478049066") |>
   select(c(9:14))
 
