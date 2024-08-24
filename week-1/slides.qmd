@@ -35,7 +35,7 @@ gs4_auth(
 
 # Welcome!
 
-## Today's agenda
+## Today's Agenda
 <hr>
 - Syllabus review
 - Canvas review
@@ -328,7 +328,7 @@ For each visualization:
 
 # Looking Ahead
 
-## Next week
+## Next Week
 <hr>
 - Week 1 Assignment
   - Projects, Packages, Functions, Data
