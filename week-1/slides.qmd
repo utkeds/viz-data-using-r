@@ -11,8 +11,8 @@ format:
     highlight-style: tango
     title-slide-attributes:
       data-background-color: "#4B4B4B"
-      data-background-image: powerT_block.png
-      data-background-size: 15%
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
       data-background-position: 50% 9%
     footer: UTK Educational Data Science
 knitr:
