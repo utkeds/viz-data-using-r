@@ -1,0 +1,33 @@
+---
+subtitle: "Data Viz & R Basics"
+title: "Week 2 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+    
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+# Weekly Check In
+
+
+
