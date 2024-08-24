@@ -109,6 +109,12 @@ library(TNG)
 
 :::
 
+## R Markdown - Knitting Errors
+<hr>
+- When Rmd fails to knit, it will tell you which chunk the error is in:
+
+![](CodeChunkKnitError.png)<br>[Error in lines 17-18]{.small-font}
+
 ## R Markdown
 <hr>
 - Most of your homework will be submitted as R Markdown files.

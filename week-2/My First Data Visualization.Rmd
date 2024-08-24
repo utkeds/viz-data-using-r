@@ -33,6 +33,13 @@ For our first visualization, we are going to install:
 ```
 
 
+```{r}
+ggplot(starwars, aes(x, y)) + geom_point()
+
+```
+
+
+
 ## Load Packages
 
 Here, please load the tidyverse and here packages (using the library function).
