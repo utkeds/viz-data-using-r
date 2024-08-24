@@ -25,12 +25,93 @@ knitr:
 ---
     
 ```{r setup, include=FALSE}
-library(tidyverse)
+library(tidyverse) #includes starwars data set
+
+#devtools::install_github("RMHogervorst/TNG")
+library(TNG)
 ```
 
 # Weekly Check In
 
+# Start Recording
+
 ## Today's Agenda
 <hr>
-- 
+- Weekly Check In
+- Norms
+- Creating R Project for This Class
+- Working with R Markdown
+- `tidyverse` Fundamentals - Code-a-long
+  - What is `ggplot2`?
+- `tidykids` Scavenger Hunt
+- Looking Ahead
 
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# R Markdown
+
+## Creating an R Project
+- If you haven't already, let's create an R Project for this class.
+- I use `Week-1`, `Week-2`, etc. subfolders.
+
+## R Markdown
+<hr>
+
+:::{.small-font}
+- R Markdown is a file format for making **dynamic documents with R**.
+- An R Markdown document is written in markdown (a **plain text** format) and contains **chunks of embedded R code**.
+- The markdown file is then **processed by `knitr`**, and then pandoc which converts the markdown to a **PDF, Word, or HTML file**.
+- File extension: `.Rmd`
+:::
+
+## R Markdown - Plain Text
+<hr>
+
+:::{layout="[50,50]"}
+![](RmdPlainTextExample.png)<br>[Plain Text in `.Rmd`]{.small-font}
+
+![](RMarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
+:::
+
+## R Markdown - Plain Text - Activity
+<hr>
+- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `R Markdown: In-Class Activity`
+- It should open up another page with instructions.
+- There is file to download in the opening step. Download it and put it in your `Week-2` folder within your R Project.
+
+## R Markdown - Code Chunks
+<hr>
+
+- The other part of an R Markdown document is the **code chunks**.
+
+:::{layout="[50,50]"}
+![](RMarkdownCodeChunkExample.png)<br>[Code Chunk in a `.Rmd`]{.small-font}
+
+::::{.small-font}
+- {r echo = T} : **shows the code** when knitted
+- {r eval = F} : **code does not run**
+- {r message = F}: **hides messages** 
+- {r warning = F}: **hides warnings**
+::::
+
+:::
+
+## R Markdown
+<hr>
+- Most of your homework will be submitted as R Markdown files.
+- Including this week's!
+
+# `tidyverse` Fundamentals

@@ -337,21 +337,159 @@ Dr.&nbsp;Kelly Boles
 </div>
 
 </section>
-<section>
 <section id="weekly-check-in" class="title-slide slide level1 center">
 <h1>Weekly Check In</h1>
+
+</section>
+
+<section>
+<section id="start-recording" class="title-slide slide level1 center">
+<h1>Start Recording</h1>
 
 </section>
 <section id="todays-agenda" class="slide level2">
 <h2>Today’s Agenda</h2>
 <hr>
 <ul>
-<li></li>
+<li>Weekly Check In</li>
+<li>Norms</li>
+<li>Creating R Project for This Class</li>
+<li>Working with R Markdown</li>
+<li><code>tidyverse</code> Fundamentals - Code-a-long
+<ul>
+<li>What is <code>ggplot2</code>?</li>
+</ul></li>
+<li><code>tidykids</code> Scavenger Hunt</li>
+<li>Looking Ahead</li>
 </ul>
+</section>
+<section id="norms" class="slide level2">
+<h2>Norms</h2>
+<hr>
+<div class="compact-font">
+<table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>In person norms</th>
+<th>And also, for online learning…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Be fully present to each other &amp; the work.</td>
+<td>Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction.</td>
+</tr>
+<tr class="even">
+<td>Assume positive intent &amp; also take responsibility for the impact you have.</td>
+<td>Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them.</td>
+</tr>
+<tr class="odd">
+<td>Embrace collaboration.</td>
+<td>Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate.</td>
+</tr>
+<tr class="even">
+<td>Be open to learning and accept non-closure.</td>
+<td>Expect the inevitable technical glitches and learning curves. Exercise patience with one another.</td>
+</tr>
+<tr class="odd">
+<td>Be aware of when to step up and step back. When stepping back, do so as an active listener.</td>
+<td>Try out different modes of participation. Step back by making space for others to engage in these.</td>
+</tr>
+<tr class="even">
+<td>Land your plane–get to the point you intended.</td>
+<td>We all know how hard it is to be talked at, especially in a Zoom session, so let’s keep it to a minimum.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section></section>
+<section>
+<section id="r-markdown" class="title-slide slide level1 center">
+<h1>R Markdown</h1>
+
+</section>
+<section id="creating-an-r-project" class="slide level2">
+<h2>Creating an R Project</h2>
+<ul>
+<li>If you haven’t already, let’s create an R Project for this class.</li>
+<li>I use <code>Week-1</code>, <code>Week-2</code>, etc. subfolders.</li>
+</ul>
+</section>
+<section id="r-markdown-1" class="slide level2">
+<h2>R Markdown</h2>
+<hr>
+<div class="small-font">
+<ul>
+<li>R Markdown is a file format for making <strong>dynamic documents with R</strong>.</li>
+<li>An R Markdown document is written in markdown (a <strong>plain text</strong> format) and contains <strong>chunks of embedded R code</strong>.</li>
+<li>The markdown file is then <strong>processed by <code>knitr</code></strong>, and then pandoc which converts the markdown to a <strong>PDF, Word, or HTML file</strong>.</li>
+<li>File extension: <code>.Rmd</code></li>
+</ul>
+</div>
+</section>
+<section id="r-markdown---plain-text" class="slide level2">
+<h2>R Markdown - Plain Text</h2>
+<hr>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="RmdPlainTextExample.png"><br><span class="small-font">Plain Text in <code>.Rmd</code></span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="RMarkdownPlainTextFormatting.png"><br><span class="small-font">Plain Text Formatting</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="r-markdown---plain-text---activity" class="slide level2">
+<h2>R Markdown - Plain Text - Activity</h2>
+<hr>
+<ul>
+<li>In <a href="https://utk.instructure.com/courses/213032">Canvas</a> you will find an activity called <code>R Markdown: In-Class Activity</code></li>
+<li>It should open up another page with instructions.</li>
+<li>There is file to download in the opening step. Download it and put it in your <code>Week-2</code> folder within your R Project.</li>
+</ul>
+</section>
+<section id="r-markdown---code-chunks" class="slide level2">
+<h2>R Markdown - Code Chunks</h2>
+<hr>
+<ul>
+<li>The other part of an R Markdown document is the <strong>code chunks</strong>.</li>
+</ul>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="RMarkdownCodeChunkExample.png"><br><span class="small-font">Code Chunk in a <code>.Rmd</code></span></p>
+</div>
+<div class="small-font quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li>{r echo = T} : <strong>shows the code</strong> when knitted</li>
+<li>{r eval = F} : <strong>code does not run</strong></li>
+<li>{r message = F}: <strong>hides messages</strong></li>
+<li>{r warning = F}: <strong>hides warnings</strong></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="r-markdown-2" class="slide level2">
+<h2>R Markdown</h2>
+<hr>
+<ul>
+<li>Most of your homework will be submitted as R Markdown files.</li>
+<li>Including this week’s!</li>
+</ul>
+</section></section>
+<section id="tidyverse-fundamentals" class="title-slide slide level1 center">
+<h1><code>tidyverse</code> Fundamentals</h1>
 <div class="footer footer-default">
 <p>UTK Educational Data Science</p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
