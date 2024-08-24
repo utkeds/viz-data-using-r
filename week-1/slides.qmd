@@ -19,6 +19,8 @@ knitr:
   opts_chunk: 
     fig.align: center
     echo: true
+    warning: false
+    message: false
 ---
 
 ```{r setup, include=FALSE}
