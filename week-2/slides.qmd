@@ -125,121 +125,119 @@ library(TNG)
 - Most of your homework will be submitted as R Markdown files.
 - Including this week's!
 
-# Switch to Slide Deck B
+# `tidyverse` Intro
+- `dplyr`
+- `ggplot2`
 
-<!-- # `tidyverse` Intro -->
-<!-- - `dplyr` -->
-<!-- - `ggplot2` -->
+# `dplyr` Basics
 
-<!-- # `dplyr` Basics -->
+## `dplyr` Basics
+<hr>
+- Code-a-long
+- **In chat:** What is a function?
 
-<!-- ## `dplyr` Basics -->
-<!-- <hr> -->
-<!-- - Code-a-long -->
-<!-- - **In chat:** What is a function? -->
+## `dplyr` Basic Functions
+<hr>
+```{r include=FALSE}
+starwars <- starwars %>%
+  slice(1:5) %>%
+  select(1:5)
+```
 
-<!-- ## `dplyr` Basic Functions -->
-<!-- <hr> -->
-<!-- ```{r include=FALSE} -->
-<!-- starwars <- starwars %>% -->
-<!--   slice(1:5) %>% -->
-<!--   select(1:5) -->
-<!-- ``` -->
+`select()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
 
-<!-- `select()` -->
-<!-- <br> -->
-<!-- <hr> -->
-<!-- :::{layout="[55,45]" .small-font} -->
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
 
-<!-- ::::{layout="[1]" .extra-small-font} -->
-<!-- <br> -->
-<!-- <br> -->
-<!-- [**Example df - starwars**]{.small-font} -->
-<!-- <br> -->
-<!-- <br> -->
-<!-- ```{r echo=FALSE} -->
-<!-- starwars %>% -->
-<!--   knitr::kable(format = "html", table.attr = "class='table-striped'") -->
-<!-- ``` -->
-<!-- :::: -->
+::::{layout="[1]"}
+<br>
+[`select(name, height)`]{.fragment}
 
-<!-- ::::{layout="[1]"} -->
-<!-- <br> -->
-<!-- [`select(name, height)`]{.fragment} -->
+[- Use this to **select columns/variables**]{.extra-small-font .fragment}
+<br>
+<div class="fragment">
+```{r}
+starwars %>%
+  select(name, height)
+```
+</div>
+::::
+:::
 
-<!-- [- Use this to **select columns/variables**]{.extra-small-font .fragment} -->
-<!-- <br> -->
-<!-- <div class="fragment"> -->
-<!-- ```{r} -->
-<!-- starwars %>% -->
-<!--   select(name, height) -->
-<!-- ``` -->
-<!-- </div> -->
-<!-- :::: -->
-<!-- ::: -->
+## `dplyr` Basic Functions
+<hr>
+`select()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
 
-<!-- ## `dplyr` Basic Functions -->
-<!-- <hr> -->
-<!-- `select()` -->
-<!-- <br> -->
-<!-- <hr> -->
-<!-- :::{layout="[55,45]" .small-font} -->
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars %>%
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
 
-<!-- ::::{layout="[1]" .extra-small-font} -->
-<!-- <br> -->
-<!-- <br> -->
-<!-- [**Example df - starwars**]{.small-font} -->
-<!-- <br> -->
-<!-- <br> -->
-<!-- ```{r echo=FALSE} -->
-<!-- starwars %>% -->
-<!--   knitr::kable(format = "html", table.attr = "class='table-striped'") -->
-<!-- ``` -->
-<!-- :::: -->
+::::{layout="[1]"}
+<br>
+`select(name, height)`
 
-<!-- ::::{layout="[1]"} -->
-<!-- <br> -->
-<!-- `select(name, height)` -->
+[- **Note:** These are the same!]{.extra-small-font}
+<br>
 
-<!-- [- **Note:** These are the same!]{.extra-small-font} -->
-<!-- <br> -->
+```{r echo=TRUE, eval=FALSE}
+starwars %>%
+  select(name, height)
 
-<!-- ```{r echo=TRUE, eval=FALSE} -->
-<!-- starwars %>% -->
-<!--   select(name, height) -->
+select(starwars, name, height)
+```
+::::
+:::
 
-<!-- select(starwars, name, height) -->
-<!-- ``` -->
-<!-- :::: -->
-<!-- ::: -->
+# Why the same?
 
-<!-- # Why the same? <br>`|> or %>%` -->
+## `dplyr` Basic Functions
+<hr>
+Pipe Operator: `|> or %>%`
+<hr>
 
-<!-- ## `dplyr` Basic Functions -->
-<!-- <hr> -->
-<!-- Pipe Operator: `|> or %>%` -->
-<!-- <hr> -->
+[The pipe operator connects functions together into a *chain* of step-by-step commands. It can be translated as **and then**.]{.small-font}
 
-<!-- [The pipe operator connects functions together into a *chain* of step-by-step commands. It can be translated as **and then**.]{.small-font} -->
+:::{layout="[65,35]"}
+::::{layout="[1]" .small-font}
+<br>
+<br>
+```{r, echo=TRUE, eval = TRUE, warning=TRUE}
+starwars %>%
+  select(name, height) %>%
+  glimpse()
+```
+::::
+::::{.small-font}
+<br>
+*In English*:<br>
 
-<!-- :::{layout="[65,35]"} -->
-<!-- ::::{layout="[1]" .small-font} -->
-<!-- <br> -->
-<!-- <br> -->
-<!-- ```{r, echo=TRUE, eval = TRUE, warning=TRUE} -->
-<!-- starwars %>% -->
-<!--   select(name, height) %>% -->
-<!--   glimpse() -->
-<!-- ``` -->
-<!-- :::: -->
-<!-- ::::{.small-font} -->
-<!-- <br> -->
-<!-- *In English*:<br> -->
-
-<!-- :::{.extra-small-font .incremental} -->
-<!-- 1. Take the starwars data set *and then*   -->
-<!-- 2. `select` the name and height columns *and then*   -->
-<!-- 3. `view` the result in R Studio -->
-<!-- ::: -->
-<!-- :::: -->
-<!-- ::: -->
+:::{.extra-small-font .incremental}
+1. Take the starwars data set *and then*
+2. `select` the name and height columns *and then*
+3. `view` the result in R Studio
+:::
+::::
+:::
