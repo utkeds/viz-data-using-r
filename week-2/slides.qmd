@@ -46,7 +46,7 @@ library(TNG)
 - `tidyverse` Introduction
   - `dplyr` Basics
   - `ggplot2` Preview
-- `tidykids` Scavenger Hunt
+- `palmerpenguins` Scavenger Hunt
 - Looking Ahead
 
 :::
@@ -555,4 +555,24 @@ starwars |>
 
 # `PalmerPenguins` Scavenger Hunt
 
+## Scavenger Hunt
+<hr>
+:::{.small-font}
+- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `Palmer Penguins: dplyr & ggplot2 Scavenger Hunt`
+- The `.Rmd` file has instructions embedded.
+- You will be sent into breakout rooms.
+- Everyone should have the .Rmd file open and be ready to work together.
+- However, only 1 knitted file should be submitted (i.e. 1 person should submit for group credit)
+- The person who submits should be sharing their screen so the group can collaboratively work on the final document.
+:::
 
+# Looking Ahead
+
+## Looking Ahead
+<hr>
+- Week 2 Assignment
+  - My First Data Visualization (maybe 2nd)
+- Readings
+  - **Work Through** Beck (n.d.)
+  - **Skim** dplyr cheatsheet
+  - **Skim** Wickham et al., (2023)
