@@ -1,0 +1,59 @@
+---
+title: "Penguin dplyr Scavenger Hunt"
+author: "Me"
+date: "2024-08-25"
+output: pdf_document
+---
+<!-- Add all your names to the Author YAML block above. -->
+<!-- NOTE: After you complete each chunk, run it! (Green play button in upper right.). -->
+
+<!-- In the setup chunk, please load `palmerpenguins` and `tidyverse` pkgs. -->
+<!-- Both are installed. Just load them. Press return & add below knitr call.-->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- Now, run the chunk above using the green play button in the upper right. Ugh! It produced a message. Edit the code block to turn messages off. -->
+
+<!-- Run the code block below to assign the penguins data set in palmerpenguins to the global environment. -->
+
+```{r}
+penguins <- penguins
+```
+
+<!-- Now, let's look at the first few entries in the penguins dataset to see what we're working with. Use head() to look at the first 5 rows. -->
+
+```{r}
+
+```
+
+<!-- For this exercise, we are only interested in the "Chinstrap" species of dolphin. Use a base R pipe and filter to isolate only the Chinstrap penguin data. Assign this new subset to "chinstrap". -->
+
+```{r}
+
+```
+
+<!-- Now that we only have the Chinstrap data, we can further reduce the size of the data set we are working with. Use select to keep only the following variables: species, bill_length_mm, flipper_length_mm, and sex. Again, assign it to chinstrap.-->
+
+```{r}
+
+```
+
+<!-- Although it's useful that the variable names give the units, that doesn't look nice in a graph. There will be other ways to label our units. Use rename() to change `bill_length_mm` to `bill_length` and `flipper_length_mm` to `fipper_length`. Assign it to chinstrap-->
+
+```{r}
+
+```
+
+<!-- Now we are ready to plot! Using the ggplot code below, feed the code the name of the dataframe/dataset (likely chinstrap) x variable (bill_length), y variable (flipper_length), and tell it to set the color to sex. -->
+
+```{r}
+ggplot(DATAFRAME_NAME, aes(x = X_VARIABLE, y = Y_VARIABLE)) +
+          geom_point(aes(color = COLOR_VARIABLE)) +
+  labs(title = "Chinstrap Penguins: Bill Length vs. Flipper Length",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+<!-- Knit your document and submit it to the in-class assignment in Canvas. -->
