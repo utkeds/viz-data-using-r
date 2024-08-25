@@ -54,6 +54,10 @@ hr {
   font-size: 34px;
 }
 
+.extra-small-font{
+  font-size: 18px;
+}
+
 // greene co green
 .green{ 
   color: #7B8300;
@@ -62,4 +66,9 @@ hr {
 figcaption {
   font-size: 0.1em; /* Adjust the size as needed */
   color: #666; /* Optional: adjust the color */
+}
+
+//shade alternate rows of table
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #dcf0f0;
 }
