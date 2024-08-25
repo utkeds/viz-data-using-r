@@ -479,6 +479,6 @@ starwars |>
 - Part of the `tidyverse`
 - We'll learn more in Week 4, but you'll have a preview in this week's homework.
 
-# `PalmersPenguins` Scavenger Hunt
+# `PalmerPenguins` Scavenger Hunt
 
 
