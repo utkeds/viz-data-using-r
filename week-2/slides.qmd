@@ -70,7 +70,11 @@ library(TNG)
 
 ## Creating an R Project
 - If you haven't already, let's create an R Project for this class.
-- I use `Week-1`, `Week-2`, etc. subfolders.
+- In [Canvas](https://utk.instructure.com/courses/213032) there is a zip file for `week-2` with all the files you need.
+- Download and unzip the file.
+- Put the `week-2` folder in your `.Rproj` folder.
+- Delete the zip
+- Open the `.Rproj` file in R Studio
 
 ## R Markdown
 <hr>
@@ -95,7 +99,7 @@ library(TNG)
 <hr>
 - In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `R Markdown: In-Class Activity`
 - It should open up another page with instructions.
-- There is file to download in the opening step. Download it and put it in your `Week-2` folder within your R Project.
+- In the `week-2` folder you will find the file for the activity called `R Markdown: In-Class Activity`.
 
 ## R Markdown - Code Chunks
 <hr>
@@ -460,6 +464,57 @@ starwars |>
   rename("weight" = mass)
 ```
 </div>
+
+<br>
+[-But reviewing starwars right after, it still says mass. Why?]{.fragment .extra-small-font}
+
+<div class="fragment">
+```{r}
+starwars
+```
+</div>
+::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`rename()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]"}
+<br>
+[`rename("weight" = mass)`]{.fragment .extra-small-font}
+
+[- You need to assign the changes to keep them!]{.extra-small-font .fragment}
+<br>
+
+::::{.extra-small-font}
+<div class="fragment">
+```{r}
+renamed_starwars <- starwars |>
+  rename("weight" = mass)
+
+# starwars <- starwars |>
+#   rename("weight" = mass)
+
+renamed_starwars
+```
+</div>
 ::::
 ::::
 :::
@@ -551,18 +606,19 @@ starwars |>
 <hr>
 - `ggplot2` or `ggplot` is most popular data viz package in R.
 - Part of the `tidyverse`
-- We'll learn more in Week 4, but you'll have a preview in this week's homework.
+- We'll learn more in Week 4, but we'll use it a bit today.
 
 # `PalmerPenguins` Scavenger Hunt
 
 ## Scavenger Hunt
 <hr>
 :::{.small-font}
-- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `Palmer Penguins: dplyr & ggplot2 Scavenger Hunt`
+- In the `week-2` folder you will find an activity called `Palmer Penguins: dplyr & ggplot2 Scavenger Hunt`
 - The `.Rmd` file has instructions embedded.
 - You will be sent into breakout rooms.
 - Everyone should have the .Rmd file open and be ready to work together.
 - However, only 1 knitted file should be submitted (i.e. 1 person should submit for group credit)
+- Make sure everyone's name is in author field!!!
 - The person who submits should be sharing their screen so the group can collaboratively work on the final document.
 :::
 

@@ -1,0 +1,26 @@
+---
+title: "R Markdown Practice"
+author: "Your Name Here"
+date: "2024-08-24"
+output: html_document
+---
+
+tidyverse
+
+What is tidyverse?
+
+The tidyverse is a collection of R packages designed for data science.
+
+Some of the key packages include:
+
+ggplot2
+geom_point()
+dplyr
+filter()
+tidyr
+pivot_longer()
+
+tidyverse packages share an underlying design philosophy, grammar, and data structures.
+
+This is why it is so effective for data science.
+
