@@ -139,8 +139,8 @@ library(TNG)
 ## `dplyr` Basic Functions
 <hr>
 ```{r include=FALSE}
-starwars <- starwars %>%
-  slice(1:5) %>%
+starwars <- starwars |>
+  slice(1:5) |>
   select(1:5)
 ```
 
@@ -156,7 +156,7 @@ starwars <- starwars %>%
 <br>
 <br>
 ```{r echo=FALSE}
-starwars %>%
+starwars |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -169,7 +169,7 @@ starwars %>%
 <br>
 <div class="fragment">
 ```{r}
-starwars %>%
+starwars |>
   select(name, height)
 ```
 </div>
@@ -190,7 +190,7 @@ starwars %>%
 <br>
 <br>
 ```{r echo=FALSE}
-starwars %>%
+starwars |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -203,7 +203,7 @@ starwars %>%
 <br>
 
 ```{r echo=TRUE, eval=FALSE}
-starwars %>%
+starwars |>
   select(name, height)
 
 select(starwars, name, height)
@@ -215,7 +215,7 @@ select(starwars, name, height)
 
 ## `dplyr` Basic Functions
 <hr>
-Pipe Operator: `|> or %>%`
+Pipe Operator: `%>% or |>`
 <hr>
 
 [The pipe operator connects functions together into a *chain* of step-by-step commands. It can be translated as **and then**.]{.small-font}
@@ -225,8 +225,8 @@ Pipe Operator: `|> or %>%`
 <br>
 <br>
 ```{r, echo=TRUE, eval = TRUE, warning=TRUE}
-starwars %>%
-  select(name, height) %>%
+starwars |>
+  select(name, height) |>
   glimpse()
 ```
 ::::
@@ -241,3 +241,244 @@ starwars %>%
 :::
 ::::
 :::
+
+## `dplyr` Basic Functions
+<hr>
+`filter()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]"}
+<br>
+[`filter(mass >= 50)`]{.fragment}
+
+[- Use this to **filter rows**]{.extra-small-font .fragment}
+<br>
+
+::::{.extra-small-font}
+<div class="fragment">
+```{r}
+starwars |>
+  filter(mass >= 50)
+```
+</div>
+::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`str()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]"}
+<br>
+[`str(starwars)`]{.fragment}
+
+[- Use this to see the **structure** of an object]{.extra-small-font .fragment}
+<br>
+
+::::{.extra-small-font}
+<div class="fragment">
+```{r}
+str(starwars)
+```
+</div>
+::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`head()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]"}
+<br>
+[`head(starwars)`]{.fragment}
+
+[- Use this to **see the first** ***n*** **rows** of an object]{.extra-small-font .fragment}
+<br>
+
+::::{.extra-small-font}
+<div class="fragment">
+```{r}
+head(starwars)
+
+head(starwars, 2)
+```
+</div>
+::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`rename()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]"}
+<br>
+[`rename("weight" = mass)`]{.fragment .extra-small-font}
+
+[- Use this to **rename** a column]{.extra-small-font .fragment}
+<br>
+
+::::{.extra-small-font}
+<div class="fragment">
+```{r}
+starwars |>
+  rename("weight" = mass)
+```
+</div>
+::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`mutate()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]"}
+<br>
+[`mutate()` A Challenge!]{.fragment}
+
+:::{.extra-small-font .fragment}
+1. How many columns do we expect?
+2. What does each line do?
+3. Can we simplify it?
+:::
+
+::::{.extra-small-font}
+<div class="fragment">
+```{r eval=F}
+starwars |>
+  mutate(one = height^2) |>
+  mutate(two = height*mass) |>
+  mutate(hair_color = ifelse(is.na(hair_color),
+                             "unknown", hair_color))
+```
+</div>
+::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`mutate()`
+<br>
+<hr>
+
+[`mutate()` A Challenge!]{.fragment}
+
+::::{.small-font}
+<div class="fragment">
+```{r eval=T}
+starwars |>
+  mutate(one = height^2) |>
+  mutate(two = height*mass) |>
+  mutate(hair_color = ifelse(is.na(hair_color),
+                             "unknown", hair_color))
+```
+</div>
+::::
+
+## `dplyr` Basic Functions
+<hr>
+`mutate()`
+<br>
+<hr>
+
+`mutate()` A Challenge!
+
+::::{.small-font}
+```{r eval=T}
+starwars |>
+  mutate(one = height^2,
+        two = height*mass,
+        hair_color = ifelse(is.na(hair_color),
+                             "unknown", hair_color))
+```
+::::
+
+# `ggplot2` Preview
+
+## `ggplot2` Preview
+<hr>
+- `ggplot2` or `ggplot` is most popular data viz package in R.
+- Part of the `tidyverse`
+- We'll learn more in Week 4, but you'll have a preview in this week's homework.
+
+# `PalmersPenguins` Scavenger Hunt
+
+
