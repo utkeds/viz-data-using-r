@@ -145,7 +145,7 @@ Make sure you can view it in the file pane --> try double-clicking it.
 |                     | Points Possible | Points Earned |
 |---------------------|-----------------|---------------|
 | File knits to HTML  | 10              |               |
-| All edits correct.  | 5               |               |
+| All edits correct.  | 10              |               |
 | Rmd is submitted.   | 5               |               |
 | jpg is submitted    | 5               |               |
 
