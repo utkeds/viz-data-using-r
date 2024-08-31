@@ -146,8 +146,8 @@ Make sure you can view it in the file pane --> try double-clicking it.
 |---------------------|-----------------|---------------|
 | File knits to HTML  | 10              |               |
 | All edits correct.  | 10              |               |
-| Rmd is submitted.   | 5               |               |
-| jpg is submitted    | 5               |               |
+| .html is submitted. | 5               |               |
+| .jpg is submitted   | 5               |               |
 
 
 ## Knit and Submit
@@ -158,4 +158,4 @@ Complete the following steps to knit and publish your work:
 
 2.  Next, click the knit button in the toolbar above to "knit" your R Markdown document to a [HTML](https://bookdown.org/yihui/rmarkdown/html-document.html) file that will be saved in your R Project folder. You should see a formatted webpage appear in your Viewer tab in the lower right pan or in a new browser window. Let's me know if you run into any issues with knitting! 
 
-3. Upload the HTML file that is now present in the same folder as this R Markdown file to Canvas to receive credit! Also, please upload the JPG file to receive full credit (so, you will upload two files for this assignment).
+3. Upload the HTML file that is now present in the same folder as this R Markdown file to Canvas to receive credit! Also, please upload the JPG file to receive full credit (so, you will upload TWO files for this assignment).
