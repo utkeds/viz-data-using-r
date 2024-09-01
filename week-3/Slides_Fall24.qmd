@@ -119,7 +119,7 @@ library(tidyverse, palmerpenguins)
     
 # Reviewing `dplyr` Basics
 
-## `dplyr` Review
+## `dplyr` Review +
 <hr>
 `select()`
 <br>
@@ -133,13 +133,13 @@ library(tidyverse, palmerpenguins)
 <br>
 <br>
 ```{r include=FALSE}
-starwars <- starwars |>
+starwars_a <- starwars |>
   slice(1:5) |>
   select(1:5)
 ```
 
 ```{r echo=FALSE}
-starwars |>
+starwars_a |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -152,13 +152,13 @@ starwars |>
 <br>
 
 ```{r echo=TRUE, eval=TRUE}
-starwars |>
+starwars_a |>
   select(name, height)
 ```
 ::::
 :::
 
-## `dplyr` Basic Functions
+## `dplyr` Review +
 <hr>
 `filter()`
 <br>
@@ -172,7 +172,7 @@ starwars |>
 <br>
 <br>
 ```{r echo=FALSE}
-starwars |>
+starwars_a |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -186,14 +186,14 @@ starwars |>
 
 :::::{.extra-small-font}
 ```{r}
-starwars |>
+starwars_a |>
   filter(hair_color == "brown")
 ```
 :::::
 ::::
 :::
 
-## `dplyr` Basic Functions
+## `dplyr` Review +
 <hr>
 `filter()` and `!is.na()`
 <br>
@@ -207,7 +207,7 @@ starwars |>
 <br>
 <br>
 ```{r echo=FALSE}
-starwars |>
+starwars_a |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -224,14 +224,14 @@ starwars |>
 
 :::::{.extra-small-font}
 ```{r}
-starwars |>
+starwars_a |>
   filter(!is.na(hair_color))
 ```
 :::::
 ::::
 :::
 
-## `dplyr` Basic Functions
+## `dplyr` Review +
 <hr>
 `filter()` and `|`
 <br>
@@ -245,7 +245,7 @@ starwars |>
 <br>
 <br>
 ```{r echo=FALSE}
-starwars |>
+starwars_a |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -262,14 +262,14 @@ starwars |>
 
 :::::{.extra-small-font}
 ```{r}
-starwars |>
+starwars_a |>
   filter(height > 200 | height < 100)
 ```
 :::::
 ::::
 :::
 
-## `dplyr` Basic Functions
+## `dplyr` Review +
 <hr>
 `filter()` and `%in%`
 <br>
@@ -283,7 +283,7 @@ starwars |>
 <br>
 <br>
 ```{r echo=FALSE}
-starwars |>
+starwars_a |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -294,20 +294,20 @@ starwars |>
 
 :::{.extra-small-font}
 - Use this to **filter rows**
-- `%in%` allows for multiple categorical levels as condition (provided as vector)
+- `%in%` allows for multiple arguments as condition (provided as vector)
 :::
 <br>
 
 :::::{.extra-small-font}
 ```{r}
-starwars |>
+starwars_a |>
   filter(hair_color %in% c("brown", "blond"))
 ```
 :::::
 ::::
 :::
 
-## `dplyr` Basic Functions
+## `dplyr` Review +
 <hr>
 `rename()`
 <br>
@@ -321,7 +321,7 @@ starwars |>
 <br>
 <br>
 ```{r echo=FALSE}
-starwars |>
+starwars_a |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -336,7 +336,7 @@ starwars |>
 ::::{.extra-small-font}
 
 ```{r}
-starwars |>
+starwars_a |>
   rename(weight = mass)
 ```
 
@@ -344,7 +344,7 @@ starwars |>
 ::::
 :::
 
-## `dplyr` Basic Functions
+## `dplyr` Review +
 <hr>
 `mutate()`
 <br>
@@ -358,7 +358,7 @@ starwars |>
 <br>
 <br>
 ```{r echo=FALSE}
-starwars |>
+starwars_a |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 ::::
@@ -375,7 +375,7 @@ starwars |>
 
 ::::{.extra-small-font}
 ```{r eval=F}
-starwars |>
+starwars_a |>
   mutate(one = height^2,
          two = height*mass,
          hair_color = ifelse(is.na(hair_color),
@@ -385,4 +385,174 @@ starwars |>
 ::::
 :::
 
+## `dplyr` Review +
+<hr>
+`mutate()` & `case_when()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars_a |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`mutate()` & `case_when()`
+
+::::{.extra-small-font}
+- **Create new variables** from existing ones based on conditions
+::::
+<br>
+
+::::{.extra-small-font}
+```{r}
+starwars_a |>
+  mutate(height_category = case_when(
+    height < 150 ~ "short",
+    height >= 150 & height < 180 ~ "average",
+    height >= 180 ~ "tall"
+  ))
+```
+::::
+::::
+:::
+
 # More `dplyr` Functions
+
+## More `dplyr`
+<hr>
+`count()`
+<br>
+<hr>
+
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  slice(1:10)|>
+  select(1:3,10,11)|>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+- Note: There are 87 rows in the full `starwars` dataset
+::::
+::::{layout="[1]" .fragment}
+<br>
+`count()`
+
+::::{.extra-small-font}
+- **Count** unique values of a variable
+::::
+<br>
+
+::::{.extra-small-font}
+```{r}
+starwars |>
+  count(species)
+```
+::::
+::::
+:::
+
+## More `dplyr`
+<hr>
+`count()`
+<br>
+<hr>
+
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  slice(1:10)|>
+  select(1:3,10,11)|>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+- Note: There are 87 rows in the full `starwars` dataset
+::::
+::::{layout="[1]" .fragment}
+<br>
+`count()`
+
+::::{.extra-small-font}
+- **Count** unique values of a variable <br>
+- Or for a set of variables
+::::
+<br>
+
+::::{.extra-small-font}
+```{r}
+starwars |>
+  count(homeworld,species)
+```
+::::
+::::
+:::
+
+## More `dplyr`
+<hr>
+`group_by()`
+<br>
+<hr>
+
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  slice(1:10)|>
+  select(1:3,10,11)|>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+- Note: There are 87 rows in the full `starwars` dataset
+::::
+::::{layout="[1]" .fragment}
+<br>
+`group_by()`
+
+::::{.extra-small-font}
+- **Count** unique values of a variable
+- Same as `count()` but in two steps
+::::
+<br>
+
+::::{.extra-small-font}
+```{r}
+starwars |>
+  group_by(species)|>
+  tally()
+```
+::::
+::::
+:::
+
+
+# If it's an extra step, why use `group_by()`?
+
+## More `dplyr`
+<hr>
+`group_by()` & `summarize()`
+<br>
+<hr>
