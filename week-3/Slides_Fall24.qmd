@@ -1,0 +1,388 @@
+---
+subtitle: "Data Wrangling"
+title: "Week 3 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE}
+library(tidyverse, palmerpenguins)
+
+```
+
+# Weekly Check In
+
+## Creating Free Posit Cloud Account
+
+- In [Canvas](https://utk.instructure.com/courses/213032), click on the "Create Free Post Cloud Account" link.
+- Use your UTK email to create a free account.
+- We will use this later.
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.small-font}
+- Weekly Check In / Posit Cloud Account
+- Additional Foundational Skills
+    - File Management
+    - Documentation / Help
+    - Troubleshooting Errors
+- Reviewing `dplyr` Basics
+- More `dplyr`
+    - Collaborative Work
+- Wrangling to Plot
+    - Activity
+- Looking Ahead
+
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Additional Foundational Skills
+
+## Reading Documentation
+<hr>
+ - `?function_name` or `help(function_name)` will pull documentation
+ - Can also access on web (Google is your friend!)
+
+## File Management
+<hr>
+:::{.compact-font}
+- Ability to read in a data file is critical\
+<br>
+- Often, data is stored in a `.csv` file
+    - `read_csv()` function in `readr` package (part of tidyverse core)
+<br>  
+- Sometimes we have an Excel file
+    - `read_excel()` function in `readxl` package
+<br>   
+- Sometimes we have an SPSS file
+    - `read_spss()` in `haven` package
+<br>    
+- Other times we have a Stata file
+    - `read_dta()` in `haven` package
+<br>    
+- Other file types are possible, but these are the most common
+- If you have another - google how to read it in!
+
+:::
+
+## File Management
+<hr>
+- **Demo**
+    - Accessing documentation for `read_csv()`
+    - Reading in a `.csv` file
+        - Same folder
+        - Up a level
+        - Down a level (subfolder)
+        
+## Troubleshooting Errors
+<hr>
+- **Demo**
+    - Reading in an Excel file
+    - Two types of errors <!-- (forget to load package, don't store/assign it and call it later) -->
+    - Accessing via file pane > Import Dataset
+    
+# Reviewing `dplyr` Basics
+
+## `dplyr` Review
+<hr>
+`select()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r include=FALSE}
+starwars <- starwars |>
+  slice(1:5) |>
+  select(1:5)
+```
+
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`select()`
+
+[- Use this to **select columns/variables**]{.extra-small-font}
+<br>
+
+```{r echo=TRUE, eval=TRUE}
+starwars |>
+  select(name, height)
+```
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`filter()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`filter()`
+
+[- Use this to **filter rows**]{.extra-small-font}
+<br>
+
+:::::{.extra-small-font}
+```{r}
+starwars |>
+  filter(hair_color == "brown")
+```
+:::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`filter()` and `!is.na()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`filter()`
+
+:::{.extra-small-font}
+- Use this to **filter rows**
+- `!is.na()` filters out all `NA` rows/observations for a given column/variable
+:::
+<br>
+
+:::::{.extra-small-font}
+```{r}
+starwars |>
+  filter(!is.na(hair_color))
+```
+:::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`filter()` and `|`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`filter()`
+
+:::{.extra-small-font}
+- Use this to **filter rows**
+- `|` allows for multiple arguments as condition
+:::
+<br>
+
+:::::{.extra-small-font}
+```{r}
+starwars |>
+  filter(height > 200 | height < 100)
+```
+:::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`filter()` and `%in%`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`filter()`
+
+:::{.extra-small-font}
+- Use this to **filter rows**
+- `%in%` allows for multiple categorical levels as condition (provided as vector)
+:::
+<br>
+
+:::::{.extra-small-font}
+```{r}
+starwars |>
+  filter(hair_color %in% c("brown", "blond"))
+```
+:::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`rename()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+[`rename(weight = mass)`]{.extra-small-font}
+
+[- Use this to **rename** a column]{.extra-small-font}
+<br>
+
+::::{.extra-small-font}
+
+```{r}
+starwars |>
+  rename(weight = mass)
+```
+
+::::
+::::
+:::
+
+## `dplyr` Basic Functions
+<hr>
+`mutate()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example df - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`mutate()`
+
+::::{.extra-small-font}
+- **Create new variables** from existing ones
+- Or **modify** existing variables
+::::
+<br>
+
+::::{.extra-small-font}
+```{r eval=F}
+starwars |>
+  mutate(one = height^2,
+         two = height*mass,
+         hair_color = ifelse(is.na(hair_color),
+                             "unknown", hair_color))
+```
+::::
+::::
+:::
+
+# More `dplyr` Functions
