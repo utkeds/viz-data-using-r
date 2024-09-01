@@ -1,0 +1,38 @@
+---
+title: "dplyr Titanic practice"
+author: "XXX"
+date: "2024-09-01"
+output: html_document
+---
+
+# Instructions
+1. Put all team member names in the author YAML field above
+2. Answer the following questions using the `titanic` dataset from the `titanic` package
+3. Run each code chunk and make sure the code chunk runs without errors as you go
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The `tidyverse` package should already be installed in the Cloud. Now, load `tidyverse` in the code chunk below.
+```{r}
+
+```
+
+Read in the Titanic data from the `Titanic-Dataset.csv` file. It is in the zip file you downloaded. In the cloud, there is an upload button at the top of the file pane to do this. Once you upload it into the cloud... the file exists in the same directory/folder as your .Rproj and .Rmd file.
+
+```{r}
+
+```
+
+<!-- Data Dictionary / Codebook for the Titanic Data is here: https://www.kaggle.com/c/titanic/data -->
+
+Pull up the codebook for the `titanic` dataset using the url above (copy/paste it into your browser). Then, in the
+code chunk below, use glimpse() to see preview the dataset. You may also want to use View() to see the dataset in a
+spreadsheet format.
+
+```{r}
+
+```
+
+Next, rename
