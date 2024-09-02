@@ -129,7 +129,7 @@ library(tidyverse, palmerpenguins)
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r include=FALSE}
@@ -168,7 +168,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r include=FALSE}
@@ -207,7 +207,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -242,7 +242,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -280,7 +280,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -318,7 +318,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -356,7 +356,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -393,7 +393,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -434,7 +434,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -464,6 +464,46 @@ starwars_a |>
 ::::
 :::
 
+## `dplyr` Review +
+<hr>
+`mutate()` & `case_when()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example data - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars_a |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`mutate()` & `case_when()`
+
+::::{.extra-small-font}
+- **Create new variables** from existing ones based on conditions
+::::
+
+::::{.extra-small-font}
+```{r}
+starwars_a |>
+  mutate(has_hair = case_when(
+    hair_color == "brown" ~ TRUE,
+    hair_color == "blond" ~ TRUE,
+    TRUE ~ FALSE
+  ))
+```
+::::
+::::
+:::
+
 # More `dplyr` Functions
 
 ## More `dplyr`
@@ -476,7 +516,7 @@ starwars_a |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -514,7 +554,7 @@ starwars |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -553,7 +593,7 @@ starwars |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -598,7 +638,7 @@ starwars |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -639,7 +679,7 @@ starwars |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -682,7 +722,7 @@ starwars |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -725,7 +765,7 @@ starwars |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -769,7 +809,7 @@ starwars |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -813,7 +853,7 @@ starwars |>
 
 ::::{layout="[1]" .extra-small-font}
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -848,4 +888,226 @@ starwars |>
 ::::
 :::
 
-# Practice!
+# `dplyr` Titanic Practice on Posit Cloud!
+
+## `dplyr` Titanic Practice
+<hr>
+- An experiment: We're going to use **Posit Cloud** today.
+    - Allows collaborative coding - everyone can code!
+- This is a paid account (mine); yours is free. But, please
+close the tab when finished, otherwise it charges me for your usage.
+- We will try this for a couple weeks and see how we like it.
+
+## `dplyr` Titanic Practice
+<hr>
+:::{.smaller-font}
+- Go to Posit Cloud (Canvas). Find the Week 3 list on left.
+- We'll go to breakout rooms.
+- Your team # is your breakout room number.
+- I will come around and answer questions. This one is more in-depth.
+- Resources:
+    - Week 2 slides
+    - Week 3 slides
+    - Beck reading
+- Think carefully about object assignment. When should you overwrite an object? When should you create a new one?
+- We'll come back to whole group for:
+    - `forcats`
+    - `stringr`
+    - Looking Ahead
+:::
+
+# `forcats` (See cheatsheet)
+
+## `forcats` (factor vars)
+<hr>
+`fct_relevel()`
+<br>
+<hr>
+
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[**Example data - Titanic**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+titanic <- read_csv("Titanic-Dataset.csv")
+
+surv_rates_age_class <- titanic |>
+  mutate(age_group = case_when(
+    Age < 13 ~ "child",
+    Age >= 13 & Age < 19 ~ "teen",
+    Age >=18 ~ "adult")) |>
+  group_by(Pclass, age_group)|>
+  summarize(
+    avg_survival = mean(Survived, na.rm = TRUE),
+    n = n()) |>
+  ungroup()|>
+  filter(!is.na(age_group))|>
+  arrange(desc(avg_survival))
+
+surv_rates_age_class$Pclass <- plyr::mapvalues(surv_rates_age_class$Pclass,
+                                         from = c(1,2,3),
+                                         to = c("First", "Second", "Third"))
+
+surv_rates_age_class <- surv_rates_age_class |>
+  mutate(Pclass = fct_relevel(Pclass, "Second", "Third", "First"))
+
+surv_rates_age_class |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+
+::::
+::::{layout="[1]" .fragment .smaller-font}
+<br>
+
+:::{.extra-small-font}
+- X axis lacks order
+
+:::
+
+```{r}
+surv_rates_age_class |>
+  filter(age_group == "child")|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+::::
+:::
+
+## `forcats` (factor vars)
+<hr>
+`fct_relevel()`
+<br>
+<hr>
+
+:::{layout="[40,60]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[`fct_relevel()`]{.small-font}
+
+::::{.extra-small-font}
+- **Re-orders factors by hand**: you manually specify the order
+::::
+```{r, eval=FALSE}
+surv_rates_age_class |>
+  filter(age_group == "child")|>
+  mutate(Pclass = fct_relevel(Pclass, "First", "Second", "Third"))|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+
+::::
+::::{layout="[1]" .fragment .smaller-font}
+<br>
+```{r, echo=FALSE}
+surv_rates_age_class|>
+  filter(age_group == "child")|>
+  mutate(Pclass = fct_relevel(Pclass, "First", "Second", "Third"))|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+::::
+:::
+
+## `forcats` (factor vars)
+<hr>
+`fct_reorder()`
+<br>
+<hr>
+
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[**Example data - Titanic**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+surv_rates_age_class|>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+
+::::
+::::{layout="[1]" .fragment .smaller-font}
+<br>
+
+:::{.extra-small-font}
+- What if I wanted this reordered by rate, not class?
+
+:::
+
+```{r}
+surv_rates_age_class|>
+  filter(age_group == "child")|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+::::
+:::
+
+## `forcats` (factor vars)
+<hr>
+`fct_reorder()`
+<br>
+<hr>
+
+:::{layout="[40,60]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[`fct_reorder()`]{.small-font}
+
+::::{.extra-small-font}
+- **Re-orders factors by values of another variable**
+::::
+```{r, eval=FALSE}
+surv_rates_age_class|>
+  filter(age_group == "child")|>
+  mutate(Pclass = fct_reorder(Pclass, avg_survival))|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+
+::::
+::::{layout="[1]" .fragment .smaller-font}
+<br>
+```{r, echo=FALSE}
+surv_rates_age_class|>
+  filter(age_group == "child")|>
+  mutate(Pclass = fct_reorder(Pclass, desc(avg_survival)))|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+::::
+:::
+
+# Looking Ahead
+
+## Looking Ahead
+<hr>
+- Week 3 Assignment:
+    - Gapminder Data
+- Reading:
+    - Read Healy (2012), Chapter 3
+    - Skim ggplot2 cheatsheet

@@ -7,8 +7,10 @@ output: html_document
 
 # Instructions
 1. Put all team member names in the author YAML field above
-2. Answer the following questions using the `titanic` dataset from the `titanic` package
+2. Answer the following questions using the `Titanic-Dataset.csv` dataset
 3. Run each code chunk and make sure the code chunk runs without errors as you go
+4. Think carefully about which chunks to assign, either to an existing object or
+a new one
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -29,13 +31,19 @@ Read in the Titanic data from the `Titanic-Dataset.csv` file. It is in the zip f
 
 Pull up the codebook for the `titanic` dataset using the url above (copy/paste it into your browser). Then, in the
 code chunk below, use glimpse() to see preview the dataset. You may also want to use View() to see the dataset in a
-spreadsheet format or use str() to see more about its structure.
+spreadsheet format or use str() to see more about its structure. After reviewing the dataset, answer the following question.
+
+QUESTION: How many columns/variables are in the dataset?
+
+ANSWER:
 
 ```{r}
 
 ```
 
-Next, let's drop the variables that are not of use to us in this analysis. Drop the `PassengerId`, as it's a duplicate of the row number, anyway.
+Next, let's drop the variables that are not of use to us in this analysis. Drop the `PassengerId`, as it's a duplicate of the row number, anyway. After dropping the variable, use `glimpse()` to confirm that the variable was dropped. How many columns/variables are in the dataset now?
+
+ANSWER:
 
 ```{r}
 
@@ -61,13 +69,13 @@ ANSWER:
 
 ```
 
-Let's create a new variable called `is_child` that is TRUE if the passenger is under 18 years old and FALSE otherwise. Note: You are creating a new variable based on an existing variable.
+Let's create a new variable called `age_group` that has a value of "child" if the passenger is under 13 years old, "teen" if the passenger is 13-18, and "adult" if 18 or over. Note: You are creating a new variable based on an existing variable.
 
 ```{r}
 
 ```
 
-Let's create a new variable called `family_size` that is the sum of the `sibsp` and `parch` variables. This will give us the total number of family members on board for each passenger.
+Let's create a new variable called `family_size` that is the sum of the `sib_sp` and `parch` variables. This will give us the total number of family members on board for each passenger.
 
 ```{r}
 
@@ -79,9 +87,15 @@ Let us create a third and final variable called `famsize_group` that categorizes
 
 ```
 
-Group and summarize the data to find the average survival rate by `class` and `is_child`. Also, count the number of people in each group. What is the survival rate for children in first class? How does it compare to other groups?
+Group and summarize the data to find the average survival rate by `class` and `age_group`. Also, count the number of people in each group. What is the survival rate for children in first class? How does it compare to other groups? NOTE: You may wish to save this output to a new object to reference later - maybe something like `surv_rates_age_class`.
 
 ANSWER:
+
+```{r}
+
+```
+
+Let's drop the `NA` rows for `age_group` from the last output.
 
 ```{r}
 
@@ -93,10 +107,4 @@ Finally, let's arrange the data by survival rate in descending order. This will 
 
 ```
 
-Extra/Optional: Create a ggplot of your choosing based on this data. Feel free to use AI, Google, etc. Just use the AI statement from the syllabus.
-
-```{r}
-
-```
-
-Knit this file to HTML and upload it to Canvas.
+Each person should knit this file to HTML and upload it to Canvas.
