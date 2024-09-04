@@ -1,7 +1,7 @@
 ---
 title: "Exploring gapminder with dplyr: Assignment 3"
 author: "your name"
-date: '2024-09-09'
+date: '2023-02-07'
 output: html_document
 ---
 
@@ -14,19 +14,19 @@ knitr::opts_chunk$set(echo = TRUE)
 *First, load the tidyverse in the code chunk below*
 
 ```{r}
-
+library(tidyverse)
 ```
 
 *Next, read in the gapminder CSV data and assign it a name*
 
 ```{r}
-
+gapminder <- read_csv("gapminder.csv")
 ```
 
 *Last, glimpse the data you read in and named*
 
 ```{r}
-
+glimpse(gapminder)
 ```
 
 ## 2: Working with variables (columns)
@@ -34,13 +34,15 @@ knitr::opts_chunk$set(echo = TRUE)
 *Use select to choose three variables of your choosing*
 
 ```{r}
-
+columns <- gapminder |>
+  select(country,continent,year)
 ```
 
 *Using the original data (not the one with three variables of your choosing), rename the pop variable to be a bit easier to understand (what the variable represents), assigning a name to the data that results*
 
 ```{r}
-
+gapminder |>
+  rename(population = pop)
 ```
 
 ## 3: Working with rows (observations) and using logical operators
@@ -48,13 +50,15 @@ knitr::opts_chunk$set(echo = TRUE)
 *Filter the data to only include three countries of your choosing, assigning a name to the data that results*
 
 ```{r}
-
+rows <- gapminder |>
+  filter(country %in% c("United States","China","India"))
 ```
 
 *Filter the data to only values above or below a year of your choosing, assigning a name to the data that results. Add a sentence interpreting what you found.*
 
 ```{r}
-
+rows <- gapminder |>
+  filter(year > 2000)
 ```
 
 ## 4: Scavenger hunt
@@ -62,18 +66,30 @@ knitr::opts_chunk$set(echo = TRUE)
 *Which country-year combination has the highest life-expectancy? Arrange the appropriate variable in descending order to see for which country and year its value is greatest. Add a sentence interpreting what you are noticing from your output below the code chunk*.
 
 ```{r}
-
+gapminder |>
+  group_by(country, year) |>
+  arrange(desc(lifeExp))|>
+  ungroup()
 ```
 
 *For a year of your choosing, which continent has the most countries?* 
 
 ```{r}
-
+gapminder |>
+  filter(year==2007)|>
+  group_by(continent) |>
+  summarize(n_countries = n()) |>
+  ungroup()|>
+  arrange(desc(n_countries))
 ```
 
 *What was the GDP per capita of the U.S. in 1982 and 1992?*
 
 ```{r}
+gapminder |>
+  filter(country == "United States") |>
+  filter(year %in% c(1982, 1992)) |>
+  select(year, gdpPercap)
 
 ```
 

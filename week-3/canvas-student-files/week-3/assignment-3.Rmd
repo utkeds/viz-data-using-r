@@ -1,7 +1,7 @@
 ---
-title: "Exploring gapminder with dplyr: Assignment 2"
+title: "Exploring gapminder with dplyr: Assignment 3"
 author: "your name"
-date: '2023-02-07'
+date: '2024-09-09'
 output: html_document
 ---
 
@@ -59,7 +59,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 4: Scavenger hunt
 
-*Which country-year combination has the life-expectancy? Arrange the newly-renamed variable in descending order to see for which country and year its value is greatest. Add a sentence interpreting what you are noticing from your output below the code chunk*.
+*Which country-year combination has the highest life-expectancy? Arrange the appropriate variable in descending order to see for which country and year its value is greatest. Add a sentence interpreting what you are noticing from your output below the code chunk*.
 
 ```{r}
 
@@ -71,7 +71,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-*What was the GDP per capita of the U.S. in 1980 and 1990?*
+*What was the GDP per capita of the U.S. in 1982 and 1992?*
 
 ```{r}
 
