@@ -912,7 +912,6 @@ close the tab when finished, otherwise it charges me for your usage.
 - Think carefully about object assignment. When should you overwrite an object? When should you create a new one?
 - We'll come back to whole group for:
     - `forcats`
-    - `stringr`
     - Looking Ahead
 :::
 
