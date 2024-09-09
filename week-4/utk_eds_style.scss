@@ -1,0 +1,88 @@
+/*-- scss:defaults --*/
+
+//Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+//Fonts
+$font-family-sans-serif: 'Montserrat', sans-serif !default;
+
+//Headings
+$presentation-heading-font: "Tinos", serif !default;
+$presentation-heading-color: #FF8200 !default;
+$subheading-font: "Montserrat", sans-serif !default;
+$subheading-color: #2197A9 !default;
+
+//Colors
+$orange: #FF8200;
+$white: #FFFFFF;
+$gray: #4B4B4B;
+$valley: #00746F;
+$torch: #E65933;
+$globe: #006C93;
+$limestone: #F0EDE3;
+$sunsphere: #FED535;
+$river: #517C96;
+$leconte: #8D2048;
+$rock: #A7A9AC;
+$summit: #B9E1E2;
+$legacy: #579584;
+$buckskin: #705550;
+$switchgrass: #ABC178;
+$regalia: #754A7E;
+$fountain: #2197A9;
+$eureka: #EBEA64;
+$energy: #EE3E80;
+
+// Base Document colors
+$link-color: $fountain;
+$link-color-hover: $legacy;
+$body-color: $gray;
+
+/*-- scss:rules --*/
+#title-slide {
+  .title {
+    font-size: 2em;
+    color: $white;
+  }
+  .subtitle {
+    color: $orange;
+  }
+  .quarto-title-author {
+    color: $white;
+  }
+}
+
+// horizontal line
+hr { 
+  border: 3px solid $gray;
+  border-radius: 2px;
+  margin-bottom: 15px;
+}
+
+// norms font
+.compact-font{
+  line-height: 1em;
+  font-size: 0.6em;
+};
+
+.small-font{
+  font-size: 34px;
+}
+
+.smaller-font{
+  font-size: 24px;
+}
+
+.extra-small-font{
+  font-size: 18px;
+}
+
+figcaption {
+  font-size: 0.1em; /* Adjust the size as needed */
+  color: #666; /* Optional: adjust the color */
+}
+
+//shade alternate rows of table
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #dcf0f0;
+}
