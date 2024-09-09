@@ -24,11 +24,29 @@ knitr:
     message: false
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, echo=FALSE}
 library(tidyverse)
+library(tidykids)
+
+titanic <- read_csv("Titanic-Dataset.csv") |>
+  janitor::clean_names()
+
+tidykids <- tidykids |>
+  mutate(region = case_when(
+    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
+                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
+    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
+                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
+                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
+    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
+                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
+  ))|>
+  janitor::clean_names()
 ```
 
-# Weekly Check In / Please Open Slack
+# Weekly Check In
 
 # Start Recording
 
@@ -36,14 +54,13 @@ library(tidyverse)
 <hr>
 
 :::{.smaller-font}
-- Weekly Check In / Please Open Slack
+- Weekly Check In
 - Additional Foundational Skills
     - Strategies for Object Assignment
     - Accessing data from Google Drive/ OneDrive
 - Intro to `ggplot2`
-    - Grammar of Graphics
+    - Example Plot: Grammar of Graphics
     - Three Steps
-    - Piping versus Passing
 - Reviewing `dplyr`
     - Intro to `tidykids`
 - `ggplot2`: Digging In
@@ -71,4 +88,539 @@ library(tidyverse)
 
 ## Strategies for Assignment
 <hr>
+- Examples of when to **overwrite**:
 
+:::{layout="[[1,1], [1,1], [1,1]]"}
+:::{column}
+[- Cleaning a dataset]{.smaller-font}
+:::
+:::{column}
+```{r cleaning-titanic}
+titanic <- titanic |>
+  janitor::clean_names()
+```
+<br>
+:::
+:::{column}
+[- Deleting a variable I won't need]{.smaller-font}
+:::
+:::{column}
+```{r deleting-passenger_id}
+titanic <- titanic |>
+  select(-passenger_id)
+```
+<br>
+:::
+:::{column}
+[- Creating a new variable]{.smaller-font}
+:::
+:::{column}
+```{r creating age_group}
+titanic <- titanic |>
+  mutate(age_group = case_when(
+    age < 13 ~ "child",
+    age >= 13 & age < 18 ~ "teen",
+    age >= 18 ~ "adult"
+  ))
+```
+:::
+:::
+
+## Strategies for Assignment
+<hr>
+- Examples of when to **create a new object**:
+
+:::{layout="[1,1],[1,1]"}
+
+:::{column}
+[- Creating a subset of the data]{.smaller-font}
+
+```{r titanic_subset}
+titanic_children <- titanic |>
+  filter(age < 13)
+```
+:::
+
+:::{column}
+<br>
+
+:::{.tiny-font}
+```{r print_titanic_children, echo=FALSE}
+titanic_children |>
+  head(n=3) |>
+  select(-age_group) |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+:::
+:::
+
+:::{column}
+<br>
+[- Grouping by/summarizing data]{.smaller-font}
+
+:::{.smaller-font}
+```{r titanic_summary}
+titanic_ageclass_summary <- titanic |>
+  group_by(pclass) |>
+  summarize(mean_age = mean(age, na.rm = TRUE)) |>
+  ungroup()
+```
+:::
+:::
+
+:::{column}
+<br>
+
+:::{.smaller-font}
+```{r print_titanic_summary, echo=FALSE}
+titanic_ageclass_summary |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+:::
+:::
+:::
+
+## Using GSuite / OneDrive with R
+<hr>
+
+:::{.small-font}
+- I use [Google Drive](https://support.google.com/drive/answer/10838124?hl=en#) / [OneDrive for Desktop](https://www.microsoft.com/en-us/microsoft-365/onedrive/download)
+    - Interact locally, syncs to cloud
+    - Probably easiest for most use cases
+<!-- - If you want to pull Google Sheets directly from Drive: -->
+<!--     - [`googlesheets4` package](https://github.com/tidyverse/googlesheets4) -->
+<!-- - If you want to pull multiple file types from Drive: -->
+<!--     - [`googledrive` package](https://googledrive.tidyverse.org/) -->
+<!-- - If you want to pull directly from OneDrive: -->
+<!--     - [`Microsoft365R` package](https://github.com/Azure/Microsoft365R) -->
+:::
+
+# Intro to `ggplot2`
+
+## Grammar of Graphics
+<hr>
+
+:::{layout="[2,1]" .small-font}
+:::{column}
+- `ggplot2` is a package in the core `tidyverse` that allows you to create visualizations using the **Grammar of Graphics**.[^1]
+
+- Built by Hadley Wickham (Chief Data Scientist at Posit). He also wrote the `ggplot2` book.
+:::
+
+:::{column}
+![](ggplot2-book.png)
+:::
+:::
+[^1]: Wilkinson, L. (2005). The Grammar of Graphics. Springer Science & Business Media.
+
+
+## Grammar of Graphics
+<hr>
+
+::::{layout="[1,1]" .smaller-font}
+:::{column}
+- The Grammar of Graphics is a system for understanding how to create visualizations by breaking them down into components.
+    - *grammar*: a particular analysis of the system and structure of language or of a specific language
+- There are eight components in ggplot's grammar.
+:::
+
+:::{column}
+<br>
+<br>
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Theme.png)
+:::
+::::
+
+## Grammar of Graphics
+<hr>
+
+::::{layout="[1,1]" .smaller-font}
+:::{column}
+- In English, the minimum components needed to create a sentence are:
+    - Subject (at least implied)
+    - Verb
+:::
+
+:::{column}
+- In `ggplot2`, the minimum components needed to create a visualization are:
+    - Data
+    - Aesthetics
+    - Geometries
+<br>
+<br>
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Geometries.png)
+:::
+::::
+
+## Grammar of Graphics
+<hr>
+- In many ways, `ggplot2` functions similarly to image editing software.
+    - Both work on the principle of layering.
+![](PhotoEditor-Layers.png){width=70%}
+
+## Grammar of Graphics
+<hr>
+:::{layout="[1,2]" .smaller-font}
+:::{column}
+:::{.extra-small-font}
+- Building an example plot using `tidykids`:
+    - [`data` to be used]{.data-color}
+:::
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Data.png){width=300}
+:::
+
+:::{column}
+```{.r code-line-numbers="|1,5"}
+p <- tidykids |>
+  filter(year == 2016,
+         variable == "PK12ed") |>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot()
+```
+<br>
+Output:
+```{r piped ggplot2 call, echo=F}
+p <- tidykids |>
+  filter(year == 2016,
+         variable == "PK12ed") |>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot()
+
+p
+```
+:::
+:::
+
+## Grammar of Graphics
+<hr>
+:::{layout="[1,2]" .smaller-font}
+:::{column}
+:::{.extra-small-font}
+- Building an example plot using `tidykids`:
+    - [`data` to be used]{.data-color}
+    - [`aes`thetic mapping from data to visual]{.aesthetics-color}
+:::
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Aesthetics.png){width=300}
+:::
+
+:::{column}
+
+```{.r code-line-numbers="|5"}
+p <- tidykids |>
+  filter(year == 2016,
+         variable == "PK12ed") |>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region))
+  
+p
+```
+<br>
+Output:
+```{r, echo=F}
+p <- tidykids |>
+  filter(year == 2016,
+         variable == "PK12ed") |>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region))
+
+p
+```
+:::
+:::
+
+## Grammar of Graphics
+<hr>
+:::{layout="[1,2]" .smaller-font}
+:::{column}
+:::{.extra-small-font}
+- Building an example plot using `tidykids`:
+    - [`data` to be used]{.data-color}
+    - [`aes`thetic mapping from data to visual]{.aesthetics-color}
+    - [`geom`etric objects to use on plot]{.geometries-color}
+:::
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Geometries.png){width=300}
+:::
+
+:::{column}
+
+```{.r code-line-numbers="|6"}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point()
+  
+p
+```
+Output:
+```{r, echo=F}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point()
+
+p
+```
+:::
+:::
+
+## Grammar of Graphics
+<hr>
+:::{layout="[1,2]"}
+:::{column}
+:::{.extra-small-font}
+- Building an example plot using `tidykids`:
+    - [`data` to be used]{.data-color}
+    - [`aes`thetic mapping from data to visual]{.aesthetics-color}
+    - [`geom`etric objects to use on plot]{.geometries-color}
+    - [`scale` to adjust axes, colors, etc.]{.scales-color}
+
+:::
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Scales.png){width=300}
+:::
+
+:::{column}
+:::{.smaller-font}
+```{.r code-line-numbers="|7"}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format())
+  
+p
+```
+Output:
+```{r, echo=F}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format())
+
+p
+```
+:::
+:::
+:::
+
+## Grammar of Graphics
+<hr>
+:::{layout="[1,2]"}
+:::{column}
+:::{.extra-small-font}
+- Building an example plot using `tidykids`:
+    - [`data` to be used]{.data-color}
+    - [`aes`thetic mapping from data to visual]{.aesthetics-color}
+    - [`geom`etric objects to use on plot]{.geometries-color}
+    - [`scale` to adjust axes, colors, etc.]{.scales-color}
+    - [`facets` to group into subplots]{.facets-color}
+
+:::
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Facets.png){width=300}
+:::
+
+:::{column}
+:::{.smaller-font}
+```{.r code-line-numbers="|8"}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  facet_wrap(~region)
+  
+p
+```
+Output:
+```{r, echo=F}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  facet_wrap(~region)
+
+p
+```
+:::
+:::
+:::
+
+## Grammar of Graphics
+<hr>
+:::{layout="[1,2]"}
+:::{column}
+:::{.extra-small-font}
+- Building an example plot using `tidykids`:
+    - [`data` to be used]{.data-color}
+    - [`aes`thetic mapping from data to visual]{.aesthetics-color}
+    - [`geom`etric objects to use on plot]{.geometries-color}
+    - [`scale` to adjust axes, colors, etc.]{.scales-color}
+    - [`facets` to group into subplots]{.facets-color}
+    - [`coord`inates adjust coordinate system]{.coordinates-color}
+
+:::
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Coordinates.png){width=300}
+:::
+
+:::{column}
+:::{.smaller-font}
+```{.r code-line-numbers="|9"}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  facet_wrap(~region) +
+  coord_flip() # altering coordinates is infrequent
+  
+p
+```
+
+```{r, echo=F}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  facet_wrap(~region) +
+  coord_flip()
+
+p
+```
+:::
+:::
+:::
+
+## Grammar of Graphics
+<hr>
+:::{layout="[1,2]"}
+:::{column}
+:::{.extra-small-font}
+- Building an example plot using `tidykids`:
+    - [`data` to be used]{.data-color}
+    - [`aes`thetic mapping from data to visual]{.aesthetics-color}
+    - [`geom`etric objects to use on plot]{.geometries-color}
+    - [`scale` to adjust axes, colors, etc.]{.scales-color}
+    - [`facets` to group into subplots]{.facets-color}
+    - [`coord`inates adjust coordinate system]{.coordinates-color}
+    - [`labs` (labels) to add titles, labels, etc.]{.labels-color}
+
+:::
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Labels.png){width=300}
+:::
+
+:::{column}
+:::{.smaller-font}
+```{.r code-line-numbers="|10-12"}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  facet_wrap(~region) +
+  coord_flip() + # altering coordinates is infrequent
+  labs(title = "Per Pupil Spending by State",
+       x = "Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)",
+       y = "State")
+p
+```
+
+```{r, echo=F}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  facet_wrap(~region) +
+  coord_flip() +
+  labs(title = "Per Pupil Spending by State",
+       x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
+       y = "State")
+p
+```
+:::
+:::
+:::
+
+## Grammar of Graphics
+<hr>
+:::{layout="[1,2]"}
+:::{column}
+:::{.extra-small-font}
+- Building an example plot using `tidykids`:
+    - [`data` to be used]{.data-color}
+    - [`aes`thetic mapping from data to visual]{.aesthetics-color}
+    - [`geom`etric objects to use on plot]{.geometries-color}
+    - [`scale` to adjust axes, colors, etc.]{.scales-color}
+    - [`facets` to group into subplots]{.facets-color}
+    - [`coord`inates adjust coordinate system]{.coordinates-color}
+    - [`labs` (labels) to add titles, labels, etc.]{.labels-color}
+    - [`theme` to adjust overall appearance ]{.theme-color}[(built-in)](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+:::
+![](GrammarOfGraphicsViz/GrammarOfGraphics-Theme.png){width=300}
+:::
+
+:::{column}
+:::{.extra-small-font}
+```{.r code-line-numbers="|13-15"}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  facet_wrap(~region) +
+  coord_flip() + # altering coordinates is infrequent
+  labs(title = "Per Pupil Spending by State",
+       x = "Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)",
+       y = "State")+
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(size = 5, angle = 90, hjust = 1))
+        
+p
+```
+
+```{r, echo=F}
+p <- tidykids |>
+  filter(year == 2016,
+  variable == "PK12ed")|>
+  mutate(state = state.abb[match(state, state.name)]) |>
+  ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::dollar_format()) +
+  facet_wrap(~region) +
+  coord_flip() +
+  labs(title = "Per Pupil Spending by State",
+       x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
+       y = "State")+
+  theme_minimal() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(size = 5, angle = 90, hjust = 1))
+p
+```
+:::
+:::
+:::
