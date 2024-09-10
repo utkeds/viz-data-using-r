@@ -213,10 +213,10 @@ titanic_ageclass_summary |>
 Questions (please be prepared to share code in Slack):
 1. How many variables? 
 2. What does each variable represent? In what units?
-3. Example: I am only interested in the data from 2016. How would I filter for this?
-4. Example: I want to create a new variable that groups states by region. How would I do this?
-5. Example: I want to summarize the data by region. How would I do this?
-6. Example: I am only interested in library expenditures. How would I filter for this?
+3. Example: You are only interested in the data from 2016. How would you filter for this?
+4. Example: You want to create a new variable that groups states by region. How would you do this?
+5. Example: You want to summarize (mean, sd) `inf_adj_perchild` by region. How would I do this?
+6. Example: You are only interested in library expenditures. How would you filter for this?
 :::
 
 # Intro to `ggplot2`
