@@ -1,0 +1,70 @@
+---
+title: "ggplot Example 1 - Week 4"
+author: "Kelly L. Boles"
+date: "2024-09-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+tidykids <- read_csv("tidykids.csv")
+
+tidykids <- tidykids |>
+  select(-...1) |>
+  janitor::clean_names()
+```
+
+<!-------------------------------- Sketch ------------------------------------->
+
+# My Sketch
+
+![](Example1-Sketch.jpeg)
+<!--------------------------------- Geoms ------------------------------------->
+
+# Needed `Geom`s
+
+- `geom_col()`
+- `geom_errorbar()`
+- `geom_hline()`
+
+## Notes from Documentation:
+
+<!----------------------------- Data Wrangling -------------------------------->
+
+- What variables/data wrangling do I need?
+    1. Create a `region` variable
+    2. Filter for 2016
+    3. Filter for `PK12ed`
+    4. Calculate national mean (separate from tibble)
+    5. Group by `region`
+        - Summarize:
+            - mean
+            - std. deviation
+    6. Create a ymin and ymax variable for error bars
+    
+```{r creating_region_variable}
+
+```
+
+```{r filter_year_variable}
+
+```
+
+```{r calculate_national_mean}
+
+```
+
+```{r summarize by region}
+
+```
+
+```{r create_ymin_ymax}
+
+```
+
+```{r plot}
+
+```

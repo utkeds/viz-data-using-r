@@ -195,6 +195,29 @@ titanic_ageclass_summary |>
 <!--     - [`Microsoft365R` package](https://github.com/Azure/Microsoft365R) -->
 :::
 
+# Reviewing `dplyr`
+
+## `ggplot2` prework: Data Wrangling
+<hr>
+- Before you can visualize data, you need to have it in the right format.
+- Let's review some `dplyr` functions using the `tidykids` dataset.
+- In your `.zip` file, you have a `tidykids.R` script. Open it.
+  - We'll work through the script together.
+
+## `ggplot2` prework: Data Wrangling
+<hr>
+:::{.smaller-font}
+- We'll need to review the `tidykids` [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html).
+<br>
+Questions (please be prepared to share code in Slack):
+1. How many variables? 
+2. What does each variable represent? In what units?
+3. Example: I am only interested in the data from 2016. How would I filter for this?
+4. Example: I want to create a new variable that groups states by region. How would I do this?
+5. Example: I want to summarize the data by region. How would I do this?
+6. Example: I am only interested in library expenditures. How would I filter for this?
+:::
+
 # Intro to `ggplot2`
 
 ## Grammar of Graphics
@@ -624,3 +647,144 @@ p
 :::
 :::
 :::
+
+## Grammar of Graphics
+<hr>
+- So, at a high level, there are three steps to creating a `ggplot2` visualization:
+    1. [**Data**]{.data-color}: Specify what data you want to visualize, 
+    2. [**Aesthetics**]{.aesthetics-color}: which relationships you want to visualize, and
+    3. [**Geometries**]{.geometries-color}: how you want the relationships to appear.
+- Other layers/components as needed
+
+## A Word on Geometries
+<hr>
+- The `ggplot2` [cheatsheet](https://rstudio.github.io/cheatsheets/data-visualization.pdf) helps to understand the different `geom`etries available.
+    - One Variable: Continuous
+    - One Variable: Discrete
+    - Two Variables: Both Continuous
+    - Two Variables: Both Discrete
+    - Two Variables: One Continuous, One Discrete
+    - etc.
+    
+## A Word on Geometries
+<hr>
+:::{.extra-small-font}
+- The most common geometries used generally are:
+    - Line Segments:
+        - `geom_abline()`: y = ax + b line
+        - `geom_vline()`: Vertical line
+        - `geom_hline()`: Horizontal line
+    - One Variable: Continuous
+        - `geom_histogram()`: Histogram
+    - Two Variables: Both Continuous
+        - `geom_point()`: Scatterplot
+        - `geom_smooth()`: Smoother
+    - Two Variables: One Discrete, One Continuous
+        - `geom_col()`: Barplot + `geom_errorbar()`: Error bars
+        - `geom_boxplot()`: Boxplot
+        - `geom_violin()`: Violin plot
+    - Continuous Function
+        - `geom_line()`: Line plot
+:::    
+    
+# `ggplot2` Example 1
+
+## Example 1
+<hr>
+:::{.smaller-font}
+[**RQ**]{.regalia-color}
+
+- How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
+    - What is the variability (std. deviation) of spending within each region?
+    - How do the regions compare to the national average?
+
+:::{.fragment}
+
+[**My Thinking:**]{.regalia-color}  
+
+1. Draw a quick sketch of the graph I want to create.
+2. Identify the `geoms`(look at their documentation if needed)
+3. Identify the `data`/data wrangling needed.
+:::
+:::
+
+## Example 1: Pre-work
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+![My Sketch](Example1-Sketch.jpeg)
+
+:::
+
+:::{column}
+:::
+:::
+
+## Example 1: Pre-work
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+![My Sketch](Example1-Sketch.jpeg)
+
+- Which `geom`s?
+    - `geom_col()`
+    - `geom_errorbar()`
+    - `geom_hline()`
+:::
+
+:::{column}
+:::
+:::
+
+## Example 1: Pre-work
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+![My Sketch](Example1-Sketch.jpeg)
+
+- Which `geom`s?
+    - `geom_col()`
+    - `geom_errorbar()`
+    - `geom_hline()`
+:::
+
+:::{column}
+- What variables/data wrangling do I need?
+    1. Create a `region` variable
+    2. Filter for 2016
+    3. Filter for `PK12ed`
+    4. Calculate national mean (separate from tibble)
+    5. Group by `region`
+        - Summarize:
+            - mean
+            - std. deviation
+:::
+:::
+
+# Switch to `.Rmd` file
+
+## Example 2: Your Turn!
+<hr>
+[**RQ**]{.regalia-color}
+
+:::{.smaller-font}
+- What is the *distribution* of inflation-adjusted per-child spending on libraries across *each* U.S. region in 2016?
+    - How do the regional distributions compare to the national mean?
+:::
+
+[**Breakout Rooms/Posit Cloud**]{.regalia-color}
+
+# Looking Ahead
+
+## Looking Ahead
+<hr>
+- Week 4 Assignment:
+    - Wrangling & Graphing
+- Reading:
+    - **Skim** Knaflic Intro & Schwabish (see all the different types of graphs)
+    - **READ** Knaflic Chapter 1 & Wilke Chapter 6
+    - Discussion Post
+

@@ -683,6 +683,40 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section></section>
 <section>
+<section id="reviewing-dplyr" class="title-slide slide level1 center">
+<h1>Reviewing <code>dplyr</code></h1>
+
+</section>
+<section id="ggplot2-prework-data-wrangling" class="slide level2">
+<h2><code>ggplot2</code> prework: Data Wrangling</h2>
+<hr>
+<ul>
+<li>Before you can visualize data, you need to have it in the right format.</li>
+<li>Let’s review some <code>dplyr</code> functions using the <code>tidykids</code> dataset.</li>
+<li>In your <code>.zip</code> file, you have a <code>tidykids.R</code> script. Open it.
+<ul>
+<li>We’ll work through the script together.</li>
+</ul></li>
+</ul>
+</section>
+<section id="ggplot2-prework-data-wrangling-1" class="slide level2">
+<h2><code>ggplot2</code> prework: Data Wrangling</h2>
+<hr>
+<div class="smaller-font">
+<ul>
+<li>We’ll need to review the <code>tidykids</code> <a href="https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html">codebook</a>. <br> Questions (please be prepared to share code in Slack):</li>
+</ul>
+<ol type="1">
+<li>How many variables?</li>
+<li>What does each variable represent? In what units?</li>
+<li>Example: I am only interested in the data from 2016. How would I filter for this?</li>
+<li>Example: I want to create a new variable that groups states by region. How would I do this?</li>
+<li>Example: I want to summarize the data by region. How would I do this?</li>
+<li>Example: I am only interested in library expenditures. How would I filter for this?</li>
+</ol>
+</div>
+</section></section>
+<section>
 <section id="intro-to-ggplot2" class="title-slide slide level1 center">
 <h1>Intro to <code>ggplot2</code></h1>
 
@@ -1123,6 +1157,226 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </div>
+</section>
+<section id="grammar-of-graphics-12" class="slide level2">
+<h2>Grammar of Graphics</h2>
+<hr>
+<ul>
+<li>So, at a high level, there are three steps to creating a <code>ggplot2</code> visualization:
+<ol type="1">
+<li><span class="data-color"><strong>Data</strong></span>: Specify what data you want to visualize,</li>
+<li><span class="aesthetics-color"><strong>Aesthetics</strong></span>: which relationships you want to visualize, and</li>
+<li><span class="geometries-color"><strong>Geometries</strong></span>: how you want the relationships to appear.</li>
+</ol></li>
+<li>Other layers/components as needed</li>
+</ul>
+</section>
+<section id="a-word-on-geometries" class="slide level2">
+<h2>A Word on Geometries</h2>
+<hr>
+<ul>
+<li>The <code>ggplot2</code> <a href="https://rstudio.github.io/cheatsheets/data-visualization.pdf">cheatsheet</a> helps to understand the different <code>geom</code>etries available.
+<ul>
+<li>One Variable: Continuous</li>
+<li>One Variable: Discrete</li>
+<li>Two Variables: Both Continuous</li>
+<li>Two Variables: Both Discrete</li>
+<li>Two Variables: One Continuous, One Discrete</li>
+<li>etc.</li>
+</ul></li>
+</ul>
+</section>
+<section id="a-word-on-geometries-1" class="slide level2">
+<h2>A Word on Geometries</h2>
+<hr>
+<div class="extra-small-font">
+<ul>
+<li>The most common geometries used generally are:
+<ul>
+<li>Line Segments:
+<ul>
+<li><code>geom_abline()</code>: y = ax + b line</li>
+<li><code>geom_vline()</code>: Vertical line</li>
+<li><code>geom_hline()</code>: Horizontal line</li>
+</ul></li>
+<li>One Variable: Continuous
+<ul>
+<li><code>geom_histogram()</code>: Histogram</li>
+</ul></li>
+<li>Two Variables: Both Continuous
+<ul>
+<li><code>geom_point()</code>: Scatterplot</li>
+<li><code>geom_smooth()</code>: Smoother</li>
+</ul></li>
+<li>Two Variables: One Discrete, One Continuous
+<ul>
+<li><code>geom_col()</code>: Barplot + <code>geom_errorbar()</code>: Error bars</li>
+<li><code>geom_boxplot()</code>: Boxplot</li>
+<li><code>geom_violin()</code>: Violin plot</li>
+</ul></li>
+<li>Continuous Function
+<ul>
+<li><code>geom_line()</code>: Line plot</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="ggplot2-example-1" class="title-slide slide level1 center">
+<h1><code>ggplot2</code> Example 1</h1>
+
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example 1</h2>
+<hr>
+<div class="smaller-font">
+<p><span class="regalia-color"><strong>RQ</strong></span></p>
+<ul>
+<li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?
+<ul>
+<li>What is the variability (std. deviation) of spending within each region?</li>
+<li>How do the regions compare to the national average?</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<p><span class="regalia-color"><strong>My Thinking:</strong></span></p>
+<ol type="1">
+<li>Draw a quick sketch of the graph I want to create.</li>
+<li>Identify the <code>geoms</code>(look at their documentation if needed)</li>
+<li>Identify the <code>data</code>/data wrangling needed.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="example-1-pre-work" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
+<div class="smaller-font quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Example1-Sketch.jpeg"></p>
+<figcaption>My Sketch</figcaption>
+</figure>
+</div>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+
+</div>
+</div>
+</div>
+</section>
+<section id="example-1-pre-work-1" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
+<div class="smaller-font quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Example1-Sketch.jpeg"></p>
+<figcaption>My Sketch</figcaption>
+</figure>
+</div>
+<ul>
+<li>Which <code>geom</code>s?
+<ul>
+<li><code>geom_col()</code></li>
+<li><code>geom_errorbar()</code></li>
+<li><code>geom_hline()</code></li>
+</ul></li>
+</ul>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+
+</div>
+</div>
+</div>
+</section>
+<section id="example-1-pre-work-2" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
+<div class="smaller-font quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Example1-Sketch.jpeg"></p>
+<figcaption>My Sketch</figcaption>
+</figure>
+</div>
+<ul>
+<li>Which <code>geom</code>s?
+<ul>
+<li><code>geom_col()</code></li>
+<li><code>geom_errorbar()</code></li>
+<li><code>geom_hline()</code></li>
+</ul></li>
+</ul>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li>What variables/data wrangling do I need?
+<ol type="1">
+<li>Create a <code>region</code> variable</li>
+<li>Filter for 2016</li>
+<li>Filter for <code>PK12ed</code></li>
+<li>Calculate national mean (separate from tibble)</li>
+<li>Group by <code>region</code>
+<ul>
+<li>Summarize:
+<ul>
+<li>mean</li>
+<li>std. deviation</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="switch-to-.rmd-file" class="title-slide slide level1 center">
+<h1>Switch to <code>.Rmd</code> file</h1>
+
+</section>
+<section id="example-2-your-turn" class="slide level2">
+<h2>Example 2: Your Turn!</h2>
+<hr>
+<p><span class="regalia-color"><strong>RQ</strong></span></p>
+<div class="smaller-font">
+<ul>
+<li>What is the <em>distribution</em> of inflation-adjusted per-child spending on libraries across <em>each</em> U.S. region in 2016?
+<ul>
+<li>How do the regional distributions compare to the national mean?</li>
+</ul></li>
+</ul>
+</div>
+<p><span class="regalia-color"><strong>Breakout Rooms/Posit Cloud</strong></span></p>
+</section></section>
+<section>
+<section id="looking-ahead" class="title-slide slide level1 center">
+<h1>Looking Ahead</h1>
+
+</section>
+<section id="looking-ahead-1" class="slide level2">
+<h2>Looking Ahead</h2>
+<hr>
+<ul>
+<li>Week 4 Assignment:
+<ul>
+<li>Wrangling &amp; Graphing</li>
+</ul></li>
+<li>Reading:
+<ul>
+<li><strong>Skim</strong> Knaflic Intro &amp; Schwabish (see all the different types of graphs)</li>
+<li><strong>READ</strong> Knaflic Chapter 1 &amp; Wilke Chapter 6</li>
+<li>Discussion Post</li>
+</ul></li>
+</ul>
 <div class="footer footer-default">
 <p>UTK Educational Data Science</p>
 </div>
