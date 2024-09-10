@@ -58,13 +58,14 @@ tidykids <- tidykids |>
 - Additional Foundational Skills
     - Strategies for Object Assignment
     - Accessing data from Google Drive/ OneDrive
+- Reviewing `dplyr`
+    - Intro to `tidykids`
 - Intro to `ggplot2`
     - Example Plot: Grammar of Graphics
     - Three Steps
-- Reviewing `dplyr`
-    - Intro to `tidykids`
 - `ggplot2`: Digging In
-    - Lecture + Collaborative Work
+    - Lecture
+    - Collaborative Work
 - Looking Ahead
 
 :::
