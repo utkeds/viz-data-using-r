@@ -9,11 +9,11 @@ date: "xx"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This assignment will be a little more open-ended than past assignments, given the growth in your confidence using R for _data wrangling_, and your initial efforts with in visualizing your data.
+This assignment will be a little more open-ended than past assignments, given the growth in your confidence using R for _data wrangling_, and your initial efforts with visualizing your data.
 
 ## 1. Get set up
 
-First, change the name and date in the front matter. Then, save this file into a folder with the tidykids data, which can be found on Canvas (or may already be downloaded). 
+First, change the name and date in the YAML front matter. 
 
 Then read the tidykids data into R, and assign a name to the data. 
 
@@ -25,9 +25,11 @@ Use one or more techniques (up to you) to explore the data, such as `glimpse()`,
 
 ```
 
+INTERPRETATION:
+
 ## 3. Graph 1: A scatterplot
 
-Similar to what we created in the walkthrough, create a scatterplot. For this scatter plot, keep things simple, doing so for a single state and a single variable. Note that in the next step, you'll extend this graph a bit. Note that the codebook is here: https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
+Create a scatterplot. For this plot, keep things simple. Use only a single state, one variable of your choice on the y-axis and year on the x. Note that in the next step, you'll extend this graph a bit. Note that the codebook is here: https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
 
 Let the open-endedness be fun, not a burden here - in your work, I am looking for effort, not perfect code or output.
 
@@ -40,18 +42,24 @@ Let the open-endedness be fun, not a burden here - in your work, I am looking fo
 Next, copy the code (and code chunk) from above to give you a starting point for several modifications. Specifically:
 
 - Change the x- and y-axis labels (use the `labs()` function to add a layer to your ggplot2 code)
-- Change the theme
+- Change the [theme](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 - Filter the data to only include certain years (with the specific years entirely up to you - this is just practice with combining data wrangling and visualizing)
 - Optionally, you can make any other changes you wish, but these are not necessary for now
 - Add one or two sentences beneath the code chunk you have added interpreting what you found and what you might want to investigate next
 
+```{r}
+
+```
+
+INTERPRETATION:
+
 ## 5. Add a line
 
-Copy the code above, adding either a connecting line or an interpolated line to your points. 
+Copy the code above, adding either a connecting line(`geom_line`) or an interpolated line(`geom_smooth`) to your points. 
 
 ## 6. Graph 4: Histogram
 
-This may be more of a challenge. Consulting the ggplot2 cheat sheet (see the module in Canvas) as a support, create a histogram for a single variable. Change one of the axis labels and add a title and/or subtitle, again using the `labs()` function.
+This may be more of a challenge. Consulting the ggplot2 cheat sheet (see Canvas) as a support, create a histogram for a single variable. Change one of the axis labels and add a title and/or subtitle, again using the `labs()` function.
 
 ```{r}
 
@@ -61,21 +69,27 @@ This may be more of a challenge. Consulting the ggplot2 cheat sheet (see the mod
 
 The requirements are:
 
-- State _who_ your intended audience is (before any code in a code chunk)
+- State the research question you are addressing with your plot
 - Use a variable that is different from any you used above
 - Include a different state than the one(s) you used above, or use multiple states
 - Share _what_ you planned to show and _how_ you showed it (after your code chunk and output)
 - Have fun with this! Any other changes (or absence of changes) are up to you!
 
+```{r}
+
+```
+
+RESEARCH QUESTION:
+
+WHAT I PLANNED TO SHOW:
+
+HOW I SHOWED IT:
+
 ## 8. Reflection
 
-When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 3 in Canvas. 
+When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 4 in Canvas. 
 
 Please note, you are only submitting the HTML output for this assignment.  
-
-If you see a warning at the top of your output related to your version of packages, it likely means you should update R. Please do this!
-
-Nice job on this - this was close to an authentic analysis, and we're just getting started with ggplot2!
 
 ## 9. Bonus
 
