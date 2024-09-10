@@ -678,7 +678,7 @@ p
     - One Variable: Continuous
         - `geom_histogram()`: Histogram
     - Two Variables: Both Continuous
-        - `geom_point()`: Scatterplot
+        - `geom_point()`: Scatterplot (often with `geom_smooth()` or `geom_abline()` added)
         - `geom_smooth()`: Smoother
     - Two Variables: One Discrete, One Continuous
         - `geom_col()`: Barplot + `geom_errorbar()`: Error bars
