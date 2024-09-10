@@ -786,6 +786,6 @@ p
     - Wrangling & Graphing
 - Reading:
     - **Skim** Knaflic Intro & Schwabish (see all the different types of graphs)
-    - **READ** Knaflic Chapter 1 & Wilke Chapter 6
+    - **Read** Knaflic Chapter 1 & Wilke Chapter 6
     - Discussion Post
 
