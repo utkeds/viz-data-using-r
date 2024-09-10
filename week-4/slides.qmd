@@ -202,8 +202,8 @@ titanic_ageclass_summary |>
 <hr>
 - Before you can visualize data, you need to have it in the right format.
 - Let's review some `dplyr` functions using the `tidykids` dataset.
-- In your `.zip` file, you have a `tidykids.R` script. Open it.
-  - We'll work through the script together.
+- In your `.zip` file, you have a `ggplot2-prework-data-wrangling.Rmd` file. Open it.
+  - We'll work through it together.
 
 ## `ggplot2` prework: Data Wrangling
 <hr>
