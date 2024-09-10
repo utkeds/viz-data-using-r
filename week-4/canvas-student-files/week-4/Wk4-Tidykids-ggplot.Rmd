@@ -1,0 +1,54 @@
+---
+title: "Wk4-Tidykids-Plot"
+author:
+output: html_document
+date: "`r Sys.Date()`"
+---
+<!--Put everyone's name in the author field within the YAML header.-->
+
+<!--Tidyverse is already installed. Load it in the setup chunk below. -->
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!--Initial Cleanup: Read in the data and do any initial cleanup (i.e. delete row indices, janitor::clean_names())-->
+```{r}
+
+```
+
+### Research Question:
+What is the *distribution* of inflation-adjusted per-child spending on libraries across *each* U.S. region in 2016? How do the regional distributions compare to the national mean?
+
+### Step 1: Draw a sketch. 
+
+<!--You should be able to upload it using the `Upload` button in the file pane and then click `choose file`. Note: iPhone users may have trouble with this, given the iPhone photo file extension (screenshot should work!). You can also just share it on camera. Make sure you and your team agree on what plot you're trying to create. -->
+
+<!-- The ![] is how you tell markdown you're inserting a photo - don't delete it! -->
+
+![](put-sketch-filename-here.jpeg)
+
+### Step 2: Determine what `geom`s you will need to construct your plot. 
+<!--Write them below.-->
+
+Geoms needed:
+
+1.
+
+### Step 3: Determine what variables/data wrangling you need to do.
+<!--Make a list so all members can see and agree on it. After you make the list, create as many code blocks as you want and wrangle your data!-->
+
+Data / Data wrangling steps needed:
+
+1.
+
+```{r}
+
+```
+
+### Step 4: Create the plot!
+
+```{r}
+
+```
+
+<!--When complete, knit this document to HTML and submit on Canvas. Each person should be able to download the knitted .html file, so each person should also submit on Canvas.-->
