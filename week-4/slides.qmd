@@ -46,7 +46,7 @@ tidykids <- tidykids |>
   janitor::clean_names()
 ```
 
-# Weekly Check In
+# Weekly Check In/Download `.zip`
 
 # Start Recording
 
