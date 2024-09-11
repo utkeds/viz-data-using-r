@@ -156,7 +156,7 @@ starwars <- starwars |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -190,7 +190,7 @@ starwars |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -256,7 +256,7 @@ starwars |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -293,7 +293,7 @@ starwars |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -330,7 +330,7 @@ starwars |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -367,7 +367,7 @@ starwars |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -403,7 +403,7 @@ str(starwars)
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -441,7 +441,7 @@ head(starwars, 2)
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -487,7 +487,7 @@ starwars
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -529,7 +529,7 @@ renamed_starwars
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example df - starwars**]{.small-font}
+[**Example data - starwars**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
