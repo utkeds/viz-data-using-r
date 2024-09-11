@@ -46,25 +46,59 @@ tidykids <- tidykids |>
     6. Create a ymin and ymax variable for error bars
     
 ```{r creating_region_variable}
+tidykids <- tidykids |>
+  mutate(region = case_when(
+    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
+                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
+    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
+                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
+                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
+    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
+                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
+  ))
+```
 
+```{r}
+tidykids <- tidykids |>
+  filter(variable == "PK12ed")
 ```
 
 ```{r filter_year_variable}
+tidykids <- tidykids |>
+  filter(year == 2016)
 
 ```
 
 ```{r calculate_national_mean}
+natnl_mean <- tidykids |>
+  summarize(mean = mean (inf_adj_perchild, na.rm=T))
 
+natnl_mean
 ```
 
 ```{r summarize by region}
+tidykids <- tidykids |>
+  group_by(region) |>
+  summarize (mean = mean (inf_adj_perchild, na.rm=T),
+             sd = sd (inf_adj_perchild, na.rm=T)) |>
+  ungroup()
 
+tidykids
 ```
 
 ```{r create_ymin_ymax}
-
+tidykids <- tidykids |>
+  mutate (ymin = mean - sd,
+          ymax = mean + sd)
 ```
 
 ```{r plot}
-
+tidykids |>
+  ggplot(aes(x=region, y=mean, color = region))+
+  geom_col()+
+  geom_hline(yintercept=as.numeric(natnl_mean))+
+  geom_errorbar(aes(ymin = ymin, ymax = ymax))+
+  labs(title="Mean Amount Spent Per Region on PK-12 Ed")
 ```

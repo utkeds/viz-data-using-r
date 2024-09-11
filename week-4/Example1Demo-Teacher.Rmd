@@ -70,7 +70,7 @@ tidykids_16_pk12 <- tidykids |>
 
 ```{r calculate_national_mean}
 natnl_mean <- tidykids_16_pk12 |>
-  summarize(mean(inf_adj_perchild, na.rm = TRUE))
+  summarize(mean(inf_adj_perchild, na.rm = TRUE)) #I could have used pull() here to end up with a numeric value, preventing the need for as.numeric() in the plot
 ```
 
 ```{r summarize by region}
@@ -91,7 +91,7 @@ tidykids_16_pk12_regions |>
   ggplot(aes(x = region, y = mean)) +
   geom_col() +
   geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.2) +
-  geom_hline(yintercept = as.numeric(natnl_mean), linetype = "dashed") +
+  geom_hline(yintercept = as.numeric(natnl_mean), linetype = "dashed") + #Note: as.numeric() is necessary to convert the tibble to a numeric value - in the other example that I assigned in class, I used pull() to end up with a numeric value
   scale_y_continuous(labels = scales::dollar) +
   labs(title = "Average Per Child Spending on PK-12 Education by Region, 2016",
        x = "Region",
