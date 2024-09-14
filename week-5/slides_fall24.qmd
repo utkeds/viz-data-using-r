@@ -1,0 +1,601 @@
+---
+subtitle: "Visual Storytelling: Comparing Amounts"
+title: "Week 5 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+library(tidyverse)
+library(tidykids)
+library(palmerpenguins)
+
+tidykids <- tidykids |>
+  mutate(region = case_when(
+    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
+                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
+    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
+                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
+                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
+    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
+                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
+  ))|>
+  janitor::clean_names()
+
+starwars <- starwars |>
+  janitor::clean_names()
+
+penguins <- penguins |>
+  janitor::clean_names()
+```
+
+# Weekly Check In/ <br>Download `.zip`
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.extra-small-font}
+- Weekly Check In
+- Review/ Foundational Skills
+    - Mapping versus setting in `aes()`
+    - Inheriting aesthetics
+    - Saving plots
+- Reviewing Knaflic (2015), Ch. 1
+- Comparing Amounts
+    - Bar Plots
+        - Labeling
+            - `coord_flip()`
+            - Ordering Axes
+        - Grouping, Stacking, Faceting
+    - Dot Plots
+    - Heat Maps
+- Collaborative Practice
+- Extensions from Schwabish (2021)
+- Looking Ahead
+
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Review/ <br>Foundational Skills
+
+## 3 Required Components of a ggplot
+<hr>
+- Data - may need to wrangle!
+- Aesthetics - maps variables to visual properties
+- Geometries - the shapes that represent the data
+    - Choose `geom`s from cheatsheet!
+    
+## Mapping Versus Setting
+<hr>
+
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+- Mapping
+    - Occurs within `aes()`
+    - Example:
+```{r}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed") |>
+  mutate(state = fct_reorder(state, region)) |> #puts regions together
+  ggplot(aes(x = state, y = inf_adj_perchild)) +
+  geom_col(aes(fill = region)) #mapping
+```
+
+:::
+
+:::{column}
+- Setting
+    - Occurs outside `aes()`
+    - Example:
+```{r}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed") |>
+  mutate(state = fct_reorder(state, region)) |> #puts regions together
+  ggplot(aes(x = state, y = inf_adj_perchild)) +
+  geom_col(fill = "lightblue") #setting
+```
+
+:::
+:::
+
+## Inheriting Aesthetics
+<hr>
+
+:::{.smaller-font}
+- Aesthetics can be ...
+    - ...inherited from the `ggplot()` call:
+    
+```{r, echo=FALSE}
+natnl_mean <- tidykids |>
+  filter(year == 2016, variable == "PK12ed") |>
+  summarize(national_mean = mean(inf_adj_perchild, na.rm=T)) |>
+  pull(national_mean)
+```
+
+```{r, fig.height=4}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed") |>
+  mutate(state = fct_reorder(state, region)) |> # puts regions together
+  ggplot(aes(x = state, y = inf_adj_perchild, color = region)) +
+  geom_col() # geom_col inherits x, y, and color from ggplot()
+```
+
+:::
+
+## Inheriting Aesthetics
+<hr>
+
+:::{.smaller-font}
+- Aesthetics can be ...
+    -  ...set within each `geom()` call:
+    
+```{r, fig.height=4}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed") |>
+  mutate(state = fct_reorder(state, region)) |> 
+  ggplot() + 
+  geom_col(aes(x = state, y = inf_adj_perchild, color = region)) # aes explicitly set within geom_col()
+```
+
+:::
+
+## Inheriting Aesthetics
+<hr>
+
+:::{.smaller-font}
+- Aesthetics can be ...
+    - ...inherited but overridden:
+    
+```{r, fig.height=4}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed") |>
+  mutate(state = fct_reorder(state, region)) |> 
+  ggplot(aes(x = state, y = inf_adj_perchild, color = region)) +
+  geom_col() +
+  geom_hline(aes(yintercept = natnl_mean, color = "National Mean")) # Overrides color within geom_hline
+```
+
+:::
+
+## Saving Plots
+<hr>
+
+:::{.smaller-font}
+- Two primary ways to save a plot: 
+1. `ggsave()`
+    - `ggsave()` saves the last plot created if plot unspecified
+    - `plot`, `width`, `height`, `units`, and `dpi` are optional arguments
+        - typical web resolution is 96 dpi
+
+```{r, eval-FALSE}
+ggsave("my_plot.png", plot = last_plot(), width = 1200, height = 650, units = "px", dpi = 96)
+```
+<br>
+
+2. Plot Export
+    - Export the plot from the viewer pane
+    - Save as image or PDF
+    
+**Demo**
+:::
+
+## Knaflic (2015), Chapter 1
+<hr>
+:::{.small-font}
+- Who: The audience
+    - Researchers, policymakers, practitioners, the public, etc.
+- What: What do you need your audience to know and do?
+    -"The point of this graph is..."
+- How: 
+    - Knaflick (Business) - "What data is available that will help make my point?"
+    - (Research): What data is available that illustrates my finding/result?"
+
+**Thanks for engaging with discussion post.**
+
+:::
+
+## Comparing Amounts
+
+- Today: Comparing **amounts**
+    - Bar Plots
+    - Dot Plots
+    - Heat Maps
+- If you have **distributions** wait until next week!
+
+## Comparing Amounts
+<hr>
+Bar Chart | `geom_bar()` or `geom_col()`
+
+<hr>
+
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+- `geom_bar()`
+    - Bar height represents number of observations in data
+    - Counts observations up for you
+    - Only need to specify `x` -> what to count!
+
+```{.r code-line-numbers="|2-3"}
+penguins |>
+  ggplot(aes(x = species)) +
+    geom_bar(fill = "#6ABCEB") +
+    labs(title = "Number of Observations by Penguin Species",
+       x = "Penguin Species", y = "Number of Observations") +
+    theme_minimal()
+```
+
+```{r, fig.height=2.5, fig.width=4.5, echo=FALSE}
+penguins |>
+  ggplot(aes(x = species)) +
+    geom_bar(fill = "#6ABCEB") +
+    labs(title = "Number of Observations by Penguin Species",
+       x = "Penguin Species", y = "Number of Observations") +
+    theme_minimal()
+```
+:::
+
+:::{column}
+ - `geom_col()`
+    - Bar height represents a value in the data
+    - Requires a `y` variable in aesthetic
+    - May require use of `group_by()` & `summarize()`
+    
+```{.r code-line-numbers="|2-6"}
+penguins |>
+  group_by(species) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = species, y = n)) +
+    geom_col(fill = "#6ABCEB") +
+    labs(title = "Number of Observations by Penguin Species",
+       x = "Penguin Species", y = "Number of Observations") +
+    theme_minimal()
+```
+
+```{r, fig.height=2.5, fig.width=4.5, echo = FALSE}
+penguins |>
+  group_by(species) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = species, y = n)) +
+    geom_col(fill = "#6ABCEB") +
+    labs(title = "Number of Observations by Penguin Species",
+       x = "Penguin Species", y = "Number of Observations") +
+    theme_minimal()
+```
+:::
+
+:::
+
+
+## Comparing Amounts
+<hr>
+Bar Chart `geom_col()`
+
+<hr>
+
+:::{.extra-small-font}
+
+- **Problem:** With bar plots, labels are often hard to read/overlap
+```{r, fig.height=3, fig.width=6}
+starwars |>
+  group_by(eye_color) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = eye_color, y = n)) +
+    geom_col(fill = "#4C5970") +
+    labs(title = "Eye Color of Star Wars Characters",
+       x = "Eye Color", y = "Number of Star Wars Characters") +
+    theme_minimal()
+  
+```
+
+:::
+
+## Comparing Amounts
+<hr>
+Bar Chart `geom_col()`
+
+<hr>
+
+:::{.extra-small-font}
+
+- **Problem:** With bar plots, labels are often hard to read/overlap
+- Two ways to address:
+
+:::{layout="[1,1]"}
+:::{column}
+1. `coord_flip()` - flips x and y axes
+```{.r code-line-numbers="|9"}
+starwars |>
+  group_by(eye_color) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = eye_color, y = n)) +
+    geom_col(fill = "#4C5970") +
+    labs(title = "Eye Color of Star Wars Characters",
+       x = "Eye Color", y = "Number of Star Wars Characters") +
+    coord_flip() +
+    theme_minimal()
+  
+```
+
+```{r, fig.height=3, fig.width=6, echo=FALSE}
+starwars |>
+  group_by(eye_color) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = eye_color, y = n)) +
+    geom_col(fill = "#4C5970") +
+    labs(title = "Eye Color of Star Wars Characters",
+       x = "Eye Color", y = "Number of Star Wars Characters") +
+    coord_flip() +
+    theme_minimal()
+  
+```
+
+:::
+
+:::{column}
+2. Rotate axis labels (typically less desirable)
+```{.r code-line-numbers="|10"}
+starwars |>
+  group_by(eye_color) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = eye_color, y = n)) +
+    geom_col(fill = "#4C5970") +
+    labs(title = "Eye Color of Star Wars Characters",
+       x = "Eye Color", y = "Number of Star Wars Characters") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+```
+
+```{r, fig.height=3, fig.width=6, echo=FALSE}
+starwars |>
+  group_by(eye_color) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = eye_color, y = n)) +
+    geom_col(fill = "#4C5970") +
+    labs(title = "Eye Color of Star Wars Characters",
+       x = "Eye Color", y = "Number of Star Wars Characters") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+```
+
+:::
+
+:::
+:::
+
+## Comparing Amounts
+<hr>
+Bar Chart `geom_col()`
+
+<hr>
+
+:::{.extra-small-font}
+
+- **Problem:** We often need to more logically reorder the bars
+- Recall `forcats` from wk 3!
+    - `fct_relevel()` : manually reorder
+    - `fct_reorder()` : reorder by another variable
+
+:::{layout="[1,1]"}
+:::{column}
+<br><br>
+```{.r code-line-numbers="|5"}
+starwars |>
+  group_by(eye_color) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  mutate(eye_color = fct_reorder(eye_color, n)) |>
+  ggplot(aes(x = eye_color, y = n)) +
+    geom_col(fill = "#4C5970") +
+    labs(title = "Eye Color of Star Wars Characters",
+       x = "Eye Color", y = "Number of Star Wars Characters") +
+    coord_flip() +
+    theme_minimal()
+  
+```
+
+:::
+
+:::{column}
+```{r, fig.height=3, fig.width=6, echo=FALSE}
+starwars |>
+  group_by(eye_color) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  mutate(eye_color = fct_reorder(eye_color, n)) |>
+  ggplot(aes(x = eye_color, y = n)) +
+    geom_col(fill = "#4C5970") +
+    labs(title = "Eye Color of Star Wars Characters",
+       x = "Eye Color", y = "Number of Star Wars Characters") +
+    coord_flip() +
+    theme_minimal()
+  
+```
+:::
+:::
+:::
+
+## Grouping, Stacking, Faceting
+<hr>
+:::{.smaller-font}
+- Stacking, dodging, and faceting are helpful ways of representing more than one amount per category
+    - Generally, these are appropriate for representing more complex data that still involves amounts
+    - **Stacking**: Useful when the sum of the amounts represented by the individual stacked bars and the individual bars' values are of interest
+    - **Dodging** (grouping): Useful when we want to draw out comparisons for amounts within a category
+    - **Faceting**: Useful in similar cases as dodging; can be helpful when you have *many* comparisons or categories
+:::
+
+## Grouping, Stacking, Faceting
+<hr>
+Stacking
+<hr>
+
+:::{.smaller-font}
+
+```{.r code-line-numbers="|6"}
+penguins |>
+  group_by(island,species) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = island, y = n)) +
+    geom_col(aes(fill=species), position="stack") +
+    labs(title = "Number of Penguin Species Observations per Island",
+       x = "Island", y = "Number of Observations") +
+    theme_minimal()
+```
+
+```{r, fig.height=3, fig.width=6, echo=FALSE}
+penguins |>
+  group_by(island,species) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = island, y = n)) +
+    geom_col(aes(fill=species), position="stack") +
+    labs(title = "Number of Penguin Species Observations per Island",
+       x = "Island", y = "Number of Observations") +
+    theme_minimal()
+```
+
+:::
+
+## Grouping, Stacking, Faceting
+<hr>
+Dodging
+<hr>
+
+:::{.smaller-font}
+
+```{.r code-line-numbers="|4-6|7-8"}
+penguins |>
+  mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
+  filter(!is.na(bill_length_quintiles)) |>
+  group_by(species,bill_length_quintiles) |>
+  summarize(mean_flipper_length = mean(flipper_length_mm)) |>
+  ungroup() |>
+  ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
+    geom_col(position="dodge", alpha = 0.9) +
+    labs(title = "Flipper Length by Species and Bill Length Quintile",
+       x = "Species", y = "Flipper Length (mm)") +
+    theme_minimal()
+```
+
+
+```{r, fig.height=3, fig.width=6, echo=FALSE}
+colors_seven = RColorBrewer::brewer.pal(8, "PuBu")[3:7]
+
+penguins |>
+  mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
+  filter(!is.na(bill_length_quintiles)) |>
+  group_by(species,bill_length_quintiles) |>
+  summarize(mean_flipper_length = mean(flipper_length_mm)) |>
+  ungroup() |>
+  ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
+    geom_col(position="dodge", alpha = 0.9) +
+    labs(title = "Mean Flipper Length by Species and Bill Length Quintile",
+       x = "Species", y = "Mean Flipper Length (mm)") +
+    scale_fill_manual(values = colors_seven) +
+    theme_minimal()
+```
+
+:::
+
+## Grouping, Stacking, Faceting
+<hr>
+Faceting
+<hr>
+
+:::{.smaller-font}
+
+```{.r code-line-numbers="|4-6|7-8,13"}
+penguins |>
+  mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
+  filter(!is.na(bill_length_quintiles)) |>
+  group_by(species,bill_length_quintiles) |>
+  summarize(mean_flipper_length = mean(flipper_length_mm)) |>
+  ungroup() |>
+  ggplot(aes(x = bill_length_quintiles, y = mean_flipper_length, fill=bill_length_quintiles)) +
+    geom_col() +
+    labs(title = "Mean Flipper Length by Species and Bill Length Quintile",
+       x = "Bill Length (mm) Quintile", y = "Mean Flipper Length (mm)") +
+    scale_fill_manual(values = colors_seven) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 0.75, vjust=0.75)) +
+    facet_wrap(~species)
+```
+
+
+```{r, fig.height=3, fig.width=6, echo=FALSE}
+colors_seven = RColorBrewer::brewer.pal(8, "PuBu")[3:7]
+
+penguins |>
+  mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
+  filter(!is.na(bill_length_quintiles)) |>
+  group_by(species,bill_length_quintiles) |>
+  summarize(mean_flipper_length = mean(flipper_length_mm)) |>
+  ungroup() |>
+  ggplot(aes(x = bill_length_quintiles, y = mean_flipper_length, fill=bill_length_quintiles)) +
+    geom_col() +
+    labs(title = "Mean Flipper Length by Species and Bill Length Quintile",
+       x = "Bill Length (mm) Quintile", y = "Mean Flipper Length (mm)") +
+    scale_fill_manual(values = colors_seven) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 0.75, vjust=0.75)) +
+    facet_wrap(~species)
+```
+
+:::
+
+## Comparing Amounts
+<hr>
+Dot Plots `geom_point()`
+
+<hr>
+
+## Comparing Amounts
+<hr>
+Heatmaps `geom_tile()`
+
+<hr>
