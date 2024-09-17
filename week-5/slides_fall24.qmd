@@ -689,7 +689,11 @@ New Breakout Room Structure:
 
 ## Collaborative Practice
 <hr>
-- Fill this in
+- We'll use `gapminder.csv` to practice:
+    - Bar plots
+    - Dot plots
+    - Heat maps
+    - Review dplyr skills
 
 ## Schwabish Extensions
 <hr>
