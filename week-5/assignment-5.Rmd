@@ -9,29 +9,32 @@ date: "xx"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This assignment is also fairly open-ended. Please consult the slides, particularly the description of the five principles or considerations for visualizing amounts: https://utkeds.github.io/viz-data-using-r/week-5/slides.html
+This assignment is also fairly open-ended. Please consult the slides, particularly attending to the following considerations:
 
-As a reminder, the five considerations are:
-
-1. Ensure you have the right data
+1. Make sure you have *amounts* and not *distributions*
 2. Make the labels readable
 3. Order bars in a logical manner
 4. Stack, dodge, or facet, when appropriate
-5. Theme to finish
 
 ## 1. Get set up
 
-This is the same as last week, with a bit of a ... twist. Since it's the same, you can copy your code! For that reason, no code chunk is provided here; please add it and all others that you will need for this assignment! Here are the instructions, but copy at will: it's a good coding practice to re-use code that does what you need it to! 
+First, change the name and date in the YAML.  Then read the tidykids data into R, and assign a name to the data in the code chunk below.
 
-First, change the name and date in the front matter. Then, save this file into a folder with the tidykids data, which can be found on Canvas (or may already be downloaded). Then read the tidykids data into R, and assign a name to the data. 
+```{r}
+
+```
 
 ## 2. Explore the data
 
-Like above, you can copy and paste your code from the last assignment. Here, make one addition to what you did to explore the data last week.
+Last week in step 2, you were also asked to explore the tidykids data. It's a fine practice to copy/reuse code, so you can copy and paste your code from the last assignment into the code chunk below. Then, make one addition to what you did to explore the data last week.
+
+```{r}
+
+```
 
 ## 3. Graph 1: An effective visualization of amounts
 
-Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., column) chart, keeping in mind the aofrementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
+Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., column) chart, keeping in mind the afrementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
 
 ## 4. Graph 2: Modifying Graph 1
 
@@ -39,15 +42,27 @@ If you haven't yet, please *set* the color of your bars using its hex code or na
 
 ## 5. Graph 3: Create a stacked, dodged, or faceted bar chart
 
-Please create a stacked, dodged, or faceted bar chart, again keeping in mind the (other) four considerations. You may find the recording and walkthrough (both uploaded to Canvas) helpful. Please add 1-2 sentences interpreting what you've found. Please note, you may need to manipulate the data using various dplyr functions to successfully complete this step. It may be a challenge, but for this and the next graph, perfection is not the goal! Getting a feel for when and how to create this kinds of plots is, so try to create something sensible as a first attempt at doing so.
+Please create a stacked, dodged, or faceted bar chart, again keeping in mind the (other) considerations. You may find the recording and slides (both uploaded to Canvas) helpful. Please add 1-2 sentences interpreting what you've found. Please note, you may need to manipulate the data using various dplyr functions to successfully complete this step. It may be a challenge, but for this and the next graph, perfection is not the goal! Getting a feel for when and how to create this kinds of plots is, so try to create something sensible as a first attempt at doing so.
+
+```{r}
+
+```
 
 ## 6. Graph 4: Set a theme 
 
-Using any of the graphs you have created so far, install ggthemes (or another package that provides themes, if you wish) and add the theme to your plot.
+Using any of the graphs you have created so far, use the pre-installed themes(https://ggplot2.tidyverse.org/reference/ggtheme.html) or install ggthemes (or another package that provides themes, if you wish) and add the theme to your plot.
+
+```{r}
+
+```
 
 ## 7. Graph 5: - Histogram!
 
-Histograms were challenging last week. Try again this week using the starwars data set (it is built in and can be accessed by typing `starwars`). Note that you only set one aesthetic (either `x` or `y`) and then use `geom_histogram()`. 
+Histograms were challenging last week. Try again this week using the starwars data set (it is built in and can be accessed by typing `starwars`). Note that you only set one aesthetic (either `x` or `y`) and then use `geom_histogram()`. Adjusting the binwidth is often a good idea!
+
+```{r}
+
+```
 
 ## 8. Bonus: Create a different stacked, dodged, or faceted bar chart
 

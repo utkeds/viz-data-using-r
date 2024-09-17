@@ -219,11 +219,11 @@ ggsave("my_plot.png", plot = last_plot(), width = 1200, height = 650, units = "p
 ## Knaflic (2015), Chapter 1
 <hr>
 :::{.small-font}
-- Who: The audience
+- *Who*: The audience
     - Researchers, policymakers, practitioners, the public, etc.
-- What: What do you need your audience to know and do?
+- *What*: What do you need your audience to know and do?
     -"The point of this graph is..."
-- How: 
+- *How*: 
     - Knaflick (Business) - "What data is available that will help make my point?"
     - (Research): What data is available that illustrates my finding/result?"
 
@@ -514,7 +514,7 @@ Dodging
 penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
-  group_by(species,bill_length_quintiles) |>
+  group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
   summarize(mean_flipper_length = mean(flipper_length_mm)) |>
   ungroup() |>
   ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
@@ -531,7 +531,7 @@ colors_seven = RColorBrewer::brewer.pal(8, "PuBu")[3:7]
 penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
-  group_by(species,bill_length_quintiles) |>
+  group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
   summarize(mean_flipper_length = mean(flipper_length_mm)) |>
   ungroup() |>
   ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
@@ -555,7 +555,7 @@ Faceting
 penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
-  group_by(species,bill_length_quintiles) |>
+  group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
   summarize(mean_flipper_length = mean(flipper_length_mm)) |>
   ungroup() |>
   ggplot(aes(x = bill_length_quintiles, y = mean_flipper_length, fill=bill_length_quintiles)) +
@@ -574,7 +574,7 @@ colors_seven = RColorBrewer::brewer.pal(8, "PuBu")[3:7]
 penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
-  group_by(species,bill_length_quintiles) |>
+  group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
   summarize(mean_flipper_length = mean(flipper_length_mm)) |>
   ungroup() |>
   ggplot(aes(x = bill_length_quintiles, y = mean_flipper_length, fill=bill_length_quintiles)) +
@@ -594,8 +594,153 @@ Dot Plots `geom_point()`
 
 <hr>
 
+:::{.smaller-font}
+```{.r code-line-numbers="|4"}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed", region =="South") |>
+  ggplot(aes(x = inf_adj_perchild, y = state)) +
+    geom_point(color="purple", size=3) +
+    labs(title = "Per Child Education Spending by Southern States",
+       x = "Per Child Education Spending (Inflation Adjusted in 2016 USD)", y = "State") +
+    theme_minimal()
+```
+```{r, fig.height=3, fig.width = 6.5, echo=FALSE}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed", region =="South", state != "District of Columbia") |>
+  ggplot(aes(x = inf_adj_perchild, y = state)) +
+    geom_point(color="purple", size=3) +
+    labs(title = "Per Child Education Spending by Southern States",
+       x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)", y = "State") +
+    theme_minimal()
+```
+- Don't do this. These should be in some kind of more easily comparable order.
+
+:::
+
+## Comparing Amounts
+<hr>
+Dot Plots `geom_point()`
+
+<hr>
+
+:::{.smaller-font}
+```{.r code-line-numbers="|5"}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed", region =="South") |>
+  mutate(state = fct_reorder(state, inf_adj_perchild)) |> # reorder by spending
+  ggplot(aes(x = inf_adj_perchild, y = state)) +
+    geom_point(color="purple", size=3) +
+    labs(title = "Per Child Education Spending by Southern States in 2016",
+       x = "Per Child Education Spending (Inflation Adjusted in 2016 USD)", y = "State") +
+    theme_minimal()
+```
+```{r, fig.height=3, fig.width = 6.5, echo=FALSE}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed", region =="South", state != "District of Columbia") |>
+  mutate(state = fct_reorder(state, inf_adj_perchild)) |> # reorder by spending
+  ggplot(aes(x = inf_adj_perchild, y = state)) +
+    geom_point(color="purple", size=3) +
+    labs(title = "Per Child Education Spending by Southern States in 2016",
+       x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)", y = "State") +
+    theme_minimal()
+```
+
+:::
+
 ## Comparing Amounts
 <hr>
 Heatmaps `geom_tile()`
 
 <hr>
+
+:::{.smaller-font}
+```{.r code-line-numbers="|5"}
+tidykids |>
+  filter(variable == "PK12ed", region == "South", state != "District of Columbia") |>
+  mutate(state = fct_reorder(state, desc(state))) |> # reorder by spending
+  ggplot(aes(x = year, y = state, fill = inf_adj_perchild)) +
+    geom_tile(color="white", linewidth = 0.25)
+```
+
+:::
+
+```{r, echo=FALSE}
+tidykids |>
+  filter(variable == "PK12ed", region == "South", state != "District of Columbia") |>
+  mutate(state = fct_reorder(state, desc(state))) |> # reorder by spending
+  ggplot(aes(x = year, y = state, fill = inf_adj_perchild)) +
+    geom_tile(color="white", linewidth = 0.25)
+```
+
+# Collaborative Practice
+
+## Collaborative Practice
+<hr>
+:::{.small-font}
+New Breakout Room Structure:
+
+- **Individual think time:** 5 minutes (camera off/mute)
+    - Review document
+    - Review question prompts
+    - Start planning possible approaches/psuedocode
+- **Collaborative Work:** (camera on/unmute)
+
+:::
+
+## Collaborative Practice
+<hr>
+- Fill this in
+
+## Schwabish Extensions
+<hr>
+Lollipop Plots: `geom_point()` + `geom_segment()`
+
+<hr>
+
+:::{.smaller-font}
+```{.r code-line-numbers="|5-6"}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed", region =="South") |>
+  mutate(state = fct_reorder(state, inf_adj_perchild)) |> # reorder by spending
+  ggplot(aes(x = inf_adj_perchild, y = state)) +
+    geom_point(color="purple", size=3) +
+    geom_segment(aes(xend = 0, yend = state), color = "purple") + #inherits x & y from ggplot()
+    labs(title = "Per Child Education Spending by Southern States in 2016",
+       x = "Per Child Education Spending (Inflation Adjusted in 2016 USD)", y = "State") +
+    theme_minimal()
+```
+
+```{r, fig.height=3, fig.width = 6.5, echo=FALSE}
+tidykids |>
+  filter(year == 2016, variable == "PK12ed", region =="South", state != "District of Columbia") |>
+  mutate(state = fct_reorder(state, inf_adj_perchild)) |> # reorder by spending
+  ggplot(aes(x = inf_adj_perchild, y = state)) +
+    geom_point(color="purple", size=3) +
+    geom_segment(aes(xend = 0, yend = state), color = "purple") + #inherits x & y from ggplot()
+    labs(title = "Per Child Education Spending by Southern States in 2016",
+       x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)", y = "State") +
+    theme_minimal()
+```
+
+:::
+
+## Schwabish Extensions
+<hr>
+Bullet Charts: `geom_col()` and/or `geom_segment()`
+
+<hr>
+
+![Figure from Boles (in preparation)](KBoles_Figure1_BulletPlot.png)
+
+# Looking Ahead
+
+## Looking Ahead
+<hr>
+- Readings:
+    - Read Holder (2024)
+        - Discussion Post
+    - Skim Schwabish (2021), Ch. 6
+    - Read Wilke (2019), Chs. 7,9,12
+- Weekly Assignment
+    - Creating and Improving Plots of Amounts
+    
