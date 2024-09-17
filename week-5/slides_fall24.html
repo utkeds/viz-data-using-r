@@ -1036,7 +1036,7 @@ Faceting
 <p>Dot Plots <code>geom_point()</code></p>
 <hr>
 <div class="smaller-font">
-<div class="sourceCode" id="cb17" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>tidykids <span class="sc">|&gt;</span></span>
+<div class="sourceCode" id="cb17" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>tidykids <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, variable <span class="sc">==</span> <span class="st">"PK12ed"</span>, region <span class="sc">==</span><span class="st">"South"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, inf_adj_perchild)) <span class="sc">|&gt;</span> <span class="co"># reorder by spending</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state)) <span class="sc">+</span></span>
@@ -1084,7 +1084,7 @@ Faceting
 <ul>
 <li>Review document</li>
 <li>Review question prompts</li>
-<li>Start planning possible approaches/psuedocode</li>
+<li>Start planning possible approaches/pseudocode</li>
 </ul></li>
 <li><strong>Collaborative Work:</strong> (camera on/unmute)</li>
 </ul>
@@ -1128,8 +1128,13 @@ Faceting
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="schwabish-extensions-1" class="title-slide slide level1 center">
+<h1>Schwabish Extensions</h1>
+
 </section>
-<section id="schwabish-extensions-1" class="slide level2">
+<section id="schwabish-extensions-2" class="slide level2">
 <h2>Schwabish Extensions</h2>
 <hr>
 <p>Bullet Charts: <code>geom_col()</code> and/or <code>geom_segment()</code></p>
