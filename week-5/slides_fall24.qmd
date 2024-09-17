@@ -695,6 +695,8 @@ New Breakout Room Structure:
     - Heat maps
     - Review dplyr skills
 
+# Schwabish Extensions
+
 ## Schwabish Extensions
 <hr>
 Lollipop Plots: `geom_point()` + `geom_segment()`
@@ -727,8 +729,6 @@ tidykids |>
 ```
 
 :::
-
-# Schwabish Extensions
 
 ## Schwabish Extensions
 <hr>
