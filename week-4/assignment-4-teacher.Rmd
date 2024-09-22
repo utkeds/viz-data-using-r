@@ -7,6 +7,9 @@ date: "xx"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(ggthemes)
 ```
 
 This assignment will be a little more open-ended than past assignments, given the growth in your confidence using R for _data wrangling_, and your initial efforts with visualizing your data.
@@ -21,8 +24,10 @@ Then read the tidykids data into R, and assign a name to the data.
 
 Use one or more techniques (up to you) to explore the data, such as `glimpse()`, simply printing the name of the data, the `describe()` function from the psych package, etc. Do so below, adding one or more lines of interpretation of what you see (e.g., the data's dimensions, any issues with variable names, etc.).
 
-```{r}
+```{r, message=F, warning=F}
+tidykids <- read_csv("canvas-student-files/week-4/tidykids.csv")
 
+glimpse(tidykids)
 ```
 
 INTERPRETATION:
@@ -34,6 +39,11 @@ Create a scatterplot. For this plot, keep things simple. Use only a single state
 Let the open-endedness be fun, not a burden here - in your work, I am looking for effort, not perfect code or output.
 
 ```{r}
+
+tidykids |>
+  filter(state == "Tennessee" & variable == "PK12ed")|>
+  ggplot()+
+  geom_point(aes(x=year,y=inf_adj_perchild))
 
 ```
 
@@ -49,6 +59,13 @@ Next, copy the code (and code chunk) from above to give you a starting point for
 
 ```{r}
 
+tidykids |>
+  filter(state == "Tennessee" & variable == "PK12ed" & year >= 2005)|>
+  ggplot()+
+  geom_point(aes(x=year,y=inf_adj_perchild))+
+  labs(x="Year", y="Inflation Adjusted Spending Per Child (by $1,000s)") +
+  theme_minimal()
+
 ```
 
 INTERPRETATION:
@@ -62,6 +79,15 @@ Copy the code above, adding either a connecting line(`geom_line`) or an interpol
 This may be more of a challenge. Consulting the ggplot2 cheat sheet (see Canvas) as a support, create a histogram for a single variable. Change one of the axis labels and add a title and/or subtitle, again using the `labs()` function.
 
 ```{r}
+
+tidykids |>
+  filter(state == "Tennessee" & variable == "PK12ed" & year >= 2005)|>
+  ggplot()+
+  geom_point(aes(x=year,y=inf_adj_perchild))+
+  geom_line(aes(x=year,y=inf_adj_perchild))+
+  geom_smooth(aes(x=year,y=inf_adj_perchild))+
+  labs(x="Year", y="Inflation Adjusted Spending Per Child (by $1,000s)") +
+  theme_minimal()
 
 ```
 
@@ -98,7 +124,17 @@ Each variable in the `variable` column of the `tidykids` data set represents a d
 **Make a simple bar chart showing this. Color the barchart by the average.**
 
 ```{r}
+tidykids |>
+  filter(state == "Tennessee") |>
+  group_by(variable) |>
+  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm=T)*1000) |>
+  ungroup() |>
+  mutate(variable = fct_reorder(variable, avg_inf_adj_perchild)) |>
+  ggplot() +
+  geom_col(aes(x=variable, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
+  coord_flip()
 
+# Looks like TennCare spending per child is the highest on average in Tennessee.
 ```
 
 **Rubric**
