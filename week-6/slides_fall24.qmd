@@ -1,0 +1,298 @@
+---
+subtitle: "Visual Storytelling: Distributions and Associations"
+title: "Week 6 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+library(tidyverse)
+library(tidykids)
+library(palmerpenguins)
+
+tidykids <- tidykids |>
+  mutate(region = case_when(
+    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
+                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
+    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
+                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
+                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
+    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
+                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
+  ))|>
+  janitor::clean_names()
+
+starwars <- starwars |>
+  janitor::clean_names()
+
+penguins <- penguins |>
+  janitor::clean_names()
+
+titanic <- Titanic |>
+  as_tibble() |>
+  janitor::clean_names()
+```
+
+# Weekly Check In/ <br>Download `.zip`
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.smaller-font}
+- Weekly Check In
+- Review/ Foundational Skills
+   <!-- - Formatting Your `.Rmd` -->
+   <!-- - AI Policy Review -->
+   <!-- - Assignment 4, Bonus Q & `na.rm=T` -->
+- Reviewing Holder (2024)
+    <!-- -`geom_point()` -->
+    <!-- -`geom_jitter()` -->
+    <!-- -`geom_beeswarm()` -->
+- Distributions & Associations
+    - Single Distributions
+        - Histograms
+        - Box Plot
+      <!-- - Plus `geom_rug()` -->
+        - Density Plot
+    - Multiple Distributions
+        <!-- - Density Plots -->
+        <!--   - setting `alpha` -->
+        - Ridgeline Plots
+        - Violin Plots
+    - Associations
+        - Scatterplots
+            <!-- - Setting vs. Mapping: `shape` -->
+            <!-- - Setting vs. Mapping: `size` -->
+- Which `geom` when?
+- Intro to **Mini Project #1**
+- Looking Ahead
+
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Review/ <br>Foundational Skills
+
+## Formatting Your `.Rmd`
+<hr>
+- Improving the appearance of knitted files
+- **Goal 1**: Full data sets *should not be* printed in the final submission
+- **Goal 2**: Showing/printing code outputs to answer a question
+- **Goal 3**: Cleaning up warnings & messages
+
+## Formatting Your `.Rmd` - Goal 1
+<hr>
+- When reading in data, assign it to an object!
+
+:::{layout="[1,1]"}
+:::{column}
+**NO. Please. NO.**
+```{r, echo=TRUE}
+read_csv("tidykids.csv")
+```
+:::
+:::{column}
+**Much Better!**
+```{r, echo=TRUE}
+tidykids <- read_csv("tidykids.csv")
+```
+:::
+:::
+
+## Formatting Your `.Rmd` - Goal 1
+<hr>
+- Put `print(full_data_object)` calls in the console, not your `.Rmd`
+    - Use `View(full_data_object)` as an alternative
+
+**DEMO**
+
+## Formatting Your `.Rmd` - Goal 2
+<hr>
+
+:::{.smaller-font}
+- If you assign the wrangled data to an object, you should call the object in the chunk
+- Use something like `head()` if it's really long
+<br><br>
+- **Question:** During what year did TN spend the largest amount per child (adjusted for inflation) on PK-12 education?
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+```{r, echo=TRUE}
+tidykids |>
+  filter(state == "Tennessee" & variable == "PK12ed") |>
+  arrange(desc(inf_adj_perchild)) |>
+  head(5)
+```
+:::
+
+:::{column}
+```{r, echo=TRUE}
+question1 <- tidykids |>
+  filter(state == "Tennessee" & variable == "PK12ed") |>
+  arrange(desc(inf_adj_perchild)) |>
+  head(5)
+
+question1
+```
+:::
+:::
+:::
+
+## Formatting Your `.Rmd` - Goal 2
+<hr>
+
+:::{.smaller-font}
+- If you assign the plot to an object, you should call the object in the chunk
+<br><br>
+- **Question:** During what year did TN spend the largest amount per child (adjusted for inflation) on PK-12 education?
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+```{r, echo=TRUE}
+tidykids |>
+  filter(state == "Tennessee" & variable == "PK12ed") |>
+  ggplot(aes(x = year, y = inf_adj_perchild)) +
+  geom_line(aes(group=state))+
+  geom_point()
+```
+:::
+
+:::{column}
+```{r, echo=TRUE}
+plot1 <- tidykids |>
+  filter(state == "Tennessee" & variable == "PK12ed") |>
+  ggplot(aes(x = year, y = inf_adj_perchild)) +
+  geom_line(aes(group=state))+
+  geom_point()
+
+plot1
+```
+:::
+:::
+:::
+
+## Formatting Your `.Rmd` - Goal 3
+<hr>
+
+:::{.smaller-font}
+- Use `warning=FALSE` and `message=FALSE` in the chunk options to suppress the warnings and messages / clean up your output!
+- Think of this as essentially submitting a report.
+:::
+
+![](code-chunk-options.png)
+
+- **Question:** What will this show? What will be suppressed?
+
+# AI Policy Review
+
+## AI Policy Review
+<hr>
+
+:::{.smaller-font}
+- **From the syllabus:** “The author(s) would like to acknowledge the use of [Generative AI Tool Name], a language model developed by [Generative AI Tool Provider], in the preparation of this assignment. The [Generative AI Tool Name] was used in the following way(s) in this assignment: [e.g., brainstorming, grammatical correction, citation, which portion of the assignment].”
+
+    - Many of you are doing this well! Keep it up!
+    - All acknowledgements are by question rather than whole assignment, which I really like.
+
+- **Requests:**
+
+    - Please be very clear what part of your code it helped you with (e.g., your `mutate()` call) and what it helped you understand.
+    - GitHub Copilot counts as an AI tool, so please acknowledge it if you use it.
+    - Do not use any AI tool to complete the reflections. These are informal and used to help gauge where you are in your learning and how/when I might support you better.
+:::
+
+# The Importance of `na.rm=T`
+
+## The Importance of `na.rm=T`
+<hr>
+
+**Assignment 4, Bonus Question:** Which type of adjusted spending per child, on average in $1,000s, is highest for Tennessee? 
+
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+
+```{.r}
+summarize(avg_inf_adj_perchild = mean(inf_adj_perchild)*1000)
+```
+
+```{r, echo=F, warning=T}
+tidykids |>
+  filter(state == "Tennessee") |>
+  group_by(variable) |>
+  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild)*1000) |>
+  ungroup() |>
+  mutate(variable = fct_reorder(variable, replace_na(avg_inf_adj_perchild, 0))) |>
+  ggplot() +
+  geom_col(aes(x=variable, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar) +
+  theme(legend.position = "none")
+```
+Answer: PK12ed **Incorrect**
+
+:::
+
+:::{column}
+
+```{.r}
+summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm=T)*1000)
+```
+<br>
+```{r, echo=F}
+tidykids |>
+  filter(state == "Tennessee") |>
+  group_by(variable) |>
+  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm=T)*1000) |>
+  ungroup() |>
+  mutate(variable = fct_reorder(variable, avg_inf_adj_perchild)) |>
+  ggplot() +
+  geom_col(aes(x=variable, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar) +
+  theme(legend.position = "none")
+```
+Answer: Other_Health **Correct**
+
+:::
+:::
+
+# Reviewing Holder (2024)
+
+## Reviewing Holder (2024)
+<hr>
