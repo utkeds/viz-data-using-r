@@ -34,11 +34,7 @@ Last week in step 2, you were also asked to explore the tidykids data. It's a fi
 
 ## 3. Graph 1: An effective visualization of amounts
 
-Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., column) chart, keeping in mind the aforementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
-
-```{r}
-
-```
+Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., column) chart, keeping in mind the afrementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
 
 ## 4. Graph 2: Modifying Graph 1
 
