@@ -744,10 +744,193 @@ Dr.&nbsp;Kelly Boles
 <section id="reviewing-holder-2024-1" class="slide level2">
 <h2>Reviewing Holder (2024)</h2>
 <hr>
+<div class="smaller-font">
+<p><strong>Takeaways:</strong></p>
+<ol type="1">
+<li>Some audiences interpret particular geoms (generally those which focus on comparing amounts w/o acknowledging within-group variability) in ways that are not intended.</li>
+</ol>
+<ul>
+<li>at the least: not fully correct</li>
+<li>at the worst: harmful</li>
+</ul>
+<p>Holder proposes some alternatives. Today we’ll talk about:</p>
+<ul>
+<li><code>geom_point()</code></li>
+<li><code>geom_jitter()</code></li>
+<li><code>geom_beeswarm()</code></li>
+</ul>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<h3 id="comparing-amounts-geom_point">Comparing Amounts: <code>geom_point()</code></h3>
+<hr>
+<div class="extra-small-font quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode" id="cb13" data-code-line-numbers="|4-7|9-12|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#acknowledging within-group variability with +/- 1 SD error bars</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">summarize</span>(<span class="at">avg_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm=</span>T),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>            <span class="at">sd_bill_length =</span> <span class="fu">sd</span>(bill_length_mm, <span class="at">na.rm=</span>T)) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_reorder</span>(species, avg_bill_length)) <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> avg_bill_length)) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> avg_bill_length <span class="sc">-</span> sd_bill_length,</span>
+<span id="cb13-12"><a href="#cb13-12"></a>                    <span class="at">ymax =</span> avg_bill_length <span class="sc">+</span> sd_bill_length), <span class="at">width =</span> <span class="fl">0.2</span>)<span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb13-18"><a href="#cb13-18"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-21"><a href="#cb13-21"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-9-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="sourceCode" id="cb14" data-code-line-numbers="|3-6|11|3-6,12-15|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># `geom_point()` gives us overplotting but acknowleges each datum</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb14-7"><a href="#cb14-7"></a></span>
+<span id="cb14-8"><a href="#cb14-8"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>species)) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
+<span id="cb14-13"><a href="#cb14-13"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
+<span id="cb14-14"><a href="#cb14-14"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
+<span id="cb14-15"><a href="#cb14-15"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
+<span id="cb14-18"><a href="#cb14-18"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb14-19"><a href="#cb14-19"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb14-21"><a href="#cb14-21"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb14-22"><a href="#cb14-22"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb14-23"><a href="#cb14-23"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-24"><a href="#cb14-24"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-10-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<h4 id="geom_jitter"><code>geom_jitter()</code></h4>
+<hr>
+<div class="extra-small-font">
+<div class="sourceCode" id="cb15" data-code-line-numbers="|11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># `geom_jitter()` randomly moves points small bits along x and y to avoid overplotting</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb15-7"><a href="#cb15-7"></a></span>
+<span id="cb15-8"><a href="#cb15-8"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color=</span>species), <span class="at">width =</span> .<span class="dv">18</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
+<span id="cb15-13"><a href="#cb15-13"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
+<span id="cb15-14"><a href="#cb15-14"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
+<span id="cb15-15"><a href="#cb15-15"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
+<span id="cb15-18"><a href="#cb15-18"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb15-19"><a href="#cb15-19"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb15-24"><a href="#cb15-24"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-11-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<h3 id="geom_beeswarm"><code>geom_beeswarm()</code></h3>
+<hr>
+<div class="extra-small-font">
+<div class="sourceCode" id="cb16" data-code-line-numbers="|4,14|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># `geom_beeswarm()` systematically arranges points as close as possible</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># to avoid overplotting</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">library</span>(ggbeeswarm)</span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb16-10"><a href="#cb16-10"></a></span>
+<span id="cb16-11"><a href="#cb16-11"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a>  <span class="fu">geom_beeswarm</span>(<span class="fu">aes</span>(<span class="at">color=</span>species), <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
+<span id="cb16-16"><a href="#cb16-16"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
+<span id="cb16-17"><a href="#cb16-17"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
+<span id="cb16-18"><a href="#cb16-18"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb16-19"><a href="#cb16-19"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb16-20"><a href="#cb16-20"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
+<span id="cb16-21"><a href="#cb16-21"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb16-22"><a href="#cb16-22"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb16-23"><a href="#cb16-23"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb16-24"><a href="#cb16-24"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb16-25"><a href="#cb16-25"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb16-26"><a href="#cb16-26"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb16-27"><a href="#cb16-27"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-12-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section id="distributions-associations" class="title-slide slide level1 center">
+<h1>Distributions &amp; Associations</h1>
+
+</section>
+
+<section id="single-plots" class="title-slide slide level1 center">
+<h1>Single Plots</h1>
 <div class="footer footer-default">
 <p>UTK Educational Data Science</p>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 

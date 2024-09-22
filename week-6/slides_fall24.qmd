@@ -296,3 +296,255 @@ Answer: Other_Health **Correct**
 
 ## Reviewing Holder (2024)
 <hr>
+
+:::{.smaller-font}
+**Takeaways:**
+
+1. Some audiences interpret particular geoms (generally those which focus on comparing amounts w/o acknowledging within-group variability) in ways that are not intended.
+ - at the least: not fully correct
+ - at the worst: harmful
+ 
+Holder proposes some alternatives. Today we'll talk about:
+
+- `geom_point()`
+- `geom_jitter()`
+- `geom_beeswarm()`
+:::
+
+##
+### Comparing Amounts: `geom_point()`
+<hr>
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+```{.r code-line-numbers="|4-7|9-12|"}
+#acknowledging within-group variability with +/- 1 SD error bars
+
+penguins |>
+  group_by(species) |>
+  summarize(avg_bill_length = mean(bill_length_mm, na.rm=T),
+            sd_bill_length = sd(bill_length_mm, na.rm=T)) |>
+  ungroup() |>
+  mutate(species = fct_reorder(species, avg_bill_length)) |>
+  ggplot(aes(x = species, y = avg_bill_length)) +
+  geom_col(aes(fill=species)) +
+  geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
+                    ymax = avg_bill_length + sd_bill_length), width = 0.2)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=3, fig.width=5}
+#acknowledging within-group variability with +/- 1 SD error bars
+
+penguins |>
+  group_by(species) |>
+  summarize(avg_bill_length = mean(bill_length_mm, na.rm=T),
+            sd_bill_length = sd(bill_length_mm, na.rm=T)) |>
+  ungroup() |>
+  mutate(species = fct_reorder(species, avg_bill_length)) |>
+  ggplot(aes(x = species, y = avg_bill_length)) +
+  geom_col(aes(fill=species)) +
+  geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
+                    ymax = avg_bill_length + sd_bill_length), width = 0.2)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+:::
+
+:::{column}
+```{.r code-line-numbers="|3-6|11|3-6,12-15|"}
+# `geom_point()` gives us overplotting but acknowleges each datum
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_point(aes(color=species)) +
+  geom_segment(data=penguin_means,
+               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
+                   y = mean_bill_length, yend = mean_bill_length), 
+               color = "black", linewidth = 1)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=3, fig.width=5}
+# `geom_point()` gives us overplotting but acknowleges each datum
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_point(aes(color=species)) +
+  geom_segment(data=penguin_means,
+               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
+                   y = mean_bill_length, yend = mean_bill_length), 
+               color = "black", linewidth = 1)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+:::
+:::
+
+##
+#### `geom_jitter()`
+<hr>
+:::{.extra-small-font}
+```{.r code-line-numbers="|11|"}
+# `geom_jitter()` randomly moves points small bits along x and y to avoid overplotting
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_jitter(aes(color=species), width = .18, alpha = .5) +
+  geom_segment(data=penguin_means,
+               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
+                   y = mean_bill_length, yend = mean_bill_length), 
+               color = "black", linewidth = 1)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=3, fig.width=5}
+# `geom_jitter()` randomly moves points small bits along x and y to avoid overplotting
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_jitter(aes(color=species), width = .18, alpha = .5) +
+  geom_segment(data=penguin_means,
+               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
+                   y = mean_bill_length, yend = mean_bill_length), 
+               color = "black", linewidth = 1)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+:::
+
+##
+### `geom_beeswarm()`
+<hr>
+:::{.extra-small-font}
+```{.r code-line-numbers="|4,14|"}
+# `geom_beeswarm()` systematically arranges points as close as possible
+# to avoid overplotting
+
+library(ggbeeswarm)
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_beeswarm(aes(color=species), alpha = .5) +
+  geom_segment(data=penguin_means,
+               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
+                   y = mean_bill_length, yend = mean_bill_length), 
+               color = "black", linewidth = 1)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=3, fig.width=5}
+# `geom_beeswarm()` systematically arranges points as close as possible
+# to avoid overplotting
+library(ggbeeswarm)
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_beeswarm(aes(color=species), alpha = .5) +
+  geom_segment(data=penguin_means,
+               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
+                   y = mean_bill_length, yend = mean_bill_length), 
+               color = "black", linewidth = 1)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+:::
+
+# Distributions & Associations
+
+# Single Plots
