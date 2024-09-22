@@ -29,7 +29,7 @@ INTERPRETATION:
 
 ## 3. Graph 1: A scatterplot
 
-Create a scatterplot. For this plot, keep things simple. Use only a single state, one variable of your choice on the y-axis and year on the x. Note that in the next step, you'll extend this graph a bit. Note that the codebook is here: https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
+Create a scatterplot. For this plot, keep things simple. Use only a single state, one variable of your choice (i.e., filter `variable` to focus only on ONE expenditure type) on the y-axis and year on the x. Note that in the next step, you'll extend this graph a bit. Note that the codebook is here: https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
 
 Let the open-endedness be fun, not a burden here - in your work, I am looking for effort, not perfect code or output.
 
@@ -59,7 +59,7 @@ Copy the code above, adding either a connecting line(`geom_line`) or an interpol
 
 ## 6. Graph 4: Histogram
 
-This may be more of a challenge. Consulting the ggplot2 cheat sheet (see Canvas) as a support, create a histogram for a single variable. Change one of the axis labels and add a title and/or subtitle, again using the `labs()` function.
+This may be more of a challenge. Consulting the ggplot2 cheat sheet (see Canvas) as a support, create a histogram for a single variable (again, filter `variable` for a single type of expenditure). Change one of the axis labels and add a title and/or subtitle, again using the `labs()` function.
 
 ```{r}
 
@@ -70,7 +70,7 @@ This may be more of a challenge. Consulting the ggplot2 cheat sheet (see Canvas)
 The requirements are:
 
 - State the research question you are addressing with your plot
-- Use a variable that is different from any you used above
+- Use a variable (i.e., filter `variable` for a different expenditure type) that is different from any you used above
 - Include a different state than the one(s) you used above, or use multiple states
 - Share _what_ you planned to show and _how_ you showed it (after your code chunk and output)
 - Have fun with this! Any other changes (or absence of changes) are up to you!
@@ -86,6 +86,8 @@ WHAT I PLANNED TO SHOW:
 HOW I SHOWED IT:
 
 ## 8. Reflection
+How did this go? What were the pain points? What did you enjoy? What would you like to learn more about? 
+
 
 When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 4 in Canvas. 
 
