@@ -59,7 +59,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 4: Scavenger hunt
 
-*Which country-year combination has the highest life-expectancy? Arrange the appropriate variable in descending order to see for which country and year its value is greatest. Add a sentence interpreting what you are noticing from your output below the code chunk*.
+*Using the full dataset of observations, which country-year combination has the highest life-expectancy? Arrange the appropriate variable in descending order to see for which country and year its value is greatest. Add a sentence interpreting what you are noticing from your output below the code chunk*.
 
 ```{r}
 
