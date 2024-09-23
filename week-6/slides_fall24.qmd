@@ -75,7 +75,7 @@ titanic <- Titanic |>
     - Single Distributions
         - Histograms
         - Box Plot
-      <!-- - Plus `geom_rug()` -->
+      <!-- - Plus `geom_jitter()` -->
         - Density Plot
     - Multiple Distributions
         <!-- - Density Plots -->
@@ -548,3 +548,313 @@ penguins |>
 # Distributions & Associations
 
 # Single Plots
+
+## Single Plots: `geom_histogram()`
+<hr>
+:::{layout="[1,1]" .small-font}
+:::{column}
+
+:::{.fragment}
+- What is a *histogram*?
+:::
+
+:::{.fragment .smaller-font}
+- In `geom_histogram()`, you most typically use the following arguments:
+    - `aes(x = variable)`
+    - `binwidth = ?` 
+    OR 
+    - `bins = ?`
+:::
+:::
+
+:::{.fragment .smaller-font}
+
+:::{column}
+```{.r code-line-numbers="|4"}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth=1.5, fill = "#FF6A01", color = "black") +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Count") +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth=1.5, fill = "#FF6A01", color = "black") +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Count") +
+  theme(legend.position = "none")
+```
+
+$$\text{Freedman-Diaconis Rule: Bin Width} = \frac{2 * IQR}{\sqrt[3]{n}}$$
+:::
+:::
+:::
+
+## Single Plots: `geom_boxplot()`
+<hr>
+:::{layout="[1,1]" .small-font}
+:::{column}
+
+:::{.fragment}
+- What is a *boxplot*?
+:::
+
+![](boxplot_from_schwabish.png){.fragment}
+
+:::{.fragment .smaller-font}
+- In `geom_boxplot()`, you most typically use the following arguments:
+    - `aes(x = cat_variable, y = quant_variable)`
+:::
+:::
+
+:::{.fragment .smaller-font}
+
+:::{column}
+```{.r code-line-numbers="|4"}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_boxplot(width = 0.2, color = "#FF6A01") +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       y = "Bill Length (mm)") +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_boxplot(width = 0.2, color = "#FF6A01") +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       y = "Bill Length (mm)") +
+  theme(legend.position = "none")
+```
+:::
+:::
+:::
+
+##
+### `geom_boxplot()` + `geom_jitter()`
+<hr>
+:::{layout="[1,1]" .small-font}
+:::{column}
+
+- What is a *boxplot*?
+
+![](boxplot_from_schwabish.png)
+
+:::{.smaller-font}
+- In `geom_boxplot()`, you most typically use the following arguments:
+    - `aes(x = cat_variable, y = quant_variable)`
+
+:::
+:::
+
+:::{column}
+:::{.smaller-font}
+```{.r code-line-numbers="|4-5"}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_boxplot(width = 0.2, color = "#FF6A01") +
+  geom_jitter(width = 0.08, alpha = 0.4, color = "#FF6A01", size = 1) +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       y = "Bill Length (mm)") +
+  theme(legend.position = "none")
+```
+
+
+```{r, echo=F}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_boxplot(width = 0.2, color = "#FF6A01") +
+  geom_jitter(width = 0.08, alpha = 0.4, color = "#FF6A01", size = 1) +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       y = "Bill Length (mm)") +
+  theme(legend.position = "none")
+```
+:::
+:::
+:::
+
+## Single Plots: `geom_density()`
+<hr>
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+:::{.incremental}
+- Similar to something you may recognize:
+![](t_pdf_example.jpeg)
+- Estimates the shape of the sample distribution
+- Area under curve = 1
+- You can calculate what % of each part of distribution is in a certain range
+- Better for large datasets; amount of data in tails may be exaggerated in small datasets
+- Y axis is hard from some audiences to interpret
+
+:::
+:::
+
+:::{.fragment .smaller-font}
+
+:::{column}
+<br><br>
+```{.r code-line-numbers="|4"}
+penguins |>
+  filter(species == "Adelie") |> 
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(fill = "#FF6A01", color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(fill = "#FF6A01", color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  theme(legend.position = "none")
+```
+
+:::
+:::
+:::
+
+# Multiple Plots
+
+## Multiple Plots: `geom_density()`
+<hr>
+:::{.smaller-font}
+- You may want to compare distributions across groups
+
+```{.r code-line-numbers="|3"}
+penguins |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(aes(fill = species),color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))
+```
+<br>
+```{r, echo=F, fig.height=3, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(aes(fill = species),color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))
+```
+
+:::
+
+## Multiple Plots: Ridgeline
+<hr>
+:::{.extra-small-font}
+- To increase clarity, you may want to use a ridgeline plot
+- This is a type of density plot that stacks the densities on top of each other
+- Can compare without overlap
+
+```{.r code-line-numbers="|1|4-5"}
+library(ggridges)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y=species)) +
+  geom_density_ridges(aes(fill = species),color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))
+```
+
+```{r, echo=F, fig.height=3.5, fig.width=10}
+library(ggridges)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y=species)) +
+  geom_density_ridges(aes(fill = species),color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))
+```
+
+:::
+
+## Multiple Plots: `geom_violin()`
+<hr>
+:::{.extra-small-font}
+- Blend of boxplot and density plot
+- Shows the distribution of the data
+- May suggest data exists where it doesn't
+
+```{.r code-line-numbers="|3-4"}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y=species)) +
+  geom_violin(aes(fill = species),color = "black", alpha = .7) +
+  geom_jitter(width = 0.08, alpha = 0.4, color = "black", size = 1) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  coord_flip()
+```
+
+```{r, echo=F, fig.height=3.5, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y=species)) +
+  geom_violin(aes(fill = species),color = "black", alpha = .7) +
+  geom_jitter(width = 0.08, alpha = 0.4, color = "black", size = 1) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  coord_flip()
+```
+
+:::
+
+# Associations
+
+## Scatterplot: `geom_point()`
+<hr>
