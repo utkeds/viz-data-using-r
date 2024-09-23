@@ -1,0 +1,85 @@
+---
+title: "Mini Project 1"
+author: "Amazing Student"
+date: '2022-12-23'
+output: html_document
+---
+
+# Assignment Introduction
+
+Explore the U.S. News and World Report ranking data using the data created by Reiter. 
+
+Please briefly read about the *National University Rankings* Excel data set here:
+https://andyreiter.com/datasets/
+
+The three sections you must complete are as follows:
+
+1. *Explore*: Demonstrate different ways to explore a data set and become familiar with its contents.
+
+2. *Summarize*: Use various `dplyr` functions to filter, condense, aggregate, and transform the data set into various objects that can be used for visualization
+
+3. *Visualize*: Present simple but useful visualizations that depict interesting information in an aesthetically appealing way.
+
+This is quite open-ended; there are many different sheets (individual files) within the Excel workbook. Which you use is up to you. *Note*: `read_xlsx` and `read_excel` take a sheet argument. Code to prepare the 2020 (the last sheet) and national rankings (the first) are provided in this zip file.
+
+# Explore
+
+Here, load and then explore using non-data visualization means. How many rows and columns are there? What do you notice about the data - what is present and what is missing? Add 3-5 bullet pointed notes below one or more code chunks for this step.
+
+# Summarize
+
+Once you are familiar with the data, think of two research questions you think the data can answer. Write the questions below and *then* use summarize (and other code) to just begin to explore them. Note: you will build upon the summaries in the Visualization section. Note, this doesn't have to be very fleshed out or rigorous: this is about narrowing your exploration in light of questions you could ask of the data.
+
+Question 1: 
+
+```{r}
+
+```
+
+Question 2: 
+
+```{r}
+
+```
+
+# Visualize
+
+Keeping in mind all of the principles of visualization we have learned, all of the `ggplot` functions we have practiced, and all of the visualization code you have seen, develop a visualization that uses the data above. Each visualization should:
+
+1. Present the information clearly
+2. Use custom color palette in at least one visualization
+3. Use `theme_minimal` or another theme
+4. Have a title, using `labs()`
+
+Visualization 1 (to answer RQ 1)
+
+```{r}
+
+```
+
+Visualization 2 (to answer RQ 2)
+
+```{r}
+
+```
+
+## Reflection
+
+Please add a few sentences reflecting on what went well and what was a challenge.
+
+## Knit and submit
+
+Be sure to add your name and date. This time, please change the title to something of your choosing that you think captures the work you have done.
+
+Please submit your work as an HTML file in Canvas for Mini Project 1! Good work!
+
+## Grading Criteria
+
+| Criteria                                                            | Yes/No |
+|:--------------------------------------------------------------------|:-------|
+| The file knits without errors                                       |   []   |
+| Functions to explore the data are used correctly                    |   []   |
+| The data wrangling answers each question the student asks           |   []   |
+| The information each visualization depicts is clear                 |   []   |
+| Each visualization employees meet aformentioned requirements        |   []   |
+| Slack has been used either to ask/answer a question at least once   |   []   |
