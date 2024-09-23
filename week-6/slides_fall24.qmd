@@ -858,3 +858,166 @@ penguins |>
 
 ## Scatterplot: `geom_point()`
 <hr>
+
+:::{.smaller-font}
+
+```{.r}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species), alpha = .7, size=3) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species), alpha = .7, size=3) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.smaller-font}
+- Can map a third variable to `shape`
+
+```{.r}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape=sex), alpha = .7, size=3) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape=sex), alpha = .7, size=3) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.smaller-font}
+- Can map a third variable to `shape` or `size`
+
+```{.r}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape=sex), alpha = .7, size=3) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, size=body_mass_g), alpha = .7) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.extra-small-font}
+- Add a trendline, correlation coefficient, and p-value
+
+```{.r code-line-numbers="|6-7|"}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_cor()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_cor()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+:::
+
+# Which `geom_` when?
+
+## Which `geom_` when?
+<hr>
+
+:::{.smaller-font}
+- When to use **columns or bars**?
+  - Visualizing amounts across categories
+  - *Stacking*: Useful when the sum of the amounts represented by the bars if of interest
+  - *Dodging* (grouping): Useful when we want to draw out comparisons within a category
+  - *Faceting*: Useful in similar cases as dodging
+- When to use **points**?
+  - associations between x and y (and z)
+  - certain amounts (when the bars are all similar lengths)
+  - for time-related data
+- When to use **histograms, density plots, and the like**?
+  - to visualize the distribution of data
+  - can also be used to visualize multiple distributions
+
+:::
+
+# Stop Recording
+
+# Start New Recording
+  
+# Mini-Project #1
