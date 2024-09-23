@@ -87,8 +87,8 @@ titanic <- Titanic |>
             <!-- - Setting vs. Mapping: `shape` -->
             <!-- - Setting vs. Mapping: `size` -->
 - Which `geom` when?
-- Intro to **Mini Project #1**
 - Looking Ahead
+- Intro to **Mini Project #1**
 
 :::
 
@@ -1016,8 +1016,45 @@ penguins |>
 
 :::
 
+# Looking Ahead
+
+## Looking Ahead:
+<hr>
+- Readings:
+    - Wilke (2019), Chapters 13-14
+    - Skim plots in Schwabish (2021), Chapter 5
+- Weekly Assignment:
+    - Graphing Distributions and Scatterplots
+
 # Stop Recording
 
 # Start New Recording
   
 # Mini-Project #1
+
+## Mini-Project #1
+<hr>
+:::{.smaller-font}
+- Data from the U.S. News and World Report National University Rankings
+- **Step 1:** ***Explore*** <br>Think about the scavenger hunt from a few assignments ago. What variables do you have? What does each row represent?
+- **Step 2:** ***Summarize*** <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.
+- **Step 3:** ***Visualize*** <br>Create two visualizations to answer your RQs.
+<br><br>
+**Due: October 11th, 11:59 PM**
+:::
+
+## Mini-Project #1
+<hr>
+:::{.smaller-font}
+- Rubric:
+    - Knits without errors
+    - Functions to explore/wrangle the data are used *correctly*
+    - Data wrangling answers the research questions that are posed
+    - The information each visualization conveys is clear
+    - Each viz meets the requirements set out in the `.Rmd`
+        - Custom color
+        - Use a theme
+        - Use `labs`
+    - Complete reflections
+    - Pose/answer at least one question in the Slack channel
+:::
