@@ -109,6 +109,12 @@ titanic <- Titanic |>
 
 # Review/ <br>Foundational Skills
 
+## `View()`
+<hr>
+- R's spreadsheet-like viewer
+
+**Demo**
+
 ## Formatting Your `.Rmd`
 <hr>
 - Improving the appearance of knitted files
