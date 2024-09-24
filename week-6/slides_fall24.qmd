@@ -936,7 +936,7 @@ penguins |>
 ```{.r}
 penguins |>
   ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color = species, shape=sex), alpha = .7, size=3) +
+  geom_point(aes(color = species, size= body_mass_g), alpha = .7) +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01"))+
@@ -949,7 +949,7 @@ penguins |>
 ```{r, echo=FALSE, fig.height=4, fig.width=10}
 penguins |>
   ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color = species, size=body_mass_g), alpha = .7) +
+  geom_point(aes(color = species, size= body_mass_g), alpha = .7) +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01"))+

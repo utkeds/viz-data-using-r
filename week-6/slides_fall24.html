@@ -1285,7 +1285,7 @@ Dr.&nbsp;Kelly Boles
 </ul>
 <div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape=</span>sex), <span class="at">alpha =</span> .<span class="dv">7</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">size=</span> body_mass_g), <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
 <span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
 <span id="cb26-5"><a href="#cb26-5"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
 <span id="cb26-6"><a href="#cb26-6"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
