@@ -1,0 +1,416 @@
+school,public_private,overall_score,peer_assessment_score,graduation_and_retention_rank,average_first_year_retention_rate,predicted_graduation_rate,actual_graduation_rate,over_underperformance,pell_gradrate,social_mobility_rank,faculty_resources_rank,percent_of_classes_under_20,percent_of_classes_of_50_or_more_students,student_faculty_ratio,selectivity_rank,sat_act_25th_percentile,sat_act_75th_percentile,first_year_students_in_top_10_percent_of_high_school_class,acceptance_rate,financial_resources_rank,average_alumni_giving_rate
+Princeton University (NJ),private,100,4.9,2,98,95,96,1,93,186,7,74,10,5,11,1440,1570,91,5,12,59
+Harvard University (MA),private,96,4.9,2,97,97,98,1,97,186,6,72,10,6,2,1460,1580,94,5,8,31
+Columbia University (NY),private,94,4.7,4,99,94,96,2,93,138,3,82,9,6,2,1450,1560,96,6,13,30
+Massachusetts Institute of Technology,private,94,4.9,10,99,95,94,-1,92,241,9,71,12,3,2,1500,1570,97,7,2,33
+Yale University (CT),private,94,4.8,1,99,97,97,NA,94,285,11,73,9,6,2,1450,1560,95,6,1,27
+Stanford University (CA),private,93,4.9,10,98,94,94,NA,93,241,13,69,11,5,7,1420,1570,96,4,5,30
+University of Chicago,private,93,4.6,10,99,98,94,-4,89,335,1,79,6,5,1,33,35,99,7,7,40
+University of Pennsylvania,private,93,4.6,4,98,98,95,-3,92,241,5,71,8,6,7,1440,1560,96,8,14,38
+Northwestern University (IL),private,92,4.5,10,98,97,95,-2,94,251,3,78,5,6,11,33,35,92,8,9,31
+Duke University (NC),private,91,4.5,8,98,98,96,-2,95,254,1,71,7,6,7,33,35,95,9,15,32
+Johns Hopkins University (MD),private,91,4.7,18,97,97,94,-3,94,241,18,74,9,7,2,33,35,96,11,3,39
+California Institute of Technology,private,89,4.7,19,98,98,92,-6,96,345,9,68,9,3,18,1530,1580,96,7,3,27
+Dartmouth College (NH),private,89,4.4,8,97,97,95,-2,92,303,8,62,7,7,11,1420,1560,95,9,16,43
+Brown University (RI),private,86,4.5,4,98,96,95,-1,91,224,16,70,10,6,7,1420,1550,96,8,26,31
+University of Notre Dame (IN),private,84,4.2,4,98,98,97,-1,95,322,14,62,10,10,11,33,35,89,18,27,42
+Vanderbilt University (TN),private,84,4.3,19,97,98,94,-4,90,291,16,66,7,7,11,33,35,89,10,11,26
+Cornell University (NY),private,83,4.6,10,97,97,95,-2,92,224,26,57,17,9,18,1390,1540,83,11,18,26
+Rice University (TX),private,83,4.2,19,97,97,95,-2,92,204,11,72,8,6,11,33,35,87,11,23,30
+Washington University in St. Louis,private,81,4.1,10,97,98,95,-3,91,381,14,64,12,7,28,32,35,80,15,5,24
+University of California--Los Angeles,public,80,4.3,27,97,87,90,3,88,13,27,51,22,18,23,1270,1520,97,14,20,7
+Emory University (GA),private,79,4.1,30,94,91,90,-1,88,200,20,60,13,9,23,1350,1520,84,19,16,21
+University of California--Berkeley,public,78,4.7,23,97,88,91,3,89,70,44,53,19,20,18,1300,1530,98,15,45,8
+University of Southern California,private,78,3.9,23,96,92,92,NA,91,147,39,59,13,9,30,1350,1530,90,13,22,41
+Georgetown University (DC),private,77,4.2,10,96,98,94,-4,94,241,39,61,6,11,18,1370,1530,89,15,33,31
+Carnegie Mellon University (PA),private,75,4.3,30,97,94,89,-5,82,303,22,66,12,13,17,1450,1550,87,17,38,14
+University of Michigan--Ann Arbor,public,75,4.5,23,97,90,92,2,85,291,48,57,18,15,40,1330,1510,79,23,40,17
+Wake Forest University (NC),private,74,3.6,33,94,96,89,-7,85,360,21,57,1,10,33,29,33,76,29,10,24
+University of Virginia,public,73,4.2,10,97,98,94,-4,91,328,39,55,15,15,23,1330,1500,90,26,47,20
+Georgia Institute of Technology,public,72,4.3,40,97,89,87,-2,81,224,42,45,14,21,18,1390,1540,89,23,58,19
+New York University,private,72,4,52,93,84,85,1,84,115,24,61,9,9,40,1310,1510,71,20,28,11
+Tufts University (MA),private,72,3.8,19,97,98,93,-5,91,328,27,69,7,9,23,31,34,78,15,31,22
+U. of North Carolina--Chapel Hill,public,72,4.1,27,97,90,90,NA,86,165,85,38,12,13,44,27,33,78,22,33,19
+University of Rochester (NY),private,72,3.5,40,96,90,86,-4,81,159,19,74,9,10,33,1320,1500,75,29,23,23
+University of California--Santa Barbara,public,71,3.6,58,93,84,87,3,84,9,22,50,18,17,33,1230,1480,100,32,72,17
+University of Florida,public,71,3.8,33,97,82,90,8,87,34,77,50,14,18,47,1280,1440,77,39,47,14
+University of California--Irvine,public,70,3.8,46,93,78,83,5,81,3,58,53,23,18,51,1180,1440,99,29,61,7
+Boston College,private,69,3.7,23,95,95,92,-3,91,270,42,49,6,11,28,1320,1490,78,28,65,24
+University of California--San Diego,public,69,3.9,40,95,85,86,1,84,21,147,43,32,19,30,1250,1470,100,30,23,4
+University of California--Davis,public,68,3.9,48,93,84,86,2,84,9,136,36,29,20,51,1150,1410,100,41,31,7
+Boston University,private,67,3.7,40,93,85,88,3,88,270,30,62,12,10,40,1330,1500,65,22,49,10
+Brandeis University (MA),private,67,3.6,36,93,87,88,1,84,138,48,57,11,10,48,1280,1500,56,31,49,19
+Case Western Reserve Univ. (OH),private,67,3.7,58,93,91,85,-6,82,214,34,59,13,11,30,30,34,70,29,40,19
+College of William & Mary (VA),public,67,3.8,27,95,95,91,-4,88,354,54,47,6,12,33,1310,1490,77,37,110,30
+Northeastern University (MA),private,67,3.5,36,97,86,88,2,88,254,24,67,6,14,27,32,34,77,19,72,11
+Tulane University (LA),private,67,3.6,58,93,81,85,4,77,365,27,62,6,8,33,30,33,63,17,33,17
+Univ. of Wisconsin--Madison,public,65,4.1,40,95,84,87,3,84,297,147,45,22,17,59,27,32,54,52,61,12
+Villanova University (PA),private,65,3.4,30,96,85,91,6,94,214,110,42,2,11,40,1300,1470,72,29,110,29
+University of Illinois--Urbana-Champaign,public,64,3.9,48,93,79,84,5,81,186,110,38,20,20,70,26,32,48,62,58,7
+University of Texas--Austin,public,64,4.1,58,95,84,83,-1,73,134,182,38,26,19,33,1230,1480,85,39,76,10
+Lehigh University (PA),private,63,3.3,36,95,87,87,NA,84,270,44,50,12,9,51,1270,1450,58,22,55,17
+Pepperdine University (CA),private,63,3.4,52,91,80,83,3,84,96,36,70,3,14,65,1220,1420,57,36,65,9
+Rensselaer Polytechnic Inst. (NY),private,63,3.5,58,93,88,86,-2,80,270,34,52,10,13,44,1330,1500,64,43,69,10
+University of Georgia,public,63,3.6,46,95,78,86,8,80,159,69,45,11,17,62,1240,1410,60,49,123,13
+Ohio State University--Columbus,public,62,3.8,52,94,77,84,7,76,254,271,27,27,19,57,27,32,63,52,76,15
+Santa Clara University (CA),private,62,3.1,33,95,80,91,11,88,315,58,46,1,11,65,1270,1440,49,50,76,19
+Syracuse University (NY),private,62,3.4,69,91,74,83,9,80,90,48,57,9,15,95,1180,1370,39,50,83,11
+Florida State University,public,61,3.3,73,93,70,83,13,79,80,58,57,12,21,90,1200,1350,39,37,231,19
+Pennsylvania State U.--Univ. Park,public,61,3.7,48,93,73,85,12,77,348,256,31,17,14,107,1160,1360,43,56,49,13
+Purdue University--West Lafayette (IN),public,61,3.8,88,92,76,81,5,74,270,95,38,20,13,83,1180,1410,46,58,93,18
+University of Miami (FL),private,61,3.5,64,92,88,82,-6,78,270,69,50,9,12,51,1250,1430,55,32,28,12
+University of Pittsburgh,public,61,3.6,64,93,80,83,3,76,335,120,45,18,14,59,1270,1430,55,59,40,7
+Rutgers University--New Brunswick (NJ),public,60,3.4,73,93,68,80,12,78,59,210,42,21,16,90,1190,1410,38,60,65,7
+University of Washington,public,60,3.9,52,94,88,84,-4,79,176,346,29,25,19,65,1220,1460,58,49,28,12
+Loyola Marymount University (CA),private,59,3.1,73,90,75,84,9,80,241,54,53,1,10,83,1210,1390,44,47,93,20
+Southern Methodist University (TX),private,59,3.3,82,91,80,78,-2,67,360,36,59,9,11,59,29,33,49,51,72,18
+University of Connecticut,public,59,3.3,58,93,76,85,9,78,265,85,52,16,16,74,1210,1420,50,49,69,9
+Univ. of Maryland--College Park,public,59,3.7,40,95,86,86,NA,80,322,182,45,17,18,44,1290,1480,75,47,103,7
+Univ. of Massachusetts--Amherst,public,59,3.4,88,91,70,80,10,75,186,58,49,18,17,95,1200,1390,32,60,117,9
+Worcester Polytechnic Inst. (MA),private,59,3,36,96,88,87,-1,88,270,30,64,11,13,48,1300,1460,64,42,83,10
+Clemson University (SC),public,58,3.4,64,93,82,83,1,71,348,95,55,14,16,65,27,32,56,47,140,23
+George Washington University (DC),private,58,3.5,64,92,86,82,-4,78,322,85,53,11,13,51,1280,1460,56,42,61,8
+Texas A&M University--College Station,public,58,3.7,73,91,78,82,4,76,96,300,21,27,20,79,1170,1380,63,67,103,17
+University of Minnesota--Twin Cities,public,58,3.7,82,93,78,80,2,72,251,256,38,20,17,65,26,31,50,52,45,8
+Fordham University (NY),private,57,3.1,78,91,80,83,3,79,251,54,51,1,15,70,1250,1430,44,46,110,17
+Stevens Institute of Technology (NJ),private,57,2.9,52,95,84,87,3,91,108,169,39,10,10,33,1330,1480,72,41,132,17
+Virginia Tech,public,57,3.7,52,93,78,84,6,77,322,227,27,22,14,101,1180,1390,38,65,123,12
+American University (DC),private,56,3.2,82,89,81,80,-1,77,176,44,55,1,12,90,1220,1380,31,32,93,6
+Brigham Young Univ.--Provo (UT),private,56,3.2,73,89,80,83,3,78,291,54,45,12,20,62,26,31,54,64,200,13
+Baylor University (TX),private,55,3.2,103,89,76,79,3,69,297,58,50,9,14,79,26,31,40,52,103,14
+Binghamton University--SUNY,public,55,3,69,92,77,82,5,79,108,64,46,14,19,62,1310,1440,54,40,219,6
+Gonzaga University (WA),private,55,3.1,48,94,78,86,8,78,254,182,37,1,11,95,1183,1350,41,66,164,14
+Indiana University--Bloomington,public,55,3.7,92,91,74,78,4,66,303,160,37,17,16,111,1150,1360,35,77,183,11
+University at Buffalo--SUNY,public,55,3.1,107,87,66,76,10,73,66,120,29,23,14,125,1160,1330,35,56,117,11
+Colorado School of Mines,public,54,3.5,82,93,83,81,-2,77,303,256,29,21,15,48,1290,1450,59,49,103,10
+Elon University (NC),private,54,3,69,90,80,83,3,79,370,64,52,0,12,122,1150,1330,25,72,164,24
+Marquette University (WI),private,54,3.1,78,89,77,85,8,76,315,110,48,8,14,101,24,30,36,82,123,14
+Michigan State University,public,54,3.5,82,92,70,80,10,71,241,256,24,23,16,152,1110,1310,29,78,93,8
+North Carolina State U.--Raleigh,public,54,3.2,78,94,79,81,2,76,224,194,35,16,14,70,1250,1390,48,47,103,10
+University of California--Santa Cruz,public,54,3.1,95,90,81,76,-5,74,2,246,36,30,19,51,1170,1400,96,48,123,3
+University of Iowa,public,54,3.5,122,86,69,73,4,64,335,69,51,14,15,125,23,28,30,83,83,8
+Clark University (MA),private,53,2.8,92,87,75,77,2,74,125,30,59,3,10,163,1200,1390,39,59,140,17
+Miami University--Oxford (OH),public,53,3.2,82,91,73,80,7,71,369,147,33,11,17,83,26,31,34,75,254,18
+Stony Brook--SUNY,public,53,3.3,117,90,67,74,7,76,24,309,36,25,18,74,1230,1420,47,42,76,6
+University of California--Riverside,public,53,3.1,107,90,74,75,1,75,1,280,21,30,21,79,1110,1330,94,51,110,2
+University of Delaware,public,53,3.2,69,91,78,82,4,75,360,169,34,16,12,113,1170,1350,34,62,83,9
+University of San Diego,private,53,3,88,89,78,80,2,75,254,85,42,0.1,13,95,1190,1360,33,53,110,12
+Drexel University (PA),private,52,3.1,127,88,70,74,4,69,270,69,53,10,11,107,1170,1380,33,77,61,6
+New Jersey Inst. of Technology,public,52,2.7,176,88,56,65,9,60,42,44,37,3,16,101,1190,1380,36,64,93,8
+Saint Louis University,private,52,3,103,90,76,78,2,66,297,95,47,9,9,74,25,31,48,58,83,10
+Texas Christian University,private,52,2.9,78,91,80,83,3,76,370,85,44,5,13,83,26,30,50,41,148,18
+University of Denver,private,52,3,98,87,78,77,-1,76,270,77,55,6,12,83,26,31,42,56,81,9
+University of San Francisco,private,52,3,122,84,66,75,9,79,96,95,44,2,13,125,1130,1330,38,65,132,7
+Yeshiva University (NY),private,52,2.8,64,90,84,83,-1,78,285,95,60,1,7,139,22,30,NA,60,93,16
+Auburn University (AL),public,51,3.3,98,91,74,78,4,64,380,182,35,17,19,90,25,30,32,75,140,13
+Creighton University (NE),private,51,3,95,89,78,79,1,70,315,110,46,5,11,101,24,30,37,71,103,13
+Howard University (DC),private,51,3.2,182,89,61,62,1,62,4,227,54,6,8,152,1140,1285,27,32,49,11
+Loyola University Chicago,private,51,3.2,112,84,70,74,4,66,84,136,38,6,14,113,25,30,37,68,140,6
+Rochester Inst. of Technology (NY),private,51,3.4,137,89,71,70,-1,67,108,147,49,5,13,83,1200,1400,37,66,123,6
+Temple University (PA),public,51,3.1,117,90,59,73,14,67,105,182,39,8,14,152,1130,1320,23,59,148,6
+University of California--Merced,public,51,2.7,176,83,43,66,23,65,7,246,28,27,20,351,1000,1190,NA,66,93,13
+University of Colorado--Boulder,public,51,3.7,137,87,71,71,NA,59,359,210,44,17,18,107,1150,1360,29,82,81,6
+University of Oregon,public,51,3.4,122,87,65,73,8,68,214,136,39,20,16,177,1080,1290,22,83,148,8
+Univ. of South Carolina,public,51,3.2,107,88,71,77,6,69,322,169,37,17,17,95,1190,1360,29,63,200,14
+University of South Florida,public,51,2.8,127,90,61,73,12,72,11,256,45,12,22,111,1170,1330,34,43,211,12
+University of Tennessee,public,51,3.3,137,86,76,73,-3,64,138,169,30,15,17,83,25,31,36,78,110,11
+University of Utah,public,51,3.2,145,90,65,70,5,62,186,227,37,19,17,143,22,29,NA,67,44,11
+Arizona State University--Tempe,public,50,3.4,154,87,62,69,7,62,147,194,38,18,20,134,1130,1360,33,85,164,10
+Clarkson University (NY),private,50,2.7,112,89,74,76,2,74,59,110,52,18,13,113,1160,1350,35,71,148,17
+Illinois Institute of Technology,private,50,2.8,112,92,71,72,1,66,61,85,46,9,12,74,1220,1400,49,58,140,7
+University of Arizona,public,50,3.6,195,81,65,64,-1,60,70,136,45,16,15,170,21,28,32,84,83,9
+Iowa State University,public,49,3.3,112,88,70,75,5,67,270,227,29,20,19,152,22,28,27,91,183,11
+SUNY Col. of Envir. Sci. and Forestry,public,49,2.6,112,82,73,77,4,73,176,110,44,10,13,143,1120,1310,25,61,83,18
+University of Tulsa (OK),private,49,2.7,122,89,87,74,-13,58,376,36,60,5,11,57,25,32,65,41,83,19
+University of Vermont,public,49,3,107,86,79,76,-3,72,234,194,49,13,18,101,1180,1360,37,68,72,9
+Chapman University (CA),private,48,2.6,88,90,83,79,-4,80,186,120,48,4,13,90,1190,1370,37,54,132,8
+DePaul University (IL),private,48,3,127,85,62,72,10,66,84,160,39,1,15,173,1080,1290,NA,68,231,6
+Simmons University (MA),private,48,2.4,117,83,69,80,11,75,70,227,69,2,11,143,1130,1300,29,70,83,13
+University of New Hampshire,public,48,2.9,95,86,66,77,11,73,204,246,41,12,19,190,1090,1280,20,77,164,7
+University of the Pacific (CA),private,48,2.6,154,84,67,68,1,71,39,85,50,5,13,139,1120,1350,33,63,55,6
+Drake University (IA),private,47,2.8,98,88,80,78,-2,67,365,95,50,4,10,95,24,30,39,68,148,10
+University of Kansas,public,47,3.4,192,82,69,65,-4,50,377,120,49,13,17,122,23,29,28,92,93,13
+Duquesne University (PA),private,46,2.7,103,86,72,78,6,69,159,194,40,9,14,143,1140,1280,26,72,200,7
+Rutgers University--Newark (NJ),public,46,2.7,154,86,55,64,9,66,4,227,28,17,16,295,1020,1190,22,63,93,5
+University of Dayton (OH),private,46,2.7,92,90,77,79,2,70,365,147,40,3,14,198,25,30,25,72,110,13
+University of Illinois--Chicago,public,46,3,219,80,54,59,5,57,14,246,35,20,18,234,1020,1220,28,76,38,2
+University of Kentucky,public,46,3.2,182,83,70,66,-4,53,345,169,37,15,16,125,23,29,31,94,65,11
+University of La Verne (CA),private,46,2,161,84,50,69,19,69,4,120,65,0.2,12,265,1020,1205,20,51,117,5
+University of Oklahoma,public,46,3.1,145,90,68,68,NA,56,328,160,45,11,18,122,23,29,32,78,174,9
+The Catholic University of America (DC),private,45,2.8,127,86,74,75,1,70,370,160,60,4,7,159,1140,1320,NA,84,83,10
+Oregon State University,public,45,3.1,176,84,62,67,5,59,176,280,31,20,17,163,1080,1310,28,81,132,9
+Seattle University,private,45,2.6,107,85,71,73,2,67,303,136,62,1,11,134,1130,1320,27,76,123,6
+Seton Hall University (NJ),private,45,3,161,84,68,70,2,63,147,182,46,2,13,139,1150,1310,29,70,148,9
+University of Cincinnati,public,45,2.9,150,87,62,68,6,59,291,227,38,15,16,125,24,29,24,73,140,9
+Univ. of Missouri,public,45,3.2,145,87,71,69,-2,55,354,227,39,17,17,125,23,29,30,78,200,12
+Univ. of Nebraska--Lincoln,public,45,3.2,154,83,70,69,-1,59,303,271,35,18,18,143,22,29,26,80,148,18
+University of St. Thomas (MN),private,45,2.5,98,88,73,77,4,71,270,147,40,2,14,125,24,29,21,82,174,12
+Michigan Technological University,public,44,2.7,161,84,70,68,-2,61,265,69,47,13,13,113,1170,1360,32,74,148,8
+Samford University (AL),private,44,2.6,103,89,79,76,-3,65,360,64,63,4,13,139,23,29,33,82,174,8
+San Diego State University,public,44,3,117,90,58,75,17,70,66,367,28,24,25,163,1110,1310,29,34,370,6
+University at Albany--SUNY,public,44,2.8,167,83,59,64,5,64,27,210,42,14,19,190,1100,1260,20,52,164,6
+University of St. Joseph (CT),private,44,2.2,209,76,47,63,16,52,96,48,74,0,8,265,1030,1210,25,72,148,13
+University of Texas--Dallas,public,44,2.9,141,87,68,75,7,74,56,320,22,25,24,79,1220,1440,37,81,265,3
+George Mason University (VA),public,43,3.1,137,88,63,70,7,68,125,328,31,14,17,163,1120,1320,18,81,244,3
+Louisiana State University--Baton Rouge,public,43,2.9,167,84,67,67,NA,55,345,182,41,17,20,134,23,29,23,74,148,13
+Mercer University (GA),private,43,2.5,167,88,68,66,-2,57,134,77,55,5,13,107,1180,1340,37,72,183,11
+The New School (NY),private,43,2.9,161,82,69,72,3,68,147,95,91,1,9,307,1150,1360,17,57,103,2
+Quinnipiac University (CT),private,43,2.6,98,87,69,77,8,73,348,169,45,2,14,184,1090,1260,20,72,183,4
+Thomas Jefferson University (PA),private,43,2.4,187,83,64,64,NA,53,147,120,65,4,13,204,1060,1240,25,58,21,3
+University of Alabama,public,43,3.1,141,87,75,72,-3,58,377,295,34,23,22,113,23,31,36,59,231,23
+University of Arkansas,public,43,3,187,83,67,66,-1,52,370,194,46,18,19,134,23,29,25,77,183,21
+Valparaiso University (IN),private,43,2.8,150,83,69,71,2,59,254,194,49,4,11,163,1070,1270,29,89,200,14
+Hofstra University (NY),private,42,2.8,192,81,70,63,-7,54,303,77,48,2,13,125,1150,1330,28,63,132,12
+Kansas State University,public,42,3,182,85,66,64,-2,48,364,210,46,12,18,159,22,28,27,94,148,17
+University of Mississippi,public,42,3,192,86,64,64,NA,48,354,194,51,14,17,163,21,29,25,88,123,10
+Virginia Commonwealth University,public,42,2.9,182,85,63,67,4,65,45,300,37,15,18,211,1070,1260,17,77,148,5
+Adelphi University (NY),private,41,2.3,154,82,60,70,10,66,90,147,45,2,12,279,1080,1270,26,74,164,8
+Belmont University (TN),private,41,2.7,141,83,77,73,-4,63,348,85,45,0.1,13,113,24,29,30,82,283,8
+Colorado State University,public,41,3.1,145,85,67,71,4,65,234,351,27,24,16,204,1070,1280,20,84,183,10
+Montclair State University (NJ),public,41,2.2,167,82,48,71,23,69,23,194,37,2,17,356,990,1170,11,71,303,3
+Rowan University (NJ),public,41,2.4,141,85,59,72,13,61,204,210,39,1,17,256,1005,1225,NA,73,183,3
+Rutgers University--Camden (NJ),public,41,2.7,209,86,52,58,6,52,62,95,42,8,15,323,1000,1180,15,71,117,4
+St. John Fisher College (NY),private,41,2.1,127,86,63,73,10,67,125,136,44,1,12,204,1080,1250,24,64,244,8
+University of Alabama--Birmingham,public,41,2.9,242,82,62,58,-4,48,147,271,41,17,19,143,21,29,28,92,33,7
+University of Central Florida,public,41,2.8,127,90,62,73,11,70,70,362,26,25,30,113,1160,1340,34,43,350,3
+University of Hawaii--Manoa,public,41,2.8,226,78,62,59,-3,56,134,147,52,12,10,211,1055,1240,25,83,58,5
+Univ. of Maryland--Baltimore County,public,41,3,167,87,66,68,2,67,204,309,36,13,19,113,1190,1360,23,58,183,4
+University of Rhode Island,public,41,2.9,176,84,62,67,5,61,204,147,45,10,16,301,1090,1260,18,71,211,5
+Washington State University,public,41,3.1,195,79,60,59,-1,51,176,256,33,21,16,215,1020,1210,38,77,148,12
+Gallaudet University (DC),private,40,2.9,313,71,51,47,-4,46,45,30,97,0,6,375,15,20,NA,57,18,NA
+Missouri Univ. of Science & Tech--Rolla.,public,40,2.7,182,84,71,63,-8,54,254,160,46,16,19,74,25,31,40,84,231,11
+St. John's University (NY),private,40,2.8,209,83,60,61,1,58,39,182,32,5,17,190,1070,1270,21,73,244,4
+University of Detroit Mercy,private,40,2.2,176,85,61,65,4,54,224,77,54,4,11,215,1050,1250,19,83,117,8
+University of Idaho,public,40,2.8,230,80,57,59,2,53,105,110,55,9,15,265,1010,1220,18,77,132,9
+Univ. of Massachusetts--Lowell,public,40,2.5,203,86,61,63,2,56,147,136,47,7,17,143,1150,1320,25,72,183,11
+Biola University (CA),private,39,2,127,86,70,73,3,69,34,256,54,5,14,170,1060,1260,47,87,219,6
+Chatham University (PA),private,39,2.3,219,81,62,63,1,56,42,136,65,2,10,215,1040,1250,29,55,132,11
+Ohio University,public,39,3,187,80,58,64,6,54,297,300,32,16,17,184,21,26,17,78,219,4
+Pacific University (OR),private,39,2.4,187,79,62,65,3,52,186,120,58,3,11,215,1060,1250,NA,85,164,8
+Union University (TN),private,39,1.9,150,86,69,70,1,57,96,48,75,0,9,101,23,30,34,57,283,3
+University of Houston,public,39,2.9,230,85,59,59,NA,56,27,328,25,24,22,152,1130,1310,32,62,254,12
+University of North Carolina--Wilmington,public,39,2.6,127,85,67,73,6,69,234,290,32,8,17,143,23,27,24,61,350,5
+Ball State University (IN),public,38,2.6,195,81,58,62,4,57,53,246,41,6,17,215,1080,1240,18,62,276,10
+Misericordia University (PA),private,38,1.9,127,83,58,69,11,61,204,160,51,0,11,265,1040,1200,20,83,244,12
+Oklahoma State University,public,38,2.9,195,81,65,61,-4,48,265,246,38,15,19,159,22,28,27,74,219,9
+Seattle Pacific University,private,38,2.4,150,82,61,68,7,59,176,227,54,3,13,295,1030,1240,1,90,200,4
+University of Louisville (KY),public,38,2.8,247,80,64,57,-7,47,165,182,40,9,14,198,22,29,24,73,69,9
+Bellarmine University (KY),private,37,2.2,187,78,66,67,1,63,147,136,52,1,11,173,22,28,NA,86,231,12
+Bethel University (MN),private,37,2,117,86,73,75,2,67,224,194,55,2,12,152,22,28,25,71,276,9
+Illinois State University,public,37,2.5,145,81,62,69,7,61,224,271,37,10,18,318,20,26,NA,89,231,6
+Loyola University New Orleans,private,37,2.7,215,80,69,61,-8,50,214,120,46,2,12,173,22,28,25,75,140,6
+Towson University (MD),public,37,2.5,127,85,61,73,12,72,186,328,28,3,17,256,1060,1200,14,79,359,4
+Edgewood College (WI),private,36,1.7,203,79,58,63,5,63,14,69,85,0,10,215,20,25,17,73,231,6
+Florida Institute of Technology,private,36,2.4,215,81,61,60,-1,51,297,169,45,4,14,113,1150,1340,29,65,200,7
+Maryville Univ. of St. Louis,private,36,1.9,122,86,63,72,9,69,176,210,72,1,14,215,20,26,24,95,303,5
+Pace University (NY),private,36,2.5,247,79,59,56,-3,53,34,120,51,3,14,234,1060,1220,15,76,183,4
+Regis University (CO),private,36,2.2,154,80,64,68,4,67,113,194,59,0,14,204,1050,1230,25,60,276,4
+Robert Morris University (PA),private,36,2.2,203,82,57,64,7,54,159,95,40,4,15,265,1030,1200,15,85,244,7
+University of Maine,public,36,2.8,230,76,61,60,-1,51,186,280,39,16,15,245,1050,1250,18,92,148,7
+University of St. Francis (IL),private,36,1.9,195,79,52,62,10,54,90,169,64,0.3,12,265,1030,1190,12,47,231,8
+Widener University (PA),private,36,2.2,219,80,54,63,9,58,138,85,57,2,13,295,1020,1200,NA,69,219,3
+California State University--Fresno,public,35,2.5,230,81,37,54,17,50,27,320,19,9,23,364,910,1110,15,58,370,3
+Georgia State University,public,35,2.9,247,83,53,54,1,56,8,300,22,16,25,336,990,1190,17,57,265,4
+Immaculata University (PA),private,35,1.8,176,79,51,68,17,53,186,147,86,0,9,334,1018,1223,9,81,283,7
+Kent State University (OH),public,35,2.6,230,81,53,57,4,48,204,147,52,9,20,245,20,25,15,85,315,4
+Mississippi State University,public,35,2.7,215,80,66,58,-8,42,335,300,37,15,17,125,22,29,29,57,174,15
+University of Hartford (CT),private,35,2.5,230,75,58,60,2,50,265,77,71,0.2,9,318,1050,1250,NA,75,211,3
+Wilkes University (PA),private,35,2,219,76,56,60,4,51,138,85,58,4,12,234,1050,1240,23,75,231,13
+Clarke University (IA),private,34,2.1,226,73,59,63,4,62,62,120,70,0.4,9,342,19,23,17,82,276,15
+Florida International University,public,34,2.5,203,89,50,58,8,61,12,374,19,26,24,190,1090,1260,25,59,294,3
+Gannon University (PA),private,34,2,167,83,61,67,6,54,159,182,49,0.4,13,295,1020,1220,20,81,244,7
+Hampton University (VA),private,34,2.4,230,77,60,58,-2,53,34,271,60,3,13,344,19,24,13,36,140,17
+Lipscomb University (TN),private,34,2.1,209,82,68,65,-3,55,328,210,55,5,13,134,22,29,30,60,174,12
+Sacred Heart University (CT),private,34,2.4,167,83,66,70,4,60,335,290,37,1,13,307,1100,1240,11,60,211,9
+Texas Tech University,public,34,2.9,203,84,61,60,-1,51,291,351,27,21,20,190,1070,1240,19,71,294,11
+Univ. of Massachusetts--Dartmouth,public,34,2.6,292,73,53,56,3,50,84,95,51,10,16,330,990,1190,14,78,183,2
+University of New Mexico,public,34,2.8,292,78,57,49,-8,45,62,169,60,9,17,336,19,25,NA,52,49,NA
+Western New England University (MA),private,34,2,226,77,60,60,NA,53,234,48,57,0.1,13,215,1060,1250,19,85,174,4
+Azusa Pacific University (CA),private,33,2.1,154,85,62,63,1,65,75,295,57,2,11,288,1020,1240,NA,69,219,5
+CUNY--City College,public,33,2.9,283,87,51,43,-8,44,17,300,33,3,16,349,950,1190,NA,38,132,12
+East Carolina University (NC),public,33,2.4,195,82,58,63,5,61,39,320,31,18,18,295,1030,1180,13,82,283,2
+Grand Valley State University (MI),public,33,2.2,167,84,61,65,4,58,115,300,25,5,16,215,1050,1240,20,83,339,4
+Indiana University-Purdue University--Indianapolis,public,33,2.9,307,74,52,48,-4,41,125,227,39,10,15,310,1000,1200,15,81,76,7
+The Sage Colleges (NY),private,33,2.1,219,78,49,62,13,59,24,280,53,0,12,373,940,1140,11,93,254,8
+St. Catherine University (MN),private,33,2.1,195,82,63,60,-3,58,27,290,58,2,11,234,20,26,24,70,244,12
+University of Indianapolis,private,33,2.3,247,75,54,60,6,50,176,227,56,1,13,307,990,1180,18,81,265,12
+Univ. of Massachusetts--Boston,public,33,2.6,300,78,52,48,-4,47,27,169,38,6,16,279,1020,1220,15,78,148,4
+U. of North Carolina--Charlotte,public,33,2.8,230,83,58,59,1,55,84,346,26,24,19,184,21,26,17,67,339,3
+University of Wyoming,public,33,2.7,247,77,65,57,-8,45,365,160,38,11,15,265,22,28,21,96,93,5
+West Virginia University,public,33,2.8,230,78,59,58,-1,47,315,346,35,20,18,204,21,27,23,82,200,10
+Central Michigan University,public,32,2.4,226,77,58,62,4,53,176,246,32,7,20,288,1000,1200,17,69,322,6
+Harding University (AR),private,32,2,167,84,69,67,-2,54,322,227,55,6,14,159,22,29,23,68,283,10
+Long Island University (NY),private,32,2.2,215,80,NA,NA,-1,NA,328,58,66,1,11,215,1050,1250,15,76,303,2
+Oklahoma City University,private,32,2.1,203,82,70,63,-7,60,186,169,71,1,10,204,23,29,31,76,200,4
+University of Findlay (OH),private,32,1.9,209,80,69,62,-7,61,16,210,60,1,16,184,21,26,25,73,265,10
+University of Nevada--Reno,public,32,2.5,230,81,59,58,-1,49,241,335,37,21,19,198,21,26,27,88,148,7
+Bowling Green State University (OH),public,31,2.6,261,77,56,55,-1,43,234,210,44,10,18,245,20,25,15,72,339,6
+George Fox University (OR),private,31,2,161,81,64,67,3,54,80,309,53,2,14,310,1020,1230,32,82,265,5
+Lesley University (MA),private,31,2.1,242,80,60,56,-4,60,90,120,67,0,10,310,938,1293,13,76,164,NA
+Montana State University,public,31,2.6,268,77,64,55,-9,46,254,280,44,14,19,177,21,28,21,82,200,8
+Nova Southeastern University (FL),private,31,2,283,78,54,50,-4,43,165,69,75,2,17,170,1080,1290,32,79,123,2
+University of New England (ME),private,31,2.2,209,78,68,64,-4,56,234,194,56,6,13,259,1050,1240,NA,80,244,7
+Wayne State University (MI),public,31,2.6,321,80,55,47,-8,37,125,110,50,8,16,279,1010,1210,18,71,117,5
+Western Michigan University,public,31,2.5,268,79,55,51,-4,45,78,182,38,10,16,301,990,1190,10,81,254,4
+Baker University (KS),private,30,1.8,230,77,59,59,NA,60,138,110,71,0.4,12,245,20,25,19,88,276,8
+College of St. Scholastica (MN),private,30,1.9,161,81,63,69,6,59,303,309,50,2,13,215,20,26,17,66,303,4
+D'Youville College (NY),private,30,1.7,278,79,57,60,3,54,96,64,70,1,9,265,1030,1200,17,100,254,12
+Florida A&M University,public,30,2.3,294,83,43,51,8,49,45,339,33,14,16,310,1040,1170,11,39,231,5
+Lincoln Memorial University (TN),private,30,1.9,278,71,53,60,7,51,49,147,55,4,14,334,19,25,26,43,254,5
+Southern Illinois University--Carbondale,public,30,2.4,347,68,51,41,-10,29,270,95,60,6,13,163,1020,1300,15,72,55,4
+University of Colorado--Denver,public,30,2.8,321,70,60,48,-12,43,90,339,36,9,18,259,1020,1210,22,64,40,3
+University of Montana,public,30,2.7,300,70,58,50,-8,43,165,227,51,9,16,234,20,26,16,88,211,9
+Utah State University,public,30,2.6,307,72,61,49,-12,63,56,210,48,13,20,177,21,28,21,89,183,5
+Daemen College (NY),private,29,1.7,261,78,53,57,4,50,56,120,64,0.3,11,245,1040,1230,21,54,317,3
+New Mexico State University,public,29,2.6,313,74,49,47,-2,41,119,210,47,10,17,330,17,23,22,66,164,6
+Old Dominion University (VA),public,29,2.6,261,80,51,52,1,48,147,280,36,10,17,310,990,1200,9,87,317,4
+Shenandoah University (VA),private,29,1.9,219,81,59,58,-1,46,335,120,66,2,10,288,980,1190,25,70,183,5
+University of Alabama--Huntsville,public,29,2.5,273,82,63,52,-11,42,315,339,26,21,18,73,25,31,34,81,174,3
+University of Alaska--Fairbanks,public,29,2.5,339,76,55,40,-15,33,285,69,70,3,8,265,17,25,21,77,33,NA
+Univ. of Missouri--Kansas City,public,29,2.5,294,75,63,48,-15,40,108,210,51,11,15,143,21,28,33,56,219,5
+University of North Dakota,public,29,2.6,247,81,66,55,-11,42,370,309,38,11,18,190,21,27,18,82,123,7
+University of South Dakota,public,29,2.6,256,76,60,58,-2,47,315,328,43,8,16,234,20,25,13,86,231,4
+Campbell University (NC),private,28,2.1,283,73,56,51,-5,42,186,120,61,4,16,265,19,25,26,76,211,6
+Keiser University (FL),private,28,1.6,195,84,36,56,20,52,34,381,48,29,12,323,NA,NA,NA,100,200,1
+Louisiana Tech University,public,28,2.5,256,80,62,53,-9,40,335,194,54,8,23,152,22,28,25,63,378,8
+Mary Baldwin University (VA),private,28,2,339,67,44,47,3,45,21,110,64,1,10,351,950,1130,11,100,219,10
+South Dakota State University,public,28,2.5,247,77,62,57,-5,47,241,357,32,18,17,215,20,26,16,92,219,7
+Tennessee Technological Univ.,public,28,2.2,273,77,58,55,-3,47,186,194,47,10,18,173,21,27,27,76,322,6
+University of Memphis,public,28,2.5,321,74,52,48,-4,40,138,210,46,9,15,234,19,26,14,84,254,6
+U. of North Carolina--Greensboro,public,28,2.6,268,76,56,51,-5,48,27,357,23,24,17,301,990,1160,14,84,322,6
+University of the Incarnate Word (TX),private,28,2,273,76,46,49,3,45,27,256,65,2,11,347,950,1140,16,88,254,4
+Concordia University Wisconsin,private,27,2,242,77,57,58,1,49,254,194,58,2,12,259,20,26,26,65,350,3
+Dallas Baptist University,private,27,2,247,74,61,54,-7,41,303,136,68,2,13,245,20,24,18,88,244,1
+Florida Atlantic University,public,27,2.4,278,79,51,52,1,52,45,351,31,16,21,245,1080,1240,12,59,322,2
+Gardner-Webb University (NC),private,27,2,294,73,56,53,-3,43,204,77,75,0,13,279,970,1180,17,48,265,3
+North Carolina A&T State Univ.,public,27,2.2,307,77,44,53,9,48,66,309,25,7,18,349,950,1110,12,61,303,9
+North Dakota State University,public,27,2.5,242,79,67,58,-9,50,354,335,33,24,17,279,21,26,16,93,174,5
+Regent University (VA),private,27,1.8,283,78,49,58,9,50,49,169,61,2,19,364,950,1170,11,84,303,2
+Sam Houston State University (TX),public,27,2.2,278,78,47,53,6,48,84,320,27,13,24,323,1000,1140,19,79,365,7
+Univ. of Missouri--St. Louis,public,27,2.4,283,76,63,52,-11,45,96,280,50,9,19,184,21,27,26,73,294,4
+University of North Florida,public,27,2.4,230,81,61,59,-2,55,115,362,26,12,19,184,1120,1280,16,61,339,4
+University of North Texas,public,27,2.6,261,79,55,55,NA,50,96,362,25,22,24,215,1060,1260,19,71,376,4
+William Carey University (MS),private,27,1.8,256,83,51,51,NA,51,49,120,77,0,15,245,21,29,27,68,375,5
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+School,School Footnote,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Andrews University (MI),NA,NA,1.8,NA,NA,57,NA,NA,270,NA,NA,NA,18,NA,NA,3,NA,NA,NA,NA,NA
+Arkansas State University,NA,NA,2.2,NA,NA,47,NA,NA,119,NA,NA,2,20,NA,NA,9,NA,NA,NA,NA,NA
+Augusta University (GA),7,NA,2,NA,NA,31,NA,NA,165,NA,NA,4,NA,NA,4,3,NA,NA,NA,NA,NA
+Aurora University (IL),1,NA,1.8,NA,8,56,6,NA,176,NA,NA,4,NA,NA,4,NA,NA,NA,NA,NA,NA
+Barry University (FL),NA,NA,2,NA,NA,36,NA,NA,84,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
+Benedictine University (IL),NA,NA,2.1,NA,NA,47,NA,NA,66,NA,NA,NA,14,NA,NA,5,NA,NA,NA,NA,NA
+Boise State University (ID),NA,NA,2.6,NA,NA,46,NA,NA,285,NA,NA,2,16,NA,NA,7,NA,NA,NA,NA,NA
+Cardinal Stritch University (WI),NA,NA,1.8,NA,NA,51,NA,NA,285,NA,NA,2,8,NA,NA,3,NA,NA,NA,NA,NA
+Carson-Newman University (TN),NA,NA,2.1,NA,NA,51,NA,NA,119,NA,NA,NA,NA,NA,NA,6,NA,NA,NA,NA,NA
+Clark Atlanta University,NA,NA,2.2,NA,NA,45,NA,NA,75,NA,NA,NA,11,NA,NA,7,NA,NA,NA,NA,NA
+Cleveland State University,NA,NA,2.2,NA,NA,45,NA,NA,134,NA,NA,NA,15,NA,NA,5,NA,NA,NA,NA,NA
+Delaware State University,NA,NA,2.3,NA,NA,40,NA,NA,96,NA,NA,NA,9,NA,NA,10,NA,NA,NA,NA,NA
+Eastern Michigan University,NA,NA,2.3,NA,NA,45,NA,NA,214,NA,NA,NA,13,NA,NA,2,NA,NA,NA,NA,NA
+East Tennessee State University,1,NA,2.1,NA,8,41,8,4,214,NA,NA,4,NA,NA,4,NA,NA,NA,NA,NA,NA
+Ferris State University (MI),NA,NA,2.1,NA,NA,50,NA,NA,285,NA,NA,9,NA,NA,NA,2,NA,NA,NA,NA,NA
+Georgia Southern University,NA,NA,2.4,NA,NA,50,NA,NA,113,NA,NA,NA,18,NA,NA,5,NA,NA,NA,NA,NA
+Grand Canyon University (AZ),1,NA,1.8,NA,8,39,6,NA,42,NA,NA,2,NA,NA,4,NA,NA,NA,NA,NA,NA
+Husson University (ME),NA,NA,1.7,NA,NA,55,NA,NA,70,NA,NA,NA,12,NA,NA,3,NA,NA,NA,NA,NA
+Indiana State University,NA,NA,2.5,NA,NA,41,NA,NA,78,NA,NA,NA,11,NA,NA,6,NA,NA,NA,NA,NA
+Indiana Univ. of Pennsylvania,NA,NA,2.1,NA,NA,56,NA,NA,138,NA,NA,3,8,NA,NA,5,NA,NA,NA,NA,NA
+Jackson State University (MS),NA,NA,2,NA,NA,37,6,NA,105,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Kennesaw State University (GA),NA,NA,2.4,NA,NA,43,NA,NA,90,NA,NA,NA,16,NA,NA,2,NA,NA,NA,NA,NA
+Lamar University (TX),NA,NA,1.9,NA,NA,27,NA,NA,335,NA,NA,NA,15,NA,NA,1,NA,NA,NA,NA,NA
+Liberty University (VA),NA,NA,1.7,NA,NA,55,NA,NA,335,NA,NA,3,24,5,NA,1,NA,NA,NA,NA,NA
+Lindenwood University (MO),NA,NA,1.8,NA,NA,50,NA,NA,224,NA,NA,2,NA,NA,NA,5,NA,NA,NA,NA,NA
+Marshall University (WV),NA,NA,2.4,NA,NA,46,NA,NA,147,NA,NA,NA,NA,NA,NA,4,NA,NA,NA,NA,NA
+Metropolitan State University (MN),1,NA,1.8,NA,8,33,6,NA,328,NA,NA,2,NA,NA,4,NA,NA,NA,NA,NA,NA
+Middle Tennessee State Univ.,NA,NA,2.2,NA,NA,44,NA,NA,80,NA,NA,NA,NA,NA,NA,3,NA,NA,NA,NA,NA
+Mississippi College,NA,NA,2,NA,NA,53,NA,NA,303,NA,NA,3,33,NA,NA,5,NA,NA,NA,NA,NA
+Missouri State University,NA,NA,2.4,NA,8,54,NA,NA,75,NA,NA,NA,22,NA,NA,5,NA,NA,NA,NA,NA
+Morgan State University (MD),NA,NA,2.2,NA,NA,39,NA,NA,108,NA,NA,NA,7,NA,NA,16,NA,NA,NA,NA,NA
+National Louis University (IL),NA,NA,1.9,NA,8,40,6,NA,328,NA,NA,9,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Northern Arizona University,NA,NA,2.5,NA,NA,52,NA,NA,224,NA,NA,2,21,NA,NA,3,NA,NA,NA,NA,NA
+Northern Illinois University,NA,NA,2.4,NA,NA,46,NA,NA,200,NA,NA,NA,12,NA,NA,4,NA,NA,NA,NA,NA
+Northern Kentucky University,NA,NA,2.2,NA,NA,44,NA,NA,354,NA,NA,NA,12,4,NA,4,NA,NA,NA,NA,NA
+Oakland University (MI),NA,NA,2.2,NA,NA,55,NA,NA,234,NA,NA,NA,21,NA,NA,3,NA,NA,NA,NA,NA
+Our Lady of the Lake University (TX),NA,NA,1.8,NA,NA,37,NA,NA,49,NA,NA,NA,14,NA,NA,12,NA,NA,NA,NA,NA
+Palm Beach Atlantic University (FL),NA,NA,1.7,NA,NA,54,NA,NA,165,NA,NA,NA,16,4,NA,2,NA,NA,NA,NA,NA
+Portland State University (OR),NA,NA,2.6,NA,NA,47,NA,NA,26,NA,NA,2,16,NA,NA,1,NA,NA,NA,NA,NA
+Roosevelt University (IL),NA,NA,2.2,NA,NA,39,NA,NA,165,NA,NA,NA,NA,5,NA,4,NA,NA,NA,NA,NA
+Southern Illinois University--Edwardsville,NA,NA,2.1,NA,NA,47,NA,NA,315,NA,NA,NA,19,NA,NA,3,NA,NA,NA,NA,NA
+Spalding University (KY),1,NA,1.8,NA,8,45,6,NA,270,NA,NA,4,NA,NA,4,NA,NA,NA,NA,NA,NA
+Stephen F. Austin State University (TX),1,NA,2.3,NA,8,43,8,NA,125,NA,NA,4,13,4,4,3,NA,NA,NA,NA,NA
+Tennessee State University,NA,NA,2.1,NA,8,30,NA,NA,186,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Texas A&M University--Commerce,NA,NA,2.2,NA,NA,43,NA,NA,165,NA,NA,NA,16,NA,NA,3,NA,NA,NA,NA,NA
+Texas A&M University--Corpus Christi,NA,NA,2.2,NA,NA,37,NA,NA,241,NA,NA,NA,14,NA,NA,4,NA,NA,NA,NA,NA
+Texas A&M Univ.--Kingsville,NA,NA,2.1,NA,NA,37,NA,NA,165,NA,NA,NA,14,NA,NA,1,NA,NA,NA,NA,NA
+Texas Southern University,NA,NA,2.1,NA,NA,21,NA,NA,204,NA,NA,NA,4,NA,NA,3,NA,NA,NA,NA,NA
+Texas State University,NA,NA,2.2,NA,NA,55,NA,NA,138,NA,NA,NA,13,NA,NA,4,NA,NA,NA,NA,NA
+Texas Wesleyan University,NA,NA,2.1,NA,NA,38,NA,NA,159,NA,NA,NA,10,NA,NA,7,NA,NA,NA,NA,NA
+Texas Woman's University,NA,NA,2.3,NA,NA,43,NA,NA,200,NA,NA,2,18,NA,NA,2,NA,NA,NA,NA,NA
+Touro College (NY),NA,NA,1.8,NA,NA,45,NA,NA,200,NA,NA,2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Trevecca Nazarene University (TN),NA,NA,1.7,NA,8,55,NA,NA,147,NA,NA,3,22,NA,NA,5,NA,NA,NA,NA,NA
+Trinity International University (IL),NA,NA,1.8,NA,NA,46,NA,NA,125,NA,NA,4,NA,NA,4,NA,NA,NA,NA,NA,NA
+University of Akron (OH),NA,NA,2.2,NA,NA,45,NA,NA,335,NA,NA,NA,16,NA,NA,3,NA,NA,NA,NA,NA
+University of Arkansas--Little Rock,NA,NA,2.4,NA,NA,35,NA,NA,214,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+University of Bridgeport (CT),NA,NA,1.9,NA,NA,42,NA,NA,119,NA,NA,NA,6,NA,NA,4,NA,NA,NA,NA,NA
+University of Central Arkansas,NA,NA,2.1,NA,NA,41,NA,NA,270,NA,NA,NA,21,NA,NA,6,NA,NA,NA,NA,NA
+University of Charleston (WV),NA,NA,2.3,NA,NA,46,NA,NA,377,NA,NA,2,NA,NA,NA,5,NA,NA,NA,NA,NA
+University of Colorado--Colorado Springs,NA,NA,2.7,NA,NA,45,NA,NA,265,NA,NA,NA,13,NA,NA,5,NA,NA,NA,NA,NA
+University of Hawaii--Hilo,NA,NA,2.5,NA,8,41,NA,NA,119,NA,NA,NA,22,NA,NA,NA,NA,NA,NA,NA,NA
+University of Louisiana--Lafayette,NA,NA,2.2,NA,NA,45,6,4,254,NA,NA,NA,20,NA,NA,5,NA,NA,NA,NA,NA
+University of Louisiana--Monroe,NA,NA,2,NA,NA,43,NA,NA,147,NA,NA,NA,20,NA,NA,3,NA,NA,NA,NA,NA
+University of Mary (ND),NA,NA,1.8,NA,8,53,NA,NA,348,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Univ. of Maryland--Eastern Shore,NA,NA,2.1,NA,NA,39,NA,NA,53,NA,NA,NA,NA,NA,NA,2,NA,NA,NA,NA,NA
+University of Michigan--Flint,NA,NA,2.3,NA,NA,46,NA,NA,214,NA,NA,NA,15,NA,NA,1,NA,NA,NA,NA,NA
+University of Nebraska--Omaha,NA,NA,2.6,NA,NA,49,NA,NA,254,NA,NA,NA,17,NA,NA,5,NA,NA,NA,NA,NA
+University of Nevada--Las Vegas,NA,NA,2.6,NA,NA,43,NA,NA,115,NA,NA,NA,22,NA,NA,4,NA,NA,NA,NA,NA
+University of New Orleans,NA,NA,2.2,NA,NA,37,NA,NA,214,NA,NA,NA,17,NA,NA,4,NA,NA,NA,NA,NA
+University of Northern Colorado,NA,NA,2.4,NA,NA,47,NA,NA,204,NA,NA,NA,12,NA,NA,3,NA,NA,NA,NA,NA
+University of South Alabama,NA,NA,2.1,NA,NA,43,NA,NA,224,NA,NA,2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Univ. of Southern Mississippi,NA,NA,2.3,NA,NA,49,NA,NA,165,NA,NA,NA,NA,NA,NA,8,NA,NA,NA,NA,NA
+University of Tennessee--Chattanooga,NA,NA,2.5,NA,NA,48,NA,NA,214,NA,NA,NA,NA,NA,NA,4,NA,NA,NA,NA,NA
+University of Texas--Arlington,NA,NA,2.6,NA,NA,49,NA,NA,20,NA,NA,NA,28,NA,NA,1,NA,NA,NA,NA,NA
+University of Texas--El Paso,NA,NA,2.5,NA,NA,39,NA,NA,80,NA,NA,2,18,NA,NA,3,NA,NA,NA,NA,NA
+University of Texas--Rio Grande Valley,NA,NA,2.2,NA,8,42,6,NA,17,NA,NA,NA,22,NA,NA,0,30,NA,NA,NA,NA
+University of Texas--San Antonio,NA,NA,2.5,NA,NA,40,NA,NA,62,NA,NA,NA,18,NA,NA,6,NA,NA,NA,NA,NA
+University of Texas--Tyler,NA,NA,2.1,NA,NA,45,NA,NA,119,NA,NA,NA,12,NA,NA,0,40,NA,NA,NA,NA
+University of the Cumberlands (KY),1,NA,1.8,NA,8,40,6,NA,17,NA,NA,4,11,4,4,NA,NA,NA,NA,NA,NA
+University of Toledo (OH),NA,NA,2.4,NA,NA,47,NA,NA,297,NA,NA,NA,20,NA,NA,5,NA,NA,NA,NA,NA
+University of West Georgia,NA,NA,2.1,NA,NA,42,NA,NA,53,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
+Univ. of Wisconsin--Milwaukee,NA,NA,2.8,NA,NA,44,NA,NA,291,NA,NA,2,10,NA,NA,3,NA,NA,NA,NA,NA
+Valdosta State University (GA),NA,NA,2.1,NA,NA,42,NA,NA,125,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA
+Washburn University (KS),NA,NA,2.2,NA,NA,36,6,4,370,NA,NA,NA,13,NA,NA,9,NA,NA,NA,NA,NA
+Western Kentucky University,NA,NA,2.2,NA,NA,53,NA,NA,303,NA,NA,NA,22,NA,NA,7,NA,NA,NA,NA,NA
+Wichita State University (KS),NA,NA,2.4,NA,NA,47,NA,NA,303,NA,NA,2,19,NA,NA,7,NA,NA,NA,NA,NA
+William Woods University (MO),NA,NA,1.8,NA,NA,60,NA,NA,165,NA,NA,NA,6,NA,NA,4,NA,NA,NA,NA,NA
+Wingate University (NC),NA,NA,2,NA,NA,51,NA,NA,125,NA,NA,NA,15,NA,NA,10,NA,NA,NA,NA,NA
+Wright State University (OH),NA,NA,2.3,NA,NA,39,NA,NA,348,NA,NA,NA,17,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Definition,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+School refused to fill out U.S. News statistical survey. Data that appear are from school in previous years or from another source such as the National Center for Education Statistics.,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+ACT and/or SAT not required by school for some or all applicants.,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"In reporting ACT/SAT scores, the school did not include all students for whom it had scores or refused to tell U.S. News whether all students with scores had been included.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Data reported to U.S. News in previous years.,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Data based on fewer than 20 percent of enrolled first-year students.,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Some or all data reported to the National Center for Education Statistics.,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+School declined to have a school official verify the  accuracy of the information contained in the U.S. News Main Statistical Survey.,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"This rate, normally baed on four years of data, is given here for less than four years because school didn't report rate for the most recent year or years to U.S. News.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"ACT and/or SAT may not be required by school for some or all applicants, and in reporting SAT/ACT scores, the school did not include all students for whom it had scores or refused to tell U.S. News whether all students with scores had been included.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
