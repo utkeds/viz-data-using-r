@@ -469,8 +469,7 @@ tidykids_PK12ed_tnneighbors_bump |>
 5. With multiple groups, lines are nearly essential
 :::
 
-
-<!-- ############################################################################### -->
+# Collaborative Exercise
 
 # Looking Ahead
 
@@ -488,9 +487,11 @@ tidykids_PK12ed_tnneighbors_bump |>
 <hr>
 :::{.smaller-font}
 - Data from the U.S. News and World Report National University Rankings
-- **File 1:** ***US-News_Rankings-Universities-2020.xlsx*** <br> Original file from website. Lots of tabs, lots of data!
-- **File 2:** ***us-news-rankings-2020-processed.csv*** <br> The 2020 All tab, processed for you (already largely clean)
-- **File 3:** ***2020-us-news-prep.R*** <br> An example of how to get from the .xlsx file to the largely clean version: A model!
+    - **File 1:** ***US-News_Rankings-Universities-2020.xlsx*** <br> Original file from website. Lots of tabs, lots of data!
+    - **File 2:** ***us-news-rankings-2020-processed.csv*** <br> The 2020 All tab, processed for you (already largely clean)
+    - **File 3:** ***2020-us-news-prep.R*** <br> An example of how to get from the .xlsx file to the largely clean version: A model!
 <br><br>
 **Due: October 11th, 11:59 PM**
 :::
+
+# Have a Wonderful Fall Break!

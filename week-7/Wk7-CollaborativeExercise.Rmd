@@ -1,0 +1,41 @@
+---
+title: "Week 7: Library Spending Over Time"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+  
+## Introduction
+  
+In this exercise, you will use the `tidykids` dataset to explore government spending trends on public libraries over time.
+You will wrangle the data and create a time series plot to visualize changes in spending from 1997 to 2016.
+
+## Research Question
+
+How has government spending on public libraries evolved in different U.S. states between 1997 and 2016?
+
+### Instructions
+
+1. **Load tidyverse and the Dataset**
+   - Load the `tidykids` dataset from the .csv provided.
+   - Load `tidyverse`
+
+
+2. **Wrangling**:
+   - In a code chunk you create below, do the following:
+     - Filter the dataset to focus on the public libraries spending category (`variable == "lib"`).
+     - Select only the variables `year`, `state`, and `inf_adj_perchild` (inflation-adjusted per-child spending).
+     - Group the data by `state` and `year`, and calculate the mean spending per child for each state and year.
+   
+   
+3. **Visualization**:
+   - Use `geom_line()` and `geom_point()` to create a time series plot of spending trends for a few selected states of your 
+     choice (think about a grouping that might make sense and filter for them).
+   - Highlight the state with the highest spending using `gghighlight()`.
+   - Add a smoother to the plot to see the general trend across all selected states.
+
+     
+4. **Reflection**:
+   - Which state had the highest spending across the years?
+   - What general trends do you observe in public library spending from 1997 to 2016?
+   - How does the spending in your selected states compare over time?
