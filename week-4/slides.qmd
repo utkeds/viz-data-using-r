@@ -510,7 +510,7 @@ p <- tidykids |>
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
   facet_wrap(~region) +
-  coord_flip() # altering coordinates is infrequent
+  coord_flip()
   
 p
 ```
@@ -561,7 +561,7 @@ p <- tidykids |>
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
   facet_wrap(~region) +
-  coord_flip() + # altering coordinates is infrequent
+  coord_flip() +
   labs(title = "Per Pupil Spending by State",
        x = "Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)",
        y = "State")
@@ -616,7 +616,7 @@ p <- tidykids |>
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
   facet_wrap(~region) +
-  coord_flip() + # altering coordinates is infrequent
+  coord_flip() +
   labs(title = "Per Pupil Spending by State",
        x = "Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)",
        y = "State")+
