@@ -125,33 +125,6 @@ head(wider,5)
 
 :::
 
-<!-- ## Pivoting Longer/Wider -->
-<!-- <hr> -->
-<!-- :::{.extra-small-font} -->
-<!-- - sometimes your data is in a format different than what you need -->
-<!-- - `pivot_longer()` and `pivot_wider()` are your friends -->
-<!-- - typically when working in R (esp. tidyverse), longer is better -->
-
-<!-- `original` -->
-<!-- ```{r} -->
-<!-- head(tidykids,5) -->
-<!-- ``` -->
-
-<!-- [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) -->
-<!-- ```{r} -->
-<!-- #pivot the wider data to longer to match original tidykids -->
-
-<!-- longer <- wider |> -->
-<!--   pivot_longer( -->
-<!--     cols = (starts_with(c("raw", "inf_adj", "inf_adj_perchild"))),  # Target all the wide columns -->
-<!--     names_to = c(".value", "variable"),  # Retain 'raw', 'inf_adj', and 'inf_adj_perchild' as columns -->
-<!--     names_sep = "_"  # Use underscore as separator -->
-<!--   ) -->
-
-<!-- head(longer,5) -->
-<!-- ``` -->
-<!-- ::: -->
-
 # Lines & Curves
 
 ## Improve This
