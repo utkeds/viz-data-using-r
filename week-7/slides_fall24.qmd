@@ -58,10 +58,6 @@ tidykids <- tidykids |>
 - **Lines & Curves**
     - *Principles of Line Plots*
     - *Time Series Data*
-        - Current Possibilities 
-        <!-- `geom_point()` & `geom_line()` -->
-        - New Possibilities
-        <!-- `geom_area()` -->
     - *Multiple Groups*
         <!-- - `gg_highlight` -->
     - *Adding Trendlines*
@@ -71,6 +67,7 @@ tidykids <- tidykids |>
         <!-- - `geom_vline()` -->
         <!-- - `geom_hline()` -->
         <!-- - `geom_abline()` -->
+    - *Collaborative Exercise*
     - *Schwabish Extensions*
 - **Mini Project #1 Discussion**
 - **Looking Ahead**
@@ -406,6 +403,8 @@ tidykids_wide |>
 :::
 :::
 
+# Collaborative Exercise
+
 # Schwabish Extensions
 
 ## Bump Chart
@@ -468,8 +467,6 @@ tidykids_PK12ed_tnneighbors_bump |>
 4. When you add lines, you don't always need to add points
 5. With multiple groups, lines are nearly essential
 :::
-
-# Collaborative Exercise
 
 # Looking Ahead
 
