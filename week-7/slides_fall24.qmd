@@ -1,0 +1,496 @@
+---
+subtitle: "Visual Storytelling: Lines and Curves"
+title: "Week 7 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+library(tidyverse)
+library(tidykids)
+
+tidykids <- tidykids |>
+  mutate(region = case_when(
+    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
+                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
+    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
+                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
+                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
+    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
+                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
+  ))|>
+  janitor::clean_names()
+
+```
+
+# Weekly Check In/ <br>Download `.zip`
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.smaller-font}
+- **Weekly Check In**
+- **Review/ Foundational Skills**
+   <!-- - AI Policy Review -->
+- **Lines & Curves**
+    - *Principles of Line Plots*
+    - *Time Series Data*
+        - Current Possibilities 
+        <!-- `geom_point()` & `geom_line()` -->
+        - New Possibilities
+        <!-- `geom_area()` -->
+    - *Multiple Groups*
+        <!-- - `gg_highlight` -->
+    - *Adding Trendlines*
+        - Fitted Lines
+        - Smoothers
+    - *Miscellaneous Lines*
+        <!-- - `geom_vline()` -->
+        <!-- - `geom_hline()` -->
+        <!-- - `geom_abline()` -->
+    - *Schwabish Extensions*
+- **Mini Project #1 Discussion**
+- **Looking Ahead**
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Review/ <br>Foundational Skills
+
+## AI Policy Review
+<hr>
+
+:::{.smaller-font}
+- **From the syllabus:** “The author(s) would like to acknowledge the use of [Generative AI Tool Name], a language model developed by [Generative AI Tool Provider], in the preparation of this assignment. The [Generative AI Tool Name] was used in the following way(s) in this assignment: [e.g., brainstorming, grammatical correction, citation, which portion of the assignment].”
+
+    - Better this week!
+    - Don't worry about citing every single thing you looked at (unless it helps you!)
+    - I just need to be clear on what you are trying to achieve with the new lines of code
+:::
+
+# Lines & Curves
+
+## Improve This
+<hr>
+![](no-lines.png)
+
+## Improve This
+<hr>
+![](groups.png)
+
+## Principles of Line Plots
+<hr>
+- Today:
+    - Time series data
+    - Line plots
+    - Area plots
+    - Multiple groups
+    
+## Principles of Line Plots
+<hr>
+:::{.smaller-font}
+1. Connecting lines can visually connect individual data points that have a temporal pattern
+2. Fitted lines can show the more general trend over time
+3. You can add a variety of fitted lines, including linear, quadratic, and smooth lines and curves
+4. When you add lines, you don't always need to add points
+5. With multiple groups, lines are nearly essential
+:::
+
+## Time Series Data
+<hr>
+:::{.smaller-font}
+- We already know some approaches to graphing time series data with `geom_col()` and `geom_point()`
+- Some wrangling:
+:::
+
+:::{.extra-small-font}
+```{r}
+tidykids_tn <- tidykids |>
+  filter(state == "Tennessee",
+         variable == "PK12ed")
+```
+:::
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+<br>
+```{r, fig.height=5}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild))+
+  geom_col()
+```
+:::
+
+:::{column}
+<br>
+```{r, fig.height=5}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild))+
+  geom_point()
+```
+
+:::
+:::
+
+## Time Series Data
+<hr>
+
+- How can we add lines to our `geom_point()` plot?
+    - Add a layer and group argument!
+
+:::{layout="[5,5]" .extra-small-font}
+:::{column}
+```{r, fig.height=5}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild))+
+  geom_point()
+```
+:::
+
+:::{column}
+```{.r code-line-numbers="|2,4"}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_line()+
+  geom_point() +
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+
+```{r, fig.height=3, fig.width=5, echo=FALSE}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_line()+
+  geom_point() +
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+
+:::
+:::
+
+## Time Series Data
+<hr>
+- We can also turn this into an area plot!
+- Note: Starts at 0!
+
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+```{.r code-line-numbers="|3-4"}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_area()+
+  geom_point() +
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+
+```{r, fig.height=5, echo=FALSE}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_area()+
+  geom_point() +
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+:::
+
+:::{column}
+```{.r code-line-numbers="|3-4"}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_area()+
+  geom_line() +
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+
+```{r, fig.height=5, echo=FALSE}
+tidykids_tn |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_area(alpha=.3)+
+  geom_line() +
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+:::
+:::
+
+# Multiple Groups
+
+## Time Series w/ Multiple Groups
+<hr>
+:::{.smaller-font}
+- Time series plots can show multiple groups
+- Some wrangling:
+::::
+
+:::{.extra-small-font}
+```{r}
+tidykids_south <- tidykids |>
+  filter(state %in% c("Tennessee", "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia", "Georgia",
+                      "Kentucky", "North Carolina", "South Carolina", "Virginia", "West Virginia"),
+         variable == "PK12ed")
+```
+:::
+
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+<br><br>
+```{.r code-line-numbers="|2-3"}
+tidykids_south |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_line(aes(color=state))+
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+
+```{r, fig.height=5, echo=FALSE}
+tidykids_south |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_line(aes(color=state))+
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+:::
+:::{column}
+<br>`gghighlight()`<br>
+```{.r code-line-numbers="|1,7"}
+library(gghighlight)
+
+tidykids_south |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_line(aes(color=state))+
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))+
+  gghighlight(state %in% c("Tennessee", "District of Columbia"))
+```
+
+```{r, fig.height=5, echo=FALSE}
+library(gghighlight)
+
+tidykids_south |>
+  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
+  geom_line(aes(color=state))+
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))+
+  gghighlight(state %in% c("Tennessee", "District of Columbia"))
+```
+:::
+:::
+
+# Lines/Curves for Patterns
+
+## Lines/Curves for Patterns
+<hr>
+- A critical difference is between *connecting* lines and *fitted* lines, or curves
+<br><br>
+- **Connecting line**: Connects the points (slide 14 as one of several examples)
+- **Fitted lines**: Can take different forms: linear, quadratic, interpolated using fancy math
+
+## Fitted Lines
+<hr>
+:::{.smaller-font}
+- Makes assumptions about the functional form of relationship between variables
+- Some wrangling:
+:::
+
+:::{.extra-small-font}
+```{r}
+tidykids_wide <- tidykids |>
+  filter(year >= 2010) |>
+  select(year,state,variable,inf_adj_perchild) |>
+  pivot_wider(names_from = variable, values_from = inf_adj_perchild)
+```
+:::
+
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+<br>
+Linear Regression
+```{r}
+tidykids_wide |>
+  ggplot(aes(x = highered, y = pell)) +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_point()
+```
+:::
+
+:::{column}
+<br>
+Quadratic Curve Using Linear Regression
+```{r}
+tidykids_wide |>
+  ggplot(aes(x = highered, y = pell)) +
+  geom_smooth(method = "lm", formula = y ~ poly (x,2), se = FALSE) +
+  geom_point()
+```
+:::
+:::
+
+## Smoothers
+<hr>
+:::{.smaller-font}
+- No specific functional form assumptions
+- Adapt to local patterns instead
+- "Smooth curve"
+```{r, fig.height=4}
+tidykids_wide |>
+  ggplot(aes(x = highered, y = PK12ed)) +
+  geom_smooth(se = FALSE) +
+  geom_point()
+```
+:::
+
+# Miscellaneous Lines
+
+## `geom_vline()` & `geom_hline()`
+<hr>
+:::{.smaller-font}
+- Add vertical lines to your plot
+:::
+
+:::{.extra-small-font}
+`geom_vline()`
+```{r, fig.height=4}
+tidykids_wide |>
+  ggplot(aes(x = highered, y = PK12ed)) +
+  geom_vline(xintercept = mean(tidykids_wide$highered, na.rm = T), color = "red") +
+  geom_point()
+```
+:::
+:::
+
+
+## `geom_vline()` & `geom_hline()`
+<hr>
+:::{.smaller-font}
+- Add vertical or horizontal lines to your plot
+:::
+
+
+:::{.extra-small-font}
+`geom_hline()`
+```{r, fig.height=4}
+tidykids_wide |>
+  ggplot(aes(x = highered, y = PK12ed)) +
+  geom_hline(yintercept = mean(tidykids_wide$PK12ed, na.rm = T), color = "blue") +
+  geom_point()
+```
+:::
+:::
+
+# Schwabish Extensions
+
+## Bump Chart
+<hr>
+:::{.extra-small-font}
+- Used to visualize the ranking of items over time
+- Some wrangling:
+
+```{r}
+tidykids_PK12ed_tnneighbors_bump <- tidykids_wide |>
+  filter(state %in% c("Tennessee", "Alabama", "Mississippi", "Arkansas","Georgia", "Kentucky", "North Carolina", "Virginia")) |>
+  select(PK12ed, state, year) |>
+  group_by(year) |>
+  mutate(rank = rank(-PK12ed),state_abbr = state.abb[match(state, state.name)]) |>
+  ungroup()
+```
+
+:::
+
+## Bump Chart
+<hr>
+:::{.extra-small-font}
+- Used to visualize the ranking of items over time
+- The plot:
+
+```{r, fig.height=4.5}
+tidykids_PK12ed_tnneighbors_bump |>
+  ggplot(aes(x = year, y = rank, color = state)) +
+  geom_line(aes(group=state, color=state), linewidth = 3, show.legend = F) +
+  geom_point(fill ="#EBEBEB",shape=21, size=11) +
+  geom_text(aes(label = rank, color=state), hjust = 0.5, nudge_x = 0, size = 9, show.legend = F) +
+  geom_text(data = filter(tidykids_PK12ed_tnneighbors_bump, year == 2016), aes(label = state_abbr), nudge_x = 0.4, nudge_y = 0, size = 6, show.legend = F) +
+  scale_y_reverse() +
+  theme(legend.position = "none")
+```
+:::
+
+## Sankey Diagram
+<hr>
+:::{.extra-small-font}
+- Used to visualize flow of data
+- New package: [`ggsankey`](https://github.com/davidsjoberg/ggsankey)
+```{r, fig.height=4.5}
+library(ggsankey)
+
+tidykids_PK12ed_tnneighbors_bump |>
+  ggplot(aes(x = year, node = state, fill = state, value = PK12ed)) +
+  geom_sankey_bump(space = 0, type = "alluvial", alpha = .8) +
+  theme_sankey_bump(base_size = 16) +
+  theme(legend.position = "bottom")
+```
+:::
+
+## Principles of Line Plots
+<hr>
+:::{.smaller-font}
+1. Connecting lines can visually connect individual data points that have a temporal pattern
+2. Fitted lines can show the more general trend over time
+3. You can add a variety of fitted lines, including linear, quadratic, and smooth lines and curves
+4. When you add lines, you don't always need to add points
+5. With multiple groups, lines are nearly essential
+:::
+
+
+<!-- ############################################################################### -->
+
+# Looking Ahead
+
+## Looking Ahead:
+<hr>
+- Readings:
+    - Wilke (2019), Chapters 4 & 19
+    - Christiansen (2023), Chapter 8
+- No Weekly Assignment
+- Mini-Project #1
+
+# Mini-Project #1
+
+## Mini-Project #1
+<hr>
+:::{.smaller-font}
+- Data from the U.S. News and World Report National University Rankings
+- **File 1:** ***US-News_Rankings-Universities-2020.xlsx*** <br> Original file from website. Lots of tabs, lots of data!
+- **File 2:** ***us-news-rankings-2020-processed.csv*** <br> The 2020 All tab, processed for you (already largely clean)
+- **File 3:** ***2020-us-news-prep.R*** <br> An example of how to get from the .xlsx file to the largely clean version: A model!
+<br><br>
+**Due: October 11th, 11:59 PM**
+:::

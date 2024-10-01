@@ -3,16 +3,16 @@
   <head>
     <title>Week 7 Slides</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Joshua Rosenberg and Isabella Velásquez" />
-    <script src="slides_files/header-attrs-2.26/header-attrs.js"></script>
+    <meta name="author" content="Kelly Boles" />
+    <script src="slides_files/header-attrs-2.28/header-attrs.js"></script>
     <script src="slides_files/clipboard-2.0.6/clipboard.min.js"></script>
     <link href="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Press Ctrl+C to Copy"})</script>
     <link href="slides_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
     <link href="slides_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
-    <link href="slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
-    <script src="slides_files/panelset-0.2.6/panelset.js"></script>
+    <link href="slides_files/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="slides_files/panelset-0.3.0/panelset.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -26,7 +26,7 @@ class: center, middle, inverse, title-slide
 ## How and when do use lines and curves?
 ]
 .author[
-### <strong>Joshua Rosenberg and Isabella Velásquez</strong>
+### <strong>Kelly Boles</strong>
 ]
 
 ---
@@ -165,7 +165,7 @@ Consider that we already know how to graph timeseries data with `geom_col()` and
 
 .pull-left[
 
-```r
+``` r
 data %&gt;%
   ggplot(aes(x=as.factor(x), y=y))+
   geom_col()
@@ -177,7 +177,7 @@ data %&gt;%
 
 .pull-right[
 
-```r
+``` r
 data %&gt;%
   ggplot(aes(x=as.factor(x), y=y))+
   geom_point()
@@ -211,7 +211,7 @@ We can easily make this into an area chart, too. However, note that `geom_area` 
 .pull-left[
 
 
-```r
+``` r
 data %&gt;%
   ggplot(aes(x=as.factor(x), y=y, group=1))+
   geom_area()+
@@ -224,7 +224,7 @@ data %&gt;%
 
 .pull-right[
 
-```r
+``` r
 data %&gt;%
   ggplot(aes(x=as.factor(x), y=y, group=1))+
   geom_line()+
@@ -248,13 +248,14 @@ data %&gt;%
 # Curves
 
 - A critical difference is between *connecting* lines and *fitted* lines, or curves
+
 - *Connecting line*: Connects the points (slide 17 as one of several examples)
 - *Fitted lines*: Can take different forms: linear, quadratic, interpolated using fancy math
 
 ---
 
 
-```r
+``` r
 data %&gt;% 
   ggplot(aes(x = x, y = y)) +
   geom_smooth(method = "lm", se = FALSE) + # often helpful
@@ -266,7 +267,7 @@ data %&gt;%
 ---
 
 
-```r
+``` r
 data %&gt;% 
   ggplot(aes(x = x, y = y)) +
   # fits quadratic curve using linear regression
@@ -279,7 +280,7 @@ data %&gt;%
 ---
 
 
-```r
+``` r
 data %&gt;% 
   ggplot(aes(x = x, y = y)) +
    # by default, uses a flexible way to create a smooth curve 

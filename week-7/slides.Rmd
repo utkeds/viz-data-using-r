@@ -1,7 +1,7 @@
 ---
 title: "Week 7 Slides"
 subtitle: "How and when do use lines and curves?"
-author: "**Joshua Rosenberg and Isabella Velásquez**"
+author: "**Kelly Boles**"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -264,6 +264,7 @@ phd_field %>%
 # Curves
 
 - A critical difference is between *connecting* lines and *fitted* lines, or curves
+
 - *Connecting line*: Connects the points (slide 17 as one of several examples)
 - *Fitted lines*: Can take different forms: linear, quadratic, interpolated using fancy math
 
