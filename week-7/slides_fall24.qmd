@@ -67,8 +67,8 @@ tidykids <- tidykids |>
         <!-- - `geom_vline()` -->
         <!-- - `geom_hline()` -->
         <!-- - `geom_abline()` -->
-    - *Collaborative Exercise*
-    - *Schwabish Extensions*
+- **Collaborative Exercise** 
+- **Schwabish Extensions**
 - **Mini Project #1 Discussion**
 - **Looking Ahead**
 :::
@@ -100,6 +100,57 @@ tidykids <- tidykids |>
     - Don't worry about citing every single thing you looked at (unless it helps you!)
     - I just need to be clear on what you are trying to achieve with the new lines of code
 :::
+
+## Pivoting Longer/Wider
+<hr>
+:::{.extra-small-font}
+- sometimes your data is in a format different than what you need
+- `pivot_longer()` and `pivot_wider()` are your friends
+- typically when working in R (esp. tidyverse), longer is better
+
+`original`
+```{r}
+tidykids <- tidykids|>
+  arrange(state, year)
+head(tidykids,5)
+```
+
+[`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html)
+```{r}
+wider <- tidykids |>
+  pivot_wider(names_from = variable, values_from = c(raw, inf_adj, inf_adj_perchild))
+
+head(wider,5)
+```
+
+:::
+
+<!-- ## Pivoting Longer/Wider -->
+<!-- <hr> -->
+<!-- :::{.extra-small-font} -->
+<!-- - sometimes your data is in a format different than what you need -->
+<!-- - `pivot_longer()` and `pivot_wider()` are your friends -->
+<!-- - typically when working in R (esp. tidyverse), longer is better -->
+
+<!-- `original` -->
+<!-- ```{r} -->
+<!-- head(tidykids,5) -->
+<!-- ``` -->
+
+<!-- [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) -->
+<!-- ```{r} -->
+<!-- #pivot the wider data to longer to match original tidykids -->
+
+<!-- longer <- wider |> -->
+<!--   pivot_longer( -->
+<!--     cols = (starts_with(c("raw", "inf_adj", "inf_adj_perchild"))),  # Target all the wide columns -->
+<!--     names_to = c(".value", "variable"),  # Retain 'raw', 'inf_adj', and 'inf_adj_perchild' as columns -->
+<!--     names_sep = "_"  # Use underscore as separator -->
+<!--   ) -->
+
+<!-- head(longer,5) -->
+<!-- ``` -->
+<!-- ::: -->
 
 # Lines & Curves
 
@@ -308,7 +359,7 @@ tidykids_south |>
 <hr>
 - A critical difference is between *connecting* lines and *fitted* lines, or curves
 <br><br>
-- **Connecting line**: Connects the points (slide 14 as one of several examples)
+- **Connecting line**: Connects the points (slide 15 as one of several examples)
 - **Fitted lines**: Can take different forms: linear, quadratic, interpolated using fancy math
 
 ## Fitted Lines
