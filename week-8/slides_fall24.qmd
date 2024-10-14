@@ -1,0 +1,351 @@
+---
+subtitle: "Themes and Colors"
+title: "Week 8 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+# Weekly Check In/ <br>Download `.zip`
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.smaller-font}
+- **Weekly Check In**
+- **Where Are We?**
+- **Foundational Skills**
+    - CRAN vs. remotes
+    - `pivot_longer`
+- **Themes**
+    - Pre-Built, Packages, & Custom
+- **Colors: Setting vs. Mapping**
+- **Palettes**
+    - Default, Custom, and Self-Created Palettes
+        - Discrete Data
+        - Continuous Data
+- **Universal Design & Color**
+    - Inclusivity
+    - Accessibility
+- **Looking Ahead**
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Where are We?
+
+## Course Progression
+<hr>
+![](WhereAreWe_Timeline.png)
+
+# Review/ <br>Foundational Skills
+
+## CRAN vs. remotes
+<hr>
+
+- Most packages are downloadable from CRAN but not all
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+- `tidyverse` is on CRAN
+- `remotes` is a package on CRAN that allows you to install packages from elsewhere
+
+```{r}
+#install.packages("tidyverse")
+library(tidyverse)
+
+#install.packages("remotes")
+library(remotes)
+```
+:::
+
+:::{column}
+- `dsbox` is not on CRAN but is downloadable from GitHub
+- We will use the `install_github()` function from `remotes` to install `dsbox`
+
+```{r}
+#install_github("tidyverse/dsbox")
+library(dsbox)
+```
+:::
+:::
+
+## New data today = AAUP
+<hr>
+
+:::{.smaller-font}
+The American Association of University Professors (AAUP) is a nonprofit
+membership association of faculty and other academic professionals. This report
+compiled by the AAUP shows trends in instructional staff as a proportion of 
+employees between 1975 and 2011.
+:::
+
+::::{.fragment}
+```{r}
+instructors <- instructors
+print(instructors)
+```
+::::
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+**Question**: Is this data in tidy format? Why or why not?
+:::
+::::
+
+::::{.fragment}
+```{r}
+instructors <- instructors #instructors is in dsbox
+head(instructors,5)
+```
+::::
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+**Answer**: No:
+
+- *Violates #1*. The column names (except year) are position types, which should be values in a column.
+- *Violates #2*. Each row has multiple observations for that year.
+- *Violates #3*. The same value types (proportions of whole workforce) are spread across multiple columns.
+:::
+::::
+
+::::{.fragment}
+**Let's tidy**
+::::
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+`pivot_longer()`
+:::
+::::
+
+::::{.fragment .smaller-font}
+```{r}
+staff_long <- instructors |>
+  pivot_longer(cols = -year,
+               #cols: "Which columns do I pivot?"
+               names_to = "position", #names_to: "What should I call the new column that holds the old column names?"
+               values_to = "proportion") %>% #values_to: "What should I call the new column that holds the old values?"
+  mutate(date = as.Date(paste0(year, "-01-01"))) # a mutate call to create a date column in date format (see output)
+
+head(staff_long,10)
+```
+::::
+
+# Review: Line Plots
+
+## Review: Line Plots
+<hr>
+
+```{r}
+p <- staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position)) +
+  geom_line() #Note: color argument implicitly handles grouping
+
+p
+```
+
+## Recall ggplot2 Layers
+<hr>
+
+Plots made with {ggplot2} are made of numerous layers.
+
+![](images/gglayers.png){fig-align="center"}
+
+
+## Recall ggplot2 Layers
+<hr>
+Today, we'll be focusing on `theme()`.
+
+![](images/theme.png){fig-align="center"}
+
+
+# Data-to-Ink Ratios
+
+## Suggestion from Tufte
+<hr>
+
+:::{.smaller-font}
+- Edward Tufte, a statistician and professor emeritus at Yale University, is known for his work in data viz.
+- Tufte suggests that the data should be the "star of the show" in a visualization --> the data-ink ratio should be high
+:::
+
+**What does this mean?**
+<br><br>
+
+:::{.fragment}
+$$\frac{data}{ink}$$
+
+Think again about the necessity of all the non-data components of your plot - e.g., your theme!
+:::
+
+## Themes and non-data ink
+<hr>
+
+:::{.smaller-font}
+The 'theme' involves editing the content that supports the data but does not deliver the quantitative information itself: background, grid lines, ticks, labels, legends, etc. -- "non-data ink".
+:::
+
+:::{layout="[1,1]"}
+::: {column}
+
+![Low data-ink ratio](images/low.png)
+:::
+
+::: {column}
+![High data-ink ratio](images/high.png)
+:::
+
+::::
+
+## Themes and non-data ink
+<hr>
+![](images/data-ink.gif){fig-align="center"}
+
+:::aside
+This is all subjective!
+:::
+
+# Themes
+
+## Pre-Built Themes
+<hr>
+
+:::{.smaller-font}
+- {ggplot2} already has [several themes](https://ggplot2.tidyverse.org/reference/ggtheme.html) built in
+- You've used these already:
+    - `theme_minimal()`
+    - `theme_light()`
+    - `theme_dark()`
+    - `theme_bw()`
+    - `theme_void()`
+    - `theme_classic()`
+    - `theme_linedraw()`
+    - `theme_test()`
+    - `theme_gray()`
+:::
+
+## Theme Packages - {ggthemes}
+<hr>
+
+```{r}
+library(ggthemes)
+
+p +
+  theme_tufte()
+```
+
+## Theme Packages - {ggthemes}
+<hr>
+
+```{r}
+library(ggthemes)
+
+p +
+  theme_solarized()
+```
+
+## Theme Packages - {ggthemes}
+<hr>
+
+```{r}
+library(ggthemes)
+
+p +
+  theme_excel()
+```
+
+## Theme Packages - {pilot}
+<hr>
+
+```{r}
+#remotes::install_github("olihawkins/pilot")
+library(pilot)
+
+p + theme_pilot()
+```
+
+## Theme Packages - {hrbrthemes}
+<hr>
+
+```{r}
+library(hrbrthemes)
+
+p + theme_ipsum_rc()
+```
+
+## And So Many More!
+<hr>
+Check out [Erik Gahner's github page](https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics) for an incredible list!
+
+# Custom Themes
+
+## Custom Themes
+<hr>
+- You can make your own themes!
+- This is what I do currently.
+- Create your theme settings in one doc and copy/paste them into your script. Don't recreate the wheel.
