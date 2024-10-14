@@ -846,10 +846,80 @@ Dr.&nbsp;Kelly Boles
 <section id="custom-themes-1" class="slide level2">
 <h2>Custom Themes</h2>
 <hr>
+<ul>
+<li>You can make your own theme!</li>
+<li>This is what I do currently.</li>
+<li>Create your theme settings in one doc and copy/paste them into your script. Don’t recreate the wheel.</li>
+</ul>
+</section>
+<section id="theme-anatomy" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<hr>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href="#cb15-1"></a>p <span class="ot">&lt;-</span> staff_long <span class="sc">|&gt;</span></span>
+<span id="cb15-2" class="hljs-ln-code"><a href="#cb15-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
+<span id="cb15-3" class="hljs-ln-code"><a href="#cb15-3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-4" class="hljs-ln-code"><a href="#cb15-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Instructional staff employment trends"</span>)</span>
+<span id="cb15-5" class="hljs-ln-code"><a href="#cb15-5"></a></span>
+<span id="cb15-6" class="hljs-ln-code"><a href="#cb15-6"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="theme-anatomy-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<hr>
+<p>Make the title 16 point and bold</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb16-1" class="hljs-ln-code"><a href="#cb16-1"></a>p <span class="sc">+</span></span>
+<span id="cb16-2" class="hljs-ln-code"><a href="#cb16-2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-3" class="hljs-ln-code"><a href="#cb16-3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>)</span>
+<span id="cb16-4" class="hljs-ln-code"><a href="#cb16-4"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="theme-anatomy-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<hr>
+<p>Place legend on the bottom</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb17-1" class="hljs-ln-code"><a href="#cb17-1"></a>p <span class="sc">+</span></span>
+<span id="cb17-2" class="hljs-ln-code"><a href="#cb17-2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-3" class="hljs-ln-code"><a href="#cb17-3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb17-4" class="hljs-ln-code"><a href="#cb17-4"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb17-5" class="hljs-ln-code"><a href="#cb17-5"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="theme-anatomy-3" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<hr>
+<p>Make the background white</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb18-1" class="hljs-ln-code"><a href="#cb18-1"></a>p <span class="sc">+</span></span>
+<span id="cb18-2" class="hljs-ln-code"><a href="#cb18-2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb18-3" class="hljs-ln-code"><a href="#cb18-3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb18-4" class="hljs-ln-code"><a href="#cb18-4"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb18-5" class="hljs-ln-code"><a href="#cb18-5"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
+<span id="cb18-6" class="hljs-ln-code"><a href="#cb18-6"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="theme-anatomy-reference-guide" class="slide level2">
+<h2><code>theme()</code> anatomy reference guide</h2>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/ggplot_elements.png" width="725"></p>
+</figure>
+</div>
+
 <div class="footer footer-default">
 <p>UTK Educational Data Science</p>
 </div>
-</section></section>
+<aside><div>
+<p>Source: https://bookdown.org/alapo/learnr/data-visualisation.html</p>
+<p>Full list of elements available at ggplot2.tidyverse.org/reference/theme</p>
+</div></aside></section></section>
     </div>
   </div>
 

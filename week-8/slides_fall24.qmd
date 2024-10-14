@@ -346,6 +346,63 @@ Check out [Erik Gahner's github page](https://github.com/erikgahner/awesome-ggpl
 
 ## Custom Themes
 <hr>
-- You can make your own themes!
+- You can make your own theme!
 - This is what I do currently.
 - Create your theme settings in one doc and copy/paste them into your script. Don't recreate the wheel.
+
+## `theme()` anatomy {auto-animate="true"}
+<hr>
+```{r}
+p <- staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position)) +
+  geom_line() +
+  labs(title = "Instructional staff employment trends")
+
+p
+```
+
+## `theme()` anatomy {auto-animate="true"}
+<hr>
+Make the title 16 point and bold
+
+```{r}
+p +
+  theme(
+    plot.title = element_text(face = "bold", size = 16)
+    )
+```
+
+## `theme()` anatomy {auto-animate="true"}
+<hr>
+Place legend on the bottom
+
+```{r}
+p +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    legend.position = "bottom"
+    )
+```
+
+## `theme()` anatomy {auto-animate="true"}
+<hr>
+Make the background white
+
+```{r}
+p +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    legend.position = "bottom",
+    panel.background = element_rect(fill = "white")
+    )
+```
+
+## `theme()` Anatomy Reference Guide
+<hr>
+![](images/ggplot_elements.png){width=725px fig-align="center"}
+
+::: aside
+Source: https://bookdown.org/alapo/learnr/data-visualisation.html
+
+Full list of elements available at ggplot2.tidyverse.org/reference/theme
+:::
