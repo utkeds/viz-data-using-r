@@ -112,10 +112,11 @@ compiled by the AAUP shows trends in instructional staff as a proportion of
 employees between 1975 and 2011.
 :::
 
-::::{.fragment}
-```{r}
+::::{.fragment .extra-small-font}
+```{r, echo=F}
+library(knitr) #ignore this -> just doing it for the kable to print all cols
 instructors <- instructors #in dsbox, assigning so it shows in environment
-print(instructors)
+kable(instructors)
 ```
 ::::
 
@@ -135,9 +136,9 @@ print(instructors)
 :::
 ::::
 
-::::{.fragment}
-```{r}
-head(instructors,5)
+::::{.fragment .extra-small-font}
+```{r, echo=F}
+kable(head(instructors,5))
 ```
 ::::
 
