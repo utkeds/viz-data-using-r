@@ -8,7 +8,7 @@
 <link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.543">
+  <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Joshua Rosenberg and Isabella Velásquez">
   <title>Week 08 - STEM 691</title>
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,17 +60,18 @@
       }
     pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
     div.sourceCode
-      {  background-color: #f8f8f8; }
+      { color: #000000; background-color: #f8f8f8; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
+    code span { color: #000000; } /* Normal */
     code span.al { color: #ef2929; } /* Alert */
     code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #204a87; } /* Attribute */
+    code span.at { color: #c4a000; } /* Attribute */
     code span.bn { color: #0000cf; } /* BaseN */
     code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #4e9a06; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
+    code span.cn { color: #000000; } /* Constant */
     code span.co { color: #8f5902; font-style: italic; } /* Comment */
     code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
     code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -79,14 +80,14 @@
     code span.er { color: #a40000; font-weight: bold; } /* Error */
     code span.ex { } /* Extension */
     code span.fl { color: #0000cf; } /* Float */
-    code span.fu { color: #204a87; font-weight: bold; } /* Function */
+    code span.fu { color: #000000; } /* Function */
     code span.im { } /* Import */
     code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
     code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
     code span.ot { color: #8f5902; } /* Other */
     code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-    code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+    code span.sc { color: #000000; } /* SpecialChar */
     code span.ss { color: #4e9a06; } /* SpecialString */
     code span.st { color: #4e9a06; } /* String */
     code span.va { color: #000000; } /* Variable */
@@ -219,8 +220,7 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -442,7 +442,7 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>This week and next week</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/canvas.png" class="quarto-figure quarto-figure-center" width="500"></p>
+<p><img data-src="images/canvas.png" width="500"></p>
 </figure>
 </div>
 
@@ -456,12 +456,12 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="todays-data-instructional-staff-employment-trends-1" class="slide level2">
 <h2>Today’s data: Instructional staff employment trends</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># remotes::install_github("tidyverse/dsbox")</span></span>
-<span id="cb1-2"><a href=""></a><span class="fu">library</span>(dsbox)</span>
-<span id="cb1-3"><a href=""></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-4"><a href=""></a></span>
-<span id="cb1-5"><a href=""></a>staff <span class="ot">&lt;-</span> dsbox<span class="sc">::</span>instructors</span>
-<span id="cb1-6"><a href=""></a><span class="fu">head</span>(staff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># remotes::install_github("tidyverse/dsbox")</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dsbox)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>staff <span class="ot">&lt;-</span> dsbox<span class="sc">::</span>instructors</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">head</span>(staff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
    year full_time_tenured full_time_tenure_track full_time_non_tenure_track
@@ -486,7 +486,7 @@ Joshua Rosenberg and Isabella Velásquez
 <p>We use <code>pivot_longer()</code> from {tidyr} to make the data ‘longer’.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/tidyr-longer-wider.gif" class="quarto-figure quarto-figure-center" width="350"></p>
+<p><img data-src="images/tidyr-longer-wider.gif" width="350"></p>
 </figure>
 </div>
 
@@ -495,7 +495,7 @@ Joshua Rosenberg and Isabella Velásquez
 </div></aside></section>
 <section id="todays-data-instructional-staff-employment-trends-4" class="slide level2">
 <h2>Today’s data: Instructional staff employment trends</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">pivot_longer</span>(data, cols, <span class="at">names_to =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">pivot_longer</span>(data, cols, <span class="at">names_to =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>The first argument is <code>data</code></li>
 <li>The second argument, <code>cols</code>, is where you specify which columns to pivot into longer format – in this case all columns except for <code>year</code></li>
@@ -505,14 +505,14 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="todays-data-instructional-staff-employment-trends-5" class="slide level2">
 <h2>Today’s data: Instructional staff employment trends</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-2"><a href=""></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb4-3"><a href=""></a></span>
-<span id="cb4-4"><a href=""></a>staff_long <span class="ot">&lt;-</span> staff <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"faculty_type"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-6"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(year, <span class="st">"-01-01"</span>)))</span>
-<span id="cb4-7"><a href=""></a></span>
-<span id="cb4-8"><a href=""></a>staff_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>staff_long <span class="ot">&lt;-</span> staff <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"faculty_type"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(year, <span class="st">"-01-01"</span>)))</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>staff_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 55 × 4
     year faculty_type               value date      
@@ -540,26 +540,26 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>Recap from last week</h2>
 <p>Timelines with {ggplot2}</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-2"><a href=""></a></span>
-<span id="cb6-3"><a href=""></a>p <span class="ot">&lt;-</span> staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb6-5"><a href=""></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb6-6"><a href=""></a></span>
-<span id="cb6-7"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>p <span class="ot">&lt;-</span> staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="recall-ggplot2-anatomy" class="slide level2">
 <h2>Recall ggplot2 anatomy</h2>
 <p>Plots made with {ggplot2} are made of numerous layers.</p>
 
-<img data-src="images/gglayers.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="images/gglayers.png" class="r-stretch quarto-figure-center"></section>
 <section id="recall-ggplot2-anatomy-1" class="slide level2">
 <h2>Recall ggplot2 anatomy</h2>
 <p>Today, we’ll be focusing on <code>theme()</code>.</p>
 
-<img data-src="images/theme.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="images/theme.png" class="r-stretch quarto-figure-center"></section>
 <section id="themes-and-non-data-ink" class="slide level2 smaller">
 <h2>Themes and non-data ink</h2>
 <p>The ‘theme’ involves editing the content that supports the data but does not deliver the quantitative information itself: background, grid lines, ticks, labels, legends, etc. – “non-data ink”.</p>
@@ -587,7 +587,7 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="increasing-the-data-ink-ratio" class="slide level2">
 <h2>Increasing the data-ink ratio</h2>
 
-<img data-src="images/data-ink.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="images/data-ink.gif" class="r-stretch quarto-figure-center"></section>
 <section id="why-worry-about-the-data-ink-ratio" class="slide level2 smaller">
 <h2>Why worry about the data-ink ratio?</h2>
 <p>Some believe that a higher data-ink ratio is better because it allows the audience to focus on the data rather than unnecessary elements that do not contribute to the message.</p>
@@ -595,7 +595,7 @@ Joshua Rosenberg and Isabella Velásquez
 <p>This is a subjective take!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/mona.jpg" class="quarto-figure quarto-figure-center" width="350"></p>
+<p><img data-src="images/mona.jpg" width="350"></p>
 </figure>
 </div>
 
@@ -612,71 +612,71 @@ Joshua Rosenberg and Isabella Velásquez
 <h2 data-id="quarto-animate-title">Built-in themes</h2>
 <p>{ggplot2} comes with a number of built-in themes:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb7-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb7-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb7-1" class="hljs-ln-code"><a href="#cb7-1"></a>p <span class="sc">+</span></span>
+<span id="cb7-2" class="hljs-ln-code"><a href="#cb7-2"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="built-in-themes-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Built-in themes</h2>
 <p>{ggplot2} comes with seven built-in themes, including:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb8-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb8-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb8-1" class="hljs-ln-code"><a href="#cb8-1"></a>p <span class="sc">+</span></span>
+<span id="cb8-2" class="hljs-ln-code"><a href="#cb8-2"></a>  <span class="fu">theme_dark</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="built-in-themes-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Built-in themes</h2>
 <p>{ggplot2} comes with seven built-in themes, including:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb9-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb9-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb9-1" class="hljs-ln-code"><a href="#cb9-1"></a>p <span class="sc">+</span></span>
+<span id="cb9-2" class="hljs-ln-code"><a href="#cb9-2"></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="built-in-themes-3" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Built-in themes</h2>
 <p>{ggplot2} comes with seven built-in themes, including:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb10-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb10-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb10-1" class="hljs-ln-code"><a href="#cb10-1"></a>p <span class="sc">+</span></span>
+<span id="cb10-2" class="hljs-ln-code"><a href="#cb10-2"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-packages" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Theme packages</h2>
 <p>Community-contributed packages provide even more themes:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb11-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb11-2" class="hljs-ln-code"><a href=""></a></span>
-<span id="cb11-3" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb11-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_tufte</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb11-1" class="hljs-ln-code"><a href="#cb11-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb11-2" class="hljs-ln-code"><a href="#cb11-2"></a></span>
+<span id="cb11-3" class="hljs-ln-code"><a href="#cb11-3"></a>p <span class="sc">+</span></span>
+<span id="cb11-4" class="hljs-ln-code"><a href="#cb11-4"></a>  <span class="fu">theme_tufte</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-packages-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Theme packages</h2>
 <p>Community-contributed packages provide even more themes:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb12-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb12-2" class="hljs-ln-code"><a href=""></a></span>
-<span id="cb12-3" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb12-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_solarized</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb12-1" class="hljs-ln-code"><a href="#cb12-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb12-2" class="hljs-ln-code"><a href="#cb12-2"></a></span>
+<span id="cb12-3" class="hljs-ln-code"><a href="#cb12-3"></a>p <span class="sc">+</span></span>
+<span id="cb12-4" class="hljs-ln-code"><a href="#cb12-4"></a>  <span class="fu">theme_solarized</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-packages-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Theme packages</h2>
 <p>Community-contributed packages provide even more themes:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb13-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb13-2" class="hljs-ln-code"><a href=""></a></span>
-<span id="cb13-3" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb13-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme_excel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb13-1" class="hljs-ln-code"><a href="#cb13-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb13-2" class="hljs-ln-code"><a href="#cb13-2"></a></span>
+<span id="cb13-3" class="hljs-ln-code"><a href="#cb13-3"></a>p <span class="sc">+</span></span>
+<span id="cb13-4" class="hljs-ln-code"><a href="#cb13-4"></a>  <span class="fu">theme_excel</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="finding-theme-packages" class="slide level2">
 <h2>Finding theme packages</h2>
 <ul>
@@ -694,57 +694,57 @@ Joshua Rosenberg and Isabella Velásquez
 <section id="theme-anatomy" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a href=""></a>p <span class="ot">&lt;-</span> </span>
-<span id="cb14-2" class="hljs-ln-code"><a href=""></a>  staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb14-3" class="hljs-ln-code"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb14-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb14-5" class="hljs-ln-code"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Instructional staff employment trends"</span>)</span>
-<span id="cb14-6" class="hljs-ln-code"><a href=""></a></span>
-<span id="cb14-7" class="hljs-ln-code"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a href="#cb14-1"></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb14-2" class="hljs-ln-code"><a href="#cb14-2"></a>  staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb14-3" class="hljs-ln-code"><a href="#cb14-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb14-4" class="hljs-ln-code"><a href="#cb14-4"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-5" class="hljs-ln-code"><a href="#cb14-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Instructional staff employment trends"</span>)</span>
+<span id="cb14-6" class="hljs-ln-code"><a href="#cb14-6"></a></span>
+<span id="cb14-7" class="hljs-ln-code"><a href="#cb14-7"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-anatomy-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
 <h3 id="make-the-title-16-point-and-bold">Make the title 16 point and bold</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb15-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme</span>(</span>
-<span id="cb15-3" class="hljs-ln-code"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>)</span>
-<span id="cb15-4" class="hljs-ln-code"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a href="#cb15-1"></a>p <span class="sc">+</span></span>
+<span id="cb15-2" class="hljs-ln-code"><a href="#cb15-2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-3" class="hljs-ln-code"><a href="#cb15-3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>)</span>
+<span id="cb15-4" class="hljs-ln-code"><a href="#cb15-4"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-anatomy-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
 <h3 id="place-legend-on-the-bottom">Place legend on the bottom</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb16-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb16-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme</span>(</span>
-<span id="cb16-3" class="hljs-ln-code"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb16-4" class="hljs-ln-code"><a href=""></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb16-5" class="hljs-ln-code"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb16-1" class="hljs-ln-code"><a href="#cb16-1"></a>p <span class="sc">+</span></span>
+<span id="cb16-2" class="hljs-ln-code"><a href="#cb16-2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-3" class="hljs-ln-code"><a href="#cb16-3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb16-4" class="hljs-ln-code"><a href="#cb16-4"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb16-5" class="hljs-ln-code"><a href="#cb16-5"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-anatomy-3" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
 <h3 id="make-the-background-white">Make the background white</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb17-1" class="hljs-ln-code"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb17-2" class="hljs-ln-code"><a href=""></a>  <span class="fu">theme</span>(</span>
-<span id="cb17-3" class="hljs-ln-code"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb17-4" class="hljs-ln-code"><a href=""></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb17-5" class="hljs-ln-code"><a href=""></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
-<span id="cb17-6" class="hljs-ln-code"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb17-1" class="hljs-ln-code"><a href="#cb17-1"></a>p <span class="sc">+</span></span>
+<span id="cb17-2" class="hljs-ln-code"><a href="#cb17-2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-3" class="hljs-ln-code"><a href="#cb17-3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb17-4" class="hljs-ln-code"><a href="#cb17-4"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb17-5" class="hljs-ln-code"><a href="#cb17-5"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
+<span id="cb17-6" class="hljs-ln-code"><a href="#cb17-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-anatomy-reference-guide" class="slide level2">
 <h2><code>theme()</code> anatomy reference guide</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/ggplot_elements.png" class="quarto-figure quarto-figure-center" width="725"></p>
+<p><img data-src="images/ggplot_elements.png" width="725"></p>
 </figure>
 </div>
 
@@ -764,11 +764,11 @@ Joshua Rosenberg and Isabella Velásquez
 <li><code>element_text()</code> draws labels and headings:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb18-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>p <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="modifying-theme-components-2" class="slide level2">
 <h2>Modifying theme components</h2>
 <p>Four basic types of built-in element functions:</p>
@@ -776,11 +776,11 @@ Joshua Rosenberg and Isabella Velásquez
 <li><code>element_line()</code> draws lines by color, linewidth and linetype:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>p <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="modifying-theme-components-3" class="slide level2">
 <h2>Modifying theme components</h2>
 <p>Four basic types of built-in element functions:</p>
@@ -788,11 +788,11 @@ Joshua Rosenberg and Isabella Velásquez
 <li><code>element_rect()</code> draws rectangles, mostly used for backgrounds</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb20-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>p <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="modifying-theme-components-4" class="slide level2">
 <h2>Modifying theme components</h2>
 <p>Four basic types of built-in element functions:</p>
@@ -800,36 +800,36 @@ Joshua Rosenberg and Isabella Velásquez
 <li><code>element_blank()</code> draws nothing</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb21-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>p <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="modifying-theme-components-5" class="slide level2">
 <h2>Modifying theme components</h2>
 <p>Modify multiple theme components in the same <code>theme()</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb22-2"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
-<span id="cb22-3"><a href=""></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb22-4"><a href=""></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
-<span id="cb22-5"><a href=""></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>p <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
+<span id="cb22-3"><a href="#cb22-3"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb22-4"><a href="#cb22-4"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
+<span id="cb22-5"><a href="#cb22-5"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="modifying-theme-components-6" class="slide level2">
 <h2>Modifying theme components</h2>
 <p>Can also add on to an existing theme:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>p <span class="sc">+</span></span>
-<span id="cb23-2"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb23-3"><a href=""></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
-<span id="cb23-4"><a href=""></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>),</span>
-<span id="cb23-5"><a href=""></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
-<span id="cb23-6"><a href=""></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>p <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
+<span id="cb23-4"><a href="#cb23-4"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>),</span>
+<span id="cb23-5"><a href="#cb23-5"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
+<span id="cb23-6"><a href="#cb23-6"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch quarto-figure-center"><div class="fragment">
 <p>What happens if you put <code>theme()</code> before <code>theme_minimal()</code>?</p>
 </div>
 </section></section>
@@ -851,7 +851,7 @@ Joshua Rosenberg and Isabella Velásquez
 <li>Use the <code>colors()</code> command to see the available named colors</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">colors</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">colors</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "white"                "aliceblue"            "antiquewhite"        
   [4] "antiquewhite1"        "antiquewhite2"        "antiquewhite3"       
@@ -1079,12 +1079,12 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>Built-in colors</h2>
 <p>Use the name of the color in quotes:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"royalblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"royalblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch quarto-figure-center"><div class="fragment">
 <p>What if you put <code>fill = "royalblue"</code> inside of <code>aes()</code>?</p>
 </div>
 </section>
@@ -1092,120 +1092,120 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>Built-in colors</h2>
 <p>Inside of <code>aes()</code>, <code>fill</code> maps to the data, <em>not</em> the geometry.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> <span class="st">"royalblue"</span>)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href=""></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> <span class="st">"royalblue"</span>)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="built-in-colors-3" class="slide level2">
 <h2>Built-in colors</h2>
 <p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="|4-11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb28-3"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb28-4"><a href=""></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb28-5"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb28-6"><a href=""></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb28-7"><a href=""></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
-<span id="cb28-8"><a href=""></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
-<span id="cb28-9"><a href=""></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
-<span id="cb28-10"><a href=""></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
-<span id="cb28-11"><a href=""></a>    )</span>
-<span id="cb28-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="|4-11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb28-5"><a href="#cb28-5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb28-6"><a href="#cb28-6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb28-7"><a href="#cb28-7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb28-8"><a href="#cb28-8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb28-9"><a href="#cb28-9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb28-11"><a href="#cb28-11"></a>    )</span>
+<span id="cb28-12"><a href="#cb28-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="built-in-colors-4" class="slide level2 smaller">
 <h2>Built-in colors</h2>
 <p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector:</p>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Why are there no colors?</p>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch quarto-figure-center"><p>Why are there no colors?</p>
 </section>
 <section id="built-in-colors-5" class="slide level2">
 <h2>Built-in colors</h2>
 <p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> is mapped to the data</strong>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="|2,4-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb29-3"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb29-4"><a href=""></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb29-5"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb29-6"><a href=""></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb29-7"><a href=""></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
-<span id="cb29-8"><a href=""></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
-<span id="cb29-9"><a href=""></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
-<span id="cb29-10"><a href=""></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
-<span id="cb29-11"><a href=""></a>    )</span>
-<span id="cb29-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="|2,4-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb29-6"><a href="#cb29-6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb29-10"><a href="#cb29-10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a>    )</span>
+<span id="cb29-12"><a href="#cb29-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="built-in-colors-6" class="slide level2">
 <h2>Built-in colors</h2>
 <p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> is mapped to the data</strong>:</p>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="built-in-colors-7" class="slide level2 smaller">
 <h2>Built-in colors</h2>
 <p>What about our earlier line graph?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb30-3"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb30-4"><a href=""></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb30-5"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb30-6"><a href=""></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb30-7"><a href=""></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
-<span id="cb30-8"><a href=""></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
-<span id="cb30-9"><a href=""></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
-<span id="cb30-10"><a href=""></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
-<span id="cb30-11"><a href=""></a>    )</span>
-<span id="cb30-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb30-5"><a href="#cb30-5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb30-6"><a href="#cb30-6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb30-7"><a href="#cb30-7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb30-8"><a href="#cb30-8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb30-9"><a href="#cb30-9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb30-10"><a href="#cb30-10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb30-11"><a href="#cb30-11"></a>    )</span>
+<span id="cb30-12"><a href="#cb30-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="built-in-colors-8" class="slide level2 smaller">
 <h2>Built-in colors</h2>
 <p>We need to make sure we’re mapping the correct aesthetic:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb31-3"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb31-4"><a href=""></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb31-5"><a href=""></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb31-6"><a href=""></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb31-7"><a href=""></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
-<span id="cb31-8"><a href=""></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
-<span id="cb31-9"><a href=""></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
-<span id="cb31-10"><a href=""></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
-<span id="cb31-11"><a href=""></a>    )</span>
-<span id="cb31-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb31-5"><a href="#cb31-5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb31-6"><a href="#cb31-6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb31-8"><a href="#cb31-8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb31-9"><a href="#cb31-9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb31-10"><a href="#cb31-10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a>    )</span>
+<span id="cb31-12"><a href="#cb31-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="ggplot2-palette-packages" class="slide level2">
 <h2>{ggplot2} palette packages</h2>
 <p>There are a ton of amazing palette packages out there! Here is an example from <a href="https://github.com/BlakeRMills/MetBrewer">MetBrewer</a>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">library</span>(MetBrewer)</span>
-<span id="cb32-2"><a href=""></a></span>
-<span id="cb32-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb32-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb32-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb32-6"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Hokusai1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb32-2"><a href="#cb32-2"></a></span>
+<span id="cb32-3"><a href="#cb32-3"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Hokusai1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="ggplot2-palette-packages-1" class="slide level2">
 <h2>{ggplot2} palette packages</h2>
 <p>Let’s try the <a href="https://github.com/BlakeRMills/MetBrewer?tab=readme-ov-file#egypt">Egypt</a> palette:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">library</span>(MetBrewer)</span>
-<span id="cb33-2"><a href=""></a></span>
-<span id="cb33-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb33-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb33-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb33-6"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Egypt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb33-2"><a href="#cb33-2"></a></span>
+<span id="cb33-3"><a href="#cb33-3"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Egypt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
@@ -1221,42 +1221,42 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>{ggplot2} palette packages</h2>
 <p>The {viridis} package provides continuous palettes:</p>
 
-<img data-src="images/viridis.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="images/viridis.png" class="r-stretch quarto-figure-center"></section>
 <section id="viridis" class="slide level2">
 <h2>viridis</h2>
 <p>Let’s see it in action:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">library</span>(viridis)</span>
-<span id="cb35-2"><a href=""></a></span>
-<span id="cb35-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb35-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">color =</span> value)) <span class="sc">+</span></span>
-<span id="cb35-5"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb35-6"><a href=""></a>  <span class="fu">scale_color_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb35-2"><a href="#cb35-2"></a></span>
+<span id="cb35-3"><a href="#cb35-3"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">color =</span> value)) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>  <span class="fu">scale_color_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-33-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="viridis-1" class="slide level2">
 <h2>viridis</h2>
 <p>How about with our bar chart?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">library</span>(viridis)</span>
-<span id="cb36-2"><a href=""></a></span>
-<span id="cb36-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb36-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb36-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb36-6"><a href=""></a>  <span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb36-2"><a href="#cb36-2"></a></span>
+<span id="cb36-3"><a href="#cb36-3"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a>  <span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="viridis-2" class="slide level2">
 <h2>viridis</h2>
 <p>How about with our bar chart?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">library</span>(viridis)</span>
-<span id="cb37-2"><a href=""></a></span>
-<span id="cb37-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb37-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb37-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb37-6"><a href=""></a>  <span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb37-2"><a href="#cb37-2"></a></span>
+<span id="cb37-3"><a href="#cb37-3"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a>  <span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `scale_fill_gradientn()`:
 ! Discrete values supplied to continuous scale.
@@ -1271,40 +1271,40 @@ Joshua Rosenberg and Isabella Velásquez
 <h2>viridis</h2>
 <p>viridis uses <strong>continuous</strong> palettes and our data is <strong>discrete</strong>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">library</span>(viridis)</span>
-<span id="cb39-2"><a href=""></a></span>
-<span id="cb39-3"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb39-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb39-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb39-6"><a href=""></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> faculty_type, <span class="at">y =</span> value, <span class="at">fill =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="viridis-4" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">viridis</h2>
 <p>How would you use viridis on our line graph?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb40-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(viridis)</span>
-<span id="cb40-2" class="hljs-ln-code"><a href=""></a></span>
-<span id="cb40-3" class="hljs-ln-code"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb40-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb40-5" class="hljs-ln-code"><a href=""></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb40-1" class="hljs-ln-code"><a href="#cb40-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb40-2" class="hljs-ln-code"><a href="#cb40-2"></a></span>
+<span id="cb40-3" class="hljs-ln-code"><a href="#cb40-3"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb40-4" class="hljs-ln-code"><a href="#cb40-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb40-5" class="hljs-ln-code"><a href="#cb40-5"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="viridis-5" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">viridis</h2>
-<p>How would you use viridis on our line graph? Answer: <code>scale_color_viridis_d()</code>.</p>
+<p>How would you use viridis on our line graph? Answer: <code>scale_color_viridis(discrete = TRUE)</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb41-1" class="hljs-ln-code"><a href=""></a><span class="fu">library</span>(viridis)</span>
-<span id="cb41-2" class="hljs-ln-code"><a href=""></a></span>
-<span id="cb41-3" class="hljs-ln-code"><a href=""></a>staff_long <span class="sc">%&gt;%</span></span>
-<span id="cb41-4" class="hljs-ln-code"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
-<span id="cb41-5" class="hljs-ln-code"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb41-6" class="hljs-ln-code"><a href=""></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb41-1" class="hljs-ln-code"><a href="#cb41-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb41-2" class="hljs-ln-code"><a href="#cb41-2"></a></span>
+<span id="cb41-3" class="hljs-ln-code"><a href="#cb41-3"></a>staff_long <span class="sc">%&gt;%</span></span>
+<span id="cb41-4" class="hljs-ln-code"><a href="#cb41-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value, <span class="at">color =</span> faculty_type)) <span class="sc">+</span></span>
+<span id="cb41-5" class="hljs-ln-code"><a href="#cb41-5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb41-6" class="hljs-ln-code"><a href="#cb41-6"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="checklist-of-tips" class="slide level2">
 <h2>Checklist of tips</h2>
 <ul>
@@ -1347,7 +1347,7 @@ Joshua Rosenberg and Isabella Velásquez
 <li>{dichromat} and {colorBlindness} packages simulate color blindness</li>
 </ul>
 
-<img data-src="images/colorblindness.png" class="quarto-figure quarto-figure-center r-stretch"></section></section>
+<img data-src="images/colorblindness.png" class="r-stretch quarto-figure-center"></section></section>
 <section id="code-along-1" class="title-slide slide level1 center">
 <h1>Code along</h1>
 
@@ -1373,10 +1373,8 @@ Joshua Rosenberg and Isabella Velásquez
 <li><a href="https://datasciencebox.org/" class="uri">https://datasciencebox.org/</a></li>
 <li>License: <a href="https://datasciencebox.org/license">Creative Commons Attribution-ShareAlike 4.0 International</a></li>
 </ul>
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
-</div>
 </div>
 </section>
     </div>
@@ -1405,6 +1403,7 @@ Joshua Rosenberg and Isabella Velásquez
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
+'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1703,9 +1702,10 @@ Joshua Rosenberg and Isabella Velásquez
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      function tippyHover(el, contentFn) {
         const config = {
           allowHTML: true,
+          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1715,17 +1715,8 @@ Joshua Rosenberg and Isabella Velásquez
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start',
+          placement: 'bottom-start'
         };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 

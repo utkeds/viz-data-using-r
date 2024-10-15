@@ -546,7 +546,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>instructors <span class="ot">&lt;-</span> instructors</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>instructors <span class="ot">&lt;-</span> instructors <span class="co">#in dsbox, assigning so it shows in environment</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">print</span>(instructors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 6
@@ -584,8 +584,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>instructors <span class="ot">&lt;-</span> instructors <span class="co">#instructors is in dsbox</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">head</span>(instructors,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">head</span>(instructors,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
    year full_time_tenured full_time_tenure_track full_time_non_tenure_track
@@ -905,7 +904,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 <img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="theme-anatomy-reference-guide" class="slide level2">
-<h2><code>theme()</code> anatomy reference guide</h2>
+<h2><code>theme()</code> Anatomy Reference Guide</h2>
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -913,13 +912,661 @@ Dr.&nbsp;Kelly Boles
 </figure>
 </div>
 
-<div class="footer footer-default">
-<p>UTK Educational Data Science</p>
-</div>
 <aside><div>
 <p>Source: https://bookdown.org/alapo/learnr/data-visualisation.html</p>
 <p>Full list of elements available at ggplot2.tidyverse.org/reference/theme</p>
-</div></aside></section></section>
+</div></aside></section>
+<section id="modifying-theme-components" class="slide level2">
+<h2>Modifying theme components</h2>
+<hr>
+<p>Four basic types of built-in element functions:</p>
+<ul>
+<li><code>element_text()</code> draws labels and headings:</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>p <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="modifying-theme-components-1" class="slide level2">
+<h2>Modifying theme components</h2>
+<hr>
+<p>Four basic types of built-in element functions:</p>
+<ul>
+<li><code>element_line()</code> draws lines by color, linewidth and linetype:</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>p <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="modifying-theme-components-2" class="slide level2">
+<h2>Modifying theme components</h2>
+<hr>
+<p>Four basic types of built-in element functions:</p>
+<ul>
+<li><code>element_rect()</code> draws rectangles, mostly used for backgrounds</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>p <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="modifying-theme-components-3" class="slide level2">
+<h2>Modifying theme components</h2>
+<hr>
+<p>Four basic types of built-in element functions:</p>
+<ul>
+<li><code>element_blank()</code> draws nothing</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>p <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="modifying-theme-components-4" class="slide level2">
+<h2>Modifying theme components</h2>
+<hr>
+<p>Modify multiple theme components in the same <code>theme()</code></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>p <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
+<span id="cb23-3"><a href="#cb23-3"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb23-4"><a href="#cb23-4"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
+<span id="cb23-5"><a href="#cb23-5"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="modifying-theme-components-5" class="slide level2">
+<h2>Modifying theme components</h2>
+<hr>
+<p>Can also add on to an existing theme:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>p <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
+<span id="cb24-4"><a href="#cb24-4"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>),</span>
+<span id="cb24-5"><a href="#cb24-5"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
+<span id="cb24-6"><a href="#cb24-6"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch quarto-figure-center"><div class="fragment">
+<p>What happens if you put <code>theme()</code> before <code>theme_minimal()</code>?</p>
+</div>
+</section></section>
+<section id="break" class="title-slide slide level1 center">
+<h1>BREAK</h1>
+
+</section>
+
+<section>
+<section id="colors" class="title-slide slide level1 center">
+<h1>Colors</h1>
+
+</section>
+<section id="built-in-colors" class="slide level2 smaller">
+<h2>Built-in colors</h2>
+<hr>
+<ul>
+<li>R comes pre-loaded with <a href="https://r-charts.com/colors/">657 named colors</a></li>
+<li>You can also specify any color using a hex code (#RRGGBB)</li>
+<li>Use the <code>colors()</code> command to see the available named colors</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">colors</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "white"                "aliceblue"            "antiquewhite"        
+  [4] "antiquewhite1"        "antiquewhite2"        "antiquewhite3"       
+  [7] "antiquewhite4"        "aquamarine"           "aquamarine1"         
+ [10] "aquamarine2"          "aquamarine3"          "aquamarine4"         
+ [13] "azure"                "azure1"               "azure2"              
+ [16] "azure3"               "azure4"               "beige"               
+ [19] "bisque"               "bisque1"              "bisque2"             
+ [22] "bisque3"              "bisque4"              "black"               
+ [25] "blanchedalmond"       "blue"                 "blue1"               
+ [28] "blue2"                "blue3"                "blue4"               
+ [31] "blueviolet"           "brown"                "brown1"              
+ [34] "brown2"               "brown3"               "brown4"              
+ [37] "burlywood"            "burlywood1"           "burlywood2"          
+ [40] "burlywood3"           "burlywood4"           "cadetblue"           
+ [43] "cadetblue1"           "cadetblue2"           "cadetblue3"          
+ [46] "cadetblue4"           "chartreuse"           "chartreuse1"         
+ [49] "chartreuse2"          "chartreuse3"          "chartreuse4"         
+ [52] "chocolate"            "chocolate1"           "chocolate2"          
+ [55] "chocolate3"           "chocolate4"           "coral"               
+ [58] "coral1"               "coral2"               "coral3"              
+ [61] "coral4"               "cornflowerblue"       "cornsilk"            
+ [64] "cornsilk1"            "cornsilk2"            "cornsilk3"           
+ [67] "cornsilk4"            "cyan"                 "cyan1"               
+ [70] "cyan2"                "cyan3"                "cyan4"               
+ [73] "darkblue"             "darkcyan"             "darkgoldenrod"       
+ [76] "darkgoldenrod1"       "darkgoldenrod2"       "darkgoldenrod3"      
+ [79] "darkgoldenrod4"       "darkgray"             "darkgreen"           
+ [82] "darkgrey"             "darkkhaki"            "darkmagenta"         
+ [85] "darkolivegreen"       "darkolivegreen1"      "darkolivegreen2"     
+ [88] "darkolivegreen3"      "darkolivegreen4"      "darkorange"          
+ [91] "darkorange1"          "darkorange2"          "darkorange3"         
+ [94] "darkorange4"          "darkorchid"           "darkorchid1"         
+ [97] "darkorchid2"          "darkorchid3"          "darkorchid4"         
+[100] "darkred"              "darksalmon"           "darkseagreen"        
+[103] "darkseagreen1"        "darkseagreen2"        "darkseagreen3"       
+[106] "darkseagreen4"        "darkslateblue"        "darkslategray"       
+[109] "darkslategray1"       "darkslategray2"       "darkslategray3"      
+[112] "darkslategray4"       "darkslategrey"        "darkturquoise"       
+[115] "darkviolet"           "deeppink"             "deeppink1"           
+[118] "deeppink2"            "deeppink3"            "deeppink4"           
+[121] "deepskyblue"          "deepskyblue1"         "deepskyblue2"        
+[124] "deepskyblue3"         "deepskyblue4"         "dimgray"             
+[127] "dimgrey"              "dodgerblue"           "dodgerblue1"         
+[130] "dodgerblue2"          "dodgerblue3"          "dodgerblue4"         
+[133] "firebrick"            "firebrick1"           "firebrick2"          
+[136] "firebrick3"           "firebrick4"           "floralwhite"         
+[139] "forestgreen"          "gainsboro"            "ghostwhite"          
+[142] "gold"                 "gold1"                "gold2"               
+[145] "gold3"                "gold4"                "goldenrod"           
+[148] "goldenrod1"           "goldenrod2"           "goldenrod3"          
+[151] "goldenrod4"           "gray"                 "gray0"               
+[154] "gray1"                "gray2"                "gray3"               
+[157] "gray4"                "gray5"                "gray6"               
+[160] "gray7"                "gray8"                "gray9"               
+[163] "gray10"               "gray11"               "gray12"              
+[166] "gray13"               "gray14"               "gray15"              
+[169] "gray16"               "gray17"               "gray18"              
+[172] "gray19"               "gray20"               "gray21"              
+[175] "gray22"               "gray23"               "gray24"              
+[178] "gray25"               "gray26"               "gray27"              
+[181] "gray28"               "gray29"               "gray30"              
+[184] "gray31"               "gray32"               "gray33"              
+[187] "gray34"               "gray35"               "gray36"              
+[190] "gray37"               "gray38"               "gray39"              
+[193] "gray40"               "gray41"               "gray42"              
+[196] "gray43"               "gray44"               "gray45"              
+[199] "gray46"               "gray47"               "gray48"              
+[202] "gray49"               "gray50"               "gray51"              
+[205] "gray52"               "gray53"               "gray54"              
+[208] "gray55"               "gray56"               "gray57"              
+[211] "gray58"               "gray59"               "gray60"              
+[214] "gray61"               "gray62"               "gray63"              
+[217] "gray64"               "gray65"               "gray66"              
+[220] "gray67"               "gray68"               "gray69"              
+[223] "gray70"               "gray71"               "gray72"              
+[226] "gray73"               "gray74"               "gray75"              
+[229] "gray76"               "gray77"               "gray78"              
+[232] "gray79"               "gray80"               "gray81"              
+[235] "gray82"               "gray83"               "gray84"              
+[238] "gray85"               "gray86"               "gray87"              
+[241] "gray88"               "gray89"               "gray90"              
+[244] "gray91"               "gray92"               "gray93"              
+[247] "gray94"               "gray95"               "gray96"              
+[250] "gray97"               "gray98"               "gray99"              
+[253] "gray100"              "green"                "green1"              
+[256] "green2"               "green3"               "green4"              
+[259] "greenyellow"          "grey"                 "grey0"               
+[262] "grey1"                "grey2"                "grey3"               
+[265] "grey4"                "grey5"                "grey6"               
+[268] "grey7"                "grey8"                "grey9"               
+[271] "grey10"               "grey11"               "grey12"              
+[274] "grey13"               "grey14"               "grey15"              
+[277] "grey16"               "grey17"               "grey18"              
+[280] "grey19"               "grey20"               "grey21"              
+[283] "grey22"               "grey23"               "grey24"              
+[286] "grey25"               "grey26"               "grey27"              
+[289] "grey28"               "grey29"               "grey30"              
+[292] "grey31"               "grey32"               "grey33"              
+[295] "grey34"               "grey35"               "grey36"              
+[298] "grey37"               "grey38"               "grey39"              
+[301] "grey40"               "grey41"               "grey42"              
+[304] "grey43"               "grey44"               "grey45"              
+[307] "grey46"               "grey47"               "grey48"              
+[310] "grey49"               "grey50"               "grey51"              
+[313] "grey52"               "grey53"               "grey54"              
+[316] "grey55"               "grey56"               "grey57"              
+[319] "grey58"               "grey59"               "grey60"              
+[322] "grey61"               "grey62"               "grey63"              
+[325] "grey64"               "grey65"               "grey66"              
+[328] "grey67"               "grey68"               "grey69"              
+[331] "grey70"               "grey71"               "grey72"              
+[334] "grey73"               "grey74"               "grey75"              
+[337] "grey76"               "grey77"               "grey78"              
+[340] "grey79"               "grey80"               "grey81"              
+[343] "grey82"               "grey83"               "grey84"              
+[346] "grey85"               "grey86"               "grey87"              
+[349] "grey88"               "grey89"               "grey90"              
+[352] "grey91"               "grey92"               "grey93"              
+[355] "grey94"               "grey95"               "grey96"              
+[358] "grey97"               "grey98"               "grey99"              
+[361] "grey100"              "honeydew"             "honeydew1"           
+[364] "honeydew2"            "honeydew3"            "honeydew4"           
+[367] "hotpink"              "hotpink1"             "hotpink2"            
+[370] "hotpink3"             "hotpink4"             "indianred"           
+[373] "indianred1"           "indianred2"           "indianred3"          
+[376] "indianred4"           "ivory"                "ivory1"              
+[379] "ivory2"               "ivory3"               "ivory4"              
+[382] "khaki"                "khaki1"               "khaki2"              
+[385] "khaki3"               "khaki4"               "lavender"            
+[388] "lavenderblush"        "lavenderblush1"       "lavenderblush2"      
+[391] "lavenderblush3"       "lavenderblush4"       "lawngreen"           
+[394] "lemonchiffon"         "lemonchiffon1"        "lemonchiffon2"       
+[397] "lemonchiffon3"        "lemonchiffon4"        "lightblue"           
+[400] "lightblue1"           "lightblue2"           "lightblue3"          
+[403] "lightblue4"           "lightcoral"           "lightcyan"           
+[406] "lightcyan1"           "lightcyan2"           "lightcyan3"          
+[409] "lightcyan4"           "lightgoldenrod"       "lightgoldenrod1"     
+[412] "lightgoldenrod2"      "lightgoldenrod3"      "lightgoldenrod4"     
+[415] "lightgoldenrodyellow" "lightgray"            "lightgreen"          
+[418] "lightgrey"            "lightpink"            "lightpink1"          
+[421] "lightpink2"           "lightpink3"           "lightpink4"          
+[424] "lightsalmon"          "lightsalmon1"         "lightsalmon2"        
+[427] "lightsalmon3"         "lightsalmon4"         "lightseagreen"       
+[430] "lightskyblue"         "lightskyblue1"        "lightskyblue2"       
+[433] "lightskyblue3"        "lightskyblue4"        "lightslateblue"      
+[436] "lightslategray"       "lightslategrey"       "lightsteelblue"      
+[439] "lightsteelblue1"      "lightsteelblue2"      "lightsteelblue3"     
+[442] "lightsteelblue4"      "lightyellow"          "lightyellow1"        
+[445] "lightyellow2"         "lightyellow3"         "lightyellow4"        
+[448] "limegreen"            "linen"                "magenta"             
+[451] "magenta1"             "magenta2"             "magenta3"            
+[454] "magenta4"             "maroon"               "maroon1"             
+[457] "maroon2"              "maroon3"              "maroon4"             
+[460] "mediumaquamarine"     "mediumblue"           "mediumorchid"        
+[463] "mediumorchid1"        "mediumorchid2"        "mediumorchid3"       
+[466] "mediumorchid4"        "mediumpurple"         "mediumpurple1"       
+[469] "mediumpurple2"        "mediumpurple3"        "mediumpurple4"       
+[472] "mediumseagreen"       "mediumslateblue"      "mediumspringgreen"   
+[475] "mediumturquoise"      "mediumvioletred"      "midnightblue"        
+[478] "mintcream"            "mistyrose"            "mistyrose1"          
+[481] "mistyrose2"           "mistyrose3"           "mistyrose4"          
+[484] "moccasin"             "navajowhite"          "navajowhite1"        
+[487] "navajowhite2"         "navajowhite3"         "navajowhite4"        
+[490] "navy"                 "navyblue"             "oldlace"             
+[493] "olivedrab"            "olivedrab1"           "olivedrab2"          
+[496] "olivedrab3"           "olivedrab4"           "orange"              
+[499] "orange1"              "orange2"              "orange3"             
+[502] "orange4"              "orangered"            "orangered1"          
+[505] "orangered2"           "orangered3"           "orangered4"          
+[508] "orchid"               "orchid1"              "orchid2"             
+[511] "orchid3"              "orchid4"              "palegoldenrod"       
+[514] "palegreen"            "palegreen1"           "palegreen2"          
+[517] "palegreen3"           "palegreen4"           "paleturquoise"       
+[520] "paleturquoise1"       "paleturquoise2"       "paleturquoise3"      
+[523] "paleturquoise4"       "palevioletred"        "palevioletred1"      
+[526] "palevioletred2"       "palevioletred3"       "palevioletred4"      
+[529] "papayawhip"           "peachpuff"            "peachpuff1"          
+[532] "peachpuff2"           "peachpuff3"           "peachpuff4"          
+[535] "peru"                 "pink"                 "pink1"               
+[538] "pink2"                "pink3"                "pink4"               
+[541] "plum"                 "plum1"                "plum2"               
+[544] "plum3"                "plum4"                "powderblue"          
+[547] "purple"               "purple1"              "purple2"             
+[550] "purple3"              "purple4"              "red"                 
+[553] "red1"                 "red2"                 "red3"                
+[556] "red4"                 "rosybrown"            "rosybrown1"          
+[559] "rosybrown2"           "rosybrown3"           "rosybrown4"          
+[562] "royalblue"            "royalblue1"           "royalblue2"          
+[565] "royalblue3"           "royalblue4"           "saddlebrown"         
+[568] "salmon"               "salmon1"              "salmon2"             
+[571] "salmon3"              "salmon4"              "sandybrown"          
+[574] "seagreen"             "seagreen1"            "seagreen2"           
+[577] "seagreen3"            "seagreen4"            "seashell"            
+[580] "seashell1"            "seashell2"            "seashell3"           
+[583] "seashell4"            "sienna"               "sienna1"             
+[586] "sienna2"              "sienna3"              "sienna4"             
+[589] "skyblue"              "skyblue1"             "skyblue2"            
+[592] "skyblue3"             "skyblue4"             "slateblue"           
+[595] "slateblue1"           "slateblue2"           "slateblue3"          
+[598] "slateblue4"           "slategray"            "slategray1"          
+[601] "slategray2"           "slategray3"           "slategray4"          
+[604] "slategrey"            "snow"                 "snow1"               
+[607] "snow2"                "snow3"                "snow4"               
+[610] "springgreen"          "springgreen1"         "springgreen2"        
+[613] "springgreen3"         "springgreen4"         "steelblue"           
+[616] "steelblue1"           "steelblue2"           "steelblue3"          
+[619] "steelblue4"           "tan"                  "tan1"                
+[622] "tan2"                 "tan3"                 "tan4"                
+[625] "thistle"              "thistle1"             "thistle2"            
+[628] "thistle3"             "thistle4"             "tomato"              
+[631] "tomato1"              "tomato2"              "tomato3"             
+[634] "tomato4"              "turquoise"            "turquoise1"          
+[637] "turquoise2"           "turquoise3"           "turquoise4"          
+[640] "violet"               "violetred"            "violetred1"          
+[643] "violetred2"           "violetred3"           "violetred4"          
+[646] "wheat"                "wheat1"               "wheat2"              
+[649] "wheat3"               "wheat4"               "whitesmoke"          
+[652] "yellow"               "yellow1"              "yellow2"             
+[655] "yellow3"              "yellow4"              "yellowgreen"         </code></pre>
+</div>
+</div>
+</section>
+<section id="built-in-colors-1" class="slide level2">
+<h2>Built-in colors</h2>
+<hr>
+<p>Use the name of the color in quotes:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"royalblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch quarto-figure-center"><div class="fragment">
+<p>What if you put <code>fill = "royalblue"</code> inside of <code>aes()</code>?</p>
+</div>
+</section>
+<section id="built-in-colors-2" class="slide level2">
+<h2>Built-in colors</h2>
+<hr>
+<p>Inside of <code>aes()</code>, <code>fill</code> maps to the data, <em>not</em> the geometry.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> <span class="st">"royalblue"</span>)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="built-in-colors-3" class="slide level2">
+<h2>Built-in colors</h2>
+<hr>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="|4-11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb29-6"><a href="#cb29-6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb29-10"><a href="#cb29-10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a>    )</span>
+<span id="cb29-12"><a href="#cb29-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="built-in-colors-4" class="slide level2 smaller">
+<h2>Built-in colors</h2>
+<hr>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector:</p>
+
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch quarto-figure-center"><p>Why are there no colors?</p>
+</section>
+<section id="built-in-colors-5" class="slide level2">
+<h2>Built-in colors</h2>
+<hr>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> is mapped to the data</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|2,4-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb30-5"><a href="#cb30-5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb30-6"><a href="#cb30-6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb30-7"><a href="#cb30-7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb30-8"><a href="#cb30-8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb30-9"><a href="#cb30-9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb30-10"><a href="#cb30-10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb30-11"><a href="#cb30-11"></a>    )</span>
+<span id="cb30-12"><a href="#cb30-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="built-in-colors-6" class="slide level2">
+<h2>Built-in colors</h2>
+<hr>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> is mapped to the data</strong>:</p>
+
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="built-in-colors-7" class="slide level2 smaller">
+<h2>Built-in colors</h2>
+<hr>
+<p>What about our earlier line graph?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb31-5"><a href="#cb31-5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb31-6"><a href="#cb31-6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb31-8"><a href="#cb31-8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb31-9"><a href="#cb31-9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb31-10"><a href="#cb31-10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a>    )</span>
+<span id="cb31-12"><a href="#cb31-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="built-in-colors-8" class="slide level2 smaller">
+<h2>Built-in colors</h2>
+<hr>
+<p>We need to make sure we’re mapping the correct aesthetic:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb32-6"><a href="#cb32-6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb32-8"><a href="#cb32-8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb32-9"><a href="#cb32-9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb32-10"><a href="#cb32-10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb32-11"><a href="#cb32-11"></a>    )</span>
+<span id="cb32-12"><a href="#cb32-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="ggplot2-palette-packages" class="slide level2">
+<h2>{ggplot2} palette packages</h2>
+<hr>
+<p>There are a ton of amazing palette packages out there! Here is an example from <a href="https://github.com/BlakeRMills/MetBrewer">MetBrewer</a>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb33-2"><a href="#cb33-2"></a></span>
+<span id="cb33-3"><a href="#cb33-3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Hokusai1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="ggplot2-palette-packages-1" class="slide level2">
+<h2>{ggplot2} palette packages</h2>
+<hr>
+<p>Let’s try the <a href="https://github.com/BlakeRMills/MetBrewer?tab=readme-ov-file#egypt">Egypt</a> palette:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb34-2"><a href="#cb34-2"></a></span>
+<span id="cb34-3"><a href="#cb34-3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Egypt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-error">
+<pre><code>Error in `palette()`:
+! Insufficient values in manual scale. 5 needed but only 4 provided.</code></pre>
+</div>
+</div>
+<p><br> <br> Why didn’t this work?</p>
+</div>
+</section>
+<section id="ggplot2-palette-packages-2" class="slide level2">
+<h2>{ggplot2} palette packages</h2>
+<hr>
+<p>The {viridis} package provides continuous palettes:</p>
+
+<img data-src="images/viridis.png" class="r-stretch quarto-figure-center"></section>
+<section id="viridis" class="slide level2">
+<h2>viridis</h2>
+<hr>
+<p>Let’s see it in action:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb36-2"><a href="#cb36-2"></a></span>
+<span id="cb36-3"><a href="#cb36-3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> proportion, <span class="at">color =</span> proportion, <span class="at">group =</span> position)) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb36-7"><a href="#cb36-7"></a>  <span class="fu">scale_color_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="viridis-1" class="slide level2 smaller">
+<h2>viridis</h2>
+<hr>
+<p>How about with our bar chart?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb37-2"><a href="#cb37-2"></a></span>
+<span id="cb37-3"><a href="#cb37-3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a>  <span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="viridis-2" class="slide level2 smaller">
+<h2>viridis</h2>
+<hr>
+<p>How about with our bar chart?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb38-2"><a href="#cb38-2"></a></span>
+<span id="cb38-3"><a href="#cb38-3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6"></a>  <span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `scale_fill_gradientn()`:
+! Discrete values supplied to continuous scale.
+ℹ Example values: "full_time_tenured", "full_time_tenure_track",
+  "full_time_non_tenure_track", "part_time", and "grad_student"</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Why didn’t it work?</p>
+</section>
+<section id="viridis-3" class="slide level2">
+<h2>viridis</h2>
+<hr>
+<p>viridis uses <strong>continuous</strong> palettes and our data is <strong>discrete</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb40" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb40-2"><a href="#cb40-2"></a></span>
+<span id="cb40-3"><a href="#cb40-3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-37-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="viridis-4" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">viridis</h2>
+<hr>
+<p>How would you use viridis on our line graph?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb41-1" class="hljs-ln-code"><a href="#cb41-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb41-2" class="hljs-ln-code"><a href="#cb41-2"></a></span>
+<span id="cb41-3" class="hljs-ln-code"><a href="#cb41-3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb41-4" class="hljs-ln-code"><a href="#cb41-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
+<span id="cb41-5" class="hljs-ln-code"><a href="#cb41-5"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-38-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="viridis-5" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">viridis</h2>
+<hr>
+<p>How would you use viridis on our line graph? Answer: <code>scale_color_viridis(discrete = TRUE)</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb42-1" class="hljs-ln-code"><a href="#cb42-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb42-2" class="hljs-ln-code"><a href="#cb42-2"></a></span>
+<span id="cb42-3" class="hljs-ln-code"><a href="#cb42-3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb42-4" class="hljs-ln-code"><a href="#cb42-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
+<span id="cb42-5" class="hljs-ln-code"><a href="#cb42-5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb42-6" class="hljs-ln-code"><a href="#cb42-6"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-39-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="checklist-of-tips" class="slide level2">
+<h2>Checklist of tips</h2>
+<hr>
+<ul>
+<li>Make sure to map to the data appropriately in <code>aes()</code> if you are mapping to data; otherwise, it will map to geometry</li>
+<li>Make sure your <code>color</code> or <code>fill</code> match, i.e., you are not trying to apply <code>color</code> to a <code>fill</code> aesthetic</li>
+<li>Make sure that if you are using a discrete palette, you have enough values</li>
+<li>Make sure that you are not trying to apply a continuous palette to discrete values</li>
+</ul>
+</section>
+<section id="finding-palette-packages" class="slide level2">
+<h2>Finding palette packages</h2>
+<hr>
+<ul>
+<li>MetBrewer</li>
+<li>wesanderson</li>
+<li>severance</li>
+</ul>
+<p>This is a fantastic resource: <a href="https://github.com/EmilHvitfeldt/r-color-palettes" class="uri">https://github.com/EmilHvitfeldt/r-color-palettes</a></p>
+</section></section>
+<section>
+<section id="accessibility" class="title-slide slide level1 center">
+<h1>Accessibility</h1>
+
+</section>
+<section id="colors-1" class="slide level2">
+<h2>Colors</h2>
+<hr>
+<p>Some people do not possess the usual complement of color receptors and so can distinguish fewer colors than others.</p>
+<ul>
+<li>Because of this, it is important to consider how a color palette will look to people with common forms of color blindness.</li>
+</ul>
+<p>You also want to check the contrast between colors to make text legible for visitors with low vision.</p>
+<ul>
+<li>WebAIM checker: <a href="https://webaim.org/resources/contrastchecker/">https://webaim.org/resources/contrastchecker/</a></li>
+</ul>
+</section>
+<section id="colors-2" class="slide level2">
+<h2>Colors</h2>
+<hr>
+<p>There are tools to help check your palettes:</p>
+<ul>
+<li><a href="vischeck.com">vischeck.com</a></li>
+<li>{dichromat} and {colorBlindness} packages simulate color blindness</li>
+</ul>
+
+<img data-src="images/colorblindness.png" class="r-stretch quarto-figure-center"></section>
+<section id="colors-3" class="slide level2">
+<h2>Colors</h2>
+<hr>
+<p>Some color palettes also consider accessibility:</p>
+<ul>
+<li>{viridis} is designed to be perceptually uniform (visually consistent change in color + accessible)</li>
+<li>{RColorBrewer} has colorblind-friendly palettes</li>
+<li>{MetBrewer} has colorblind-friendly palettes</li>
+</ul>
+</section>
+<section id="collaborative-practice" class="slide level2">
+<h2>Collaborative Practice</h2>
+<hr>
+<ul>
+<li>Launch into breakout rooms.</li>
+<li>Cameras off: 3-5 min to review task</li>
+<li>Cameras on: collaborative task work</li>
+</ul>
+</section>
+<section id="attribution-for-materials-used-today" class="slide level2">
+<h2>Attribution for materials used today</h2>
+<hr>
+<ul>
+<li>Data Science in a Box by Mine Çetinkaya-Rundel</li>
+<li><a href="https://datasciencebox.org/" class="uri">https://datasciencebox.org/</a></li>
+<li>License: <a href="https://datasciencebox.org/license">Creative Commons Attribution-ShareAlike 4.0 International</a></li>
+</ul>
+<div class="footer footer-default">
+<p>UTK Educational Data Science</p>
+</div>
+</section></section>
     </div>
   </div>
 

@@ -1,0 +1,73 @@
+---
+title: "Creating Custom Themes in ggplot2"
+author: "Names Here Please"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+In this activity, you will create a custom theme for a plot visualizing spending on children's programs using the `tidykids` dataset. You will modify elements such as titles, background, gridlines, legend, and axis settings in `theme()` to practice creating a custom theme for your plot.
+
+Resources you will/may need:
+- [TPTE Identity Toolkit - Colors]
+- [Built-in R Color](https://r-charts.com/colors/)
+- [`theme()` cheatsheet](https://bookdown.org/alapo/learnr/images/ggplot_elements2.png)
+- [`theme()` documentation](https://ggplot2.tidyverse.org/reference/theme)
+
+
+## Step 1: Load the Required Libraries and Data
+
+You will need to load the `tidykids` dataset and {tidyverse} package to complete this activity. Create a code chunk below and load them both.
+
+## Step 2: Wrangle the Data
+
+Wrangle the data to keep the `year`, `state`, `variable`, and `inf_adj_perchild` columns. Also, create a region variable. I have supplied starter code for the region variable below. Finally, filter `variable` for  PK12ed spending.
+
+```{r wrangling}
+# mutate(region = case_when(
+#     state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
+#                  "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+#     state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+#                  "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
+#     state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
+#                  "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
+#                  "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
+#     state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
+#                  "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
+#   ))
+```
+
+## Step 3: Create a Basic Plot
+
+Create a line plot that shows the `inf_adj_perchild` spending over time for all the states. Additionally, facet_wrap by region. Create a code chunk below to do this. Assign the plot to an object called `p`.
+
+## Step 4: Create a Custom Theme
+
+Using the starter code below, begin creating a custom theme to add to your plot. For each additional theme element instruction, copy/paste your code from 4a to 4b, then 4b to 4c, and so on. This will help you build your custom theme step-by-step.
+
+```{r 4a-plot_title}
+my_theme <- theme(
+  # Increase the size of the plot title to size 18
+  # Bold the title
+)
+```
+
+```{r 4b-axis_labels}
+# Copy your completed code from 4a here and then:
+
+# Set the font size for by x and y axis titles to 14.
+
+
+```
+
+```{r 4c-customize_background}
+# Copy your completed code from 4b here and then:
+
+# Change the background color of the plot to light gray.
+
+```
