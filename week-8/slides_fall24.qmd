@@ -38,15 +38,14 @@ knitr:
     - CRAN vs. remotes
     - `pivot_longer`
 - **Themes**
-    - Pre-Built, Packages, & Custom
-- **Colors: Setting vs. Mapping**
-- **Palettes**
-    - Default, Custom, and Self-Created Palettes
-        - Discrete Data
-        - Continuous Data
-- **Universal Design & Color**
-    - Inclusivity
+    - Pre-Built
+    - Packages
+    - Custom
+- **Color**
+    - Built-in Color
+    - Color Palettes
     - Accessibility
+- **Collaborative Practice**
 - **Looking Ahead**
 :::
 
@@ -833,6 +832,17 @@ Some color palettes also consider accessibility:
 - Launch into breakout rooms.
 - Cameras off: 3-5 min to review task
 - Cameras on: collaborative task work
+
+# Looking Ahead
+
+## Looking Ahead
+<hr>
+- Reading:
+    - Schwabish (2021), Ch 2
+    - Christiansen (2023), Ch 9
+    - Fung (2020)
+    - Wilke (2019), Ch 20
+- Assignment 8: Graphing and Improving Plots
 
 ## Attribution for materials used today
 <hr>
