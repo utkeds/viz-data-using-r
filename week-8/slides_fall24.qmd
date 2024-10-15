@@ -842,6 +842,7 @@ Some color palettes also consider accessibility:
     - Christiansen (2023), Ch 9
     - Fung (2020)
     - Wilke (2019), Ch 20
+- Discussion Post
 - Assignment 8: Graphing and Improving Plots
 
 ## Attribution for materials used today
