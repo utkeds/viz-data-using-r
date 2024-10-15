@@ -184,8 +184,7 @@ head(instructors,5)
 ::::{.fragment .smaller-font}
 ```{r}
 staff_long <- instructors |>
-  pivot_longer(cols = -year,
-               #cols: "Which columns do I pivot?"
+  pivot_longer(cols = -year, #cols: "Which columns do I pivot?"
                names_to = "position", #names_to: "What should I call the new column that holds the old column names?"
                values_to = "proportion") %>% #values_to: "What should I call the new column that holds the old values?"
   mutate(date = as.Date(paste0(year, "-01-01"))) # a mutate call to create a date column in date format (see output)

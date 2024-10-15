@@ -634,13 +634,12 @@ Dr.&nbsp;Kelly Boles
 <div class="fragment smaller-font">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>staff_long <span class="ot">&lt;-</span> instructors <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year,</span>
-<span id="cb7-3"><a href="#cb7-3"></a>               <span class="co">#cols: "Which columns do I pivot?"</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>               <span class="at">names_to =</span> <span class="st">"position"</span>, <span class="co">#names_to: "What should I call the new column that holds the old column names?"</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>               <span class="at">values_to =</span> <span class="st">"proportion"</span>) <span class="sc">%&gt;%</span> <span class="co">#values_to: "What should I call the new column that holds the old values?"</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(year, <span class="st">"-01-01"</span>))) <span class="co"># a mutate call to create a date column in date format (see output)</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="fu">head</span>(staff_long,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="co">#cols: "Which columns do I pivot?"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>               <span class="at">names_to =</span> <span class="st">"position"</span>, <span class="co">#names_to: "What should I call the new column that holds the old column names?"</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>               <span class="at">values_to =</span> <span class="st">"proportion"</span>) <span class="sc">%&gt;%</span> <span class="co">#values_to: "What should I call the new column that holds the old values?"</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(year, <span class="st">"-01-01"</span>))) <span class="co"># a mutate call to create a date column in date format (see output)</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">head</span>(staff_long,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
     year position                   proportion date      
