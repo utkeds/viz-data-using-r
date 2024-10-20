@@ -45,7 +45,7 @@ Wrangle the data to keep the `year`, `state`, `variable`, and `inf_adj_perchild`
 
 ## Step 3: Create a Basic Plot
 
-Create a line plot that shows the `inf_adj_perchild` spending over time for all the states. Additionally, facet_wrap by region. Add plot and axis labels. Create a code chunk below to do this. Assign the plot to an object called `p`.
+Create a line plot that shows the `inf_adj_perchild` spending over time for all the states. Additionally, facet_wrap by region. Assign color by region but group by state. Add plot and axis labels. Create a code chunk below to do this. Assign the plot to an object called `p`.
 
 ## Step 4: Use a Theme Package
 
