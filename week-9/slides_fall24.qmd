@@ -51,18 +51,13 @@ DEMO
 
 :::{.smaller-font}
 - **Weekly Check In**
-- **Foundational Skills**
-    - CRAN vs. remotes
-    - `pivot_longer`
-- **Themes**
-    - Pre-Built
-    - Packages
-    - Custom
-- **Color**
-    - Built-in Color
-    - Color Palettes
-    - Accessibility
+- **Basic Principles**
+- **`theme()` + text**
+- **`scale_*_*`**
+- **Text `geom_*()`s**
+- **Fonts**
 - **Collaborative Practice**
+- **Mini-Project #2**
 - **Looking Ahead**
 :::
 
