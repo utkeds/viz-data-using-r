@@ -573,8 +573,8 @@ p
     - Chang (2024), Ch. 7
     - Chang (2024), Ch. 11
     - R Coder (2024)
-- Assignment 9: Creating Visualizations and Modifying Textual Components
-- Begin thinking about data/viz plan for final project (mini-project #2)
+- Assignment: Being work on mini-project #2
+- Assignment: Individually complete collaborative practice if not finished
 
 ## Next Semester + Beyond
 <hr>
