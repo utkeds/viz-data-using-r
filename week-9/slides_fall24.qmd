@@ -565,7 +565,7 @@ p
 - Cameras off: 3-5 min to review task
 - Cameras on: collaborative task work
 
-# Mini-Project #2
+# [Mini-Project #2](https://utk.instructure.com/courses/213032/assignments/1933661)
 
 ## Looking Ahead
 <hr>
@@ -575,3 +575,26 @@ p
     - R Coder (2024)
 - Assignment 9: Creating Visualizations and Modifying Textual Components
 - Begin thinking about data/viz plan for final project (mini-project #2)
+
+## Next Semester + Beyond
+<hr>
+- If you aren't registered already, please consider the [Educational Data Science Graduate Certificate](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/#courses).
+- This class completes 25% of what you need.
+- The capstone can be shaped around your interests/research.
+
+## Offerings in Spring {.smaller}
+<hr>
+- **STEM 680, Foundations of Educational Data Science I (3 Credits)**
+    - Time: Tuesdays, 6-8 pm
+    - Modality: Online and synchronous
+    - Instructor: Dr. Hanall Sung ([hanallsung@utk.edu](hanallsung@utk.edu))
+
+- **STEM 691, Visualizing Data Using R  (3 Credits)**
+    - Time: Thursdays, 3-5 pm
+    - Modality: Online and synchronous
+    - Instructor: Dr. Kelly Boles ([klboles@utk.edu](klboles@utk.edu))
+
+- **STEM 695, Capstone in Educational Data Science (3 Credits)**
+    - Time: TBD (based on the students’ and faculty members’ availability)
+    - Modality: Partially synchronous (one one-hour meeting every two weeks, with asynchronous work in between)
+    - Instructors: Dr. Joshua Rosenberg ([jrosenb8@utk.edu](jrosenb8@utk.edu)) and Dr. Louis Rocconi ([lrocconi@utk.edu](lrocconi@utk.edu))
