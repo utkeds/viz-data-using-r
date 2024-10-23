@@ -1,0 +1,130 @@
+---
+title: "Wk9-Collaborative Practice"
+author: "Names Here Please"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+## STEP 1: Load the data (Already complete)
+We are using tidykids data for this exercise.
+1. Load the data
+2. Create region variable
+3. Summarize `inf_adj_perchild` by region and year
+
+```{r load-data}
+tidykids <- read_csv("tidykids.csv")
+
+tidykids <- tidykids |>
+  select(state, variable, year, inf_adj_perchild) |>
+  filter(variable == "PK12ed") |>
+ mutate(region = case_when(
+    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island",
+                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "northeast",
+    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "midwest",
+    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina",
+                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee",
+                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "south",
+    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona",
+                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "west"
+  )) |>
+  group_by(region, year) |>
+  summarize(mean_inf_adj_perchild = mean(inf_adj_perchild, na.rm = TRUE)) |>
+  ungroup()
+```
+
+## STEP 2: Create initial plot (Already complete)
+
+```{r make-plot}
+p <- tidykids |>
+  ggplot(aes(x = year, y = mean_inf_adj_perchild, color = region)) +
+  geom_line() +
+  labs(title = "U.S. Regional Spending on PK-12 Education by Year",
+       y = "Inflation-Adjusted Spending Per Child\n(in Thousands of USD)")
+```
+
+## STEP 3: Customize palette & theme (START HERE)
+- Use `scale_color_manual` to:
+    - Choose a [{MetBrewer}](https://github.com/BlakeRMills/MetBrewer) palette of your choosing to apply
+    - Put region names in title case
+- Use `theme()` to:
+    - Move the legend to the bottom (legend.position)
+    - Remove the x axis title (axis.title.x)
+    - Make the plot title face bold, size 18, and assign it a color that is complementary to the palette you chose (plot.title)
+    - Make x and y axis text bold and size 14 (axis.text)
+
+```{r theme-and-palette}
+library(MetBrewer)
+p <- p + theme(legend.position = "bottom",
+        axis.title.x = element_blank(),
+        plot.title = element_text(face = "bold", color = "#381463"),
+        axis.text = element_text(face = "bold", size = 14)) +
+  scale_color_manual(values = met.brewer("Archambault"),
+                     labels = c("northeast" = "Northeast",
+                                "midwest" = "Midwest",
+                                "south" = "South",
+                                "west" = "West"))
+
+```
+
+## STEP 4: Add annotation
+- The amount spent by the northeastern (1st)  and southern (2nd) states in 2016 has been calculated for you. Now, calculate the difference between the two values and store as a third object in your environment
+- Use `annotate` to:
+    - Add a two-line (`\n` = line break) annotation near the northeastern line in 2016, focusing on the gap between the northeast and the south
+    - Use the object name in the statement (i.e., do not hard code the values)
+    - Part of this has been done for you. You will need to specify the label text and its x and y coordinates.
+    - Assign a color that makes sense with the palette you chose (it's currently set to white)
+    
+```{r annotation}
+ne_2016 <- tidykids |>
+  filter(region == "northeast", year == 2016) |>
+  pull(mean_inf_adj_perchild) |>
+  round(3)
+
+south_2016 <- tidykids |>
+  filter(region == "south", year == 2016) |>
+  pull(mean_inf_adj_perchild) |>
+  round(3)
+
+# Calculate the difference
+
+p <- p + annotate(
+  geom = "text",
+  label = FILL ME IN,
+  x = FILL ME IN,
+  y = FILL ME IN,
+  size = 3,
+  color = "#FFFFFF",
+  hjust = "right"
+)
+
+# Note: Because of the way we keep overwriting p, if you make a mistake, you will want to go back and re-run steps 2 and 3 before re-running this code chunk. This is why I typically write plots all in one call, but I wanted to break it up for this exercise.
+```
+
+## STEP 5: Fonts!
+- Install the {showtext} package and/or load it, depending if you've already initially installed it
+- In your console, run `font_families_google()` and pick a font you'd like to use for your plot. You can see them at [Google Fonts](fonts.google.com). Make sure to note the exact name of the font you want to use from the `font_families_google()` output.
+- Use `font_add_google` to make the font available for use in your plot
+- Run `showtext_auto()` to enable the use of the font
+- Change the font in your plot to the one you've selected using `theme(text = element_text(family = "fontname"))`
+
+```{r fonts}
+#install.packages("showtext")
+library(showtext)
+
+font_add_google(name="", family="")
+
+```
+
+
+## STEP 6: Output your plot (Already complete)
+
+```{r final-plot}
+p
+```

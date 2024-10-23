@@ -573,7 +573,7 @@ p
     - Chang (2024), Ch. 7
     - Chang (2024), Ch. 11
     - R Coder (2024)
-- Assignment: Being work on mini-project #2
+- Assignment: Begin work on mini-project #2
 - Assignment: Individually complete collaborative practice if not finished
 
 ## Next Semester + Beyond
