@@ -394,7 +394,7 @@ combined_plot_4
 - You can also use `facet_wrap` to create small multiples on a semi-shared grid
 - Think back to the multiple distributions graph from Week 6
 
-```{r}
+```{r, fig.height=4.5}
 ggplot(data = penguins, aes(x = flipper_length_mm)) +
   geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
   scale_fill_manual(values = c("darkorange","purple","cyan4")) +
@@ -410,7 +410,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
 :::{.extra-small-font}
 - You call also display them separately, side-by-side
 - Here: using the the *same y-axis scale*
-```{r}
+```{r, fig.height=4.5}
 ggplot(penguins, aes(x = flipper_length_mm)) +
   geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
   scale_fill_manual(values = c("darkorange","purple","cyan4")) +
@@ -428,7 +428,7 @@ ggplot(penguins, aes(x = flipper_length_mm)) +
 :::{.extra-small-font}
 - You call also display them separately, side-by-side
 - Here: **NOT** using the the *same y-axis scale*
-```{r}
+```{r, fig.height=4.5}
 ggplot(penguins, aes(x = flipper_length_mm)) +
   geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
   scale_fill_manual(values = c("darkorange","purple","cyan4")) +
