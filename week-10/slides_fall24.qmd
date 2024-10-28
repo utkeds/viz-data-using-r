@@ -1,0 +1,582 @@
+---
+subtitle: "Plot Design in {ggplot2}"
+title: "Week 10 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r, echo=F}
+library(tidyverse)
+```
+
+# Weekly Check In/ <br>Download `.zip`
+
+# Start Recording
+
+# Building on Week 9
+
+## One More Pkg {ggrepel}
+<hr>
+
+:::{.smaller-font}
+- {ggrepel} helps with overlapping text labels
+- `geom_text_repel()` and `geom_label_repel()`
+- equivalent to `geom_text()` and `geom_label()` but with repelling
+
+:::
+
+```{r, echo=F}
+library(tidykids)
+tidykids_wider <- tidykids|>
+  filter(year == 2016) |>
+  pivot_wider(names_from = variable, values_from = c(raw, inf_adj, inf_adj_perchild))
+```
+
+:::{layout="[1,1]" .smaller-font}
+:::column
+```{r}
+tidykids_wider |>
+  ggplot(aes(x = inf_adj_edsubs, y = inf_adj_parkrec)) +
+  geom_point() +
+  geom_text(aes(label = state))
+```
+:::
+
+:::column
+```{r}
+library(ggrepel)
+
+tidykids_wider |>
+  ggplot(aes(x = inf_adj_edsubs, y = inf_adj_parkrec)) +
+  geom_point() +
+  geom_text_repel(aes(label = state))
+```
+:::
+:::
+
+## One More Pkg {ggrepel}
+<hr>
+
+:::{.smaller-font}
+- {ggrepel} helps with overlapping text labels
+- `geom_text_repel()` and `geom_label_repel()`
+- equivalent to `geom_text()` and `geom_label()` but with repelling
+
+:::
+
+```{r, echo=F}
+library(tidykids)
+tidykids_wider <- tidykids|>
+  filter(year == 2016) |>
+  pivot_wider(names_from = variable, values_from = c(raw, inf_adj, inf_adj_perchild))
+```
+
+:::{layout="[1,1]" .smaller-font}
+:::column
+```{r}
+tidykids_wider |>
+  filter(state != "California") |>
+  ggplot(aes(x = inf_adj_edsubs, y = inf_adj_parkrec)) +
+  geom_point() +
+  geom_text(aes(label = state))
+```
+:::
+
+:::column
+```{r}
+library(ggrepel)
+
+tidykids_wider |>
+  filter(state != "California") |>
+  ggplot(aes(x = inf_adj_edsubs, y = inf_adj_parkrec)) +
+  geom_point() +
+  geom_text_repel(aes(label = state))
+```
+:::
+:::
+
+## One More Pkg {ggrepel}
+<hr>
+
+:::{.smaller-font}
+- {ggrepel} helps with overlapping text labels
+- `geom_text_repel()` and `geom_label_repel()`
+- equivalent to `geom_text()` and `geom_label()` but with repelling
+
+:::
+
+```{r, echo=F}
+library(tidykids)
+tidykids_wider <- tidykids|>
+  filter(year == 2016) |>
+  pivot_wider(names_from = variable, values_from = c(raw, inf_adj, inf_adj_perchild))
+```
+
+:::{layout="[1,1]" .smaller-font}
+:::column
+```{r}
+tidykids_wider |>
+  filter(state != "California") |>
+  ggplot(aes(x = inf_adj_edsubs, y = inf_adj_parkrec)) +
+  geom_point() +
+  geom_label(aes(label = state))
+```
+:::
+
+:::column
+```{r}
+library(ggrepel)
+
+tidykids_wider |>
+  filter(state != "California") |>
+  ggplot(aes(x = inf_adj_edsubs, y = inf_adj_parkrec)) +
+  geom_point() +
+  geom_label_repel(aes(label = state))
+```
+:::
+:::
+
+## Today's Agenda
+<hr>
+
+:::{.smaller-font}
+- **Weekly Check In**
+- **Last Week:** {ggrepel}
+- **Plot Composition & Design**
+    - Compound Plots
+        - {patchwork}
+        - {cowplot}
+    - Faceting
+    - Annotations (non-text)
+- **Collaborative Discussion**
+    - Mini Project #2 & Final Project
+    - Collaborative Rubric for Final Project
+- **Looking Ahead**
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+## Compound Plots
+<hr>
+**Compound plots** are 2+ plots combined into one figure
+
+Two packages for combining plots:
+
+- {patchwork}
+- {cowplot}
+- {gridExtra} is another option, but we won't cover it today
+
+
+## {patchwork}
+<hr>
+- Make all the ggplots you want first
+- Store them to individual objects
+
+:::{layout="[1,1]" .extra-small-font}
+:::{.column}
+```{r}
+library(palmerpenguins)
+
+p1 <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color=species)) +
+  geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
+  theme_minimal() +
+  labs(title = "Penguin Bill Length vs. Flipper Length",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+   theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10))
+
+p1
+```
+:::
+
+:::{.column}
+```{r}
+p2 <- ggplot(penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot()+
+  theme_minimal() +
+  labs(title = "Distribution of Penguin Flipper Length by Species",
+       x = "Species",
+       y = "Flipper Length (mm)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+   theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10))
+
+p2
+```
+:::
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- Let's combine them
+
+```{r}
+#install.packages("patchwork")
+library(patchwork)
+
+combined_plot <- p1 + p2
+
+combined_plot
+```
+
+:::
+
+# Commercial Break
+
+## Calculator Math
+<hr>
+- Think about an old calculator - even maybe the one on your phone
+$$(1+2+3)/4  = \frac{???}{???}$$
+[$$(1+2+3)/4  = \frac{1+2+3}{4}$$]{.fragment}
+
+# Regularly Scheduled Programming
+
+```{r, echo = F}
+p3 <- penguins |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
+  theme_minimal() +
+  labs(title = "Flipper Length vs. Body Mass",
+       x = "Flipper Length (mm)",
+       y = "Body Mass (g)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+   theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10))
+
+p4 <- penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_boxplot(aes(fill = species))+
+  theme_minimal() +
+  labs(title = "Distribution of Penguin Body Mass by Species",
+       x = "Species",
+       y = "Body Mass (g)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10))
+
+p5 <- penguins |>
+  group_by(species) |>
+  summarize(mean_body_mass = mean(body_mass_g, na.rm=T),
+            sd_body_mass = sd(body_mass_g, na.rm = T)) |>
+  ungroup() |>
+  ggplot(aes(x = species, y = mean_body_mass, fill = species)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = mean_body_mass - sd_body_mass,
+                    ymax = mean_body_mass + sd_body_mass),
+                width = 0.2, position = position_dodge(0.9)) +
+  theme_minimal() +
+  labs(title = "Mean Penguin Body Mass by Species",
+       x = "Species",
+       y = "Mean Body Mass (g)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+   theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10))
+  
+```
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- {patchwork} lets you combine plots in multiple rows/columns using "calculator math"
+- I made several other plots (hidden code)
+```{r}
+#library(patchwork)
+
+combined_plot_2 <- (p1 + p2) / (p3 + p4 + p5)
+
+combined_plot_2
+```
+
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- You can also manipulate the size of each plot relative to the figure
+```{r}
+#library(patchwork)
+
+bottom_right <- p4 + p5
+combined_plot_3 <- (p1 + p2) / (p3 + bottom_right)
+
+combined_plot_3
+```
+
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- It does a lot more
+- [Investigate the documentation](https://patchwork.data-imaginist.com/articles/guides/assembly.html) for more details
+:::
+
+# {cowplot}
+
+## {cowplot}{.smaller}
+<hr>
+:::{.extra-small-font}
+- Similar to {patchwork} but written by Wilke
+- Works Similarly
+
+```{r}
+#install.packages("cowplot")
+library(cowplot)
+
+top_row <- plot_grid(p1, p2, ncol = 2, labels = c("A", "B"))
+bottom_row <- plot_grid(p3, p4, p5, ncol = 3)
+combined_plot_4 <- plot_grid(top_row, bottom_row, labels = c("","C"), ncol = 1)
+
+combined_plot_4
+```
+
+:::
+
+## {patchwork} vs. {cowplot}
+<hr>
+- {patchwork} is newer and written for ease of use
+- {cowplot} is older and [has more features](https://wilkelab.org/cowplot/articles/plot_grid.html)
+- Both are great for combining plots
+
+# Facets (again)
+
+## Faceting
+<hr>
+:::{.extra-small-font}
+- We have used `facet_wrap` to create multiple facets in different panes
+- You can also use `facet_wrap` to create small multiples on a contiguous plane
+- Think back to the multiple distributions graph from Week 6
+
+```{r}
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()
+```
+:::
+
+## Faceting
+<hr>
+:::{.extra-small-font}
+- You call also display them separately, side-by-side
+- Here: using the the *same y-axis scale*
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species, nrow = 1)+
+  theme(legend.position = "none")
+```
+:::
+
+## Faceting
+<hr>
+:::{.extra-small-font}
+- You call also display them separately, side-by-side
+- Here: **NOT** using the the *same y-axis scale*
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species, nrow = 1, scales = "free_y")+
+  theme(legend.position = "none")
+```
+:::
+
+# More Annotations
+
+## Annotations
+<hr>
+:::{.extra-small-font}
+- a plot
+```{r, fig.height=4.5}
+p8 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()+
+  labs(
+    title = "Weight vs. MPG of Cars",
+    x = "Weight",
+    y= "MPG"
+  )
+
+p8
+```
+:::
+
+## Annotations: Text
+<hr>
+:::{.extra-small-font}
+```{r, fig.height=4.5}
+p9 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()+
+  labs(
+    title = "Weight vs. MPG of Cars",
+    x = "Weight",
+    y= "MPG") +
+  theme_minimal() +
+  annotate("text", x = 3, y = 30,
+               label = "These cars are fuel efficient")
+  
+
+p9
+```
+:::
+
+## Annotations: Text + Rect
+<hr>
+:::{.extra-small-font}
+```{r, fig.height=4.5}
+p10 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()+
+  labs(
+    title = "Weight vs. MPG of Cars",
+    x = "Weight",
+    y= "MPG") +
+  theme_minimal() +
+  annotate("text", x = 3, y = 30,
+               label = "These cars are fuel efficient") +
+  annotate("rect", xmin = 1.5, xmax = 2.5, ymin = 25, ymax = 35, alpha = .2, fill = "cornflowerblue")
+
+p10
+```
+:::
+
+## Annotations: {gghighlight}
+<hr>
+:::{.extra-small-font}
+```{r, fig.height=4.5}
+library(gghighlight)
+p11 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point(color="cornflowerblue")+
+  labs(
+    title = "Weight vs. MPG of Cars",
+    x = "Weight",
+    y= "MPG") +
+  theme_minimal() +
+  annotate("text", x = 3, y = 30,
+               label = "These cars are fuel efficient")+
+  gghighlight(mpg > 25)
+
+p11
+```
+:::
+
+# [Mini-Project #2 & Final](https://utk.instructure.com/courses/213032/assignments/1933661?module_item_id=4382262)
+
+# Collaborative Discussion
+
+## Collaborative Discussion
+<hr>
+:::{.smaller-font}
+Two topics:
+
+- (1) Share your current ideas from Mini-Project #2 & Final Project
+
+    - What data are you considering?
+    - What graphs are your considering?
+    - What concerns do you have?
+
+- (2) Pull up the Final Project Collaborative Rubric
+
+    - What should be kept?
+    - What should be removed?
+    - What should be added or changed?
+
+**Add comments to the document using the comment tool!**
+
+**Be prepared for two people in your group to share (re: #1 and re: #2)**
+:::
+
+# Collaborative Practice
+
+## Looking Ahead
+<hr>
+- Reading:
+    - Rapp (n.d.), Chapters 1-4
+    - Schwabish (2021), Chapter 11
+- Assignment: Mini-Project #2, Due 11/6
+- Assignment: Assignment 10, Due 11/11
+
+
+## Next Semester + Beyond
+<hr>
+- If you aren't registered already, please consider the [Educational Data Science Graduate Certificate](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/#courses).
+- This class completes 25% of what you need.
+- The capstone can be shaped around your interests/research.
+
+## Offerings in Spring {.smaller}
+<hr>
+:::{.extra-small-font}
+- **STEM 680, Foundations of Educational Data Science I (3 Credits)**
+    - Time: Tuesdays, 6-8 pm
+    - Modality: Online and synchronous
+    - Instructor: Dr. Hanall Sung ([hanallsung@utk.edu](hanallsung@utk.edu))
+
+- **STEM 691, Visualizing Data Using R  (3 Credits)**
+    - Time: Thursdays, 3-5 pm
+    - Modality: Online and synchronous
+    - Instructor: Dr. Kelly Boles ([klboles@utk.edu](klboles@utk.edu))
+
+- **STEM 695, Capstone in Educational Data Science (3 Credits)**
+    - Time: TBD (based on the students’ and faculty members’ availability)
+    - Modality: Partially synchronous (one one-hour meeting every two weeks, with asynchronous work in between)
+    - Instructors: Dr. Joshua Rosenberg ([jrosenb8@utk.edu](jrosenb8@utk.edu)) and Dr. Louis Rocconi ([lrocconi@utk.edu](lrocconi@utk.edu))
+
+:::
