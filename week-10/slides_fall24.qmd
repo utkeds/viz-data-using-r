@@ -391,7 +391,7 @@ combined_plot_4
 <hr>
 :::{.extra-small-font}
 - We have used `facet_wrap` to create multiple facets in different panes
-- You can also use `facet_wrap` to create small multiples on a contiguous plane
+- You can also use `facet_wrap` to create small multiples on a semi-shared grid
 - Think back to the multiple distributions graph from Week 6
 
 ```{r}
