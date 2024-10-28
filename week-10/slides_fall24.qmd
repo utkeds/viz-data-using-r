@@ -250,7 +250,7 @@ p2
 :::{.smaller-font}
 - Let's combine them
 
-```{r}
+```{r, fig.height=4.5}
 #install.packages("patchwork")
 library(patchwork)
 
@@ -326,7 +326,7 @@ p5 <- penguins |>
 :::{.smaller-font}
 - {patchwork} lets you combine plots in multiple rows/columns using "calculator math"
 - I made several other plots (hidden code)
-```{r}
+```{r, fig.height=4.5}
 #library(patchwork)
 
 combined_plot_2 <- (p1 + p2) / (p3 + p4 + p5)
@@ -340,7 +340,7 @@ combined_plot_2
 <hr>
 :::{.smaller-font}
 - You can also manipulate the size of each plot relative to the figure
-```{r}
+```{r, fig.height=4.5}
 #library(patchwork)
 
 bottom_right <- p4 + p5
@@ -366,7 +366,7 @@ combined_plot_3
 - Similar to {patchwork} but written by Wilke
 - Works Similarly
 
-```{r}
+```{r, fig.height=4.5}
 #install.packages("cowplot")
 library(cowplot)
 
