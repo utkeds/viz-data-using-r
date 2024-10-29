@@ -580,3 +580,9 @@ Two topics:
     - Instructors: Dr. Joshua Rosenberg ([jrosenb8@utk.edu](jrosenb8@utk.edu)) and Dr. Louis Rocconi ([lrocconi@utk.edu](lrocconi@utk.edu))
 
 :::
+
+## Attribution for materials used today
+<hr>
+* Data Science in a Box by Mine Çetinkaya-Rundel
+* <https://datasciencebox.org/>
+* License: [Creative Commons Attribution-ShareAlike 4.0 International](https://datasciencebox.org/license)
