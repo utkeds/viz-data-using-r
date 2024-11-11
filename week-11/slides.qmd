@@ -1,0 +1,102 @@
+---
+subtitle: "Tables in {gt}"
+title: "Week 11 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r, echo=F}
+library(tidyverse)
+```
+
+# Weekly Check In/ <br>Download `.zip`
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.smaller-font}
+- **Weekly Check In**
+- **Tables in {gt}**
+    - Compound Plots
+        - {patchwork}
+        - {cowplot}
+    - Faceting
+    - Annotations (non-text)
+- **Collaborative Discussion**
+    - Mini Project #2 & Final Project
+    - Collaborative Rubric for Final Project
+- **Looking Ahead**
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+## Tables in R{.smaller}
+<hr>
+- Tables have historically been considered a weaker point in R.
+
+- There are several packages that have been developed to address this issue:
+
+  - [knitr::kable](https://cran.r-project.org/web/packages/knitr/knitr.pdf#page=29.08) (very basic)
+  - [{kableExtra}](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+  - [{flextable}](https://ardata-fr.github.io/flextable-book/) (more advanced, ideal for Word)
+  - [{stargazer}](https://cran.r-project.org/web/packages/stargazer/stargazer.pdf) (works directly with regression models)
+  - [{gt}](https://gt.rstudio.com/) (a newer package we'll focus on today)
+
+## Preparing to Make a Table{.smaller}
+<hr>
+- Wrangle your data into the data you want to show up in your table:
+  - e.g., If you want summaries, `summarize()`
+  - e.g., If you only want certain columns, `filter()`
+  - If you have specific row names, make sure there is a variable for them
+- That is, when you print the tibble or data frame, it should generally look like you want it to look in the table
+
+## Intro to {gt}{.smaller}
+<hr>
+- {gt} is a package that makes it easy to create tables in R
+- It is designed to be easy to use and to produce beautiful tables
+- It is also designed to be easy to customize
+- Was developed by the RStudio team
+- Let's have a [preview of what it can do]()
+
+
+
+
+## Attribution for materials used today
+<hr>
+* Data Science in a Box by Mine Çetinkaya-Rundel
+* <https://datasciencebox.org/>
+* License: [Creative Commons Attribution-ShareAlike 4.0 International](https://datasciencebox.org/license)
