@@ -38,14 +38,9 @@ library(tidyverse)
 :::{.smaller-font}
 - **Weekly Check In**
 - **Tables in {gt}**
-    - Compound Plots
-        - {patchwork}
-        - {cowplot}
-    - Faceting
-    - Annotations (non-text)
-- **Collaborative Discussion**
-    - Mini Project #2 & Final Project
-    - Collaborative Rubric for Final Project
+    - What can you do with {gt}?
+    - How do you use {gt}? 
+- **Collaborative Practice**
 - **Looking Ahead**
 :::
 
@@ -71,7 +66,7 @@ library(tidyverse)
 - There are several packages that have been developed to address this issue:
 
   - [knitr::kable](https://cran.r-project.org/web/packages/knitr/knitr.pdf#page=29.08) (very basic)
-  - [{kableExtra}](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+  - [{kableExtra}](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) (builds on knitr::kable)
   - [{flextable}](https://ardata-fr.github.io/flextable-book/) (more advanced, ideal for Word)
   - [{stargazer}](https://cran.r-project.org/web/packages/stargazer/stargazer.pdf) (works directly with regression models)
   - [{gt}](https://gt.rstudio.com/) (a newer package we'll focus on today)
@@ -88,15 +83,18 @@ library(tidyverse)
 <hr>
 - {gt} is a package that makes it easy to create tables in R
 - It is designed to be easy to use and to produce beautiful tables
-- It is also designed to be easy to customize
+- It is also designed to be easy to customize & is built similarly to ggplot2
 - Was developed by the RStudio team
-- Let's have a [preview of what it can do]()
+- Let's have a <a href="https://utkeds.github.io/viz-data-using-r/week-11/gt_talk_wk11/index.html" target="_blank">preview of what it can do</a>
 
-
-
-
-## Attribution for materials used today
+## Codealong{.smaller}
 <hr>
-* Data Science in a Box by Mine Çetinkaya-Rundel
-* <https://datasciencebox.org/>
-* License: [Creative Commons Attribution-ShareAlike 4.0 International](https://datasciencebox.org/license)
+- In your .zip file, you will find a folder called `gt_codealong`
+- Please open files 01, 02, 03, and 04 in RStudio
+- We're going to work through them together!
+
+## Attribution for materials used today{.smaller}
+<hr>
+* Rich Iannone & {gt} team at Posit
+* <https://github.com/rstudio/gt>
+* License: [MIT License](https://github.com/rstudio/gt/blob/master/LICENSE.md)
