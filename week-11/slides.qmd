@@ -90,10 +90,30 @@ library(tidyverse)
 ## Codealong{.smaller}
 <hr>
 - In your .zip file, you will find a folder called `gt_codealong`
-- Please open files 01, 02, 03, and 04 in RStudio
+- Please open files 01 & 02 in RStudio
 - We're going to work through them together!
 
-## Attribution for materials used today{.smaller}
+## Collaborative Practice{.smaller}
+<hr>
+- You have `01_02_Collaborative_Practice.Rmd` in your .zip file
+    - All the code is written. Your job is to read the prompts and edit it to build facility with {gt}.
+- Launch into breakout rooms.
+- Cameras off: 3-5 min to review task
+- Cameras on: collaborative task work
+- No need to submit this one.
+- If you have time remaining:
+    - Apply other pieces of the 01/02 codealong OR
+    - Open 03 and work through it together
+    
+## Looking Ahead{.smaller}
+<hr>
+- Reading:
+    - Healy (2018), Chapter 7
+    - Muth (2018)
+    - Schwabish (2021), Chapter 7
+- Assignment: Creating and Styling Tables
+
+## Attribution for Materials Used Today{.smaller}
 <hr>
 * Rich Iannone & {gt} team at Posit
 * <https://github.com/rstudio/gt>

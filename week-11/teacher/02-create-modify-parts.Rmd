@@ -1,6 +1,8 @@
 ---
 title: "Adding or Modifying Parts of a Table"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -13,9 +15,12 @@ library(tidyverse)
 
 A **gt** table can contain a few useful parts for conveying additional information. These include a header (with a titles and subtitle), a footer (with footnotes and source notes), and additional areas for labels (row group labels, column spanner labels, the stubhead label). We can modify the look of table parts more generally with `tab_options()` and perform styling on targeted table locations with `tab_style()`.
 
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### Functions in this module
+<!------- This is a family of functions that add a piece or styling to a table. ------>
 
 - `tab_header()`
 - `tab_stubhead()`
@@ -26,7 +31,7 @@ A **gt** table can contain a few useful parts for conveying additional informati
 - `tab_style()`
 - `tab_options()`
 
-Some of the helper functions for selecting columns and rows:
+Some of the helper functions (from {dplyr}) for selecting columns and rows:
 
 - `contains()`
 - `matches()`
@@ -35,11 +40,13 @@ Some of the helper functions for selecting columns and rows:
 - `everything()`
 
 Helpers for transforming text:
+<!------- Can use markdown or HTML to style your text! ------->
 
 - `md()`
 - `html()`
 
 Helpers for targeting locations (for `tab_footnote()` and `tab_style()`):
+<!------- These are helper functions for saying "What cell do you want to add a footnote/style to...?" ------>
 
 - `cells_title()`
 - `cells_stubhead()`
@@ -57,7 +64,9 @@ Helpers for defining styles (only for `tab_style()`):
 - `cell_fill()`
 - `cell_borders()`
 
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### `tab_header()`: Add a table header
 
@@ -70,24 +79,35 @@ tab_header(
 )
 ```
 
-We can add a table header to the **gt** table with a title and optionally a subtitle. A table header is an optional table part that is positioned above the column labels. We have the flexibility to use Markdown or HTML formatting for the header's title and subtitle (with `md()` or `html()`).
+We can add a table header to the **gt** table with a title and optionally a subtitle. A table header is an optional table part that is positioned above the column labels:
+
+<img src="4_Table_header.png" width="500px">
+
+We have the flexibility to use Markdown or HTML formatting for the header's title and subtitle (with `md()` or `html()`).
+
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
 
 ##### EXAMPLE
 
 Use `gtcars` to create a **gt** table; add a header part to contain a `title` and `subtitle`.
 
 ```{r}
+#Show this with and without the md() function
 gtcars |>
   dplyr::select(mfr, model, msrp) |>
   dplyr::slice(1:5) |>
   gt() |>
   tab_header(
     title = md("Data listing from **gtcars**"),
-    subtitle = md("`gtcars` is an R dataset")
+    subtitle = html("<b><span style = 'color:#C6473E;'>gtcars</span></b> is an R dataset")
   )
 ```
 
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### `tab_stubhead()`: Add label text to the stubhead
 
@@ -98,7 +118,11 @@ tab_stubhead(
 )
 ```
 
-Add a label to the stubhead of a **gt** table. The stubhead is the lone element that is positioned left of the column labels, and above the stub. We have the flexibility to use Markdown formatting for the stubhead label with `md()`. Furthermore, if the table is intended for HTML output, we can use HTML for the stubhead label (with `html()`).
+Add a label to the stubhead of a **gt** table. The stubhead is the lone element that is positioned left of the column labels, and above the stub:
+
+<img src="4_Table_header.png" width="500px">
+
+We have the flexibility to use Markdown formatting for the stubhead label with `md()`. Furthermore, if the table is intended for HTML output, we can use HTML for the stubhead label (with `html()`).
 
 ##### EXAMPLE
 
@@ -112,7 +136,9 @@ gtcars |>
   tab_stubhead(label = "car")
 ```
 
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### `tab_spanner()`: Add a spanner column label
 
@@ -129,7 +155,9 @@ tab_spanner(
 )
 ```
 
-Set a spanner column label by mapping it to columns already in the table. This label is placed above one or more column labels, spanning the width of those columns and column labels.
+Set a spanner column label by mapping it to columns already in the table. This label is placed above one or more column labels, spanning the width of those columns and column labels:
+
+<img src="5_Table_spanner.png" width="800px">
 
 With `columns` we can use column names in double quotes (`"<column>"`), in `c()` (`c(<column>)`), or, we can use the following **tidyselect** expressions:
 
@@ -138,6 +166,10 @@ With `columns` we can use column names in double quotes (`"<column>"`), in `c()`
 - `starts_with()`: starts with a prefix
 - `ends_with()`: ends with a suffix
 - `everything()`: selects all columns
+
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
 
 ##### EXAMPLES
 
@@ -161,6 +193,10 @@ Let's look at the table in **gt** so that we know where we are starting from.
 gtcars_small |> gt(rowname_col = "model")
 ```
 
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
+
 Use `gtcars` to create a **gt** table; Group several columns related to car performance under a spanner column with the label `performance`.
 
 ```{r}
@@ -171,6 +207,10 @@ gtcars_small |>
     columns = c(hp, hp_rpm, trq, trq_rpm, mpg_c, mpg_h)
   )
 ```
+
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
 
 With a few tidyselect statements in `c()`, we can get the same columns.
 
@@ -183,11 +223,17 @@ gtcars_small |>
   )
 ```
 
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
+
 If we relocate the `"hp"` column to the beginning (i.e., far left), the associated columns are gathered together.
 
 ```{r}
+#Note: You can have multiple tab spanners!
+
 gtcars_small |>
-  dplyr::select(hp, everything()) |>
+  dplyr::select(hp, everything()) |> # hp column is relocated
   gt(rowname_col = "model") |>
     tab_spanner(
     label = "performance",
@@ -195,77 +241,9 @@ gtcars_small |>
   )
 ```
 
-------
-
-### `tab_row_group()`: Add a row group to a **gt** table
-
-``` r
-tab_row_group(
-  data,
-  label,
-  rows,
-  id = label,
-  others_label = NULL,
-  group = NULL
-)
-```
-
-Create a row group with a collection of rows. This requires specification of the rows to be included, either by supplying row labels, row indices, or through use of a select helper function like `starts_with()`. To modify the order of row groups, use the `row_group_order()` function.
-
-
-##### EXAMPLES
-
-Use `gtcars` to create a **gt** table and add two row groups with the labels: `numbered` and `NA` (a group without a label associated with it)
-
-```{r}
-gtcars |>
-  dplyr::select(model, year, hp, trq) |>
-  dplyr::slice(1:8) |>
-  gt(rowname_col = "model") |>
-  tab_row_group(
-    label = "numbered",
-    rows = matches("^[0-9]")
-  )
-```
-
-Use `gtcars` to create a **gt** table. Add two row groups with the labels `powerful` and `more powerful`: the distinction is having `hp` lesser or greater than `600`.
-
-```{r}
-gtcars |>
-  dplyr::select(model, year, hp, trq) |>
-  dplyr::slice(1:8) |>
-  gt(rowname_col = "model") |>
-  tab_row_group(
-    label = "powerful",
-    rows = hp <= 600
-  ) |>
-  tab_row_group(
-    label = "more powerful",
-    rows = hp > 600
-  )
-```
-
-If the order is not what you want, you can change the calling order of the `tab_row_group()` statements, or, use `row_group_order()` afterward:
-
-```{r}
-gtcars |>
-  dplyr::select(model, year, hp, trq) |>
-  dplyr::slice(1:8) |>
-  gt(rowname_col = "model") |>
-  tab_row_group(
-    label = "powerful",
-    rows = hp <= 600
-  ) |>
-  tab_row_group(
-    label = md("**more powerful**"),
-    rows = hp > 600,
-    id = "more_powerful" #by default id = label, but we don't want *** in our label, so re-specifying
-  ) |>
-  row_group_order(groups = c("powerful", "more_powerful"))
-```
-
-
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### `tab_source_note()`: Add a source note citation
 
@@ -276,7 +254,15 @@ tab_source_note(
 )
 ```
 
-We can add a source note to the footer part of any **gt** table. A source note is useful for citing the data included in the table. Several can be added, simply use multiple calls of `tab_source_note()` and they will be inserted in the order provided. We can use Markdown formatting for the note, or, if the table is intended for HTML output, we can include HTML formatting.
+We can add a source note to the footer part of any **gt** table. A source note is useful for citing the data included in the table.
+
+<img src="7_Table_source_notes.png" width="500px">
+
+Several can be added, simply use multiple calls of `tab_source_note()` and they will be inserted in the order provided. We can use Markdown formatting for the note, or, if the table is intended for HTML output, we can include HTML formatting.
+
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
 
 ##### EXAMPLE
 
@@ -286,11 +272,13 @@ Use `exibble` to create a **gt** table. Add a source note to the table footer th
 exibble |>
   gt() |>
   tab_source_note(
-    source_note = "The `exibble` dataset is available in the **gt** package."
+    source_note = md("The `exibble` dataset is available in the **gt** package.")
   )
 ```
 
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### `tab_footnote()`: Add a table footnote
 
@@ -303,7 +291,9 @@ tab_footnote(
 )
 ```
 
-The `tab_footnote()` function can make it a painless process to add a footnote to a **gt** table. There are two components to a footnote: (1) a footnote mark that is attached to the targeted cell text, and (2) the footnote text (that starts with the corresponding footnote mark) that is placed in the table's footer area. 
+The `tab_footnote()` function can make it a painless process to add a footnote to a **gt** table. There are two components to a footnote: (1) a footnote mark that is attached to the targeted cell text, and (2) the footnote text (that starts with the corresponding footnote mark) that is placed in the table's footer area.
+
+<img src="7_Table_source_notes.png" width="500px">
 
 Each call of `tab_footnote()` will add a different note, and one or more cells can be targeted via the location helper (use in `locations`):
 
@@ -319,6 +309,10 @@ Each call of `tab_footnote()` will add a different note, and one or more cells c
 
 Additionally, we can enclose several `cells_*()` calls within a `list()` if we wish to link the footnote text to different types of locations (e.g., body cells, row group labels, the table title, etc.).
 
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
+
 ##### EXAMPLE
 
 Use `exibble` to create a **gt** table and then add a footnote to the `fctr` column label explaining what the short form means (`fctr` = 'factor').
@@ -332,7 +326,9 @@ exibble |>
   )
 ```
 
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### `tab_style()`: Add custom styles to one or more cells
 
@@ -353,6 +349,10 @@ This is done with the help of the following functions:
 - `cell_borders()`
 
 For `locations` we use the `cells_*()` functions, just like in the `tab_footnote()` function. In the example below, we'll take things a step further with the `cells_body()` function and use a conditional statement in `rows` to target cells based on data.
+
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
 
 ##### EXAMPLES
 
@@ -381,6 +381,10 @@ exibble |>
     locations = cells_body()
   )
 ```
+
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
 
 Use `exibble` to create a **gt** table. Add styles that are to be applied to data cells that satisfy a condition (using `tab_style()`).
 
@@ -415,6 +419,10 @@ exibble |>
 ```
 
 
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
+
 Use `sp500` to create a **gt** table. Color entire rows of cells based on values in a particular column.
 
 ```{r}
@@ -438,7 +446,9 @@ sp500 |>
   )
 ```
 
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### `tab_options()`: Modify the table output options
 
@@ -503,6 +513,9 @@ tab_1 <-
 tab_1
 ```
 
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr>
+<!---------------------------------------------------------------------------->
 
 Modify the table width (with `table.width`) to `100%` (which spans the entire content width area).
 
@@ -546,7 +559,9 @@ tab_1 |>
   )
 ```
 
-------
+<!-------------------------------SLIDE-BREAK---------------------------------->
+<hr style="border: 1px solid #000000;">
+<!---------------------------------------------------------------------------->
 
 ### SUMMARY
 
