@@ -104,6 +104,11 @@ library(tidyverse)
 - If you have time remaining:
     - Apply other pieces of the 01/02 codealong OR
     - Open 03 and work through it together
+
+## Final Project / Wk 14{.smaller}
+<hr>
+- You will be presenting your final project in Week 14
+- Presentation order will follow the slide order in the Google Slide Deck
     
 ## Looking Ahead{.smaller}
 <hr>
