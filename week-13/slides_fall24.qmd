@@ -622,6 +622,10 @@ head(state_capitals)
 :::
 :::
 
+:::aside
+Capitals data from [jasperdebie's github](https://github.com/jasperdebie/VisInfo/blob/master/us-state-capitals.csv)
+:::
+
 ## Add to map{.smaller}
 <hr>
 - Let's plot them
@@ -715,6 +719,16 @@ ggplot() +
   geom_sf(data=joined_state_data_sf, aes(fill = value))+
   geom_sf(data=state_capitals_sf, shape =8, color="limegreen" )+
   scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
+```
+
+```{r, echo=F}
+# coords <- st_coordinates(state_capitals_sf)
+# df <- cbind(st_drop_geometry(state_capitals_sf), coords)
+# 
+# ggplot() +
+#   geom_sf(data=joined_state_data_sf, aes(fill = value))+
+#   geom_point(data=df, aes(x = X, y = Y),  shape =8, color="limegreen" )+
+#   scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
 ```
 
 # Collaborative Practice
