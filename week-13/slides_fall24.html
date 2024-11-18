@@ -504,7 +504,8 @@ Dr.&nbsp;Kelly Boles
 <p>The {maps} package contains many outlines of continents, countries, states, and counties. It’s not very accurate or up-to-date, but is built into R.</p>
 <p>To install {maps}, run the following:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"maps"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"maps"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(maps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="longlat-data-with-maps" class="slide level2">
@@ -618,6 +619,9 @@ Dr.&nbsp;Kelly Boles
 <li>Install the package by running:</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">install.packages</span>(<span class="st">"sf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/main/sf.pdf">{sf} cheat sheet</a></li>
+</ul>
 </section>
 <section id="the-sf-package-1" class="slide level2 smaller">
 <h2>The {sf} package</h2>
@@ -802,19 +806,6 @@ First 10 features:
 <span id="cb18-2"><a href="#cb18-2"></a></span>
 <span id="cb18-3"><a href="#cb18-3"></a>tn_districts <span class="ot">&lt;-</span> <span class="fu">school_districts</span>(<span class="st">"Tennessee"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>The <a href="https://github.com/dcl-docs/ussf">ussf</a> package handles the AK/HI problem for nationwide US mapping.</p>
-</div>
-</div>
-</div>
 </section>
 <section id="the-tigris-package-3" class="slide level2 smaller">
 <h2>The {tigris} package</h2>
@@ -971,7 +962,7 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <h2>Understanding projections</h2>
 <hr>
 <ul>
-<li>What projection is the file in?</li>
+<li>What <a href="https://spatialreference.org/ref/epsg/2915/">projection</a> is the file in?</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">st_crs</span>(knox_zones_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1054,14 +1045,13 @@ PROJCRS["NAD83(HARN) / Tennessee (ftUS)",
 <h2>Creating sf objects</h2>
 <hr>
 <ul>
-<li>all of the map components must be in the same projection</li>
+<li>Creating an sf object from a data frame requires the <code>st_as_sf()</code> function</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">#creating the sf object</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="co">#latitude/longitude are in EPSG: 4326 (basically the default projection) aka WGS 84</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a>knox_sites_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(knox_sites, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb29-4"><a href="#cb29-4"></a></span>
-<span id="cb29-5"><a href="#cb29-5"></a>knox_sites_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">#latitude/longitude are in EPSG: 4326 (basically the default projection) aka WGS 84</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>knox_sites_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(knox_sites, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb29-3"><a href="#cb29-3"></a></span>
+<span id="cb29-4"><a href="#cb29-4"></a>knox_sites_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 4 features and 1 field
 Geometry type: POINT
@@ -1082,17 +1072,13 @@ Geodetic CRS:  WGS 84
 <h2>Creating sf objects</h2>
 <hr>
 <ul>
-<li>all of the map components must be in the same projection</li>
+<li>all of the map components/layers must be in the same projection (matching the <code>.shp</code> file)</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#creating the sf object</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="co">#latitude/longitude are in EPSG: 4326 (basically the default projection) aka WGS 84</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="co">#knox_sites_sf &lt;- st_as_sf(knox_sites, coords = c("Longitude", "Latitude"), crs = 4326)</span></span>
-<span id="cb31-4"><a href="#cb31-4"></a></span>
-<span id="cb31-5"><a href="#cb31-5"></a><span class="co">#transforming the projection to match the knox_zones crs</span></span>
-<span id="cb31-6"><a href="#cb31-6"></a>knox_sites_sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(knox_sites_sf, <span class="fu">st_crs</span>(knox_zones_sf))</span>
-<span id="cb31-7"><a href="#cb31-7"></a></span>
-<span id="cb31-8"><a href="#cb31-8"></a>knox_sites_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#transforming the map projection of knox_sites_sf to match the knox_zones crs</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>knox_sites_sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(knox_sites_sf, <span class="fu">st_crs</span>(knox_zones_sf))</span>
+<span id="cb31-3"><a href="#cb31-3"></a></span>
+<span id="cb31-4"><a href="#cb31-4"></a>knox_sites_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 4 features and 1 field
 Geometry type: POINT
@@ -1115,7 +1101,7 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_zones_sf) <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_sites_sf, <span class="at">color =</span> <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_sites_sf, <span class="at">color =</span> <span class="st">"#FF8200"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
@@ -1152,25 +1138,24 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)
 <h2>Joining spatial data - FIPS</h2>
 <hr>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">library</span>(ussf)</span>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co">#remotes::install_github("dcl-docs/ussf")</span></span>
 <span id="cb34-2"><a href="#cb34-2"></a>states_sf <span class="ot">&lt;-</span> ussf<span class="sc">::</span><span class="fu">boundaries</span>(<span class="st">"state"</span>, <span class="at">resolution =</span> <span class="st">"5m"</span>)</span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">head</span>(states_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">head</span>(states_sf[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 9 fields
+<pre><code>Simple feature collection with 6 features and 6 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
 Bounding box:  xmin: -2356114 ymin: -1295867 xmax: 236359.5 ymax: 1565782
 Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 6 × 10
-  STATEFP STATENS  AFFGEOID    GEOID STUSPS NAME         LSAD      ALAND  AWATER
-  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 31      01779792 0400000US31 31    NE     Nebraska     00      1.99e11 1.37e 9
-2 53      01779804 0400000US53 53    WA     Washington   00      1.72e11 1.26e10
-3 35      00897535 0400000US35 35    NM     New Mexico   00      3.14e11 7.29e 8
-4 46      01785534 0400000US46 46    SD     South Dakota 00      1.96e11 3.38e 9
-5 48      01779801 0400000US48 48    TX     Texas        00      6.77e11 1.90e10
-6 06      01779778 0400000US06 06    CA     California   00      4.04e11 2.05e10
-# ℹ 1 more variable: geometry &lt;MULTIPOLYGON [m]&gt;</code></pre>
+# A tibble: 6 × 7
+  STATEFP STUSPS NAME         LSAD       ALAND  AWATER                  geometry
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;        &lt;MULTIPOLYGON [m]&gt;
+1 31      NE     Nebraska     00       1.99e11 1.37e 9 (((-669722.6 438206.7, -…
+2 53      WA     Washington   00       1.72e11 1.26e10 (((-1955188 1446310, -19…
+3 35      NM     New Mexico   00       3.14e11 7.29e 8 (((-1231344 -588235.8, -…
+4 46      SD     South Dakota 00       1.96e11 3.38e 9 (((-633753 865532.1, -63…
+5 48      TX     Texas        00       6.77e11 1.90e10 (((-1000297 -570209.1, -…
+6 06      CA     California   00       4.04e11 2.05e10 (((-2066842 -203155, -20…</code></pre>
 </div>
 </div>
 </section>
@@ -1273,23 +1258,22 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">head</span>(states_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">head</span>(states_sf[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">10</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 9 fields
+<pre><code>Simple feature collection with 6 features and 3 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
 Bounding box:  xmin: -2356114 ymin: -1295867 xmax: 236359.5 ymax: 1565782
 Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 6 × 10
-  STATEFP STATENS  AFFGEOID    GEOID STUSPS NAME         LSAD      ALAND  AWATER
-  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 31      01779792 0400000US31 31    NE     Nebraska     00      1.99e11 1.37e 9
-2 53      01779804 0400000US53 53    WA     Washington   00      1.72e11 1.26e10
-3 35      00897535 0400000US35 35    NM     New Mexico   00      3.14e11 7.29e 8
-4 46      01785534 0400000US46 46    SD     South Dakota 00      1.96e11 3.38e 9
-5 48      01779801 0400000US48 48    TX     Texas        00      6.77e11 1.90e10
-6 06      01779778 0400000US06 06    CA     California   00      4.04e11 2.05e10
-# ℹ 1 more variable: geometry &lt;MULTIPOLYGON [m]&gt;</code></pre>
+# A tibble: 6 × 4
+  STATEFP STUSPS NAME                                                   geometry
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                                        &lt;MULTIPOLYGON [m]&gt;
+1 31      NE     Nebraska     (((-669722.6 438206.7, -668534.3 451363.2, -66850…
+2 53      WA     Washington   (((-1955188 1446310, -1954750 1446030, -1953861 1…
+3 35      NM     New Mexico   (((-1231344 -588235.8, -1231016 -586088.7, -12310…
+4 46      SD     South Dakota (((-633753 865532.1, -633164.2 865497.7, -632286.…
+5 48      TX     Texas        (((-1000297 -570209.1, -999788.6 -569601.7, -9990…
+6 06      CA     California   (((-2066842 -203155, -2066434 -203272.1, -2065390…</code></pre>
 </div>
 </div>
 </div>
@@ -1319,25 +1303,24 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <li>This is how you join the <code>states_sf</code> and <code>pop_counts_2020</code> together:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>joined_state_data_sf <span class="ot">&lt;-</span> <span class="fu">left_join</span>(states_sf, pop_counts_2020, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"STATEFP"</span> <span class="ot">=</span> <span class="st">"GEOID"</span>))</span>
-<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">head</span>(joined_state_data_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co">#object &lt;- left_join(shapefile_sf, data, by = "key")</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>joined_state_data_sf <span class="ot">&lt;-</span> <span class="fu">left_join</span>(states_sf, pop_counts_2020, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"STATEFP"</span> <span class="ot">=</span> <span class="st">"GEOID"</span>))</span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="fu">head</span>(joined_state_data_sf[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 12 fields
+<pre><code>Simple feature collection with 6 features and 6 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
 Bounding box:  xmin: -2356114 ymin: -1295867 xmax: 236359.5 ymax: 1565782
 Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 6 × 13
-  STATEFP STATENS  AFFGEOID    GEOID STUSPS NAME.x       LSAD      ALAND  AWATER
-  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 31      01779792 0400000US31 31    NE     Nebraska     00      1.99e11 1.37e 9
-2 53      01779804 0400000US53 53    WA     Washington   00      1.72e11 1.26e10
-3 35      00897535 0400000US35 35    NM     New Mexico   00      3.14e11 7.29e 8
-4 46      01785534 0400000US46 46    SD     South Dakota 00      1.96e11 3.38e 9
-5 48      01779801 0400000US48 48    TX     Texas        00      6.77e11 1.90e10
-6 06      01779778 0400000US06 06    CA     California   00      4.04e11 2.05e10
-# ℹ 4 more variables: geometry &lt;MULTIPOLYGON [m]&gt;, NAME.y &lt;chr&gt;,
-#   variable &lt;chr&gt;, value &lt;dbl&gt;</code></pre>
+# A tibble: 6 × 7
+  STATEFP STUSPS NAME.x                          geometry NAME.y variable  value
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                 &lt;MULTIPOLYGON [m]&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+1 31      NE     Nebraska     (((-669722.6 438206.7, -66… Nebra… DP1_000… 1.96e6
+2 53      WA     Washington   (((-1955188 1446310, -1954… Washi… DP1_000… 7.71e6
+3 35      NM     New Mexico   (((-1231344 -588235.8, -12… New M… DP1_000… 2.12e6
+4 46      SD     South Dakota (((-633753 865532.1, -6331… South… DP1_000… 8.87e5
+5 48      TX     Texas        (((-1000297 -570209.1, -99… Texas  DP1_000… 2.91e7
+6 06      CA     California   (((-2066842 -203155, -2066… Calif… DP1_000… 3.95e7</code></pre>
 </div>
 </div>
 </section>
@@ -1367,30 +1350,28 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <p>Let’s say we have another dataset with longitude/latitude data for each state capital city center:</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="{column} quarto-layout-cell" style="flex-basis: 57.1%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">head</span>(joined_state_data_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">head</span>(joined_state_data_sf[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">13</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 12 fields
+<pre><code>Simple feature collection with 6 features and 3 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
 Bounding box:  xmin: -2356114 ymin: -1295867 xmax: 236359.5 ymax: 1565782
 Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 6 × 13
-  STATEFP STATENS  AFFGEOID    GEOID STUSPS NAME.x       LSAD      ALAND  AWATER
-  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 31      01779792 0400000US31 31    NE     Nebraska     00      1.99e11 1.37e 9
-2 53      01779804 0400000US53 53    WA     Washington   00      1.72e11 1.26e10
-3 35      00897535 0400000US35 35    NM     New Mexico   00      3.14e11 7.29e 8
-4 46      01785534 0400000US46 46    SD     South Dakota 00      1.96e11 3.38e 9
-5 48      01779801 0400000US48 48    TX     Texas        00      6.77e11 1.90e10
-6 06      01779778 0400000US06 06    CA     California   00      4.04e11 2.05e10
-# ℹ 4 more variables: geometry &lt;MULTIPOLYGON [m]&gt;, NAME.y &lt;chr&gt;,
-#   variable &lt;chr&gt;, value &lt;dbl&gt;</code></pre>
+# A tibble: 6 × 4
+  STATEFP NAME.x          value                                         geometry
+  &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;                               &lt;MULTIPOLYGON [m]&gt;
+1 31      Nebraska      1961504 (((-669722.6 438206.7, -668534.3 451363.2, -668…
+2 53      Washington    7705281 (((-1955188 1446310, -1954750 1446030, -1953861…
+3 35      New Mexico    2117522 (((-1231344 -588235.8, -1231016 -586088.7, -123…
+4 46      South Dakota   886667 (((-633753 865532.1, -633164.2 865497.7, -63228…
+5 48      Texas        29145505 (((-1000297 -570209.1, -999788.6 -569601.7, -99…
+6 06      California   39538223 (((-2066842 -203155, -2066434 -203272.1, -20653…</code></pre>
 </div>
 </div>
 </div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="{column} quarto-layout-cell" style="flex-basis: 42.9%;justify-content: center;">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>state_capitals <span class="ot">&lt;-</span> </span>
 <span id="cb52-2"><a href="#cb52-2"></a>  <span class="fu">read_csv</span>(<span class="st">"us-state-capitals.csv"</span>)</span>
@@ -1420,7 +1401,7 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <hr>
 <ul>
 <li>Let’s plot them</li>
-<li>Oh no!</li>
+<li>Oh no! <a href="https://github.com/dcl-docs/ussf">{ussf}</a> handled the AK/HI problem, but our <code>.csv</code> file still has the AK/HI problem</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>state_capitals_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(state_capitals, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
@@ -1436,7 +1417,6 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <h2>Add to map</h2>
 <hr>
 <ul>
-<li>{ussf} fixes the AK/HI problem for nationwide US mapping, but it isn’t fixed in our state_capitals data</li>
 <li>This is fixable (but complicated). Contact me if you need to address this issue in your final project.</li>
 </ul>
 <div class="cell" data-layout-align="center">
@@ -1490,9 +1470,9 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <h2>Other data sources</h2>
 <hr>
 <ul>
-<li>The USAboundaries package, https://github.com/ropensci/USAboundaries contains state, county and zip code data for the US</li>
-<li>The rnaturalearth package (South 2017) bundles up the free, high-quality data from https://naturalearthdata.com/</li>
-<li>The osmar package, https://cran.r-project.org/package=osmar wraps up the OpenStreetMap API so you can access a wide range of vector data including individual streets and buildings</li>
+<li>The USAboundaries package, <a href="https://github.com/ropensci/USAboundaries">https://github.com/ropensci/USAboundaries</a> contains state, county and zip code data for the US</li>
+<li>The rnaturalearth package (South 2017) bundles up the free, high-quality data from <a href="https://naturalearthdata.com/">https://naturalearthdata.com/</a></li>
+<li>The osmar package, <a href="https://cran.r-project.org/package=osmar">https://cran.r-project.org/package=osmar</a> wraps up the OpenStreetMap API so you can access a wide range of vector data including individual streets and buildings</li>
 </ul>
 </section>
 <section id="sources-of-.shp-files" class="slide level2 smaller">

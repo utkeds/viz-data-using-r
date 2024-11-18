@@ -1,7 +1,6 @@
 library(ozmaps)
 library(sf)
-library(ggplot2)
-library(dplyr)
+library(tidyverse)
 
 #Oz maps gets your geometry (sf object)
 oz_states <- ozmaps::ozmap_states
