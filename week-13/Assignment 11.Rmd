@@ -126,8 +126,7 @@ Now, let's represent the data with a choropleth map. Please do the following:
 ```{r}
 ggplot(data = pct_with_bb, 
        aes(fill = _____)) + 
-  geom_sf() +
-  coord_sf()
+  geom_sf()
 ```
 
 ## Bonus

@@ -1,0 +1,684 @@
+---
+subtitle: "Static maps with {ggplot2}"
+title: "Week 13 - STEM 691"
+author: "Joshua Rosenberg and Isabella Velásquez"
+format:
+  revealjs:
+    theme: simple
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+
+state_by_region <- read_csv("https://github.com/cphalpert/census-regions/blob/master/us%20census%20bureau%20regions%20and%20divisions.csv?raw=true") # data on U.S. states' regions
+
+dat <-
+    read_csv(
+        "https://github.com/utkeds/f23-founds-eds/blob/main/ntps2021_7341_s1s.csv?raw=true",
+        skip = 5
+    ) %>% 
+  select(State,
+         ave_nurses = 2,
+         students_per_nurse = 4) %>% 
+    filter(!is.na(State)) %>% 
+    pivot_longer(-State, names_to = "variable", values_to = "values") %>% 
+    left_join(state_by_region)
+```
+
+
+# Today's agenda
+
+- Final project discussion/updates
+- Polygon maps (`geom_polygon()`)
+- Vector spatial data and simple features (`geom_sf()`)
+- Finding geometries: tigris and `st_read()`
+- Creating choropleth maps
+- Layering geoms
+
+# Final project discussion/updates
+
+## Quick discussion
+
+In breakout rooms, please discuss (around one sentence each):
+
+- A description of the data set you plan to use
+- Where you are in terms of progress on code to read and start to explore the data
+- Which visualizations you plan to create 
+- What questions you have or what challenges you anticipate
+
+*Then* please discuss 1-2 punchlines to share with the class
+
+# Mapping with ggplot2
+
+## Making maps
+
+Map making — the art of cartography — is an ancient skill involving communication, attention to detail, and an element of creativity. 
+
+
+```{r}
+#| echo: false
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("early-world-map.jpg")
+```
+
+
+## Visualizing data with maps
+
+In addition to being fun and creative, cartography also has important practical applications. A carefully crafted map can be the best way of visualizing data.
+
+
+```{r}
+#| echo: false
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("airbnb-occupancy-eclipse.png")
+```
+
+
+## Visualizing data with maps
+
+
+```{r}
+#| echo: false
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("heatmap_2x.png")
+```
+
+
+## Discussion
+
+- Do you have a favorite example of a map that displays data?
+- Have you made a map before that you'd like to share?
+
+# Polygon maps
+
+## The maps package
+
+The maps package contains many outlines of continents, countries, states, and counties. It's not very accurate or up-to-date, but is built into R.
+
+To install maps, run the following:
+
+
+```{r}
+#| eval: false
+install.packages("maps")
+```
+
+
+## Long/lat data with the maps package
+
+The maps package can access geographic longitude/latitude data with `map_data()`.
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+nc_counties <- map_data("county", "north carolina") 
+
+head(nc_counties)
+```
+
+
+## The maps package
+
+- `long` is longitude. Things to the west of the prime meridian are negative.
+- `lat` is latitude.
+- `region` and `subregion` tell what region or subregion a set of points surrounds.
+- `group` controls (among other things) whether adjacent points should be connected by lines. If they are in the same group, then they get connected, but if they are in different groups then they don’t.
+    - Having points in different groups means that ggplot "lifts the pen" when going between them.
+
+
+```{r}
+head(nc_counties)
+```
+
+
+## Plotting long/lat with geom_point()
+
+We can plot long/lat coordinates with `geom_point()`.
+
+- `coord_quickmap()` adjusts the axes to ensure that longitude and latitude are rendered on the same scale
+
+
+```{r}
+ggplot(nc_counties, aes(long, lat)) + 
+  geom_point(size = .25, show.legend = FALSE) +
+  coord_quickmap()
+```
+
+
+## geom_polygon()
+
+`geom_polygon()` "connects" the dots.
+
+
+```{r}
+ggplot(nc_counties, aes(long, lat, group = group)) +
+  geom_polygon(fill = "white", colour = "grey50") + 
+  coord_quickmap()
+```
+
+
+## Danger of long/lat data
+
+::: {.callout-warning}
+However, “longitude-latitude” data format is not typically used in real world mapping.
+:::
+
+# Vector spatial data and simple features
+
+## Vector spatial data
+
+- *Vector spatial data* is a spatial data model that represents geographic features as points, lines, and polygons
+- Vector spatial data is a common file format for mapping data
+- Typically, these are encoded with the simple features (sf) encoding
+
+## The sf package
+
+- We can use the sf package to work with vector spatial data
+- Install the package by running:
+
+```r
+install.packages("sf")
+```
+
+## The sf package
+
+- The sf package uses the class of simple feature (`sf`) for vector spatial data in R
+- The sf package was designed to replace the sp package, which has been one of the most popular and powerful spatial packages in R for more than a decade
+- sf represents vector spatial data much like a regular R data frame, but with a special column, `geometry`, that represents the shape of each feature
+- An important benefit is its compatibility with the tidyverse packages
+
+## Inspecting objects of class sf
+
+The sf package provides a simply way of storing geographic information and the attributes of the geographic units in a single dataset.
+
+In the example below, `nc` is of the class sf:
+
+
+```{r}
+library(sf)
+nc <- st_read(system.file("shape/nc.shp", package="sf"))
+```
+
+
+## Inspecting objects of class sf
+
+Inspecting the object reveals its `sf` class:
+
+
+```{r}
+class(nc)
+```
+
+
+## The sf package
+
+Now, let’s take a look inside of nc.
+
+- The variable `geometry` at the end, where each row represents a single simple feature geographic unit (sfg; in this case, county)
+- There are different types of sfgs (`POINT`, `LINESTRING`, `POLYGON`, `MULTIPOLYGON`, etc)
+- An sf object is essentially a dataframe with geometric information stored as a variable (column)
+
+## The sf package
+
+
+```{r}
+#| echo: true
+nc
+```
+
+
+## `geom_sf()`
+
+- As of ggplot2 version 3.0, there is support for plotting simple features objects directly with the function `geom_sf()`
+- `geom_sf()` allows for visualizing sf objects
+- Conveniently, `geom_sf()` automatically detects the geometry type of spatial objects stored in sf and draw maps accordingly
+- The underlying principles and syntax to create maps and non-spatial figures are very similar
+
+## `geom_sf()`
+
+
+```{r}
+ggplot(nc) + 
+  geom_sf() + 
+  theme_void() +
+  coord_sf()
+```
+
+
+## Specifying the aesthetics
+
+Since it is a ggplot2 object, we can define aesthetics as usual, in this case, `fill` and `color`:
+
+
+```{r}
+#| echo: true
+library(ggplot2)
+
+ggplot(data = nc) +
+  geom_sf(fill = "#0C1337",
+          color = "white") +
+  theme_void() +
+  coord_sf()
+```
+
+
+# Finding geometries
+
+# The tigris package
+
+## The tigris package
+
+tigris is an R package that allows users to directly download and use TIGER/Line shapefiles from the US Census Bureau using R.
+
+TIGER stands for *Topologically Integrated Geographic Encoding and Referencing* and include three general types of data:
+
+- Legal entities
+- Statistical entities
+- Geographic features
+
+
+```{r}
+#| eval: false
+install.packages("tigris")
+```
+
+
+
+## The tigris package
+
+tigris functions return simple features objects with a default year of 2021.
+
+- See all options: <https://github.com/walkerke/tigris>
+- In some cases, this subsetting is optional; in other cases, state and/or county arguments will be required.
+
+
+```{r, results = "hide", message = FALSE, warning = FALSE}
+library(tigris)
+
+tn_districts <- school_districts("Tennessee")
+```
+
+
+## The tigris package
+
+
+```{r}
+tn_districts
+```
+
+
+## The tigris package
+
+We can plot our output from tigris using ggplot2 and `geom_sf()`:
+
+
+```{r}
+#| echo: true
+ggplot(tn_districts) + 
+  geom_sf()
+```
+
+
+# Reading shapefiles
+
+## Reading shapefiles
+
+- The shapefile format is a geospatial vector data format for geographic information system (GIS) software
+-  The shapefile format can spatially describe vector features: points, lines, and polygons
+
+## Reading shapefiles
+
+- The term "shapefile" is quite common, but the format consists of a collection of files with a common filename prefix, stored in the same directory
+- The three mandatory files have filename extensions .`shp`, `.shx`, and `.dbf`
+- The actual shapefile relates specifically to the .shp file, but alone is incomplete for distribution as the other supporting files are required
+
+## Reading shapefiles
+
+Let's say we want to map the Zoning districts from Knox County (available here: <https://www.arcgis.com/home/item.html?id=481b8a768b20403998fb9b454f35d23b>).
+
+- We download the shapefile(s) and save it in our Week 13 folder.
+
+
+```{r}
+#| echo: false
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("knox.png")
+```
+
+
+## Reading shapefiles
+
+Save all the files in the same folder:
+
+
+```{r}
+#| echo: false
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("files.png")
+```
+
+
+## Reading shapefiles
+
+Use the function `st_read()` to read the files
+
+- `dsn`: the path to folder in which the shapefile(s) you want to import is stored.
+- name of the shapefile
+
+
+```{r}
+#| echo: true
+knox_zones <-
+    st_read(dsn = here::here("week-13", "shapefiles"),
+            "Knoxville-Knox_County_Zoning")
+```
+
+
+## Reading shapefiles
+
+
+```{r}
+ggplot(data = knox_zones) +
+  geom_sf() +
+  coord_sf()
+```
+
+
+# Code along
+
+# Creating choropleth maps
+
+## Choropleth maps
+
+Geographical heat maps, also known as choropleth maps, are one way of visualizing our geographic data.
+
+
+```{r}
+#| echo: false
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("photo.png")
+```
+
+
+## Joining data with long/lat data
+
+Let's say we're using the `world_map` data from maps:
+
+
+```{r}
+world_map <- map_data("world")
+head(world_map)
+```
+
+
+## Joining data with long/lat data
+
+We can plot the world using `geom_polygon()`:
+
+
+```{r}
+ggplot(world_map, aes(x = long, y = lat, group = group)) +
+  geom_polygon() +
+  coord_quickmap()
+```
+
+
+## Joining data with long/lat data
+
+Now, we have a dataset called `regions_data` with corresponding data:
+
+
+```{r}
+#| include: false
+set.seed(123)
+
+regions_data <-
+    world_map %>% 
+    select(region) %>% 
+    distinct() %>% 
+    mutate(value = sample(100:1000, n()))
+```
+
+```{r}
+head(regions_data)
+```
+
+
+## Joining data with long/lat data
+
+There are various ways of joining different datasets together. One common type is a left join.
+
+> Keep all rows from `x`, and all columns from `x` and `y`. Rows in `x` with no match in `y` will have `NA` values in the new columns.
+
+
+```{r}
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("left-join.gif")
+```
+
+
+## Joining data with long/lat data
+
+We can join the data based on their common key (`region`) using dplyr's `left_join()`
+
+Syntax:
+
+
+```{r}
+#| eval: false
+left_join(x, y, by = "key")
+```
+
+
+## Joining data with long/lat data
+
+This is how you join the `world_map` and `regions_data` together:
+
+
+```{r}
+joined_world_data <- left_join(world_map, regions_data, by = "region")
+head(joined_world_data)
+```
+
+
+## Joining data with long/lat data
+
+Add the data as an aesthetic in your ggplot object with `fill()`
+
+- Be sure to include in your `aes()` since it's referring to data
+
+
+```{r}
+ggplot(joined_world_data, aes(x = long, y = lat, group = group, fill = value)) +
+  geom_polygon() +
+  coord_quickmap()
+```
+
+
+# Layering geoms
+
+## Long/lat dataset
+
+Let's say we have another dataset with longitude/latitude data for different points:
+
+
+```{r}
+#| include: false
+points_data <-
+    tibble::tribble(
+               ~Place.Name, ~Latitude,  ~Longitude,
+          "Wisconsin, USA",      44.5,       -89.5,
+      "West Virginia, USA",        39,       -80.5,
+            "Vermont, USA",        44,  -72.699997,
+          "Texas, the USA",        31,        -100,
+    "South Dakota, the US",      44.5,        -100,
+    "Rhode Island, the US", 41.742325,  -71.742332,
+          "Oregon, the US",        44,      -120.5,
+           "New York, USA",        43,         -75,
+      "New Hampshire, USA",        44,       -71.5,
+           "Nebraska, USA",      41.5,        -100,
+          "Kansas, the US",      38.5,         -98,
+        "Mississippi, USA",        33,         -90,
+           "Illinois, USA",        40,         -89,
+        "Delaware, the US",        39,       -75.5,
+        "Connecticut, USA", 41.599998,  -72.699997,
+        "Arkansas, the US", 34.799999,  -92.199997,
+            "Indiana, USA", 40.273502,  -86.126976,
+           "Missouri, USA", 38.573936,   -92.60376,
+            "Florida, USA", 27.994402,  -81.760254,
+             "Nevada, USA", 39.876019, -117.224121,
+          "Maine, the USA", 45.367584,  -68.972168,
+           "Michigan, USA", 44.182205,  -84.506836,
+        "Georgia, the USA", 33.247875,  -83.441162,
+             "Hawaii, USA", 19.741755, -155.844437,
+             "Alaska, USA", 66.160507, -153.369141,
+          "Tennessee, USA", 35.860119,  -86.660156,
+           "Virginia, USA", 37.926868,  -78.024902,
+         "New Jersey, USA", 39.833851,  -74.871826,
+           "Kentucky, USA", 37.839333,   -84.27002,
+       "North Dakota, USA", 47.650589, -100.437012,
+          "Minnesota, USA",  46.39241,   -94.63623,
+       "Oklahoma, the USA", 36.084621,  -96.921387,
+            "Montana, USA",  46.96526, -109.533691,
+     "Washington, the USA", 47.751076, -120.740135,
+               "Utah, USA",  39.41922, -111.950684,
+           "Colorado, USA", 39.113014, -105.358887,
+               "Ohio, USA", 40.367474,  -82.996216,
+            "Alabama, USA",  32.31823,  -86.902298,
+           "Iowa, the USA", 42.032974,  -93.581543,
+         "New Mexico, USA", 34.307144, -106.018066,
+     "South Carolina, USA", 33.836082,  -81.163727,
+       "Pennsylvania, USA", 41.203323,  -77.194527,
+            "Arizona, USA", 34.048927, -111.093735,
+           "Maryland, USA", 39.045753,  -76.641273,
+      "Massachusetts, USA", 42.407211,  -71.382439,
+         "California, USA", 36.778259, -119.417931,
+              "Idaho, USA", 44.068203, -114.742043,
+            "Wyoming, USA",  43.07597, -107.290283,
+     "North Carolina, USA", 35.782169,  -80.793457,
+          "Louisiana, USA",  30.39183,  -92.329102
+    )
+```
+
+```{r}
+#| include: false
+set.seed(123)
+state_map <- map_data("state")
+
+state_data <-
+    state_map %>% 
+    select(state = region) %>% 
+    distinct() %>% 
+    mutate(value = sample(100:1000, n()))
+```
+
+```{r}
+#| echo: true
+head(state_map)
+head(state_data)
+```
+
+
+## Create a map of the U.S.
+
+
+```{r}
+state_map <- map_data("state")
+
+joined_state_data <- left_join(state_map, state_data, join_by("region" == "state"))
+```
+
+
+## Create a choropleth map of the U.S.
+
+
+```{r}
+ggplot(data = joined_state_data, aes(x = long, y = lat, fill = value, group = region)) +
+  geom_polygon() +
+  coord_quickmap()
+```
+
+
+## Adding points to a map
+
+
+```{r}
+head(points_data)
+```
+
+
+## Adding points to a map
+
+
+```{r}
+ggplot(data = joined_state_data) +
+  geom_polygon(aes(x = long, y = lat, fill = value, group = region)) +
+  geom_point(data = points_data,
+             aes(x = Longitude, y = Latitude)) +
+  coord_quickmap()
+```
+
+
+# Classes next fall!
+
+## 680
+
+STEM 680: Foundations of Educational Data Science I (3 credits) – Mon., 12:00 – 2:30 pm, online and synchronous
+
+Intended to support graduate-level students to be able to apply data science methods to topics of teaching, learning, and educational systems. Introduces students to the data science software and programming language R. Course activities focusing on preparing, using, and visualizing complex data sources for analysis using the tidyverse suite of R packages. Data ethics are foregrounded. Includes an introduction to text analysis/Natural Language Processing. No pre-requisites or programming experience is required.
+
+## 685
+
+STEM 685: Foundations of Educational Data Science II (3 credits) – Thurs., 9:00 – 11:00 am, online and synchronous
+
+Intended to support graduate students to use data science methods to study new technology-based environments, such as online courses, educational technology platforms, and social media-based networks. Advanced data visualization and social network analysis techniques are emphasized. More advanced methods around writing custom functions and using machine learning for analyzing complex data sources are introduced. Course involves the use of the statistical software R.
+
+## 691
+
+STEM 691: Visualizing Data Using R (3 credits) – Tues., 3:00– 5:00 pm, online and synchronous
+
+Intended to support students to create static visualizations (e.g., visualizations for inclusion in presentations and publications) and dynamic visualizations (e.g., those that can allow researchers and others to interact with the visualization). Will use educational examples and data sets but is open to students across programs. Course involves the use of the statistical software R.
+
+## Incoming faculty
+
+[Kelly Boles](https://cset.stanford.edu/about/our-team/kelly-boles)
+[Hanall Sung](https://ed.unc.edu/people/hanall-sung/)
+
+## Grad certificate
+
+The University of Tennessee, Knoxville, offers an online graduate certificate in Educational Data Science for students interested in digital data collection, analysis, visualization, and more in educational settings. The certificate can be added to current graduate students’ studies or pursued as a stand-alone certificate for graduate-level students.
+
+Link: https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/
+
+# Wrap up
+
+* Assignment: tidycensus + tigris
+* Readings:
+  * [What to consider when creating choropleth maps](https://blog.datawrapper.de/choroplethmaps/)
+  * [Policies to influence perceptions about COVID-19 risk: The case of maps](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8932671/)
+
+## Other data sources
+
+* The USAboundaries package, https://github.com/ropensci/USAboundaries contains state, county and zip code data for the US
+* The rnaturalearth package (South 2017) bundles up the free, high-quality data from https://naturalearthdata.com/
+* The osmar package, https://cran.r-project.org/package=osmar wraps up the OpenStreetMap API so you can access a wide range of vector data including individual streets and buildings
+
+# Office hours
