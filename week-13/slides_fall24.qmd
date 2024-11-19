@@ -726,6 +726,13 @@ ggplot() +
 
 # Collaborative Practice
 
+## Collaborative Practice{.smaller}
+<hr>
+- Useful note: If the following conditions are met:
+- You have an sf object with a given projection
+- You have a data frame with a common variable to join on
+- **You can `left_join()` them together** because {sf} re-projects the dataframe to match the crs of the sf object.
+
 ## Grad certificate
 <hr>
 The University of Tennessee, Knoxville, offers an online graduate certificate in Educational Data Science for students interested in digital data collection, analysis, visualization, and more in educational settings. The certificate can be added to current graduate students’ studies or pursued as a stand-alone certificate for graduate-level students.

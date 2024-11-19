@@ -1,0 +1,158 @@
+---
+title: "Maps Assignment"
+author: "Awesome Student"
+date: '2023-04-05'
+output: html_document
+---
+
+# U.S. Census
+
+- The United States Constitution mandates in Article I, Sections 2 and 9 that a complete enumeration of the US population be taken every 10 years.
+- The government agency tasked with completing the enumeration of the United States population is the United States Census Bureau, part of the US Department of Commerce.
+- The first US Census was conducted in 1790, with enumerations taking place every 10 years since then.
+
+# American Community Survey
+
+- The Census long form asks about a wider range of demographic questions on income, education, language, housing, and more. 
+- The Census long form has since been replaced by the American Community Survey, which is now the premier source of detailed demographic information about the US population.
+
+# tidycensus
+
+"The tidycensus package, first released in 2017, is an R package designed to facilitate the process of acquiring and working with US Census Bureau population data in the R environment."
+
+- See documentation: <https://walker-data.com/tidycensus/>.
+- Read the book: [Analyzing US Census Data: Methods, Maps, and Models in R](https://walker-data.com/census-r/index.html).
+
+With tidycensus, R users can request geometry along with attributes for their Census data, helping facilitate mapping and spatial analysis. 
+
+## 1. Get started with tidycensus (5 points)
+
+- Install the tidycensus package,
+- Obtain a Census API key at <https://api.census.gov/data/key_signup.html>,
+  - **BE SURE TO KEEP THIS SECRET!**
+- Run `library(tidycensus)`,
+- Uncomment line below and paste your key where it says YOUR KEY GOES HERE.
+- Follow the instructions.
+- Delete the line containing your API key before knitting the assignment.
+
+Once an API key is installed, you can obtain decennial Census or ACS data with a single function call. PLEASE DELETE LINE 42 AFTER RUNNING `census_api_key()`!
+
+```{r}
+library(tidycensus)
+# census_api_key("YOUR KEY GOES HERE", install = TRUE)
+```
+
+## 2. Get the population data by state from 2010
+
+To get Census data, you can use the function `get_decennial()`. To run `get_decennial()`, you must specify a string representing:
+
+- the requested geography
+- a vector of Census variable IDs, represented by variable; or optionally a Census table ID, passed to table. 
+
+The code below gets data on total population by state from the 2010 decennial Census:
+
+```{r}
+total_population_10 <- get_decennial(
+  geography = "state", 
+  variables = "P001001",
+  year = 2010
+)
+```
+
+Similarly, the `get_acs()` function retrieves data from the American Community Survey.
+
+```{r}
+born_in_mexico <- get_acs(
+  geography = "state", 
+  variables = "B05006_150",
+  year = 2020
+)
+```
+
+## 3. Search for a variable in tidycensus (5 points)
+
+To make searching easier for R users, tidycensus offers the `load_variables()` function.
+
+The function takes two required arguments:
+
+- `year`, which takes the year or endyear of the Census dataset or ACS sample
+- `dataset`, which references the dataset name
+- For variables from the American Community Survey, users should specify the dataset as `acs1` for the 1-year ACS or `acs5` for the 5-year ACS
+
+```{r}
+v16 <- load_variables(2016, "acs5/profile", cache = TRUE)
+```
+
+Let's say we want to analyze the percentage of total households with a broadband Internet subscription. What variable should we use (column `name` from `v16`)?
+
+ANSWER:
+
+---
+
+## 4. Finding geography and variables in tidycensus (6 points)
+
+The geography parameter in `get_acs()` and `get_decennial()` allows users to request data aggregated to common Census enumeration units.
+
+See table at: <https://walker-data.com/census-r/an-introduction-to-tidycensus.html#geography-and-variables-in-tidycensus>.
+
+Today, we'll focus on the `school district (unified)` geography. For the variable from Step 3, let's find the data for Tennessee.
+
+```{r}
+pct_with_bb <-
+    get_acs(
+        geography = _________, # geography that we're focusing on
+        variables = _______, # variable from Step 3
+        state = "TN",
+        geometry = TRUE
+    )
+```
+
+1. What type of data is `pct_with_bb`?
+
+ANSWER:
+
+2. How many school districts are in Tennessee, based on this data?
+
+ANSWER:
+
+## 5. Mapping data
+
+Now, let's represent the data with a choropleth map. Please do the following:
+
+1. Specify the fill as the percentage of total households with a broadband Internet subscription
+2. Add a color palette
+3. Edit the theme
+
+```{r}
+ggplot(data = pct_with_bb, 
+       aes(fill = _____)) + 
+  geom_sf()
+```
+
+## Bonus
+
+Create another map using tidycensus.
+
+## 6. Reflection
+
+Important: After you knit, check the HTML file. 
+
+- Does it appear as you intended?
+- Does any output print that is too long?
+- Do your name and date appear?
+
+Share any questions you have in Canvas about fine-tuning your .Rmd output.
+
+## 7. Submit
+
+Submit for Assignment 11 in Canvas. 
+
+**Rubric**
+
+- API key is not included in the HTML: 5 points
+- Section 1: 3 points
+- Section 3: 5 points
+- Section 4: 5 points
+- Section 5: 12 points (4 each)
+
+Total: 30 points

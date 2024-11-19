@@ -1,0 +1,71 @@
+---
+title: 'Wk12: Static Maps Collaborative Practice'
+author: "Names Here Please"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ozmaps)
+library(sf)
+library(tidyverse)
+```
+
+### 1. Load Oz Maps shapefile/sf object
+Just run this chunk to load the `ozmap_states` object from the `ozmaps` package.
+```{r load_ozmaps}
+ozmap_states_sf <- ozmaps::ozmap_states
+```
+
+### 2. Check the class of `ozmap_states_sf`
+- If it's an `sf` object, you're good to go.
+- If not, convert it to an `sf` object using `st_as_sf()`. Remember! You'll need to know which projection the data is in.
+```{r check_class}
+
+```
+
+### 3. Plot `ozmap_states_sf`
+- Assign a different fill color to each state.
+- Make the outlines of each state white.
+- Also use `geom_sf_label(aes(label = ????))` to label each state.
+- Remove the plot legend.
+- Apply `theme_void()` to remove the background and axis labels.
+```{r plot1_ozmaps}
+
+```
+
+### 4. Remove Australian Capital Territory and Other Territories Features (Rows)
+- Copy/paste the code from the previous chunk.
+- Use the pipe operator and `slice()` to remove the rows for the Australian Capital Territory and Other Territories.
+- Replot the map.
+```{r plot2_ozmaps}
+
+```
+
+### 5. Add some more data into the plot
+- `oz_pop.csv` is included in your `.zip` file. Load it in below.
+- Inspect `oz_pop.csv`. What variables does it include? What class is it? What variable does it have in common with `ozmap_states_sf` (to join on)?
+```{r oz_pop}
+
+```
+ANSWERS:
+- Variables:
+- Class:
+- Variable to join on:
+
+### 6. Joining `oz_states_sf` and `oz_pop`
+- Note that we can `left_join()` the two datasets together using the common variable this time. We are dealing with one projection (not the AK/HI problem), and have a common variable to join on.
+- Use `left_join()` to join the two datasets together.
+```{r join_oz}
+
+```
+
+### 7. Final plot
+- Plot the new joined data.
+- Fill each state with the new `Population` variable.
+- Make the outlines of each state white.
+- Use `geom_point()` to plot the capital city of each state.
+```{r final_plot}
+
+```
