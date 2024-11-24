@@ -1,0 +1,194 @@
+---
+subtitle: "Interactive Maps"
+title: "Week 13 - STEM 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE}
+##NOTE TO SELF: NEED TO ACTUALLY USE {here} so I don't have to edit the file paths when running each chunk to include "week-13" and then take them out to knit. So annoying.
+
+library(tidyverse)
+```
+
+# Weekly Check In/ <br>Download `.zip`
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.smaller-font}
+- Weekly Check In
+- Final Projects
+- Revisiting Static Maps
+- Interactive maps with plotly
+- Interactive maps with leaflet
+- Collaborative Practice
+- Looking Ahead
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Final Projects
+
+## Final Projects{.smaller}
+<hr>
+- Presentations: **Dec. 3rd**
+    - Slides on Course-wide Deck (see Canvas Assignment) prior to class
+    - Each person will have 3-4 min to present
+    - Feedback 3-4 min after
+    - Non-presenters will complete feedback form for each presenter
+- Final Project Due: **Dec. 10th**
+    - Should consider the feedback from your presentation
+    - No late submissions/extensions
+    - No written feedback on Canvas submission
+    
+# Static Maps
+
+## Static Maps - 3 Cases{.smaller}
+<hr>
+1. **sf object & data have no shared variable**
+    - Must `st_transform()` data file to match `st_crs()` of sf object
+    - Ex. Knox Zones
+2. **sf object & data have shared variable**
+    - Can `left_join()` data to sf object
+    - Data will "inherit" the sf object's geometry
+    - Ex. Austrailian Collaborative Practice
+3. **sf object has multiple combined crs**
+    - More technical, but can be done
+    - Ex. US projection in {ussf} (AK/HI problem)
+
+# Interactive Maps in R
+
+## Interactive Maps in R{.smaller}
+<hr>
+- New York Times graphics editor Gregor Aisch noted that only 10 to 15 percent of readers who visit an interactive visualization on their site actually click on anything. 
+-  Is it worth the time and effort to make these things? 
+
+. . .
+
+As with most design-related things, it depends on the goals and the audience of your visualization.
+
+
+::: aside
+See talk: https://vimeo.com/182590214
+:::
+
+## Interactivity
+<hr>
+:::: {.columns}
+
+::: {.column width="40%"}
+- Immersion
+- Flexibility
+- Zooming, hover-over, pop-ups
+:::
+
+::: {.column width="60%"}
+![](snow.gif)
+:::
+
+::::
+
+## Interactivity
+<hr>
+{{< video https://youtu.be/hkUCrTfgaw8?si=4CszJ91H62HoCYHW&t=7 width="1000" height="600">}}
+
+## Packages for interactive maps in R {background-image="logos.png"}
+<hr>
+- plotly + ggplot
+- leaflet
+
+Other packages include:
+
+- ggiraph + ggplot
+- highcharter
+
+# Start with a Static Map
+
+## Static Map
+<hr>
+Our data:
+- The `rgbif` package allows you to access data from the Global Biodiversity Information Facility (GBIF).
+```{r}
+#install.packages("rgbif")
+library(rgbif)
+```
+
+## Static Map{.smaller}
+<hr>
+Our data:
+- The `rgbif` package allows you to access data from the Global Biodiversity Information Facility (GBIF).
+```{r}
+monarchs <- occ_search(scientificName = 'Danaus plexippus') #provides a gbif object
+monarch_data <- monarchs$data #provides a tibble
+
+glimpse(monarch_data[,1:4])
+```
+
+. . .
+
+- Note: If you look at the help file `?occ_search()`, it tells you that decimalLat/Long (aka: lat/long), is in CRS WGS84 (EPSG: 4326)
+
+## Static Map{.smaller}
+<hr>
+- If you want to read more about CRS & projections, check out this [blog post](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/) or this [pdf (based on {sp} but stil helpful)](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf)
+
+::: {.callout-note}
+- CRS and projections are not the same thing. A projection must have a CRS, but a CRS does not have to have a projection.
+    - A CRS is precise way to locate a point on the earth's surface.
+    - A projection is a way to mathematically flatten the Earth.
+:::
+
+
+
+## Static Map
+<br>
+
+
+
+## Grad certificate
+<hr>
+The University of Tennessee, Knoxville, offers an online graduate certificate in Educational Data Science for students interested in digital data collection, analysis, visualization, and more in educational settings. The certificate can be added to current graduate students’ studies or pursued as a stand-alone certificate for graduate-level students.
+
+- [More Info](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/)
+- [Apply Here](https://gradschool.utk.edu/academics/forms-central/admission-to-a-graduate-certificate-program/)
+
+# Looking Ahead
+
+## Looking Ahead
+<hr>
+* Assignment: Final Projects!

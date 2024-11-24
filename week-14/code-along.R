@@ -35,7 +35,7 @@ cat_dat_sum <-
   )
 
 cat_world <-
-  left_join(world, cat_dat_sum, by = join_by(name == country))
+  left_join(world, cat_dat_sum, by = join_by(name_long == country))
 
 ggplot(data = cat_world) +
   geom_sf(aes(fill = country_count),
