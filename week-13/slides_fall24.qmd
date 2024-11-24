@@ -25,6 +25,8 @@ knitr:
 ---
 
 ```{r setup, include=FALSE}
+##NOTE TO SELF: NEED TO ACTUALLY USE {here} so I don't have to edit the file paths when running each chunk to include "week-13" and then take them out to knit. So annoying.
+
 library(tidyverse)
 
 state_by_region <- read_csv("https://github.com/cphalpert/census-regions/blob/master/us%20census%20bureau%20regions%20and%20divisions.csv?raw=true") # data on U.S. states' regions
@@ -405,12 +407,14 @@ Source: [QGIS: Coordinate Reference Systems](https://docs.qgis.org/3.34/en/docs/
 
 ## Understanding projections{.smaller}
 <hr>
-- There are many, many [different projections](https://spatialreference.org/ref/epsg/)
-- Reflect different purposes and trade-offs, different regions
+- Each projection has a CRS (coordinate reference system) that defines the exact positioning of locations within the projection
+- Reflect different purposes and trade-offs, different regions of the world, and different types of data
+- The most common/often default CRS is WGS 84 (EPSG: 4326) 
+- [Each CRS has a unique EPSG code](https://spatialreference.org/ref/epsg/)
 
 ## Understanding projections
 <hr>
-- What [projection](https://spatialreference.org/ref/epsg/2915/) is the file in?
+- What [CRS & projection](https://spatialreference.org/ref/epsg/2915/) is the file in?
 ```{r}
 st_crs(knox_zones_sf)
 ```
@@ -434,7 +438,7 @@ knox_sites
 <hr>
 - Creating an sf object from a data frame requires the `st_as_sf()` function
 ```{r}
-#latitude/longitude are in EPSG: 4326 (basically the default projection) aka WGS 84
+#latitude/longitude are typically in in EPSG: 4326 aka WGS 84
 knox_sites_sf <- st_as_sf(knox_sites, coords = c("Longitude", "Latitude"), crs = 4326)
 
 knox_sites_sf
@@ -442,9 +446,9 @@ knox_sites_sf
 
 ## Creating sf objects{.smaller}
 <hr>
-- all of the map components/layers must be in the same projection (matching the `.shp` file)
+- all of the map components/layers must be in the same CRS
 ```{r}
-#transforming the map projection of knox_sites_sf to match the knox_zones crs
+#transforming the CRS of knox_sites_sf to match the knox_zones CRS
 knox_sites_sf <- st_transform(knox_sites_sf, st_crs(knox_zones_sf))
 
 knox_sites_sf
@@ -728,10 +732,6 @@ ggplot() +
 
 ## Collaborative Practice{.smaller}
 <hr>
-- Useful note: If the following conditions are met:
-- You have an sf object with a given projection
-- You have a data frame with a common variable to join on
-- **You can `left_join()` them together** because {sf} re-projects the dataframe to match the crs of the sf object.
 
 ## Grad certificate
 <hr>

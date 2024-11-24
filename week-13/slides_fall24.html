@@ -954,15 +954,17 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <h2>Understanding projections</h2>
 <hr>
 <ul>
-<li>There are many, many <a href="https://spatialreference.org/ref/epsg/">different projections</a></li>
-<li>Reflect different purposes and trade-offs, different regions</li>
+<li>Each projection has a CRS (coordinate reference system) that defines the exact positioning of locations within the projection</li>
+<li>Reflect different purposes and trade-offs, different regions of the world, and different types of data</li>
+<li>The most common/often default CRS is WGS 84 (EPSG: 4326)</li>
+<li><a href="https://spatialreference.org/ref/epsg/">Each CRS has a unique EPSG code</a></li>
 </ul>
 </section>
 <section id="understanding-projections-2" class="slide level2">
 <h2>Understanding projections</h2>
 <hr>
 <ul>
-<li>What <a href="https://spatialreference.org/ref/epsg/2915/">projection</a> is the file in?</li>
+<li>What <a href="https://spatialreference.org/ref/epsg/2915/">CRS &amp; projection</a> is the file in?</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">st_crs</span>(knox_zones_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1048,7 +1050,7 @@ PROJCRS["NAD83(HARN) / Tennessee (ftUS)",
 <li>Creating an sf object from a data frame requires the <code>st_as_sf()</code> function</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">#latitude/longitude are in EPSG: 4326 (basically the default projection) aka WGS 84</span></span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">#latitude/longitude are typically in in EPSG: 4326 aka WGS 84</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a>knox_sites_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(knox_sites, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
 <span id="cb29-3"><a href="#cb29-3"></a></span>
 <span id="cb29-4"><a href="#cb29-4"></a>knox_sites_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1072,10 +1074,10 @@ Geodetic CRS:  WGS 84
 <h2>Creating sf objects</h2>
 <hr>
 <ul>
-<li>all of the map components/layers must be in the same projection (matching the <code>.shp</code> file)</li>
+<li>all of the map components/layers must be in the same CRS</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#transforming the map projection of knox_sites_sf to match the knox_zones crs</span></span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#transforming the CRS of knox_sites_sf to match the knox_zones CRS</span></span>
 <span id="cb31-2"><a href="#cb31-2"></a>knox_sites_sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(knox_sites_sf, <span class="fu">st_crs</span>(knox_zones_sf))</span>
 <span id="cb31-3"><a href="#cb31-3"></a></span>
 <span id="cb31-4"><a href="#cb31-4"></a>knox_sites_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1435,12 +1437,6 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <section id="collaborative-practice-1" class="slide level2 smaller">
 <h2>Collaborative Practice</h2>
 <hr>
-<ul>
-<li>Useful note: If the following conditions are met:</li>
-<li>You have an sf object with a given projection</li>
-<li>You have a data frame with a common variable to join on</li>
-<li><strong>You can <code>left_join()</code> them together</strong> because {sf} re-projects the dataframe to match the crs of the sf object.</li>
-</ul>
 </section>
 <section id="grad-certificate" class="slide level2">
 <h2>Grad certificate</h2>

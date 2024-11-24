@@ -79,11 +79,11 @@ The function takes two required arguments:
 - `dataset`, which references the dataset name
 - For variables from the American Community Survey, users should specify the dataset as `acs1` for the 1-year ACS or `acs5` for the 5-year ACS
 
-```{r}
-v16 <- load_variables(2016, "acs5/profile", cache = TRUE)
+```{r, eval=FALSE}
+v22 <- load_variables(2022, "acs5/profile", cache = TRUE)
 ```
 
-Let's say we want to analyze the percentage of total households with a broadband Internet subscription. What variable should we use (column `name` from `v16`)?
+Let's say we want to analyze the percentage of total households with a broadband Internet subscription. What variable should we use (column `name` from `v22`)?
 
 ANSWER:
 
@@ -97,7 +97,7 @@ See table at: <https://walker-data.com/census-r/an-introduction-to-tidycensus.ht
 
 Today, we'll focus on the `school district (unified)` geography. For the variable from Step 3, let's find the data for Tennessee.
 
-```{r}
+```{r, eval=F}
 pct_with_bb <-
     get_acs(
         geography = _________, # geography that we're focusing on
@@ -123,7 +123,7 @@ Now, let's represent the data with a choropleth map. Please do the following:
 2. Add a color palette
 3. Edit the theme
 
-```{r}
+```{r eval=F}
 ggplot(data = pct_with_bb, 
        aes(fill = _____)) + 
   geom_sf()
