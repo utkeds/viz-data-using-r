@@ -27,15 +27,24 @@ cat_dat_sum <-
   ungroup() |>
   mutate(
     country = case_when(
-      country == "Russian Federation" ~ "Russia",
+      country == "Russian Federation" ~ "Russian Federation",
       country == "United Kingdom of Great Britain and Northern Ireland" ~ "United Kingdom",
-      country == "Korea, Republic of" ~ "Korea",
+      country == "Korea, Republic of" ~ "Republic of Korea",
+      country == "United States of America" ~ "United States",
+      country == "Chinese Taipei" ~ "Taiwan",
+      country == "Cabo Verde" ~ "Republic of Cabo Verde",
+      country == "Falkland Islands (Malvinas)" ~ "Falkland Islands / Malvinas",
+      country == "Iran (Islamic Republic of)" ~ "Iran",
+      country == "Türkiye" ~ "Turkey",
+      country == "Viet Nam" ~ "Vietnam",
       .default = country
     )
   )
 
 cat_world <-
   left_join(world, cat_dat_sum, by = join_by(name_long == country))
+
+anti_join(cat_dat_sum, cat_world, by = join_by(country == name_long))
 
 ggplot(data = cat_world) +
   geom_sf(aes(fill = country_count),

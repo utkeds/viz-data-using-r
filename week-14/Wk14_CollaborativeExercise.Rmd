@@ -1,0 +1,91 @@
+---
+title: "Untitled"
+author: "Names Here Please"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(rgbif)
+library(rnaturalearth)
+library(ggplot2)
+theme_set(theme_minimal()) # This sets a default ggplot() theme
+```
+
+1. We are going to use the `rgbif` package to get data on the occurrence of the domestic cat, *Felis catus*. From the `rgbif` package, use `occ_search()` to get the data on the domestic cat. Assign the result to an object called `cat`. 
+
+```{r cat_rgbif}
+cat <- occ_data(scientificName = "Place_Name_Here")
+```
+
+2. Use the `$` operator to extract the data from the `cat` object and assign it to a new object called `cat_data`. 
+
+```{r cat_data}
+
+```
+
+3. Let's wrangle the `cat_data` to get the number of occurrences of the domestic cat per country. Assign it to `cat_data_sum`. 
+```{r cat_data_wrangle}
+
+```
+
+4. Now run the code below to clean up some of the country names so we can cleanly `left_join()` the data (no need to edit the code, just run the block).
+
+```{r clean_country_names}
+cat_data_sum <- cat_data |>
+  mutate(
+    country = case_when(
+      country == "Russian Federation" ~ "Russian Federation",
+      country == "United Kingdom of Great Britain and Northern Ireland" ~ "United Kingdom",
+      country == "Korea, Republic of" ~ "Republic of Korea",
+      country == "United States of America" ~ "United States",
+      country == "Chinese Taipei" ~ "Taiwan",
+      country == "Cabo Verde" ~ "Republic of Cabo Verde",
+      country == "Falkland Islands (Malvinas)" ~ "Falkland Islands / Malvinas",
+      country == "Iran (Islamic Republic of)" ~ "Iran",
+      country == "Türkiye" ~ "Turkey",
+      country == "Viet Nam" ~ "Vietnam",
+      .default = country
+    )
+  )
+```
+
+5. For the data layer, we'll use the `rnaturalearth` package to get a map of the world. Use `ne_countries()` to get the world map and assign it to an object called `world_sf`. Use a medium scale and ask it to return an sf object.
+
+```{r world_sf}
+
+```
+
+6. Plot the base map of the world using `ggplot2`'s `geom_sf()`. 
+
+```{r world_map}
+
+```
+
+7. Now, let's `left_join()` the `world_sf` and `cat_data_sum` data frames by the `name_long` and `country` columns, respectively. Assign the result to `cat_world`. 
+
+```{r cat_world}
+
+```
+
+8. Now, let's plot `cat_world`. Fill the countries with the number of occurrences of the domestic cat. Make the country borders white and set the linewidth to 0.1.
+
+```{r plotly_country_fill_map}
+
+```
+
+9. Copy and paste the code from the previous chunk. Now, add a `geom_point()` layer to the plot. Use `data = cat_data`, provide the x & y variables in aes, set the size to 0.1 and set the color of the points to a value of your choice. Assign this plot to an object called `p`.
+
+```{r full_plotly_map}
+
+```
+
+10. Finally, let's add interactivity to the plot. Use `ggplotly()` to use plotly.js to render plot `p` made above.
+
+```{r ggplotly_interactive}
+
+```
+

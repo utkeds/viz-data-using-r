@@ -42,8 +42,8 @@ library(tidyverse)
 - Final Projects
 - Revisiting Static Maps
 - Interactive maps with plotly
-- Interactive maps with leaflet
 - Collaborative Practice
+- Interactive maps with leaflet
 - Looking Ahead
 :::
 
@@ -76,20 +76,36 @@ library(tidyverse)
     - No late submissions/extensions
     - No written feedback on Canvas submission
     
+## Final Projects{.smaller}
+<hr>
+- Cleaning up your final file:
+```r
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+- Put this in your setup chunk!
+
 # Static Maps
 
-## Static Maps - 3 Cases{.smaller}
+## Static Maps - Roughly 3 Cases{.smaller}
 <hr>
-1. **sf object & data have no shared variable**
-    - Must `st_transform()` data file to match `st_crs()` of sf object
-    - Ex. Knox Zones
-2. **sf object & data have shared variable**
-    - Can `left_join()` data to sf object
-    - Data will "inherit" the sf object's geometry
-    - Ex. Austrailian Collaborative Practice
-3. **sf object has multiple combined crs**
+
+:::{.extra-small-font}
+1. **sf object & data (`.csv`) in same CRS**
+    - Yay! Easiest case
+    - Some options:
+        -  `left_join()` data to sf object (if possible): plot one `geom_sf()` layer [*Assn: 12*]
+        - Plot two `geom_sf()` layers (`st_as_sf()` data if needed)
+        - Plot one `geom_sf()` layer with `geom_point()` [*TODAY*]
+2. **sf object & data (`.csv`) in different CRS**
+    - Options
+        - `left_join()` data to sf object: one `geom_sf()` layer [*Australia*]
+        - `st_transform()` data to match sf object's CRS: two `geom_sf()` layers [*Knox Zones*]
+3. **sf object has multiple combined CRS/projections**
     - More technical, but can be done
     - Ex. US projection in {ussf} (AK/HI problem)
+    - Have to piece-wise re-project, transform
+
+:::
 
 # Interactive Maps in R
 
@@ -156,7 +172,7 @@ Our data:
 monarchs <- occ_search(scientificName = 'Danaus plexippus') #provides a gbif object
 monarch_data <- monarchs$data #provides a tibble
 
-glimpse(monarch_data[,1:4])
+glimpse(monarch_data[,c(1:4,77)])
 ```
 
 . . .
@@ -165,19 +181,290 @@ glimpse(monarch_data[,1:4])
 
 ## Static Map{.smaller}
 <hr>
-- If you want to read more about CRS & projections, check out this [blog post](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/) or this [pdf (based on {sp} but stil helpful)](https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf)
+- The package {rnaturalearth} provides a map of countries of the world.
 
-::: {.callout-note}
-- CRS and projections are not the same thing. A projection must have a CRS, but a CRS does not have to have a projection.
-    - A CRS is precise way to locate a point on the earth's surface.
-    - A projection is a way to mathematically flatten the Earth.
+- Use `ne_countries()` to pull country sf object and choose scale
+
+```{r}
+# install.packages("rnaturalearth")
+# install.packages("rnaturalearthdata")
+library(sf)
+library(rnaturalearth)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+st_crs(world) #Yay! WGS84
+```
+
+## Static Map: Plot base {.smaller}
+<hr>
+First, let's start with creating a base map of the world using ggplot2's `geom_sf()`.
+
+```{r}
+library(ggplot2)
+
+ggplot(data=world) +
+  geom_sf(color = "white", linewidth = 0.1, fill = "#0C1337") +
+  theme_minimal()
+```
+
+## Static Map: Layer data {.smaller}
+<hr>
+:::{.smaller-font}
+We can layer the Monarch butterfly data from `monarch_data`:
+
+```{r}
+ggplot(data=world) +
+  geom_sf(color = "white", linewidth = 0.1, fill = "#0C1337") +
+  geom_point(data = monarch_data, aes(x = decimalLongitude, y = decimalLatitude,
+                                      color = lifeStage), size = 0.5) +
+  theme_minimal()
+```
+
 :::
 
+# Adding Interactivity
 
+## `ggplot()` + `plotly` {.smaller}
+<hr>
+- plotly is an R package for creating interactive web-based graphs via the open source JavaScript graphing library `plotly.js`.
 
-## Static Map
-<br>
+```{r}
+# install.packages("plotly")
+library(plotly)
+```
 
+::: aside
+[Getting Started with Plotly in ggplot2](https://plotly.com/ggplot2/getting-started/)
+:::
+
+## `ggplot()` + `plotly` {.smaller}
+<hr>
+Use the function `ggplotly()` to draw the graph with `plotly.js`.
+
+- Printing the Plotly object will render the chart locally in your web browser or in the RStudio viewer
+
+## `ggplot()` + `plotly` {.smaller}
+<hr>
+Wrap your plot `p` in `ggplotly()`:
+
+```{r}
+p <- ggplot(data=world) +
+  geom_sf(color = "white", linewidth = 0.1, fill = "#0C1337") +
+  geom_point(data = monarch_data, aes(x = decimalLongitude, y = decimalLatitude,
+                                      color = lifeStage), size = 0.5) +
+  theme_minimal()
+```
+
+## `ggplot()` + `plotly` {.smaller}
+<hr>
+```{r, echo=FALSE}
+ggplotly(p)
+```
+
+## `ggplotly()` gallery
+<hr>
+- How do you make other kinds of interactive maps (or plots) with `ggplotly()`?
+- See the [`ggplotly()` gallery](https://plotly.com/ggplot2/)
+
+# Collaborative Practice
+
+## Leaftlet{.smaller}
+<hr>
+Leaflet is an open-source JavaScript library for interactive maps.
+
+- Simplicity, performance, and usability
+- Lots of plugins and documentation
+
+::: aside
+[Leaflet](https://leafletjs.com/)
+:::
+
+## Leaflet {.smaller}
+<hr>
+The leaflet R package makes it easy to create Leaflet maps from R.
+
+```{r}
+#install.packages("leaflet")
+library(leaflet)
+```
+ 
+## Leaflet: Base Map {.smaller}
+<hr>
+Create a base map with `addTiles()`.
+
+```{r}
+leaflet() |>
+  addTiles()
+```
+
+## Leaflet: Adding Components
+<hr>
+The different components of the map can be added using the pipe operator `|>`.
+
+. . .
+
+However, some operations require the use of base R.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### dplyr
+
+```r
+mtcars |> 
+  pull(hp)
+```
+:::
+
+::: {.column width="50%"}
+### base R
+
+```r
+mtcars$hp
+```
+:::
+::::
+
+## Leaflet: Provider Tiles {.smaller}
+<hr>
+Specify different tile options with `addProviderTiles`
+
+- A list of free tiles is available at <https://leaflet-extras.github.io/leaflet-providers/preview/>
+
+```{r}
+leaflet() |> 
+  addProviderTiles(providers$Esri.NatGeoWorldMa)
+```
+
+## Leaflet: Zoom{.smaller}
+ <hr>
+```{r}
+leaflet() |> 
+  addProviderTiles(providers$Esri.NatGeoWorldMa) |> 
+  setView(lng = -83.9294, lat = 35.9546, zoom = 14)
+```
+
+## Leaflet: Markers and Tooltips{.smaller}
+<hr>
+- We can do things like add markers and tooltips.
+
+```{r}
+#| code-line-numbers: "|4|5|"
+leaflet() |>
+  addProviderTiles(providers$Esri.NatGeoWorldMa) |>
+  setView(lng = -83.9294, lat = 35.9546, zoom = 14) |>
+  addMarkers(lng = -83.9294, lat = 35.9546,
+             popup = "<a href='https://www.utk.edu/'>University of Tennessee, Knoxville</a>")
+```
+
+## Leaflet: Bringing in Data{.smaller}
+<hr>
+- Add data when initializing the `leaflet()` function
+- `~` tells leaflet to look at the data
+
+```{r}
+#| code-line-numbers: "|1|7,8,9|"
+#| eval: false
+leaflet(monarch_data) |>
+  addProviderTiles(providers$Esri.NatGeoWorldMa) |>
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) |> 
+  addCircles(
+    ~ decimalLongitude,
+    ~ decimalLatitude,
+    popup =  ~ scientificName
+  ) 
+```
+
+## Leaflet: Bringing in Data{.smaller}
+<hr>
+```{r}
+#| echo: false
+leaflet(monarch_data) |>
+  addProviderTiles(providers$Esri.NatGeoWorldMa) |>
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) |> 
+  addCircles(
+    ~ decimalLongitude,
+    ~ decimalLatitude,
+    popup =  ~ scientificName
+  ) 
+```
+
+## Leaflet: Customizing Maps{.smaller}
+<hr>
+```{r}
+#| code-line-numbers: "|10-14|"
+#| eval: false
+leaflet(monarch_data) |>
+  addProviderTiles(providers$Esri.NatGeoWorldMa) |>
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) |> 
+  addCircles(
+    ~ decimalLongitude,
+    ~ decimalLatitude,
+    popup =  ~ scientificName,
+    weight = 9,
+    radius = 40,
+    color = "#ffa500",
+    stroke = TRUE,
+    fillOpacity = 0.8
+  ) 
+```
+
+## Leaflet: Customizing Maps{.smaller}
+<hr>
+```{r}
+#| echo: false
+leaflet(monarch_data) |>
+  addProviderTiles(providers$Esri.NatGeoWorldMa) |>
+  setView(lng = -118.259,
+          lat = 34.0507666,
+          zoom = 6) |> 
+  addCircles(
+    ~ decimalLongitude,
+    ~ decimalLatitude,
+    popup =  ~ scientificName,
+    weight = 9,
+    radius = 40,
+    color = "#ffa500",
+    stroke = TRUE,
+    fillOpacity = 0.8
+  ) 
+```
+
+## Leaflet: Adding Polygons{.smaller}
+<hr>
+Specify a color scale for your polygons with `fillColor`.
+
+```{r}
+#| code-line-numbers: "|3-7|4|5|6|"
+#| eval: false
+leaflet(data = world) |>
+  addTiles() |>
+  addPolygons(
+    fillColor = topo.colors(10, alpha = NULL),
+    stroke = FALSE,
+    label = ~ name
+  )
+```
+
+## Leaflet: Adding Polygons{.smaller}
+<hr>
+```{r}
+#| echo: false
+leaflet(data = world) |>
+  addTiles() |>
+  addPolygons(
+    fillColor = topo.colors(10, alpha = NULL),
+    stroke = FALSE,
+    label = ~ name
+  )
+```
 
 
 ## Grad certificate
@@ -191,4 +478,5 @@ The University of Tennessee, Knoxville, offers an online graduate certificate in
 
 ## Looking Ahead
 <hr>
-* Assignment: Final Projects!
+- No weekly assignment.
+- Final Projects!
