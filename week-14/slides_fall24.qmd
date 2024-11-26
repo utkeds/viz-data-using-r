@@ -258,7 +258,7 @@ p <- ggplot(data=world) +
 
 ## `ggplot()` + `plotly` {.smaller}
 <hr>
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 ggplotly(p)
 ```
 

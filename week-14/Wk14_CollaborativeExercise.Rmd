@@ -21,7 +21,7 @@ theme_set(theme_minimal()) # This sets a default ggplot() theme
 cat <- occ_data(scientificName = "Place_Name_Here")
 ```
 
-2. Use the `$` operator to extract the data from the `cat` object and assign it to a new object called `cat_data`. 
+2. Use the `$` operator to extract the `data` from the `cat` object and assign it to a new object called `cat_data`. 
 
 ```{r cat_data}
 
