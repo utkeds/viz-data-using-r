@@ -31,8 +31,8 @@ library(tidyverse)
 
 # Please do TNVoice
 
-# Praise, Question, Polish (PQP)
-<br>
+## Praise, Question, Polish (PQP)
+<hr>
 - a structured way to provide feedback
 - Note: feedback survey has sentence starters
     - Praise: What did you like? (~1.5 min)
