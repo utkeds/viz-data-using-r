@@ -414,6 +414,9 @@ For each visualization:
 <hr>
 - Week 1 Assignment
   - Projects, Packages, Functions, Data
+- PingPong AI
+  - Take pre-survey
+  - Watch video
 - Readings & Discussion
   - Healy (2018), Ch. 1
   - Estrellado et al. (2020), Ch. 6
