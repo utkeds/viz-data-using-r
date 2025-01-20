@@ -38,36 +38,40 @@ gs4_auth(
 
 # Welcome!
 
-## Today's Agenda
+# Start Recording
+
+## Today's Agenda {.smaller}
 <hr>
 - Syllabus review
 - Canvas review
 - Norms
 - Introductions
-- Pre-course surveys
+- Pre-work
 - Tutorial / discussion review
-- Cairo (2013) discussion/activity
+- `.Rproj`
+- `.Rmd`
+- Cairo (2013) discussion/ Miro activity
 - Looking ahead
 
-## Syllabus Review
+## Syllabus Review {.smaller}
 <hr>
 - [Syllabus](https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing) is available on Canvas. 
-- Living document: may be updated throughout the semester. 
+  - Living document: may be updated throughout the semester. 
 - If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
   - Email/Slack to let me know, please!
 
-## Canvas Review
+## Canvas Review {.smaller}
 <hr>
 - [Canvas](https://utk.instructure.com/courses/213032) = Primary platform for this course.
 - All materials you need will be posted here.
 - "Module" page is home base.
 - If an item is missing, please let me know.
 
-## Getting Help
+## Getting Help {.smaller}
 <hr>
 - Many ways to get help:
   1. Class Slack ([eddatascienceatutk.slack.com](https://eddatascienceatutk.slack.com/))
-  2. AI/ChatGPT (see syllabus for policy)
+  2. PingPong AI, ChatGPT, etc. (see syllabus for policy)
   3. Email
 
 ## Norms
@@ -87,10 +91,10 @@ gs4_auth(
 
 # Introductions
 
-## Kelly's Introduction
+## Kelly's Introduction {.smaller}
 <hr>
 
-::: {layout="[3,2]" .small-font}
+::: {layout="[3,2]"}
 - Assistant Professor of Educational Data Science
 - Completed Ph.D. at Stanford University
 - Originally from [Greene Co, TN]{.green}
@@ -140,12 +144,12 @@ greene_co_tn
 
 :::
 
-## Your Introductions
+## Your Introductions {.smaller}
 <hr>
 - Name
 - Program
 - Research interests
-- Something you did/learned this summer
+- Something you did/learned over break
   - fun
   - interesting
   - restful
@@ -156,7 +160,10 @@ greene_co_tn
 <hr>
 ```{r, echo=FALSE}
 #Import six variables from the Google Form Student Survey
-df <- read_sheet("https://docs.google.com/spreadsheets/d/1FsM0BXtfrT-x5wGUBNW0QNA3ia-0DCzeP6nxfrK9Fzw/edit?gid=478049066#gid=478049066") |>
+# df <- read_sheet("https://docs.google.com/spreadsheets/d/1FsM0BXtfrT-x5wGUBNW0QNA3ia-0DCzeP6nxfrK9Fzw/edit?gid=478049066#gid=478049066") |>
+#   select(c(9:14))
+
+df <- read_sheet("https://docs.google.com/spreadsheets/d/1wFWUV3yH8qKzDDV4xop7L0YIxVC2_dXAPj2-5QQPR7Q/edit?gid=201277961#gid=201277961") |>
   select(c(9:14))
 
 #Max count for scaling gridlines
@@ -281,8 +288,81 @@ level_of_confidence_graphs
 
 ![](Squirrel.png){width=10%}
 :::
-  
-## Cairo (2013), Chapter 1
+
+# R Projects
+
+## Creating an R Project {.smaller}
+<hr>
+- If you haven't already, let's create an R Project for this class.
+- In [Canvas](https://utk.instructure.com/courses/213032) there is a zip file for `week-1` with all the files you need.
+- Download and unzip the file.
+- Put the `week-1` folder in your `.Rproj` folder.
+- Delete the zip
+- Open the `.Rproj` file in R Studio
+
+# R Markdown
+
+## R Markdown {.smaller}
+<hr>
+
+:::{.small-font}
+- R Markdown is a file format for making **dynamic documents with R**.
+- An R Markdown document is written in markdown (a **plain text** format) and contains **chunks of embedded R code**.
+- The markdown file is then **processed by `knitr`**, and then pandoc which converts the markdown to a **PDF, Word, or HTML file**.
+- File extension: `.Rmd`
+:::
+
+## R Markdown - Plain Text
+<hr>
+
+:::{layout="[50,50]"}
+![](RmdPlainTextExample.png)<br>[Plain Text in `.Rmd`]{.small-font}
+
+![](RMarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
+:::
+
+## R Markdown - Plain Text - Activity {.smaller}
+<hr>
+- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `R Markdown: In-Class Activity`
+- It should open up another page with instructions.
+- In the `week-1` folder you will find the file for the activity called `R Markdown: In-Class Activity`.
+
+## R Markdown - Code Chunks {.smaller}
+<hr>
+
+- The other parts of an R Markdown document are the **code chunks**.
+
+:::{layout="[50,50]"}
+![](RMarkdownCodeChunkExample.png)<br>[Code Chunk in a `.Rmd`]{.small-font}
+
+::::{.extra-small-font}
+- {r echo = T} : **shows the code** when knitted
+- {r eval = F} : **code does not run**
+- {r message = F}: **hides messages** 
+- {r warning = F}: **hides warnings**
+
+<br>
+<br>
+You can also name the chunks (makes for better error messages).
+::::
+
+:::
+
+## R Markdown - Knitting Errors {.smaller}
+<hr>
+- When Rmd fails to knit, it will tell you which chunk the error is in:
+
+![](CodeChunkKnitError.png)<br>[Error in lines 17-18]{.small-font}
+
+## R Markdown {.smaller}
+<hr>
+- Most of your homework will be submitted as R Markdown files.
+- Starting next week...
+- We focus on `.html` files because Canvas can read them and they support interactive plots
+
+# Critiquing Data Viz
+
+## Cairo (2013), Chapter 1{.smaller}
 <hr>
 ["The role of an information architect is to anticipate this [visualization decoding] process and generate order before people's brains try to do it on their own "
 <br>
@@ -297,7 +377,7 @@ level_of_confidence_graphs
 <br>
 (p. 22)]{.fragment}
 
-## Discussion/Activity
+## Discussion/Activity {.smaller}
 <hr>
 For each visualization:
 
@@ -328,15 +408,16 @@ For each visualization:
 <br>
 (Cairo, 2013, p. 43)
 
-
 # Looking Ahead
 
-## Next Week
+## Next Week {.smaller}
 <hr>
 - Week 1 Assignment
   - Projects, Packages, Functions, Data
 - Readings & Discussion
-  - Healy (2018), Chs. 1 & 2
+  - Healy (2018), Ch. 1
   - Estrellado et al. (2020), Ch. 6
   - Week 2 Discussion
+  
+** A note on "reading"...
 

@@ -337,12 +337,17 @@ Dr.&nbsp;Kelly Boles
 </div>
 
 </section>
-<section>
 <section id="welcome" class="title-slide slide level1 center">
 <h1>Welcome!</h1>
 
 </section>
-<section id="todays-agenda" class="slide level2">
+
+<section>
+<section id="start-recording" class="title-slide slide level1 center">
+<h1>Start Recording</h1>
+
+</section>
+<section id="todays-agenda" class="slide level2 smaller">
 <h2>Today’s Agenda</h2>
 <hr>
 <ul>
@@ -350,25 +355,29 @@ Dr.&nbsp;Kelly Boles
 <li>Canvas review</li>
 <li>Norms</li>
 <li>Introductions</li>
-<li>Pre-course surveys</li>
+<li>Pre-work</li>
 <li>Tutorial / discussion review</li>
-<li>Cairo (2013) discussion/activity</li>
+<li><code>.Rproj</code></li>
+<li><code>.Rmd</code></li>
+<li>Cairo (2013) discussion/ Miro activity</li>
 <li>Looking ahead</li>
 </ul>
 </section>
-<section id="syllabus-review" class="slide level2">
+<section id="syllabus-review" class="slide level2 smaller">
 <h2>Syllabus Review</h2>
 <hr>
 <ul>
-<li><a href="https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing">Syllabus</a> is available on Canvas.</li>
+<li><a href="https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing">Syllabus</a> is available on Canvas.
+<ul>
 <li>Living document: may be updated throughout the semester.</li>
+</ul></li>
 <li>If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
 <ul>
 <li>Email/Slack to let me know, please!</li>
 </ul></li>
 </ul>
 </section>
-<section id="canvas-review" class="slide level2">
+<section id="canvas-review" class="slide level2 smaller">
 <h2>Canvas Review</h2>
 <hr>
 <ul>
@@ -378,14 +387,14 @@ Dr.&nbsp;Kelly Boles
 <li>If an item is missing, please let me know.</li>
 </ul>
 </section>
-<section id="getting-help" class="slide level2">
+<section id="getting-help" class="slide level2 smaller">
 <h2>Getting Help</h2>
 <hr>
 <ul>
 <li>Many ways to get help:
 <ol type="1">
 <li>Class Slack (<a href="https://eddatascienceatutk.slack.com/">eddatascienceatutk.slack.com</a>)</li>
-<li>AI/ChatGPT (see syllabus for policy)</li>
+<li>PingPong AI, ChatGPT, etc. (see syllabus for policy)</li>
 <li>Email</li>
 </ol></li>
 </ul>
@@ -439,10 +448,10 @@ Dr.&nbsp;Kelly Boles
 <h1>Introductions</h1>
 
 </section>
-<section id="kellys-introduction" class="slide level2">
+<section id="kellys-introduction" class="slide level2 smaller">
 <h2>Kelly’s Introduction</h2>
 <hr>
-<div class="small-font quarto-layout-panel">
+<div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: center;">
 <ul>
@@ -471,14 +480,14 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="your-introductions" class="slide level2">
+<section id="your-introductions" class="slide level2 smaller">
 <h2>Your Introductions</h2>
 <hr>
 <ul>
 <li>Name</li>
 <li>Program</li>
 <li>Research interests</li>
-<li>Something you did/learned this summer
+<li>Something you did/learned over break
 <ul>
 <li>fun</li>
 <li>interesting</li>
@@ -525,13 +534,115 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="r-projects" class="title-slide slide level1 center">
+<h1>R Projects</h1>
+
 </section>
-<section id="cairo-2013-chapter-1" class="slide level2">
+<section id="creating-an-r-project" class="slide level2 smaller">
+<h2>Creating an R Project</h2>
+<hr>
+<ul>
+<li>If you haven’t already, let’s create an R Project for this class.</li>
+<li>In <a href="https://utk.instructure.com/courses/213032">Canvas</a> there is a zip file for <code>week-1</code> with all the files you need.</li>
+<li>Download and unzip the file.</li>
+<li>Put the <code>week-1</code> folder in your <code>.Rproj</code> folder.</li>
+<li>Delete the zip</li>
+<li>Open the <code>.Rproj</code> file in R Studio</li>
+</ul>
+</section></section>
+<section>
+<section id="r-markdown" class="title-slide slide level1 center">
+<h1>R Markdown</h1>
+
+</section>
+<section id="r-markdown-1" class="slide level2 smaller">
+<h2>R Markdown</h2>
+<hr>
+<div class="small-font">
+<ul>
+<li>R Markdown is a file format for making <strong>dynamic documents with R</strong>.</li>
+<li>An R Markdown document is written in markdown (a <strong>plain text</strong> format) and contains <strong>chunks of embedded R code</strong>.</li>
+<li>The markdown file is then <strong>processed by <code>knitr</code></strong>, and then pandoc which converts the markdown to a <strong>PDF, Word, or HTML file</strong>.</li>
+<li>File extension: <code>.Rmd</code></li>
+</ul>
+</div>
+</section>
+<section id="r-markdown---plain-text" class="slide level2">
+<h2>R Markdown - Plain Text</h2>
+<hr>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="RmdPlainTextExample.png"><br><span class="small-font">Plain Text in <code>.Rmd</code></span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="RMarkdownPlainTextFormatting.png"><br><span class="small-font">Plain Text Formatting</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="r-markdown---plain-text---activity" class="slide level2 smaller">
+<h2>R Markdown - Plain Text - Activity</h2>
+<hr>
+<ul>
+<li>In <a href="https://utk.instructure.com/courses/213032">Canvas</a> you will find an activity called <code>R Markdown: In-Class Activity</code></li>
+<li>It should open up another page with instructions.</li>
+<li>In the <code>week-1</code> folder you will find the file for the activity called <code>R Markdown: In-Class Activity</code>.</li>
+</ul>
+</section>
+<section id="r-markdown---code-chunks" class="slide level2 smaller">
+<h2>R Markdown - Code Chunks</h2>
+<hr>
+<ul>
+<li>The other parts of an R Markdown document are the <strong>code chunks</strong>.</li>
+</ul>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="RMarkdownCodeChunkExample.png"><br><span class="small-font">Code Chunk in a <code>.Rmd</code></span></p>
+</div>
+<div class="extra-small-font quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<ul>
+<li>{r echo = T} : <strong>shows the code</strong> when knitted</li>
+<li>{r eval = F} : <strong>code does not run</strong></li>
+<li>{r message = F}: <strong>hides messages</strong></li>
+<li>{r warning = F}: <strong>hides warnings</strong></li>
+</ul>
+<p><br> <br> You can also name the chunks (makes for better error messages).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="r-markdown---knitting-errors" class="slide level2 smaller">
+<h2>R Markdown - Knitting Errors</h2>
+<hr>
+<ul>
+<li>When Rmd fails to knit, it will tell you which chunk the error is in:</li>
+</ul>
+<p><img data-src="CodeChunkKnitError.png"><br><span class="small-font">Error in lines 17-18</span></p>
+</section>
+<section id="r-markdown-2" class="slide level2 smaller">
+<h2>R Markdown</h2>
+<hr>
+<ul>
+<li>Most of your homework will be submitted as R Markdown files.</li>
+<li>Starting next week…</li>
+<li>We focus on <code>.html</code> files because Canvas can read them and they support interactive plots</li>
+</ul>
+</section></section>
+<section>
+<section id="critiquing-data-viz" class="title-slide slide level1 center">
+<h1>Critiquing Data Viz</h1>
+
+</section>
+<section id="cairo-2013-chapter-1" class="slide level2 smaller">
 <h2>Cairo (2013), Chapter 1</h2>
 <hr>
 <p><span class="fragment">“The role of an information architect is to anticipate this [visualization decoding] process and generate order before people’s brains try to do it on their own” <br> <br> (p.&nbsp;17)</span> <br> <br> <span class="fragment">Visualizations are, in their very essence: <br>1. Extensions of ourselves (and thus our argument) <br>2. Means to reach goals <br> <br> (p.&nbsp;22)</span></p>
 </section>
-<section id="discussionactivity" class="slide level2">
+<section id="discussionactivity" class="slide level2 smaller">
 <h2>Discussion/Activity</h2>
 <hr>
 <p>For each visualization:</p>
@@ -574,7 +685,7 @@ Dr.&nbsp;Kelly Boles
 <h1>Looking Ahead</h1>
 
 </section>
-<section id="next-week" class="slide level2">
+<section id="next-week" class="slide level2 smaller">
 <h2>Next Week</h2>
 <hr>
 <ul>
@@ -584,11 +695,12 @@ Dr.&nbsp;Kelly Boles
 </ul></li>
 <li>Readings &amp; Discussion
 <ul>
-<li>Healy (2018), Chs. 1 &amp; 2</li>
+<li>Healy (2018), Ch. 1</li>
 <li>Estrellado et al.&nbsp;(2020), Ch. 6</li>
 <li>Week 2 Discussion</li>
 </ul></li>
 </ul>
+<p>** A note on “reading”…</p>
 <div class="footer footer-default">
 <p>UTK Educational Data Science</p>
 </div>
