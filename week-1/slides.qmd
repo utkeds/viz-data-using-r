@@ -58,7 +58,7 @@ gs4_auth(
 - [Syllabus](https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing) is available on Canvas. 
   - Living document: may be updated throughout the semester. 
 - If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
-  - Email/Slack to let me know, please!
+  - Slack to let me know, please!
 
 ## Canvas Review {.smaller}
 <hr>
@@ -278,15 +278,22 @@ level_of_confidence_graphs
 <!-- <hr> -->
 <!-- ![](level_of_confidence_graphs.png) -->
 
-## Fun Things From Discussion
+## Fun Things From Discussion {.smaller}
 <hr>
 :::{layout="[1,1], [1,1], [1,1]"}
-- Squirrels as entertainment
-- Writing a novel
-- Moved a lot (13 cities!)
-- Former teachers
+- A Marathoner
+- A Newlywed
+- Athletes
+  - Soccer
+  - Pickleball
+- Dog enthusiasts
+  - Hobbyist dog trainer
+  - Miniature Australian Shepherd Breeder
+- Europe as Destination
+  - Cool travel spots
+  - Former residents
 
-![](Squirrel.png){width=10%}
+![](running_shoes.png){width=10%}
 :::
 
 # R Projects
@@ -321,29 +328,32 @@ level_of_confidence_graphs
 ![](RMarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
 :::
 
-## R Markdown - Plain Text - Activity {.smaller}
-<hr>
-- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `R Markdown: In-Class Activity`
-- It should open up another page with instructions.
-- In the `week-1` folder you will find the file for the activity called `R Markdown: In-Class Activity`.
-
 ## R Markdown - Code Chunks {.smaller}
 <hr>
 
-- The other parts of an R Markdown document are the **code chunks**.
+- Another part of an R Markdown document is the **code chunks**.
 
 :::{layout="[50,50]"}
+![](setup_chunk.png)<br>[Setup Chunk in a `.Rmd`]{.small-font}
+<br>
+<br>
 ![](RMarkdownCodeChunkExample.png)<br>[Code Chunk in a `.Rmd`]{.small-font}
 
 ::::{.extra-small-font}
+You can use chunk options at the beginning of an `.Rmd` to establish defaults for the full document.
+<br>
+<br>
+
 - {r echo = T} : **shows the code** when knitted
 - {r eval = F} : **code does not run**
 - {r message = F}: **hides messages** 
 - {r warning = F}: **hides warnings**
+<br>
+<br>
 
-<br>
-<br>
-You can also name the chunks (makes for better error messages).
+**Body Chunks:** You can  name the chunks (makes for better error messages) and override code chunk defaults.
+
+
 ::::
 
 :::
@@ -359,6 +369,13 @@ You can also name the chunks (makes for better error messages).
 - Most of your homework will be submitted as R Markdown files.
 - Starting next week...
 - We focus on `.html` files because Canvas can read them and they support interactive plots
+
+## R Markdown - Plain Text - Activity {.smaller}
+<hr>
+- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `R Markdown: In-Class Activity`
+- It should open up another page with instructions.
+- In the `week-1` folder you will find the file for the activity called `R Markdown: In-Class Activity`.
+
 
 # Critiquing Data Viz
 
