@@ -288,7 +288,7 @@ level_of_confidence_graphs
   - Pickleball
 - Dog enthusiasts
   - Hobbyist dog trainer
-  - Miniature Australian Shepherd Breeder
+  - Miniature American Shepherd Breeder
 - Europe as Destination
   - Cool travel spots
   - Former residents
@@ -306,6 +306,23 @@ level_of_confidence_graphs
 - Put the `week-1` folder in your `.Rproj` folder.
 - Delete the zip
 - Open the `.Rproj` file in R Studio
+
+# File Types in R
+
+## File Types in R {.smaller}
+<hr>
+- In this course, we'll work with two primary file types in R.
+  - .R (R Script)
+  - .Rmd (R Markdown)
+  
+## R Script {.smaller}
+<hr>
+- An R Script is the most standard file type in R
+- You directly type code into the R Script
+- If you want plain text, it needs to be as a comment
+    - Comments start with a single hash (#) in R
+- You save an R script and submit it as it is
+  - Not true with R Markdown files
 
 # R Markdown
 
@@ -326,7 +343,10 @@ level_of_confidence_graphs
 ![](RmdPlainTextExample.png)<br>[Plain Text in `.Rmd`]{.small-font}
 
 ![](RMarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
+
 :::
+
+[- Note: verbatim formatting is created with backtick (tilde) key, not single quotation]{.extra-small-font}
 
 ## R Markdown - Code Chunks {.smaller}
 <hr>
