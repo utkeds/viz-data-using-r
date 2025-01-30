@@ -2,21 +2,25 @@
 title: "Penguin dplyr Scavenger Hunt"
 author: "Me"
 date: "2024-08-25"
-output: pdf_document
+output: html_document
 ---
 <!-- Add all your names to the Author YAML block above. -->
 <!-- NOTE: After you complete each chunk, run it! (Green play button in upper right.). -->
 
-<!-- In the setup chunk, please load `palmerpenguins` and `tidyverse` pkgs. -->
-<!-- Both are installed. Just load them. Press return & add below knitr call.-->
+<!-- Next, adjust the knitr call in the setup chunk below to turn off messages
+and warnings in addition to keeping the echo on. -->
+
+<!-- Now, also in the setup chunk below, please load {palmerpenguins} and {tidyverse} pkgs. -->
+<!-- You will likely need to first install {palmerpenguins} in your console (if you don't have it installed). Then, 
+load them below the knitr call in the setup chunk.-->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<!-- Now, run the chunk above using the green play button in the upper right. Ugh! It produced a message. Edit the code block to turn messages off. -->
+<!-- Now, run the chunk above using the green play button in the upper right. -->
 
-<!-- Run the code block below to assign the penguins data set in palmerpenguins to the global environment. -->
+<!-- Run the code block below to assign the penguins data set in {palmerpenguins} to the global environment. -->
 
 ```{r}
 penguins <- penguins
