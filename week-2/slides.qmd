@@ -44,10 +44,10 @@ library(TNG)
   - Filepaths
   - Installing and Loading Packages
 - Norms
-- `tidyverse` Introduction
-  - `dplyr` Basics
-  - `ggplot2` Preview
-- `palmerpenguins` Scavenger Hunt
+- {tidyverse} Introduction
+  - {dplyr} Basics
+  - {ggplot2} Preview
+- {palmerpenguins} Scavenger Hunt
 - Looking Ahead
 
 ## Norms
