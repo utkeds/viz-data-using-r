@@ -1,5 +1,5 @@
 ---
-subtitle: "Data Viz & R Basics"
+subtitle: "R Basics & {tidyverse}"
 title: "Week 2 - STEM 691"
 author: "Dr. Kelly Boles"
 format:
@@ -35,21 +35,20 @@ library(TNG)
 
 # Start Recording
 
-## Today's Agenda
+## Today's Agenda {.smaller}
 <hr>
 
-:::{.small-font}
 - Weekly Check In
+- Homework Review
+  - The Verbatim Backtick
+  - Filepaths
+  - Installing and Loading Packages
 - Norms
-- Creating R Project for This Class
-- Working with R Markdown
 - `tidyverse` Introduction
   - `dplyr` Basics
   - `ggplot2` Preview
 - `palmerpenguins` Scavenger Hunt
 - Looking Ahead
-
-:::
 
 ## Norms
 <hr>
@@ -66,78 +65,68 @@ library(TNG)
 
 :::
 
-# R Markdown
+# Homework Review
 
-## Creating an R Project
-- If you haven't already, let's create an R Project for this class.
-- In [Canvas](https://utk.instructure.com/courses/213032) there is a zip file for `week-2` with all the files you need.
-- Download and unzip the file.
-- Put the `week-2` folder in your `.Rproj` folder.
-- Delete the zip
-- Open the `.Rproj` file in R Studio
-
-## R Markdown
+## The verbatim `backtick` {.smaller}
 <hr>
+- To format text verbatim, use backticks.
+  - Not single quotes
+  - Backtick is the same key as tilde (next to #1)
+  - Three backticks --> code block in `.Rmd`
+<br>
+<br>
+- Slack also accepts markdown formatting
+  - One reason why we use Slack for this class
+  - Honors both in-line `verbatim` formatting and code blocks
+<br>
+<br>
+- **Try it!** DM yourself in Slack or post in the class channel to see how backticks work in Slack.
 
-:::{.small-font}
-- R Markdown is a file format for making **dynamic documents with R**.
-- An R Markdown document is written in markdown (a **plain text** format) and contains **chunks of embedded R code**.
-- The markdown file is then **processed by `knitr`**, and then pandoc which converts the markdown to a **PDF, Word, or HTML file**.
-- File extension: `.Rmd`
-:::
-
-## R Markdown - Plain Text
+## Filepaths {.smaller}
 <hr>
+- When you are working within an `.Rproj`, it makes filepaths easier.
+- The root directory (starting place) is where the .Rproj file lives.
+  - If the file (think `.csv` for now) is in the root, then just provide the filename
+  - If the file is in a folder within the `.Rproj` start the path with the name of the folder
+<br>
+<br>
+- Note that "../" also backs you up one level from the root directory.
+<br>
+<br>
+**`.Rproj` DEMO**
 
-:::{layout="[50,50]"}
-![](RmdPlainTextExample.png)<br>[Plain Text in `.Rmd`]{.small-font}
-
-![](RMarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
-:::
-
-## R Markdown - Plain Text - Activity
+## Installing Packages {.smaller}
 <hr>
-- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `R Markdown: In-Class Activity`
-- It should open up another page with instructions.
-- In the `week-2` folder you will find the file for the activity called `R Markdown: In-Class Activity`.
+- You only install a package once on your computer (the first time you use it)
+- Note: I often do this in the console (aka scratchpad)
+```r
+install.packages("tidyverse")
+```
+<br>
+<br>
 
-## R Markdown - Code Chunks
+- Then, each time you want to use it you will need to load it from your package library
+- Do this in your `.R` script of `.Rmd` file itself (usually at the top)
+```r
+library(tidyverse)
+```
+  
+
+# {tidyverse} Intro
+
+## {tidyverse} Intro {.smaller}
 <hr>
-
-- The other part of an R Markdown document is the **code chunks**.
-
-:::{layout="[50,50]"}
-![](RMarkdownCodeChunkExample.png)<br>[Code Chunk in a `.Rmd`]{.small-font}
-
-::::{.small-font}
-- {r echo = T} : **shows the code** when knitted
-- {r eval = F} : **code does not run**
-- {r message = F}: **hides messages** 
-- {r warning = F}: **hides warnings**
-::::
-
-:::
-
-## R Markdown - Knitting Errors
-<hr>
-- When Rmd fails to knit, it will tell you which chunk the error is in:
-
-![](CodeChunkKnitError.png)<br>[Error in lines 17-18]{.small-font}
-
-## R Markdown
-<hr>
-- Most of your homework will be submitted as R Markdown files.
-- Including this week's!
-
-# `tidyverse` Intro
-- `dplyr`
-- `ggplot2`
+- The *tidyverse* is a collection of packages for data science
+  - The packages can be loaded separately, but just loading {tidyverse} installs eight core packages.
+  - We'll focus on two:
+    1. {dplyr} - data wrangling
+    2. {ggplot2} - data viz
 
 # `dplyr` Basics
 
 ## `dplyr` Basics
 <hr>
-- Code-a-long
+- From Estrellado et al. (2020)
 - **In chat:** What is a function?
 
 ## `dplyr` Basic Functions
@@ -241,10 +230,25 @@ starwars |>
 :::{.extra-small-font .incremental}
 1. Take the starwars data set *and then*
 2. `select` the name and height columns *and then*
-3. `view` the result in R Studio
+3. `glimpse` the result in R Studio
 :::
 ::::
 :::
+
+## Pipe Shortcut {.smaller}
+<hr>
+- There is a shortcut for the pipe operator
+  - Windows/Linux: Ctrl + Shift + M
+  - Mac: Cmd + Shift + M
+
+## Pipe Default {.smaller}
+<hr>
+- In R Studio, you can set which pipe to use
+  - The old one from {magittr} `%>%`
+  - The new one in base R `|>` (preferred)
+
+**DEMO**
+(Tools > Global Options > Code)
 
 ## `dplyr` Basic Functions
 <hr>

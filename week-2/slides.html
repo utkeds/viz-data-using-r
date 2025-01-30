@@ -390,7 +390,7 @@
 
 <section id="title-slide" data-background-color="#4B4B4B" data-background-image="UnitShortcut.png" data-background-position="50% 9%" data-background-size="50%" class="quarto-title-block center">
   <h1 class="title">Week 2 - STEM 691</h1>
-  <p class="subtitle">Data Viz &amp; R Basics</p>
+  <p class="subtitle">R Basics &amp; {tidyverse}</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -411,15 +411,18 @@ Dr.&nbsp;Kelly Boles
 <h1>Start Recording</h1>
 
 </section>
-<section id="todays-agenda" class="slide level2">
+<section id="todays-agenda" class="slide level2 smaller">
 <h2>Today’s Agenda</h2>
 <hr>
-<div class="small-font">
 <ul>
 <li>Weekly Check In</li>
+<li>Homework Review
+<ul>
+<li>The Verbatim Backtick</li>
+<li>Filepaths</li>
+<li>Installing and Loading Packages</li>
+</ul></li>
 <li>Norms</li>
-<li>Creating R Project for This Class</li>
-<li>Working with R Markdown</li>
 <li><code>tidyverse</code> Introduction
 <ul>
 <li><code>dplyr</code> Basics</li>
@@ -428,7 +431,6 @@ Dr.&nbsp;Kelly Boles
 <li><code>palmerpenguins</code> Scavenger Hunt</li>
 <li>Looking Ahead</li>
 </ul>
-</div>
 </section>
 <section id="norms" class="slide level2">
 <h2>Norms</h2>
@@ -475,102 +477,76 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section></section>
 <section>
-<section id="r-markdown" class="title-slide slide level1 center">
-<h1>R Markdown</h1>
+<section id="homework-review" class="title-slide slide level1 center">
+<h1>Homework Review</h1>
 
 </section>
-<section id="creating-an-r-project" class="slide level2">
-<h2>Creating an R Project</h2>
-<ul>
-<li>If you haven’t already, let’s create an R Project for this class.</li>
-<li>In <a href="https://utk.instructure.com/courses/213032">Canvas</a> there is a zip file for <code>week-2</code> with all the files you need.</li>
-<li>Download and unzip the file.</li>
-<li>Put the <code>week-2</code> folder in your <code>.Rproj</code> folder.</li>
-<li>Delete the zip</li>
-<li>Open the <code>.Rproj</code> file in R Studio</li>
-</ul>
-</section>
-<section id="r-markdown-1" class="slide level2">
-<h2>R Markdown</h2>
-<hr>
-<div class="small-font">
-<ul>
-<li>R Markdown is a file format for making <strong>dynamic documents with R</strong>.</li>
-<li>An R Markdown document is written in markdown (a <strong>plain text</strong> format) and contains <strong>chunks of embedded R code</strong>.</li>
-<li>The markdown file is then <strong>processed by <code>knitr</code></strong>, and then pandoc which converts the markdown to a <strong>PDF, Word, or HTML file</strong>.</li>
-<li>File extension: <code>.Rmd</code></li>
-</ul>
-</div>
-</section>
-<section id="r-markdown---plain-text" class="slide level2">
-<h2>R Markdown - Plain Text</h2>
-<hr>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="RmdPlainTextExample.png"><br><span class="small-font">Plain Text in <code>.Rmd</code></span></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="RMarkdownPlainTextFormatting.png"><br><span class="small-font">Plain Text Formatting</span></p>
-</div>
-</div>
-</div>
-</section>
-<section id="r-markdown---plain-text---activity" class="slide level2">
-<h2>R Markdown - Plain Text - Activity</h2>
+<section id="the-verbatim-backtick" class="slide level2 smaller">
+<h2>The verbatim <code>backtick</code></h2>
 <hr>
 <ul>
-<li>In <a href="https://utk.instructure.com/courses/213032">Canvas</a> you will find an activity called <code>R Markdown: In-Class Activity</code></li>
-<li>It should open up another page with instructions.</li>
-<li>In the <code>week-2</code> folder you will find the file for the activity called <code>R Markdown: In-Class Activity</code>.</li>
+<li>To format text verbatim, use backticks.
+<ul>
+<li>Not single quotes</li>
+<li>Backtick is the same key as tilde (next to #1)</li>
+<li>Three backticks –&gt; code block in <code>.Rmd</code> <br> <br></li>
+</ul></li>
+<li>Slack also accepts markdown formatting
+<ul>
+<li>One reason why we use Slack for this class</li>
+<li>Honors both in-line <code>verbatim</code> formatting and code blocks <br> <br></li>
+</ul></li>
+<li><strong>Try it!</strong> DM yourself in Slack or post in the class channel to see how backticks work in Slack.</li>
 </ul>
 </section>
-<section id="r-markdown---code-chunks" class="slide level2">
-<h2>R Markdown - Code Chunks</h2>
+<section id="filepaths" class="slide level2 smaller">
+<h2>Filepaths</h2>
 <hr>
 <ul>
-<li>The other part of an R Markdown document is the <strong>code chunks</strong>.</li>
-</ul>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="RMarkdownCodeChunkExample.png"><br><span class="small-font">Code Chunk in a <code>.Rmd</code></span></p>
-</div>
-<div class="small-font quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<li>When you are working within an <code>.Rproj</code>, it makes filepaths easier.</li>
+<li>The root directory (starting place) is where the .Rproj file lives.
 <ul>
-<li>{r echo = T} : <strong>shows the code</strong> when knitted</li>
-<li>{r eval = F} : <strong>code does not run</strong></li>
-<li>{r message = F}: <strong>hides messages</strong></li>
-<li>{r warning = F}: <strong>hides warnings</strong></li>
+<li>If the file (think <code>.csv</code> for now) is in the root, then just provide the filename</li>
+<li>If the file is in a folder within the <code>.Rproj</code> start the path with the name of the folder <br> <br></li>
+</ul></li>
+<li>Note that “../” also backs you up one level from the root directory. <br> <br> <strong><code>.Rproj</code> DEMO</strong></li>
 </ul>
-</div>
-</div>
-</div>
 </section>
-<section id="r-markdown---knitting-errors" class="slide level2">
-<h2>R Markdown - Knitting Errors</h2>
+<section id="installing-packages" class="slide level2 smaller">
+<h2>Installing Packages</h2>
 <hr>
 <ul>
-<li>When Rmd fails to knit, it will tell you which chunk the error is in:</li>
+<li>You only install a package once on your computer (the first time you use it)</li>
+<li>Note: I often do this in the console (aka scratchpad)</li>
 </ul>
-<p><img data-src="CodeChunkKnitError.png"><br><span class="small-font">Error in lines 17-18</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br> <br></p>
+<ul>
+<li>Then, each time you want to use it you will need to load it from your package library</li>
+<li>Do this in your <code>.R</code> script of <code>.Rmd</code> file itself (usually at the top)</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="tidyverse-intro" class="title-slide slide level1 center">
+<h1>{tidyverse} Intro</h1>
+
 </section>
-<section id="r-markdown-2" class="slide level2">
-<h2>R Markdown</h2>
+<section id="tidyverse-intro-1" class="slide level2 smaller">
+<h2>{tidyverse} Intro</h2>
 <hr>
 <ul>
-<li>Most of your homework will be submitted as R Markdown files.</li>
-<li>Including this week’s!</li>
+<li>The <em>tidyverse</em> is a collection of packages for data science
+<ul>
+<li>The packages can be loaded separately, but just loading {tidyverse} installs eight core packages.</li>
+<li>We’ll focus on two:
+<ol type="1">
+<li>{dplyr} - data wrangling</li>
+<li>{ggplot2} - data viz</li>
+</ol></li>
+</ul></li>
 </ul>
 </section></section>
-<section id="tidyverse-intro" class="title-slide slide level1 center">
-<h1><code>tidyverse</code> Intro</h1>
-<ul>
-<li><code>dplyr</code></li>
-<li><code>ggplot2</code></li>
-</ul>
-</section>
-
 <section>
 <section id="dplyr-basics" class="title-slide slide level1 center">
 <h1><code>dplyr</code> Basics</h1>
@@ -580,7 +556,7 @@ Dr.&nbsp;Kelly Boles
 <h2><code>dplyr</code> Basics</h2>
 <hr>
 <ul>
-<li>Code-a-long</li>
+<li>From Estrellado et al.&nbsp;(2020)</li>
 <li><strong>In chat:</strong> What is a function?</li>
 </ul>
 </section>
@@ -668,8 +644,8 @@ Dr.&nbsp;Kelly Boles
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="fragment quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">select</span>(name, height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">select</span>(name, height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
   name           height
@@ -770,10 +746,10 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">select</span>(name, height)</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">select</span>(starwars, name, height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">select</span>(name, height)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">select</span>(starwars, name, height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -801,9 +777,9 @@ Pipe Operator: <code>%&gt;% or |&gt;</code>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">select</span>(name, height) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">select</span>(name, height) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 5
 Columns: 2
@@ -819,12 +795,35 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <ol type="1">
 <li class="fragment">Take the starwars data set <em>and then</em></li>
 <li class="fragment"><code>select</code> the name and height columns <em>and then</em></li>
-<li class="fragment"><code>view</code> the result in R Studio</li>
+<li class="fragment"><code>glimpse</code> the result in R Studio</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
+</section>
+<section id="pipe-shortcut" class="slide level2 smaller">
+<h2>Pipe Shortcut</h2>
+<hr>
+<ul>
+<li>There is a shortcut for the pipe operator
+<ul>
+<li>Windows/Linux: Ctrl + Shift + M</li>
+<li>Mac: Cmd + Shift + M</li>
+</ul></li>
+</ul>
+</section>
+<section id="pipe-default" class="slide level2 smaller">
+<h2>Pipe Default</h2>
+<hr>
+<ul>
+<li>In R Studio, you can set which pipe to use
+<ul>
+<li>The old one from {magittr} <code>%&gt;%</code></li>
+<li>The new one in base R <code>|&gt;</code> (preferred)</li>
+</ul></li>
+</ul>
+<p><strong>DEMO</strong> (Tools &gt; Global Options &gt; Code)</p>
 </section>
 <section id="dplyr-basic-functions-3" class="slide level2">
 <h2><code>dplyr</code> Basic Functions</h2>
@@ -911,8 +910,8 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;=</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;=</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   name           height  mass hair_color skin_color
@@ -1014,8 +1013,8 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">"brown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">"brown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
   name        height  mass hair_color skin_color
@@ -1115,8 +1114,8 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   name           height  mass hair_color skin_color
@@ -1218,7 +1217,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">str</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">str</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [5 × 5] (S3: tbl_df/tbl/data.frame)
  $ name      : chr [1:5] "Luke Skywalker" "C-3PO" "R2-D2" "Darth Vader" ...
@@ -1320,7 +1319,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">head</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">head</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name           height  mass hair_color skin_color 
@@ -1331,7 +1330,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 4 Darth Vader       202   136 none       white      
 5 Leia Organa       150    49 brown      light      </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">head</span>(starwars, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">head</span>(starwars, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   name           height  mass hair_color skin_color
@@ -1432,8 +1431,8 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">rename</span>(<span class="st">"weight"</span> <span class="ot">=</span> mass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">rename</span>(<span class="st">"weight"</span> <span class="ot">=</span> mass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name           height weight hair_color skin_color 
@@ -1449,7 +1448,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <p><br> <span class="fragment extra-small-font">-But reviewing starwars right after, it still says mass. Why?</span></p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name           height  mass hair_color skin_color 
@@ -1553,13 +1552,13 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>renamed_starwars <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">rename</span>(<span class="st">"weight"</span> <span class="ot">=</span> mass)</span>
-<span id="cb22-3"><a href="#cb22-3"></a></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="co"># starwars &lt;- starwars |&gt;</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="co">#   rename("weight" = mass)</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a></span>
-<span id="cb22-7"><a href="#cb22-7"></a>renamed_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>renamed_starwars <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">rename</span>(<span class="st">"weight"</span> <span class="ot">=</span> mass)</span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># starwars &lt;- starwars |&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="co">#   rename("weight" = mass)</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a></span>
+<span id="cb24-7"><a href="#cb24-7"></a>renamed_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name           height weight hair_color skin_color 
@@ -1667,11 +1666,11 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">mutate</span>(<span class="at">two =</span> height<span class="sc">*</span>mass) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
-<span id="cb24-5"><a href="#cb24-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">mutate</span>(<span class="at">two =</span> height<span class="sc">*</span>mass) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
+<span id="cb26-5"><a href="#cb26-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1689,11 +1688,11 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="small-font">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">mutate</span>(<span class="at">two =</span> height<span class="sc">*</span>mass) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
-<span id="cb25-5"><a href="#cb25-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">mutate</span>(<span class="at">two =</span> height<span class="sc">*</span>mass) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
+<span id="cb27-5"><a href="#cb27-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
   name           height  mass hair_color skin_color    one   two
@@ -1716,11 +1715,11 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <p><code>mutate()</code> A Challenge!</p>
 <div class="small-font">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>,</span>
-<span id="cb27-3"><a href="#cb27-3"></a>        <span class="at">two =</span> height<span class="sc">*</span>mass,</span>
-<span id="cb27-4"><a href="#cb27-4"></a>        <span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
-<span id="cb27-5"><a href="#cb27-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>        <span class="at">two =</span> height<span class="sc">*</span>mass,</span>
+<span id="cb29-4"><a href="#cb29-4"></a>        <span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
+<span id="cb29-5"><a href="#cb29-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
   name           height  mass hair_color skin_color    one   two
