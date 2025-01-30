@@ -244,7 +244,7 @@ starwars |>
 ## Pipe Default {.smaller}
 <hr>
 - In R Studio, you can set which pipe to use
-  - The old one from {magittr} `%>%`
+  - The old one from {magrittr} `%>%`
   - The new one in base R `|>` (preferred)
 
 **DEMO**
