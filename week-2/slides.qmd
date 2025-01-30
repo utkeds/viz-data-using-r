@@ -122,14 +122,14 @@ library(tidyverse)
     1. {dplyr} - data wrangling
     2. {ggplot2} - data viz
 
-# `dplyr` Basics
+# {dplyr} Basics
 
-## `dplyr` Basics
+## {dplyr} Basics
 <hr>
 - From Estrellado et al. (2020)
 - **In chat:** What is a function?
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 ```{r include=FALSE}
 starwars <- starwars |>
@@ -169,7 +169,7 @@ starwars |>
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `select()`
 <br>
@@ -206,7 +206,7 @@ select(starwars, name, height)
 
 # Why the same?
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 Pipe Operator: `%>% or |>`
 <hr>
@@ -287,7 +287,7 @@ starwars |>
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `filter()`
 <br>
@@ -324,7 +324,7 @@ starwars |>
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `filter()`
 <br>
@@ -361,7 +361,7 @@ starwars |>
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `str()`
 <br>
@@ -397,7 +397,7 @@ str(starwars)
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `head()`
 <br>
@@ -435,7 +435,7 @@ head(starwars, 2)
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `rename()`
 <br>
@@ -481,7 +481,7 @@ starwars
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `rename()`
 <br>
@@ -523,7 +523,7 @@ renamed_starwars
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `mutate()`
 <br>
@@ -566,7 +566,7 @@ starwars |>
 ::::
 :::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `mutate()`
 <br>
@@ -586,7 +586,7 @@ starwars |>
 </div>
 ::::
 
-## `dplyr` Basic Functions
+## {dplyr} Basic Functions
 <hr>
 `mutate()`
 <br>
@@ -604,19 +604,18 @@ starwars |>
 ```
 ::::
 
-# `ggplot2` Preview
+# {ggplot2} Preview
 
-## `ggplot2` Preview
+## {ggplot2} Preview
 <hr>
-- `ggplot2` or `ggplot` is most popular data viz package in R.
-- Part of the `tidyverse`
+- {ggplot2} or {ggplot} is most popular data viz package in R.
+- Part of the {tidyverse}
 - We'll learn more in Week 4, but we'll use it a bit today.
 
-# `PalmerPenguins` Scavenger Hunt
+# {PalmerPenguins} Scavenger Hunt
 
-## Scavenger Hunt
+## Scavenger Hunt 1 of 2 {.smaller}
 <hr>
-:::{.small-font}
 - In the `week-2` folder you will find an activity called `Palmer Penguins: dplyr & ggplot2 Scavenger Hunt`
 - The `.Rmd` file has instructions embedded.
 - You will be sent into breakout rooms.
@@ -624,7 +623,17 @@ starwars |>
 - However, only 1 knitted file should be submitted (i.e. 1 person should submit for group credit)
 - Make sure everyone's name is in author field!!!
 - The person who submits should be sharing their screen so the group can collaboratively work on the final document.
-:::
+
+## Scavenger Hunt 2 of 2 {.smaller}
+<hr>
+Breakout room structure:
+
+- **Individual Think Time**: ~ 5 min (camera off / mute)
+  - Review document
+  - Review prompts
+  - Start planning possible approaches/pseudocode
+- **Introductions**: ~ 3 min (camera on/ unmute)
+- **Collaborative Work** (camera on/unmute)
 
 # Looking Ahead
 
