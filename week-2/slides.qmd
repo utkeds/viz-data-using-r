@@ -106,7 +106,7 @@ install.packages("tidyverse")
 <br>
 
 - Then, each time you want to use it you will need to load it from your package library
-- Do this in your `.R` script of `.Rmd` file itself (usually at the top)
+- Do this in your `.R` script or `.Rmd` file itself (usually at the top)
 ```r
 library(tidyverse)
 ```
