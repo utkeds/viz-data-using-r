@@ -44,7 +44,7 @@ penguins <- penguins
 
 ```
 
-<!-- Although it's useful that the variable names give the units, that doesn't look nice in a graph. There will be other ways to label our units. Use rename() to change `bill_length_mm` to `bill_length` and `flipper_length_mm` to `fipper_length`. Assign it to chinstrap-->
+<!-- Although it's useful that the variable names give the units, that doesn't look nice in a graph. There will be other ways to label our units. Use rename() to change `bill_length_mm` to `bill_length` and `flipper_length_mm` to `flipper_length`. Assign it to chinstrap-->
 
 ```{r}
 
