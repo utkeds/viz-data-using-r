@@ -826,6 +826,109 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <p><strong>DEMO</strong> (Tools &gt; Global Options &gt; Code)</p>
 </section>
 <section id="dplyr-basic-functions-3" class="slide level2">
+<h2>{dplyr} Basic Functions</h2>
+<hr>
+<code>slice()</code> <br>
+<hr>
+<div class="small-font quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell-output-display">
+<table class="table-striped" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><br> <span class="fragment"><code>slice(3:5)</code></span></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><span class="extra-small-font fragment">- Use this to <strong>select rows</strong></span> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">slice</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  name        height  mass hair_color skin_color 
+  &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1 R2-D2           96    32 &lt;NA&gt;       white, blue
+2 Darth Vader    202   136 none       white      
+3 Leia Organa    150    49 brown      light      </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dplyr-basic-functions-4" class="slide level2">
 <h2><code>dplyr</code> Basic Functions</h2>
 <hr>
 <code>filter()</code> <br>
@@ -910,8 +1013,8 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;=</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(mass <span class="sc">&gt;=</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   name           height  mass hair_color skin_color
@@ -928,7 +1031,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 </div>
 </div>
 </section>
-<section id="dplyr-basic-functions-4" class="slide level2">
+<section id="dplyr-basic-functions-5" class="slide level2">
 <h2>{dplyr} Basic Functions</h2>
 <hr>
 <code>filter()</code> <br>
@@ -1013,8 +1116,8 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">"brown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">"brown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
   name        height  mass hair_color skin_color
@@ -1029,7 +1132,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 </div>
 </div>
 </section>
-<section id="dplyr-basic-functions-5" class="slide level2">
+<section id="dplyr-basic-functions-6" class="slide level2">
 <h2>{dplyr} Basic Functions</h2>
 <hr>
 <code>filter()</code> <br>
@@ -1114,8 +1217,8 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   name           height  mass hair_color skin_color
@@ -1132,7 +1235,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 </div>
 </div>
 </section>
-<section id="dplyr-basic-functions-6" class="slide level2">
+<section id="dplyr-basic-functions-7" class="slide level2">
 <h2>{dplyr} Basic Functions</h2>
 <hr>
 <code>str()</code> <br>
@@ -1217,7 +1320,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">str</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">str</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [5 × 5] (S3: tbl_df/tbl/data.frame)
  $ name      : chr [1:5] "Luke Skywalker" "C-3PO" "R2-D2" "Darth Vader" ...
@@ -1234,7 +1337,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 </div>
 </div>
 </section>
-<section id="dplyr-basic-functions-7" class="slide level2">
+<section id="dplyr-basic-functions-8" class="slide level2">
 <h2>{dplyr} Basic Functions</h2>
 <hr>
 <code>head()</code> <br>
@@ -1319,7 +1422,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">head</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">head</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name           height  mass hair_color skin_color 
@@ -1330,134 +1433,13 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 4 Darth Vader       202   136 none       white      
 5 Leia Organa       150    49 brown      light      </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">head</span>(starwars, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">head</span>(starwars, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   name           height  mass hair_color skin_color
   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
 1 Luke Skywalker    172    77 blond      fair      
 2 C-3PO             167    75 &lt;NA&gt;       gold      </code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="dplyr-basic-functions-8" class="slide level2">
-<h2>{dplyr} Basic Functions</h2>
-<hr>
-<code>rename()</code> <br>
-<hr>
-<div class="small-font quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="cell-output-display">
-<table class="table-striped" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Luke Skywalker</td>
-<td style="text-align: right;">172</td>
-<td style="text-align: right;">77</td>
-<td style="text-align: left;">blond</td>
-<td style="text-align: left;">fair</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">C-3PO</td>
-<td style="text-align: right;">167</td>
-<td style="text-align: right;">75</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">gold</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">R2-D2</td>
-<td style="text-align: right;">96</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">white, blue</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Darth Vader</td>
-<td style="text-align: right;">202</td>
-<td style="text-align: right;">136</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">white</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Leia Organa</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">49</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-</tr>
-</tbody>
-</table>
-
-
-</div>
-</div>
-</div>
-</div>
-<div class="quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <span class="fragment extra-small-font"><code>rename("weight" = mass)</code></span></p>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><span class="extra-small-font fragment">- Use this to <strong>rename</strong> a column</span> <br></p>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">rename</span>(<span class="st">"weight"</span> <span class="ot">=</span> mass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 5
-  name           height weight hair_color skin_color 
-  &lt;chr&gt;           &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
-1 Luke Skywalker    172     77 blond      fair       
-2 C-3PO             167     75 &lt;NA&gt;       gold       
-3 R2-D2              96     32 &lt;NA&gt;       white, blue
-4 Darth Vader       202    136 none       white      
-5 Leia Organa       150     49 brown      light      </code></pre>
-</div>
-</div>
-</div>
-<p><br> <span class="fragment extra-small-font">-But reviewing starwars right after, it still says mass. Why?</span></p>
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 5
-  name           height  mass hair_color skin_color 
-  &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
-1 Luke Skywalker    172    77 blond      fair       
-2 C-3PO             167    75 &lt;NA&gt;       gold       
-3 R2-D2              96    32 &lt;NA&gt;       white, blue
-4 Darth Vader       202   136 none       white      
-5 Leia Organa       150    49 brown      light      </code></pre>
 </div>
 </div>
 </div>
@@ -1545,6 +1527,127 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><span class="extra-small-font fragment">- Use this to <strong>rename</strong> a column</span> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">rename</span>(<span class="st">"weight"</span> <span class="ot">=</span> mass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  name           height weight hair_color skin_color 
+  &lt;chr&gt;           &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1 Luke Skywalker    172     77 blond      fair       
+2 C-3PO             167     75 &lt;NA&gt;       gold       
+3 R2-D2              96     32 &lt;NA&gt;       white, blue
+4 Darth Vader       202    136 none       white      
+5 Leia Organa       150     49 brown      light      </code></pre>
+</div>
+</div>
+</div>
+<p><br> <span class="fragment extra-small-font">-But reviewing starwars right after, it still says mass. Why?</span></p>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  name           height  mass hair_color skin_color 
+  &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1 Luke Skywalker    172    77 blond      fair       
+2 C-3PO             167    75 &lt;NA&gt;       gold       
+3 R2-D2              96    32 &lt;NA&gt;       white, blue
+4 Darth Vader       202   136 none       white      
+5 Leia Organa       150    49 brown      light      </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dplyr-basic-functions-10" class="slide level2">
+<h2>{dplyr} Basic Functions</h2>
+<hr>
+<code>rename()</code> <br>
+<hr>
+<div class="small-font quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell-output-display">
+<table class="table-striped" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><br> <span class="fragment extra-small-font"><code>rename("weight" = mass)</code></span></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><span class="extra-small-font fragment">- You need to assign the changes to keep them!</span> <br></p>
 </div>
 </div>
@@ -1552,13 +1655,13 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>renamed_starwars <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">rename</span>(<span class="st">"weight"</span> <span class="ot">=</span> mass)</span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="co"># starwars &lt;- starwars |&gt;</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="co">#   rename("weight" = mass)</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a></span>
-<span id="cb24-7"><a href="#cb24-7"></a>renamed_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>renamed_starwars <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">rename</span>(<span class="st">"weight"</span> <span class="ot">=</span> mass)</span>
+<span id="cb26-3"><a href="#cb26-3"></a></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="co"># starwars &lt;- starwars |&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="co">#   rename("weight" = mass)</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a></span>
+<span id="cb26-7"><a href="#cb26-7"></a>renamed_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name           height weight hair_color skin_color 
@@ -1577,7 +1680,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 </div>
 </div>
 </section>
-<section id="dplyr-basic-functions-10" class="slide level2">
+<section id="dplyr-basic-functions-11" class="slide level2">
 <h2>{dplyr} Basic Functions</h2>
 <hr>
 <code>mutate()</code> <br>
@@ -1666,11 +1769,11 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">mutate</span>(<span class="at">two =</span> height<span class="sc">*</span>mass) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
-<span id="cb26-5"><a href="#cb26-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">mutate</span>(<span class="at">two =</span> height<span class="sc">*</span>mass) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
+<span id="cb28-5"><a href="#cb28-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1679,7 +1782,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 </div>
 </div>
 </section>
-<section id="dplyr-basic-functions-11" class="slide level2">
+<section id="dplyr-basic-functions-12" class="slide level2">
 <h2>{dplyr} Basic Functions</h2>
 <hr>
 <code>mutate()</code> <br>
@@ -1688,11 +1791,11 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <div class="small-font">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">mutate</span>(<span class="at">two =</span> height<span class="sc">*</span>mass) <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
-<span id="cb27-5"><a href="#cb27-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">mutate</span>(<span class="at">two =</span> height<span class="sc">*</span>mass) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">mutate</span>(<span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
+<span id="cb29-5"><a href="#cb29-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
   name           height  mass hair_color skin_color    one   two
@@ -1707,7 +1810,7 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 </div>
 </div>
 </section>
-<section id="dplyr-basic-functions-12" class="slide level2">
+<section id="dplyr-basic-functions-13" class="slide level2">
 <h2>{dplyr} Basic Functions</h2>
 <hr>
 <code>mutate()</code> <br>
@@ -1715,11 +1818,11 @@ $ height &lt;int&gt; 172, 167, 96, 202, 150</code></pre>
 <p><code>mutate()</code> A Challenge!</p>
 <div class="small-font">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>,</span>
-<span id="cb29-3"><a href="#cb29-3"></a>        <span class="at">two =</span> height<span class="sc">*</span>mass,</span>
-<span id="cb29-4"><a href="#cb29-4"></a>        <span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
-<span id="cb29-5"><a href="#cb29-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb31-3"><a href="#cb31-3"></a>        <span class="at">two =</span> height<span class="sc">*</span>mass,</span>
+<span id="cb31-4"><a href="#cb31-4"></a>        <span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
+<span id="cb31-5"><a href="#cb31-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 7
   name           height  mass hair_color skin_color    one   two

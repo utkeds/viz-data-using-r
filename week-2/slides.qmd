@@ -250,6 +250,44 @@ starwars |>
 **DEMO**
 (Tools > Global Options > Code)
 
+## {dplyr} Basic Functions
+<hr>
+`slice()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example data - starwars**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+starwars |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]"}
+<br>
+[`slice(3:5)`]{.fragment}
+
+[- Use this to **select rows**]{.extra-small-font .fragment}
+<br>
+
+::::{.extra-small-font}
+<div class="fragment">
+```{r}
+starwars |>
+  slice(3:5)
+```
+</div>
+::::
+::::
+:::
+
+
 ## `dplyr` Basic Functions
 <hr>
 `filter()`
