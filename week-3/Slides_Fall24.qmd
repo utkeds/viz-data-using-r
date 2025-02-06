@@ -31,31 +31,26 @@ library(tidyverse, palmerpenguins)
 
 # Weekly Check In
 
-## Creating Free Posit Cloud Account
-
-- In [Canvas](https://utk.instructure.com/courses/213032), click on the "Create Free Post Cloud Account" link.
-- Use your UTK email to create a free account.
-- We will use this later.
+## Download .zip
+<hr>
+- In Canvas download the week-3.zip file and move into the folder with your `.Rproj`
 
 # Start Recording
 
-## Today's Agenda
+## Today's Agenda {.smaller}
 <hr>
 
-:::{.small-font}
-- Weekly Check In / Posit Cloud Account
+- Weekly Check In / .zip Download
 - Additional Foundational Skills
-    - File Management
+    - Other File Types
     - Documentation / Help
     - Troubleshooting Errors
-- Reviewing `dplyr` Basics
-- More `dplyr`
+- Reviewing {dplyr} Basics
+- More {dplyr}
     - Collaborative Work
-- Wrangling to Plot
-    - Activity
+- {forcats}
 - Looking Ahead
 
-:::
 
 ## Norms
 <hr>
@@ -79,13 +74,13 @@ library(tidyverse, palmerpenguins)
  - `?function_name` or `help(function_name)` will pull documentation
  - Can also access on web (Google is your friend!)
 
-## File Management
+## Other File Types
 <hr>
 :::{.compact-font}
 - Ability to read in a data file is critical\
 <br>
 - Often, data is stored in a `.csv` file
-    - `read_csv()` function in `readr` package (part of tidyverse core)
+    - `read_csv()` function in `readr` package (part of [tidyverse core](https://www.tidyverse.org/packages/#core-tidyverse))
 <br>  
 - Sometimes we have an Excel file
     - `read_excel()` function in `readxl` package
@@ -101,25 +96,24 @@ library(tidyverse, palmerpenguins)
 
 :::
 
-## File Management
+## Troubleshooting Errors {.smaller}
 <hr>
 - **Demo**
-    - Accessing documentation for `read_csv()`
-    - Reading in a `.csv` file
-        - Same folder
-        - Up a level
-        - Down a level (subfolder)
-        
-## Troubleshooting Errors
-<hr>
-- **Demo**
-    - Reading in an Excel file
-    - Two types of errors <!-- (forget to load package, don't store/assign it and call it later) -->
-    - Accessing via file pane > Import Dataset
-    
-# Reviewing `dplyr` Basics
+    - Follow along with `Troubleshooting_Errors_Demo.Rmd`:
+      - Address setup block
+      - Reading in an Excel file
+      - Three types of errors <!-- (forget to load package, file in wrong place, don't store/assign it and call it later) -->
+      - Accessing via file pane > Import Dataset
+      
+# Reviewing {dplyr} Basics
 
-## `dplyr` Review +
+## {dplyr} Review +
+<hr>
+- Using two datasets
+  - full starwars
+  - starwars_a (first five rows of starwars)
+
+## {dplyr} Review +
 <hr>
 `select()`
 <br>
@@ -129,7 +123,7 @@ library(tidyverse, palmerpenguins)
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r include=FALSE}
@@ -151,14 +145,17 @@ starwars_a |>
 [- Use this to **select columns/variables**]{.extra-small-font}
 <br>
 
+:::::{.smaller-font}
 ```{r echo=TRUE, eval=TRUE}
 starwars_a |>
   select(name, height)
 ```
+:::::
+
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
 <hr>
 `select()`
 <br>
@@ -168,7 +165,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r include=FALSE}
@@ -190,14 +187,97 @@ starwars_a |>
 [- Can also **drop columns/variables**]{.extra-small-font}
 <br>
 
+:::::{.smaller-font}
 ```{r echo=TRUE, eval=TRUE}
 starwars_a |>
   select(-hair_color)
 ```
+:::::
+
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
+<hr>
+`slice()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example data - starwars_a**]{.small-font}
+<br>
+<br>
+```{r include=FALSE}
+starwars_a <- starwars |>
+  slice(1:5) |>
+  select(1:5)
+```
+
+```{r echo=FALSE}
+starwars_a |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`slice()`
+
+[- Use this to **select rows/observations**]{.extra-small-font}
+<br>
+
+:::::{.smaller-font}
+```{r echo=TRUE, eval=TRUE}
+starwars_a |>
+  slice(3:5)
+```
+:::::
+
+::::
+:::
+
+
+## {dplyr} Review +
+<hr>
+`slice()`
+<br>
+<hr>
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+<br>
+[**Example data - starwars_a**]{.small-font}
+<br>
+<br>
+
+```{r echo=FALSE}
+starwars_a |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+::::
+
+::::{layout="[1]" .fragment}
+<br>
+`slice()`
+
+[- Can also **drop rows/observations**]{.extra-small-font}
+<br>
+
+:::::{.smaller-font}
+```{r echo=TRUE, eval=TRUE}
+starwars_a |>
+  slice(-1,-2)
+```
+:::::
+
+::::
+:::
+
+## {dplyr} Review +
 <hr>
 `filter()`
 <br>
@@ -207,7 +287,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -223,7 +303,7 @@ starwars_a |>
 [- Use this to **filter rows**]{.extra-small-font}
 <br>
 
-:::::{.extra-small-font}
+:::::{.smaller-font}
 ```{r}
 starwars_a |>
   filter(hair_color == "brown")
@@ -232,7 +312,7 @@ starwars_a |>
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
 <hr>
 `filter()` and `!is.na()`
 <br>
@@ -242,7 +322,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -261,7 +341,7 @@ starwars_a |>
 :::
 <br>
 
-:::::{.extra-small-font}
+:::::{.smaller-font}
 ```{r}
 starwars_a |>
   filter(!is.na(hair_color))
@@ -270,7 +350,7 @@ starwars_a |>
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
 <hr>
 `filter()` and `|`
 <br>
@@ -280,7 +360,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -296,10 +376,12 @@ starwars_a |>
 :::{.extra-small-font}
 - Use this to **filter rows**
 - `|` allows for multiple arguments as condition
+- [*How would I change this if I wanted middle heights?*]{.fragment}
+  - [`filter(height <= 200 & height >= 100`)]{.fragment}
 :::
 <br>
 
-:::::{.extra-small-font}
+:::::{.smaller-font}
 ```{r}
 starwars_a |>
   filter(height > 200 | height < 100)
@@ -308,7 +390,7 @@ starwars_a |>
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
 <hr>
 `filter()` and `%in%`
 <br>
@@ -318,7 +400,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -334,10 +416,10 @@ starwars_a |>
 :::{.extra-small-font}
 - Use this to **filter rows**
 - `%in%` allows for multiple arguments as condition (provided as vector)
+- `c()` combines into a vector
 :::
-<br>
 
-:::::{.extra-small-font}
+:::::{.smaller-font}
 ```{r}
 starwars_a |>
   filter(hair_color %in% c("brown", "blond"))
@@ -346,7 +428,7 @@ starwars_a |>
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
 <hr>
 `rename()`
 <br>
@@ -356,7 +438,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -372,7 +454,7 @@ starwars_a |>
 [- Use this to **rename** a column]{.extra-small-font}
 <br>
 
-::::{.extra-small-font}
+::::{.smaller-font}
 
 ```{r}
 starwars_a |>
@@ -383,7 +465,7 @@ starwars_a |>
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
 <hr>
 `mutate()`
 <br>
@@ -393,7 +475,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -412,7 +494,7 @@ starwars_a |>
 ::::
 <br>
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r eval=F}
 starwars_a |>
   mutate(one = height^2,
@@ -424,7 +506,7 @@ starwars_a |>
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
 <hr>
 `mutate()` & `case_when()`
 <br>
@@ -434,7 +516,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -464,7 +546,7 @@ starwars_a |>
 ::::
 :::
 
-## `dplyr` Review +
+## {dplyr} Review +
 <hr>
 `mutate()` & `case_when()`
 <br>
@@ -474,7 +556,7 @@ starwars_a |>
 ::::{layout="[1]" .extra-small-font}
 <br>
 <br>
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars_a**]{.small-font}
 <br>
 <br>
 ```{r echo=FALSE}
@@ -504,9 +586,9 @@ starwars_a |>
 ::::
 :::
 
-# More `dplyr` Functions
+# More {dplyr} Functions
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `count()`
 <br>
@@ -535,7 +617,7 @@ starwars |>
 - **Count** unique values of a variable
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   count(species)
@@ -544,7 +626,7 @@ starwars |>
 ::::
 :::
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `count()`
 <br>
@@ -574,7 +656,7 @@ starwars |>
 - Or for a set of variables
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   count(homeworld,species)
@@ -583,7 +665,7 @@ starwars |>
 ::::
 :::
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `group_by()`
 <br>
@@ -613,7 +695,7 @@ starwars |>
 - Here: same as `count()` but in two steps
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   group_by(species)|>
@@ -628,7 +710,7 @@ starwars |>
 
 # A: You may want to do more than count!
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `group_by()` & `summarize()`
 <br>
@@ -658,7 +740,7 @@ starwars |>
 - With `summarize()` it can do so much more!
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   group_by(species)|>
@@ -669,7 +751,7 @@ starwars |>
 ::::
 :::
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `group_by()` & `summarize()`
 <br>
@@ -691,7 +773,6 @@ starwars |>
 - Note: There are 87 rows in the full `starwars` dataset
 ::::
 ::::{layout="[1]" .fragment}
-<br>
 [`group_by()` & `summarize()`]{.smaller-font}
 
 ::::{.extra-small-font}
@@ -699,7 +780,7 @@ starwars |>
 - **summarize()** supports summary statistics for the group [(see summary functions on back of `dplyr` cheatsheet!)]{.blue-font .fragment}
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   group_by(species)|>
@@ -712,7 +793,7 @@ starwars |>
 ::::
 :::
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `group_by()` & `summarize()`
 <br>
@@ -734,7 +815,6 @@ starwars |>
 - Note: There are 87 rows in the full `starwars` dataset
 ::::
 ::::{layout="[1]" .fragment}
-<br>
 [`group_by()` & `summarize()`]{.smaller-font}
 
 ::::{.extra-small-font}
@@ -742,7 +822,7 @@ starwars |>
 - **summarize()** supports summary statistics for the group
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   group_by(species)|>
@@ -755,7 +835,7 @@ starwars |>
 ::::
 :::
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `group_by()` & `ungroup()`
 <br>
@@ -777,7 +857,7 @@ starwars |>
 - Note: There are 87 rows in the full `starwars` dataset
 ::::
 ::::{layout="[1]" .fragment}
-<br>
+
 [`group_by()` & `ungroup()`]{.smaller-font}
 
 ::::{.extra-small-font}
@@ -785,7 +865,7 @@ starwars |>
 - Otherwise, it'll cause you issues later
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   group_by(species)|>
@@ -799,7 +879,7 @@ starwars |>
 ::::
 :::
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `arrange()`
 <br>
@@ -821,14 +901,14 @@ starwars |>
 - Note: There are 87 rows in the full `starwars` dataset
 ::::
 ::::{layout="[1]" .fragment}
-<br>
+
 [`arrange()`]{.smaller-font}
 
 ::::{.extra-small-font}
 - **Orders**: the rows in ascending order by variable(s)
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   group_by(species)|>
@@ -843,7 +923,7 @@ starwars |>
 ::::
 :::
 
-## More `dplyr`
+## More {dplyr}
 <hr>
 `arrange()`
 <br>
@@ -865,7 +945,7 @@ starwars |>
 - Note: There are 87 rows in the full `starwars` dataset
 ::::
 ::::{layout="[1]" .fragment}
-<br>
+
 [`arrange()`]{.smaller-font}
 
 ::::{.extra-small-font}
@@ -873,7 +953,7 @@ starwars |>
 - Adding `desc()` will order in descending order
 ::::
 
-::::{.extra-small-font}
+::::{.smaller-font}
 ```{r}
 starwars |>
   group_by(species)|>
@@ -888,22 +968,13 @@ starwars |>
 ::::
 :::
 
-# `dplyr` Titanic Practice on Posit Cloud!
+# {dplyr} Titanic Practice!
 
-## `dplyr` Titanic Practice
-<hr>
-- An experiment: We're going to use **Posit Cloud** today.
-    - Allows collaborative coding - everyone can code!
-- This is a paid account (mine); yours is free. But, please
-close the tab when finished, otherwise it charges me for your usage.
-- We will try this for a couple weeks and see how we like it.
-
-## `dplyr` Titanic Practice
+## {dplyr} Titanic Practice (1 of 2)
 <hr>
 :::{.smaller-font}
-- Go to Posit Cloud (Canvas). Find the Week 3 list on left.
+- Open your dplyrTitanicPractice-Student.Rmd file.
 - We'll go to breakout rooms.
-- Your team # is your breakout room number.
 - I will come around and answer questions. This one is more in-depth.
 - Resources:
     - Week 2 slides
@@ -911,13 +982,24 @@ close the tab when finished, otherwise it charges me for your usage.
     - Beck reading
 - Think carefully about object assignment. When should you overwrite an object? When should you create a new one?
 - We'll come back to whole group for:
-    - `forcats`
+    - {forcats}
     - Looking Ahead
 :::
 
-# `forcats` (See cheatsheet)
+## {dplyr} Titanic Practice (2 of 2) {.smaller}
+<hr>
+Breakout room structure:
 
-## `forcats` (factor vars)
+- **Individual Think Time**: ~ 5 min (camera off / mute)
+  - Review document
+  - Review prompts
+  - Start planning possible approaches/pseudocode
+- **Introductions**: ~ 3 min (camera on/ unmute)
+- **Collaborative Work** (camera on/unmute)
+
+# {forcats} (See cheatsheet)
+
+## {forcats} (factor vars)
 <hr>
 `fct_relevel()`
 <br>
@@ -978,7 +1060,7 @@ surv_rates_age_class |>
 ::::
 :::
 
-## `forcats` (factor vars)
+## {forcats} (factor vars)
 <hr>
 `fct_relevel()`
 <br>
@@ -1020,7 +1102,7 @@ surv_rates_age_class|>
 ::::
 :::
 
-## `forcats` (factor vars)
+## {forcats} (factor vars)
 <hr>
 `fct_reorder()`
 <br>
@@ -1059,7 +1141,7 @@ surv_rates_age_class|>
 ::::
 :::
 
-## `forcats` (factor vars)
+## {forcats} (factor vars)
 <hr>
 `fct_reorder()`
 <br>
@@ -1109,4 +1191,5 @@ surv_rates_age_class|>
     - Gapminder Data
 - Reading:
     - Read Healy (2012), Chapter 3
+    - Intro to ggplot2
     - Skim ggplot2 cheatsheet

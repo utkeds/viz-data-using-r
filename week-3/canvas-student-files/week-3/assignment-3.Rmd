@@ -7,6 +7,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+#Edit this setup chunk so the messages and warnings are not shown in the final output
 ```
 
 ## 1: Core R functions

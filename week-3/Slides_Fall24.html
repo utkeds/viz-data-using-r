@@ -406,12 +406,11 @@ Dr.&nbsp;Kelly Boles
 <h1>Weekly Check In</h1>
 
 </section>
-<section id="creating-free-posit-cloud-account" class="slide level2">
-<h2>Creating Free Posit Cloud Account</h2>
+<section id="download-.zip" class="slide level2">
+<h2>Download .zip</h2>
+<hr>
 <ul>
-<li>In <a href="https://utk.instructure.com/courses/213032">Canvas</a>, click on the “Create Free Post Cloud Account” link.</li>
-<li>Use your UTK email to create a free account.</li>
-<li>We will use this later.</li>
+<li>In Canvas download the week-3.zip file and move into the folder with your <code>.Rproj</code></li>
 </ul>
 </section></section>
 <section>
@@ -419,30 +418,25 @@ Dr.&nbsp;Kelly Boles
 <h1>Start Recording</h1>
 
 </section>
-<section id="todays-agenda" class="slide level2">
+<section id="todays-agenda" class="slide level2 smaller">
 <h2>Today’s Agenda</h2>
 <hr>
-<div class="small-font">
 <ul>
-<li>Weekly Check In / Posit Cloud Account</li>
+<li>Weekly Check In / .zip Download</li>
 <li>Additional Foundational Skills
 <ul>
-<li>File Management</li>
+<li>Other File Types</li>
 <li>Documentation / Help</li>
 <li>Troubleshooting Errors</li>
 </ul></li>
-<li>Reviewing <code>dplyr</code> Basics</li>
-<li>More <code>dplyr</code>
+<li>Reviewing {dplyr} Basics</li>
+<li>More {dplyr}
 <ul>
 <li>Collaborative Work</li>
 </ul></li>
-<li>Wrangling to Plot
-<ul>
-<li>Activity</li>
-</ul></li>
+<li>{forcats}</li>
 <li>Looking Ahead</li>
 </ul>
-</div>
 </section>
 <section id="norms" class="slide level2">
 <h2>Norms</h2>
@@ -501,8 +495,8 @@ Dr.&nbsp;Kelly Boles
 <li>Can also access on web (Google is your friend!)</li>
 </ul>
 </section>
-<section id="file-management" class="slide level2">
-<h2>File Management</h2>
+<section id="other-file-types" class="slide level2">
+<h2>Other File Types</h2>
 <hr>
 <div class="compact-font">
 <ul>
@@ -510,7 +504,7 @@ Dr.&nbsp;Kelly Boles
 <br></li>
 <li>Often, data is stored in a <code>.csv</code> file
 <ul>
-<li><code>read_csv()</code> function in <code>readr</code> package (part of tidyverse core) <br><br>
+<li><code>read_csv()</code> function in <code>readr</code> package (part of <a href="https://www.tidyverse.org/packages/#core-tidyverse">tidyverse core</a>) <br><br>
 </li>
 </ul></li>
 <li>Sometimes we have an Excel file
@@ -533,41 +527,40 @@ Dr.&nbsp;Kelly Boles
 </ul>
 </div>
 </section>
-<section id="file-management-1" class="slide level2">
-<h2>File Management</h2>
-<hr>
-<ul>
-<li><strong>Demo</strong>
-<ul>
-<li>Accessing documentation for <code>read_csv()</code></li>
-<li>Reading in a <code>.csv</code> file
-<ul>
-<li>Same folder</li>
-<li>Up a level</li>
-<li>Down a level (subfolder)</li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section id="troubleshooting-errors" class="slide level2">
+<section id="troubleshooting-errors" class="slide level2 smaller">
 <h2>Troubleshooting Errors</h2>
 <hr>
 <ul>
 <li><strong>Demo</strong>
 <ul>
+<li>Follow along with <code>Troubleshooting_Errors_Demo.Rmd</code>:
+<ul>
+<li>Address setup block</li>
 <li>Reading in an Excel file</li>
-<li>Two types of errors <!-- (forget to load package, don't store/assign it and call it later) --></li>
+<li>Three types of errors <!-- (forget to load package, file in wrong place, don't store/assign it and call it later) --></li>
 <li>Accessing via file pane &gt; Import Dataset</li>
+</ul></li>
 </ul></li>
 </ul>
 </section></section>
 <section>
 <section id="reviewing-dplyr-basics" class="title-slide slide level1 center">
-<h1>Reviewing <code>dplyr</code> Basics</h1>
+<h1>Reviewing {dplyr} Basics</h1>
 
 </section>
 <section id="dplyr-review" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<h2>{dplyr} Review +</h2>
+<hr>
+<ul>
+<li>Using two datasets
+<ul>
+<li>full starwars</li>
+<li>starwars_a (first five rows of starwars)</li>
+</ul></li>
+</ul>
+</section>
+<section id="dplyr-review-1" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>select()</code> <br>
 <hr>
@@ -576,7 +569,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -648,7 +641,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>starwars_a <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">select</span>(name, height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -666,9 +660,10 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </div>
+</div>
 </section>
-<section id="dplyr-review-1" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-2" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>select()</code> <br>
 <hr>
@@ -677,7 +672,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -749,7 +744,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>starwars_a <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>hair_color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -767,9 +763,212 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </div>
+</div>
 </section>
-<section id="dplyr-review-2" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-3" class="slide level2">
+<h2>{dplyr} Review +</h2>
+<hr>
+<code>slice()</code> <br>
+<hr>
+<div class="small-font quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell-output-display">
+<table class="table-striped" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="fragment quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><br> <code>slice()</code></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><span class="extra-small-font">- Use this to <strong>select rows/observations</strong></span> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">slice</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  name        height  mass hair_color skin_color 
+  &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1 R2-D2           96    32 &lt;NA&gt;       white, blue
+2 Darth Vader    202   136 none       white      
+3 Leia Organa    150    49 brown      light      </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dplyr-review-4" class="slide level2">
+<h2>{dplyr} Review +</h2>
+<hr>
+<code>slice()</code> <br>
+<hr>
+<div class="small-font quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell-output-display">
+<table class="table-striped" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">height</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mass</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">hair_color</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">skin_color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luke Skywalker</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">blond</td>
+<td style="text-align: left;">fair</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-3PO</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">gold</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R2-D2</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">white, blue</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Darth Vader</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;">white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leia Organa</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">brown</td>
+<td style="text-align: left;">light</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="fragment quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><br> <code>slice()</code></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><span class="extra-small-font">- Can also <strong>drop rows/observations</strong></span> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  name        height  mass hair_color skin_color 
+  &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      
+1 R2-D2           96    32 &lt;NA&gt;       white, blue
+2 Darth Vader    202   136 none       white      
+3 Leia Organa    150    49 brown      light      </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dplyr-review-5" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>filter()</code> <br>
 <hr>
@@ -778,7 +977,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -850,10 +1049,10 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>starwars_a <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">"brown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">"brown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
   name        height  mass hair_color skin_color
@@ -867,8 +1066,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="dplyr-review-3" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-6" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>filter()</code> and <code>!is.na()</code> <br>
 <hr>
@@ -877,7 +1076,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -957,10 +1156,10 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>starwars_a <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   name           height  mass hair_color skin_color
@@ -976,8 +1175,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="dplyr-review-4" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-7" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>filter()</code> and <code>|</code> <br>
 <hr>
@@ -986,7 +1185,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1057,6 +1256,10 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>Use this to <strong>filter rows</strong></li>
 <li><code>|</code> allows for multiple arguments as condition</li>
+<li><span class="fragment"><em>How would I change this if I wanted middle heights?</em></span>
+<ul>
+<li><span class="fragment"><code>filter(height &lt;= 200 &amp; height &gt;= 100</code>)</span></li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -1066,10 +1269,10 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>starwars_a <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">|</span> height <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">|</span> height <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   name        height  mass hair_color skin_color 
@@ -1084,8 +1287,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="dplyr-review-5" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-8" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>filter()</code> and <code>%in%</code> <br>
 <hr>
@@ -1094,7 +1297,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1165,19 +1368,15 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>Use this to <strong>filter rows</strong></li>
 <li><code>%in%</code> allows for multiple arguments as condition (provided as vector)</li>
+<li><code>c()</code> combines into a vector</li>
 </ul>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br></p>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>starwars_a <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">filter</span>(hair_color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"brown"</span>, <span class="st">"blond"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">filter</span>(hair_color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"brown"</span>, <span class="st">"blond"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   name           height  mass hair_color skin_color
@@ -1192,8 +1391,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="dplyr-review-6" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-9" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>rename()</code> <br>
 <hr>
@@ -1202,7 +1401,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1274,10 +1473,10 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>starwars_a <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">rename</span>(<span class="at">weight =</span> mass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">rename</span>(<span class="at">weight =</span> mass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   name           height weight hair_color skin_color 
@@ -1295,8 +1494,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="dplyr-review-7" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-10" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>mutate()</code> <br>
 <hr>
@@ -1305,7 +1504,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1385,13 +1584,13 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>starwars_a <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>,</span>
-<span id="cb15-3"><a href="#cb15-3"></a>         <span class="at">two =</span> height<span class="sc">*</span>mass,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>         <span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
-<span id="cb15-5"><a href="#cb15-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">mutate</span>(<span class="at">one =</span> height<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb19-3"><a href="#cb19-3"></a>         <span class="at">two =</span> height<span class="sc">*</span>mass,</span>
+<span id="cb19-4"><a href="#cb19-4"></a>         <span class="at">hair_color =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(hair_color),</span>
+<span id="cb19-5"><a href="#cb19-5"></a>                             <span class="st">"unknown"</span>, hair_color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1399,8 +1598,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="dplyr-review-8" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-11" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>mutate()</code> &amp; <code>case_when()</code> <br>
 <hr>
@@ -1409,7 +1608,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1485,12 +1684,12 @@ Dr.&nbsp;Kelly Boles
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>starwars_a <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">mutate</span>(<span class="at">height_category =</span> <span class="fu">case_when</span>(</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    height <span class="sc">&lt;</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"short"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4"></a>    height <span class="sc">&gt;=</span> <span class="dv">150</span> <span class="sc">&amp;</span> height <span class="sc">&lt;</span> <span class="dv">180</span> <span class="sc">~</span> <span class="st">"average"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5"></a>    height <span class="sc">&gt;=</span> <span class="dv">180</span> <span class="sc">~</span> <span class="st">"tall"</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">mutate</span>(<span class="at">height_category =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-3"><a href="#cb20-3"></a>    height <span class="sc">&lt;</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"short"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4"></a>    height <span class="sc">&gt;=</span> <span class="dv">150</span> <span class="sc">&amp;</span> height <span class="sc">&lt;</span> <span class="dv">180</span> <span class="sc">~</span> <span class="st">"average"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    height <span class="sc">&gt;=</span> <span class="dv">180</span> <span class="sc">~</span> <span class="st">"tall"</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
   name           height  mass hair_color skin_color  height_category
@@ -1508,8 +1707,8 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="dplyr-review-9" class="slide level2">
-<h2><code>dplyr</code> Review +</h2>
+<section id="dplyr-review-12" class="slide level2">
+<h2>{dplyr} Review +</h2>
 <hr>
 <code>mutate()</code> &amp; <code>case_when()</code> <br>
 <hr>
@@ -1518,7 +1717,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel quarto-layout-cell" style="flex-basis: 55.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <br> <span class="small-font"><strong>Example data - starwars</strong></span> <br> <br></p>
+<p><br> <br> <span class="small-font"><strong>Example data - starwars_a</strong></span> <br> <br></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1594,12 +1793,12 @@ Dr.&nbsp;Kelly Boles
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>starwars_a <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">mutate</span>(<span class="at">has_hair =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-3"><a href="#cb18-3"></a>    hair_color <span class="sc">==</span> <span class="st">"brown"</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-4"><a href="#cb18-4"></a>    hair_color <span class="sc">==</span> <span class="st">"blond"</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-5"><a href="#cb18-5"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">FALSE</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>starwars_a <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">mutate</span>(<span class="at">has_hair =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-3"><a href="#cb22-3"></a>    hair_color <span class="sc">==</span> <span class="st">"brown"</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-4"><a href="#cb22-4"></a>    hair_color <span class="sc">==</span> <span class="st">"blond"</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-5"><a href="#cb22-5"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">FALSE</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 6
   name           height  mass hair_color skin_color  has_hair
@@ -1619,11 +1818,11 @@ Dr.&nbsp;Kelly Boles
 </section></section>
 <section>
 <section id="more-dplyr-functions" class="title-slide slide level1 center">
-<h1>More <code>dplyr</code> Functions</h1>
+<h1>More {dplyr} Functions</h1>
 
 </section>
 <section id="more-dplyr" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>count()</code> <br>
 <hr>
@@ -1748,10 +1947,10 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">count</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">count</span>(species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 2
    species       n
@@ -1776,7 +1975,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="more-dplyr-1" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>count()</code> <br>
 <hr>
@@ -1902,10 +2101,10 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">count</span>(homeworld,species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">count</span>(homeworld,species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 57 × 3
    homeworld      species       n
@@ -1930,7 +2129,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="more-dplyr-2" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>group_by()</code> <br>
 <hr>
@@ -2056,11 +2255,11 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 2
    species       n
@@ -2095,7 +2294,7 @@ Dr.&nbsp;Kelly Boles
 
 </section>
 <section id="more-dplyr-3" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>group_by()</code> &amp; <code>summarize()</code> <br>
 <hr>
@@ -2221,12 +2420,12 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb26-4"><a href="#cb26-4"></a>            <span class="at">proportion =</span> n<span class="sc">/</span><span class="fu">nrow</span>(starwars)<span class="sc">*</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb30-4"><a href="#cb30-4"></a>            <span class="at">proportion =</span> n<span class="sc">/</span><span class="fu">nrow</span>(starwars)<span class="sc">*</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 3
    species       n proportion
@@ -2251,7 +2450,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="more-dplyr-4" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>group_by()</code> &amp; <code>summarize()</code> <br>
 <hr>
@@ -2365,7 +2564,7 @@ Dr.&nbsp;Kelly Boles
 <div class="fragment quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <span class="smaller-font"><code>group_by()</code> &amp; <code>summarize()</code></span></p>
+<p><span class="smaller-font"><code>group_by()</code> &amp; <code>summarize()</code></span></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -2377,14 +2576,14 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-4"><a href="#cb28-4"></a>            <span class="at">sd_height =</span> <span class="fu">sd</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-5"><a href="#cb28-5"></a>            <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-6"><a href="#cb28-6"></a>            <span class="at">sd_mass =</span> <span class="fu">sd</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-4"><a href="#cb32-4"></a>            <span class="at">sd_height =</span> <span class="fu">sd</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-5"><a href="#cb32-5"></a>            <span class="at">mean_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-6"><a href="#cb32-6"></a>            <span class="at">sd_mass =</span> <span class="fu">sd</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 5
    species   mean_height sd_height mean_mass sd_mass
@@ -2409,7 +2608,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="more-dplyr-5" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>group_by()</code> &amp; <code>summarize()</code> <br>
 <hr>
@@ -2523,7 +2722,7 @@ Dr.&nbsp;Kelly Boles
 <div class="fragment quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <span class="smaller-font"><code>group_by()</code> &amp; <code>summarize()</code></span></p>
+<p><span class="smaller-font"><code>group_by()</code> &amp; <code>summarize()</code></span></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -2535,14 +2734,14 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">summarize</span>(<span class="at">med_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb30-4"><a href="#cb30-4"></a>            <span class="at">IQR_height =</span> <span class="fu">IQR</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb30-5"><a href="#cb30-5"></a>            <span class="at">med_mass =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb30-6"><a href="#cb30-6"></a>            <span class="at">IQR_mass =</span> <span class="fu">IQR</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">summarize</span>(<span class="at">med_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-4"><a href="#cb34-4"></a>            <span class="at">IQR_height =</span> <span class="fu">IQR</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-5"><a href="#cb34-5"></a>            <span class="at">med_mass =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-6"><a href="#cb34-6"></a>            <span class="at">IQR_mass =</span> <span class="fu">IQR</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 5
    species   med_height IQR_height med_mass IQR_mass
@@ -2567,7 +2766,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="more-dplyr-6" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>group_by()</code> &amp; <code>ungroup()</code> <br>
 <hr>
@@ -2681,7 +2880,7 @@ Dr.&nbsp;Kelly Boles
 <div class="fragment quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <span class="smaller-font"><code>group_by()</code> &amp; <code>ungroup()</code></span></p>
+<p><span class="smaller-font"><code>group_by()</code> &amp; <code>ungroup()</code></span></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -2693,15 +2892,15 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">summarize</span>(<span class="at">med_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-4"><a href="#cb32-4"></a>            <span class="at">IQR_height =</span> <span class="fu">IQR</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-5"><a href="#cb32-5"></a>            <span class="at">med_mass =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb32-6"><a href="#cb32-6"></a>            <span class="at">IQR_mass =</span> <span class="fu">IQR</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span></span>
-<span id="cb32-7"><a href="#cb32-7"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">summarize</span>(<span class="at">med_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-4"><a href="#cb36-4"></a>            <span class="at">IQR_height =</span> <span class="fu">IQR</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-5"><a href="#cb36-5"></a>            <span class="at">med_mass =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-6"><a href="#cb36-6"></a>            <span class="at">IQR_mass =</span> <span class="fu">IQR</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span></span>
+<span id="cb36-7"><a href="#cb36-7"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 5
    species   med_height IQR_height med_mass IQR_mass
@@ -2726,7 +2925,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="more-dplyr-7" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>arrange()</code> <br>
 <hr>
@@ -2840,7 +3039,7 @@ Dr.&nbsp;Kelly Boles
 <div class="fragment quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <span class="smaller-font"><code>arrange()</code></span></p>
+<p><span class="smaller-font"><code>arrange()</code></span></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -2851,16 +3050,16 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">summarize</span>(<span class="at">med_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb34-4"><a href="#cb34-4"></a>            <span class="at">IQR_height =</span> <span class="fu">IQR</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb34-5"><a href="#cb34-5"></a>            <span class="at">med_mass =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb34-6"><a href="#cb34-6"></a>            <span class="at">IQR_mass =</span> <span class="fu">IQR</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span></span>
-<span id="cb34-7"><a href="#cb34-7"></a>  <span class="fu">ungroup</span>()<span class="sc">|&gt;</span></span>
-<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">arrange</span>(med_height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">summarize</span>(<span class="at">med_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-4"><a href="#cb38-4"></a>            <span class="at">IQR_height =</span> <span class="fu">IQR</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-5"><a href="#cb38-5"></a>            <span class="at">med_mass =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-6"><a href="#cb38-6"></a>            <span class="at">IQR_mass =</span> <span class="fu">IQR</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span></span>
+<span id="cb38-7"><a href="#cb38-7"></a>  <span class="fu">ungroup</span>()<span class="sc">|&gt;</span></span>
+<span id="cb38-8"><a href="#cb38-8"></a>  <span class="fu">arrange</span>(med_height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 5
    species        med_height IQR_height med_mass IQR_mass
@@ -2885,7 +3084,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="more-dplyr-8" class="slide level2">
-<h2>More <code>dplyr</code></h2>
+<h2>More {dplyr}</h2>
 <hr>
 <code>arrange()</code> <br>
 <hr>
@@ -2999,7 +3198,7 @@ Dr.&nbsp;Kelly Boles
 <div class="fragment quarto-layout-panel quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><br> <span class="smaller-font"><code>arrange()</code></span></p>
+<p><span class="smaller-font"><code>arrange()</code></span></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -3011,16 +3210,16 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="smaller-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">summarize</span>(<span class="at">med_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb36-4"><a href="#cb36-4"></a>            <span class="at">IQR_height =</span> <span class="fu">IQR</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb36-5"><a href="#cb36-5"></a>            <span class="at">med_mass =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb36-6"><a href="#cb36-6"></a>            <span class="at">IQR_mass =</span> <span class="fu">IQR</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span></span>
-<span id="cb36-7"><a href="#cb36-7"></a>  <span class="fu">ungroup</span>()<span class="sc">|&gt;</span></span>
-<span id="cb36-8"><a href="#cb36-8"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(med_height))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">group_by</span>(species)<span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a>  <span class="fu">summarize</span>(<span class="at">med_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-4"><a href="#cb40-4"></a>            <span class="at">IQR_height =</span> <span class="fu">IQR</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-5"><a href="#cb40-5"></a>            <span class="at">med_mass =</span> <span class="fu">median</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-6"><a href="#cb40-6"></a>            <span class="at">IQR_mass =</span> <span class="fu">IQR</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">|&gt;</span></span>
+<span id="cb40-7"><a href="#cb40-7"></a>  <span class="fu">ungroup</span>()<span class="sc">|&gt;</span></span>
+<span id="cb40-8"><a href="#cb40-8"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(med_height))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 38 × 5
    species  med_height IQR_height med_mass IQR_mass
@@ -3045,30 +3244,17 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section></section>
 <section>
-<section id="dplyr-titanic-practice-on-posit-cloud" class="title-slide slide level1 center">
-<h1><code>dplyr</code> Titanic Practice on Posit Cloud!</h1>
+<section id="dplyr-titanic-practice" class="title-slide slide level1 center">
+<h1>{dplyr} Titanic Practice!</h1>
 
 </section>
-<section id="dplyr-titanic-practice" class="slide level2">
-<h2><code>dplyr</code> Titanic Practice</h2>
-<hr>
-<ul>
-<li>An experiment: We’re going to use <strong>Posit Cloud</strong> today.
-<ul>
-<li>Allows collaborative coding - everyone can code!</li>
-</ul></li>
-<li>This is a paid account (mine); yours is free. But, please close the tab when finished, otherwise it charges me for your usage.</li>
-<li>We will try this for a couple weeks and see how we like it.</li>
-</ul>
-</section>
-<section id="dplyr-titanic-practice-1" class="slide level2">
-<h2><code>dplyr</code> Titanic Practice</h2>
+<section id="dplyr-titanic-practice-1-of-2" class="slide level2">
+<h2>{dplyr} Titanic Practice (1 of 2)</h2>
 <hr>
 <div class="smaller-font">
 <ul>
-<li>Go to Posit Cloud (Canvas). Find the Week 3 list on left.</li>
+<li>Open your dplyrTitanicPractice-Student.Rmd file.</li>
 <li>We’ll go to breakout rooms.</li>
-<li>Your team # is your breakout room number.</li>
 <li>I will come around and answer questions. This one is more in-depth.</li>
 <li>Resources:
 <ul>
@@ -3079,20 +3265,34 @@ Dr.&nbsp;Kelly Boles
 <li>Think carefully about object assignment. When should you overwrite an object? When should you create a new one?</li>
 <li>We’ll come back to whole group for:
 <ul>
-<li><code>forcats</code></li>
-<li><code>stringr</code></li>
+<li>{forcats}</li>
 <li>Looking Ahead</li>
 </ul></li>
 </ul>
 </div>
+</section>
+<section id="dplyr-titanic-practice-2-of-2" class="slide level2 smaller">
+<h2>{dplyr} Titanic Practice (2 of 2)</h2>
+<hr>
+<p>Breakout room structure:</p>
+<ul>
+<li><strong>Individual Think Time</strong>: ~ 5 min (camera off / mute)
+<ul>
+<li>Review document</li>
+<li>Review prompts</li>
+<li>Start planning possible approaches/pseudocode</li>
+</ul></li>
+<li><strong>Introductions</strong>: ~ 3 min (camera on/ unmute)</li>
+<li><strong>Collaborative Work</strong> (camera on/unmute)</li>
+</ul>
 </section></section>
 <section>
 <section id="forcats-see-cheatsheet" class="title-slide slide level1 center">
-<h1><code>forcats</code> (See cheatsheet)</h1>
+<h1>{forcats} (See cheatsheet)</h1>
 
 </section>
 <section id="forcats-factor-vars" class="slide level2">
-<h2><code>forcats</code> (factor vars)</h2>
+<h2>{forcats} (factor vars)</h2>
 <hr>
 <code>fct_relevel()</code> <br>
 <hr>
@@ -3194,17 +3394,17 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>surv_rates_age_class <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
-<span id="cb38-4"><a href="#cb38-4"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
-<span id="cb38-5"><a href="#cb38-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
-<span id="cb38-6"><a href="#cb38-6"></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
-<span id="cb38-7"><a href="#cb38-7"></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>surv_rates_age_class <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6"></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7"></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Slides_Fall24_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
+<p><img data-src="Slides_Fall24_files/figure-revealjs/unnamed-chunk-47-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -3215,7 +3415,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="forcats-factor-vars-1" class="slide level2">
-<h2><code>forcats</code> (factor vars)</h2>
+<h2>{forcats} (factor vars)</h2>
 <hr>
 <code>fct_relevel()</code> <br>
 <hr>
@@ -3236,14 +3436,14 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>surv_rates_age_class <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb39-3"><a href="#cb39-3"></a>  <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">fct_relevel</span>(Pclass, <span class="st">"First"</span>, <span class="st">"Second"</span>, <span class="st">"Third"</span>))<span class="sc">|&gt;</span></span>
-<span id="cb39-4"><a href="#cb39-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
-<span id="cb39-5"><a href="#cb39-5"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
-<span id="cb39-6"><a href="#cb39-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
-<span id="cb39-7"><a href="#cb39-7"></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
-<span id="cb39-8"><a href="#cb39-8"></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>surv_rates_age_class <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>  <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">fct_relevel</span>(Pclass, <span class="st">"First"</span>, <span class="st">"Second"</span>, <span class="st">"Third"</span>))<span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
+<span id="cb43-7"><a href="#cb43-7"></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
+<span id="cb43-8"><a href="#cb43-8"></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -3258,7 +3458,7 @@ Dr.&nbsp;Kelly Boles
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Slides_Fall24_files/figure-revealjs/unnamed-chunk-44-1.png" width="960"></p>
+<p><img data-src="Slides_Fall24_files/figure-revealjs/unnamed-chunk-49-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -3269,7 +3469,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="forcats-factor-vars-2" class="slide level2">
-<h2><code>forcats</code> (factor vars)</h2>
+<h2>{forcats} (factor vars)</h2>
 <hr>
 <code>fct_reorder()</code> <br>
 <hr>
@@ -3371,17 +3571,17 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>surv_rates_age_class<span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
-<span id="cb40-4"><a href="#cb40-4"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
-<span id="cb40-5"><a href="#cb40-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
-<span id="cb40-6"><a href="#cb40-6"></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
-<span id="cb40-7"><a href="#cb40-7"></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>surv_rates_age_class<span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
+<span id="cb44-6"><a href="#cb44-6"></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
+<span id="cb44-7"><a href="#cb44-7"></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Slides_Fall24_files/figure-revealjs/unnamed-chunk-46-1.png" width="960"></p>
+<p><img data-src="Slides_Fall24_files/figure-revealjs/unnamed-chunk-51-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -3392,7 +3592,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </section>
 <section id="forcats-factor-vars-3" class="slide level2">
-<h2><code>forcats</code> (factor vars)</h2>
+<h2>{forcats} (factor vars)</h2>
 <hr>
 <code>fct_reorder()</code> <br>
 <hr>
@@ -3413,14 +3613,14 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>surv_rates_age_class<span class="sc">|&gt;</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a>  <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">fct_reorder</span>(Pclass, avg_survival))<span class="sc">|&gt;</span></span>
-<span id="cb41-4"><a href="#cb41-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
-<span id="cb41-5"><a href="#cb41-5"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
-<span id="cb41-6"><a href="#cb41-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
-<span id="cb41-7"><a href="#cb41-7"></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
-<span id="cb41-8"><a href="#cb41-8"></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>surv_rates_age_class<span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a href="#cb45-3"></a>  <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">fct_reorder</span>(Pclass, avg_survival))<span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href="#cb45-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
+<span id="cb45-6"><a href="#cb45-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
+<span id="cb45-7"><a href="#cb45-7"></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
+<span id="cb45-8"><a href="#cb45-8"></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -3435,7 +3635,7 @@ Dr.&nbsp;Kelly Boles
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Slides_Fall24_files/figure-revealjs/unnamed-chunk-48-1.png" width="960"></p>
+<p><img data-src="Slides_Fall24_files/figure-revealjs/unnamed-chunk-53-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -3461,6 +3661,7 @@ Dr.&nbsp;Kelly Boles
 <li>Reading:
 <ul>
 <li>Read Healy (2012), Chapter 3</li>
+<li>Intro to ggplot2</li>
 <li>Skim ggplot2 cheatsheet</li>
 </ul></li>
 </ul>
