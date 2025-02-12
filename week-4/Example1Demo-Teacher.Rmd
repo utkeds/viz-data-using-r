@@ -6,11 +6,13 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
 
 library(tidyverse)
 
-tidykids <- read_csv("tidykids.csv")
+tidykids <- read_csv("week-4/tidykids.csv")
 
 tidykids <- tidykids |>
   select(-...1) |>

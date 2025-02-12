@@ -767,16 +767,16 @@ p
 
 # Switch to `.Rmd` file
 
-## Example 2: Your Turn!
-<hr>
-[**RQ**]{.regalia-color}
+<!-- ## Example 2: Your Turn! -->
+<!-- <hr> -->
+<!-- [**RQ**]{.regalia-color} -->
 
-:::{.smaller-font}
-- What is the *distribution* of inflation-adjusted per-child spending on libraries across *each* U.S. region in 2016?
-    - How do the regional distributions compare to the national mean?
-:::
+<!-- :::{.smaller-font} -->
+<!-- - What is the *distribution* of inflation-adjusted per-child spending on libraries across *each* U.S. region in 2016? -->
+<!--     - How do the regional distributions compare to the national mean? -->
+<!-- ::: -->
 
-[**Breakout Rooms/Posit Cloud**]{.regalia-color}
+<!-- [**Breakout Rooms/Posit Cloud**]{.regalia-color} -->
 
 # Looking Ahead
 

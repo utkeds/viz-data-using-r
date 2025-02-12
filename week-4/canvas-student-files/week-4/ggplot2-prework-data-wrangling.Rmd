@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 <!--- Put your name in the author YAML field.--->
-<!--- Load the tidyverse library in the setup chunk.--->
+<!--- Load the tidyverse library in the setup chunk. Set message and warning to false in the setup chunk.--->
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -17,7 +17,12 @@ clean the column names.--->
 ```
 
 <!--- Look at the data and the codebook. (Link to codebook: https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html). 
-What does each variable represent? In what units? -->
+
+How many variables are available in the tidykids dataset? How many distinct levels of the variable `variable` are there? -->
+
+Type your answer here!
+
+<!-- What does each variable represent? In what units?  -->
 
 Type your answer here!
 
@@ -26,7 +31,7 @@ Type your answer here!
 
 ```
 
-<!-- You want to create a new region variable. Create this using what we learned last week. -->
+<!-- You want to create a new region variable. Create this using what we learned last week. Note that this code is provided in Canvas because it is long to type.-->
 ```{r create-region-variable}
 
 ```
@@ -37,7 +42,7 @@ Type your answer here!
 
 ```
 
-<!-- You want to summarize(mean and std. dev) these library expenditures(inf_adj_perchild) by region. Do this.-->
+<!-- You want to summarize(mean and std. dev) these library expenditures(inf_adj_perchild) by region for 2016. Do this.-->
 ```{r summarize-by-region}
 
 ```
