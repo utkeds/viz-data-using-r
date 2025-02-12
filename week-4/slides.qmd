@@ -1,5 +1,5 @@
 ---
-subtitle: "Intro to `ggplot2`"
+subtitle: "Intro to {ggplot2}"
 title: "Week 4 - STEM 691"
 author: "Dr. Kelly Boles"
 format:
@@ -57,15 +57,15 @@ tidykids <- tidykids |>
 - Weekly Check In
 - Additional Foundational Skills
     - Strategies for Object Assignment
-    - Accessing data from Google Drive/ OneDrive
-- Reviewing `dplyr`
-    - Intro to `tidykids`
-- Intro to `ggplot2`
+    <!-- - Accessing data from Google Drive/ OneDrive -->
+- Reviewing {dplyr}
+    - Intro to tidykids
+- Intro to {ggplot2}
     - Example Plot: Grammar of Graphics
     - Three Steps
-- `ggplot2`: Digging In
+- {ggplot2}: Digging In
     - Lecture
-    - Collaborative Work
+    <!-- - Collaborative Work -->
 - Looking Ahead
 
 :::
@@ -181,31 +181,31 @@ titanic_ageclass_summary |>
 :::
 :::
 
-## Using GSuite / OneDrive with R
-<hr>
+<!-- ## Using GSuite / OneDrive with R -->
+<!-- <hr> -->
 
-:::{.small-font}
-- I use [Google Drive](https://support.google.com/drive/answer/10838124?hl=en#) / [OneDrive for Desktop](https://www.microsoft.com/en-us/microsoft-365/onedrive/download)
-    - Interact locally, syncs to cloud
-    - Probably easiest for most use cases
-<!-- - If you want to pull Google Sheets directly from Drive: -->
-<!--     - [`googlesheets4` package](https://github.com/tidyverse/googlesheets4) -->
-<!-- - If you want to pull multiple file types from Drive: -->
-<!--     - [`googledrive` package](https://googledrive.tidyverse.org/) -->
-<!-- - If you want to pull directly from OneDrive: -->
-<!--     - [`Microsoft365R` package](https://github.com/Azure/Microsoft365R) -->
-:::
+<!-- :::{.small-font} -->
+<!-- - I use [Google Drive](https://support.google.com/drive/answer/10838124?hl=en#) / [OneDrive for Desktop](https://www.microsoft.com/en-us/microsoft-365/onedrive/download) -->
+<!--     - Interact locally, syncs to cloud -->
+<!--     - Probably easiest for most use cases -->
+<!-- <!-- - If you want to pull Google Sheets directly from Drive: --> -->
+<!-- <!--     - [`googlesheets4` package](https://github.com/tidyverse/googlesheets4) --> -->
+<!-- <!-- - If you want to pull multiple file types from Drive: --> -->
+<!-- <!--     - [`googledrive` package](https://googledrive.tidyverse.org/) --> -->
+<!-- <!-- - If you want to pull directly from OneDrive: --> -->
+<!-- <!--     - [`Microsoft365R` package](https://github.com/Azure/Microsoft365R) --> -->
+<!-- ::: -->
 
-# Reviewing `dplyr`
+# Reviewing {dplyr}
 
-## `ggplot2` prework: Data Wrangling
+## {ggplot2} prework: Data Wrangling
 <hr>
 - Before you can visualize data, you need to have it in the right format.
-- Let's review some `dplyr` functions using the `tidykids` dataset.
+- Let's review some {dplyr} functions using the `tidykids` dataset.
 - In your `.zip` file, you have a `ggplot2-prework-data-wrangling.Rmd` file. Open it.
   - We'll work through it together.
 
-## `ggplot2` prework: Data Wrangling
+## {ggplot2} prework: Data Wrangling
 <hr>
 :::{.smaller-font}
 - We'll need to review the `tidykids` [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html).
@@ -219,7 +219,7 @@ Questions (please be prepared to share code in Slack):
 6. Example: You are only interested in library expenditures. How would you filter for this?
 :::
 
-# Intro to `ggplot2`
+# Intro to {ggplot2}
 
 ## Grammar of Graphics
 <hr>
