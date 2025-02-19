@@ -60,10 +60,13 @@ penguins <- penguins |>
 :::{.extra-small-font}
 - Weekly Check In
 - Review/ Foundational Skills
+    - assigning + printing
+    - `==` vs. `=`
     - Mapping versus setting in `aes()`
     - Inheriting aesthetics
     - Saving plots
 - Reviewing Knaflic (2015), Ch. 1
+- {forcats}
 - Comparing Amounts
     - Bar Plots
         - Labeling
@@ -95,15 +98,62 @@ penguins <- penguins |>
 
 # Review/ <br>Foundational Skills
 
-## 3 Required Components of a ggplot
+## Assigning vs. Printing {.smaller}
 <hr>
-- Data - may need to wrangle!
-- Aesthetics - maps variables to visual properties
-- Geometries - the shapes that represent the data
-    - Choose `geom`s from cheatsheet!
+ - Issue on HW3
+ - Often you are running code and not printing the outputs
+ - Three scenarios:
+  1. Not storing to an object
+```{r}
+#Prints output fine!
+
+tidykids|>
+  head(3)
+```
+
+## Assigning vs. Printing {.smaller}
+<hr>
+ - Issue on HW3
+ - Often you are running code and not printing the outputs
+ - Three scenarios:
+  2. Storing to an object but not calling the object
+```{r}
+#Oh no! No output :(
+
+temp <- tidykids|>
+  head(3)
+```
     
+## Assigning vs. Printing {.smaller}
+<hr>
+ - Issue on HW3
+ - Often you are running code and not printing the outputs
+ - Three scenarios:
+  3. Storing to an object and then calling the object
+```{r}
+#Nice!
+
+temp <- tidykids|>
+  head(3)
+
+temp
+```    
+    
+**Please do either #1 or #3**  
+    
+## `==` vs. `=`
+<hr>
+- `==`
+  - A logical check
+  - In English "is equivalent to?"
+- `=`
+  - Assigns
+  - In English "set to" or "map to"...
+
 ## Mapping Versus Setting
 <hr>
+
+- `aes`thetic mapping from data to visual
 
 :::{layout="[1,1]" .extra-small-font}
 :::{column}
@@ -202,10 +252,9 @@ tidykids |>
 1. `ggsave()`
     - `ggsave()` saves the last plot created if plot unspecified
     - `plot`, `width`, `height`, `units`, and `dpi` are optional arguments
-        - typical web resolution is 96 dpi
 
 ```{r, eval-FALSE}
-ggsave("my_plot.png", plot = last_plot(), width = 1200, height = 650, units = "px", dpi = 96)
+ggsave("my_plot.png", plot = last_plot(), width = 1200, height = 650, units = "px", dpi = 300)
 ```
 <br>
 
@@ -231,8 +280,203 @@ ggsave("my_plot.png", plot = last_plot(), width = 1200, height = 650, units = "p
 
 :::
 
-## Comparing Amounts
+# {forcats} (See cheatsheet)
 
+## {forcats} (factor vars)
+<hr>
+`fct_relevel()`
+<br>
+<hr>
+
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[**Example data - Titanic**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+titanic <- read_csv("Titanic-Dataset.csv")
+
+surv_rates_age_class <- titanic |>
+  mutate(age_group = case_when(
+    Age < 13 ~ "child",
+    Age >= 13 & Age < 19 ~ "teen",
+    Age >=18 ~ "adult")) |>
+  group_by(Pclass, age_group)|>
+  summarize(
+    avg_survival = mean(Survived, na.rm = TRUE),
+    n = n()) |>
+  ungroup()|>
+  filter(!is.na(age_group))|>
+  arrange(desc(avg_survival))
+
+surv_rates_age_class$Pclass <- plyr::mapvalues(surv_rates_age_class$Pclass,
+                                         from = c(1,2,3),
+                                         to = c("First", "Second", "Third"))
+
+surv_rates_age_class <- surv_rates_age_class |>
+  mutate(Pclass = fct_relevel(Pclass, "Second", "Third", "First"))
+
+surv_rates_age_class |>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+
+::::
+::::{layout="[1]" .fragment .smaller-font}
+<br>
+
+:::{.extra-small-font}
+- X axis lacks order
+
+:::
+
+```{r}
+surv_rates_age_class |>
+  filter(age_group == "child")|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+::::
+:::
+
+## {forcats} (factor vars)
+<hr>
+`fct_relevel()`
+<br>
+<hr>
+
+:::{layout="[40,60]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[`fct_relevel()`]{.small-font}
+
+::::{.extra-small-font}
+- **Re-orders factors by hand**: you manually specify the order
+::::
+```{r, eval=FALSE}
+surv_rates_age_class |>
+  filter(age_group == "child")|>
+  mutate(Pclass = fct_relevel(Pclass, "First", "Second", "Third"))|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+
+::::
+::::{layout="[1]" .fragment .smaller-font}
+<br>
+```{r, echo=FALSE}
+surv_rates_age_class|>
+  filter(age_group == "child")|>
+  mutate(Pclass = fct_relevel(Pclass, "First", "Second", "Third"))|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+::::
+:::
+
+## {forcats} (factor vars)
+<hr>
+`fct_reorder()`
+<br>
+<hr>
+
+:::{layout="[55,45]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[**Example data - Titanic**]{.small-font}
+<br>
+<br>
+```{r echo=FALSE}
+surv_rates_age_class|>
+  knitr::kable(format = "html", table.attr = "class='table-striped'")
+```
+
+::::
+::::{layout="[1]" .fragment .smaller-font}
+<br>
+
+:::{.extra-small-font}
+- What if I wanted this reordered by rate, not class?
+
+:::
+
+```{r}
+surv_rates_age_class|>
+  filter(age_group == "child")|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+::::
+:::
+
+## {forcats} (factor vars)
+<hr>
+`fct_reorder()`
+<br>
+<hr>
+
+:::{layout="[40,60]" .small-font}
+
+::::{layout="[1]" .extra-small-font}
+<br>
+[`fct_reorder()`]{.small-font}
+
+::::{.extra-small-font}
+- **Re-orders factors by values of another variable**
+::::
+```{r, eval=FALSE}
+surv_rates_age_class|>
+  filter(age_group == "child")|>
+  mutate(Pclass = fct_reorder(Pclass, avg_survival))|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+
+::::
+::::{layout="[1]" .fragment .smaller-font}
+<br>
+```{r, echo=FALSE}
+surv_rates_age_class|>
+  filter(age_group == "child")|>
+  mutate(Pclass = fct_reorder(Pclass, desc(avg_survival)))|>
+  ggplot(aes(x=Pclass, y=avg_survival)) +
+  geom_col(fill="#489FDF") +
+  labs(title = "Survival Rates by Class for Children",
+       x = "Class",
+       y = "Survival Rate")
+```
+::::
+:::
+
+# Today's Work
+
+## 3 Required Components of a ggplot
+<hr>
+- Data - may need to wrangle!
+- Aesthetics - maps variables to visual properties
+- Geometries - the shapes that represent the data
+    - Choose `geom`s from cheatsheet!
+
+## Comparing Amounts
+<hr>
 - Today: Comparing **amounts**
     - Bar Plots
     - Dot Plots
@@ -466,7 +710,7 @@ starwars |>
 - Stacking, dodging, and faceting are helpful ways of representing more than one amount per category
     - Generally, these are appropriate for representing more complex data that still involves amounts
     - **Stacking**: Useful when the sum of the amounts represented by the individual stacked bars and the individual bars' values are of interest
-    - **Dodging** (grouping): Useful when we want to draw out comparisons for amounts within a category
+    - **Dodging** (grouping): Useful when we want to draw out comparisons for amounts *within a category*
     - **Faceting**: Useful in similar cases as dodging; can be helpful when you have *many* comparisons or categories
 :::
 
@@ -677,12 +921,12 @@ tidykids |>
 ## Collaborative Practice
 <hr>
 :::{.small-font}
-New Breakout Room Structure:
 
-- **Individual think time:** 5 minutes (camera off/mute)
+- **Individual think time:** 3 minutes (camera off/mute)
     - Review document
     - Review question prompts
     - Start planning possible approaches/pseudocode
+- **Introductions:** 2 minutes (camera on/unmute)
 - **Collaborative Work:** (camera on/unmute)
 
 :::

@@ -4,13 +4,12 @@ author: "Names Here Please"
 date: "`r Sys.Date()`"
 output: html_document
 ---
-
+<!-- Edit the knitr setup chunk so that message=F and warning=F. -->
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<!-- Load 'tidyverse` and read in the gapminder data in the code chunk below. -->
-
+<!-- Load {tidyverse} and read in the gapminder data in the code chunk below. -->
 ```{r packages-and-data}
 
 ```
@@ -29,7 +28,7 @@ Hints:
 - First, use `group_by()` and `summarize()` to calculate the averages.
 - Use `geom_point()` to create the dot plot.
 - Remember to `ungroup()` after summarizing to avoid issues with subsequent operations.
-- `fct_reorder()` from the `forcats` package can be used to reorder the continents based on the average life expectancy.
+- `fct_reorder()` from the {forcats} package can be used to reorder the continents based on the average life expectancy.
 
 ```{r life-expectancy-dot-plot}
 
