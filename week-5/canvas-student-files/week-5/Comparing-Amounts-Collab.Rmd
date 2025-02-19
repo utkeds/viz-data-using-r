@@ -4,13 +4,12 @@ author: "Names Here Please"
 date: "`r Sys.Date()`"
 output: html_document
 ---
-
+<!-- Edit the knitr setup chunk so that message=F and warning=F. -->
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<!-- Load 'tidyverse` and read in the gapminder data in the code chunk below. -->
-
+<!-- Load {tidyverse} and read in the gapminder data in the code chunk below. -->
 ```{r packages-and-data}
 
 ```
@@ -27,26 +26,26 @@ Using `gapminder_2007`, calculate the average life expectancy for each continent
 
 Hints: 
 - First, use `group_by()` and `summarize()` to calculate the averages.
-- Use `geom_point()` to create the dot plot.
 - Remember to `ungroup()` after summarizing to avoid issues with subsequent operations.
-- `fct_reorder()` from the `forcats` package can be used to reorder the continents based on the average life expectancy.
+- Use `geom_point()` to create the dot plot.
+- `fct_reorder()` from the {forcats} package can be used to reorder the continents based on the average life expectancy. Do this before the `ggplot()` call.
 
 ```{r life-expectancy-dot-plot}
 
 ```
 
-### 3. Highlight countries with the lowest and highest GDP per capita
+### 3. Classify countries with the lowest and highest GDP per capita
 First, categorize countries into "High GDP" or "Low GDP" groups based on the median GDP per capita for 2007.
 
 Hint:
- - Use `mutate()` and `case_when()` to create a new variable called `gdp_category` that labels countries as "High GDP" if their GDP per capita is above the median, and "Low GDP" otherwise.
+ - Use `mutate()` and `case_when()` to create a new variable called `gdp_category` that labels countries as "High GDP" if their GDP per capita is equivalent to or above the median, and "Low GDP" if below.
  
 ```{r gdp-category-variable-creation}
 
 ```
 
 ### 4. Create a dot plot to compare GDP categories
-Using the `gapminder_2007` dataset with your new `gdp_category` variable, create a dot plot that shows the average life expectancy for countries in the "High GDP" and "Low GDP" categories. Note that the plot should have one point per gdp category (i.e., two points total). Please use `coord_flip()` to flip the plot, placing categories on the left-hand side.
+Using the `gapminder_2007` dataset with your new `gdp_category` variable, create a dot plot that shows the average life expectancy for countries in the "High GDP" and "Low GDP" categories. Note that the plot should have one point per gdp category (i.e., two points total). Please use `coord_flip()` to flip the plot, placing GDP categories on the left-hand side.
 
 Hint:
 - Group by `gdp_category` and calculate the average life expectancy for each group.

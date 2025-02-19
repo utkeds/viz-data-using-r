@@ -675,7 +675,7 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>Aesthetics can be …
 <ul>
-<li>…set within each <code>geom()</code> call:</li>
+<li>…specified within each <code>geom()</code> call:</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
@@ -683,7 +683,7 @@ Dr.&nbsp;Kelly Boles
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> </span>
 <span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild, <span class="at">color =</span> region)) <span class="co"># aes explicitly set within geom_col()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild, <span class="at">color =</span> region)) <span class="co"># aes explicitly specified within geom_col()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1370,7 +1370,7 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>Generally, these are appropriate for representing more complex data that still involves amounts</li>
 <li><strong>Stacking</strong>: Useful when the sum of the amounts represented by the individual stacked bars and the individual bars’ values are of interest</li>
-<li><strong>Dodging</strong> (grouping): Useful when we want to draw out comparisons for amounts <em>within a category</em></li>
+<li><strong>Dodging</strong> (grouping): Useful when we want to draw out comparisons for amounts within a category</li>
 <li><strong>Faceting</strong>: Useful in similar cases as dodging; can be helpful when you have <em>many</em> comparisons or categories</li>
 </ul></li>
 </ul>
@@ -1412,7 +1412,7 @@ Dodging
 <span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">mutate</span>(<span class="at">bill_length_quintiles =</span> <span class="fu">cut_number</span>(bill_length_mm, <span class="dv">5</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_quintiles)) <span class="sc">|&gt;</span></span>
 <span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">group_by</span>(species,bill_length_quintiles) <span class="sc">|&gt;</span> <span class="co"># 1st Group: x-axis, 2nd: bar levels</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_flipper_length =</span> <span class="fu">mean</span>(flipper_length_mm)) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_flipper_length =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm=</span>T)) <span class="sc">|&gt;</span></span>
 <span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
 <span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_flipper_length, <span class="at">fill =</span> bill_length_quintiles)) <span class="sc">+</span></span>
 <span id="cb23-8"><a href="#cb23-8"></a>    <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">"dodge"</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
@@ -1440,7 +1440,7 @@ Faceting
 <span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">mutate</span>(<span class="at">bill_length_quintiles =</span> <span class="fu">cut_number</span>(bill_length_mm, <span class="dv">5</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_quintiles)) <span class="sc">|&gt;</span></span>
 <span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">group_by</span>(species,bill_length_quintiles) <span class="sc">|&gt;</span> <span class="co"># 1st Group: x-axis, 2nd: bar levels</span></span>
-<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_flipper_length =</span> <span class="fu">mean</span>(flipper_length_mm)) <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_flipper_length =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm=</span>T)) <span class="sc">|&gt;</span></span>
 <span id="cb24-6"><a href="#cb24-6"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
 <span id="cb24-7"><a href="#cb24-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_quintiles, <span class="at">y =</span> mean_flipper_length, <span class="at">fill=</span>bill_length_quintiles)) <span class="sc">+</span></span>
 <span id="cb24-8"><a href="#cb24-8"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
@@ -1556,7 +1556,7 @@ Faceting
 <li>Bar plots</li>
 <li>Dot plots</li>
 <li>Heat maps</li>
-<li>Review dplyr skills</li>
+<li>Review {dplyr} skills</li>
 </ul></li>
 </ul>
 </section></section>

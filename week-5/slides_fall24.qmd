@@ -214,14 +214,14 @@ tidykids |>
 
 :::{.smaller-font}
 - Aesthetics can be ...
-    -  ...set within each `geom()` call:
+    -  ...specified within each `geom()` call:
     
 ```{r, fig.height=4}
 tidykids |>
   filter(year == 2016, variable == "PK12ed") |>
   mutate(state = fct_reorder(state, region)) |> 
   ggplot() + 
-  geom_col(aes(x = state, y = inf_adj_perchild, color = region)) # aes explicitly set within geom_col()
+  geom_col(aes(x = state, y = inf_adj_perchild, color = region)) # aes explicitly specified within geom_col()
 ```
 
 :::
@@ -710,7 +710,7 @@ starwars |>
 - Stacking, dodging, and faceting are helpful ways of representing more than one amount per category
     - Generally, these are appropriate for representing more complex data that still involves amounts
     - **Stacking**: Useful when the sum of the amounts represented by the individual stacked bars and the individual bars' values are of interest
-    - **Dodging** (grouping): Useful when we want to draw out comparisons for amounts *within a category*
+    - **Dodging** (grouping): Useful when we want to draw out comparisons for amounts within a category
     - **Faceting**: Useful in similar cases as dodging; can be helpful when you have *many* comparisons or categories
 :::
 
@@ -759,7 +759,7 @@ penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
   group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
-  summarize(mean_flipper_length = mean(flipper_length_mm)) |>
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm=T)) |>
   ungroup() |>
   ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
     geom_col(position="dodge", alpha = 0.9) +
@@ -776,7 +776,7 @@ penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
   group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
-  summarize(mean_flipper_length = mean(flipper_length_mm)) |>
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm=T)) |>
   ungroup() |>
   ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
     geom_col(position="dodge", alpha = 0.9) +
@@ -800,7 +800,7 @@ penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
   group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
-  summarize(mean_flipper_length = mean(flipper_length_mm)) |>
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm=T)) |>
   ungroup() |>
   ggplot(aes(x = bill_length_quintiles, y = mean_flipper_length, fill=bill_length_quintiles)) +
     geom_col() +
@@ -819,7 +819,7 @@ penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
   group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
-  summarize(mean_flipper_length = mean(flipper_length_mm)) |>
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm=T)) |>
   ungroup() |>
   ggplot(aes(x = bill_length_quintiles, y = mean_flipper_length, fill=bill_length_quintiles)) +
     geom_col() +
@@ -937,7 +937,7 @@ tidykids |>
     - Bar plots
     - Dot plots
     - Heat maps
-    - Review dplyr skills
+    - Review {dplyr} skills
 
 # Schwabish Extensions
 
