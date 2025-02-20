@@ -67,14 +67,14 @@ Hints:
 ```
 
 ### 6. Heatmap of population by country and year
-Choose only ONE continent. Create a heatmap using geom_tile() to show the population of each country over time. The x-axis should represent years, the y-axis should represent countries, and the fill should represent population size.
+Choose only ONE continent. Create a heatmap using `geom_tile()` to show the population of each country over time. The x-axis should represent years, the y-axis should represent countries, and the fill should represent population size.
 
 ```{r population-heatmap}
 
 ```
 
 ### 7. Save your heatmap
-Use `ggsave() to save your heatmap from exercise 6 as a .png file.
+Use `ggsave()` to save your heatmap from exercise 6 as a .png file.
 
 ```{r ggsave-heatmap}
 

@@ -1,10 +1,10 @@
 ---
 title: "Assignment 5"
-name: "xx"
+author: "xx"
 output: html_document
 date: "xx"
 ---
-
+<!-- Please edit the knitr option to include message=F and warning = F. -->
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -34,11 +34,13 @@ Last week in step 2, you were also asked to explore the tidykids data. It's a fi
 
 ## 3. Graph 1: An effective visualization of amounts
 
-Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., column) chart, keeping in mind the aforementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
+Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., `geom_col`umn) chart, keeping in mind the aforementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
 
 ```{r}
 
 ```
+
+INTERPRETATION: 
 
 ## 4. Graph 2: Modifying Graph 1
 
@@ -52,6 +54,8 @@ Please create a stacked, dodged, or faceted bar chart, again keeping in mind the
 
 ```
 
+INTERPRETATION: 
+
 ## 6. Graph 4: Set a theme 
 
 Using any of the graphs you have created so far, use the pre-installed themes(https://ggplot2.tidyverse.org/reference/ggtheme.html) or install ggthemes (or another package that provides themes, if you wish) and add the theme to your plot.
@@ -62,7 +66,7 @@ Using any of the graphs you have created so far, use the pre-installed themes(ht
 
 ## 7. Graph 5: - Histogram!
 
-Histograms were challenging last week. Try again this week using the starwars data set (it is built in and can be accessed by typing `starwars`). Note that you only set one aesthetic (either `x` or `y`) and then use `geom_histogram()`. Adjusting the binwidth is often a good idea!
+Histograms were challenging last week. We'll cover them in depth next week! Try again this week using the starwars data set (it is built in and can be accessed by typing `starwars`). Note that you only set one aesthetic (either `x` or `y`) and then use `geom_histogram()`. Adjusting the binwidth is often a good idea!
 
 ```{r}
 
@@ -77,6 +81,8 @@ Optionally and to push yourself, either change the graph you created for Graph 3
 Again, optionally, read in and create a bar chart with your data (maybe you have some from a project or a paper you're working on? Otherwise, use tidykids or starwars). Add a sentence or two interpreting what you found. 
 
 ## 10. Reflection
+
+YOUR WRITTEN REFLECTION GOES HERE
 
 When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 5 in Canvas.  Please note, you are only submitting the HTML output for this assignment.  
 
