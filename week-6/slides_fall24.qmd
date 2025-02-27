@@ -61,7 +61,7 @@ titanic <- Titanic |>
 ## Today's Agenda
 <hr>
 
-:::{.smaller-font}
+:::{.extra-small-font}
 - Weekly Check In
 - Review/ Foundational Skills
    <!-- - Formatting Your `.Rmd` -->
@@ -109,121 +109,17 @@ titanic <- Titanic |>
 
 # Review/ <br>Foundational Skills
 
-## `View()`
+# AHH, tidykids!
+
+## AHH, tidykids!
 <hr>
-- R's spreadsheet-like viewer
+- This dataset is a little trickier than what we've worked with before
+  - It has multiple:
+    - years,
+    - states,
+    - expenditure types!
+  - `filter()` is your friend!
 
-**Demo**
-
-## Formatting Your `.Rmd`
-<hr>
-- Improving the appearance of knitted files
-- **Goal 1**: Full data sets *should not be* printed in the final submission
-- **Goal 2**: Showing/printing code outputs to answer a question
-- **Goal 3**: Cleaning up warnings & messages
-
-## Formatting Your `.Rmd` - Goal 1
-<hr>
-- When reading in data, assign it to an object!
-
-:::{layout="[1,1]"}
-:::{column}
-**NO. Please. NO.**
-```{r, echo=TRUE}
-read_csv("tidykids.csv")
-```
-:::
-:::{column}
-**Much Better!**
-```{r, echo=TRUE}
-tidykids <- read_csv("tidykids.csv")
-```
-:::
-:::
-
-## Formatting Your `.Rmd` - Goal 1
-<hr>
-- Put `print(full_data_object)` calls in the console, not your `.Rmd`
-    - Use `View(full_data_object)` as an alternative
-
-**DEMO**
-
-## Formatting Your `.Rmd` - Goal 2
-<hr>
-
-:::{.smaller-font}
-- If you assign the wrangled data to an object, you should call the object in the chunk
-- Use something like `head()` if it's really long
-<br><br>
-- **Question:** During what year did TN spend the largest amount per child (adjusted for inflation) on PK-12 education?
-
-:::{layout="[1,1]" .smaller-font}
-:::{column}
-```{r, echo=TRUE}
-tidykids |>
-  filter(state == "Tennessee" & variable == "PK12ed") |>
-  arrange(desc(inf_adj_perchild)) |>
-  head(5)
-```
-:::
-
-:::{column}
-```{r, echo=TRUE}
-question1 <- tidykids |>
-  filter(state == "Tennessee" & variable == "PK12ed") |>
-  arrange(desc(inf_adj_perchild)) |>
-  head(5)
-
-question1
-```
-:::
-:::
-:::
-
-## Formatting Your `.Rmd` - Goal 2
-<hr>
-
-:::{.smaller-font}
-- If you assign the plot to an object, you should call the object in the chunk
-<br><br>
-- **Question:** During what year did TN spend the largest amount per child (adjusted for inflation) on PK-12 education?
-
-:::{layout="[1,1]" .smaller-font}
-:::{column}
-```{r, echo=TRUE}
-tidykids |>
-  filter(state == "Tennessee" & variable == "PK12ed") |>
-  ggplot(aes(x = year, y = inf_adj_perchild)) +
-  geom_line(aes(group=state))+
-  geom_point()
-```
-:::
-
-:::{column}
-```{r, echo=TRUE}
-plot1 <- tidykids |>
-  filter(state == "Tennessee" & variable == "PK12ed") |>
-  ggplot(aes(x = year, y = inf_adj_perchild)) +
-  geom_line(aes(group=state))+
-  geom_point()
-
-plot1
-```
-:::
-:::
-:::
-
-## Formatting Your `.Rmd` - Goal 3
-<hr>
-
-:::{.smaller-font}
-- Use `warning=FALSE` and `message=FALSE` in the chunk options to suppress the warnings and messages / clean up your output!
-- Think of this as essentially submitting a report.
-:::
-
-![](code-chunk-options.png)
-
-- **Question:** What will this show? What will be suppressed?
 
 # AI Policy Review
 
@@ -231,16 +127,10 @@ plot1
 <hr>
 
 :::{.smaller-font}
-- **From the syllabus:** “The author(s) would like to acknowledge the use of [Generative AI Tool Name], a language model developed by [Generative AI Tool Provider], in the preparation of this assignment. The [Generative AI Tool Name] was used in the following way(s) in this assignment: [e.g., brainstorming, grammatical correction, citation, which portion of the assignment].”
+- **From the syllabus:**  “I acknowledge the use of [Generative AI Tool Name] in the preparation of this answer. Within this question, Generative AI was used to resolve the following problem: [state problem addressed here], with the goal of [state desired outcome here]. Specifically this code was informed by Generative AI: [copy and paste piece(s) of code provided by Generative AI here].”
 
     - Many of you are doing this well! Keep it up!
-    - All acknowledgements are by question rather than whole assignment, which I really like.
-
-- **Requests:**
-
-    - Please be very clear what part of your code it helped you with (e.g., your `mutate()` call) and what it helped you understand.
-    - GitHub Copilot counts as an AI tool, so please acknowledge it if you use it.
-    - Do not use any AI tool to complete the reflections. These are informal and used to help gauge where you are in your learning and how/when I might support you better.
+    - All acknowledgements are by question rather than whole assignment.
 :::
 
 # The Importance of `na.rm=T`
@@ -248,7 +138,7 @@ plot1
 ## The Importance of `na.rm=T`
 <hr>
 
-**Assignment 4, Bonus Question:** Which type of adjusted spending per child, on average in $1,000s, is highest for Tennessee? 
+**Assignment 4, Bonus Question:** Which type of adjusted spending per child, on average in $1,000s, is highest for Tennessee?
 
 :::{layout="[1,1]" .extra-small-font}
 :::{column}
@@ -400,7 +290,7 @@ penguins |>
 ```
 
 ```{r, echo=F, fig.height=3, fig.width=5}
-# `geom_point()` gives us overplotting but acknowleges each datum
+# `geom_point()` gives us overplotting but acknowledges each datum
 
 penguin_means <- penguins |>
   group_by(species) |>
@@ -1031,6 +921,7 @@ penguins |>
     - Skim plots in Schwabish (2021), Chapter 5
 - Weekly Assignment:
     - Graphing Distributions and Scatterplots
+      - Note: New Data + A Little Cleaning
 
 # Stop Recording
 
@@ -1046,7 +937,7 @@ penguins |>
 - **Step 2:** ***Summarize*** <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.
 - **Step 3:** ***Visualize*** <br>Create two visualizations to answer your RQs.
 <br><br>
-**Due: October 11th, 11:59 PM**
+**Due: March 14th, 11:59 PM**
 :::
 
 ## Mini-Project #1

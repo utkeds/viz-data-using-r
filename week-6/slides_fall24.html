@@ -414,7 +414,7 @@ Dr.&nbsp;Kelly Boles
 <section id="todays-agenda" class="slide level2">
 <h2>Today’s Agenda</h2>
 <hr>
-<div class="smaller-font">
+<div class="extra-small-font">
 <ul>
 <li>Weekly Check In</li>
 <li>Review/ Foundational Skills <!-- - Formatting Your `.Rmd` --> <!-- - AI Policy Review --> <!-- - Assignment 4, Bonus Q & `na.rm=T` --></li>
@@ -487,192 +487,30 @@ Dr.&nbsp;Kelly Boles
 </table>
 </div>
 </section></section>
-<section>
 <section id="review-foundational-skills" class="title-slide slide level1 center">
 <h1>Review/ <br>Foundational Skills</h1>
 
 </section>
-<section id="view" class="slide level2">
-<h2><code>View()</code></h2>
-<hr>
-<ul>
-<li>R’s spreadsheet-like viewer</li>
-</ul>
-<p><strong>Demo</strong></p>
-</section>
-<section id="formatting-your-.rmd" class="slide level2">
-<h2>Formatting Your <code>.Rmd</code></h2>
-<hr>
-<ul>
-<li>Improving the appearance of knitted files</li>
-<li><strong>Goal 1</strong>: Full data sets <em>should not be</em> printed in the final submission</li>
-<li><strong>Goal 2</strong>: Showing/printing code outputs to answer a question</li>
-<li><strong>Goal 3</strong>: Cleaning up warnings &amp; messages</li>
-</ul>
-</section>
-<section id="formatting-your-.rmd---goal-1" class="slide level2">
-<h2>Formatting Your <code>.Rmd</code> - Goal 1</h2>
-<hr>
-<ul>
-<li>When reading in data, assign it to an object!</li>
-</ul>
-<div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><strong>NO. Please. NO.</strong></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">read_csv</span>(<span class="st">"tidykids.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 23,460 × 7
-    ...1 state                variable  year      raw   inf_adj inf_adj_perchild
-   &lt;dbl&gt; &lt;chr&gt;                &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
- 1     1 Alabama              PK12ed    1997  3271969  4665308.             3.93
- 2     2 Alaska               PK12ed    1997  1042311  1486170              7.55
- 3     3 Arizona              PK12ed    1997  3388165  4830986.             3.71
- 4     4 Arkansas             PK12ed    1997  1960613  2795523              3.89
- 5     5 California           PK12ed    1997 28708364 40933568              4.28
- 6     6 Colorado             PK12ed    1997  3332994  4752320.             4.38
- 7     7 Connecticut          PK12ed    1997  4014870  5724568.             6.70
- 8     8 Delaware             PK12ed    1997   776825  1107629.             5.63
- 9     9 District of Columbia PK12ed    1997   544051   775730.             6.11
-10    10 Florida              PK12ed    1997 11498394 16394885              4.45
-# ℹ 23,450 more rows</code></pre>
-</div>
-</div>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><strong>Much Better!</strong></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>tidykids <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"tidykids.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="formatting-your-.rmd---goal-1-1" class="slide level2">
-<h2>Formatting Your <code>.Rmd</code> - Goal 1</h2>
-<hr>
-<ul>
-<li>Put <code>print(full_data_object)</code> calls in the console, not your <code>.Rmd</code>
-<ul>
-<li>Use <code>View(full_data_object)</code> as an alternative</li>
-</ul></li>
-</ul>
-<p><strong>DEMO</strong></p>
-</section>
-<section id="formatting-your-.rmd---goal-2" class="slide level2">
-<h2>Formatting Your <code>.Rmd</code> - Goal 2</h2>
-<hr>
-<div class="smaller-font">
-<ul>
-<li>If you assign the wrangled data to an object, you should call the object in the chunk</li>
-<li>Use something like <code>head()</code> if it’s really long <br><br></li>
-<li><strong>Question:</strong> During what year did TN spend the largest amount per child (adjusted for inflation) on PK-12 education?</li>
-</ul>
-<div class="smaller-font quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>tidykids <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"Tennessee"</span> <span class="sc">&amp;</span> variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(inf_adj_perchild)) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 7
-   ...1 state     variable  year     raw inf_adj inf_adj_perchild
-  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
-1 16465 Tennessee PK12ed    2011 8082395 8717334             5.53
-2 15292 Tennessee PK12ed    2010 7787670 8570142             5.41
-3 19984 Tennessee PK12ed    2014 8228575 8417060             5.34
-4 14119 Tennessee PK12ed    2009 7575870 8410428             5.31
-5 17638 Tennessee PK12ed    2012 7897109 8364712             5.31</code></pre>
-</div>
-</div>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>question1 <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"Tennessee"</span> <span class="sc">&amp;</span> variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(inf_adj_perchild)) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span>
-<span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a>question1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 7
-   ...1 state     variable  year     raw inf_adj inf_adj_perchild
-  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
-1 16465 Tennessee PK12ed    2011 8082395 8717334             5.53
-2 15292 Tennessee PK12ed    2010 7787670 8570142             5.41
-3 19984 Tennessee PK12ed    2014 8228575 8417060             5.34
-4 14119 Tennessee PK12ed    2009 7575870 8410428             5.31
-5 17638 Tennessee PK12ed    2012 7897109 8364712             5.31</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="formatting-your-.rmd---goal-2-1" class="slide level2">
-<h2>Formatting Your <code>.Rmd</code> - Goal 2</h2>
-<hr>
-<div class="smaller-font">
-<ul>
-<li>If you assign the plot to an object, you should call the object in the chunk <br><br></li>
-<li><strong>Question:</strong> During what year did TN spend the largest amount per child (adjusted for inflation) on PK-12 education?</li>
-</ul>
-<div class="smaller-font quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>tidykids <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"Tennessee"</span> <span class="sc">&amp;</span> variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> inf_adj_perchild)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>state))<span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>plot1 <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"Tennessee"</span> <span class="sc">&amp;</span> variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> inf_adj_perchild)) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>state))<span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a>plot1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="formatting-your-.rmd---goal-3" class="slide level2">
-<h2>Formatting Your <code>.Rmd</code> - Goal 3</h2>
-<hr>
-<div class="smaller-font">
-<ul>
-<li>Use <code>warning=FALSE</code> and <code>message=FALSE</code> in the chunk options to suppress the warnings and messages / clean up your output!</li>
-<li>Think of this as essentially submitting a report.</li>
-</ul>
-</div>
 
-<img data-src="code-chunk-options.png" class="r-stretch"><ul>
-<li><strong>Question:</strong> What will this show? What will be suppressed?</li>
+<section>
+<section id="ahh-tidykids" class="title-slide slide level1 center">
+<h1>AHH, tidykids!</h1>
+
+</section>
+<section id="ahh-tidykids-1" class="slide level2">
+<h2>AHH, tidykids!</h2>
+<hr>
+<ul>
+<li>This dataset is a little trickier than what we’ve worked with before
+<ul>
+<li>It has multiple:
+<ul>
+<li>years,</li>
+<li>states,</li>
+<li>expenditure types!</li>
+</ul></li>
+<li><code>filter()</code> is your friend!</li>
+</ul></li>
 </ul>
 </section></section>
 <section>
@@ -685,16 +523,10 @@ Dr.&nbsp;Kelly Boles
 <hr>
 <div class="smaller-font">
 <ul>
-<li><p><strong>From the syllabus:</strong> “The author(s) would like to acknowledge the use of [Generative AI Tool Name], a language model developed by [Generative AI Tool Provider], in the preparation of this assignment. The [Generative AI Tool Name] was used in the following way(s) in this assignment: [e.g., brainstorming, grammatical correction, citation, which portion of the assignment].”</p>
+<li><p><strong>From the syllabus:</strong> “I acknowledge the use of [Generative AI Tool Name] in the preparation of this answer. Within this question, Generative AI was used to resolve the following problem: [state problem addressed here], with the goal of [state desired outcome here]. Specifically this code was informed by Generative AI: [copy and paste piece(s) of code provided by Generative AI here].”</p>
 <ul>
 <li>Many of you are doing this well! Keep it up!</li>
-<li>All acknowledgements are by question rather than whole assignment, which I really like.</li>
-</ul></li>
-<li><p><strong>Requests:</strong></p>
-<ul>
-<li>Please be very clear what part of your code it helped you with (e.g., your <code>mutate()</code> call) and what it helped you understand.</li>
-<li>GitHub Copilot counts as an AI tool, so please acknowledge it if you use it.</li>
-<li>Do not use any AI tool to complete the reflections. These are informal and used to help gauge where you are in your learning and how/when I might support you better.</li>
+<li>All acknowledgements are by question rather than whole assignment.</li>
 </ul></li>
 </ul>
 </div>
@@ -711,7 +543,7 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">summarize</span>(<span class="at">avg_inf_adj_perchild =</span> <span class="fu">mean</span>(inf_adj_perchild)<span class="sc">*</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">summarize</span>(<span class="at">avg_inf_adj_perchild =</span> <span class="fu">mean</span>(inf_adj_perchild)<span class="sc">*</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
@@ -720,7 +552,7 @@ Dr.&nbsp;Kelly Boles
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -728,13 +560,13 @@ Dr.&nbsp;Kelly Boles
 <p>Answer: PK12ed <strong>Incorrect</strong></p>
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">summarize</span>(<span class="at">avg_inf_adj_perchild =</span> <span class="fu">mean</span>(inf_adj_perchild, <span class="at">na.rm=</span>T)<span class="sc">*</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">summarize</span>(<span class="at">avg_inf_adj_perchild =</span> <span class="fu">mean</span>(inf_adj_perchild, <span class="at">na.rm=</span>T)<span class="sc">*</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -776,67 +608,67 @@ Dr.&nbsp;Kelly Boles
 <div class="extra-small-font quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="sourceCode" id="cb13" data-code-line-numbers="|4-7|9-12|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#acknowledging within-group variability with +/- 1 SD error bars</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">summarize</span>(<span class="at">avg_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm=</span>T),</span>
-<span id="cb13-6"><a href="#cb13-6"></a>            <span class="at">sd_bill_length =</span> <span class="fu">sd</span>(bill_length_mm, <span class="at">na.rm=</span>T)) <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_reorder</span>(species, avg_bill_length)) <span class="sc">|&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> avg_bill_length)) <span class="sc">+</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species)) <span class="sc">+</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> avg_bill_length <span class="sc">-</span> sd_bill_length,</span>
-<span id="cb13-12"><a href="#cb13-12"></a>                    <span class="at">ymax =</span> avg_bill_length <span class="sc">+</span> sd_bill_length), <span class="at">width =</span> <span class="fl">0.2</span>)<span class="sc">+</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
-<span id="cb13-15"><a href="#cb13-15"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
-<span id="cb13-16"><a href="#cb13-16"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb13-18"><a href="#cb13-18"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb13-19"><a href="#cb13-19"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
-<span id="cb13-20"><a href="#cb13-20"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb13-21"><a href="#cb13-21"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4" data-code-line-numbers="|4-7|9-12|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#acknowledging within-group variability with +/- 1 SD error bars</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">summarize</span>(<span class="at">avg_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm=</span>T),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>            <span class="at">sd_bill_length =</span> <span class="fu">sd</span>(bill_length_mm, <span class="at">na.rm=</span>T)) <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_reorder</span>(species, avg_bill_length)) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> avg_bill_length)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> avg_bill_length <span class="sc">-</span> sd_bill_length,</span>
+<span id="cb4-12"><a href="#cb4-12"></a>                    <span class="at">ymax =</span> avg_bill_length <span class="sc">+</span> sd_bill_length), <span class="at">width =</span> <span class="fl">0.2</span>)<span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-9-1.png" width="480"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-3-1.png" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="sourceCode" id="cb14" data-code-line-numbers="|3-6|11|3-6,12-15|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># `geom_point()` gives us overplotting but acknowleges each datum</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb14-7"><a href="#cb14-7"></a></span>
-<span id="cb14-8"><a href="#cb14-8"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>species)) <span class="sc">+</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
-<span id="cb14-13"><a href="#cb14-13"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
-<span id="cb14-14"><a href="#cb14-14"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
-<span id="cb14-15"><a href="#cb14-15"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb14-16"><a href="#cb14-16"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb14-17"><a href="#cb14-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
-<span id="cb14-18"><a href="#cb14-18"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
-<span id="cb14-19"><a href="#cb14-19"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb14-20"><a href="#cb14-20"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb14-21"><a href="#cb14-21"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb14-22"><a href="#cb14-22"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
-<span id="cb14-23"><a href="#cb14-23"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb14-24"><a href="#cb14-24"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-code-line-numbers="|3-6|11|3-6,12-15|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># `geom_point()` gives us overplotting but acknowleges each datum</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>species)) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
+<span id="cb5-14"><a href="#cb5-14"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
+<span id="cb5-15"><a href="#cb5-15"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb5-22"><a href="#cb5-22"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-10-1.png" width="480"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-4-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -850,35 +682,35 @@ Dr.&nbsp;Kelly Boles
 <h4 id="geom_jitter"><code>geom_jitter()</code></h4>
 <hr>
 <div class="extra-small-font">
-<div class="sourceCode" id="cb15" data-code-line-numbers="|11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># `geom_jitter()` randomly moves points small bits along x and y to avoid overplotting</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb15-7"><a href="#cb15-7"></a></span>
-<span id="cb15-8"><a href="#cb15-8"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color=</span>species), <span class="at">width =</span> .<span class="dv">18</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
-<span id="cb15-13"><a href="#cb15-13"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
-<span id="cb15-14"><a href="#cb15-14"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
-<span id="cb15-15"><a href="#cb15-15"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb15-16"><a href="#cb15-16"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
-<span id="cb15-18"><a href="#cb15-18"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
-<span id="cb15-19"><a href="#cb15-19"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb15-20"><a href="#cb15-20"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb15-21"><a href="#cb15-21"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb15-22"><a href="#cb15-22"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb15-24"><a href="#cb15-24"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6" data-code-line-numbers="|11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># `geom_jitter()` randomly moves points small bits along x and y to avoid overplotting</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color=</span>species), <span class="at">width =</span> .<span class="dv">18</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
+<span id="cb6-13"><a href="#cb6-13"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
+<span id="cb6-15"><a href="#cb6-15"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb6-19"><a href="#cb6-19"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-11-1.png" width="480"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-5-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -890,38 +722,38 @@ Dr.&nbsp;Kelly Boles
 <h3 id="geom_beeswarm"><code>geom_beeswarm()</code></h3>
 <hr>
 <div class="extra-small-font">
-<div class="sourceCode" id="cb16" data-code-line-numbers="|4,14|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># `geom_beeswarm()` systematically arranges points as close as possible</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># to avoid overplotting</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">library</span>(ggbeeswarm)</span>
-<span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-6"><a href="#cb16-6"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb16-10"><a href="#cb16-10"></a></span>
-<span id="cb16-11"><a href="#cb16-11"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a>  <span class="fu">geom_beeswarm</span>(<span class="fu">aes</span>(<span class="at">color=</span>species), <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb16-15"><a href="#cb16-15"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
-<span id="cb16-16"><a href="#cb16-16"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
-<span id="cb16-17"><a href="#cb16-17"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
-<span id="cb16-18"><a href="#cb16-18"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb16-19"><a href="#cb16-19"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb16-20"><a href="#cb16-20"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
-<span id="cb16-21"><a href="#cb16-21"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
-<span id="cb16-22"><a href="#cb16-22"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb16-23"><a href="#cb16-23"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb16-24"><a href="#cb16-24"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb16-25"><a href="#cb16-25"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
-<span id="cb16-26"><a href="#cb16-26"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb16-27"><a href="#cb16-27"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-code-line-numbers="|4,14|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># `geom_beeswarm()` systematically arranges points as close as possible</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># to avoid overplotting</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">library</span>(ggbeeswarm)</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>penguin_means <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">summarize</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">fct_relevel</span>(species, <span class="st">"Adelie"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Chinstrap"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">geom_beeswarm</span>(<span class="fu">aes</span>(<span class="at">color=</span>species), <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">geom_segment</span>(<span class="at">data=</span>penguin_means,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>               <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(species) <span class="sc">-</span> <span class="fl">0.2</span>, <span class="at">xend =</span> <span class="fu">as.numeric</span>(species) <span class="sc">+</span> <span class="fl">0.2</span>,</span>
+<span id="cb7-17"><a href="#cb7-17"></a>                   <span class="at">y =</span> mean_bill_length, <span class="at">yend =</span> mean_bill_length), </span>
+<span id="cb7-18"><a href="#cb7-18"></a>               <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21"></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb7-24"><a href="#cb7-24"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb7-25"><a href="#cb7-25"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-12-1.png" width="480"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-6-1.png" width="480"></p>
 </figure>
 </div>
 </div>
@@ -962,20 +794,20 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="fragment smaller-font quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="{column}">
-<div class="sourceCode" id="cb17" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">1.5</span>, <span class="at">fill =</span> <span class="st">"#FF6A01"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Adelie Penguins"</span>,</span>
-<span id="cb17-7"><a href="#cb17-7"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb17-8"><a href="#cb17-8"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="fl">1.5</span>, <span class="at">fill =</span> <span class="st">"#FF6A01"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Adelie Penguins"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1009,19 +841,19 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="fragment smaller-font quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="{column}">
-<div class="sourceCode" id="cb18" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"#FF6A01"</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Adelie Penguins"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"#FF6A01"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Adelie Penguins"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1053,20 +885,20 @@ Dr.&nbsp;Kelly Boles
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="smaller-font">
-<div class="sourceCode" id="cb19" data-code-line-numbers="|4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"#FF6A01"</span>) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.08</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"#FF6A01"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Adelie Penguins"</span>,</span>
-<span id="cb19-8"><a href="#cb19-8"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb19-9"><a href="#cb19-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-code-line-numbers="|4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"#FF6A01"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.08</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"#FF6A01"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Adelie Penguins"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1096,20 +928,20 @@ Dr.&nbsp;Kelly Boles
 <div class="fragment smaller-font quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="{column}">
 <p><br><br></p>
-<div class="sourceCode" id="cb20" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#FF6A01"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Adelie Penguins"</span>,</span>
-<span id="cb20-7"><a href="#cb20-7"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb20-8"><a href="#cb20-8"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
-<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"#FF6A01"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Adelie Penguins"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1131,22 +963,22 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>You may want to compare distributions across groups</li>
 </ul>
-<div class="sourceCode" id="cb21" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species),<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Chinstrap, Gentoo, &amp; Adelie Penguins"</span>,</span>
-<span id="cb21-6"><a href="#cb21-6"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb21-7"><a href="#cb21-7"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb21-9"><a href="#cb21-9"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb21-10"><a href="#cb21-10"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species),<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Chinstrap, Gentoo, &amp; Adelie Penguins"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1162,23 +994,23 @@ Dr.&nbsp;Kelly Boles
 <li>This is a type of density plot that stacks the densities on top of each other</li>
 <li>Can compare without overlap</li>
 </ul>
-<div class="sourceCode" id="cb22" data-code-line-numbers="|1|4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">library</span>(ggridges)</span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y=</span>species)) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species),<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Chinstrap, Gentoo, &amp; Adelie Penguins"</span>,</span>
-<span id="cb22-8"><a href="#cb22-8"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb22-9"><a href="#cb22-9"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb22-11"><a href="#cb22-11"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb22-12"><a href="#cb22-12"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13" data-code-line-numbers="|1|4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y=</span>species)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species),<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Chinstrap, Gentoo, &amp; Adelie Penguins"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1194,24 +1026,24 @@ Dr.&nbsp;Kelly Boles
 <li>Shows the distribution of the data</li>
 <li>May suggest data exists where it doesn’t</li>
 </ul>
-<div class="sourceCode" id="cb23" data-code-line-numbers="|3-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y=</span>species)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species),<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.08</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Chinstrap, Gentoo, &amp; Adelie Penguins"</span>,</span>
-<span id="cb23-8"><a href="#cb23-8"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb23-9"><a href="#cb23-9"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb23-11"><a href="#cb23-11"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb23-12"><a href="#cb23-12"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
-<span id="cb23-13"><a href="#cb23-13"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14" data-code-line-numbers="|3-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y=</span>species)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species),<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.08</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length of Chinstrap, Gentoo, &amp; Adelie Penguins"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9"></a>       <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb14-11"><a href="#cb14-11"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb14-12"><a href="#cb14-12"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1227,21 +1059,21 @@ Dr.&nbsp;Kelly Boles
 <h2>Scatterplot: <code>geom_point()</code></h2>
 <hr>
 <div class="smaller-font">
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">alpha =</span> .<span class="dv">7</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb24-5"><a href="#cb24-5"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb24-6"><a href="#cb24-6"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
-<span id="cb24-7"><a href="#cb24-7"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb24-8"><a href="#cb24-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length vs. Flipper Length of Three Penguin Species"</span>,</span>
-<span id="cb24-9"><a href="#cb24-9"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb24-10"><a href="#cb24-10"></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">alpha =</span> .<span class="dv">7</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length vs. Flipper Length of Three Penguin Species"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10"></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1255,21 +1087,21 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>Can map a third variable to <code>shape</code></li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape=</span>sex), <span class="at">alpha =</span> .<span class="dv">7</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb25-6"><a href="#cb25-6"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb25-8"><a href="#cb25-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length vs. Flipper Length of Three Penguin Species"</span>,</span>
-<span id="cb25-9"><a href="#cb25-9"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb25-10"><a href="#cb25-10"></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape=</span>sex), <span class="at">alpha =</span> .<span class="dv">7</span>, <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length vs. Flipper Length of Three Penguin Species"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb16-10"><a href="#cb16-10"></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1283,21 +1115,21 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>Can map a third variable to <code>shape</code> or <code>size</code></li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">size=</span> body_mass_g), <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb26-5"><a href="#cb26-5"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb26-6"><a href="#cb26-6"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
-<span id="cb26-7"><a href="#cb26-7"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length vs. Flipper Length of Three Penguin Species"</span>,</span>
-<span id="cb26-9"><a href="#cb26-9"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb26-10"><a href="#cb26-10"></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">size=</span> body_mass_g), <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length vs. Flipper Length of Three Penguin Species"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10"></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1311,25 +1143,25 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>Add a trendline, correlation coefficient, and p-value</li>
 </ul>
-<div class="sourceCode" id="cb27" data-code-line-numbers="|6-7|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb27-2"><a href="#cb27-2"></a></span>
-<span id="cb27-3"><a href="#cb27-3"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size=</span>body_mass_g), <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb27-6"><a href="#cb27-6"></a>  <span class="fu">stat_cor</span>()<span class="sc">+</span></span>
-<span id="cb27-7"><a href="#cb27-7"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)<span class="sc">+</span></span>
-<span id="cb27-8"><a href="#cb27-8"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb27-9"><a href="#cb27-9"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb27-10"><a href="#cb27-10"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
-<span id="cb27-11"><a href="#cb27-11"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb27-12"><a href="#cb27-12"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length vs. Flipper Length of Three Penguin Species"</span>,</span>
-<span id="cb27-13"><a href="#cb27-13"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb27-14"><a href="#cb27-14"></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18" data-code-line-numbers="|6-7|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm, <span class="at">color=</span>species)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size=</span>body_mass_g), <span class="at">alpha =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">stat_cor</span>()<span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)<span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9"></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10"></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length vs. Flipper Length of Three Penguin Species"</span>,</span>
+<span id="cb18-13"><a href="#cb18-13"></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb18-14"><a href="#cb18-14"></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1383,7 +1215,10 @@ Dr.&nbsp;Kelly Boles
 </ul></li>
 <li>Weekly Assignment:
 <ul>
-<li>Graphing Distributions and Scatterplots</li>
+<li>Graphing Distributions and Scatterplots
+<ul>
+<li>Note: New Data + A Little Cleaning</li>
+</ul></li>
 </ul></li>
 </ul>
 </section></section>
@@ -1410,7 +1245,7 @@ Dr.&nbsp;Kelly Boles
 <li>Data from the U.S. News and World Report National University Rankings</li>
 <li><strong>Step 1:</strong> <strong><em>Explore</em></strong> <br>Think about the scavenger hunt from a few assignments ago. What variables do you have? What does each row represent?</li>
 <li><strong>Step 2:</strong> <strong><em>Summarize</em></strong> <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.</li>
-<li><strong>Step 3:</strong> <strong><em>Visualize</em></strong> <br>Create two visualizations to answer your RQs. <br><br> <strong>Due: October 11th, 11:59 PM</strong></li>
+<li><strong>Step 3:</strong> <strong><em>Visualize</em></strong> <br>Create two visualizations to answer your RQs. <br><br> <strong>Due: March 14th, 11:59 PM</strong></li>
 </ul>
 </div>
 </section>
