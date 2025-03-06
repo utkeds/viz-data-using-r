@@ -48,13 +48,16 @@ tidykids <- tidykids |>
 
 # Start Recording
 
-## Today's Agenda
+## Today's Agenda {.smaller}
 <hr>
 
-:::{.smaller-font}
+:::{.extra-small-font}
 - **Weekly Check In**
 - **Review/ Foundational Skills**
-   <!-- - AI Policy Review -->
+   - AI Policy Review
+   - Horizontal Plots
+   - A Change to {tidykids}
+   - Some Notes About Data Wrangling
 - **Lines & Curves**
     - *Principles of Line Plots*
     - *Time Series Data*
@@ -90,18 +93,63 @@ tidykids <- tidykids |>
 
 # Review/ <br>Foundational Skills
 
-## AI Policy Review
+## Gen AI Use
 <hr>
 
 :::{.smaller-font}
-- **From the syllabus:** “The author(s) would like to acknowledge the use of [Generative AI Tool Name], a language model developed by [Generative AI Tool Provider], in the preparation of this assignment. The [Generative AI Tool Name] was used in the following way(s) in this assignment: [e.g., brainstorming, grammatical correction, citation, which portion of the assignment].”
+- **From the syllabus:** “I acknowledge the use of [Generative AI Tool Name] in the preparation of this answer. Within this question, Generative AI was used to resolve the following problem: [state problem addressed here]. Specifically this code was informed by Generative AI: [copy and paste piece(s) of code provided by Generative AI here].”
 
-    - Better this week!
-    - Don't worry about citing every single thing you looked at (unless it helps you!)
-    - I just need to be clear on what you are trying to achieve with the new lines of code
+    - This should be *by code chunk*, not by assignment
+    - Some are overusing AI
+      - Think of AI as a last-resort, not the place to start
+      - First turn to: Slides, Slack channel, peers, me
+      - My #1 goal is for you to leave this class feeling confident in your ability to use {ggplot}
 :::
 
-## Pivoting Longer/Wider
+## Horizontal Plots
+<hr>
+- 1st choice: If you know you want a horizontal plot, write it that way
+- 2nd choice: `coord_flip()`
+
+## A Change to tidykids {.smaller}
+<hr>
+
+```r
+tidykids |>
+  mutate("expenditure" = variable)
+```
+
+- This change will be reflected on all tidykids.csv files through rest of course
+
+## A Note About Data Wrangling
+<hr>
+- It is crucial to know what data you are representing
+ - Call `View(data)`
+ - Call `head(data)`
+ - Call `data`
+ - Run partial code chunks
+ 
+## A Note About Data Wrangling {.smaller}
+<hr>
+
+:::{.smaller-font}
+
+```{r, echo=TRUE, fig.height=4}
+tidykids |> 
+  filter(year >= 2000, region == "Midwest") |> 
+  mutate(state = fct_reorder(state, inf_adj_perchild)) |> 
+  ggplot(aes(x=state, y=inf_adj_perchild)) +
+  geom_col(width = 0.7, fill="pink") +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar) +
+  labs(title = "Inflation-Adjusted Per-Child Spending in Midwest States after 2000",
+       x = "State",
+       y = "Inflation-Adjusted Per-Child Spending") +
+  theme_bw()
+```
+:::
+
+## Pivoting Longer/Wider {.smaller}
 <hr>
 :::{.extra-small-font}
 - sometimes your data is in a format different than what you need
@@ -118,7 +166,7 @@ head(tidykids,5)
 [`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html)
 ```{r}
 wider <- tidykids |>
-  pivot_wider(names_from = variable, values_from = c(raw, inf_adj, inf_adj_perchild))
+  pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
 
 head(wider,5)
 ```
@@ -164,7 +212,7 @@ head(wider,5)
 ```{r}
 tidykids_tn <- tidykids |>
   filter(state == "Tennessee",
-         variable == "PK12ed")
+         expenditure == "PK12ed")
 ```
 :::
 
@@ -205,7 +253,7 @@ tidykids_tn |>
 :::
 
 :::{column}
-```{.r code-line-numbers="|2,4"}
+```{.r code-line-numbers="|2,3"}
 tidykids_tn |>
   ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
   geom_line()+
@@ -252,7 +300,7 @@ tidykids_tn |>
 ```{.r code-line-numbers="|3-4"}
 tidykids_tn |>
   ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
-  geom_area()+
+  geom_area(alpha=.3)+
   geom_line() +
   theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
 ```
@@ -281,7 +329,7 @@ tidykids_tn |>
 tidykids_south <- tidykids |>
   filter(state %in% c("Tennessee", "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia", "Georgia",
                       "Kentucky", "North Carolina", "South Carolina", "Virginia", "West Virginia"),
-         variable == "PK12ed")
+         expenditure == "PK12ed")
 ```
 :::
 
@@ -332,7 +380,7 @@ tidykids_south |>
 <hr>
 - A critical difference is between *connecting* lines and *fitted* lines, or curves
 <br><br>
-- **Connecting line**: Connects the points (slide 15 as one of several examples)
+- **Connecting line**: Connects the points (slide 19 as one of several examples)
 - **Fitted lines**: Can take different forms: linear, quadratic, interpolated using fancy math
 
 ## Fitted Lines
@@ -346,8 +394,8 @@ tidykids_south |>
 ```{r}
 tidykids_wide <- tidykids |>
   filter(year >= 2010) |>
-  select(year,state,variable,inf_adj_perchild) |>
-  pivot_wider(names_from = variable, values_from = inf_adj_perchild)
+  select(year,state,expenditure,inf_adj_perchild) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild)
 ```
 :::
 
@@ -454,7 +502,7 @@ tidykids_PK12ed_tnneighbors_bump <- tidykids_wide |>
 - Used to visualize the ranking of items over time
 - The plot:
 
-```{r, fig.height=4.5}
+```{r, fig.height=4}
 tidykids_PK12ed_tnneighbors_bump |>
   ggplot(aes(x = year, y = rank, color = state)) +
   geom_line(aes(group=state, color=state), linewidth = 3, show.legend = F) +
@@ -471,7 +519,7 @@ tidykids_PK12ed_tnneighbors_bump |>
 :::{.extra-small-font}
 - Used to visualize flow of data
 - New package: [`ggsankey`](https://github.com/davidsjoberg/ggsankey)
-```{r, fig.height=4.5}
+```{r, fig.height=4}
 library(ggsankey)
 
 tidykids_PK12ed_tnneighbors_bump |>
@@ -507,12 +555,26 @@ tidykids_PK12ed_tnneighbors_bump |>
 ## Mini-Project #1
 <hr>
 :::{.smaller-font}
-- Data from the U.S. News and World Report National University Rankings
-    - **File 1:** ***US-News_Rankings-Universities-2020.xlsx*** <br> Original file from website. Lots of tabs, lots of data!
-    - **File 2:** ***us-news-rankings-2020-processed.csv*** <br> The 2020 All tab, processed for you (already largely clean)
-    - **File 3:** ***2020-us-news-prep.R*** <br> An example of how to get from the .xlsx file to the largely clean version: A model!
+- Data from the U.S. News and World Report University Rankings OR Your Own
+- **Step 1:** ***Explore*** <br>Think about the scavenger hunt from a few assignments ago. What variables do you have? What does each row represent?
+- **Step 2:** ***Summarize*** <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.
+- **Step 3:** ***Visualize*** <br>Create two visualizations to answer your RQs.
 <br><br>
-**Due: October 11th, 11:59 PM**
+**Due: March 14th, 11:59 PM**
 :::
 
-# Have a Wonderful Fall Break!
+## Mini-Project #1
+<hr>
+:::{.smaller-font}
+- Rubric:
+    - Knits without errors
+    - Functions to explore/wrangle the data are used *correctly*
+    - Data wrangling answers the research questions that are posed
+    - The information each visualization conveys is clear
+    - Each viz meets the requirements set out in the `.Rmd`
+        - Custom color
+        - Use a theme
+        - Use `labs`
+    - Complete reflections
+    - Pose/answer at least one question in the Slack channel
+:::
