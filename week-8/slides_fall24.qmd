@@ -31,7 +31,7 @@ knitr:
 ## Today's Agenda
 <hr>
 
-:::{.smaller-font}
+:::{.extra-small-font}
 - **Weekly Check In**
 - **Where Are We?**
 - **Foundational Skills**
@@ -64,11 +64,15 @@ knitr:
 
 :::
 
-# Where are We?
+# From Last Week...
 
-## Course Progression
+## From Last Week (#1)...
 <hr>
-![](WhereAreWe_Timeline.png)
+![](student_plot_1_wk8.png)
+
+## From Last Week (#2)...
+<hr>
+![](student_plot_2_wk8.png)
 
 # Review/ <br>Foundational Skills
 
@@ -800,7 +804,7 @@ This is a fantastic resource: <https://github.com/EmilHvitfeldt/r-color-palettes
 
 # Accessibility
 
-## Colors
+## Colors {.smaller}
 <hr>
 Some people do not possess the usual complement of color receptors and so can distinguish fewer colors than others.
 
@@ -809,6 +813,7 @@ Some people do not possess the usual complement of color receptors and so can di
 You also want to check the contrast between colors to make text legible for visitors with low vision.
 
 * WebAIM checker: [https://webaim.org/resources/contrastchecker/](https://webaim.org/resources/contrastchecker/)
+
 
 ## Colors
 <hr>
@@ -826,6 +831,7 @@ Some color palettes also consider accessibility:
 * {viridis} is designed to be perceptually uniform (visually consistent change in color + accessible)
 * {RColorBrewer} has colorblind-friendly palettes
 * {MetBrewer} has colorblind-friendly palettes
+* Accessible Color Palette Generator: [https://venngage.com/tools/accessible-color-palette-generator](https://venngage.com/tools/accessible-color-palette-generator) (Thanks, Andrew!)
 
 ## Collaborative Practice
 <hr>
