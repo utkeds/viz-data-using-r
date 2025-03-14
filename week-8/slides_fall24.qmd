@@ -819,7 +819,7 @@ You also want to check the contrast between colors to make text legible for visi
 <hr>
 There are tools to help check your palettes:
 
-* [vischeck.com](vischeck.com)
+* [vischeck.com](https://vischeck.com)
 * {dichromat} and {colorBlindness} packages simulate color blindness
 
 ![](images/colorblindness.png){fig-align="center"}
