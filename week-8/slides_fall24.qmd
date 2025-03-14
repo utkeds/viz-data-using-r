@@ -763,7 +763,7 @@ staff_long |>
 
 ## viridis  {auto-animate="true"}
 <hr>
-How would you use viridis on our line graph?
+How would you use viridis on our line graph where `color = position`?
 
 ```{r}
 library(viridis)
@@ -775,7 +775,7 @@ staff_long |>
 
 ## viridis  {auto-animate="true"}
 <hr>
-How would you use viridis on our line graph? Answer: `scale_color_viridis(discrete = TRUE)`.
+How would you use viridis on our line graph where `color = position`? Answer: `scale_color_viridis(discrete = TRUE)`.
 
 ```{r}
 #| code-line-numbers: "6"
