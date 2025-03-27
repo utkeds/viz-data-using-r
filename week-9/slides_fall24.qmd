@@ -26,31 +26,19 @@ knitr:
 
 ```{r, echo=F}
 library(tidyverse)
+library(tidykids)
 ```
 
 # Weekly Check In/ <br>Download `.zip`
 
 # Start Recording
 
-# Basic Principles
-
-## Pipe Keyboard Shortcut
-<hr>
-
-:::{.smaller-font}
-- In your R studio settings, you can toggle which pipe the keyboard shortcut uses.
-- 'Ctrl + Shift + M' or 'Cmd + Shift + M' will give you the pipe.
-- Decide which pipe it outputs in Tools > Global Options > Code > Editing
-- Tick "Use native pipe operator"
-
-DEMO
-:::
-
 ## Today's Agenda
 <hr>
 
 :::{.smaller-font}
-- **Weekly Check In**[test]
+- **Weekly Check In**
+- **Review / Foundational Skills**
 - **Basic Principles**
 - **`theme()` + text**
 - **`scale_*_*`**
@@ -75,6 +63,416 @@ DEMO
 | Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
 
 :::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| **Be fully present** to each other & the work. | **Keep your video on** when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| **Embrace collaboration**. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Review / Foundational Skills
+
+## Mini Project #1
+<hr>
+- Great work!
+- Lots of really nice plots
+- Remember that the main goal of a viz is clarity!
+- If you'd like to share --> discussion board in Mod. 9
+
+## Mini Project #1 & {plotly}
+<hr>
+:::::{.smaller-font}
+:::{layout=[1,1]}
+
+::::{column}
+
+- {plotly} is a package that can make your ggplot interactive
+
+1. Make the plot first
+2. Store it to an object like `p`
+3. Call `ggploty(p)`
+
+::::
+::::{column}
+```r
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed)) +
+  geom_point(color = "blue")
+
+p
+```
+
+```{r, echo=FALSE}
+#| fig-width: 6
+#| fig-height: 4
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed)) +
+  geom_point(color = "blue")
+
+p
+```
+::::
+:::
+:::::
+
+## Mini Project #1 & {plotly}
+<hr>
+:::::{.smaller-font}
+:::{layout=[1,1]}
+
+::::{column}
+
+- {plotly} is a package that can make your ggplot interactive
+
+1. Make the plot first
+2. Store it to an object like `p`
+3. Call `ggploty(p)`
+
+::::
+::::{column}
+```r
+#install.packages("plotly")
+library(plotly)
+
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed)) +
+  geom_point(color = "blue") +
+  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
+  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+
+ggplotly(p)
+```
+```{r, echo=FALSE}
+#| fig-width: 6
+#| fig-height: 4
+#install.packages("plotly")
+library(plotly)
+
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed)) +
+  geom_point(color = "blue") +
+  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
+  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+
+ggplotly(p)
+```
+::::
+:::
+:::::
+
+## Mini Project #1 & {plotly}
+<hr>
+:::::{.smaller-font}
+:::{layout=[1,1]}
+
+::::{column}
+
+- {plotly} is a package that can make your ggplot interactive
+
+1. Make the plot first
+2. Store it to an object like `p`
+3. Call `ggploty(p)`
+
+::::
+::::{column}
+```r
+#install.packages("plotly")
+library(plotly)
+
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ", state, "<br>SNAP: ", SNAP,
+                                               "<br>PK12Ed: ", PK12ed))) +
+  geom_point(color = "blue") +
+  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
+  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+
+ggplotly(p, tooltip = "text")
+```
+```{r, echo=FALSE}
+#| fig-width: 5
+#| fig-height: 3.5
+#install.packages("plotly")
+library(plotly)
+
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ", state, "<br>SNAP: ", SNAP,
+                                               "<br>PK12Ed: ", PK12ed))) +
+  geom_point(color = "blue") +
+  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
+  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+
+ggplotly(p, tooltip = "text")
+```
+::::
+:::
+:::::
+
+## Mini Project #1 & {plotly}
+<hr>
+:::::{.smaller-font}
+:::{layout=[1,1]}
+
+::::{column}
+
+- {plotly} is a package that can make your ggplot interactive
+
+1. Make the plot first
+2. Store it to an object like `p`
+3. Call `ggploty(p)`
+
+::::
+::::{column}
+```r
+#install.packages("plotly")
+library(plotly)
+
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ",state,"<br>SNAP: ",
+                                               scales::dollar(SNAP),"<br>PK12Ed: ",
+                                               scales::dollar(PK12ed)))) +
+  geom_point(color = "blue") +
+  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
+  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+
+ggplotly(p, tooltip = "text")
+```
+```{r, echo=FALSE}
+#| fig-width: 5
+#| fig-height: 3.5
+#install.packages("plotly")
+library(plotly)
+
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ",state,"<br>SNAP: ",
+                                               scales::dollar(SNAP),"<br>PK12Ed: ",
+                                               scales::dollar(PK12ed)))) +
+  geom_point(color = "blue") +
+  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
+  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+
+ggplotly(p, tooltip = "text")
+```
+::::
+:::
+:::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{layout=[1,1]}
+::::{column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+
+::::
+::::{column}
+
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{layout=[1,1]}
+::::{column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+
+::::
+::::{column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{layout=[1,1]}
+::::{column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+Simple Case + Catch All (Note: NAs)
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    .default = "not one"
+  ))
+```
+::::
+::::{column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{layout=[1,1]}
+::::{column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+Simple Case + Catch All (Note: NAs)
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    .default = "not one"
+  ))
+```
+::::
+::::{column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+Simple Case + Catch All + Preserve NAs
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    is.na(x) ~ NA,
+    .default = "not one"
+  ))
+```
+::::
+:::
+::::::
+
+# Readings
 
 ## Readings
 <hr>
@@ -103,7 +501,7 @@ Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinys
 <hr>
 :::: columns
 
-::: {.column width="50%" .smaller-font}
+::: {.column width="35%" .smaller-font}
 
 Cairo uses this example of a "rich" plot in his book *How Charts Lie*:
 
@@ -116,7 +514,7 @@ Cairo uses this example of a "rich" plot in his book *How Charts Lie*:
 
 :::
 
-::: {.column width="50%"}
+::: {.column width="65%"}
 
 ![](images/cairo_example@2x.png){width=500px}
 :::
@@ -256,9 +654,11 @@ More details on the parameters can be found in `vignette("ggplot2-specs")`.
 We can edit the start/end of axes using `scale_*_*`.
 
 ```{r}
-#| code-line-numbers: "|2"
+#| code-line-numbers: "|2|3|4"
 p <- p +
-  scale_y_continuous(limits = c(0, 100))
+  scale_y_continuous(limits = c(0, 100),
+                     breaks = seq(0,100,20),
+                     labels = scales::label_percent(scale=1))
 
 p
 ```
@@ -565,10 +965,11 @@ p
 - Cameras off: 3-5 min to review task
 - Cameras on: collaborative task work
 
-# [Mini-Project #2](https://utk.instructure.com/courses/213032/assignments/1933661)
+# [Mini-Project #2](https://utk.instructure.com/courses/224783/assignments/2132664)
 
 ## Looking Ahead
 <hr>
+- Next Week: In-Class Observation
 - Reading:
     - Chang (2024), Ch. 7
     - Chang (2024), Ch. 11
@@ -581,20 +982,3 @@ p
 - If you aren't registered already, please consider the [Educational Data Science Graduate Certificate](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/#courses).
 - This class completes 25% of what you need.
 - The capstone can be shaped around your interests/research.
-
-## Offerings in Spring {.smaller}
-<hr>
-- **STEM 680, Foundations of Educational Data Science I (3 Credits)**
-    - Time: Tuesdays, 6-8 pm
-    - Modality: Online and synchronous
-    - Instructor: Dr. Hanall Sung ([hanallsung@utk.edu](hanallsung@utk.edu))
-
-- **STEM 691, Visualizing Data Using R  (3 Credits)**
-    - Time: Thursdays, 3-5 pm
-    - Modality: Online and synchronous
-    - Instructor: Dr. Kelly Boles ([klboles@utk.edu](klboles@utk.edu))
-
-- **STEM 695, Capstone in Educational Data Science (3 Credits)**
-    - Time: TBD (based on the students’ and faculty members’ availability)
-    - Modality: Partially synchronous (one one-hour meeting every two weeks, with asynchronous work in between)
-    - Instructors: Dr. Joshua Rosenberg ([jrosenb8@utk.edu](jrosenb8@utk.edu)) and Dr. Louis Rocconi ([lrocconi@utk.edu](lrocconi@utk.edu))
