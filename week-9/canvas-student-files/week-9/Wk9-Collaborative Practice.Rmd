@@ -5,9 +5,12 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
+# Please add warning=F, message=F
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
 
+```{r load-tidykids}
 library(tidyverse)
 ```
 
@@ -21,8 +24,8 @@ We are using tidykids data for this exercise.
 tidykids <- read_csv("tidykids.csv")
 
 tidykids <- tidykids |>
-  select(state, variable, year, inf_adj_perchild) |>
-  filter(variable == "PK12ed") |>
+  select(state, expenditure, year, inf_adj_perchild) |>
+  filter(expenditure == "PK12ed") |>
  mutate(region = case_when(
     state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island",
                  "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "northeast",
@@ -61,15 +64,7 @@ p <- tidykids |>
 
 ```{r theme-and-palette}
 library(MetBrewer)
-p <- p + theme(legend.position = "bottom",
-        axis.title.x = element_blank(),
-        plot.title = element_text(face = "bold", color = "#381463"),
-        axis.text = element_text(face = "bold", size = 14)) +
-  scale_color_manual(values = met.brewer("Archambault"),
-                     labels = c("northeast" = "Northeast",
-                                "midwest" = "Midwest",
-                                "south" = "South",
-                                "west" = "West"))
+# p <- p + 
 
 ```
 
@@ -94,6 +89,8 @@ south_2016 <- tidykids |>
 
 # Calculate the difference
 
+
+# Add annotation
 p <- p + annotate(
   geom = "text",
   label = FILL ME IN,

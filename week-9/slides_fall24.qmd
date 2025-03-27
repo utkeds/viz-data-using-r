@@ -826,6 +826,19 @@ p
 - Can also use {ggtext} to remove need for legend
 ![](images/MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
 
+## {ggtext}{.smaller}
+<hr>
+```r
+labs(y = "Marginal Effects", title = "Marginal Effects of 
+<b><span style = 'color: #D8A419;'>City</span></b>,
+<b><span style = 'color: #7B8400;'>Town</span></b>,
+<b><span style = 'color: #C61A72;'>Rural:Fringe</span></b>,
+<b><span style = 'color: #D65E9B;'>Rural:Distant</span></b>, & 
+<b><span style = 'color: #EDBAD4;'>Rural:Remote</span></b>
+Locale on AP® STEM Success<br><i>Comparison: Suburb</i>")
+```
+![](images/MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
+
 # Fonts
 
 ## `family` aesthetic {.smaller}
