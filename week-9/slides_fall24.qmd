@@ -50,7 +50,7 @@ DEMO
 <hr>
 
 :::{.smaller-font}
-- **Weekly Check In**
+- **Weekly Check In**[test]
 - **Basic Principles**
 - **`theme()` + text**
 - **`scale_*_*`**
