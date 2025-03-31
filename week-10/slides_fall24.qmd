@@ -26,11 +26,47 @@ knitr:
 
 ```{r, echo=F}
 library(tidyverse)
+library(MetBrewer)
+library(tidykids)
 ```
 
 # Weekly Check In/ <br>Download `.zip`
 
 # Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.smaller-font}
+- **Weekly Check In**
+- **Last Week:** {ggrepel}
+- **Plot Composition & Design**
+    - Compound Plots
+        - {patchwork}
+        - {cowplot}
+        - {gridExtra}
+    - Faceting
+    - Annotations (non-text)
+- **Collaborative Discussion**
+    - Mini Project #2 & Final Project
+    - Collaborative Rubric for Final Project
+- **Looking Ahead**
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
 
 # Building on Week 9
 
@@ -48,7 +84,7 @@ library(tidyverse)
 library(tidykids)
 tidykids_wider <- tidykids|>
   filter(year == 2016) |>
-  pivot_wider(names_from = variable, values_from = c(raw, inf_adj, inf_adj_perchild))
+  pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
 ```
 
 :::{layout="[1,1]" .smaller-font}
@@ -87,7 +123,7 @@ tidykids_wider |>
 library(tidykids)
 tidykids_wider <- tidykids|>
   filter(year == 2016) |>
-  pivot_wider(names_from = variable, values_from = c(raw, inf_adj, inf_adj_perchild))
+  pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
 ```
 
 :::{layout="[1,1]" .smaller-font}
@@ -128,7 +164,7 @@ tidykids_wider |>
 library(tidykids)
 tidykids_wider <- tidykids|>
   filter(year == 2016) |>
-  pivot_wider(names_from = variable, values_from = c(raw, inf_adj, inf_adj_perchild))
+  pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
 ```
 
 :::{layout="[1,1]" .smaller-font}
@@ -155,54 +191,31 @@ tidykids_wider |>
 :::
 :::
 
-## Today's Agenda
-<hr>
-
-:::{.smaller-font}
-- **Weekly Check In**
-- **Last Week:** {ggrepel}
-- **Plot Composition & Design**
-    - Compound Plots
-        - {patchwork}
-        - {cowplot}
-    - Faceting
-    - Annotations (non-text)
-- **Collaborative Discussion**
-    - Mini Project #2 & Final Project
-    - Collaborative Rubric for Final Project
-- **Looking Ahead**
-:::
-
-## Norms
-<hr>
-
-:::{.compact-font}
-| In person norms | And also, for online learning... |
-|----------|----------|
-| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
-| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
-| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
-| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
-| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
-| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
-
-:::
+# Today: Compound Plots
 
 ## Compound Plots
 <hr>
 **Compound plots** are 2+ plots combined into one figure
 
-Two packages for combining plots:
+Three packages for combining plots:
 
-- {patchwork}
+- {patchwork} newest (2018)
 - {cowplot}
-- {gridExtra} is another option, but we won't cover it today
+- {gridExtra} oldest (2010), we won't cover it today
 
+# {patchwork}
 
-## {patchwork}
+## {patchwork} {.smaller}
 <hr>
-- Make all the ggplots you want first
-- Store them to individual objects
+- {patchwork} is designed to work seamlessly with {ggplot2}
+- It allows you to arrange plots in a grid-like fashion using a simple syntax
+- You can combine plots in rows and columns using `+` , `|`, and `/` operators
+- You can also add titles, customize the layout of the combined plots, and adjust the legend, when appropriate
+
+## {patchwork} {.smaller}
+<hr>
+1. Make all the ggplots you want first
+2. Store them to individual objects
 
 :::{layout="[1,1]" .extra-small-font}
 :::{.column}
@@ -213,7 +226,7 @@ p1 <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
   geom_point(aes(color=species)) +
   geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
   theme_minimal() +
-  labs(title = "Penguin Bill Length vs. Flipper Length",
+  labs(title = "Flipper Length vs. Bill Length",
        x = "Bill Length (mm)",
        y = "Flipper Length (mm)") +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
@@ -231,7 +244,7 @@ p1
 p2 <- ggplot(penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
   geom_boxplot()+
   theme_minimal() +
-  labs(title = "Distribution of Penguin Flipper Length by Species",
+  labs(title = "Flipper Length by Species",
        x = "Species",
        y = "Flipper Length (mm)") +
   scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
@@ -249,27 +262,96 @@ p2
 <hr>
 :::{.smaller-font}
 - Let's combine them
-
+- Simplest case
 ```{r, fig.height=4.5}
 #install.packages("patchwork")
 library(patchwork)
 
-combined_plot <- p1 + p2
-
-combined_plot
+p1 + p2
 ```
 
 :::
 
-# Commercial Break
-
-## Calculator Math
+## {patchwork}
 <hr>
-- Think about an old calculator - even maybe the one on your phone
-$$(1+2+3)/4  = \frac{???}{???}$$
-[$$(1+2+3)/4  = \frac{1+2+3}{4}$$]{.fragment}
+:::{.smaller-font}
+- Let's combine them
+- `+` operator tries to keep the plots in a square-ish grid; fills by row
+```{r, fig.height=4.5}
+p1 + p1 + p2 + p2
+```
 
-# Regularly Scheduled Programming
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- Let's combine them
+- `|` operator creates columns
+```{r, fig.height=4.5}
+p1 | p1 | p2 | p2
+```
+
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- Let's combine them
+- `/` operator creates rows
+```{r, fig.height=4.5}
+p1 / p1 / p2 / p2
+```
+
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- Let's combine them
+
+```{r, fig.height=4.5}
+p1 | p2 / p2
+```
+
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- Let's combine them
+- You can also use parentheses to group, just like in math
+
+```{r, fig.height=4.5}
+(p1 | p2) / p2
+```
+
+:::
+<!-- ## {patchwork} -->
+<!-- <hr> -->
+<!-- :::{.smaller-font} -->
+<!-- - Let's combine them -->
+
+<!-- ```{r, fig.height=4.5} -->
+<!-- #install.packages("patchwork") -->
+<!-- library(patchwork) -->
+
+<!-- combined_plot <- p1 + p2 -->
+
+<!-- combined_plot -->
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- # Commercial Break -->
+
+<!-- ## Calculator Math -->
+<!-- <hr> -->
+<!-- - Think about an old calculator - even maybe the one on your phone -->
+<!-- $$(1+2+3)/4  = \frac{???}{???}$$ -->
+<!-- [$$(1+2+3)/4  = \frac{1+2+3}{4}$$]{.fragment} -->
+
+<!-- # Regularly Scheduled Programming -->
 
 ```{r, echo = F}
 p3 <- penguins |>
@@ -277,7 +359,7 @@ p3 <- penguins |>
   geom_point(aes(color = species)) +
   geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
   theme_minimal() +
-  labs(title = "Flipper Length vs. Body Mass",
+  labs(title = "Body Mass vs. Flipper Length",
        x = "Flipper Length (mm)",
        y = "Body Mass (g)") +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
@@ -290,7 +372,7 @@ p4 <- penguins |>
   ggplot(aes(x = species, y = body_mass_g)) +
   geom_boxplot(aes(fill = species))+
   theme_minimal() +
-  labs(title = "Distribution of Penguin Body Mass by Species",
+  labs(title = "Body Mass",
        x = "Species",
        y = "Body Mass (g)") +
   scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
@@ -310,26 +392,164 @@ p5 <- penguins |>
                     ymax = mean_body_mass + sd_body_mass),
                 width = 0.2, position = position_dodge(0.9)) +
   theme_minimal() +
-  labs(title = "Mean Penguin Body Mass by Species",
+  labs(title = "Mean Body Mass",
        x = "Species",
        y = "Mean Body Mass (g)") +
   scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01"))+
+  scale_y_continuous(limits = c(0,6500),
+                     breaks = seq(0, 6000, by = 1000)) +
    theme(legend.title = element_blank(),
         plot.title = element_text(size = 10))
   
 ```
 
+# Welcome to: <br> *What's My Code!*
+
+## {patchwork} {.smaller}
+<hr>
+- **#1**: In chat! What's my code?...
+```{r, fig.height=4.5, echo=F}
+q1 <- ggplot() +
+  annotate("text", x = 0, y = 0, label = "p1", size = 20)
+q2 <- ggplot() +
+  annotate("text", x = 0, y = 0, label = "p2", size = 20)
+q3 <- ggplot() +
+  annotate("text", x = 0, y = 0, label = "p3", size = 20)
+q4 <- ggplot() +
+  annotate("text", x = 0, y = 0, label = "p4", size = 20)
+q5 <- ggplot() +
+  annotate("text", x = 0, y = 0, label = "p5", size = 20)
+
+(q1 | q2) / q3
+```
+
+## {patchwork} {.smaller}
+<hr>
+- **#1**: In chat! What's my code?...
+```r
+(p1 | p2) / p3
+
+#(p1 + p2) / p3 Also works
+```
+```{r, fig.height=4.5, echo=F}
+(q1 | q2) / q3
+```
+
+## {patchwork} {.smaller}
+<hr>
+- **#2**: In chat! What's my code?...
+```{r, fig.height=4.5, echo=F}
+
+q1 | (q2 + q3) / q4
+```
+
+## {patchwork} {.smaller}
+<hr>
+- **#2**: In chat! What's my code?...
+```r
+p1 | (p2 | p3) / p4
+
+# p1 | (p2 + p3) / p4 Also works
+```
+```{r, fig.height=4.5, echo=F}
+q1 | (q2 | q3) / q4
+```
+
+## {patchwork} {.smaller}
+<hr>
+- **#3**: In chat! What's my code?...
+```{r, fig.height=4.5, echo=F}
+
+(q1 + q2 + q3 + q4) / q5
+```
+
+## {patchwork} {.smaller}
+<hr>
+- **#3**: In chat! What's my code?...
+```r
+(p1 + p2 + p3 + p4) / p5
+
+# ((p1 | p2)/(p3 | p4)) / p5 Also (generally) works
+# ((p1 + p2)/(p3 + p4)) / p5 Also (generally) works
+```
+```{r, fig.height=4.5, echo=F}
+(q1 + q2 + q3 + q4) / q5
+```
+
+## {patchwork} {.smaller}
+<hr>
+- **#3**: In chat! What's my code?...
+- In the weeds a little... how are these different?
+
+::::{layout="[1,1]"}
+:::{.column}
+```r
+(p1 + p2 + p3 + p4) / p5
+```
+```{r, fig.height=4.5, echo=FALSE}
+(q1 + q2 + q3 + q4) / q5
+```
+:::
+:::{.column}
+```r
+((p1 + p2)/(p3 + p4)) / p5
+```
+```{r, fig.height=4.5, echo=FALSE}
+((q1 + q2)/(q3 + q4)) / q5
+```
+:::
+::::
+
+## {patchwork} {.smaller}
+<hr>
+- **#3**: In chat! What's my code?...
+- In the weeds a little... how are these different?
+- By default, it distributes the vertical space evenly across groupings
+
+::::{layout="[1,1]"}
+:::{.column}
+```r
+# Two groupings: 50% and 50%
+(p1 + p2 + p3 + p4) / p5
+```
+```{r, fig.height=4.5, echo=FALSE}
+# Two groupings: 50% and 50%
+(q1 + q2 + q3 + q4) / q5
+```
+:::
+:::{.column}
+```r
+# Three groupings: 33%, 33%, and 33%
+((p1 + p2)/(p3 + p4)) / p5
+```
+```{r, fig.height=4.5, echo=FALSE}
+# Three groupings: 33%, 33%, and 33%
+((q1 + q2)/(q3 + q4)) / q5
+```
+:::
+::::
+
+
 ## {patchwork}
 <hr>
 :::{.smaller-font}
-- {patchwork} lets you combine plots in multiple rows/columns using "calculator math"
-- I made several other plots (hidden code)
+- I made several plots with penguins data (hidden code)
 ```{r, fig.height=4.5}
-#library(patchwork)
+combined_plot <- (p1 | p2) / (p3 | p4 | p5) #Note: It does the same default space distribution horizontally
 
-combined_plot_2 <- (p1 + p2) / (p3 + p4 + p5)
+combined_plot
+```
+
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- This is the configuration I want. Let's make it look better...
+```{r, fig.height=4.5}
+combined_plot_2 <- (p1 | p2) / (p3 | (p4 | p5))
 
 combined_plot_2
 ```
@@ -339,14 +559,9 @@ combined_plot_2
 ## {patchwork}
 <hr>
 :::{.smaller-font}
-- You can also manipulate the size of each plot relative to the figure
+- These legends are all providing the same information...
 ```{r, fig.height=4.5}
-#library(patchwork)
-
-bottom_right <- p4 + p5
-combined_plot_3 <- (p1 + p2) / (p3 + bottom_right)
-
-combined_plot_3
+combined_plot_2 + plot_layout(guides = 'collect')
 ```
 
 :::
@@ -354,7 +569,92 @@ combined_plot_3
 ## {patchwork}
 <hr>
 :::{.smaller-font}
+- It will only collect/combine identical legends
+- Otherwise, I can clean the legends up in the original plots with `theme(legend.position = "none")`
+```{r, echo=F}
+p1 <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color=species)) +
+  geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
+  theme_minimal() +
+  labs(title = "Flipper Length vs. Bill Length",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+   theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10),
+        legend.position = "none")
+
+p2 <- ggplot(penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot()+
+  theme_minimal() +
+  labs(title = "Flipper Length",
+       x = "Species",
+       y = "Flipper Length (mm)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+   theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10),
+        legend.position = "none")
+
+p3 <- penguins |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
+  theme_minimal() +
+  labs(title = "Body Mass vs. Flipper Length",
+       x = "Flipper Length (mm)",
+       y = "Body Mass (g)") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+   theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10),
+        legend.position = "none")
+
+p4 <- penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_boxplot(aes(fill = species))+
+  theme_minimal() +
+  labs(title = "Body Mass",
+       x = "Species",
+       y = "Body Mass (g)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme(legend.title = element_blank(),
+        plot.title = element_text(size = 10),
+        legend.position = "none")
+```
+
+```{r, fig.height=4.5}
+combined_plot_2 <- (p1 | p2) / (p3 | (p4 | p5))
+combined_plot_2 <- combined_plot_2 + plot_layout(guides = 'collect')
+combined_plot_2
+```
+
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
+- Let's add a title to the whole figure
+```{r, fig.height=4.5}
+combined_plot_2 <- combined_plot_2 + plot_annotation(title = 'Fig 1.4: Plotting Portraits of Perplexing Penguins')
+combined_plot_2
+```
+:::
+
+## {patchwork}
+<hr>
+:::{.smaller-font}
 - It does a lot more
+  - Handles redundant axes
+  - Manual sizing
+  - Adding plot tags (I, II, III, etc.)
+  - More!
 - [Investigate the documentation](https://patchwork.data-imaginist.com/articles/guides/assembly.html) for more details
 :::
 
@@ -364,7 +664,7 @@ combined_plot_3
 <hr>
 :::{.extra-small-font}
 - Similar to {patchwork} but written by Wilke
-- Works Similarly
+- Works similarly, but feels a bit more complicated
 
 ```{r, fig.height=4.5}
 #install.packages("cowplot")
@@ -381,9 +681,10 @@ combined_plot_4
 
 ## {patchwork} vs. {cowplot}
 <hr>
-- {patchwork} is newer and written for ease of use
-- {cowplot} is older and [has more features](https://wilkelab.org/cowplot/articles/plot_grid.html)
-- Both are great for combining plots
+- {patchwork} is newer and written for ease of use by Pedersen (co-author of ggplot book 3rd ed.)
+- {cowplot} is older and [written by Wilke](https://wilkelab.org/cowplot/articles/plot_grid.html)
+- I find {gridExtra} to be a bit clunky
+- Recommendation: {patchwork}
 
 # Facets (again)
 
