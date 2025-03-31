@@ -4,14 +4,17 @@ author: ""
 date: ''
 output: html_document
 ---
-
+<!-- Add options to YAML header and setup chunk. -->
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r package-install}
 library(tidyverse)
 library(patchwork)
 ```
 
-This week's assignment is quite simple. You are going to re-ruse some of your old graphs in order to practice making compound graphics and small multiples and using annotations. Throughout, you are not expected to pay attention to all of the aesthetic elements of the plot, but please ensure that the plots are interpretable and accessible through your use of themes, color, labels, text and fonts, etc.
+This week's assignment is quite simple. You are going to re-use some of your old graphs in order to practice making compound graphics and small multiples and using annotations. Throughout, you are not expected to pay attention to all of the aesthetic elements of the plot, but please ensure that the plots are interpretable and accessible through your use of themes, color, labels, text and fonts, etc.
 
 ## Compound Plots with patchwork
 
@@ -33,20 +36,22 @@ Again using a previous data set and related analyses and/or visualizations, add 
 
 
 ```{r}
-data
+
 ```
 
 ## Reflection
 
 Important note: After you knit, check the HTML file. 
 
-- Does it appear as you intended?
-- Does any output print that is too long?
-- Do your name and date appear?
+- Does it appear as you intended? ANSWER HERE
+- Does any output print that is too long? ANSWER HERE
+- Do your name and date appear? ANSWER HERE
 
 Share any questions you have in Canvas about fine-tuning your .Rmd output.
 
 And, please answer this question: How did this assignment go? What went well and what was a challenge? Please add 1-2 sentences.
+
+REFLECTION GOES HERE:
 
 ## 4. Submit
 
