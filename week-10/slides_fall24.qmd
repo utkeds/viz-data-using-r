@@ -405,7 +405,7 @@ p5 <- penguins |>
   
 ```
 
-# Welcome to: <br> *What's My Code!*
+# Welcome to: <br> *What's My Code?!?*
 
 ## {patchwork} {.smaller}
 <hr>
@@ -682,18 +682,19 @@ combined_plot_4
 ## {patchwork} vs. {cowplot}
 <hr>
 - {patchwork} is newer and written for ease of use by Pedersen (co-author of ggplot book 3rd ed.)
-- {cowplot} is older and [written by Wilke](https://wilkelab.org/cowplot/articles/plot_grid.html)
+- [{cowplot}](https://wilkelab.org/cowplot/articles/plot_grid.html) is older and written by Wilke
 - I find {gridExtra} to be a bit clunky
 - Recommendation: {patchwork}
 
 # Facets (again)
 
-## Faceting
+## Faceting {.smaller}
 <hr>
 :::{.extra-small-font}
-- We have used `facet_wrap` to create multiple facets in different panes
-- You can also use `facet_wrap` to create small multiples on a semi-shared grid
+- We have used `facet_wrap()` to create multiple facets in different panes
+- You can also use `facet_wrap()` to create small multiples on a semi-shared grid
 - Think back to the multiple distributions graph from Week 6
+:::
 
 ```{r, fig.height=4.5}
 ggplot(data = penguins, aes(x = flipper_length_mm)) +
@@ -701,16 +702,18 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
   scale_fill_manual(values = c("darkorange","purple","cyan4")) +
   labs(x = "Flipper length (mm)",
        y = "Frequency",
-       title = "Distribution of flipper lengths")+
+       title = "Distribution of Flipper Lengths")+
   theme_minimal()
 ```
-:::
 
-## Faceting
+
+## Faceting {.smaller}
 <hr>
 :::{.extra-small-font}
-- You call also display them separately, side-by-side
+- You call also display them separately, side-by-side with `facet_wrap()`
 - Here: using the the *same y-axis scale*
+:::
+
 ```{r, fig.height=4.5}
 ggplot(penguins, aes(x = flipper_length_mm)) +
   geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
@@ -722,13 +725,14 @@ ggplot(penguins, aes(x = flipper_length_mm)) +
   facet_wrap(~species, nrow = 1)+
   theme(legend.position = "none")
 ```
-:::
 
-## Faceting
+## Faceting {.smaller}
 <hr>
 :::{.extra-small-font}
 - You call also display them separately, side-by-side
-- Here: **NOT** using the the *same y-axis scale*
+- Here: **NOT** using the the *same y-axis scale* --> `"free_y"`
+:::
+
 ```{r, fig.height=4.5}
 ggplot(penguins, aes(x = flipper_length_mm)) +
   geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
@@ -740,86 +744,120 @@ ggplot(penguins, aes(x = flipper_length_mm)) +
   facet_wrap(~species, nrow = 1, scales = "free_y")+
   theme(legend.position = "none")
 ```
+
+## Faceting {.smaller}
+<hr>
+:::{.extra-small-font}
+- Note: `scales = "free_y"` (or `free_x` if on x) also allows for different discrete scales in each facet
+  
+:::
+
+```{r, echo=FALSE}
+tidykids <- tidykids |>
+  mutate(region = case_when(
+    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
+                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
+    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
+                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
+                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma",
+                 "Texas", "District of Columbia") ~ "South",
+    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
+                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii",
+                 "Alaska") ~ "West"))
+```
+
+:::{.smaller-font}
+
+```{r, fig.height=3.75}
+tidykids |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(state = fct_reorder(state, inf_adj_perchild)) |>
+  ggplot(aes(x = inf_adj_perchild, y = state)) +
+  geom_col(fill="#007A33", alpha=0.7) +
+  facet_wrap(~region, scales = "free_y") +
+  labs(title = "Inflation Adjusted Per Child Expenditure on Pre-K Through 12 Education (2016)")+
+  theme_minimal() +
+  theme(axis.title = element_blank())+
+  scale_x_continuous(labels = scales::label_dollar())
+```
+
 :::
 
 # More Annotations
 
-## Annotations
+## Annotations {.smaller}
 <hr>
-:::{.extra-small-font}
-- a plot
+- a plot to build on...
+
 ```{r, fig.height=4.5}
 p8 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
   geom_point()+
-  labs(
-    title = "Weight vs. MPG of Cars",
+  labs(title = "Weight vs. MPG of Cars",
     x = "Weight",
-    y= "MPG"
-  )
+    y= "MPG")
 
 p8
 ```
-:::
 
-## Annotations: Text
+
+## Annotations: Text {.smaller}
 <hr>
-:::{.extra-small-font}
+- We learned about `text` and `label` annotations last week.
 ```{r, fig.height=4.5}
 p9 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
   geom_point()+
-  labs(
-    title = "Weight vs. MPG of Cars",
+  labs(title = "Weight vs. MPG of Cars",
     x = "Weight",
     y= "MPG") +
   theme_minimal() +
   annotate("text", x = 3, y = 30,
-               label = "These cars are fuel efficient")
+          label = "These cars are fuel efficient")
   
-
 p9
 ```
-:::
 
-## Annotations: Text + Rect
+
+## Annotations: Text + Rect {.smaller}
 <hr>
-:::{.extra-small-font}
+- Let's add a rectangle to highlight a specific area of the plot
 ```{r, fig.height=4.5}
 p10 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
   geom_point()+
-  labs(
-    title = "Weight vs. MPG of Cars",
+  labs(title = "Weight vs. MPG of Cars",
     x = "Weight",
     y= "MPG") +
   theme_minimal() +
   annotate("text", x = 3, y = 30,
-               label = "These cars are fuel efficient") +
+           label = "These cars are fuel efficient") +
   annotate("rect", xmin = 1.5, xmax = 2.5, ymin = 25, ymax = 35, alpha = .2, fill = "cornflowerblue")
 
 p10
 ```
-:::
 
-## Annotations: {gghighlight}
+
+## Annotations: {gghighlight} {.smaller}
 <hr>
-:::{.extra-small-font}
+- Or use {gghighlight} to highlight specific points on the plot
 ```{r, fig.height=4.5}
 library(gghighlight)
+
 p11 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
   geom_point(color="cornflowerblue")+
-  labs(
-    title = "Weight vs. MPG of Cars",
+  labs(title = "Weight vs. MPG of Cars",
     x = "Weight",
     y= "MPG") +
   theme_minimal() +
   annotate("text", x = 3, y = 30,
-               label = "These cars are fuel efficient")+
+           label = "These cars are fuel efficient")+
   gghighlight(mpg > 25)
 
 p11
 ```
-:::
 
-# [Mini-Project #2 & Final](https://utk.instructure.com/courses/213032/assignments/1933661?module_item_id=4382262)
+
+# [Mini-Project #2 & Final](https://utk.instructure.com/courses/224783/assignments/2132664?module_item_id=4893838)
 
 # Collaborative Discussion
 
@@ -828,13 +866,13 @@ p11
 :::{.smaller-font}
 Two topics:
 
-- (1) Share your current ideas from Mini-Project #2 & Final Project
+- **(1) Share your current ideas from Mini-Project #2 & Final Project**
 
     - What data are you considering?
     - What graphs are your considering?
     - What concerns do you have?
 
-- (2) Pull up the Final Project Collaborative Rubric
+- **(2) Pull up the Final Project Collaborative Rubric**
 
     - What should be kept?
     - What should be removed?
@@ -842,7 +880,7 @@ Two topics:
 
 **Add comments to the document using the comment tool!**
 
-**Be prepared for two people in your group to share (re: #1 and re: #2)**
+**Be prepared for TWO people in your group to share (re: #1 and re: #2)**
 :::
 
 ## Looking Ahead
@@ -850,23 +888,21 @@ Two topics:
 - Reading:
     - Rapp (n.d.), Chapters 1-4
     - Schwabish (2021), Chapter 11
-- Assignment: Mini-Project #2, Due 11/6
-- Assignment: Assignment 10, Due 11/11
-
-**No Class Next Week - Election**
+- Assignment: Mini-Project #2, Due 4/16
+- Assignment: Assignment 10, Due 4/9
 
 
-## Next Semester + Beyond
+## Next Semester + Beyond {.smaller}
 <hr>
 - If you aren't registered already, please consider the [Educational Data Science Graduate Certificate](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/#courses).
 - This class completes 25% of what you need.
 - The capstone can be shaped around your interests/research.
 
-## Offerings in Spring {.smaller}
+## Offerings in Fall {.smaller}
 <hr>
-:::{.extra-small-font}
+<!-- :::{.extra-small-font} -->
 - **STEM 680, Foundations of Educational Data Science I (3 Credits)**
-    - Time: Tuesdays, 6-8 pm
+    - Time: Mondays, 6-8 pm
     - Modality: Online and synchronous
     - Instructor: Dr. Hanall Sung ([hanallsung@utk.edu](hanallsung@utk.edu))
 
@@ -875,12 +911,12 @@ Two topics:
     - Modality: Online and synchronous
     - Instructor: Dr. Kelly Boles ([klboles@utk.edu](klboles@utk.edu))
 
-- **STEM 695, Capstone in Educational Data Science (3 Credits)**
-    - Time: TBD (based on the students’ and faculty members’ availability)
-    - Modality: Partially synchronous (one one-hour meeting every two weeks, with asynchronous work in between)
-    - Instructors: Dr. Joshua Rosenberg ([jrosenb8@utk.edu](jrosenb8@utk.edu)) and Dr. Louis Rocconi ([lrocconi@utk.edu](lrocconi@utk.edu))
+<!-- - **STEM 695, Capstone in Educational Data Science (3 Credits)** -->
+<!--     - Time: TBD (based on the students’ and faculty members’ availability) -->
+<!--     - Modality: Partially synchronous (one one-hour meeting every two weeks, with asynchronous work in between) -->
+<!--     - Instructors: Dr. Joshua Rosenberg ([jrosenb8@utk.edu](jrosenb8@utk.edu)) and Dr. Louis Rocconi ([lrocconi@utk.edu](lrocconi@utk.edu)) -->
 
-:::
+<!-- ::: -->
 
 ## Attribution for materials used today
 <hr>

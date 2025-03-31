@@ -868,7 +868,7 @@ Dr.&nbsp;Kelly Boles
 </section></section>
 <section>
 <section id="welcome-to-whats-my-code" class="title-slide slide level1 center">
-<h1>Welcome to: <br> <em>What’s My Code!</em></h1>
+<h1>Welcome to: <br> <em>What’s My Code?!?</em></h1>
 
 </section>
 <section id="patchwork-9" class="slide level2 smaller">
@@ -1160,7 +1160,7 @@ Dr.&nbsp;Kelly Boles
 <hr>
 <ul>
 <li>{patchwork} is newer and written for ease of use by Pedersen (co-author of ggplot book 3rd ed.)</li>
-<li>{cowplot} is older and <a href="https://wilkelab.org/cowplot/articles/plot_grid.html">written by Wilke</a></li>
+<li><a href="https://wilkelab.org/cowplot/articles/plot_grid.html">{cowplot}</a> is older and written by Wilke</li>
 <li>I find {gridExtra} to be a bit clunky</li>
 <li>Recommendation: {patchwork}</li>
 </ul>
@@ -1170,41 +1170,36 @@ Dr.&nbsp;Kelly Boles
 <h1>Facets (again)</h1>
 
 </section>
-<section id="faceting" class="slide level2">
+<section id="faceting" class="slide level2 smaller">
 <h2>Faceting</h2>
 <hr>
 <div class="extra-small-font">
 <ul>
-<li>We have used <code>facet_wrap</code> to create multiple facets in different panes</li>
-<li>You can also use <code>facet_wrap</code> to create small multiples on a semi-shared grid</li>
+<li>We have used <code>facet_wrap()</code> to create multiple facets in different panes</li>
+<li>You can also use <code>facet_wrap()</code> to create small multiples on a semi-shared grid</li>
 <li>Think back to the multiple distributions graph from Week 6</li>
 </ul>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
 <span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
 <span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
 <span id="cb28-5"><a href="#cb28-5"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb28-6"><a href="#cb28-6"></a>       <span class="at">title =</span> <span class="st">"Distribution of flipper lengths"</span>)<span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a>       <span class="at">title =</span> <span class="st">"Distribution of Flipper Lengths"</span>)<span class="sc">+</span></span>
 <span id="cb28-7"><a href="#cb28-7"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-37-1.png" width="960"></p>
-</figure>
+
 </div>
-</div>
-</div>
-</div>
-</section>
-<section id="faceting-1" class="slide level2">
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-37-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="faceting-1" class="slide level2 smaller">
 <h2>Faceting</h2>
 <hr>
 <div class="extra-small-font">
 <ul>
-<li>You call also display them separately, side-by-side</li>
+<li>You call also display them separately, side-by-side with <code>facet_wrap()</code></li>
 <li>Here: using the the <em>same y-axis scale</em></li>
 </ul>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
@@ -1215,24 +1210,18 @@ Dr.&nbsp;Kelly Boles
 <span id="cb29-7"><a href="#cb29-7"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
 <span id="cb29-8"><a href="#cb29-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
 <span id="cb29-9"><a href="#cb29-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-38-1.png" width="960"></p>
-</figure>
+
 </div>
-</div>
-</div>
-</div>
-</section>
-<section id="faceting-2" class="slide level2">
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-38-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="faceting-2" class="slide level2 smaller">
 <h2>Faceting</h2>
 <hr>
 <div class="extra-small-font">
 <ul>
 <li>You call also display them separately, side-by-side</li>
-<li>Here: <strong>NOT</strong> using the the <em>same y-axis scale</em></li>
+<li>Here: <strong>NOT</strong> using the the <em>same y-axis scale</em> –&gt; <code>"free_y"</code></li>
 </ul>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
@@ -1243,10 +1232,33 @@ Dr.&nbsp;Kelly Boles
 <span id="cb30-7"><a href="#cb30-7"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
 <span id="cb30-8"><a href="#cb30-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span></span>
 <span id="cb30-9"><a href="#cb30-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-39-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="faceting-3" class="slide level2 smaller">
+<h2>Faceting</h2>
+<hr>
+<div class="extra-small-font">
+<ul>
+<li>Note: <code>scales = "free_y"</code> (or <code>free_x</code> if on x) also allows for different discrete scales in each facet</li>
+</ul>
+</div>
+<div class="smaller-font">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>tidykids <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, inf_adj_perchild)) <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state)) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#007A33"</span>, <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Inflation Adjusted Per Child Expenditure on Pre-K Through 12 Education (2016)"</span>)<span class="sc">+</span></span>
+<span id="cb31-8"><a href="#cb31-8"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb31-9"><a href="#cb31-9"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb31-10"><a href="#cb31-10"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-39-1.png" width="960"></p>
+<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1258,117 +1270,89 @@ Dr.&nbsp;Kelly Boles
 <h1>More Annotations</h1>
 
 </section>
-<section id="annotations" class="slide level2">
+<section id="annotations" class="slide level2 smaller">
 <h2>Annotations</h2>
 <hr>
-<div class="extra-small-font">
 <ul>
-<li>a plot</li>
+<li>a plot to build on…</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>p8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">labs</span>(</span>
-<span id="cb31-4"><a href="#cb31-4"></a>    <span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
-<span id="cb31-5"><a href="#cb31-5"></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
-<span id="cb31-6"><a href="#cb31-6"></a>    <span class="at">y=</span> <span class="st">"MPG"</span></span>
-<span id="cb31-7"><a href="#cb31-7"></a>  )</span>
-<span id="cb31-8"><a href="#cb31-8"></a></span>
-<span id="cb31-9"><a href="#cb31-9"></a>p8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>p8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="at">y=</span> <span class="st">"MPG"</span>)</span>
+<span id="cb32-6"><a href="#cb32-6"></a></span>
+<span id="cb32-7"><a href="#cb32-7"></a>p8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-</div>
-</div>
-</section>
-<section id="annotations-text" class="slide level2">
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-42-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="annotations-text" class="slide level2 smaller">
 <h2>Annotations: Text</h2>
 <hr>
-<div class="extra-small-font">
+<ul>
+<li>We learned about <code>text</code> and <code>label</code> annotations last week.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>p9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">labs</span>(</span>
-<span id="cb32-4"><a href="#cb32-4"></a>    <span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
-<span id="cb32-5"><a href="#cb32-5"></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
-<span id="cb32-6"><a href="#cb32-6"></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
-<span id="cb32-7"><a href="#cb32-7"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb32-8"><a href="#cb32-8"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
-<span id="cb32-9"><a href="#cb32-9"></a>               <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>)</span>
-<span id="cb32-10"><a href="#cb32-10"></a>  </span>
-<span id="cb32-11"><a href="#cb32-11"></a></span>
-<span id="cb32-12"><a href="#cb32-12"></a>p9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>p9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
+<span id="cb33-4"><a href="#cb33-4"></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb33-8"><a href="#cb33-8"></a>          <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9"></a>  </span>
+<span id="cb33-10"><a href="#cb33-10"></a>p9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-</div>
-</div>
-</section>
-<section id="annotations-text-rect" class="slide level2">
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-43-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="annotations-text-rect" class="slide level2 smaller">
 <h2>Annotations: Text + Rect</h2>
 <hr>
-<div class="extra-small-font">
+<ul>
+<li>Let’s add a rectangle to highlight a specific area of the plot</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>p10 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">labs</span>(</span>
-<span id="cb33-4"><a href="#cb33-4"></a>    <span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
-<span id="cb33-5"><a href="#cb33-5"></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
-<span id="cb33-6"><a href="#cb33-6"></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
-<span id="cb33-7"><a href="#cb33-7"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb33-8"><a href="#cb33-8"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
-<span id="cb33-9"><a href="#cb33-9"></a>               <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>) <span class="sc">+</span></span>
-<span id="cb33-10"><a href="#cb33-10"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="fl">1.5</span>, <span class="at">xmax =</span> <span class="fl">2.5</span>, <span class="at">ymin =</span> <span class="dv">25</span>, <span class="at">ymax =</span> <span class="dv">35</span>, <span class="at">alpha =</span> .<span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"cornflowerblue"</span>)</span>
-<span id="cb33-11"><a href="#cb33-11"></a></span>
-<span id="cb33-12"><a href="#cb33-12"></a>p10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-42-1.png" width="960"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>p10 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4"></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5"></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb34-7"><a href="#cb34-7"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb34-8"><a href="#cb34-8"></a>           <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>) <span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9"></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="fl">1.5</span>, <span class="at">xmax =</span> <span class="fl">2.5</span>, <span class="at">ymin =</span> <span class="dv">25</span>, <span class="at">ymax =</span> <span class="dv">35</span>, <span class="at">alpha =</span> .<span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"cornflowerblue"</span>)</span>
+<span id="cb34-10"><a href="#cb34-10"></a></span>
+<span id="cb34-11"><a href="#cb34-11"></a>p10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-</div>
-</div>
-</section>
-<section id="annotations-gghighlight" class="slide level2">
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-44-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="annotations-gghighlight" class="slide level2 smaller">
 <h2>Annotations: {gghighlight}</h2>
 <hr>
-<div class="extra-small-font">
+<ul>
+<li>Or use {gghighlight} to highlight specific points on the plot</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">library</span>(gghighlight)</span>
-<span id="cb34-2"><a href="#cb34-2"></a>p11 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"cornflowerblue"</span>)<span class="sc">+</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a>  <span class="fu">labs</span>(</span>
-<span id="cb34-5"><a href="#cb34-5"></a>    <span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
-<span id="cb34-6"><a href="#cb34-6"></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
-<span id="cb34-7"><a href="#cb34-7"></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
-<span id="cb34-8"><a href="#cb34-8"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb34-9"><a href="#cb34-9"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
-<span id="cb34-10"><a href="#cb34-10"></a>               <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>)<span class="sc">+</span></span>
-<span id="cb34-11"><a href="#cb34-11"></a>  <span class="fu">gghighlight</span>(mpg <span class="sc">&gt;</span> <span class="dv">25</span>)</span>
-<span id="cb34-12"><a href="#cb34-12"></a></span>
-<span id="cb34-13"><a href="#cb34-13"></a>p11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-43-1.png" width="960"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">library</span>(gghighlight)</span>
+<span id="cb35-2"><a href="#cb35-2"></a></span>
+<span id="cb35-3"><a href="#cb35-3"></a>p11 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"cornflowerblue"</span>)<span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6"></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb35-7"><a href="#cb35-7"></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb35-10"><a href="#cb35-10"></a>           <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>)<span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a>  <span class="fu">gghighlight</span>(mpg <span class="sc">&gt;</span> <span class="dv">25</span>)</span>
+<span id="cb35-12"><a href="#cb35-12"></a></span>
+<span id="cb35-13"><a href="#cb35-13"></a>p11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-</div>
-</div>
-</section></section>
+<img data-src="slides_fall24_files/figure-revealjs/unnamed-chunk-45-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section id="mini-project-2-final" class="title-slide slide level1 center">
-<h1><a href="https://utk.instructure.com/courses/213032/assignments/1933661?module_item_id=4382262">Mini-Project #2 &amp; Final</a></h1>
+<h1><a href="https://utk.instructure.com/courses/224783/assignments/2132664?module_item_id=4893838">Mini-Project #2 &amp; Final</a></h1>
 
 </section>
 
@@ -1383,17 +1367,13 @@ Dr.&nbsp;Kelly Boles
 <div class="smaller-font">
 <p>Two topics:</p>
 <ul>
-<li><ol type="1">
-<li>Share your current ideas from Mini-Project #2 &amp; Final Project</li>
-</ol>
+<li><p><strong>(1) Share your current ideas from Mini-Project #2 &amp; Final Project</strong></p>
 <ul>
 <li>What data are you considering?</li>
 <li>What graphs are your considering?</li>
 <li>What concerns do you have?</li>
 </ul></li>
-<li><ol start="2" type="1">
-<li>Pull up the Final Project Collaborative Rubric</li>
-</ol>
+<li><p><strong>(2) Pull up the Final Project Collaborative Rubric</strong></p>
 <ul>
 <li>What should be kept?</li>
 <li>What should be removed?</li>
@@ -1401,7 +1381,7 @@ Dr.&nbsp;Kelly Boles
 </ul></li>
 </ul>
 <p><strong>Add comments to the document using the comment tool!</strong></p>
-<p><strong>Be prepared for two people in your group to share (re: #1 and re: #2)</strong></p>
+<p><strong>Be prepared for TWO people in your group to share (re: #1 and re: #2)</strong></p>
 </div>
 </section>
 <section id="looking-ahead" class="slide level2">
@@ -1413,12 +1393,11 @@ Dr.&nbsp;Kelly Boles
 <li>Rapp (n.d.), Chapters 1-4</li>
 <li>Schwabish (2021), Chapter 11</li>
 </ul></li>
-<li>Assignment: Mini-Project #2, Due 11/6</li>
-<li>Assignment: Assignment 10, Due 11/11</li>
+<li>Assignment: Mini-Project #2, Due 4/16</li>
+<li>Assignment: Assignment 10, Due 4/9</li>
 </ul>
-<p><strong>No Class Next Week - Election</strong></p>
 </section>
-<section id="next-semester-beyond" class="slide level2">
+<section id="next-semester-beyond" class="slide level2 smaller">
 <h2>Next Semester + Beyond</h2>
 <hr>
 <ul>
@@ -1427,14 +1406,14 @@ Dr.&nbsp;Kelly Boles
 <li>The capstone can be shaped around your interests/research.</li>
 </ul>
 </section>
-<section id="offerings-in-spring" class="slide level2 smaller">
-<h2>Offerings in Spring</h2>
+<section id="offerings-in-fall" class="slide level2 smaller">
+<h2>Offerings in Fall</h2>
 <hr>
-<div class="extra-small-font">
+<!-- :::{.extra-small-font} -->
 <ul>
 <li><strong>STEM 680, Foundations of Educational Data Science I (3 Credits)</strong>
 <ul>
-<li>Time: Tuesdays, 6-8 pm</li>
+<li>Time: Mondays, 6-8 pm</li>
 <li>Modality: Online and synchronous</li>
 <li>Instructor: Dr.&nbsp;Hanall Sung (<a href="hanallsung@utk.edu">hanallsung@utk.edu</a>)</li>
 </ul></li>
@@ -1444,14 +1423,12 @@ Dr.&nbsp;Kelly Boles
 <li>Modality: Online and synchronous</li>
 <li>Instructor: Dr.&nbsp;Kelly Boles (<a href="klboles@utk.edu">klboles@utk.edu</a>)</li>
 </ul></li>
-<li><strong>STEM 695, Capstone in Educational Data Science (3 Credits)</strong>
-<ul>
-<li>Time: TBD (based on the students’ and faculty members’ availability)</li>
-<li>Modality: Partially synchronous (one one-hour meeting every two weeks, with asynchronous work in between)</li>
-<li>Instructors: Dr.&nbsp;Joshua Rosenberg (<a href="jrosenb8@utk.edu">jrosenb8@utk.edu</a>) and Dr.&nbsp;Louis Rocconi (<a href="lrocconi@utk.edu">lrocconi@utk.edu</a>)</li>
-</ul></li>
 </ul>
-</div>
+<!-- - **STEM 695, Capstone in Educational Data Science (3 Credits)** -->
+<!--     - Time: TBD (based on the students’ and faculty members’ availability) -->
+<!--     - Modality: Partially synchronous (one one-hour meeting every two weeks, with asynchronous work in between) -->
+<!--     - Instructors: Dr. Joshua Rosenberg ([jrosenb8@utk.edu](jrosenb8@utk.edu)) and Dr. Louis Rocconi ([lrocconi@utk.edu](lrocconi@utk.edu)) -->
+<!-- ::: -->
 </section>
 <section id="attribution-for-materials-used-today" class="slide level2">
 <h2>Attribution for materials used today</h2>
