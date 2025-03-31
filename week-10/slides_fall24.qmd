@@ -566,7 +566,7 @@ combined_plot_2 + plot_layout(guides = 'collect')
 
 :::
 
-## {patchwork}
+## {patchwork} {.smaller}
 <hr>
 :::{.smaller-font}
 - It will only collect/combine identical legends
@@ -640,9 +640,11 @@ combined_plot_2
 ## {patchwork}
 <hr>
 :::{.smaller-font}
-- Let's add a title to the whole figure
+- Let's add a title to the whole figure and tag/labels to each plot
+ - Can use numbers, letters, roman numerals for tags (upper/lowercase)
 ```{r, fig.height=4.5}
-combined_plot_2 <- combined_plot_2 + plot_annotation(title = 'Fig 1.4: Plotting Portraits of Perplexing Penguins')
+combined_plot_2 <- combined_plot_2 + plot_annotation(title = 'Fig 1.4: Plotting Portraits of Perplexing Penguins',
+                                                     tag_levels = 'A')
 combined_plot_2
 ```
 :::
@@ -653,7 +655,6 @@ combined_plot_2
 - It does a lot more
   - Handles redundant axes
   - Manual sizing
-  - Adding plot tags (I, II, III, etc.)
   - More!
 - [Investigate the documentation](https://patchwork.data-imaginist.com/articles/guides/assembly.html) for more details
 :::
@@ -671,8 +672,8 @@ combined_plot_2
 library(cowplot)
 
 top_row <- plot_grid(p1, p2, ncol = 2, labels = c("A", "B"))
-bottom_row <- plot_grid(p3, p4, p5, ncol = 3)
-combined_plot_4 <- plot_grid(top_row, bottom_row, labels = c("","C"), ncol = 1)
+bottom_row <- plot_grid(p3, p4, p5, ncol = 3, labels = c("C", "D", "E"))
+combined_plot_4 <- plot_grid(top_row, bottom_row, ncol = 1)
 
 combined_plot_4
 ```

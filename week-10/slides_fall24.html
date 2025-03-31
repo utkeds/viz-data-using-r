@@ -1065,7 +1065,7 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </section>
-<section id="patchwork-20" class="slide level2">
+<section id="patchwork-20" class="slide level2 smaller">
 <h2>{patchwork}</h2>
 <hr>
 <div class="smaller-font">
@@ -1092,11 +1092,13 @@ Dr.&nbsp;Kelly Boles
 <hr>
 <div class="smaller-font">
 <ul>
-<li>Let’s add a title to the whole figure</li>
+<li>Let’s add a title to the whole figure and tag/labels to each plot</li>
+<li>Can use numbers, letters, roman numerals for tags (upper/lowercase)</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>combined_plot_2 <span class="ot">&lt;-</span> combined_plot_2 <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">'Fig 1.4: Plotting Portraits of Perplexing Penguins'</span>)</span>
-<span id="cb26-2"><a href="#cb26-2"></a>combined_plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>combined_plot_2 <span class="ot">&lt;-</span> combined_plot_2 <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">'Fig 1.4: Plotting Portraits of Perplexing Penguins'</span>,</span>
+<span id="cb26-2"><a href="#cb26-2"></a>                                                     <span class="at">tag_levels =</span> <span class="st">'A'</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>combined_plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1116,7 +1118,6 @@ Dr.&nbsp;Kelly Boles
 <ul>
 <li>Handles redundant axes</li>
 <li>Manual sizing</li>
-<li>Adding plot tags (I, II, III, etc.)</li>
 <li>More!</li>
 </ul></li>
 <li><a href="https://patchwork.data-imaginist.com/articles/guides/assembly.html">Investigate the documentation</a> for more details</li>
@@ -1141,8 +1142,8 @@ Dr.&nbsp;Kelly Boles
 <span id="cb27-2"><a href="#cb27-2"></a><span class="fu">library</span>(cowplot)</span>
 <span id="cb27-3"><a href="#cb27-3"></a></span>
 <span id="cb27-4"><a href="#cb27-4"></a>top_row <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>))</span>
-<span id="cb27-5"><a href="#cb27-5"></a>bottom_row <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(p3, p4, p5, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb27-6"><a href="#cb27-6"></a>combined_plot_4 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(top_row, bottom_row, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"C"</span>), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb27-5"><a href="#cb27-5"></a>bottom_row <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(p3, p4, p5, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>))</span>
+<span id="cb27-6"><a href="#cb27-6"></a>combined_plot_4 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(top_row, bottom_row, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
 <span id="cb27-7"><a href="#cb27-7"></a></span>
 <span id="cb27-8"><a href="#cb27-8"></a>combined_plot_4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
