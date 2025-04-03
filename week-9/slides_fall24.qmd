@@ -678,6 +678,24 @@ p <- p +
 p
 ```
 
+## Editing axes {.smaller}
+<hr>
+We can also use `scale_*_*` to edit the labels or in the legend.
+
+- Note: We already removed the legend, but this would work!
+
+```r
+p <- p +
+  scale_color_discrete(labels = c("full_time_non_tenure_track" = "Full Time Non-Tenure Track", 
+                              "full_time_tenure_track" = "Full Time Tenure Track",
+                              "full_time_tenured" = "Full Time Tenured",
+                              "grad_student" = "Grad Student",
+                              "part_time" = "Part Time"))
+
+p
+```
+
+
 # Text `geom_*`s
 
 ## Recap: Geoms in {ggplot2} anatomy
