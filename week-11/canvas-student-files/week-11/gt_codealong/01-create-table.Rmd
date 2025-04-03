@@ -82,7 +82,7 @@ We will use `exibble` frequently during this workshop simply because the entire 
 Let's print out `exibble` and see what it looks like:
 
 ```{r}
-
+exibble
 ```
 
 
@@ -95,7 +95,8 @@ This is a basic table.
 
 
 ```{r}
-
+exibble |>
+  gt()
 ```
 
 
@@ -114,7 +115,8 @@ We can modify the layout a bit in the first step and create a stub. A stub is a 
 
 
 ```{r}
-
+exibble |>
+  gt(rowname_col = "row")
 
 
 ```
@@ -133,7 +135,8 @@ We can do this by using a column containing categorical values (usually grouping
 
 ```{r}
 
-
+exibble |>
+  gt(rowname_col = "row", groupname_col = "group")
 
 
 ```
@@ -141,7 +144,9 @@ We can do this by using a column containing categorical values (usually grouping
 Even if rows are in an undesirable order, **gt** will put the rows in the correct group (but still respect the order of rows).
 
 ```{r}
-
+exibble |>
+  sample_n(size=8)|>
+  gt(rowname_col = "row", groupname_col = "group")
 
 
 
@@ -150,7 +155,9 @@ Even if rows are in an undesirable order, **gt** will put the rows in the correc
 If you use **dplyr** then you're probably familiar with the `group_by()` function. This will generate a grouped tibble, and you can pass that into `gt()`. The package will know what to do with a grouped tibble:
 
 ```{r}
-
+exibble |>
+  group_by(group) |>
+  gt(rowname_col = "row")
 
 
 ```
@@ -188,7 +195,9 @@ gtcars
 Use `gtcars` to create a **gt** table preview (with only a few of its columns: mfr, model, year). You'll see the first five rows and the last row.
 
 ```{r}
-
+gtcars |>
+  select(mfr, model, year) |>
+  gt_preview()
 
 
 ```
@@ -196,7 +205,9 @@ Use `gtcars` to create a **gt** table preview (with only a few of its columns: m
 Don't want to see the row numbers? They can be excluded by using `incl_rownums = FALSE`.
 
 ```{r}
-
+gtcars |>
+  select(mfr, model, year) |>
+  gt_preview(incl_rownums = FALSE)
 
 
 ```
@@ -234,7 +245,7 @@ gt_tbl <-
     groupname_col = "group"
   )
 
-gr_tbl
+gt_tbl
 ```
 
 
@@ -244,25 +255,25 @@ gr_tbl
 Write an HTML file.
 
 ```{r, eval=FALSE}
-gt_tbl |> gtsave("week-11/teacher/outputs/tab_1.html", inline_css = FALSE)
+gt_tbl |> gtsave("tab_1.html", inline_css = FALSE)
 ```
 
 Get a PNG file (essentially a screenshot of the HTML table) by using the .png extension.
 
 ```{r, eval=FALSE}
-gt_tbl |> gtsave("week-11/teacher/outputs/tab_r.png")
+gt_tbl |> gtsave("tab_r.png")
 ```
 
 Get an RTF file by using the .rtf extension in the `filename`.
 
 ```{r, eval=FALSE}
-gt_tbl |> gtsave("week-11/teacher/outputs/tab_r.rtf")
+gt_tbl |> gtsave("tab_r.rtf")
 ```
 
 Get a Word file by using the .docx extension in the `filename`.
 
 ```{r, eval=FALSE}
-gt_tbl |> gtsave("week-11/teacher/outputs/tab_r.docx")
+gt_tbl |> gtsave("tab_r.docx")
 ```
 
 

@@ -59,6 +59,15 @@ library(tidyverse)
 
 :::
 
+# Revisiting Last Week
+
+## alt tags in .Rmd {.smaller}
+<hr>
+- Last week, there was a question about creating alt tags in an .Rmd file
+- This is *optional* for your final project.
+- When you create your code chunk, you can add an alt tag there
+![](Rmd_alt_text.png)
+
 ## Tables in R{.smaller}
 <hr>
 - Tables have historically been considered a weaker point in R.
@@ -85,7 +94,517 @@ library(tidyverse)
 - It is designed to be easy to use and to produce beautiful tables
 - It is also designed to be easy to customize & is built similarly to ggplot2
 - Was developed by the RStudio team
-- Let's have a <a href="https://utkeds.github.io/viz-data-using-r/week-11/gt_talk_wk11/index.html" target="_blank">preview of what it can do</a>
+- Let's have a <a href="https://utkeds.github.io/viz-data-using-r/week-11/gt_talk_wk11/index.html" target="_blank">preview of what it can do</a>[^1]
+
+[^1]: Note: This only displays correctly in Chrome.
+
+## Intro to {gt}{.smaller}
+<hr>
+- {gt} has built-in datasets for practice
+    - We'll use `exibble` & `gtcars` today
+    
+```{r}
+#install.packages("gt")
+library(gt)
+
+exibble
+```
+
+## Intro to {gt}{.smaller}
+<hr>
+- {gt} has built-in datasets for practice
+    - We'll use `exibble` & `gtcars` today
+
+```{r}
+gtcars
+```
+
+# `gt()`
+
+## The `gt()` Function{.smaller}
+<hr>
+- The `gt()` function is the main function in the {gt} package
+- It takes a tibble or data frame as an argument
+- Works similarly to ggplot2
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+- Makes a ggplot object (plot)
+```r
+exibble |>
+  ggplot()
+```
+:::
+
+:::{column}
+- Makes a gt object (table)
+```r
+exibble |>
+  gt()
+```
+:::
+
+:::
+
+## The `gt()` Function{.smaller}
+<hr>
+This is a preview of all the arguments in the `gt()` function:
+
+``` r
+gt(
+  data,
+  rowname_col = "rowname",
+  groupname_col = dplyr::group_vars(data),
+  process_md = FALSE,
+  caption = NULL,
+  rownames_to_stub = FALSE,
+  row_group_as_column = FALSE,
+  auto_align = TRUE,
+  id = NULL,
+  locale = NULL,
+  row_group.sep = getOption("gt.row_group.sep", " - ")
+)
+```
+
+## The `gt()` Function{.smaller}
+<hr>
+- The basic `gt()` table
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/1_Basic_gt_table.png)
+:::
+
+:::{column}
+```r
+exibble |>
+  gt()
+```
+
+```{r, echo=F}
+exibble |>
+  gt() |>
+  tab_options(data_row.padding = px(2)) |>
+  tab_options(
+    table.font.size = "small"
+  )
+```
+:::
+
+:::
+
+## The `gt()` Function{.smaller}
+<hr>
+- Let's add a *stub* to the table
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/2_Row_to_stub.png)
+- The stub doesn't have a column label. We can add a stubhead label later, if desired.
+:::
+
+:::{column}
+```r
+exibble |>
+  gt(rowname_col = "row")
+```
+
+```{r, echo=F}
+exibble |>
+  gt(rowname_col = "row") |>
+  tab_options(data_row.padding = px(2)) |>
+  tab_options(
+    table.font.size = "small"
+  )
+```
+:::
+
+:::
+
+## The `gt()` Function{.smaller}
+<hr>
+- Now let's group our rows. To do this, we'll add a *row group label*
+- Note that `exibble` has a `group` column
+
+```{r}
+exibble
+```
+
+## The `gt()` Function{.smaller}
+<hr>
+- Now let's group our rows. To do this, we'll add a *row group label*
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/3_Row_group_label.png)
+
+:::
+
+:::{column}
+```r
+exibble |>
+  gt(rowname_col = "row",
+     groupname_col = "group")
+```
+
+```{r, echo=F}
+exibble |>
+  gt(rowname_col = "row", groupname_col = "group") |>
+  tab_options(data_row.padding = px(2)) |>
+  tab_options(
+    table.font.size = "small"
+  )
+```
+:::
+
+:::
+
+## The `gt()` Function{.smaller}
+<hr>
+- Note that we can also use `group_by()` to add *row group labels*
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/3_Row_group_label.png)
+
+:::
+
+:::{column}
+```r
+exibble |>
+  group_by(group) |>
+  gt(rowname_col = "row")
+```
+
+```{r, echo=F}
+exibble |>
+  group_by(group) |>
+  gt(rowname_col = "row") |>
+  tab_options(data_row.padding = px(2)) |>
+  tab_options(
+    table.font.size = "small"
+  )
+```
+:::
+
+:::
+
+## The `gt()` Function{.smaller}
+<hr>
+- Even if the columns are in a weird order, {gt} will still properly group them in the order they appear
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/3_Row_group_label.png)
+
+:::
+
+:::{column}
+```r
+exibble |>
+  sample_n(size = 8) |> # Randomly re-orders rows
+  gt(rowname_col = "row",
+     groupname_col = "group")
+```
+
+```{r, echo=F}
+exibble |>
+  sample_n(size = 8) |>
+  gt(rowname_col = "row", groupname_col = "group") |>
+  tab_options(data_row.padding = px(2)) |>
+  tab_options(
+    table.font.size = "small"
+  )
+```
+:::
+
+:::
+
+# `gt_preview()`
+
+## The `gt_preview()` Function{.smaller}
+<hr>
+`gt_preview()` helps us preview large gt tables in the viewer pane
+
+``` r
+gt_preview(
+  data,
+  top_n = 5,
+  bottom_n = 1,
+  incl_rownums = TRUE
+)
+```
+
+## The `gt_preview()` Function{.smaller}
+<hr>
+- We'll use the `gtcars` dataset here.
+- Note that it has more observations than `exibble`
+
+```{r}
+gtcars
+```
+
+## The `gt_preview()` Function{.smaller}
+<hr>
+- Let's select a few variables and preview what `gtcars` would look like in a table
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+<br>
+```{r}
+gtcars |>
+  select(mfr, model, year) |>
+  gt_preview()
+```
+:::
+
+:::{column}
+- We can exclude the row numbers:
+```{r}
+gtcars |>
+  select(mfr, model, year) |>
+  gt_preview(incl_rownums = FALSE)
+```
+:::
+
+:::
+
+# `gtsave()`
+
+## The `gt_save()` Function{.smaller}
+<hr>
+- `gt_save()` helps us save our gt tables to a variety of different file types
+    - .html
+    - .pdf
+    - .png
+    - LaTeX
+    - .rtf
+    - .docx
+    
+## The `gt_save()` Function{.smaller}
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+- We'll create a gt table to then save.
+
+```r
+gt_tbl <-
+  exibble |>
+  gt(
+    rowname_col = "row",
+    groupname_col = "group"
+  )
+
+gt_tbl
+```
+
+```{r, echo=F}
+gt_tbl <- exibble |>
+  gt(rowname_col = "row", groupname_col = "group") |>
+  tab_options(data_row.padding = px(2)) |>
+  tab_options(
+    table.font.size = "small"
+)
+gt_tbl
+```
+
+:::
+
+:::{column}
+<br><br><br>
+[- Write an HTML file.]{.extra-small-font}
+```{r, eval=FALSE}
+gt_tbl |> gtsave("tab_1.html", inline_css = FALSE)
+```
+<br>
+[- Get a PNG file by using the .png extension.]{.extra-small-font}
+```{r, eval=FALSE}
+gt_tbl |> gtsave("tab_1.png")
+```
+<br>
+[- Get an RTF file by using the .rtf extension.]{.extra-small-font}
+```{r, eval=FALSE}
+gt_tbl |> gtsave("tab_1.rtf")
+```
+<br>
+[- Get a Word file by using the .docx extension.]{.extra-small-font}
+```{r, eval=FALSE}
+gt_tbl |> gtsave("tab_1.docx")
+```
+:::
+
+:::
+
+## The `tab_<something>()` family{.smaller}
+<hr>
+- The `tab_<something>()` family of functions are used to add components and style tables
+    - `tab_header()`
+    - `tab_stubhead()`
+    - `tab_spanner()`
+    - `tab_row_group()`
+    - `tab_source_note()`
+    - `tab_footnote()`
+    - `tab_style()`
+    - `tab_options()`
+    
+## {dplyr} functions help select columns{.smaller}
+<hr>
+
+- `contains()`
+- `matches()`
+- `starts_with()`
+- `ends_with()`
+- `everything()`
+
+## Helper functions to style text{.smaller}
+<hr>
+- `md()`
+- `html()`
+
+## Helper functions to indicate table location{.smaller}
+<hr>
+- We have to specify *where* to add footnotes (`tab_footnote()`) and styling (`tab_style()`)
+    - `cells_title()`
+    - `cells_stubhead()`
+    - `cells_column_spanners()`
+    - `cells_column_labels()`
+    - `cells_row_groups()`
+    - `cells_stub()`
+    - `cells_body()`
+    - `cells_summary()`
+    - `cells_grand_summary()`
+    
+## Helper functions for defining styles{.smaller}
+<hr>
+
+- `cell_text()`
+- `cell_fill()`
+- `cell_borders()`
+
+# The `tab_<something>()` family of functions
+
+## `tab_header()` function{.smaller}
+<hr>
+
+``` r
+tab_header(
+  data,
+  title,
+  subtitle = NULL,
+  preheader = NULL
+)
+```
+
+## `tab_header()` function{.smaller}
+<hr>
+- We can add a title, subtitle, and preheader
+- They can be formatted with markdown or HTML
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+```r
+gtcars |>
+  select(mfr, model, msrp) |>
+  slice(1:5) |>
+  gt() |>
+  tab_header(
+    title = md("Data listing from **gtcars**"),
+    subtitle = html("<b><span style = 'color:#C6473E;'>gtcars</span></b> is an R dataset")
+  )
+```
+
+![](teacher/4_Table_header.png)
+:::
+
+:::{column}
+```{r, echo=F}
+gtcars |>
+  select(mfr, model, msrp) |>
+  slice(1:5) |>
+  gt() |>
+  tab_header(
+    title = md("Data listing from **gtcars**"),
+    subtitle = html("<b><span style = 'color:#C6473E;'>gtcars</span></b> is an R dataset")
+  )
+```
+:::
+
+:::
+
+## `tab_stubhead()` function{.smaller}
+<hr>
+- Adds a column label to the stub
+
+``` r
+tab_stubhead(
+  data,
+  label
+)
+```
+
+## `tab_stubhead()` function{.smaller}
+<hr>
+- Adds a column label to the stub
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/4_Table_header.png)
+:::
+
+:::{column}
+<br>
+```{r}
+gtcars |>
+  select(model, year, hp, trq) |>
+  slice(1:5) |>
+  gt(rowname_col = "model") |>
+  tab_stubhead(label = "car")
+```
+:::
+
+:::
+
+## `tab_spanner()` function{.smaller}
+<hr>
+- Adds a column spanner to the table
+
+``` r
+tab_spanner(
+  data,
+  label,
+  columns = NULL,
+  spanners = NULL,
+  level = NULL,
+  id = label,
+  gather = TRUE,
+  replace = FALSE
+)
+```
+
+## `tab_spanner()` function{.smaller}
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/5_Table_spanner.png)
+:::
+
+:::{column}
+:::
+
+:::
 
 ## Codealong{.smaller}
 <hr>

@@ -94,15 +94,14 @@ We can add a table header to the **gt** table with a title and optionally a subt
 Use `gtcars` to create a **gt** table; add a header part to contain a `title` and `subtitle`.
 
 ```{r}
-
-
-
-
-
-
-
-
-
+gtcars |>
+  select(mfr, model, msrp) |>
+  slice(1:5) |>
+  gt() |>
+  tab_header(
+    title = md("Data listing from **gtcars**"),
+    subtitle = html("<b><span style = 'color:#C6473E;'>gtcars</span></b> is an R dataset")
+  )
 ```
 
 
@@ -129,11 +128,11 @@ Add a label to the stubhead of a **gt** table. The stubhead is the lone element 
 Use `gtcars` to create a **gt** table. Add a stubhead label to describe what is in the stub.
 
 ```{r}
-
-
-
-
-
+gtcars |>
+  select(mfr, model, msrp) |>
+  slice(1:5) |>
+  gt(rowname_col="model") |>
+  tab_stubhead(label="car")
 ```
 
 
@@ -176,9 +175,12 @@ With `columns` we can use column names in double quotes (`"<column>"`), in `c()`
 Let's use the `gtcars` table, but cut it down to size first:
 
 ```{r}
+gtcars_small <-
+  gtcars |>
+  select(-mfr, -trim, bdy_style, drivetrain, -trsmn, -ctry_origin) |>
+  slice(1:8)
 
-
-
+gtcars_small
 
 
 
@@ -191,6 +193,9 @@ Let's look at the table in **gt** so that we know where we are starting from.
 
 ```{r}
 
+gtcars_small |>
+  gt(rowname_col = "model")
+
 ```
 
 
@@ -200,12 +205,12 @@ Let's look at the table in **gt** so that we know where we are starting from.
 Use `gtcars` to create a **gt** table; Group several columns related to car performance under a spanner column with the label `performance`.
 
 ```{r}
-
-
-
-
-
-
+gtcars_small |>
+  gt(rowname_col = "model") |>
+  tab_spanner(
+    label = "performance",
+    columns = c(hp, hp_rpm, trq, trq_rpm, mpg_c,mpg_h)
+  )
 ```
 
 
@@ -215,12 +220,14 @@ Use `gtcars` to create a **gt** table; Group several columns related to car perf
 With a few tidyselect statements in `c()`, we can get the same columns.
 
 ```{r}
-
-
-
-
-
-
+gtcars_small |>
+  gt(rowname_col = "model") |>
+  tab_spanner(
+    label = "performance",
+    columns = c(starts_with("hp"),
+                starts_with("trq"),
+                starts_with("mpg"))
+  )
 ```
 
 
@@ -230,14 +237,13 @@ With a few tidyselect statements in `c()`, we can get the same columns.
 If we relocate the `"hp"` column to the beginning (i.e., far left), the associated columns are gathered together (because `gather = TRUE`).
 
 ```{r}
-
-
-
-
-
-
-
-
+gtcars_small |>
+  select(hp, everything()) |>
+  gt(rowname_col = "model") |>
+  tab_spanner(
+    label = "performance",
+    columns = c(hp, hp_rpm, trq, trq_rpm, mpg_c,mpg_h)
+  )
 
 ```
 
@@ -269,7 +275,11 @@ We can add a source note to the footer part of any **gt** table. A source note i
 Use `exibble` to create a **gt** table. Add a source note to the table footer that cites the data source.
 
 ```{r}
-
+exibble |>
+  gt() |>
+  tab_source_note(
+    source_note = md("The `exibble` dataset is available in the **gt** package.")
+  )
 
 
 
@@ -318,12 +328,12 @@ Additionally, we can enclose several `cells_*()` calls within a `list()` if we w
 Use `exibble` to create a **gt** table and then add a footnote to the `fctr` column label explaining what the short form means (`fctr` = 'factor').
 
 ```{r}
-
-
-
-
-
-
+exibble |>
+  gt() |>
+  tab_footnote(
+    footnote = "This is a factor column.",
+    locations = cells_column_labels(columns = fctr)
+  )
 ```
 
 ------
