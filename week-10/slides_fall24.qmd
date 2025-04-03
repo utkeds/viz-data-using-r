@@ -68,7 +68,29 @@ library(tidykids)
 
 :::
 
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| **Be fully present to each other & the work. | Keep your video on when possible.** In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| **Embrace collaboration.** | Use the gallery view so you can see everyone. **Use breakout groups as an opportunity to collaborate.** |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
 # Building on Week 9
+
+## Homework 9: {showtext} font sizing
+<hr>
+- Some of you experienced {showtext} font sizing issues
+- This is a known issue with {showtext} and {ggplot2}
+- Largely happens on Windows machines
+- If this happened in your homework, I will provide a piece of code in your Canvas feedback to address in future
 
 ## One More Pkg {ggrepel}
 <hr>
