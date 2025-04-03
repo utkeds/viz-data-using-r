@@ -85,12 +85,12 @@ library(tidykids)
 
 # Building on Week 9
 
-## Homework 9: {showtext} font sizing
+## Homework 9: {showtext} font sizing {.smaller}
 <hr>
 - Some of you experienced {showtext} font sizing issues
 - This is a known issue with {showtext} and {ggplot2}
 - Largely happens on Windows machines
-- If this happened in your homework, I will provide a piece of code in your Canvas feedback to address in future
+- If this happened in your homework, I will provide a piece of code in your Canvas feedback to help
 
 ## One More Pkg {ggrepel}
 <hr>
@@ -903,7 +903,7 @@ Two topics:
 
 **Add comments to the document using the comment tool!**
 
-**Be prepared for TWO people in your group to share (re: #1 and re: #2)**
+**Be prepared for a spokesperson in your group to share (re: #1 and re: #2)**
 :::
 
 ## Looking Ahead
