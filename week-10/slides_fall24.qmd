@@ -74,7 +74,7 @@ library(tidykids)
 :::{.compact-font}
 | In person norms | And also, for online learning... |
 |----------|----------|
-| **Be fully present to each other & the work. | Keep your video on when possible.** In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| **Be fully present to each other & the work.** | **Keep your video on when possible.** In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
 | Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
 | **Embrace collaboration.** | Use the gallery view so you can see everyone. **Use breakout groups as an opportunity to collaborate.** |
 | Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
