@@ -47,7 +47,7 @@ tidykids <- tidykids |>
 ```{r make-plot}
 p <- tidykids |>
   ggplot(aes(x = as.integer(year), y = mean_inf_adj_perchild, color = region)) +
-  geom_line(aes(group=color)) +
+  geom_line(aes(group = region)) +
   labs(title = "U.S. Regional Spending on PK-12 Education by Year",
        y = "Inflation-Adjusted Spending Per Child\n(in Thousands of USD)")
 ```
