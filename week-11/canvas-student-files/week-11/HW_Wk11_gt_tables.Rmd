@@ -1,0 +1,57 @@
+---
+title: "Creating and Styling Tables in {gt}"
+author: "Amazing Student"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+<!-- Please edit the knitr options chunk to include message=FALSE and warning=FALSE. -->
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!--Load in your packages separately. -->
+```{r packages}
+
+```
+
+### 1. Reading in Data
+- You may use your own data, tidykids data, starwars data, or palmerpenguins data.
+```{r read_in_data}
+
+```
+
+### 2. Wrangling Data
+```{r wrangle_data}
+
+```
+
+### 3. Creating a Table with {gt}
+Requirements for table:
+
+- A title
+- A stub
+- A source note
+- Either Markdown `md()` or HTML `html()` styling
+- At least one `tab_style()` argument
+```{r create_table}
+
+```
+
+### 4. Adding in Bonus Features
++ 5 pts. for using idea from Tutorial #3
++ 5 pts. for using idea from Tutorial #4
+```{r table_with_bonus_features}
+
+```
+REQUIRED DOCUMENTATION FOR BONUS!
+Which feature did you implement...
+
+- From Tutorial #3: ANSWER HERE
+- From Tutorial #4: ANSWER HERE
+
+### 5. Reflection
+How did this assignment go? What did you learn? What would you do differently next time? 
+
+ANSWER HERE
