@@ -68,6 +68,14 @@ library(tidyverse)
 - When you create your code chunk, you can add an alt tag there
 ![](Rmd_alt_text.png)
 
+## Setting up knitr chunk options {.smaller}
+<hr>
+- I kept noticing some strange behavior even when you set `message=F` and `warning=F` in the knitr options
+- Solution: Do not set the knitr options in the same block where you are loading the packages
+- Instead, set the options first, then load the packages in a second code chunk
+![](do_not_do_this.png)
+
+
 ## Tables in R{.smaller}
 <hr>
 - Tables have historically been considered a weaker point in R.
@@ -82,21 +90,30 @@ library(tidyverse)
 
 ## Preparing to Make a Table{.smaller}
 <hr>
-- Wrangle your data into the data you want to show up in your table:
-  - e.g., If you want summaries, `summarize()`
-  - e.g., If you only want certain columns, `filter()`
-  - If you have specific row names, make sure there is a variable for them
-- That is, when you print the tibble or data frame, it should generally look like you want it to look in the table
+- Wrangle your data into how you want it to appear in your table:
+  - e.g., If you want summaries, `group_by()` and `summarize()`
+  - e.g., If you only want certain columns, `select()`
+  - e.g., If you only want certain rows, `filter()` or `slice()`
+- Unique considerations:
+  - If you have specific row names, make sure there is a variable/column for them
+    - (e.g., Subject 1, Subject 2, Subject 3, Subject 4 etc.)
+  - If you want to group rows, make sure there is a variable/column for that
+    - (e.g., control, treatment)
+- When you call/print the tibble or data frame, it should generally look like you want it to look in the table
 
 ## Intro to {gt}{.smaller}
 <hr>
 - {gt} is a package that makes it easy to create tables in R
 - It is designed to be easy to use and to produce beautiful tables
 - It is also designed to be easy to customize & is built similarly to ggplot2
+  - ggplot2 is based on the Grammar of Graphics
+  - gt stands for the Grammar of Tables
 - Was developed by the RStudio team
 - Let's have a <a href="https://utkeds.github.io/viz-data-using-r/week-11/gt_talk_wk11/index.html" target="_blank">preview of what it can do</a>[^1]
 
 [^1]: Note: This only displays correctly in Chrome.
+
+# {gt} Basics (Tutorial 1)
 
 ## Intro to {gt}{.smaller}
 <hr>
@@ -296,7 +313,7 @@ exibble |>
 
 ## The `gt()` Function{.smaller}
 <hr>
-- Even if the columns are in a weird order, {gt} will still properly group them in the order they appear
+- Even if the columns are in a weird order, {gt} will still properly group them **in the order they appear**
 
 :::{layout="[1,1]" .smaller-font}
 
@@ -330,7 +347,8 @@ exibble |>
 
 ## The `gt_preview()` Function{.smaller}
 <hr>
-`gt_preview()` helps us preview large gt tables in the viewer pane
+- A new function!
+- `gt_preview()` helps us preview large gt tables in the viewer pane
 
 ``` r
 gt_preview(
@@ -387,7 +405,8 @@ gtcars |>
     - LaTeX
     - .rtf
     - .docx
-    
+- similar to `ggsave()` from {ggplot2}
+
 ## The `gt_save()` Function{.smaller}
 <hr>
 
@@ -423,7 +442,7 @@ gt_tbl
 <br><br><br>
 [- Write an HTML file.]{.extra-small-font}
 ```{r, eval=FALSE}
-gt_tbl |> gtsave("tab_1.html", inline_css = FALSE)
+gt_tbl |> gtsave("tab_1.html")
 ```
 <br>
 [- Get a PNG file by using the .png extension.]{.extra-small-font}
@@ -431,7 +450,12 @@ gt_tbl |> gtsave("tab_1.html", inline_css = FALSE)
 gt_tbl |> gtsave("tab_1.png")
 ```
 <br>
-[- Get an RTF file by using the .rtf extension.]{.extra-small-font}
+[- Get a LaTeX file by using the .tex extension.]{.extra-small-font}
+```{r, eval=FALSE}
+gt_tbl |> gtsave("tab_1.tex")
+```
+<br>
+[- Get a RTF file by using the .rtf extension.]{.extra-small-font}
 ```{r, eval=FALSE}
 gt_tbl |> gtsave("tab_1.rtf")
 ```
@@ -443,6 +467,8 @@ gt_tbl |> gtsave("tab_1.docx")
 :::
 
 :::
+
+# Adding Additional Features (Tutorial 2)
 
 ## The `tab_<something>()` family{.smaller}
 <hr>
@@ -456,14 +482,14 @@ gt_tbl |> gtsave("tab_1.docx")
     - `tab_style()`
     - `tab_options()`
     
-## {dplyr} functions help select columns{.smaller}
-<hr>
+<!-- ## {dplyr} functions help select columns{.smaller} -->
+<!-- <hr> -->
 
-- `contains()`
-- `matches()`
-- `starts_with()`
-- `ends_with()`
-- `everything()`
+<!-- - `contains()` -->
+<!-- - `matches()` -->
+<!-- - `starts_with()` -->
+<!-- - `ends_with()` -->
+<!-- - `everything()` -->
 
 ## Helper functions to style text{.smaller}
 <hr>
@@ -602,40 +628,545 @@ tab_spanner(
 :::
 
 :::{column}
+<br>
+1. I'm going to make a smaller version of `gtcars` to work with.
+```{r}
+gtcars_small <- 
+  gtcars |>
+  dplyr::select(
+    -mfr, -trim, bdy_style, drivetrain,
+    -drivetrain, -trsmn, -ctry_origin
+  ) |>
+  dplyr::slice(1:8)
+
+gtcars_small
+```
 :::
 
 :::
 
-## Codealong{.smaller}
+## `tab_spanner()` function{.smaller}
 <hr>
-- In your .zip file, you will find a folder called `gt_codealong`
-- Please open files 01 & 02 in RStudio
-- We're going to work through them together!
 
-## Collaborative Practice{.smaller}
-<hr>
-- You have `01_02_Collaborative_Practice.Rmd` in your .zip file
-    - All the code is written. Your job is to read the prompts and edit it to build facility with {gt}.
-- Launch into breakout rooms.
-- Cameras off: 3-5 min to review task
-- Cameras on: collaborative task work
-- No need to submit this one.
-- If you have time remaining:
-    - Apply other pieces of the 01/02 codealong OR
-    - Open 03 and work through it together
+:::{layout="[1,1]" .smaller-font}
 
-## Final Project / Wk 14{.smaller}
+:::{column}
+![](teacher/5_Table_spanner.png)
+:::
+
+:::{column}
+<br>
+2. Let's look at the table in **gt** so that we know where we are starting from.
+```{r}
+gtcars_small |> gt(rowname_col = "model")
+```
+:::
+
+:::
+
+## `tab_spanner()` function{.smaller}
 <hr>
-- You will be presenting your final project in Week 14
-- Presentation order will follow the slide order in the Google Slide Deck
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/5_Table_spanner.png)
+:::
+
+:::{column}
+<br>
+3. Now I'm going to group all the variables related to car performance under a spanner column with the label `performance`.
+```{r}
+gtcars_small |>
+  gt(rowname_col = "model") |>
+  tab_spanner(
+    label = "performance",
+    columns = c(hp, hp_rpm, trq, trq_rpm, mpg_c, mpg_h)
+  )
+```
+:::
+
+:::
+
+## `tab_spanner()` function{.smaller}
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/5_Table_spanner.png)
+:::
+
+:::{column}
+<br>
+4. Almost! Now, I want the "hp" column to be the first column in the spanner. The rest of the spanner will travel with it.
+```{r}
+gtcars_small |>
+  dplyr::select(hp, everything()) |> # hp column is relocated
+  gt(rowname_col = "model") |>
+    tab_spanner(
+    label = "performance",
+    columns = c(hp, hp_rpm, trq, trq_rpm, mpg_c, mpg_h)
+  )
+```
+:::
+
+:::
+
+## `tab_source_note()` function{.smaller}
+<hr>
+- Adds a source note to the table
+
+``` r
+tab_source_note(
+  data,
+  source_note
+)
+```
+
+## `tab_source_note()` function{.smaller}
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+![](teacher/7_Table_source_notes.png)
+:::
+
+:::{column}
+- Can add multiple source notes w/ multiple `tab_source_note()` calls
+- Can use `md()` or `html()` to format the text
+```{r}
+exibble |>
+  dplyr::slice(1:5) |> #made it shorter for slide
+  gt() |>
+  tab_source_note(
+    source_note = md("The `exibble` dataset is available in the **gt** package.")
+  )
+```
+:::
+
+:::
+
+## `tab_footnote()` function{.smaller}
+<hr>
+- Adds footnotes to the table
+- Two components:
+  1. a footnote mark that is attached to the targeted cell text
+  2. the footnote text (that starts with the corresponding footnote mark) that is placed in the table's footer area
+  
+``` r
+tab_footnote(
+  data,
+  footnote,
+  locations = NULL,
+  placement = c("auto", "right", "left")
+)
+```
+## `tab_footnote()` function{.smaller}
+<hr>
+
+:::{layout="[1,1]" .extra-small-font}
+
+:::{column}
+![](teacher/7_Table_source_notes.png)
+
+Cell target functions:
+
+::::{.sorta-tiny-font}
+- `cells_title()`: target the table title or subtitle
+- `cells_stubhead()`: target the table stubhead cell
+- `cells_column_spanners()`: target the column spanners
+- `cells_column_labels()`: target the column labels
+- `cells_row_groups()`: target row groups
+- `cells_stub()`: target cells in the table stub
+- `cells_body()`: target data cells in the table body
+- `cells_summary()`: target group summary cells
+- `cells_grand_summary()`: target cells in a grand summary
+
+::::
+:::
+
+:::{column}
+- Each call of `tab_footnote()` will add a different note, and one or more cells can be targeted via the location helper (use in `locations`)
+- Let's add a footnote to the `fctr` column explaining what it is.
+
+```{r}
+exibble |>
+  dplyr::slice(1:4) |> #made it shorter for slide
+  gt() |>
+  tab_footnote(
+    footnote = "This is a factor column.",
+    locations = cells_column_labels(columns = fctr)
+  )
+```
+:::
+
+:::
+
+# Let's make things look nicer! {.smaller}
+
+## `tab_style()` function{.smaller}
+<hr>
+- Adds custom styling to one or more cells
+  - Can specify specific cell styling using:
+    - `cell_text()`
+    - `cell_fill()`
+    - `cell_borders()`
+  - And target specific cells using the `cells_*()` functions we just learned.
+
+``` r
+tab_style(
+  data,
+  style,
+  locations
+)
+```
+## `tab_style()` function{.smaller}
+<hr>
+
+:::{layout="[1,1]" .extra-small-font}
+
+:::{column}
+- `cell_text()`
+- Let's change all of the text in the body of this table to Times New Roman
+```{r}
+exibble |>
+  dplyr::select(num, currency) |>
+  gt()
+```
+:::
+
+:::{column}
+<br>
+```{r}
+exibble |>
+  dplyr::select(num, currency) |>
+  gt() |>
+  tab_style(
+    style = cell_text(font = "Times New Roman"),
+    locations = cells_body()
+  )
+```
+:::
+
+:::
+
+## `tab_style()` function{.smaller}
+<hr>
+
+:::{layout="[1,1]" .extra-small-font}
+
+:::{column}
+- `cell_text()`
+- Nah! I'd prefer a Google Font... in **both** body and the `currency` column label (not `num`).
+```{r}
+exibble |>
+  dplyr::select(num, currency) |>
+  gt()
+```
+- Use a font from the Google Fonts service by using the `google_font()` function.
+- Recommendations on some Google fonts can be found by using `info_google_fonts()`
+:::
+
+:::{column}
+```{r}
+exibble |>
+  dplyr::select(num, currency) |>
+  gt() |>
+  tab_style(
+    style = cell_text(font = google_font("IBM Plex Sans"), weight = 500),
+    locations = list(
+      cells_body(),
+      cells_column_labels(columns = currency)
+  ))
+```
+:::
+
+:::
+
+## `tab_style()` function{.smaller}
+<hr>
+- `cell_text()` and `cell_fill()`
+- Conditional fill colors / font styling by cell
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+```{r, eval=F}
+exibble |>
+  dplyr::select(num, currency) |>
+  gt() |>
+  fmt_number(
+    columns = c(num, currency),
+    decimals = 1
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "cyan"), # Only cyan fill if num is >= 5000
+      cell_text(weight = "bold") # Only bold if num is >= 5000
+      ),
+    locations = cells_body(
+      columns = num,
+      rows = num >= 5000
+    )
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#F9E3D6"), # Only peach fill if currency is < 100
+      cell_text(style = "italic") # Only italic if currency is < 100
+      ),
+    locations = cells_body(
+      columns = currency,
+      rows = currency < 100
+    )
+  )
+```
+:::
+
+:::{column}
+```{r, echo=FALSE}
+exibble |>
+  dplyr::select(num, currency) |>
+  gt() |>
+  fmt_number(
+    columns = c(num, currency),
+    decimals = 1
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "cyan"),
+      cell_text(weight = "bold")
+      ),
+    locations = cells_body(
+      columns = num,
+      rows = num >= 5000
+    )
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#F9E3D6"),
+      cell_text(style = "italic")
+      ),
+    locations = cells_body(
+      columns = currency,
+      rows = currency < 100
+    )
+  )
+```
+:::
+
+:::
+
+## `tab_style()` function{.smaller}
+<hr>
+- `cell_text()` and `cell_fill()`
+- Conditional text and fill colors by row
+- New dataset: `sp500` stock market index
+
+:::{layout="[1,1]" .smaller-font}
+
+:::{column}
+```{r, eval=F}
+sp500 |>
+  dplyr::filter(
+    date >= "2015-12-01" &
+    date <= "2015-12-15"
+  ) |>
+  dplyr::select(-c(adj_close, volume)) |>
+  gt() |>
+  tab_style(
+    style = cell_fill(color = "lightgreen"),
+    locations = cells_body(rows = close > open)
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "tomato"),
+      cell_text(color = "white")
+      ),
+    locations = cells_body(rows = open > close)
+  )
+```
+:::
+
+:::{column}
+```{r, echo=FALSE}
+sp500 |>
+  dplyr::filter(
+    date >= "2015-12-01" &
+    date <= "2015-12-15"
+  ) |>
+  dplyr::select(-c(adj_close, volume)) |>
+  gt() |>
+  tab_style(
+    style = cell_fill(color = "lightgreen"),
+    locations = cells_body(rows = close > open)
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "tomato"),
+      cell_text(color = "white") 
+      ),
+    locations = cells_body(rows = open > close)
+  )
+```
+:::
+
+:::
+
+## `tab_options()` function{.smaller}
+<hr>
+- Can modify global options for a table
+- Lots of examples follow (many options)
+
+``` r
+tab_options(
+  data,
+  container.width = NULL,
+  container.height = NULL,
+  container.overflow.x = NULL,
+  container.overflow.y = NULL,
+  table.width = NULL,
+  table.layout = NULL,
+  <many more options>
+  page.header.height = NULL,
+  page.footer.height = NULL,
+  quarto.use_bootstrap = NULL,
+  quarto.disable_processing = NULL
+)
+```
+## `tab_options()` function{.smaller}
+<hr>
+- I made a plot with `exibble`. Code is unimportant (hidden).
+- Let's make some modifications to it!
+
+```{r, echo = F}
+tab_1 <- 
+  exibble |>
+  dplyr::select(
+    -c(fctr, date, time, datetime)
+  ) |>
+  gt(
+    rowname_col = "row",
+    groupname_col = "group"
+  ) |>
+  tab_header(
+    title = md("Data listing from **exibble**"),
+    subtitle = md("`exibble` is an R dataset")
+  ) |>
+  fmt_number(columns = num) |>
+  fmt_currency(columns = currency) |>
+  tab_footnote(
+    footnote = "Using commas for separators.",
+    locations = cells_body(
+      columns = num,
+      rows = num > 1000
+    )
+  ) |>
+  tab_footnote(
+    footnote = "Using commas for separators.",
+    locations = cells_body(
+      columns = currency,
+      rows = currency > 1000
+    )
+  ) |>
+  tab_footnote(
+    footnote = "Alphabetical fruit.",
+    locations = cells_column_labels(columns = char)
+  )
+```
+
+```{r}
+tab_1
+```
+
+## `tab_options()` function{.smaller}
+<hr>
+- Modify table width to 100% of the page width
+```{r}
+tab_1 |>
+  tab_options(table.width = pct(100)) # pct() helper function used here
+```
+
+## `tab_options()` function{.smaller}
+<hr>
+- Modify table background color
+```{r}
+tab_1 |>
+  tab_options(table.background.color = "lightcyan")
+```
+
+## `tab_options()` function{.smaller}
+<hr>
+- Use letters (rather than numbers) for the footnotes
+```{r}
+tab_1 |>
+  tab_options(footnotes.marks = letters)
+```
+
+## `tab_options()` function{.smaller}
+<hr>
+- Change the padding of data rows to 5 pixels
+```{r}
+tab_1 |> 
+  tab_options(data_row.padding = px(5)) # px() helper function used here
+```
+
+## `tab_options()` function{.smaller}
+<hr>
+- Reduce size of title and subtitle
+```{r}
+tab_1 |>
+  tab_options(
+    heading.title.font.size = px(14),
+    heading.subtitle.font.size = px(10)
+  )
+```
+
+# And so much more...
+
+<!-- ## Codealong{.smaller} -->
+<!-- <hr> -->
+<!-- - In your .zip file, you will find a folder called `gt_codealong` -->
+<!-- - Please open files 01 & 02 in RStudio -->
+<!-- - We're going to work through them together! -->
+
+<!-- ## Collaborative Practice{.smaller} -->
+<!-- <hr> -->
+<!-- - You have `01_02_Collaborative_Practice.Rmd` in your .zip file -->
+<!--     - All the code is written. Your job is to read the prompts and edit it to build facility with {gt}. -->
+<!-- - Launch into breakout rooms. -->
+<!-- - Cameras off: 3-5 min to review task -->
+<!-- - Cameras on: collaborative task work -->
+<!-- - No need to submit this one. -->
+<!-- - If you have time remaining: -->
+<!--     - Apply other pieces of the 01/02 codealong OR -->
+<!--     - Open 03 and work through it together -->
+
+<!-- ## Final Project / Wk 14{.smaller} -->
+<!-- <hr> -->
+<!-- - You will be presenting your final project in Week 14 -->
+<!-- - Presentation order will follow the slide order in the Google Slide Deck -->
+
+## More Tutorials {.smaller}
+<hr>
+- What we did today was taken from file 1 and 2 of the {gt} tutorials
+- You have files 3 and 4 in your .zip file with all code written out
+   - They cover they `fmt_<something>()` family of functions (file 3) AND
+   - Column modification functions (file 4)
+- You can run through these and run the code to see how they work!
+- Using 1 idea from file 3 is +5 bonus and 1 idea from file 4 is +5 bonus in your homework
+
+If interested, file 5: adding summary rows and file 6: table option functions exist on [github](https://github.com/rich-iannone/gt-workshop).
     
 ## Looking Ahead{.smaller}
 <hr>
+- Next week: Mapping!
 - Reading:
     - Healy (2018), Chapter 7
     - Muth (2018)
     - Schwabish (2021), Chapter 7
-- Assignment: Creating and Styling Tables
+- Assignment: Creating and Styling Tables (no file - instructions in Canvas)
 
 ## Attribution for Materials Used Today{.smaller}
 <hr>
