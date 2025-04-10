@@ -1165,7 +1165,7 @@ If interested, file 5: adding summary rows and file 6: table option functions ex
     - Healy (2018), Chapter 7
     - Muth (2018)
     - Schwabish (2021), Chapter 7
-- Assignment: Creating and Styling Tables (no file - instructions in Canvas)
+- Assignment: Creating and Styling Tables
   - Due NEXT Wednesday (4/23)
 - Mini Project #2
   - Due THIS Wednesday (4/16)
