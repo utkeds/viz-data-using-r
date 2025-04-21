@@ -839,7 +839,7 @@ ggplot()+
   scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
 ```
 
-# Layering geoms /n(a review)
+# Layering geoms \n(a review)
 
 ## Plotting points (State Capitals){.smaller}
 <hr>
