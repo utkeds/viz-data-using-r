@@ -221,7 +221,7 @@ class(nc_sf)
 
 ## The {sf} package{.smaller}
 <hr>
-- sf objects has variable `geometry` at the end, where each row represents a single simple feature geographic unit (sfg; in this case, county)
+- sf objects has variable `geometry` at the end, where each row represents a single geographic unit (simple feature geometry = sfg)
 - There are different types of sfgs (`POINT`, `LINESTRING`, `POLYGON`, `MULTIPOLYGON`, etc)
 
 ::: {.r-stack}
