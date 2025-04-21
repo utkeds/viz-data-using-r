@@ -1060,8 +1060,7 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">ggplot</span>(world_sf) <span class="sc">+</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">ggtitle</span>(<span class="st">"Geodetic CRS (WGS84, degrees)"</span>) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">ggtitle</span>(<span class="st">"Geodetic CRS (WGS84, degrees)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -1078,8 +1077,7 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)
 <span id="cb28-2"><a href="#cb28-2"></a><span class="co">#reprojecting to Mollweide - good for world maps</span></span>
 <span id="cb28-3"><a href="#cb28-3"></a><span class="fu">ggplot</span>(world_proj_sf) <span class="sc">+</span></span>
 <span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">ggtitle</span>(<span class="st">"Projected CRS (Mollweide, meters)"</span>) <span class="sc">+</span></span>
-<span id="cb28-6"><a href="#cb28-6"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">ggtitle</span>(<span class="st">"Projected CRS (Mollweide, meters)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>

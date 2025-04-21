@@ -518,8 +518,7 @@ world_sf <- ne_countries(scale = "medium", returnclass = "sf") #getting world ma
 ```{r}
 ggplot(world_sf) +
   geom_sf() +
-  ggtitle("Geodetic CRS (WGS84, degrees)") +
-  coord_sf()
+  ggtitle("Geodetic CRS (WGS84, degrees)")
 ```
 :::::
 
@@ -530,8 +529,7 @@ world_proj_sf <- st_transform(world_sf, crs = "+proj=moll")
 #reprojecting to Mollweide - good for world maps
 ggplot(world_proj_sf) +
   geom_sf() +
-  ggtitle("Projected CRS (Mollweide, meters)") +
-  coord_sf()
+  ggtitle("Projected CRS (Mollweide, meters)")
 ```
 :::::
 
@@ -585,8 +583,7 @@ ggplot(world_proj_sf) +
 ```{r, echo=FALSE}
 ggplot(world_sf) +
   geom_sf() +
-  ggtitle("Geodetic CRS (WGS84, degrees)") +
-  coord_sf()
+  ggtitle("Geodetic CRS (WGS84, degrees)")
 ```
 :::
 
@@ -603,8 +600,7 @@ world_proj_sf <- st_transform(world_sf, crs = "+proj=moll")
 #reprojecting to Mollweide - good for world maps
 ggplot(world_proj_sf) +
   geom_sf() +
-  ggtitle("Projected CRS (Mollweide, meters)") +
-  coord_sf()
+  ggtitle("Projected CRS (Mollweide, meters)")
 ```
 :::
 :::
