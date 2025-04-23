@@ -989,7 +989,10 @@ The University of Tennessee, Knoxville, offers an online graduate certificate in
 <hr>
 - Test drive zoom timers
 - Preview [peer feedback form](https://airtable.com/appxk3cJS5Wp4CYK4/shrNo1yJwUrKLYtPl)
-
+  - Praise
+  - Question
+  - Polish
+  
 ## Looking Ahead {.smaller}
 <hr>
 - Next week:
@@ -1001,6 +1004,7 @@ The University of Tennessee, Knoxville, offers an online graduate certificate in
   - Complete PingPong post test by Wednesday night
   - Complete TN Voice
   - Final project Canvas submissions due 5/9, 11:59pm
+    - Remember to explicitly state your research question for each viz
 
 <!-- ## Looking Ahead -->
 <!-- <hr> -->
