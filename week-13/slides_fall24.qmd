@@ -1005,6 +1005,7 @@ The University of Tennessee, Knoxville, offers an online graduate certificate in
   - Complete TN Voice
   - Final project Canvas submissions due 5/9, 11:59pm
     - Remember to explicitly state your research question for each viz
+    - Define each variable used and how measured/units
 
 <!-- ## Looking Ahead -->
 <!-- <hr> -->
