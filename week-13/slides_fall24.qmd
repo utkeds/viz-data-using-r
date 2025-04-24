@@ -101,14 +101,14 @@ In addition to being fun and creative, cartography also has important practical 
 knitr::include_graphics("airbnb-occupancy-eclipse.png")
 ```
 
-## Visualizing data with maps
-<hr>
-```{r}
-#| echo: false
-#| out.width: 60%
-#| fig-align: center
-knitr::include_graphics("heatmap_2x.png")
-```
+<!-- ## Visualizing data with maps -->
+<!-- <hr> -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| out.width: 60% -->
+<!-- #| fig-align: center -->
+<!-- knitr::include_graphics("heatmap_2x.png") -->
+<!-- ``` -->
 
 <!-- # Polygon maps -->
 
