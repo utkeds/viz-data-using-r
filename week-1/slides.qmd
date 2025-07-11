@@ -1,7 +1,7 @@
 ---
 subtitle: "Course Introduction"
 title: "Week 1 - STEM 691"
-author: "Dr. Kelly Boles"
+author: "Dr. Kelly Boles & Dr. Zhen Xu"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -48,8 +48,7 @@ gs4_auth(
 - Introductions
 - Pre-work
 - Tutorial / discussion review
-- `.Rproj`
-- `.Rmd`
+- `.Qmd`
 - Cairo (2013) discussion/ Miro activity
 - Looking ahead
 
