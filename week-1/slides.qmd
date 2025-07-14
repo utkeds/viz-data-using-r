@@ -57,20 +57,20 @@ gs4_auth(
 - [Syllabus](https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing) is available on Canvas. 
   - Living document: may be updated throughout the semester. 
 - If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
-  - Slack to let me know, please!
+  - Slack us to let us know of any discrepancies, please!
 
 ## Canvas Review {.smaller}
 <hr>
 - [Canvas](https://utk.instructure.com/courses/213032) = Primary platform for this course.
 - All materials you need will be posted here.
 - "Module" page is home base.
-- If an item is missing, please let me know.
+- If an item is missing, please let us know.
 
 ## Getting Help {.smaller}
 <hr>
 - Many ways to get help:
   1. Class Slack ([eddatascienceatutk.slack.com](https://eddatascienceatutk.slack.com/))
-  2. PingPong AI, ChatGPT, etc. (see syllabus for policy)
+  2. Ping Pong AI, ChatGPT, etc. (see syllabus for policy)
   3. Email
 
 ## Norms
@@ -98,12 +98,12 @@ gs4_auth(
 - Completed Ph.D. at Stanford University
 - Originally from [Greene Co, TN]{.green}
 - Research interests: 
-  - spatial equity in learning opportunity
+  - how space shapes learning opportunity
   - rural education
   - teacher learning
   - data science
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+```{r tn-map, warning=FALSE, message=FALSE, echo=FALSE}
 #| fig-cap:
 #|  - "Greene & Knox Counties, TN"
 #| fig-height: 4
@@ -143,6 +143,24 @@ greene_co_tn
 
 :::
 
+## Zhen's Introduction {.smaller}
+<hr>
+
+::: {layout="[3,2]"}
+::::{.smaller-font}
+- Postdoctoral Research Associate, Community Engaged Disciplinary and Educational Researchers in STEM (CEDERS) Program, TPTE
+- **Experience:**
+  - Ph.D. in Educational Technology, University of Florida; minor in Research and Evaluation Methodology (quantitative research methods)
+  - Postdoctoral Research Associate, University of North Carolina at Chapel Hill
+- **Research interests:** 
+  - Educational game design
+    - Spatial cognition in STEM learning
+  - Data science education
+  - Socioscientific issue-based science teaching and learning
+::::
+![](zhen_hometown.jpg)
+:::
+
 ## Your Introductions {.smaller}
 <hr>
 - Name
@@ -157,7 +175,7 @@ greene_co_tn
 
 ## Pre-Course Surveys—Recap
 <hr>
-```{r, echo=FALSE}
+```{r survey-results-pt1, echo=FALSE}
 #Import six variables from the Google Form Student Survey
 # df <- read_sheet("https://docs.google.com/spreadsheets/d/1FsM0BXtfrT-x5wGUBNW0QNA3ia-0DCzeP6nxfrK9Fzw/edit?gid=478049066#gid=478049066") |>
 #   select(c(9:14))
@@ -217,7 +235,7 @@ how_often_graphs
 
 ## Pre-Course Surveys—Recap
 <hr>
-```{r, echo=FALSE}
+```{r survey-results-pt2, echo=FALSE}
 
 #Max count for scaling gridlines
 max_count_2 <- df %>%
@@ -295,16 +313,24 @@ level_of_confidence_graphs
 ![](running_shoes.png){width=10%}
 :::
 
-# R Projects
+<!-- # R Projects
 
 ## Creating an R Project {.smaller}
 <hr>
 - If you haven't already, let's create an R Project for this class.
-- In [Canvas](https://utk.instructure.com/courses/213032) there is a zip file for `week-1` with all the files you need.
+- In [Canvas](https://utk.instructure.com/courses/239375) there is a zip file for `week-1` with all the files you need.
 - Download and unzip the file.
 - Put the `week-1` folder in your `.Rproj` folder.
 - Delete the zip
-- Open the `.Rproj` file in R Studio
+- Open the `.Rproj` file in R Studio -->
+
+# Class File Storage
+<hr>
+- If you haven't already, let's create a folder for this class.
+- In [Canvas](https://utk.instructure.com/courses/239375) there is a .zip file for `week-1` with all the files you need.
+- Download and extract the files.
+- Put the `week-1` folder in your class folder.
+- Delete the .zip
 
 # File Types in R
 
@@ -312,7 +338,7 @@ level_of_confidence_graphs
 <hr>
 - In this course, we'll work with two primary file types in R.
   - .R (R Script)
-  - .Rmd (R Markdown)
+  - .Qmd (Quarto Markdown)
   
 ## R Script {.smaller}
 <hr>
@@ -321,79 +347,105 @@ level_of_confidence_graphs
 - If you want plain text, it needs to be as a comment
     - Comments start with a single hash (#) in R
 - You save an R script and submit it as it is
-  - Not true with R Markdown files
+  - Not true with Quarto Markdown files
 
-# R Markdown
+# Quarto Markdown (.Qmd)
 
-## R Markdown {.smaller}
+## Quarto Markdown Documents {.smaller}
 <hr>
 
 :::{.small-font}
-- R Markdown is a file format for making **dynamic documents with R**.
-- An R Markdown document is written in markdown (a **plain text** format) and contains **chunks of embedded R code**.
-- The markdown file is then **processed by `knitr`**, and then pandoc which converts the markdown to a **PDF, Word, or HTML file**.
-- File extension: `.Rmd`
+- Quarto Markdown is a file format for making **dynamic documents with R**.
+- A Quarto Markdown document is written in markdown (a **plain text** format) and contains **chunks of embedded R code**.
+- The markdown file is then processed and converted into a **PDF, Word, or HTML file**.
+- File extension: `.Qmd`
+:::
+::: {.callout-tip}
+- Quarto also supports other languages like Python and Julia, but we won't use them in this class.
 :::
 
-## R Markdown - Plain Text
+## Quarto - Plain Text (Markdown) {.smaller}
 <hr>
 
 :::{layout="[50,50]"}
-![](RmdPlainTextExample.png)<br>[Plain Text in `.Rmd`]{.small-font}
+![](QmdPlainTextExample.png)<br>[Plain Text in `.Qmd`]{.small-font}
 
-![](RMarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
+![](MarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
 
 :::
 
 [- Note: verbatim formatting is created with backtick (tilde) key, not single quotation]{.extra-small-font}
 
-## R Markdown - Code Chunks {.smaller}
+## Quarto - Code Chunks (R){.smaller}
 <hr>
 
-- Another part of an R Markdown document is the **code chunks**.
+- Another part of a Quarto Markdown document is the **code chunks**.
 
 :::{layout="[50,50]"}
-![](setup_chunk.png)<br>[Setup Chunk in a `.Rmd`]{.small-font}
-<br>
-<br>
-![](RMarkdownCodeChunkExample.png)<br>[Code Chunk in a `.Rmd`]{.small-font}
-
-::::{.extra-small-font}
-You can use chunk options at the beginning of an `.Rmd` to establish defaults for the full document.
-<br>
-<br>
-
-- {r echo = T} : **shows the code** when knitted
-- {r eval = F} : **code does not run**
-- {r message = F}: **hides messages** 
-- {r warning = F}: **hides warnings**
-<br>
-<br>
-
-**Body Chunks:** You can  name the chunks (makes for better error messages) and override code chunk defaults.
+![](QMarkdownCodeChunkExample.png)<br>[Code Chunk in a `.Qmd`]{.small-font}
 
 
-::::
+- This is a code chunk in Positron.
 
 :::
 
-## R Markdown - Knitting Errors {.smaller}
-<hr>
-- When Rmd fails to knit, it will tell you which chunk the error is in:
+:::{layout="[50,50]"}
+```
+title: "Example Quarto Document"
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+  eval: true
+```
 
-![](CodeChunkKnitError.png)<br>[Error in lines 17-18]{.small-font}
+- You can use chunk options in the header (called YAML) of a `.Qmd` to establish defaults for the full document.
+<br>
 
-## R Markdown {.smaller}
+:::
+
+? What do these parameters do ?
+
+:::{.smaller-font}
+
+- **echo**: Whether to show the code in the output document
+- **warning**: Whether to show warnings in the output document
+- **message**: Whether to show messages in the output document
+- **eval**: Whether to run the code in the chunk
+:::
+
+## Quarto - Code Chunks (R){.smaller}
 <hr>
-- Most of your homework will be submitted as R Markdown files.
+- The default options will be applied to all code chunks in the document, unless you override them.
+
+- You override the defaults by adding options in the header of an individual code chunk.
+
+![](Override_chunk_defaults.png)
+
+::: {.callout-tip}
+You can name the code chunks (makes for better error messages). I named this one "test-block".
+:::
+
+
+## Quarto - Rendering Errors {.smaller}
+<hr>
+- When Quarto docs fail to render, it will tell you which chunk the error is in:
+  - Note: I had named this chunk "error-chunk".
+
+![](CodeChunkRenderError.png)<br>[Error in lines 29-31]{.small-font}
+
+## Quarto {.smaller}
+<hr>
+- Most of your homework will be submitted as a Quarto Markdown files.
 - Starting next week...
-- We focus on `.html` files because Canvas can read them and they support interactive plots
+- We focus on `.html` outputs from your Quarto documents because Canvas can read them and they support interactive plots
 
-## R Markdown - Plain Text - Activity {.smaller}
+## Quarto Markdown - Plain Text - Activity {.smaller}
 <hr>
-- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `R Markdown: In-Class Activity`
+- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `Quarto Markdown: In-Class Activity`
 - It should open up another page with instructions.
-- In the `week-1` folder you will find the file for the activity called `R Markdown: In-Class Activity`.
+- In the `week-1` folder you will find the file for the activity called `Quarto Markdown: In-Class Activity`.
 
 
 # Critiquing Data Viz
