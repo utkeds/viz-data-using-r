@@ -408,7 +408,6 @@ execute:
 ## Quarto - Code Chunks (R){.smaller}
 <hr>
 
-:::{layout="[50,50]"}
 ```
 title: "Example Quarto Document"
 format: html
@@ -418,11 +417,6 @@ execute:
   message: false
   eval: true
 ```
-
-- You can use chunk options in the header (called YAML) of a `.Qmd` to establish defaults for the full document.
-<br>
-
-:::
 
 ? What do these parameters do ?
 
