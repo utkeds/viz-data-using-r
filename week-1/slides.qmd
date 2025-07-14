@@ -405,6 +405,25 @@ execute:
 
 :::
 
+## Quarto - Code Chunks (R){.smaller}
+<hr>
+
+:::{layout="[50,50]"}
+```
+title: "Example Quarto Document"
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+  eval: true
+```
+
+- You can use chunk options in the header (called YAML) of a `.Qmd` to establish defaults for the full document.
+<br>
+
+:::
+
 ? What do these parameters do ?
 
 :::{.smaller-font}
@@ -414,6 +433,7 @@ execute:
 - **message**: Whether to show messages in the output document
 - **eval**: Whether to run the code in the chunk
 :::
+
 
 ## Quarto - Code Chunks (R){.smaller}
 <hr>
