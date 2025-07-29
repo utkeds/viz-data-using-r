@@ -73,7 +73,7 @@ gs4_auth(
   2. Ping Pong AI, ChatGPT, etc. (see syllabus for policy)
   3. Email
 
-## Norms
+## Norms 
 <hr>
 
 :::{.compact-font}
@@ -324,7 +324,7 @@ level_of_confidence_graphs
 - Delete the zip
 - Open the `.Rproj` file in R Studio -->
 
-# Class File Storage
+# Class File Storage {.smaller}
 <hr>
 - If you haven't already, let's create a folder for this class.
 - In [Canvas](https://utk.instructure.com/courses/239375) there is a .zip file for `week-1` with all the files you need.
@@ -339,27 +339,29 @@ level_of_confidence_graphs
 - In this course, we'll work with two primary file types in R.
   - .R (R Script)
   - .Qmd (Quarto Markdown)
+
+  # R Script (.R) = File Type #1
   
 ## R Script {.smaller}
 <hr>
 - An R Script is the most standard file type in R
+- Featured in the week-0 Tutorial #1
 - You directly type code into the R Script
 - If you want plain text, it needs to be as a comment
-    - Comments start with a single hash (#) in R
-- You save an R script and submit it as it is
-  - Not true with Quarto Markdown files
+    - Comments start with a single hash (#) in R code
+- You save an R script and submit it as it is (.R file)
+  - Not true with Quarto Markdown (.Qmd) files!!
 
-# Quarto Markdown (.Qmd)
+# Quarto Markdown (.Qmd) = File Type #2
 
 ## Quarto Markdown Documents {.smaller}
 <hr>
 
-:::{.small-font}
-- Quarto Markdown is a file format for making **dynamic documents with R**.
-- A Quarto Markdown document is written in markdown (a **plain text** format) and contains **chunks of embedded R code**.
+- A quarto document is a programmer's answer to Microsoft Word/PowerPoint
+- A Quarto Markdown document is written in markdown (a **plain text** format) [the Microsoft part] and contains **cells of embedded R code** [the R script part].
 - The markdown file is then processed and converted into a **PDF, Word, or HTML file**.
 - File extension: `.Qmd`
-:::
+
 ::: {.callout-tip}
 - Quarto also supports other languages like Python and Julia, but we won't use them in this class.
 :::
@@ -385,7 +387,7 @@ level_of_confidence_graphs
 ![](QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.Qmd`]{.small-font}
 
 
-- This is a code cell in Positron.
+- This is a code cell as displayed in the Positron IDE.
 
 :::
 
@@ -438,7 +440,7 @@ execute:
 ![](Override_chunk_defaults.png)
 
 ::: {.callout-tip}
-You can name the code cellss (makes for better error messages). I named this one "test-block".
+You can name the code cells (makes for better error messages). I named this one "test-block".
 :::
 
 
@@ -452,12 +454,13 @@ You can name the code cellss (makes for better error messages). I named this one
 ## Quarto {.smaller}
 <hr>
 - Most of your homework will be submitted as a Quarto Markdown files.
-- Starting next week...
-- We focus on `.html` outputs from your Quarto documents because Canvas can read them and they support interactive plots
+  - Starting next week...
+  - This week's homework is a simple .R script (like in Tutorial #1)
+- We focus on `.html` outputs from your Quarto documents because Canvas can read them and they support interactive plots, but you can also output to PDF and slides (like these), among other formats.
 
 ## Quarto Markdown - Plain Text - Activity {.smaller}
 <hr>
-- In [Canvas](https://utk.instructure.com/courses/213032) you will find an activity called `Quarto Markdown: In-Class Activity`
+- In [Canvas](https://utk.instructure.com/courses/239375) you will find an activity called `Quarto Markdown: In-Class Activity`
 - It should open up another page with instructions.
 - In the `week-1` folder you will find the file for the activity called `Quarto Markdown: In-Class Activity`.
 
