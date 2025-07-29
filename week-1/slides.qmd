@@ -340,7 +340,7 @@ level_of_confidence_graphs
   - .R (R Script)
   - .Qmd (Quarto Markdown)
 
-  # R Script (.R) = File Type #1
+# R Script (.R) = File Type #1
   
 ## R Script {.smaller}
 <hr>
