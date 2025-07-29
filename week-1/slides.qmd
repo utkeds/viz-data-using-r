@@ -340,7 +340,7 @@ level_of_confidence_graphs
   - .R (R Script)
   - .Qmd (Quarto Markdown)
 
-# R Script (.R)\n*File Type #1*
+# R Script (.R) File Type #1
   
 ## R Script {.smaller}
 <hr>
@@ -352,12 +352,12 @@ level_of_confidence_graphs
 - You save an R script and submit it as it is (.R file)
   - Not true with Quarto Markdown (.Qmd) files!!
 
-# Quarto Markdown (.Qmd)\n*File Type #2*
+# Quarto Markdown (.Qmd) File Type #2
 
 ## Quarto Markdown Documents {.smaller}
 <hr>
 
-- A quarto document is a programmer's answer to Microsoft Word/PowerPoint
+- A quarto document is a data scientist's answer to Microsoft Word/PowerPoint
 - A Quarto Markdown document is written in markdown (a **plain text** format) [the Microsoft part] and contains **cells of embedded R code** [the R script part].
 - The markdown file is then processed and converted into a **PDF, Word, or HTML file**.
 - File extension: `.Qmd`
