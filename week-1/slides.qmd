@@ -455,7 +455,7 @@ You can name the code cells (makes for better error messages). I named this one 
 <hr>
 - Most of your homework will be submitted as a Quarto Markdown files.
   - Starting next week...
-  - This week's homework is a simple .R script (like in Tutorial #1)
+  - This week's homework is a simple .R script (like in week-0 Tutorial #1)
 - We focus on `.html` outputs from your Quarto documents because Canvas can read them and they support interactive plots, but you can also output to PDF and slides (like these), among other formats.
 
 ## Quarto Markdown - Plain Text - Activity {.smaller}
