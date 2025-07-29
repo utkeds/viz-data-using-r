@@ -324,7 +324,7 @@ level_of_confidence_graphs
 - Delete the zip
 - Open the `.Rproj` file in R Studio -->
 
-# Class File Storage {.smaller}
+## Class File Storage {.smaller}
 <hr>
 - If you haven't already, let's create a folder for this class.
 - In [Canvas](https://utk.instructure.com/courses/239375) there is a .zip file for `week-1` with all the files you need.
