@@ -524,7 +524,7 @@ For each visualization:
   - Watch video
 - Readings & Discussion
   - Healy (2018), Ch. 1
-  - Estrellado et al. (2020), Ch. 6
+  - Estrellado et al. (2020), Ch. 6 (modified)
   - Week 2 Discussion
   
 ** A note on "reading"...
