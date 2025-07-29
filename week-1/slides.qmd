@@ -340,7 +340,7 @@ level_of_confidence_graphs
   - .R (R Script)
   - .Qmd (Quarto Markdown)
 
-# R Script (.R) = File Type #1
+# R Script (.R)\n*File Type #1*
   
 ## R Script {.smaller}
 <hr>
@@ -352,7 +352,7 @@ level_of_confidence_graphs
 - You save an R script and submit it as it is (.R file)
   - Not true with Quarto Markdown (.Qmd) files!!
 
-# Quarto Markdown (.Qmd) = File Type #2
+# Quarto Markdown (.Qmd)\n*File Type #2*
 
 ## Quarto Markdown Documents {.smaller}
 <hr>
