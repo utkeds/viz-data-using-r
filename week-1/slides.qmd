@@ -425,7 +425,7 @@ execute:
 - **echo**: Whether to show the code in the output document
 - **warning**: Whether to show warnings in the output document
 - **error**: Whether to print errors in the output document
-- **eval**: Whether to run the code in the chunk
+- **eval**: Whether to run the code in the cell
 :::
 
 
@@ -444,8 +444,8 @@ You can name the code cellss (makes for better error messages). I named this one
 
 ## Quarto - Rendering Errors {.smaller}
 <hr>
-- When Quarto docs fail to render, it will tell you which chunk the error is in:
-  - Note: I had named this chunk "error-chunk".
+- When Quarto docs fail to render, it will tell you which cell the error is in:
+  - Note: I had named this cell "error-chunk".
 
 ![](CodeChunkRenderError.png)<br>[Error in lines 29-31]{.small-font}
 
