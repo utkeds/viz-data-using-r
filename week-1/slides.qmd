@@ -12,7 +12,7 @@ format:
     highlight-style: tango
     title-slide-attributes:
       data-background-color: "#4B4B4B"
-      data-background-image: UnitShortcut.png
+      data-background-image: slide_images/UnitShortcut.png
       data-background-size: 50%
       data-background-position: 50% 9%
     footer: UTK Educational Data Science
@@ -48,7 +48,7 @@ gs4_auth(
 - Introductions
 - Pre-work
 - Tutorial / discussion review
-- `.Qmd`
+- `.Qmd` & activity
 - Cairo (2013) discussion/ Miro activity
 - Looking ahead
 
@@ -158,7 +158,7 @@ greene_co_tn
   - Data science education
   - Socioscientific issue-based science teaching and learning
 ::::
-![](zhen_hometown.jpg)
+![](slide_images/zhen_hometown.jpg)
 :::
 
 ## Your Introductions {.smaller}
@@ -287,14 +287,6 @@ level_of_confidence_graphs <- df |>
 level_of_confidence_graphs
 ```
 
-<!-- ## Pre-Course Surveys—Recap -->
-<!-- <hr> -->
-<!-- ![](how_often_graphs.png) -->
-
-<!-- ## Pre-Course Surveys—Recap -->
-<!-- <hr> -->
-<!-- ![](level_of_confidence_graphs.png) -->
-
 ## Fun Things From Discussion {.smaller}
 <hr>
 :::{layout="[1,1], [1,1], [1,1]"}
@@ -310,7 +302,7 @@ level_of_confidence_graphs
   - Cool travel spots
   - Former residents
 
-![](running_shoes.png){width=10%}
+![](slide_images/running_shoes.png){width=10%}
 :::
 
 <!-- # R Projects
@@ -370,9 +362,9 @@ level_of_confidence_graphs
 <hr>
 
 :::{layout="[50,50]"}
-![](QmdPlainTextExample.png)<br>[Plain Text in `.Qmd`]{.small-font}
+![](slide_images/QmdPlainTextExample.png)<br>[Plain Text in `.Qmd`]{.small-font}
 
-![](MarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
+![](slide_images/MarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
 
 :::
 
@@ -384,7 +376,7 @@ level_of_confidence_graphs
 - Another part of a Quarto Markdown document is the **code cells**.
 
 :::{layout="[50,50]"}
-![](QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.Qmd`]{.small-font}
+![](slide_images/QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.Qmd`]{.small-font}
 
 
 - This is a code cell as displayed in the Positron IDE.
@@ -437,7 +429,7 @@ execute:
 
 - You override the defaults by adding options in the header of an individual code cell.
 
-![](Override_chunk_defaults.png)
+![](slide_images/Override_chunk_defaults.png)
 
 ::: {.callout-tip}
 You can name the code cells (makes for better error messages). I named this one "test-block".
@@ -449,7 +441,7 @@ You can name the code cells (makes for better error messages). I named this one 
 - When Quarto docs fail to render, it will tell you which cell the error is in:
   - Note: I had named this cell "error-chunk".
 
-![](CodeChunkRenderError.png)<br>[Error in lines 29-31]{.small-font}
+![](slide_images/CodeChunkRenderError.png)<br>[Error in lines 29-31]{.small-font}
 
 ## Quarto {.smaller}
 <hr>
@@ -462,7 +454,7 @@ You can name the code cells (makes for better error messages). I named this one 
 <hr>
 - In [Canvas](https://utk.instructure.com/courses/239375) you will find an activity called `Quarto Markdown: In-Class Activity`
 - It should open up another page with instructions.
-- In the `week-1` folder you will find the file for the activity called `Quarto Markdown: In-Class Activity`.
+- In the `week-1` folder you will find the file for the activity called `Quarto_In_Class_Activity.Qmd`.
 
 
 # Critiquing Data Viz
@@ -518,7 +510,7 @@ For each visualization:
 ## Next Week {.smaller}
 <hr>
 - Week 1 Assignment
-  - Projects, Packages, Functions, Data
+  - Packages, Functions, Data
 - PingPong AI
   - Take pre-survey
   - Watch video

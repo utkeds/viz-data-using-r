@@ -1,0 +1,41 @@
+---
+title: "Document Title Goes Here"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+format: html
+execute:
+    warning: false
+    error: false
+---
+
+<!-- 1. Make this a header. -->
+tidyverse
+
+<!-- 2. Make this a subheader. -->
+What is tidyverse?
+
+<!-- 3. Make "tidyverse" italic. 4. Make "data science" bold. -->
+The tidyverse is a collection of R packages designed for data science.
+
+Some of the key packages include:
+
+<!-- Turn this into a list. 5. Number the package names (in brackets) and make them bold. 6. Use dashes to make bullets in front of the functions (which end in parentheses), indent them by one level and make them verbatim. -->
+{ggplot2}
+geom_point()
+{dplyr}
+filter()
+{tidyr}
+pivot_longer()
+
+<!-- 7. Make tidyverse both italic and bold. 8. Add a citation here that cites the last line of text in this document. -->
+tidyverse packages share an underlying design philosophy, grammar, and data structures.
+
+```{r first_ten_sum}
+first_ten_sum <- 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
+```
+
+<!-- 9. Observe (when you render this document) what happens to `r first_ten_sum`. -->
+The sum of the first ten counting numbers is `r first_ten_sum`.
+
+This is why it is so effective for data science.
+
