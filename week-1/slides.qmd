@@ -376,16 +376,16 @@ level_of_confidence_graphs
 
 [- Note: verbatim formatting is created with backtick (tilde) key, not single quotation]{.extra-small-font}
 
-## Quarto - Code Chunks (R){.smaller}
+## Quarto - Code Cells (R){.smaller}
 <hr>
 
-- Another part of a Quarto Markdown document is the **code chunks**.
+- Another part of a Quarto Markdown document is the **code cells**.
 
 :::{layout="[50,50]"}
-![](QMarkdownCodeChunkExample.png)<br>[Code Chunk in a `.Qmd`]{.small-font}
+![](QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.Qmd`]{.small-font}
 
 
-- This is a code chunk in Positron.
+- This is a code cell in Positron.
 
 :::
 
@@ -396,16 +396,16 @@ format: html
 execute:
   echo: true
   warning: false
-  message: false
+  error: false
   eval: true
 ```
 
-- You can use chunk options in the header (called YAML) of a `.Qmd` to establish defaults for the full document.
+- You can use code cell options in the header (called YAML) of a `.Qmd` to establish defaults for the full document.
 <br>
 
 :::
 
-## Quarto - Code Chunks (R){.smaller}
+## Quarto - Code Cells (R){.smaller}
 <hr>
 
 ```
@@ -414,7 +414,7 @@ format: html
 execute:
   echo: true
   warning: false
-  message: false
+  error: false
   eval: true
 ```
 
@@ -424,7 +424,7 @@ execute:
 
 - **echo**: Whether to show the code in the output document
 - **warning**: Whether to show warnings in the output document
-- **message**: Whether to show messages in the output document
+- **error**: Whether to print errors in the output document
 - **eval**: Whether to run the code in the chunk
 :::
 

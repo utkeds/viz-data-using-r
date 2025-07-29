@@ -480,20 +480,20 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <p><span class="extra-small-font">- Note: verbatim formatting is created with backtick (tilde) key, not single quotation</span></p>
 </section>
-<section id="quarto---code-chunks-r" class="slide level2 smaller">
-<h2>Quarto - Code Chunks (R)</h2>
+<section id="quarto---code-cells-r" class="slide level2 smaller">
+<h2>Quarto - Code Cells (R)</h2>
 <hr>
 <ul>
-<li>Another part of a Quarto Markdown document is the <strong>code chunks</strong>.</li>
+<li>Another part of a Quarto Markdown document is the <strong>code cells</strong>.</li>
 </ul>
 <div class="quarto-layout-panel" data-layout="[50,50]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img data-src="QMarkdownCodeChunkExample.png"><br><span class="small-font">Code Chunk in a <code>.Qmd</code></span></p>
+<p><img data-src="QMarkdownCodeChunkExample.png"><br><span class="small-font">Code Cell in a <code>.Qmd</code></span></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
-<li>This is a code chunk in Positron.</li>
+<li>This is a code cell in Positron.</li>
 </ul>
 </div>
 </div>
@@ -506,38 +506,38 @@ format: html
 execute:
   echo: true
   warning: false
-  message: false
+  error: false
   eval: true</code></pre>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
-<li>You can use chunk options in the header (called YAML) of a <code>.Qmd</code> to establish defaults for the full document. <br></li>
+<li>You can use code cell options in the header (called YAML) of a <code>.Qmd</code> to establish defaults for the full document. <br></li>
 </ul>
 </div>
 </div>
 </div>
 </section>
-<section id="quarto---code-chunks-r-1" class="slide level2 smaller">
-<h2>Quarto - Code Chunks (R)</h2>
+<section id="quarto---code-cells-r-1" class="slide level2 smaller">
+<h2>Quarto - Code Cells (R)</h2>
 <hr>
 <pre><code>title: "Example Quarto Document"
 format: html
 execute:
   echo: true
   warning: false
-  message: false
+  error: false
   eval: true</code></pre>
 <p>? What do these parameters do ?</p>
 <div class="smaller-font">
 <ul>
 <li><strong>echo</strong>: Whether to show the code in the output document</li>
 <li><strong>warning</strong>: Whether to show warnings in the output document</li>
-<li><strong>message</strong>: Whether to show messages in the output document</li>
+<li><strong>error</strong>: Whether to print errors in the output document</li>
 <li><strong>eval</strong>: Whether to run the code in the chunk</li>
 </ul>
 </div>
 </section>
-<section id="quarto---code-chunks-r-2" class="slide level2 smaller">
+<section id="quarto---code-chunks-r" class="slide level2 smaller">
 <h2>Quarto - Code Chunks (R)</h2>
 <hr>
 <ul>

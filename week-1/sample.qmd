@@ -1,0 +1,19 @@
+---
+title: "Untitled"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format: html
+execute:
+  warning: false
+  error: false
+---
+
+
+```{r}
+head (mtcars)
+```
+
+
+```{r}
+summary(mtcars)
+```
