@@ -429,16 +429,16 @@ execute:
 :::
 
 
-## Quarto - Code Chunks (R){.smaller}
+## Quarto - Code Cells (R){.smaller}
 <hr>
-- The default options will be applied to all code chunks in the document, unless you override them.
+- The default options will be applied to all code cells in the document, unless you override them.
 
-- You override the defaults by adding options in the header of an individual code chunk.
+- You override the defaults by adding options in the header of an individual code cell.
 
 ![](Override_chunk_defaults.png)
 
 ::: {.callout-tip}
-You can name the code chunks (makes for better error messages). I named this one "test-block".
+You can name the code cellss (makes for better error messages). I named this one "test-block".
 :::
 
 
