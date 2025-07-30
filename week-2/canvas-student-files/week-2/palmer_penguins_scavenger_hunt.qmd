@@ -1,0 +1,69 @@
+---
+title: "Penguin dplyr Scavenger Hunt"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format: html
+execute:
+    warning: false
+    error: false
+---
+
+<!-- 1. Add all your names to the Author YAML block above. -->
+<!-- NOTE: After you complete each cell, run it! (Run cell play button near upper left of each cell.). -->
+
+<!-- 2. Now, also in the setup chunk below, please load {palmerpenguins} and {tidyverse} pkgs. -->
+<!-- NOTE: You will likely need to first install {palmerpenguins} in your console (if you don't have it installed). To do this, it is `install.packages("palmerpenguins")`. After installed, then you should be able to load it in your "packages" code cell below.-->
+
+```{r packages, include=FALSE}
+#Load packages here
+```
+
+<!-- 3. Now, run the code cell above using the "Run Cell" play button in the upper left. -->
+
+<!-- 4. Run the code cell below to assign the penguins data set in {palmerpenguins} to an object called `penguins`. -->
+
+```{r penguins_object}
+penguins <- penguins
+```
+
+<!-- 5. Now, let's look at the first few entries in the penguins dataset to see what we're working with. Use `head()` to look at the first 5 rows. -->
+
+```{r head_data}
+
+```
+
+<!-- 6. For this exercise, we are only interested in the "Chinstrap" species of dolphin. Use a base R pipe and filter to isolate only the Chinstrap penguin data. Assign this new subset to object "chinstrap". -->
+
+```{r filter_chinstrap}
+
+```
+
+<!-- 7. Now that we only have the Chinstrap data, we can further reduce the size of the data set we are working with. Use `select()` to keep only the following variables: species, bill_length_mm, flipper_length_mm, and sex. Again, assign it to chinstrap. Yes! We're overwriting the object because we aren't going to use the other variables in the rest of this exercise.-->
+
+```{r select_variables}
+
+```
+
+<!-- 8. Although it's useful that the variable names give the units, that doesn't look nice in a graph. There will be other ways to label our units. Use `rename()` to change `bill_length_mm` to `bill_length` and `flipper_length_mm` to `flipper_length`. Assign it to "chinstrap"-->
+
+```{r rename_variables}
+
+```
+
+<!-- 9. Now we are ready to plot! Using the ggplot code below, feed the code:
+a. the name of the dataframe/dataset (likely chinstrap),
+b. x variable (bill_length),
+c. y variable (flipper_length),
+d. and tell it to set the color to sex. -->
+
+```{r}
+ggplot(DATAFRAME_NAME, aes(x = X_VARIABLE, y = Y_VARIABLE)) +
+          geom_point(aes(color = COLOR_VARIABLE)) +
+  labs(title = "Chinstrap Penguins: Bill Length vs. Flipper Length",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+<!-- 10. Run the code cell above using the "Run Cell" play button in the upper left. Your first ggplotvisualization!-->
+
+<!-- Render/preview your document and submit the resulting .html file to the in-class assignment in Canvas. Great job! -->

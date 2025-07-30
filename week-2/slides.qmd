@@ -771,11 +771,13 @@ starwars |>
 
 ## Scavenger Hunt 1 of 2 {.smaller}
 <hr>
-- In the `week-2` folder you will find an activity called `Palmer Penguins: dplyr & ggplot2 Scavenger Hunt`
-- The `.Qmd` file has instructions embedded.
+- In the `week-2` folder you will find an activity called `palmer_penguins_scavenger_hunt.qmd`
+- The `.qmd` file has instructions embedded.
 - You will be sent into breakout rooms.
-- Everyone should have the .Qmd file open and be ready to work together.
-- However, only 1 rendered file (.html) should be submitted (i.e. 1 person should submit for group credit)
+- Everyone should have the .qmd file open and be ready to work together.
+- Cameras should be on at all times possible.
+- ONLY 1 RENDERED (.html) should be submitted.
+  - That is, each person in the group should submit the same document. EACH member should submit!
 - Make sure everyone's name is in author field!!!
 - The person who submits should be sharing their screen so the group can collaboratively work on the final document.
 
