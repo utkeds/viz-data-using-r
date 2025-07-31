@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 format: html
 execute:
   warning: false
-  error: false
+  message: false
 ---
 
 
@@ -17,3 +17,5 @@ head (mtcars)
 ```{r}
 summary(mtcars)
 ```
+
+This is where the **typing** and *markdown* formatting goes — between/after/before the code cells.

@@ -48,7 +48,7 @@ gs4_auth(
 - Introductions
 - Pre-work
 - Tutorial / discussion review
-- `.Qmd` & activity
+- `.qmd` & activity
 - Cairo (2013) discussion/ Miro activity
 - Looking ahead
 
@@ -103,7 +103,7 @@ gs4_auth(
   - teacher learning
   - data science
 
-```{r tn-map, warning=FALSE, message=FALSE, echo=FALSE}
+```{r tn-map, echo=FALSE}
 #| fig-cap:
 #|  - "Greene & Knox Counties, TN"
 #| fig-height: 4
@@ -330,7 +330,7 @@ level_of_confidence_graphs
 <hr>
 - In this course, we'll work with two primary file types in R.
   - .R (R Script)
-  - .Qmd (Quarto Markdown)
+  - .qmd (Quarto Markdown)
 
 # R Script (.R)<br>*File Type #1*
   
@@ -342,9 +342,9 @@ level_of_confidence_graphs
 - If you want plain text, it needs to be as a comment
     - Comments start with a single hash (#) in R code
 - You save an R script and submit it as it is (.R file)
-  - Not true with Quarto Markdown (.Qmd) files!!
+  - Not true with Quarto Markdown (.qmd) files!!
 
-# Quarto Markdown (.Qmd)<br>*File Type #2*
+# Quarto Markdown (.qmd)<br>*File Type #2*
 
 ## Quarto Markdown Documents {.smaller}
 <hr>
@@ -352,7 +352,7 @@ level_of_confidence_graphs
 - A quarto document is a data scientist's answer to Microsoft Word/PowerPoint
 - A Quarto Markdown document is written in markdown (a **plain text** format) [the Microsoft part] and contains **cells of embedded R code** [the R script part].
 - The markdown file is then processed and converted into a **PDF, Word, or HTML file**.
-- File extension: `.Qmd`
+- File extension: `.qmd`
 
 ::: {.callout-tip}
 - Quarto also supports other languages like Python and Julia, but we won't use them in this class.
@@ -362,7 +362,7 @@ level_of_confidence_graphs
 <hr>
 
 :::{layout="[50,50]"}
-![](slide_images/QmdPlainTextExample.png)<br>[Plain Text in `.Qmd`]{.small-font}
+![](slide_images/QmdPlainTextExample.png)<br>[Plain Text in `.qmd`]{.small-font}
 
 ![](slide_images/MarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
 
@@ -376,7 +376,7 @@ level_of_confidence_graphs
 - Another part of a Quarto Markdown document is the **code cells**.
 
 :::{layout="[50,50]"}
-![](slide_images/QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.Qmd`]{.small-font}
+![](slide_images/QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.qmd`]{.small-font}
 
 
 - This is a code cell as displayed in the Positron IDE.
@@ -390,11 +390,11 @@ format: html
 execute:
   echo: true
   warning: false
-  error: false
+  message: false
   eval: true
 ```
 
-- You can use code cell options in the header (called YAML) of a `.Qmd` to establish defaults for the full document.
+- You can use code cell options in the header (called YAML) of a `.qmd` to establish defaults for the full document.
 <br>
 
 :::
@@ -408,7 +408,7 @@ format: html
 execute:
   echo: true
   warning: false
-  error: false
+  message: false
   eval: true
 ```
 
@@ -418,7 +418,7 @@ execute:
 
 - **echo**: Whether to show the code in the output document
 - **warning**: Whether to show warnings in the output document
-- **error**: Whether to print errors in the output document
+- **message**: Whether to print messages in the output document
 - **eval**: Whether to run the code in the cell
 :::
 
@@ -454,7 +454,7 @@ You can name the code cells (makes for better error messages). I named this one 
 <hr>
 - In [Canvas](https://utk.instructure.com/courses/239375) you will find an activity called `Quarto Markdown: In-Class Activity`
 - It should open up another page with instructions.
-- In the `week-1` folder you will find the file for the activity called `Quarto_In_Class_Activity.Qmd`.
+- In the `week-1` folder you will find the file for the activity called `Quarto_In_Class_Activity.qmd`.
 
 
 # Critiquing Data Viz
