@@ -81,7 +81,7 @@ national_mean <- tidykids_lib16 |>
 
 ### Step 4: Create the plot!
 
-```{r}
+```{r, fig.alt="A faceted histogram of inflation-adjusted per-child spending on libraries in 2016, with a red dashed line indicating the national mean."}
 tidykids_lib16 |>
   ggplot(aes(x = inf_adj_perchild)) +
   geom_histogram(binwidth = .05, fill = "skyblue", color = "black") + #Note: binwidth is adjusted, given the range of the inf_adj_perchild variable

@@ -475,7 +475,26 @@ tidykids_wide |>
 :::
 :::
 
-# Collaborative Exercise
+# Collaborative Practice
+
+## Collaborative Practice
+<hr>
+:::{.small-font}
+
+- **Individual think time:** 3 minutes (camera off/mute)
+    - Review document
+    - Review question prompts
+    - Start planning possible approaches/pseudocode
+- **Introductions:** 2 minutes (camera on/unmute)
+- **Collaborative Work:** (camera on/unmute)
+
+:::
+
+## Collaborative Practice
+<hr>
+- Use `tidykids` to investigate library spending
+- Create time series plot
+- Implement {gghighlight}
 
 # Schwabish Extensions
 

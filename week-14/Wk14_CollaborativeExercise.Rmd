@@ -35,7 +35,7 @@ cat <- occ_data(scientificName = "Place_Name_Here")
 4. Now run the code below to clean up some of the country names so we can cleanly `left_join()` the data (no need to edit the code, just run the block).
 
 ```{r clean_country_names}
-cat_data_sum <- cat_data |>
+cat_data_sum <- cat_data_sum |>
   mutate(
     country = case_when(
       country == "Russian Federation" ~ "Russian Federation",

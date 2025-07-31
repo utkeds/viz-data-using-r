@@ -5,6 +5,7 @@ output: html_document
 date: "xx"
 ---
 
+<!-- Before getting started, add warning=FALSE and message=FALSE to the knitr option below. -->
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -29,7 +30,14 @@ INTERPRETATION:
 
 ## 3. Graph 1: A scatterplot
 
-Create a scatterplot. For this plot, keep things simple. Use only a single state, one variable of your choice (i.e., filter `variable` to focus only on ONE expenditure type) on the y-axis and year on the x. Note that in the next step, you'll extend this graph a bit. Note that the codebook is here: https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
+Create a scatterplot. For this plot, keep things simple. Use only (i.e., filter for):
+
+- a single state,
+- one variable of your choice (see the codebook for this - use only ONE type of expenditure)
+- Put the `variable` of choice on the y-axis
+- Put year on the x axis
+
+Note that in the next step, you'll extend this graph a bit. Note that the codebook is here: https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html
 
 and that the Healy reading gives scatterplot code (borrow it, if you want)!
 
