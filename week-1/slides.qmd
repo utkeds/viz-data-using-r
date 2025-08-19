@@ -391,6 +391,8 @@ level_of_confidence_graphs
 :::{layout="[50,50]"}
 ```
 title: "Example Quarto Document"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
 format: html
 execute:
   echo: true
