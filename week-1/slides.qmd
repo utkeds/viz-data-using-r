@@ -332,6 +332,10 @@ level_of_confidence_graphs
   - .R (R Script)
   - .qmd (Quarto Markdown)
 
+- How to think about the differences:
+  - .R script = notepad
+  - .qmd = Microsoft Word
+
 # R Script (.R)<br>*File Type #1*
   
 ## R Script {.smaller}
@@ -341,6 +345,7 @@ level_of_confidence_graphs
 - You directly type code into the R Script
 - If you want plain text, it needs to be as a comment
     - Comments start with a single hash (#) in R code
+    - R can't read comments. These are for you!
 - You save an R script and submit it as it is (.R file)
   - Not true with Quarto Markdown (.qmd) files!!
 
