@@ -290,17 +290,9 @@ level_of_confidence_graphs
 ## Fun Things From Discussion {.smaller}
 <hr>
 :::{layout="[1,1], [1,1], [1,1]"}
-- A Marathoner
-- A Newlywed
-- Athletes
-  - Soccer
-  - Pickleball
-- Dog enthusiasts
-  - Hobbyist dog trainer
-  - Miniature American Shepherd Breeder
-- Europe as Destination
-  - Cool travel spots
-  - Former residents
+- A Runner
+- A Gardener
+- Rock collector
 
 ![](slide_images/running_shoes.png){width=10%}
 :::
@@ -340,6 +332,10 @@ level_of_confidence_graphs
   
 ## R Script {.smaller}
 <hr>
+![](slide_images/rscript.png)
+
+## R Script {.smaller}
+<hr>
 - An R Script is the most standard file type in R
 - Featured in the week-0 Tutorial #1
 - You directly type code into the R Script
@@ -353,6 +349,19 @@ level_of_confidence_graphs
 
 ## Quarto Markdown Documents {.smaller}
 <hr>
+:::{layout="[50,50]"}
+
+:::{column}
+![](slide_images/quarto_raw.png)
+:::
+
+:::{column}
+![](slide_images/quarto_rendered.png){.fragment}
+:::
+:::
+
+## Quarto Markdown Documents {.smaller}
+<hr>
 
 - A quarto document is a data scientist's answer to Microsoft Word/PowerPoint
 - A Quarto Markdown document is written in markdown (a **plain text** format) [the Microsoft part] and contains **cells of embedded R code** [the R script part].
@@ -360,7 +369,7 @@ level_of_confidence_graphs
 - File extension: `.qmd`
 
 ::: {.callout-tip}
-- Quarto also supports other languages like Python and Julia, but we won't use them in this class.
+- Quarto also supports other languages like Python, but we won't use them in this class.
 :::
 
 ## Quarto - Plain Text (Markdown) {.smaller}
@@ -411,6 +420,8 @@ execute:
 
 ```
 title: "Example Quarto Document"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
 format: html
 execute:
   echo: true
@@ -528,3 +539,11 @@ For each visualization:
   
 ** A note on "reading"...
 
+## "Reading" in this class... {.smaller}
+<hr>
+- We use different verbs in the modules to describe the reading:
+
+  - Read (traditional reading --> solidly skim)
+  - Skim (quick reading)
+  - Work through (this is code --> work through exercises)
+  - Review (quickly browse --> reference material)

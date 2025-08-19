@@ -1,0 +1,49 @@
+---
+title: "Report About Penguins"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+  eval: true
+---
+
+
+## Introduction
+
+Quarto documents do contain code cells. This code cell loads the `palmerpenguins` package.
+
+```{r packages}
+#load packages
+library(palmerpenguins)
+```
+
+Code cells are like R script snippets. They can be interspersed throughout your Quarto document.
+
+```{r data, include=FALSE}
+#save data to object
+penguins <- palmerpenguins::penguins
+```
+
+I can then add text inbetween the code cells that I can format using markdown syntax - similarly to what I would do in a Word document.
+
+The *code cell* below displays the **first six rows** of the `penguins` data set.
+
+```{r preview}
+#View first six rows of data
+head(penguins)
+```
+
+
+
+
+
+
+
+
+
+
+
+
