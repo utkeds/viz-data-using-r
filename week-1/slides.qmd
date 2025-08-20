@@ -293,6 +293,7 @@ level_of_confidence_graphs
 - A Runner
 - A Gardener
 - Rock collector
+- Coffee (hold the creamer!)
 
 ![](slide_images/running_shoes.png){width=10%}
 :::
