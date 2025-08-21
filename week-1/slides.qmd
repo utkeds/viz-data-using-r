@@ -290,10 +290,16 @@ level_of_confidence_graphs
 ## Fun Things From Discussion {.smaller}
 <hr>
 :::{layout="[1,1], [1,1], [1,1]"}
-- A Runner
-- A Gardener
+- Runner
+- Gardener
+- Rock climber
 - Rock collector
-- Coffee (hold the creamer!)
+- Coffee and ramen connoisseurs
+- Personal hairstylist (in training?)
+- Double jointed
+- Career educator
+- Paraglider
+- Tap dancer
 
 ![](slide_images/running_shoes.png){width=10%}
 :::
