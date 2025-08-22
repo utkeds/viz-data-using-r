@@ -2,7 +2,9 @@
 title: "Report About Penguins"
 author: "Fabulous Student"
 date: "`r Sys.Date()`"
-format: html
+format:
+  html:
+    embed-resources: true
 execute:
   echo: true
   warning: false

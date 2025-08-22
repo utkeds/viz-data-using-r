@@ -2,7 +2,9 @@
 title: "Document Title Goes Here"
 author: "Your Name Here"
 date: "`r Sys.Date()`"
-format: html
+format:
+  html:
+    embed-resources: true
 execute:
     warning: false
     message: false
