@@ -409,7 +409,9 @@ level_of_confidence_graphs
 title: "Example Quarto Document"
 author: "Fabulous Student"
 date: "`r Sys.Date()`"
-format: html
+format:
+  html:
+    embed-resources: true
 execute:
   echo: true
   warning: false
@@ -429,7 +431,9 @@ execute:
 title: "Example Quarto Document"
 author: "Fabulous Student"
 date: "`r Sys.Date()`"
-format: html
+format:
+  html:
+    embed-resources: true
 execute:
   echo: true
   warning: false
