@@ -519,9 +519,16 @@ For each visualization:
 
 :::
 
-## Breakout Rooms & Miro
+## Breakout Rooms & Miro {.smaller}
 <hr>
-- Using your breakout room #, go to the corresponding Miro board linked in Canvas.
+Using your breakout room #, go to the corresponding Miro board linked in Canvas.
+
+Breakout room structure:
+
+- **Individual Think Time**: ~ 5 min (camera off / mute)
+  - Review document
+- **Introductions**: ~ 3 min (camera on/ unmute)
+- **Collaborative Work** (camera on/unmute)
 
 ## Cairo (2013), Chapter 2
 <hr>

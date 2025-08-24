@@ -1,0 +1,25 @@
+---
+title: "Untitled"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+---
+```{r}
+head(mtcars)
+```
+
+
+```{r}
+summary(mtcars)
+```
+
+This is where the **typing** and *markdown* goes — between/after/before the code cells.
+
+
+
+
