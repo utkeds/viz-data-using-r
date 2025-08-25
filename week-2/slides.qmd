@@ -37,11 +37,9 @@ library(gt)
 <hr>
 
 - Weekly Check In
-- Homework Review
-  - The Verbatim Backtick
-  - Filepaths
-  - Installing and Loading Packages
 - Norms
+- Collaborative Norms
+- Information Architect Activity (Wk 1)
 - {tidyverse} Introduction
   - {dplyr} Basics
   - {ggplot2} Preview
@@ -63,19 +61,21 @@ library(gt)
 
 :::
 
-# Homework Review
-
-## The Verbatim Backtick {.smaller}
+## Collaborative Norms {.smaller}
 <hr>
-- To format text verbatim, use backticks.
-  - Not single quotes
-  - Backtick is the same key as tilde (next to #1)
-  - Three backticks --> code cell in `.Qmd`
-<br>
-<br>
-- Slack also accepts markdown formatting
-  - One reason why we use Slack for this class
+- **Individual Think Time**: ~ 5 min (camera off / mute)
+  - Review document
+  - Review prompts
+  - Start planning possible approaches/pseudocode
+- **Introductions**: ~ 3 min (camera on/ unmute)
+- **Collaborative Work** (camera on/unmute)
+
+## Collaborative Norms {.smaller}
+<hr>
+- Slack is also a great collaborative tool!
+  - It accepts markdown formatting
   - Honors both in-line `verbatim` formatting and code cells
+  - You can create a Direct Message group and share code/files with each other or the instructors
 <br>
 <br>
 - **Try it!** DM yourself in Slack or post in the class channel to see how backticks work in Slack.
@@ -778,8 +778,8 @@ starwars |>
 - Cameras should be on at all times possible.
 - ONLY 1 RENDERED (.html) should be submitted.
   - That is, each person in the group should submit the same document. EACH member should submit!
-- Make sure everyone's name is in author field!!!
-- The person who submits should be sharing their screen so the group can collaboratively work on the final document.
+  - Slack is great to share the .html rendered file with the whole group
+- Make sure everyone's name is in author field!
 
 ## Scavenger Hunt 2 of 2 {.smaller}
 <hr>
