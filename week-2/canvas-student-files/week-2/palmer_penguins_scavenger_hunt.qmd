@@ -2,7 +2,9 @@
 title: "Penguin dplyr Scavenger Hunt"
 author: "Fabulous Student"
 date: "`r Sys.Date()`"
-format: html
+format:
+  html:
+    embed-resources: true
 execute:
     warning: false
     message: false

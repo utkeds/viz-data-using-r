@@ -29,7 +29,7 @@ library(tidyverse) #includes starwars data set
 library(gt)
 ```
 
-# Weekly Check In
+# Weekly Check In, Download `.zip`, Download Slides
 
 # Start Recording
 
@@ -61,7 +61,38 @@ library(gt)
 
 :::
 
-## Collaborative Norms {.smaller}
+# Last Week
+
+## From Last Week {.smaller}
+<hr>
+- Markdown activity:
+  - Markdown is sensitive to spacing
+    - e.g., single spaces between dashes and words to make bullets
+  - Quarto is sensitive to line spacing
+    - e.g., If a bullet doesn't format and you've checked the markdown formatting, put a line break/return before you start the list
+
+## From Last Week {.smaller}
+<hr>
+- YAML header is also sensitive
+- We've added another line in the default header in order to retain the formatting once uploaded to Canvas 
+  - It makes the Quarto .html rendering behave like the R Markdown .html rendering
+
+```r
+---
+title: "Untitled"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+---
+```
+- All documents have been updated to reflect this.
+
+## Collaborative Norms - Breakouts{.smaller}
 <hr>
 - **Individual Think Time**: ~ 5 min (camera off / mute)
   - Review document
@@ -70,39 +101,74 @@ library(gt)
 - **Introductions**: ~ 3 min (camera on/ unmute)
 - **Collaborative Work** (camera on/unmute)
 
-## Collaborative Norms {.smaller}
+## Collaborative Norms - Slack {.smaller}
 <hr>
 - Slack is also a great collaborative tool!
   - It accepts markdown formatting
   - Honors both in-line `verbatim` formatting and code cells
   - You can create a Direct Message group and share code/files with each other or the instructors
+![](slides_images/DM_in_Slack.png)
 <br>
 <br>
 - **Try it!** DM yourself in Slack or post in the class channel to see how backticks work in Slack.
 
+# Information Architect (Wk 1)
+
+## Information Architect {.smaller}
+<hr>
+Cairo (2013), Chapter 1, p. 17
+
+> "The role of an information architect is to anticipate this [visualization decoding] process and generate order before people's brains try to do it on their own "
+
+## Information Architect {.smaller}
+<hr>
+For each visualization:
+
+:::{.small-font}
+- What is the goal of the information architect?
+  - *If clear* (general agreement):
+    - Does the visual align well with the goal?
+    - Is it convincing?
+    - How could it be further improved?
+  - *If unclear* (some disagreement):
+    - What elements of the visual are conflicting?
+    - How could the visual be improved to better clarify the potential goal(s)?
+
+:::
+
+## Information Architect {.smaller}
+<hr>
+Using your breakout room #, go to the corresponding Miro board linked in Canvas.
+
+Breakout room structure:
+
+- **Individual Think Time**: ~ 5 min (camera off / mute)
+  - Review document
+- **Introductions**: ~ 3 min (camera on/ unmute)
+- **Collaborative Work** (camera on/unmute)
+
+# Welcome to the {tidyverse}
+
 ## Installing Packages {.smaller}
 <hr>
 - You only install a package once on your computer (the first time you use it)
-- Note: I often do this in the console (aka scratchpad)
+- Note: I do this in the console (aka scratchpad)
 ```r
 install.packages("tidyverse")
 ```
 <br>
 
 - Then, each time you want to use it you will need to load it from your package library
-- Do this in your `.R` script or `.Qmd` file itself (usually at the top)
+- Do this in your `.R` script or `.qmd` file itself (usually at the top)
 ```r
 library(tidyverse)
 ```
-  
-
-# {tidyverse} Intro
 
 ## {tidyverse} Intro {.smaller}
 <hr>
 - The *tidyverse* is a collection of packages for data science
   - The packages can be loaded separately, but just loading {tidyverse} installs eight core packages.
-  - We'll focus on two:
+  - We'll largely focus on two:
     1. {dplyr} - data wrangling
     2. {ggplot2} - data viz
 
@@ -150,7 +216,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 [`data |> select(var1, var2)`]{.fragment}
 
@@ -198,7 +264,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 :::{.fragment}
 `data |> select(var1, var2)` <br>
@@ -241,7 +307,7 @@ starwars |>
   glimpse()
 ```
 :::
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 ::::{.small-font}
 
 *In English*:<br>
@@ -301,7 +367,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 :::{.fragment}
 `data |> slice(3:5)`
@@ -351,9 +417,9 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
-[`data |>filter(var >= 50)`]{.fragment}
+[`data |> filter(var >= 50)`]{.fragment}
 
 [- Use this to **filter rows**]{.extra-small-font .fragment}
 <br>
@@ -399,7 +465,7 @@ starwars |>
 ```
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 [`data |> filter(var == "brown")`]{.fragment .medium-small-font}
 
@@ -445,7 +511,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 [`data |> filter(!is.na(var))`]{.fragment .medium-small-font}
 
@@ -492,7 +558,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 [`str(data)`]{.fragment}
 
@@ -538,7 +604,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 [`head(data)`]{.fragment}
 
@@ -588,7 +654,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 
 [`rename("new_var_name" = old_var_name)`]{.fragment .medium-small-font}
@@ -644,7 +710,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 [`rename("new_var_name" = old_var_name)`]{.fragment .medium-small-font}
 
@@ -695,7 +761,7 @@ starwars |>
 
 :::
 
-::: {.column width="55%" style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 [`mutate()` A Challenge!]{.fragment}
 
