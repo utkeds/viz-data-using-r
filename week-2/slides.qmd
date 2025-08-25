@@ -147,6 +147,17 @@ Breakout room structure:
 - **Introductions**: ~ 3 min (camera on/ unmute)
 - **Collaborative Work** (camera on/unmute)
 
+## Cairo (2013), Chapter 2
+<hr>
+:::{.small-font}
+*On visualizations as tools:*
+<br>
+<br>
+"It is tempting to propose rock-solid rules—if you want to show change through time, use a time-series chart; if you need to compare, use a bar chart; or to display correlation, use a scatterplot... But reality is complex... What is really important is to remember that no matter how creative and innovative you wish to be in your graphics and visualizations, the first thing you must do... is **ask yourself what users are likely to try to do with your tool.**
+:::
+<br>
+(Cairo, 2013, p. 43)
+
 # Welcome to the {tidyverse}
 
 ## Installing Packages {.smaller}
