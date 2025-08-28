@@ -13,19 +13,20 @@ execute:
 <!-- 1. Add all your names to the Author YAML block above. -->
 <!-- NOTE: After you complete each cell, run it! (Run cell play button near upper left of each cell.). -->
 
-<!-- 2. Now, also in the setup chunk below, please load {palmerpenguins} and {tidyverse} pkgs. -->
-<!-- NOTE: You will likely need to first install {palmerpenguins} in your console (if you don't have it installed). To do this, it is `install.packages("palmerpenguins")`. After installed, then you should be able to load it in your "packages" code cell below.-->
+<!-- 2. Now, also in the setup chunk below, please load {palmerpenguins}, {tidyverse}, and {janitor} pkgs. -->
+<!-- NOTE: You will likely need to first install {palmerpenguins} and {janitor} in your console (if you don't have them installed). To do this, it is `install.packages("palmerpenguins")`. After installed, then you should be able to load them in your "packages" code cell below.-->
 
 ```{r packages, include=FALSE}
-#Load packages here
+#Load the three packages here
 ```
 
 <!-- 3. Now, run the code cell above using the "Run Cell" play button in the upper left. -->
 
-<!-- 4. Run the code cell below to assign the penguins data set in {palmerpenguins} to an object called `penguins`. -->
+<!-- 4. Run the code cell below to assign the penguins data set in {palmerpenguins} to an object called `penguins` and then use `janitor::clean_names()` to clean up the variable names. -->
 
 ```{r penguins_object}
-penguins <- penguins
+penguins <- penguins |>
+  janitor::clean_names()
 ```
 
 <!-- 5. Now, let's look at the first few entries in the penguins dataset to see what we're working with. Use `head()` to look at the first 5 rows. -->
