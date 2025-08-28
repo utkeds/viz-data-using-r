@@ -299,8 +299,6 @@ select(starwars, name, height)
 
 # Why the same?
 
-# More {dplyr} functions
-
 ## {dplyr} Basic Functions
 <hr>
 Pipe Operator: `%>% or |>`
