@@ -433,7 +433,7 @@ starwars |>
 [- Use this to **filter rows**]{.extra-small-font .fragment}
 <br>
 
-:::{.fragment .extra-small-font}
+:::{.fragment .medium-small-font}
 
 ```{r}
 starwars |>
