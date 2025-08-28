@@ -35,7 +35,7 @@ penguins <- penguins |>
 
 ```
 
-<!-- 6. For this exercise, we are only interested in the "Chinstrap" species of dolphin. Use a base R pipe and filter to isolate only the Chinstrap penguin data. Assign this new subset to object "chinstrap". -->
+<!-- 6. For this exercise, we are only interested in the "Chinstrap" species of penguin. Use a base R pipe and filter to isolate only the Chinstrap penguin data. Assign this new subset to object "chinstrap". -->
 
 ```{r filter_chinstrap}
 
