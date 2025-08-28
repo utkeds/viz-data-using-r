@@ -877,3 +877,8 @@ Breakout room structure:
   - **Work Through** Beck (n.d.)
   - **Skim** dplyr cheatsheet
   - **Skim** Wickham et al., (2023)
+
+## Office Hours
+<hr>
+- Wednesday, 3-4pm
+- Same Zoom link as class
