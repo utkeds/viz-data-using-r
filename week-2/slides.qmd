@@ -834,6 +834,27 @@ starwars |>
 ```
 :::
 
+## How do I know the code ran? {.smaller}
+<hr>
+- There are a several ways to check
+  - call the object
+  - `print()` the object
+  - `str()` the object
+  - `glimpse()` the object
+  - `View()` the object
+- Also look at the variables pane in the secondary sidebar
+  - `>` Will expand the object
+- No error in the console!
+  - i.e., you get a `>` in the console instead of error message
+
+## How do I know the code ran?
+<hr>
+- There are a several ways to check
+  - `print()` the object
+  - `str()` the object
+  - `glimpse()` the object
+- Also look at the variables pane in the secondary sidebar
+
 # {ggplot2} Preview
 
 ## {ggplot2} Preview
