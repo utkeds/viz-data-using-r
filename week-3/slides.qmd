@@ -1225,7 +1225,7 @@ starwars |>
 
 ::: {.column width="45%"}
 
-[**Example data - starwars**]{.small-font}
+[**Example data - starwars**]{.smaller-font}
 
 ```{r echo=FALSE}
 starwars |>
@@ -1278,9 +1278,9 @@ starwars |>
 ## {dplyr} Titanic Practice (1 of 2)
 <hr>
 :::{.smaller-font}
-- Open your dplyrTitanicPractice-Student.Rmd file.
+- Open your `dplyr_titanic_practice.qmd` file.
 - We'll go to breakout rooms.
-- I will come around and answer questions. This one is more in-depth.
+- We will come around and answer questions. This one is more in-depth.
 - Resources:
     - Week 2 slides
     - Week 3 slides
@@ -1302,7 +1302,7 @@ Breakout room structure:
 - **Introductions**: ~ 3 min (camera on/ unmute)
 - **Collaborative Work** (camera on/unmute)
 
-# {forcats} (See cheatsheet)
+# {forcats} [(See cheatsheet)](https://posit.co/wp-content/uploads/2022/10/factors-1.pdf)
 
 ## {forcats} (factor vars)
 <hr>
@@ -1310,13 +1310,12 @@ Breakout room structure:
 <br>
 <hr>
 
-:::{layout="[55,45]" .small-font}
+::: {.columns .small-font}
 
-::::{layout="[1]" .extra-small-font}
-<br>
-[**Example data - Titanic**]{.small-font}
-<br>
-<br>
+::: {.column width="45%"}
+
+[**Example data - Titanic**]{.smaller-font}
+
 ```{r echo=FALSE}
 titanic <- read_csv("Titanic-Dataset.csv")
 
@@ -1341,18 +1340,28 @@ surv_rates_age_class <- surv_rates_age_class |>
   mutate(Pclass = fct_relevel(Pclass, "Second", "Third", "First"))
 
 surv_rates_age_class |>
-  knitr::kable(format = "html", table.attr = "class='table-striped'")
+  gt() |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(13),
+    data_row.padding = px(2)
+  ) |>
+tab_style(
+    style = cell_fill(color = "#f9f9f9"),
+    locations = cells_body(rows = c(1, 3, 5, 7, 9))
+  ) |>
+  opt_table_lines(extent = "none")
 ```
+:::
 
-::::
-::::{layout="[1]" .fragment .smaller-font}
-<br>
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
-:::{.extra-small-font}
+:::{.fragment .smaller-font}
 - X axis lacks order
 
 :::
 
+:::{.fragment .smaller-font}
 ```{r}
 surv_rates_age_class |>
   filter(age_group == "child")|>
@@ -1362,7 +1371,9 @@ surv_rates_age_class |>
        x = "Class",
        y = "Survival Rate")
 ```
-::::
+:::
+
+:::
 :::
 
 ## {forcats} (factor vars)
@@ -1371,15 +1382,11 @@ surv_rates_age_class |>
 <br>
 <hr>
 
-:::{layout="[40,60]" .small-font}
+::: {.smaller-font}
 
-::::{layout="[1]" .extra-small-font}
-<br>
-[`fct_relevel()`]{.small-font}
+- `fct_relevel()` **re-orders factors by hand**
+- You manually specify the order
 
-::::{.extra-small-font}
-- **Re-orders factors by hand**: you manually specify the order
-::::
 ```{r, eval=FALSE}
 surv_rates_age_class |>
   filter(age_group == "child")|>
@@ -1391,9 +1398,8 @@ surv_rates_age_class |>
        y = "Survival Rate")
 ```
 
-::::
-::::{layout="[1]" .fragment .smaller-font}
-<br>
+:::
+
 ```{r, echo=FALSE}
 surv_rates_age_class|>
   filter(age_group == "child")|>
@@ -1404,8 +1410,6 @@ surv_rates_age_class|>
        x = "Class",
        y = "Survival Rate")
 ```
-::::
-:::
 
 ## {forcats} (factor vars)
 <hr>
@@ -1413,27 +1417,37 @@ surv_rates_age_class|>
 <br>
 <hr>
 
-:::{layout="[55,45]" .small-font}
+::: {.columns .small-font}
 
-::::{layout="[1]" .extra-small-font}
-<br>
-[**Example data - Titanic**]{.small-font}
-<br>
-<br>
+::: {.column width="45%"}
+
+[**Example data - Titanic**]{.smaller-font}
+
 ```{r echo=FALSE}
 surv_rates_age_class|>
-  knitr::kable(format = "html", table.attr = "class='table-striped'")
+  gt() |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(13),
+    data_row.padding = px(2)
+  ) |>
+tab_style(
+    style = cell_fill(color = "#f9f9f9"),
+    locations = cells_body(rows = c(1, 3, 5, 7, 9))
+  ) |>
+  opt_table_lines(extent = "none")
 ```
 
-::::
-::::{layout="[1]" .fragment .smaller-font}
-<br>
+:::
 
-:::{.extra-small-font}
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+
+:::{.fragment .smaller-font}
 - What if I wanted this reordered by rate, not class?
 
 :::
 
+:::{.fragment .smaller-font}
 ```{r}
 surv_rates_age_class|>
   filter(age_group == "child")|>
@@ -1443,7 +1457,9 @@ surv_rates_age_class|>
        x = "Class",
        y = "Survival Rate")
 ```
-::::
+:::
+
+:::
 :::
 
 ## {forcats} (factor vars)
@@ -1452,15 +1468,10 @@ surv_rates_age_class|>
 <br>
 <hr>
 
-:::{layout="[40,60]" .small-font}
+::: {.smaller-font}
 
-::::{layout="[1]" .extra-small-font}
-<br>
-[`fct_reorder()`]{.small-font}
+- `fct_reorder()` **re-orders factors by values of another variable**
 
-::::{.extra-small-font}
-- **Re-orders factors by values of another variable**
-::::
 ```{r, eval=FALSE}
 surv_rates_age_class|>
   filter(age_group == "child")|>
@@ -1471,10 +1482,8 @@ surv_rates_age_class|>
        x = "Class",
        y = "Survival Rate")
 ```
+:::
 
-::::
-::::{layout="[1]" .fragment .smaller-font}
-<br>
 ```{r, echo=FALSE}
 surv_rates_age_class|>
   filter(age_group == "child")|>
@@ -1485,8 +1494,6 @@ surv_rates_age_class|>
        x = "Class",
        y = "Survival Rate")
 ```
-::::
-:::
 
 # Looking Ahead
 
@@ -1496,5 +1503,5 @@ surv_rates_age_class|>
     - Gapminder Data
 - Reading:
     - Read Healy (2012), Chapter 3
-    - Intro to ggplot2
-    - Skim ggplot2 cheatsheet
+    - Intro to {ggplot2}
+    - Skim {ggplot2} cheatsheet
