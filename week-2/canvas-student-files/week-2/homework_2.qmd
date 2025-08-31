@@ -11,24 +11,15 @@ execute:
 ---
 <!-- First, please replace "Fabulous Student" (in the YAML header) with your name! -->
 
-```{r packages}
-# Load needed packages here
-```
-
 ## Install Packages
 
 Packages perform different jobs in R. Packages allow you to use specific functions in R. They allow R to do new things.
 
 Before we can use a package, we need to install it. We can install it using `install.packages("package_name")`. We only need to run this the first time we install a package, and you typically install them in your console rather than in your R script.
 
-For our first visualization, we are going to install:
+For our first visualization, we are going to install (if you don't have it already):
 
 - `tidyverse` - used for loading and wrangling data
-
-```{r include=FALSE}
-# NOTE: skip this step if you already tidyverse installed. You will need to uncomment the code below to install the package. (i.e., remove the # symbol)
-# install.packages("tidyverse")
-```
 
 ## Load Packages
 

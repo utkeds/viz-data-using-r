@@ -666,7 +666,7 @@ starwars |>
 ::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
 
-[`rename("new_var_name" = old_var_name)`]{.fragment .medium-small-font}
+[`rename(new_var_name = old_var_name)`]{.fragment .medium-small-font}
 
 [- Use this to **rename** a column]{.extra-small-font .fragment}
 <br>
@@ -674,7 +674,7 @@ starwars |>
 ::::{.fragment .medium-small-font}
 ```{r}
 starwars |>
-  rename("weight" = mass)
+  rename(weight = mass)
 ```
 :::
 
