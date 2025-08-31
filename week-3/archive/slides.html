@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Week 3 Slides</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Joshua Rosenberg and Isabella Velásquez" />
+    <script src="slides_files/header-attrs-2.25/header-attrs.js"></script>
+    <script src="slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Press Ctrl+C to Copy"})</script>
+    <link href="slides_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+    <link href="slides_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="slides_files/panelset-0.2.6/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Week 3 Slides
+]
+.subtitle[
+## How do I wrangle data?
+]
+.author[
+### <strong>Joshua Rosenberg and Isabella Velásquez</strong>
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+# Purpose and Agenda
+
+This week, we answer the following question: What's this class all about?
+
+## What we'll do in this presentation
+
+- Recap
+- A bit more introductions
+- Reading discussion in whole group chat
+- Key concept #1 - dplyr verbs
+- Key concept #2 - stringr and forcats
+- Code-along
+- What’s next
+
+---
+
+# Recap
+
+Last week, we:
+
+  - Reviewed the [syllabus](https://docs.google.com/document/d/1FItWUb46iL5cxvFW6TIf02BDtt7Q0I_OE-aS_HhOSIw/edit)
+  - Discussed two key concepts: #1) the repetitive structure of the coruse and 2) how the theoretically-focused aspect of this course will build on your intuitions
+  - Did a code-along that led into the assignment
+  - Read a chapter by Healy
+
+---
+
+# A bit more introductions
+
+## Josh
+
+A few projects...
+
+- CREDIBLE
+- konfound
+- T(CA)^2
+- Social media and students' right to privacy
+- ESM
+
+## Isabella
+
+Introduction! And office hours next week (and four classes)
+
+https://utk.instructure.com/courses/196893/external_tools/1509
+
+---
+
+# Reading discussion
+
+Link to [reading](https://socviz.co/gettingstarted.html#gettingstarted)
+
+- What is one thing you took away from this reading about how and why R Markdown and R work the way they do?
+- What was confusing about the reading?
+
+https://jamboard.google.com/d/169YPYiQ7z39Pm1XFxxaEvu-cBJs5FkXjNTbjjyKHgec/edit?usp=sharing
+
+
+---
+
+# Key concept #1: Core dplyr "verbs"
+
+- `rename()`
+- `select()`
+- `filter()`
+- `count()`
+- `glimpse()`
+
+**We'll explore these in much more detail in the code-along**
+
+---
+
+# Key Concept #2: stringr and forcats
+
+These are super handy:
+
+**stringr**: an R package for working with character strings, e.g. `str_detect()`
+**forcats**: an R package for working with factors, e.g. `fct_relevel()`
+
+---
+
+# stringr with dplyr
+
+
+```r
+library(tidyverse)
+
+# Sample data
+people &lt;- tibble(
+  name = c("John Doe", "Jane Doe", "Alice Johnson", "Bob Smith"),
+  email = c("john.doe@example.com", "jane.doe@example.net", "alice.j@example.org", "bob.smith@example.com")
+)
+
+people %&gt;%
+  mutate(
+    is_alice = str_detect(name, "Alice"), # detecting a particular string
+    domain = str_extract(email, "@.*$"), # Extracting email domains
+  )
+```
+
+---
+
+# forcats
+
+
+```r
+# Sample data
+survey &lt;- tibble(
+  respondent = c(1, 2, 3, 4, 5),
+  satisfaction = c("Satisfied", "Neutral", "Dissatisfied", "Very Satisfied", "Neutral"),
+                        levels = c("Very Dissatisfied", "Dissatisfied", "Neutral", "Satisfied", "Very Satisfied")
+)
+
+# Using forcats functions within dplyr to manipulate factors
+survey %&gt;%
+  mutate(
+    satisfactor = as.factor(satisfaction),
+    satisfaction_reordered = fct_relevel(satisfaction, "Very Satisfied", "Satisfied"), # Reordering factor levels
+    satisfaction_collapsed = fct_collapse(satisfaction, Other = c("Neutral", "Dissatisfied", "Very Dissatisfied")) # Collapsing certain levels into 'Other'
+  ) %&gt;%
+  count(satisfaction_collapsed) # Counting the occurrence of each level
+```
+
+---
+
+# R Data Wrangling Code-along
+
+- Download the `Week 3 Code-along.Rmd` file
+- Save this to a `week-3` folder in your RStudio project
+- Copy over the **gapfinder.csv** data into the `week-3` folder (*n.b.*, you can have a single copy of your data for your entire project; this is just to keep things easy for now)
+- Open the `Week 3 Code-along.Rmd` file and ... code-along!
+
+---
+
+# What's next?
+
+.panelset[
+
+
+.panel[.panel-name[Weekly Assignment]
+
+- This week, we'll build on what we've done in the code-along
+]
+
+.panel[.panel-name[Data]
+
+- We'll again be using [gapminder](https://www.gapminder.org/) data
+
+]
+
+.panel[.panel-name[Reading(s)]
+
+&gt; Knaflic (2015), introduction and c1
+
+
+]
+
+.panel[.panel-name[Office hours]
+
+- Friday at 1:00 pm with Josh, via the class Zoom 
+- Also via calendly from Josh: https://calendly.com/joshuamrosenberg/15-minute-meeting
+
+]
+
+]
+
+---
+
+# Check out
+
+- What's one thing you took away from today?
+- What's one thing you want to learn more about?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

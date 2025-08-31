@@ -1,0 +1,125 @@
+---
+title: "Exploring Gapminder Data with {dplyr}"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+---
+
+## Part A: Core R Functions
+
+#### Load Packages
+1. Load {tidyverse} in the code chunk below. No need to install it again, though. You already did this in a previous assignment.
+
+```{r}
+
+```
+
+
+#### Read in Data
+2. Read in the gapminder CSV data and assign it a name. Use the `read_csv()` function to do this.
+
+```{r}
+
+```
+
+#### Review the Data
+3. `glimpse()` the data you read in and named.
+
+```{r}
+
+```
+
+
+## Part B: Working with Variables (Columns)
+
+#### Selecting Variables
+4. Use `select()` to choose three variables of your choosing. Look briefly at the next question. Should you store the new dataset with three selected variables to the original object?
+
+```{r}
+
+```
+
+#### Renaming Variables
+5. Using the original data (not the one with three variables of your choosing), rename the pop variable to be a bit easier to understand (what the variable represents), assigning a new object/name to the data that results.
+
+```{r}
+
+```
+
+## Part C: Working with Rows (Observations) and Using Logical Operators
+
+#### Filtering Rows With Strings
+6. Filter the data to only include three countries of your choosing, assigning a new object name to the data that results.
+
+```{r}
+
+```
+
+#### Filtering Rows with Numeric/Integer Values
+7. Filter the data to only values above or below a year of your choosing, assigning a name to the data that results. Add a sentence interpreting what you found.
+
+```{r}
+
+```
+
+8. **FREE RESPONSE:** [Please write your sentence interpretation here.]
+
+## D: Scavenger Hunt
+
+9. Using the full dataset of observations, which country-year combination has the highest life-expectancy? Arrange the appropriate variable in descending order to see for which country and year its value is greatest. Add a sentence interpreting what you are noticing from your output below the code chunk.
+
+```{r}
+
+```
+
+10. **FREE RESPONSE:** [Please write your sentence free response concerning your noticings here.]
+
+11. For a year of your choosing, which continent has the most countries? 
+
+```{r}
+
+```
+
+12. What was the GDP per capita of the U.S. in 1982 and 1992?
+
+```{r}
+
+```
+
+## E: Freestyle
+
+13. *Freestyle:* Use any of the functions you have used to investigate the data. Add a few sentences on what you did and what you found. You can think bigger picture here about the data and what you can (or cannot!) learn from it.
+
+```{r}
+
+```
+
+## F: Optional Section
+
+14. *Optional:* Create a {ggplot2} plot with the data.
+
+```{r}
+
+```
+
+## G: Reflect, knit, and share your report (Required)
+
+How did this assignment go? What went well --- or what was tricky? Briefly (a sentence or two is fine!) reflect below.
+
+**REFLECTION:** [Please write your reflection here.]
+
+When complete, please render the file as .html (be sure to add your name at the top!) and submit it for Assignment 3 in Canvas. Please note, you are only submitting the HTML output for this assignment.  
+
+**Nice job!**
+
+## Rubric (30 pts.)
+
+- Name is added: 2 points
+- File knits to an HTML: 8 points
+- Code chunks have appropriate output: 15 points
+- Interpretations and reflection are added: 5 points

@@ -1,0 +1,24 @@
+---
+title: "Troubleshooting Errors"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+---
+
+```{r load_data}
+# Problem 1
+#
+read_excel("test_excel_data.xls")
+
+```
+
+```{r summarize_data}
+data |>
+  summarize(mean = mean(Age, na.rm = TRUE))
+```
+
