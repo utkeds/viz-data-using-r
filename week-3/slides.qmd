@@ -110,8 +110,7 @@ library(gt)
 ## Troubleshooting Errors {.smaller}
 <hr>
 - **Demo**
-    - Follow along with `Troubleshooting_Errors_Demo.Rmd`:
-      - Address setup block
+    - Follow along with `Troubleshooting_Errors_Demo.qmd`:
       - Reading in an Excel file
       - Three types of errors <!-- (forget to load package, file in wrong place, don't store/assign it and call it later) -->
       - Accessing via file pane > Import Dataset
