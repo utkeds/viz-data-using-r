@@ -722,6 +722,56 @@ starwars_a <- starwars_a |>
 :::
 :::
 
+## {dplyr} Review +
+<hr>
+`mutate()` & `case_when()`
+<br>
+<hr>
+::: {.columns .small-font}
+
+::: {.column width="45%"}
+
+[**Example data - starwars_a**]{.smaller-font}
+
+```{r echo=FALSE}
+starwars_a |>
+  gt() |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(13),
+    data_row.padding = px(2)
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#f9f9f9"),
+    locations = cells_body(rows = c(1, 3, 5))
+  ) |>
+  opt_table_lines(extent = "none")
+```
+
+:::
+
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+
+:::{.fragment .smaller-font}
+`mutate(var_name = case_when(condition ~ formula))`
+
+- **Create new variables** from existing ones based on conditions
+:::
+
+:::{.fragment .smaller-font}
+```{r}
+starwars_b <- starwars_a |>
+  mutate(has_hair = case_when(
+    hair_color %in% c("brown", "blond") ~ TRUE,
+    is.na(hair_color) ~ NA,
+    TRUE ~ FALSE,
+  ))
+```
+:::
+
+:::
+:::
+
 # More {dplyr} Functions
 
 ## More {dplyr}
@@ -737,8 +787,25 @@ starwars_a <- starwars_a |>
 
 [**Example data - starwars**]{.smaller-font}
 
+starwars_a
 ```{r echo=FALSE}
 starwars_a |>
+  gt() |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(13),
+    data_row.padding = px(2)
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#f9f9f9"),
+    locations = cells_body(rows = c(1, 3, 5))
+  ) |>
+  opt_table_lines(extent = "none")
+```
+
+starwars_b
+```{r echo=FALSE}
+starwars_b |>
   gt() |>
   tab_options(
     table.width = pct(100),
@@ -765,6 +832,11 @@ starwars_a |>
 :::{.fragment .smaller-font}
 ```{r}
 starwars_a |>
+  distinct(has_hair)
+```
+
+```{r}
+starwars_b |>
   distinct(has_hair)
 ```
 :::
