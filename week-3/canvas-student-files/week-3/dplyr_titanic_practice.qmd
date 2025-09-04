@@ -78,7 +78,7 @@ For many of the passengers, we have their age. How many passengers DO NOT have a
 
 **ANSWER:** [Please write response here.]
 
-#### 7. Creating New Variables Based on Existinq Variable(s)
+#### 7. Creating New Variables Based on Existing Variable(s)
 
 Let's create a new variable called `family_size` that is the sum of the `sib_sp` and `parch` variables. This will give us the total number of family members on board for each passenger.
 
@@ -86,7 +86,7 @@ Let's create a new variable called `family_size` that is the sum of the `sib_sp`
 
 ```
 
-#### 8A. Creating New Variables Based on Condition(s) of Existinq Variable(s)
+#### 8A. Creating New Variables Based on Condition(s) of Existing Variable(s)
 
 Let's create a new variable called `age_group` that has a value of "child" if the passenger is under 13 years old, "teen" if the passenger is 13-18 (not including 18), and "adult" if 18 or over. 
 

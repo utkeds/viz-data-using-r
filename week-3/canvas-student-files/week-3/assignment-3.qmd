@@ -85,11 +85,15 @@ execute:
 
 ```
 
+**ANSWER:** [Please write response here.]
+
 12. What was the GDP per capita of the U.S. in 1982 and 1992?
 
 ```{r}
 
 ```
+
+**ANSWER:** [Please write response here.]
 
 ## E: Freestyle
 
