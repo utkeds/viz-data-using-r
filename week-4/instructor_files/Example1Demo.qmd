@@ -1,19 +1,23 @@
 ---
-title: "ggplot Example 1 - Week 4"
-author: "Kelly L. Boles"
-date: "2024-09-09"
-output: html_document
+title: "ggplot: My Approach - Week 4"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+```{r load_packages}
 library(tidyverse)
+```
 
-tidykids <- read_csv("tidykids.csv")
 
-tidykids <- tidykids |>
-  select(-...1) |>
+```{r read_in_data}
+tidykids <- read_csv("tidykids.csv") |>
+  select(-1) |>
   janitor::clean_names()
 ```
 
@@ -21,13 +25,12 @@ tidykids <- tidykids |>
 
 # My Sketch
 
-![](Example1-Sketch.jpeg)
+![](excalidraw_sketch.png)
 <!--------------------------------- Geoms ------------------------------------->
 
-# Needed `Geom`s
+# Needed Geoms
 
 - `geom_col()`
-- `geom_errorbar()`
 - `geom_hline()`
 
 ## Notes from Documentation:
@@ -42,8 +45,6 @@ tidykids <- tidykids |>
     5. Group by `region`
         - Summarize:
             - mean
-            - std. deviation
-    6. Create a ymin and ymax variable for error bars
     
 ```{r creating_region_variable}
 
@@ -57,11 +58,7 @@ tidykids <- tidykids |>
 
 ```
 
-```{r summarize by region}
-
-```
-
-```{r create_ymin_ymax}
+```{r summarize_by_region}
 
 ```
 

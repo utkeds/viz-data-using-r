@@ -1,0 +1,51 @@
+---
+title: "ggplot2 Prework: Data Wrangling"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+---
+<!--- Put your name in the author YAML field.--->
+<!--- Load the tidyverse package in the code cell below. --->
+```{r load_packages}
+
+```
+
+<!--- Read in the `tidykids.csv` file, drop the first column `...1` and
+clean the column names. What other package might you want to load above to clean the column names?--->
+```{r read_in_data}
+
+```
+
+<!--- Let's review the data. How many variables/columns are available in the tidykids dataset? How many distinct (hint!) levels of the variable `expenditure` are there? -->
+
+**ANSWER:** [Please write response here.]
+
+<!-- What do the variables `raw`, `inf_adj`, and `inf_adj_perchild` represent? In what units?  -->
+
+**ANSWER:** [Please write response here.]
+
+<!-- Suppose you are only interested in the data for 2016. Filter the data for 2016. -->
+```{r filter_2016}
+
+```
+
+<!-- You want to create a new region variable. Create this using what we learned last week. Note that this code is provided in Canvas because it is long to type (and easy to typo!).-->
+```{r create_region_variable}
+
+```
+
+<!-- You want to focus only on library expenditures. Look at the [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html) to find the variable name for library expenditures. Then, filter for it.-->
+
+```{r filter_library_expenditures}
+
+```
+
+<!-- You want to summarize(mean and std. dev) these library expenditures(inf_adj_perchild) by region for 2016. Do this with the functions we learned last week.-->
+```{r summarize_by_region}
+
+```

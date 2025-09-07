@@ -1,7 +1,7 @@
 ---
 subtitle: "Intro to {ggplot2}"
 title: "Week 4 - STEM 691"
-author: "Dr. Kelly Boles"
+author: "Dr. Kelly Boles & Dr. Zhen Xu"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -46,7 +46,7 @@ tidykids <- tidykids |>
   janitor::clean_names()
 ```
 
-# Weekly Check In/Download `.zip`
+# Weekly Check In, Download `.zip`, Download Slides
 
 # Start Recording
 
@@ -57,15 +57,13 @@ tidykids <- tidykids |>
 - Weekly Check In
 - Additional Foundational Skills
     - Strategies for Object Assignment
+    - {forcats} from Week 3
     <!-- - Accessing data from Google Drive/ OneDrive -->
-- Reviewing {dplyr}
-    - Intro to tidykids
-- Intro to {ggplot2}
-    - Example Plot: Grammar of Graphics
-    - Three Steps
-- {ggplot2}: Digging In
-    - Lecture
-    <!-- - Collaborative Work -->
+- Reviewing {dplyr} (Collaborative)
+    - Intro to tidykids data
+- {ggplot2}: a Theoretical Intro
+- {ggplot2}: a Practical Intro
+    - *If time allows*
 - Looking Ahead
 
 :::
@@ -90,32 +88,29 @@ tidykids <- tidykids |>
 ## Strategies for Assignment
 <hr>
 - Examples of when to **overwrite**:
+  - Cleaning a dataset
 
-:::{layout="[[1,1], [1,1], [1,1]]"}
-:::{column}
-[- Cleaning a dataset]{.smaller-font}
-:::
-:::{column}
 ```{r cleaning-titanic}
 titanic <- titanic |>
   janitor::clean_names()
 ```
-<br>
-:::
-:::{column}
-[- Deleting a variable I won't need]{.smaller-font}
-:::
-:::{column}
+
+
+## Strategies for Assignment
+<hr>
+- Examples of when to **overwrite**:
+  - Deleting a variable I won't need
+
 ```{r deleting-passenger_id}
 titanic <- titanic |>
   select(-passenger_id)
 ```
-<br>
-:::
-:::{column}
-[- Creating a new variable]{.smaller-font}
-:::
-:::{column}
+
+## Strategies for Assignment
+<hr>
+- Examples of when to **overwrite**:
+  - Creating a new variable
+
 ```{r creating age_group}
 titanic <- titanic |>
   mutate(age_group = case_when(
@@ -124,52 +119,31 @@ titanic <- titanic |>
     age >= 18 ~ "adult"
   ))
 ```
-:::
-:::
+
 
 ## Strategies for Assignment
 <hr>
 - Examples of when to **create a new object**:
-
-:::{layout="[1,1],[1,1]"}
-
-:::{column}
-[- Creating a subset of the data]{.smaller-font}
+  - Creating a subset of the data
 
 ```{r titanic_subset}
 titanic_children <- titanic |>
   filter(age < 13)
 ```
-:::
 
-:::{column}
-<br>
 
-:::{.tiny-font}
-```{r print_titanic_children, echo=FALSE}
-titanic_children |>
-  head(n=3) |>
-  select(-age_group) |>
-  knitr::kable(format = "html", table.attr = "class='table-striped'")
-```
-:::
-:::
+## Strategies for Assignment
+<hr>
+- Examples of when to **create a new object**:
+  - Grouping by/summarizing data
 
-:::{column}
-<br>
-[- Grouping by/summarizing data]{.smaller-font}
-
-:::{.smaller-font}
 ```{r titanic_summary}
 titanic_ageclass_summary <- titanic |>
   group_by(pclass) |>
   summarize(mean_age = mean(age, na.rm = TRUE)) |>
   ungroup()
 ```
-:::
-:::
 
-:::{column}
 <br>
 
 :::{.smaller-font}
@@ -178,8 +152,8 @@ titanic_ageclass_summary |>
   knitr::kable(format = "html", table.attr = "class='table-striped'")
 ```
 :::
-:::
-:::
+
+# {forcats} from [Wk 3 slides](https://utkeds.github.io/viz-data-using-r/week-3/slides.html#/forcats-see-cheatsheet)
 
 <!-- ## Using GSuite / OneDrive with R -->
 <!-- <hr> -->
@@ -188,12 +162,12 @@ titanic_ageclass_summary |>
 <!-- - I use [Google Drive](https://support.google.com/drive/answer/10838124?hl=en#) / [OneDrive for Desktop](https://www.microsoft.com/en-us/microsoft-365/onedrive/download) -->
 <!--     - Interact locally, syncs to cloud -->
 <!--     - Probably easiest for most use cases -->
-<!-- <!-- - If you want to pull Google Sheets directly from Drive: --> -->
-<!-- <!--     - [`googlesheets4` package](https://github.com/tidyverse/googlesheets4) --> -->
-<!-- <!-- - If you want to pull multiple file types from Drive: --> -->
-<!-- <!--     - [`googledrive` package](https://googledrive.tidyverse.org/) --> -->
-<!-- <!-- - If you want to pull directly from OneDrive: --> -->
-<!-- <!--     - [`Microsoft365R` package](https://github.com/Azure/Microsoft365R) --> -->
+<!-- <!-- - If you want to pull Google Sheets directly from Drive: --> 
+<!-- <!--     - [`googlesheets4` package](https://github.com/tidyverse/googlesheets4) --> 
+<!-- <!-- - If you want to pull multiple file types from Drive: --> 
+<!-- <!--     - [`googledrive` package](https://googledrive.tidyverse.org/) --> 
+<!-- <!-- - If you want to pull directly from OneDrive: --> 
+<!-- <!--     - [`Microsoft365R` package](https://github.com/Azure/Microsoft365R) --> 
 <!-- ::: -->
 
 # Reviewing {dplyr}
@@ -202,24 +176,35 @@ titanic_ageclass_summary |>
 <hr>
 - Before you can visualize data, you need to have it in the right format.
 - Let's review some {dplyr} functions using the `tidykids` dataset.
-- In your `.zip` file, you have a `ggplot2-prework-data-wrangling.Rmd` file. Open it.
+  - New data we'll use for a few weeks
+- In your `.zip` file, you have a `ggplot2-prework-data-wrangling.qmd` file. Open it.
   - We'll work through it together.
 
 ## {ggplot2} prework: Data Wrangling
 <hr>
 :::{.smaller-font}
 - We'll need to review the `tidykids` [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html).
-<br>
-Questions (please be prepared to share code in Slack):
+- Region code is available in Canvas module (Week 4/During Class)
+<br><br><br>
+Breakout room structure:
+
+- **Individual Think Time**: ~ 3 min (camera off / mute)
+  - Review document
+  - Review prompts
+  - Start planning possible approaches/pseudocode
+- **Introductions**: ~ 3 min (camera on/ unmute)
+- **Collaborative Work** (camera on/unmute)
+
+<!-- Questions (please be prepared to share code in Slack):
 1. How many variables? 
 2. What does each variable represent? In what units?
 3. Example: You are only interested in the data from 2016. How would you filter for this?
 4. Example: You want to create a new variable that groups states by region. How would you do this?
 5. Example: You want to summarize (mean, sd) `inf_adj_perchild` by region. How would I do this?
-6. Example: You are only interested in library expenditures. How would you filter for this?
+6. Example: You are only interested in library expenditures. How would you filter for this? -->
 :::
 
-# Intro to {ggplot2}
+# Theoretical Approach to {ggplot2}
 
 ## Grammar of Graphics
 <hr>
@@ -232,7 +217,7 @@ Questions (please be prepared to share code in Slack):
 :::
 
 :::{column}
-![](ggplot2-book.png)
+![](slides_images/ggplot2-book.png)
 :::
 :::
 [^1]: Wilkinson, L. (2005). The Grammar of Graphics. Springer Science & Business Media.
@@ -251,7 +236,7 @@ Questions (please be prepared to share code in Slack):
 :::{column}
 <br>
 <br>
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Theme.png)
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Theme.png)
 :::
 ::::
 
@@ -272,7 +257,7 @@ Questions (please be prepared to share code in Slack):
     - Geometries
 <br>
 <br>
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Geometries.png)
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Geometries.png)
 :::
 ::::
 
@@ -280,7 +265,7 @@ Questions (please be prepared to share code in Slack):
 <hr>
 - In many ways, `ggplot2` functions similarly to image editing software.
     - Both work on the principle of layering.
-![](PhotoEditor-Layers.png){width=70%}
+![](slides_images/PhotoEditor-Layers.png){width=70%}
 
 ## Grammar of Graphics
 <hr>
@@ -290,7 +275,7 @@ Questions (please be prepared to share code in Slack):
 - Building an example plot using `tidykids`:
     - [`data` to be used]{.data-color}
 :::
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Data.png){width=300}
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Data.png){width=300}
 :::
 
 :::{column}
@@ -306,7 +291,7 @@ Output:
 ```{r piped ggplot2 call, echo=F}
 p <- tidykids |>
   filter(year == 2016,
-         variable == "PK12ed") |>
+         expenditure == "PK12ed") |>
   mutate(state = state.abb[match(state, state.name)]) |>
   ggplot()
 
@@ -324,7 +309,7 @@ p
     - [`data` to be used]{.data-color}
     - [`aes`thetic mapping from data to visual]{.aesthetics-color}
 :::
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Aesthetics.png){width=300}
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Aesthetics.png){width=300}
 :::
 
 :::{column}
@@ -343,7 +328,7 @@ Output:
 ```{r, echo=F}
 p <- tidykids |>
   filter(year == 2016,
-         variable == "PK12ed") |>
+         expenditure == "PK12ed") |>
   mutate(state = state.abb[match(state, state.name)]) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region))
 
@@ -362,7 +347,7 @@ p
     - [`aes`thetic mapping from data to visual]{.aesthetics-color}
     - [`geom`etric objects to use on plot]{.geometries-color}
 :::
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Geometries.png){width=300}
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Geometries.png){width=300}
 :::
 
 :::{column}
@@ -381,7 +366,7 @@ Output:
 ```{r, echo=F}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = state.abb[match(state, state.name)]) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point()
@@ -403,7 +388,7 @@ p
     - [`scale` to adjust axes, colors, etc.]{.scales-color}
 
 :::
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Scales.png){width=300}
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Scales.png){width=300}
 :::
 
 :::{column}
@@ -423,7 +408,7 @@ Output:
 ```{r, echo=F}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = state.abb[match(state, state.name)]) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
@@ -448,7 +433,7 @@ p
     - [`facets` to group into subplots]{.facets-color}
 
 :::
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Facets.png){width=300}
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Facets.png){width=300}
 :::
 
 :::{column}
@@ -469,7 +454,7 @@ Output:
 ```{r, echo=F}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = state.abb[match(state, state.name)]) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
@@ -496,7 +481,7 @@ p
     - [`coord`inates adjust coordinate system]{.coordinates-color}
 
 :::
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Coordinates.png){width=300}
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Coordinates.png){width=300}
 :::
 
 :::{column}
@@ -518,7 +503,7 @@ p
 ```{r, echo=F}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = state.abb[match(state, state.name)]) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
@@ -547,7 +532,7 @@ p
     - [`labs` (labels) to add titles, labels, etc.]{.labels-color}
 
 :::
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Labels.png){width=300}
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Labels.png){width=300}
 :::
 
 :::{column}
@@ -571,7 +556,7 @@ p
 ```{r, echo=F}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = state.abb[match(state, state.name)]) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
@@ -602,7 +587,7 @@ p
     - [`labs` (labels) to add titles, labels, etc.]{.labels-color}
     - [`theme` to adjust overall appearance ]{.theme-color}[(built-in)](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 :::
-![](GrammarOfGraphicsViz/GrammarOfGraphics-Theme.png){width=300}
+![](slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Theme.png){width=300}
 :::
 
 :::{column}
@@ -630,7 +615,7 @@ p
 ```{r, echo=F}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = state.abb[match(state, state.name)]) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
@@ -688,7 +673,7 @@ p
         - `geom_line()`: Line plot
 :::    
     
-# `ggplot2` Example 1
+# Practical Approach to {ggplot2}
 
 ## Example 1
 <hr>
@@ -696,7 +681,6 @@ p
 [**RQ**]{.regalia-color}
 
 - How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
-    - What is the variability (std. deviation) of spending within each region?
     - How do the regions compare to the national average?
 
 :::{.fragment}
@@ -711,10 +695,11 @@ p
 
 ## Example 1: Pre-work
 <hr>
+- [**Step 1:** My Sketch]{.smaller-font}
 
 :::{layout="[1,1]" .smaller-font}
 :::{column}
-![My Sketch](Example1-Sketch.jpeg)
+![](slides_images/practical_approach/excalidraw_sketch.png)
 
 :::
 
@@ -727,16 +712,12 @@ p
 
 :::{layout="[1,1]" .smaller-font}
 :::{column}
-![My Sketch](Example1-Sketch.jpeg)
+![](slides_images/practical_approach/excalidraw_sketch.png)
 
-- Which `geom`s?
-    - `geom_col()`
-    - `geom_errorbar()`
-    - `geom_hline()`
+- **Step 2:** Which geoms? [(see cheatsheet)](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
+    
 :::
 
-:::{column}
-:::
 :::
 
 ## Example 1: Pre-work
@@ -744,16 +725,43 @@ p
 
 :::{layout="[1,1]" .smaller-font}
 :::{column}
-![My Sketch](Example1-Sketch.jpeg)
+![](slides_images/practical_approach/excalidraw_sketch_cols.png){height=70%}
 
-- Which `geom`s?
-    - `geom_col()`
-    - `geom_errorbar()`
-    - `geom_hline()`
+- **Step 2:** Which geoms? [(see cheatsheet)](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
+    - [geom_col()]{.scales-color}
+    
+:::
+
+:::
+
+## Example 1: Pre-work
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+![](slides_images/practical_approach/excalidraw_sketch_hline.png){height=70%}
+
+- **Step 2:** Which geoms? [(see cheatsheet)](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
+    - geom_col()
+    - [geom_hline()]{.switchgrass-color}
+:::
+
+:::
+
+## Example 1: Pre-work
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+![](slides_images/practical_approach/excalidraw_sketch.png)
+
+- Which geoms?
+    - geom_col()
+    - geom_hline()
 :::
 
 :::{column}
-- What variables/data wrangling do I need?
+- **Step 3:** What variables/data wrangling do I need?
     1. Create a `region` variable
     2. Filter for 2016
     3. Filter for `PK12ed`
@@ -761,11 +769,10 @@ p
     5. Group by `region`
         - Summarize:
             - mean
-            - std. deviation
 :::
 :::
 
-# Switch to `.Rmd` file
+# Switch to `.qmd` file
 
 <!-- ## Example 2: Your Turn! -->
 <!-- <hr> -->
@@ -780,12 +787,14 @@ p
 
 # Looking Ahead
 
-## Looking Ahead
+## Looking Ahead{.smaller}
 <hr>
 - Week 4 Assignment:
     - Wrangling & Graphing
 - Reading:
-    - **Skim** Knaflic Intro & Schwabish (see all the different types of graphs)
-    - **Read** Knaflic Chapter 1 & Wilke Chapter 6
+    - **Skim** Knaflic Intro
+    - **Read** Knaflic Chapter 1 (Same pdf)
+    - **Skim** Schwabish (see all the different types of graphs)
+    - **Read** Wilke Chapter 6
     - Discussion Post
 
