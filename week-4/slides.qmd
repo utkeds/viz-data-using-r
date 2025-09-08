@@ -12,7 +12,7 @@ format:
     highlight-style: tango
     title-slide-attributes:
       data-background-color: "#4B4B4B"
-      data-background-image: UnitShortcut.png
+      data-background-image: slides_images/UnitShortcut.png
       data-background-size: 50%
       data-background-position: 50% 9%
     footer: UTK Educational Data Science
@@ -84,6 +84,15 @@ tidykids <- tidykids |>
 :::
 
 # Additional Foundational Skills
+
+## Differences Between the Pipe `|>` and the Assignment Operator `<--`
+<br>
+
+## Breakout Room Discussion
+<br>
+- When assigning... when might you...
+  - Create a new object?
+  - Overwrite an existing object?
 
 ## Strategies for Assignment
 <hr>
