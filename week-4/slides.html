@@ -286,13 +286,65 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <h1>Additional Foundational Skills</h1>
 
 </section>
-<section id="differences-between-the-pipe-and-the-assignment-operator---" class="slide level2">
-<h2>Differences Between the Pipe <code>|&gt;</code> and the Assignment Operator <code>&lt;--</code></h2>
-<p><br></p>
+<section id="differences-between-the-pipe-and-the-assignment-operator--" class="slide level2 smaller">
+<h2>Differences Between the Pipe <code>|&gt;</code> and the Assignment Operator <code>&lt;-</code></h2>
+<hr>
+<ul>
+<li>The pipe <code>|&gt;</code> is used to chain functions together</li>
+</ul>
+<div class="columns">
+<div class="column extra-small-font">
+<p><strong>Original Way</strong></p>
+<ul>
+<li>The data is the first argument of every function, which get called separately</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>step_1 <span class="ot">&lt;-</span><span class="fu">select</span>(starwars, name, species, height)</span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a>step_2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(step_1, species <span class="sc">==</span> <span class="st">"Droid"</span>)</span>
+<span id="cb1-4"><a href=""></a></span>
+<span id="cb1-5"><a href=""></a>step_3 <span class="ot">&lt;-</span> <span class="fu">summarize</span>(step_2, <span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb1-6"><a href=""></a>step_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_height
+        &lt;dbl&gt;
+1        131.</code></pre>
+</div>
+</div>
+</div><div class="column extra-small-font">
+<p><strong>With Pipe</strong></p>
+<ul>
+<li>The pipe feeds your data through a series of functions in one call</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>combined <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href=""></a>   <span class="fu">select</span>(name, species, height) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href=""></a>   <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Droid"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href=""></a>   <span class="fu">summarize</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb3-5"><a href=""></a></span>
+<span id="cb3-6"><a href=""></a>combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_height
+        &lt;dbl&gt;
+1        131.</code></pre>
+</div>
+</div>
+</div></div>
 </section>
-<section id="breakout-room-discussion" class="slide level2">
+<section id="breakout-room-discussion" class="slide level2 smaller">
 <h2>Breakout Room Discussion</h2>
-<p><br> - When assigning… when might you… - Create a new object? - Overwrite an existing object?</p>
+<hr>
+<p><strong>Discussion Prompts</strong></p>
+<ul>
+<li><p>What are the pros/cons of creating a new object?</p></li>
+<li><p>When assigning… when might you…</p>
+<ul>
+<li>…create a new object?</li>
+<li>…overwrite an existing object?</li>
+</ul></li>
+</ul>
 </section>
 <section id="strategies-for-assignment" class="slide level2">
 <h2>Strategies for Assignment</h2>
@@ -304,8 +356,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href=""></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href=""></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="strategies-for-assignment-1" class="slide level2">
@@ -318,8 +370,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>passenger_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>passenger_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="strategies-for-assignment-2" class="slide level2">
@@ -332,12 +384,12 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">case_when</span>(</span>
-<span id="cb3-3"><a href=""></a>    age <span class="sc">&lt;</span> <span class="dv">13</span> <span class="sc">~</span> <span class="st">"child"</span>,</span>
-<span id="cb3-4"><a href=""></a>    age <span class="sc">&gt;=</span> <span class="dv">13</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"teen"</span>,</span>
-<span id="cb3-5"><a href=""></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"adult"</span></span>
-<span id="cb3-6"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-3"><a href=""></a>    age <span class="sc">&lt;</span> <span class="dv">13</span> <span class="sc">~</span> <span class="st">"child"</span>,</span>
+<span id="cb7-4"><a href=""></a>    age <span class="sc">&gt;=</span> <span class="dv">13</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"teen"</span>,</span>
+<span id="cb7-5"><a href=""></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"adult"</span></span>
+<span id="cb7-6"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="strategies-for-assignment-3" class="slide level2">
@@ -350,8 +402,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>titanic_children <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href=""></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>titanic_children <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href=""></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="strategies-for-assignment-4" class="slide level2">
@@ -364,10 +416,10 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>titanic_ageclass_summary <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href=""></a>  <span class="fu">group_by</span>(pclass) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href=""></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>titanic_ageclass_summary <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href=""></a>  <span class="fu">group_by</span>(pclass) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href=""></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="smaller-font">
@@ -557,11 +609,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <p><img data-src="slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Data.png" width="300"></p>
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
-<div class="sourceCode" id="cb6" data-code-line-numbers="|1,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb6-3"><a href=""></a>         variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href=""></a>  <span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-code-line-numbers="|1,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb10-3"><a href=""></a>         variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href=""></a>  <span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br> Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -594,19 +646,19 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <p><img data-src="slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Aesthetics.png" width="300"></p>
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
-<div class="sourceCode" id="cb7" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb7-3"><a href=""></a>         variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region))</span>
-<span id="cb7-6"><a href=""></a>  </span>
-<span id="cb7-7"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb11-3"><a href=""></a>         variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region))</span>
+<span id="cb11-6"><a href=""></a>  </span>
+<span id="cb11-7"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br> Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -634,20 +686,20 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <p><img data-src="slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Geometries.png" width="300"></p>
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
-<div class="sourceCode" id="cb8" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb8-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb8-6"><a href=""></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb8-7"><a href=""></a>  </span>
-<span id="cb8-8"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-code-line-numbers="|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb12-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb12-6"><a href=""></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb12-7"><a href=""></a>  </span>
+<span id="cb12-8"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -677,21 +729,21 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="smaller-font">
-<div class="sourceCode" id="cb9" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb9-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb9-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb9-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>())</span>
-<span id="cb9-8"><a href=""></a>  </span>
-<span id="cb9-9"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb13-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>())</span>
+<span id="cb13-8"><a href=""></a>  </span>
+<span id="cb13-9"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -723,22 +775,22 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="smaller-font">
-<div class="sourceCode" id="cb10" data-code-line-numbers="|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb10-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb10-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb10-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb10-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region)</span>
-<span id="cb10-9"><a href=""></a>  </span>
-<span id="cb10-10"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14" data-code-line-numbers="|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb14-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb14-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb14-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region)</span>
+<span id="cb14-9"><a href=""></a>  </span>
+<span id="cb14-10"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -771,22 +823,22 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="smaller-font">
-<div class="sourceCode" id="cb11" data-code-line-numbers="|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb11-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb11-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb11-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb11-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="sc">+</span></span>
-<span id="cb11-9"><a href=""></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb11-10"><a href=""></a>  </span>
-<span id="cb11-11"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15" data-code-line-numbers="|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb15-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb15-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb15-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="sc">+</span></span>
+<span id="cb15-9"><a href=""></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb15-10"><a href=""></a>  </span>
+<span id="cb15-11"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -820,24 +872,24 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="smaller-font">
-<div class="sourceCode" id="cb12" data-code-line-numbers="|10-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb12-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb12-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb12-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="sc">+</span></span>
-<span id="cb12-9"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb12-10"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Per Pupil Spending by State"</span>,</span>
-<span id="cb12-11"><a href=""></a>       <span class="at">x =</span> <span class="st">"Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)"</span>,</span>
-<span id="cb12-12"><a href=""></a>       <span class="at">y =</span> <span class="st">"State"</span>)</span>
-<span id="cb12-13"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16" data-code-line-numbers="|10-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb16-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb16-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="sc">+</span></span>
+<span id="cb16-9"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb16-10"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Per Pupil Spending by State"</span>,</span>
+<span id="cb16-11"><a href=""></a>       <span class="at">x =</span> <span class="st">"Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)"</span>,</span>
+<span id="cb16-12"><a href=""></a>       <span class="at">y =</span> <span class="st">"State"</span>)</span>
+<span id="cb16-13"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -872,28 +924,28 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="extra-small-font">
-<div class="sourceCode" id="cb13" data-code-line-numbers="|13-15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb13-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb13-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb13-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="sc">+</span></span>
-<span id="cb13-9"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb13-10"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Per Pupil Spending by State"</span>,</span>
-<span id="cb13-11"><a href=""></a>       <span class="at">x =</span> <span class="st">"Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)"</span>,</span>
-<span id="cb13-12"><a href=""></a>       <span class="at">y =</span> <span class="st">"State"</span>)<span class="sc">+</span></span>
-<span id="cb13-13"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb13-14"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb13-15"><a href=""></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb13-16"><a href=""></a>        </span>
-<span id="cb13-17"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17" data-code-line-numbers="|13-15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb17-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> state.abb[<span class="fu">match</span>(state, state.name)]) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-7"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb17-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="sc">+</span></span>
+<span id="cb17-9"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb17-10"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Per Pupil Spending by State"</span>,</span>
+<span id="cb17-11"><a href=""></a>       <span class="at">x =</span> <span class="st">"Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)"</span>,</span>
+<span id="cb17-12"><a href=""></a>       <span class="at">y =</span> <span class="st">"State"</span>)<span class="sc">+</span></span>
+<span id="cb17-13"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-14"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb17-15"><a href=""></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb17-16"><a href=""></a>        </span>
+<span id="cb17-17"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1004,9 +1056,6 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="slides_images/practical_approach/excalidraw_sketch.png"></p>
 </div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-
-</div>
 </div>
 </div>
 </section>
@@ -1076,6 +1125,35 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
+<li><p><strong>Step 3:</strong> What variables/data wrangling do I need?</p>
+<p><strong>Breakout Rooms</strong></p></li>
+</ul>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="breakout-rooms" class="title-slide slide level1 center">
+<h1>Breakout Rooms</h1>
+
+</section>
+<section id="example-1-pre-work-5" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
+<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="slides_images/practical_approach/excalidraw_sketch.png"></p>
+<ul>
+<li>Which geoms?
+<ul>
+<li>geom_col()</li>
+<li>geom_hline()</li>
+</ul></li>
+</ul>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<ul>
 <li><strong>Step 3:</strong> What variables/data wrangling do I need?
 <ol type="1">
 <li>Create a <code>region</code> variable</li>
@@ -1095,8 +1173,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </section></section>
-<section id="switch-to-.qmd-file" class="title-slide slide level1 center">
-<h1>Switch to <code>.qmd</code> file</h1>
+<section id="walkthrough-available-for-viewing-after-class" class="title-slide slide level1 center">
+<h1>Walkthrough Available for Viewing (after class)</h1>
 <!-- ## Example 2: Your Turn! -->
 <!-- <hr> -->
 <!-- [**RQ**]{.regalia-color} -->

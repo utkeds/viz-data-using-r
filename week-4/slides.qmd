@@ -85,14 +85,54 @@ tidykids <- tidykids |>
 
 # Additional Foundational Skills
 
-## Differences Between the Pipe `|>` and the Assignment Operator `<--`
-<br>
+## Differences Between the Pipe `|>` and the Assignment Operator `<-` {.smaller}
+<hr>
+- The pipe `|>` is used to chain functions together
 
-## Breakout Room Discussion
-<br>
+:::{.columns}
+
+:::{.column .extra-small-font}
+**Original Way**
+
+- The data is the first argument of every function, which get called separately
+```{r}
+step_1 <-select(starwars, name, species, height)
+
+step_2 <- filter(step_1, species == "Droid")
+
+step_3 <- summarize(step_2, mean_height = mean(height, na.rm=TRUE))
+step_3
+```
+
+:::
+
+:::{.column .extra-small-font}
+**With Pipe**
+
+- The pipe feeds your data through a series of functions in one call
+
+```{r}
+combined <- starwars |>
+   select(name, species, height) |>
+   filter(species == "Droid") |>
+   summarize(mean_height = mean(height, na.rm=TRUE))
+
+combined
+```
+
+:::
+
+:::
+
+## Breakout Room Discussion {.smaller}
+<hr>
+**Discussion Prompts**
+
+- What are the pros/cons of creating a new object?
+
 - When assigning... when might you...
-  - Create a new object?
-  - Overwrite an existing object?
+  - ...create a new object?
+  - ...overwrite an existing object?
 
 ## Strategies for Assignment
 <hr>
@@ -712,8 +752,7 @@ p
 
 :::
 
-:::{column}
-:::
+
 :::
 
 ## Example 1: Pre-work
@@ -771,6 +810,28 @@ p
 
 :::{column}
 - **Step 3:** What variables/data wrangling do I need?
+  
+  **Breakout Rooms**
+
+:::
+:::
+
+# Breakout Rooms
+
+## Example 1: Pre-work
+<hr>
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+![](slides_images/practical_approach/excalidraw_sketch.png)
+
+- Which geoms?
+    - geom_col()
+    - geom_hline()
+:::
+
+:::{column}
+- **Step 3:** What variables/data wrangling do I need?
     1. Create a `region` variable
     2. Filter for 2016
     3. Filter for `PK12ed`
@@ -781,7 +842,7 @@ p
 :::
 :::
 
-# Switch to `.qmd` file
+# Walkthrough Available for Viewing (after class)
 
 <!-- ## Example 2: Your Turn! -->
 <!-- <hr> -->
