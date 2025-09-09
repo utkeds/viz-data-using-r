@@ -94,8 +94,15 @@ The requirements are:
 
 **HOW I PLANNED TO SHOW IT:** [Please write response here.]
 
-## 8. Reflection
-How did this go? What were the pain points? What did you enjoy? What would you like to learn more about? 
+## 8. Reflecting on the Grammar of Graphics with AI
+Let's use AI to help us reflect on the grammar of graphics. Please use either Ping Pong AI (if you are participating) or another AI tool of choice (if you do not have Ping Pong access) to pose the question prompt below. It will ask you some questions. Please respond to it at least twice. Then, copy/paste your interaction below for credit. Your responses do not have to be polished;  interact with it as you normally would. This is about *learning* not perfection.
+
+**Question/AI Prompt:** Ask me to explain the grammar of graphics, specifically the three layers a plot must contain. Ask me questions to determine my understanding about these three. Then give me feedback on my understanding and offer suggestions to refine it.
+
+**RESPONSE:** [Please paste conversation/response here.]
+
+## 9. Reflection
+How did this assignment go? What were the pain points? What did you enjoy? What would you like to learn more about? 
 **REFLECTION:** [Please write response here.]
 
 
@@ -103,13 +110,13 @@ When complete, please knit the result to an HTML (be sure to add your name at th
 
 Please note, you are only submitting the HTML output for this assignment.  
 
-## 9. Bonus
+## 10. Bonus
 
 Each variable in the `expenditure` column of the `tidykids` data set represents a different type of spending. Which type of adjusted spending per child, on average in $1,000s, is highest for Tennessee? 
 
 **Make a simple bar chart showing this. Color the barchart by the average.**
 
-Note that sample bar chart code is provided in the "A Practical Approach" portion of the lecture.
+Note that sample bar chart code is provided in the "A Practical Approach" video walkthrough.
 
 ```{r}
 
