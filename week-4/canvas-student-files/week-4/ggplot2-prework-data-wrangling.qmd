@@ -15,17 +15,20 @@ execute:
 
 ```
 
-<!--- Read in the `tidykids.csv` file, drop the first column `...1` and
-clean the column names. What other package might you want to load above to clean the column names?--->
+<!--- Read in the `tidykids.csv` file, and clean the column names. What other package might you want to load above to clean the column names?--->
 ```{r read_in_data}
 
 ```
 
 <!--- Let's review the data. How many variables/columns are available in the tidykids dataset? How many distinct (hint!) levels of the variable `expenditure` are there? -->
 
+```{r num_vars}
+
+```
+
 **ANSWER:** [Please write response here.]
 
-<!-- What do the variables `raw`, `inf_adj`, and `inf_adj_perchild` represent? In what units?  -->
+<!-- What do the variables `raw`, `inf_adj`, and `inf_adj_perchild` represent? In what units? Note: Codebook is [here](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html).  -->
 
 **ANSWER:** [Please write response here.]
 
