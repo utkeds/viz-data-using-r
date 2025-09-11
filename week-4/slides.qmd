@@ -56,6 +56,7 @@ tidykids <- tidykids |>
 :::{.smaller-font}
 - Weekly Check In
 - Additional Foundational Skills
+    - Logical Operators
     - Strategies for Object Assignment
     - {forcats} from Week 3
     <!-- - Accessing data from Google Drive/ OneDrive -->
@@ -85,6 +86,7 @@ tidykids <- tidykids |>
 
 # Additional Foundational Skills
 
+# Logical Operators
 
 ## Logical Operators {.smaller}
 <hr>
@@ -97,10 +99,12 @@ tidykids <- tidykids |>
 3. **`&`** (and)
 ![](slides_images/and_num_line.png)
 
+# The Pipe `|>` and Assignment Operator `<-`
 
 ## Differences Between the Pipe `|>` and the Assignment Operator `<-` {.smaller}
 <hr>
 - The pipe `|>` is used to chain functions together
+- Recall Q11 from last night's homework
 
 :::{.columns}
 
@@ -137,13 +141,15 @@ combined
 
 :::
 
+# Strategies for Object Assignment
+
 ## Breakout Room Discussion {.smaller}
 <hr>
 **Discussion Prompts**
 
 - What are the pros/cons of creating a new object?
 
-- When assigning... when might you...
+- When assigning, when might you...
   - ...create a new object?
   - ...overwrite an existing object?
 
@@ -234,13 +240,13 @@ titanic_ageclass_summary |>
 
 # Reviewing {dplyr}
 
-## {ggplot2} prework: Data Wrangling
+## {ggplot2} prework: Data Wrangling {.smaller}
 <hr>
 - Before you can visualize data, you need to have it in the right format.
 - Let's review some {dplyr} functions using the `tidykids` dataset.
   - New data we'll use for a few weeks
 - In your `.zip` file, you have a `ggplot2-prework-data-wrangling.qmd` file. Open it.
-  - We'll work through it together.
+  - We'll work through it in breakout rooms.
 
 ## {ggplot2} prework: Data Wrangling
 <hr>
@@ -248,7 +254,7 @@ titanic_ageclass_summary |>
 - We'll need to review the `tidykids` [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html).
 - Region code is available in Canvas module (Week 4/During Class)
 <br><br><br>
-Breakout room structure:
+***Breakout room structure:***
 
 - **Individual Think Time**: ~ 3 min (camera off / mute)
   - Review document
@@ -293,6 +299,8 @@ Breakout room structure:
 - The Grammar of Graphics is a system for understanding how to create visualizations by breaking them down into components.
     - *grammar*: a particular analysis of the system and structure of language or of a specific language
 - There are eight components in ggplot's grammar.
+<br><br>
+- **Please have the ggplot cheatsheet handy for the next slides.**
 :::
 
 :::{column}
@@ -341,11 +349,13 @@ Breakout room structure:
 :::
 
 :::{column}
-```{.r code-line-numbers="|1,5"}
+```{.r code-line-numbers="|1-6"}
 p <- tidykids |>
   filter(year == 2016,
          variable == "PK12ed") |>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot()
 ```
 <br>
@@ -354,7 +364,9 @@ Output:
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed") |>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot()
 
 p
@@ -376,11 +388,13 @@ p
 
 :::{column}
 
-```{.r code-line-numbers="|5"}
+```{.r code-line-numbers="|7"}
 p <- tidykids |>
   filter(year == 2016,
          variable == "PK12ed") |>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region))
   
 p
@@ -391,7 +405,9 @@ Output:
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed") |>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region))
 
 p
@@ -414,11 +430,13 @@ p
 
 :::{column}
 
-```{.r code-line-numbers="|6"}
+```{.r code-line-numbers="|8"}
 p <- tidykids |>
   filter(year == 2016,
   variable == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+  state == "District of Columbia" ~ "DC",
+  TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point()
   
@@ -429,7 +447,9 @@ Output:
 p <- tidykids |>
   filter(year == 2016,
   expenditure == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point()
 
@@ -455,11 +475,13 @@ p
 
 :::{column}
 :::{.smaller-font}
-```{.r code-line-numbers="|7"}
+```{.r code-line-numbers="|9"}
 p <- tidykids |>
   filter(year == 2016,
   variable == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format())
@@ -471,7 +493,9 @@ Output:
 p <- tidykids |>
   filter(year == 2016,
   expenditure == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format())
@@ -500,28 +524,31 @@ p
 
 :::{column}
 :::{.smaller-font}
-```{.r code-line-numbers="|8"}
+```{.r code-line-numbers="|10"}
 p <- tidykids |>
   filter(year == 2016,
   variable == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
-  facet_wrap(~region)
+  facet_wrap(~region, scales = "free_y")
   
 p
 ```
-Output:
 ```{r, echo=F}
 p <- tidykids |>
   filter(year == 2016,
   expenditure == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
-  facet_wrap(~region)
+  facet_wrap(~region, scales = "free_y")
 
 p
 ```
@@ -548,15 +575,17 @@ p
 
 :::{column}
 :::{.smaller-font}
-```{.r code-line-numbers="|9"}
+```{.r code-line-numbers="|11"}
 p <- tidykids |>
   filter(year == 2016,
   variable == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
-  facet_wrap(~region) +
+  facet_wrap(~region, scales = "free_x") +
   coord_flip()
   
 p
@@ -566,11 +595,13 @@ p
 p <- tidykids |>
   filter(year == 2016,
   expenditure == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
-  facet_wrap(~region) +
+  facet_wrap(~region, scales = "free_x") +
   coord_flip()
 
 p
@@ -598,16 +629,18 @@ p
 :::
 
 :::{column}
-:::{.smaller-font}
-```{.r code-line-numbers="|10-12"}
+:::{.extra-small-font}
+```{.r code-line-numbers="|12-14"}
 p <- tidykids |>
   filter(year == 2016,
   variable == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
-  facet_wrap(~region) +
+  facet_wrap(~region, scales = "free_x") +
   coord_flip() +
   labs(title = "Per Pupil Spending by State",
        x = "Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)",
@@ -619,11 +652,13 @@ p
 p <- tidykids |>
   filter(year == 2016,
   expenditure == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+          state == "District of Columbia" ~ "DC",
+          TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
-  facet_wrap(~region) +
+  facet_wrap(~region, scales = "free_x") +
   coord_flip() +
   labs(title = "Per Pupil Spending by State",
        x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
@@ -654,22 +689,24 @@ p
 
 :::{column}
 :::{.extra-small-font}
-```{.r code-line-numbers="|13-15"}
+```{.r code-line-numbers="|15-17"}
 p <- tidykids |>
   filter(year == 2016,
   variable == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+  state == "District of Columbia" ~ "DC",
+  TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
-  facet_wrap(~region) +
+  facet_wrap(~region, scales = "free_x") +
   coord_flip() +
   labs(title = "Per Pupil Spending by State",
        x = "Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)",
        y = "State")+
   theme_minimal() +
   theme(legend.position = "none",
-        axis.text.x = element_text(size = 5, angle = 90, hjust = 1))
+        axis.text.x = element_text(size = 8, angle = 45, hjust = 1))
         
 p
 ```
@@ -678,25 +715,27 @@ p
 p <- tidykids |>
   filter(year == 2016,
   expenditure == "PK12ed")|>
-  mutate(state = state.abb[match(state, state.name)]) |>
+  mutate(state = case_when(
+    state == "District of Columbia" ~ "DC",
+    TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
-  facet_wrap(~region) +
+  facet_wrap(~region, scales = "free_x") +
   coord_flip() +
   labs(title = "Per Pupil Spending by State",
        x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
        y = "State")+
   theme_minimal() +
   theme(legend.position = "none",
-        axis.text.x = element_text(size = 5, angle = 90, hjust = 1))
+        axis.text.x = element_text(size = 8, angle = 45, hjust = 1))
 p
 ```
 :::
 :::
 :::
 
-## Grammar of Graphics
+## Grammar of Graphics {.smaller}
 <hr>
 - So, at a high level, there are three steps to creating a `ggplot2` visualization:
     1. [**Data**]{.data-color}: Specify what data you want to visualize, 
@@ -704,7 +743,7 @@ p
     3. [**Geometries**]{.geometries-color}: how you want the relationships to appear.
 - Other layers/components as needed
 
-## A Word on Geometries
+## A Word on Geometries {.smaller}
 <hr>
 - The `ggplot2` [cheatsheet](https://rstudio.github.io/cheatsheets/data-visualization.pdf) helps to understand the different `geom`etries available.
     - One Variable: Continuous
