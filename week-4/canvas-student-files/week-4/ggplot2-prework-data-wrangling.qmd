@@ -32,17 +32,17 @@ execute:
 
 **ANSWER:** [Please write response here.]
 
-<!-- Suppose you are only interested in the data for 2016. Filter the data for 2016. -->
+<!-- Suppose you are only interested in the data for 2016. Filter the cleaned data for 2016. -->
 ```{r filter_2016}
 
 ```
 
-<!-- You want to create a new region variable. Create this using what we learned last week. Note that this code is provided in Canvas because it is long to type (and easy to typo!).-->
+<!-- You want to create a new region variable. Create this using what we learned last week. Note that this code is provided in Canvas because it is long to type (and easy to typo!). Please create the new region variable for the filtered 2016 data (i.e., use the object you stored to above).-->
 ```{r create_region_variable}
 
 ```
 
-<!-- You want to focus only on library expenditures. Look at the [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html) to find the variable name for library expenditures. Then, filter for it.-->
+<!-- You want to focus only on library expenditures. Look at the [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html) to find the variable name for library expenditures. Then, using the data from the question above, filter for it.-->
 
 ```{r filter_library_expenditures}
 
