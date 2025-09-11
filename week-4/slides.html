@@ -230,10 +230,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Intro to tidykids data</li>
 </ul></li>
 <li>{ggplot2}: a Theoretical Intro</li>
-<li>{ggplot2}: a Practical Intro
-<ul>
-<li><em>If time allows</em></li>
-</ul></li>
+<li>{ggplot2}: a Practical Intro</li>
 <li>Looking Ahead</li>
 </ul>
 </div>
@@ -644,7 +641,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="sourceCode" id="cb10" data-code-line-numbers="|1-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb10-3"><a href=""></a>         variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb10-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
 <span id="cb10-5"><a href=""></a>          state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
 <span id="cb10-6"><a href=""></a>          <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
@@ -683,7 +680,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="sourceCode" id="cb11" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb11-3"><a href=""></a>         variable <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb11-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
 <span id="cb11-5"><a href=""></a>          state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
 <span id="cb11-6"><a href=""></a>          <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
@@ -725,7 +722,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="sourceCode" id="cb12" data-code-line-numbers="|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb12-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href=""></a>  expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
 <span id="cb12-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
 <span id="cb12-5"><a href=""></a>  state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
 <span id="cb12-6"><a href=""></a>  <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
@@ -770,7 +767,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="smaller-font">
 <div class="sourceCode" id="cb13" data-code-line-numbers="|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb13-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href=""></a>  expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
 <span id="cb13-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
 <span id="cb13-5"><a href=""></a>          state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
 <span id="cb13-6"><a href=""></a>          <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
@@ -818,7 +815,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="smaller-font">
 <div class="sourceCode" id="cb14" data-code-line-numbers="|10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb14-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href=""></a>  expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
 <span id="cb14-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
 <span id="cb14-5"><a href=""></a>          state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
 <span id="cb14-6"><a href=""></a>          <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
@@ -867,7 +864,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="smaller-font">
 <div class="sourceCode" id="cb15" data-code-line-numbers="|11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb15-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href=""></a>  expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
 <span id="cb15-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
 <span id="cb15-5"><a href=""></a>          state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
 <span id="cb15-6"><a href=""></a>          <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
@@ -918,7 +915,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="extra-small-font">
 <div class="sourceCode" id="cb16" data-code-line-numbers="|12-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb16-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href=""></a>  expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
 <span id="cb16-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
 <span id="cb16-5"><a href=""></a>          state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
 <span id="cb16-6"><a href=""></a>          <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
@@ -972,7 +969,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="extra-small-font">
 <div class="sourceCode" id="cb17" data-code-line-numbers="|15-17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb17-3"><a href=""></a>  variable <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href=""></a>  expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
 <span id="cb17-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
 <span id="cb17-5"><a href=""></a>  state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
 <span id="cb17-6"><a href=""></a>  <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
@@ -1205,8 +1202,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li><strong>Step 3:</strong> What variables/data wrangling do I need?
 <ol type="1">
 <li>Create a <code>region</code> variable</li>
-<li>Filter for 2016</li>
-<li>Filter for <code>PK12ed</code></li>
+<li>Filter <code>year</code> for 2016</li>
+<li>Filter <code>expenditure</code> for “PK12ed”</li>
 <li>Calculate national mean (separate from tibble)</li>
 <li>Group by <code>region</code>
 <ul>

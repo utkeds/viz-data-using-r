@@ -64,7 +64,6 @@ tidykids <- tidykids |>
     - Intro to tidykids data
 - {ggplot2}: a Theoretical Intro
 - {ggplot2}: a Practical Intro
-    - *If time allows*
 - Looking Ahead
 
 :::
@@ -352,7 +351,7 @@ titanic_ageclass_summary |>
 ```{.r code-line-numbers="|1-6"}
 p <- tidykids |>
   filter(year == 2016,
-         variable == "PK12ed") |>
+         expenditure == "PK12ed") |>
   mutate(state = case_when(
           state == "District of Columbia" ~ "DC",
           TRUE ~ state.abb[match(state, state.name)])) |>
@@ -391,7 +390,7 @@ p
 ```{.r code-line-numbers="|7"}
 p <- tidykids |>
   filter(year == 2016,
-         variable == "PK12ed") |>
+         expenditure == "PK12ed") |>
   mutate(state = case_when(
           state == "District of Columbia" ~ "DC",
           TRUE ~ state.abb[match(state, state.name)])) |>
@@ -433,7 +432,7 @@ p
 ```{.r code-line-numbers="|8"}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = case_when(
   state == "District of Columbia" ~ "DC",
   TRUE ~ state.abb[match(state, state.name)])) |>
@@ -478,7 +477,7 @@ p
 ```{.r code-line-numbers="|9"}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = case_when(
           state == "District of Columbia" ~ "DC",
           TRUE ~ state.abb[match(state, state.name)])) |>
@@ -527,7 +526,7 @@ p
 ```{.r code-line-numbers="|10"}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = case_when(
           state == "District of Columbia" ~ "DC",
           TRUE ~ state.abb[match(state, state.name)])) |>
@@ -578,7 +577,7 @@ p
 ```{.r code-line-numbers="|11"}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = case_when(
           state == "District of Columbia" ~ "DC",
           TRUE ~ state.abb[match(state, state.name)])) |>
@@ -633,7 +632,7 @@ p
 ```{.r code-line-numbers="|12-14"}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = case_when(
           state == "District of Columbia" ~ "DC",
           TRUE ~ state.abb[match(state, state.name)])) |>
@@ -692,7 +691,7 @@ p
 ```{.r code-line-numbers="|15-17"}
 p <- tidykids |>
   filter(year == 2016,
-  variable == "PK12ed")|>
+  expenditure == "PK12ed")|>
   mutate(state = case_when(
   state == "District of Columbia" ~ "DC",
   TRUE ~ state.abb[match(state, state.name)])) |>
@@ -885,8 +884,8 @@ p
 :::{column}
 - **Step 3:** What variables/data wrangling do I need?
     1. Create a `region` variable
-    2. Filter for 2016
-    3. Filter for `PK12ed`
+    2. Filter `year` for 2016
+    3. Filter `expenditure` for "PK12ed"
     4. Calculate national mean (separate from tibble)
     5. Group by `region`
         - Summarize:
