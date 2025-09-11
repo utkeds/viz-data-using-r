@@ -11,14 +11,12 @@ execute:
 ---
 
 ```{r load_packages}
-library(tidyverse)
+
 ```
 
 
 ```{r read_in_data}
-tidykids <- read_csv("tidykids.csv") |>
-  select(-1) |>
-  janitor::clean_names()
+
 ```
 
 <!-------------------------------- Sketch ------------------------------------->
@@ -50,7 +48,11 @@ tidykids <- read_csv("tidykids.csv") |>
 
 ```
 
-```{r filter_year_variable}
+```{r filter_year_expenditure_variables}
+
+```
+
+```{r distinct_year_check}
 
 ```
 

@@ -85,6 +85,19 @@ tidykids <- tidykids |>
 
 # Additional Foundational Skills
 
+
+## Logical Operators {.smaller}
+<hr>
+1. **`!`** (not)
+2. **`|`** (or)
+![](slides_images/or_num_line.png)
+
+## Logical Operators {.smaller}
+<hr>
+3. **`&`** (and)
+![](slides_images/and_num_line.png)
+
+
 ## Differences Between the Pipe `|>` and the Assignment Operator `<-` {.smaller}
 <hr>
 - The pipe `|>` is used to chain functions together
