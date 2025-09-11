@@ -353,8 +353,8 @@ p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed") |>
   mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot()
 ```
 <br>
@@ -364,8 +364,8 @@ p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed") |>
   mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot()
 
 p
@@ -392,8 +392,8 @@ p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed") |>
   mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region))
   
 p
@@ -432,10 +432,10 @@ p
 ```{.r code-line-numbers="|8"}
 p <- tidykids |>
   filter(year == 2016,
-  expenditure == "PK12ed")|>
+         expenditure == "PK12ed")|>
   mutate(state = case_when(
-  state == "District of Columbia" ~ "DC",
-  TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point()
   
@@ -477,10 +477,10 @@ p
 ```{.r code-line-numbers="|9"}
 p <- tidykids |>
   filter(year == 2016,
-  expenditure == "PK12ed")|>
+         expenditure == "PK12ed")|>
   mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format())
@@ -526,10 +526,10 @@ p
 ```{.r code-line-numbers="|10"}
 p <- tidykids |>
   filter(year == 2016,
-  expenditure == "PK12ed")|>
+         expenditure == "PK12ed")|>
   mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
@@ -577,10 +577,10 @@ p
 ```{.r code-line-numbers="|11"}
 p <- tidykids |>
   filter(year == 2016,
-  expenditure == "PK12ed")|>
+         expenditure == "PK12ed")|>
   mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
@@ -632,10 +632,10 @@ p
 ```{.r code-line-numbers="|12-14"}
 p <- tidykids |>
   filter(year == 2016,
-  expenditure == "PK12ed")|>
+         expenditure == "PK12ed")|>
   mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
@@ -691,10 +691,10 @@ p
 ```{.r code-line-numbers="|15-17"}
 p <- tidykids |>
   filter(year == 2016,
-  expenditure == "PK12ed")|>
+         expenditure == "PK12ed")|>
   mutate(state = case_when(
-  state == "District of Columbia" ~ "DC",
-  TRUE ~ state.abb[match(state, state.name)])) |>
+         state == "District of Columbia" ~ "DC",
+         TRUE ~ state.abb[match(state, state.name)])) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
