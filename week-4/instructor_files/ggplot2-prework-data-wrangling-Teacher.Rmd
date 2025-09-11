@@ -18,7 +18,7 @@ clean the column names.--->
 tidykids <- read_csv("tidykids.csv")
 
 tidykids <- tidykids |>
-  select(-...1) |>
+  select(-...1) |> # Don't think you need this anymore
   janitor::clean_names()
 ```
 

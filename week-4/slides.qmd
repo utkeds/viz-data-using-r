@@ -46,7 +46,7 @@ tidykids <- tidykids |>
   janitor::clean_names()
 ```
 
-# Weekly Check In, Download `.zip`, Download Slides
+# Weekly Check In, Download `.zip`, Download Slides, {ggplot} Cheatsheet
 
 # Start Recording
 
