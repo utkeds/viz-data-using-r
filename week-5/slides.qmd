@@ -724,6 +724,29 @@ Stacking
 
 :::{.smaller-font}
 
+- **Discussion:** What is this graph showing you?
+
+```{r, fig.height=4.5, fig.width=8, echo=FALSE}
+penguins |>
+  group_by(island,species) |>
+  summarize(n = n()) |>
+  ungroup() |>
+  ggplot(aes(x = island, y = n)) +
+    geom_col(aes(fill=species), position="stack") +
+    labs(title = "Number of Penguin Species Observations per Island",
+       x = "Island", y = "Number of Observations") +
+    theme_minimal()
+```
+
+:::
+
+## Grouping, Stacking, Faceting {.smaller}
+<hr>
+Stacking
+<hr>
+
+:::{.smaller-font}
+
 ```{.r code-line-numbers="|6"}
 penguins |>
   group_by(island,species) |>
@@ -745,6 +768,34 @@ penguins |>
     geom_col(aes(fill=species), position="stack") +
     labs(title = "Number of Penguin Species Observations per Island",
        x = "Island", y = "Number of Observations") +
+    theme_minimal()
+```
+
+:::
+
+## Grouping, Stacking, Faceting {.smaller}
+<hr>
+Dodging
+<hr>
+
+:::{.smaller-font}
+
+- **Discussion:** What is this graph showing you?
+
+```{r, fig.height=4.5, fig.width=8, echo=FALSE}
+colors_seven = RColorBrewer::brewer.pal(8, "PuBu")[3:7]
+
+penguins |>
+  mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
+  filter(!is.na(bill_length_quintiles)) |>
+  group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm=T)) |>
+  ungroup() |>
+  ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
+    geom_col(position="dodge", alpha = 0.9) +
+    labs(title = "Mean Flipper Length by Species and Bill Length Quintile",
+       x = "Species", y = "Mean Flipper Length (mm)") +
+    scale_fill_manual(values = colors_seven) +
     theme_minimal()
 ```
 
@@ -860,7 +911,7 @@ tidykids |>
        x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)", y = "State") +
     theme_minimal()
 ```
-- Don't do this. These should be in some kind of more easily comparable order.
+- **Discussion:** How could we improve this plot?
 
 :::
 
@@ -925,7 +976,7 @@ Heatmaps `geom_tile()`
 
 <hr>
 
-- If your data had a large outlier (e.g., Let's say Delaware spent 10x more than the other states)...
+- **Discussion:** If your data had a large outlier (e.g., Let's say Delaware spent 10x more than the other states)...
   - What happens to the heatmap?
   -  Why?
 
