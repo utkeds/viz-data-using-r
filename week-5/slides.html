@@ -203,8 +203,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 
 </section>
-<section id="weekly-check-in-download-.zip" class="title-slide slide level1 center">
-<h1>Weekly Check In/ <br>Download <code>.zip</code></h1>
+<section id="weekly-check-in-download-.zip-download-slides-ggplot-cheatsheet" class="title-slide slide level1 center">
+<h1>Weekly Check In, Download <code>.zip</code>, Download Slides, {ggplot} Cheatsheet</h1>
 
 </section>
 
@@ -371,7 +371,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <p><strong>Please do either #1 or #3</strong></p>
 </section>
-<section id="vs." class="slide level2">
+<section id="vs." class="slide level2 smaller">
 <h2><code>==</code> vs.&nbsp;<code>=</code></h2>
 <hr>
 <ul>
@@ -387,25 +387,14 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 </section>
-<section id="mapping-versus-setting" class="slide level2">
+<section id="mapping-versus-setting" class="slide level2 smaller">
 <h2>Mapping Versus Setting</h2>
 <hr>
 <ul>
 <li><code>aes</code>thetic mapping from data to visual</li>
 </ul>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> <span class="co">#puts regions together</span></span>
-<span id="cb6-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild)) <span class="sc">+</span></span>
-<span id="cb6-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> region)) <span class="co">#mapping</span></span>
-<span id="cb6-6"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> <span class="co">#puts regions together</span></span>
-<span id="cb6-9"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild)) <span class="sc">+</span></span>
-<span id="cb6-10"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="co">#setting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="extra-small-font quarto-layout-panel" data-layout="[1,1]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="columns extra-small-font">
+<div class="column">
 <ul>
 <li>Mapping
 <ul>
@@ -414,6 +403,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> <span class="co">#puts regions together</span></span>
+<span id="cb6-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> region)) <span class="co">#mapping</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -422,8 +416,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </div>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+</div><div class="column">
 <ul>
 <li>Setting
 <ul>
@@ -432,6 +425,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> <span class="co">#puts regions together</span></span>
+<span id="cb7-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="co">#setting</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -440,11 +438,9 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</div></div>
 </section>
-<section id="inheriting-aesthetics" class="slide level2">
+<section id="inheriting-aesthetics" class="slide level2 smaller">
 <h2>Inheriting Aesthetics</h2>
 <hr>
 <div class="smaller-font">
@@ -455,11 +451,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> <span class="co"># puts regions together</span></span>
-<span id="cb7-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="co"># geom_col inherits x, y, and color from ggplot()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> <span class="co"># puts regions together</span></span>
+<span id="cb8-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="co"># geom_col inherits x, y, and color from ggplot()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -470,7 +466,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </section>
-<section id="inheriting-aesthetics-1" class="slide level2">
+<section id="inheriting-aesthetics-1" class="slide level2 smaller">
 <h2>Inheriting Aesthetics</h2>
 <hr>
 <div class="smaller-font">
@@ -481,11 +477,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> </span>
-<span id="cb8-4"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb8-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild, <span class="at">color =</span> region)) <span class="co"># aes explicitly specified within geom_col()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb9-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild, <span class="at">color =</span> region)) <span class="co"># aes explicitly specified within geom_col()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -496,7 +492,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </section>
-<section id="inheriting-aesthetics-2" class="slide level2">
+<section id="inheriting-aesthetics-2" class="slide level2 smaller">
 <h2>Inheriting Aesthetics</h2>
 <hr>
 <div class="smaller-font">
@@ -507,12 +503,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> </span>
-<span id="cb9-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href=""></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> natnl_mean, <span class="at">color =</span> <span class="st">"National Mean"</span>)) <span class="co"># Overrides color within geom_hline</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, region)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> inf_adj_perchild, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">color =</span> state))<span class="co"># Overrides color within geom_col</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -523,7 +518,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </section>
-<section id="saving-plots" class="slide level2">
+<section id="saving-plots" class="slide level2 smaller">
 <h2>Saving Plots</h2>
 <hr>
 <div class="smaller-font">
@@ -535,10 +530,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <ul>
 <li><code>ggsave()</code> saves the last plot created if plot unspecified</li>
 <li><code>plot</code>, <code>width</code>, <code>height</code>, <code>units</code>, and <code>dpi</code> are optional arguments</li>
+<li>higher quality images for journals</li>
 </ul></li>
 </ol>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">ggsave</span>(<span class="st">"my_plot.png"</span>, <span class="at">plot =</span> <span class="fu">last_plot</span>(), <span class="at">width =</span> <span class="dv">1200</span>, <span class="at">height =</span> <span class="dv">650</span>, <span class="at">units =</span> <span class="st">"px"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">ggsave</span>(<span class="st">"my_plot.png"</span>, <span class="at">plot =</span> <span class="fu">last_plot</span>(), <span class="at">width =</span> <span class="dv">1200</span>, <span class="at">height =</span> <span class="dv">650</span>, <span class="at">units =</span> <span class="st">"px"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <ol start="2" type="1">
@@ -546,12 +542,13 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <ul>
 <li>Export the plot from the viewer pane</li>
 <li>Save as image or PDF</li>
+<li>Quick. Might work for slides.</li>
 </ul></li>
 </ol>
 <p><strong>Demo</strong></p>
 </div>
 </section>
-<section id="knaflic-2015-chapter-1" class="slide level2">
+<section id="knaflic-2015-chapter-1" class="slide level2 smaller">
 <h2>Knaflic (2015), Chapter 1</h2>
 <hr>
 <div class="small-font">
@@ -571,356 +568,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </section></section>
 <section>
-<section id="forcats-see-cheatsheet" class="title-slide slide level1 center">
-<h1>{forcats} (See cheatsheet)</h1>
-
-</section>
-<section id="forcats-factor-vars" class="slide level2">
-<h2>{forcats} (factor vars)</h2>
-<hr>
-<code>fct_relevel()</code> <br>
-<hr>
-<div class="small-font" data-layout="[55,45]">
-<div class="extra-small-font quarto-layout-panel" data-layout="[1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><br> <span class="small-font"><strong>Example data - Titanic</strong></span> <br> <br></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="cell-output-display">
-<table class="table-striped caption-top" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Pclass</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">age_group</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">avg_survival</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Second</td>
-<td style="text-align: left;">child</td>
-<td style="text-align: right;">1.0000000</td>
-<td style="text-align: right;">17</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">First</td>
-<td style="text-align: left;">teen</td>
-<td style="text-align: right;">0.9166667</td>
-<td style="text-align: right;">12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">First</td>
-<td style="text-align: left;">child</td>
-<td style="text-align: right;">0.7500000</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">First</td>
-<td style="text-align: left;">adult</td>
-<td style="text-align: right;">0.6352941</td>
-<td style="text-align: right;">170</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Second</td>
-<td style="text-align: left;">teen</td>
-<td style="text-align: right;">0.5000000</td>
-<td style="text-align: right;">12</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Second</td>
-<td style="text-align: left;">adult</td>
-<td style="text-align: right;">0.4166667</td>
-<td style="text-align: right;">144</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Third</td>
-<td style="text-align: left;">child</td>
-<td style="text-align: right;">0.4166667</td>
-<td style="text-align: right;">48</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Third</td>
-<td style="text-align: left;">teen</td>
-<td style="text-align: right;">0.2826087</td>
-<td style="text-align: right;">46</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Third</td>
-<td style="text-align: left;">adult</td>
-<td style="text-align: right;">0.1992337</td>
-<td style="text-align: right;">261</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>surv_rates_age_class <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href=""></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
-<span id="cb11-6"><a href=""></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
-<span id="cb11-7"><a href=""></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment smaller-font quarto-layout-panel" data-layout="[1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><br></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<ul>
-<li>X axis lacks order</li>
-</ul>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="forcats-factor-vars-1" class="slide level2">
-<h2>{forcats} (factor vars)</h2>
-<hr>
-<code>fct_relevel()</code> <br>
-<hr>
-<div class="small-font" data-layout="[40,60]">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>surv_rates_age_class <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href=""></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">fct_relevel</span>(Pclass, <span class="st">"First"</span>, <span class="st">"Second"</span>, <span class="st">"Third"</span>))<span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
-<span id="cb12-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
-<span id="cb12-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
-<span id="cb12-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="extra-small-font quarto-layout-panel" data-layout="[1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><br> <span class="small-font"><code>fct_relevel()</code></span></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<ul>
-<li><strong>Re-orders factors by hand</strong>: you manually specify the order</li>
-</ul>
-</div>
-</div>
-<div class="quarto-layout-row">
-
-</div>
-</div>
-<div class="fragment smaller-font quarto-layout-panel" data-layout="[1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><br></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="forcats-factor-vars-2" class="slide level2">
-<h2>{forcats} (factor vars)</h2>
-<hr>
-<code>fct_reorder()</code> <br>
-<hr>
-<div class="small-font" data-layout="[55,45]">
-<div class="extra-small-font quarto-layout-panel" data-layout="[1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><br> <span class="small-font"><strong>Example data - Titanic</strong></span> <br> <br></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="cell-output-display">
-<table class="table-striped caption-top" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Pclass</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">age_group</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">avg_survival</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Second</td>
-<td style="text-align: left;">child</td>
-<td style="text-align: right;">1.0000000</td>
-<td style="text-align: right;">17</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">First</td>
-<td style="text-align: left;">teen</td>
-<td style="text-align: right;">0.9166667</td>
-<td style="text-align: right;">12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">First</td>
-<td style="text-align: left;">child</td>
-<td style="text-align: right;">0.7500000</td>
-<td style="text-align: right;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">First</td>
-<td style="text-align: left;">adult</td>
-<td style="text-align: right;">0.6352941</td>
-<td style="text-align: right;">170</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Second</td>
-<td style="text-align: left;">teen</td>
-<td style="text-align: right;">0.5000000</td>
-<td style="text-align: right;">12</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Second</td>
-<td style="text-align: left;">adult</td>
-<td style="text-align: right;">0.4166667</td>
-<td style="text-align: right;">144</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Third</td>
-<td style="text-align: left;">child</td>
-<td style="text-align: right;">0.4166667</td>
-<td style="text-align: right;">48</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Third</td>
-<td style="text-align: left;">teen</td>
-<td style="text-align: right;">0.2826087</td>
-<td style="text-align: right;">46</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Third</td>
-<td style="text-align: left;">adult</td>
-<td style="text-align: right;">0.1992337</td>
-<td style="text-align: right;">261</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>surv_rates_age_class<span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href=""></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
-<span id="cb13-4"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
-<span id="cb13-6"><a href=""></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
-<span id="cb13-7"><a href=""></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment smaller-font quarto-layout-panel" data-layout="[1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><br></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<ul>
-<li>What if I wanted this reordered by rate, not class?</li>
-</ul>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="forcats-factor-vars-3" class="slide level2">
-<h2>{forcats} (factor vars)</h2>
-<hr>
-<code>fct_reorder()</code> <br>
-<hr>
-<div class="small-font" data-layout="[40,60]">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>surv_rates_age_class<span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href=""></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">fct_reorder</span>(Pclass, avg_survival))<span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
-<span id="cb14-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
-<span id="cb14-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
-<span id="cb14-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
-<span id="cb14-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="extra-small-font quarto-layout-panel" data-layout="[1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><br> <span class="small-font"><code>fct_reorder()</code></span></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="extra-small-font quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<ul>
-<li><strong>Re-orders factors by values of another variable</strong></li>
-</ul>
-</div>
-</div>
-<div class="quarto-layout-row">
-
-</div>
-</div>
-<div class="fragment smaller-font quarto-layout-panel" data-layout="[1]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><br></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section></section>
-<section>
 <section id="todays-work" class="title-slide slide level1 center">
 <h1>Today’s Work</h1>
 
 </section>
-<section id="required-components-of-a-ggplot" class="slide level2">
+<section id="required-components-of-a-ggplot" class="slide level2 smaller">
 <h2>3 Required Components of a ggplot</h2>
 <hr>
 <ul>
@@ -932,7 +584,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 </section>
-<section id="comparing-amounts" class="slide level2">
+<section id="comparing-amounts" class="slide level2 smaller">
 <h2>Comparing Amounts</h2>
 <hr>
 <ul>
@@ -944,34 +596,35 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 <li>If you have <strong>distributions</strong> wait until next week!</li>
 </ul>
+<p><strong>Question:</strong> From the reading (Wilke), what is the distinction between amounts and distributions?</p>
 </section>
-<section id="comparing-amounts-1" class="slide level2">
+<section id="comparing-amounts-1" class="slide level2 smaller">
 <h2>Comparing Amounts</h2>
 <hr>
-<p>Bar Chart | <code>geom_bar()</code> or <code>geom_col()</code></p>
+<p>Bar Chart : <code>geom_bar()</code> or <code>geom_col()</code></p>
 <hr>
 <div class="extra-small-font quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
-<li><code>geom_bar()</code>
+<li><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html"><code>geom_bar()</code></a>
 <ul>
 <li>Bar height represents number of observations in data</li>
 <li>Counts observations up for you</li>
 <li>Only need to specify <code>x</code> -&gt; what to count!</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb15" data-code-line-numbers="|2-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#6ABCEB"</span>) <span class="sc">+</span></span>
-<span id="cb15-4"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Observations by Penguin Species"</span>,</span>
-<span id="cb15-5"><a href=""></a>       <span class="at">x =</span> <span class="st">"Penguin Species"</span>, <span class="at">y =</span> <span class="st">"Number of Observations"</span>) <span class="sc">+</span></span>
-<span id="cb15-6"><a href=""></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-code-line-numbers="|2-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href=""></a>    <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#6ABCEB"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Observations by Penguin Species"</span>,</span>
+<span id="cb12-5"><a href=""></a>       <span class="at">x =</span> <span class="st">"Penguin Species"</span>, <span class="at">y =</span> <span class="st">"Number of Observations"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href=""></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="432"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="432"></p>
 </figure>
 </div>
 </div>
@@ -979,27 +632,27 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
-<li><code>geom_col()</code>
+<li><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html"><code>geom_col()</code></a>
 <ul>
 <li>Bar height represents a value in the data</li>
 <li>Requires a <code>y</code> variable in aesthetic</li>
 <li>May require use of <code>group_by()</code> &amp; <code>summarize()</code></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb16" data-code-line-numbers="|2-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href=""></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb16-4"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb16-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb16-6"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#6ABCEB"</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Observations by Penguin Species"</span>,</span>
-<span id="cb16-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Penguin Species"</span>, <span class="at">y =</span> <span class="st">"Number of Observations"</span>) <span class="sc">+</span></span>
-<span id="cb16-9"><a href=""></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13" data-code-line-numbers="|2-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#6ABCEB"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Observations by Penguin Species"</span>,</span>
+<span id="cb13-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Penguin Species"</span>, <span class="at">y =</span> <span class="st">"Number of Observations"</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href=""></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="432"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="432"></p>
 </figure>
 </div>
 </div>
@@ -1008,7 +661,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </section>
-<section id="comparing-amounts-2" class="slide level2">
+<section id="comparing-amounts-2" class="slide level2 smaller">
 <h2>Comparing Amounts</h2>
 <hr>
 <p>Bar Chart <code>geom_col()</code></p>
@@ -1018,7 +671,113 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li><strong>Problem:</strong> With bar plots, labels are often hard to read/overlap</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>starwars <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href=""></a>  <span class="fu">group_by</span>(eye_color) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> eye_color, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb14-6"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4C5970"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Eye Color of Star Wars Characters"</span>,</span>
+<span id="cb14-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Eye Color"</span>, <span class="at">y =</span> <span class="st">"Number of Star Wars Characters"</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a href=""></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-amounts-3" class="slide level2 smaller">
+<h2>Comparing Amounts</h2>
+<hr>
+<p>Bar Chart <code>geom_col()</code></p>
+<hr>
+<ul>
+<li><strong>Problem:</strong> With bar plots, labels are often hard to read/overlap</li>
+<li>Three ways to address:</li>
+</ul>
+<ol type="1">
+<li>Exchange the x and y mappings (preferred)</li>
+</ol>
+<div class="columns">
+<div class="column smaller-font" style="width:60%;">
+<div class="sourceCode" id="cb15" data-code-line-numbers="|5,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href=""></a>  <span class="fu">group_by</span>(eye_color) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> eye_color)) <span class="sc">+</span></span>
+<span id="cb15-6"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4C5970"</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Eye Color of Star Wars Characters"</span>,</span>
+<span id="cb15-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Eye Color"</span>, <span class="at">y =</span> <span class="st">"Number of Star Wars Characters"</span>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href=""></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb15-10"><a href=""></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="comparing-amounts-4" class="slide level2 smaller">
+<h2>Comparing Amounts</h2>
+<hr>
+<p>Bar Chart <code>geom_col()</code></p>
+<hr>
+<ul>
+<li><strong>Problem:</strong> With bar plots, labels are often hard to read/overlap</li>
+<li>Three ways to address:</li>
+</ul>
+<ol start="2" type="1">
+<li><code>coord_flip()</code> - flips x and y axes</li>
+</ol>
+<div class="columns">
+<div class="column smaller-font" style="width:60%;">
+<div class="sourceCode" id="cb16" data-code-line-numbers="|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href=""></a>  <span class="fu">group_by</span>(eye_color) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> eye_color, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4C5970"</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Eye Color of Star Wars Characters"</span>,</span>
+<span id="cb16-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Eye Color"</span>, <span class="at">y =</span> <span class="st">"Number of Star Wars Characters"</span>) <span class="sc">+</span></span>
+<span id="cb16-9"><a href=""></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb16-10"><a href=""></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb16-11"><a href=""></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="comparing-amounts-5" class="slide level2 smaller">
+<h2>Comparing Amounts</h2>
+<hr>
+<p>Bar Chart <code>geom_col()</code></p>
+<hr>
+<ul>
+<li><strong>Problem:</strong> With bar plots, labels are often hard to read/overlap</li>
+<li>Three ways to address:</li>
+</ul>
+<ol start="3" type="1">
+<li>Rotate axis labels (typically less desirable)</li>
+</ol>
+<div class="columns">
+<div class="column smaller-font" style="width:60%;">
+<div class="sourceCode" id="cb17" data-code-line-numbers="|10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>starwars <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href=""></a>  <span class="fu">group_by</span>(eye_color) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
 <span id="cb17-4"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
@@ -1026,84 +785,83 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <span id="cb17-6"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4C5970"</span>) <span class="sc">+</span></span>
 <span id="cb17-7"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Eye Color of Star Wars Characters"</span>,</span>
 <span id="cb17-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Eye Color"</span>, <span class="at">y =</span> <span class="st">"Number of Star Wars Characters"</span>) <span class="sc">+</span></span>
-<span id="cb17-9"><a href=""></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-9"><a href=""></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-10"><a href=""></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb17-11"><a href=""></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
+</div></div>
 </section>
-<section id="comparing-amounts-3" class="slide level2">
+<section id="comparing-amounts-6" class="slide level2 smaller">
 <h2>Comparing Amounts</h2>
 <hr>
 <p>Bar Chart <code>geom_col()</code></p>
 <hr>
 <div class="extra-small-font">
 <ul>
-<li><strong>Problem:</strong> With bar plots, labels are often hard to read/overlap</li>
-<li>Two ways to address:</li>
+<li><strong>Problem:</strong> We often need to more logically reorder the bars</li>
+<li>Recall <code>forcats</code> from wk 3!
+<ul>
+<li><code>fct_relevel()</code> : manually reorder</li>
+<li><code>fct_reorder()</code> : reorder by another variable</li>
+</ul></li>
 </ul>
-<div class="quarto-layout-panel" data-layout="[1,1]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<ol type="1">
-<li><code>coord_flip()</code> - flips x and y axes</li>
-</ol>
-<div class="sourceCode" id="cb18" data-code-line-numbers="|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href=""></a>  <span class="fu">group_by</span>(eye_color) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb18-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> eye_color, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb18-6"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4C5970"</span>) <span class="sc">+</span></span>
-<span id="cb18-7"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Eye Color of Star Wars Characters"</span>,</span>
-<span id="cb18-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Eye Color"</span>, <span class="at">y =</span> <span class="st">"Number of Star Wars Characters"</span>) <span class="sc">+</span></span>
-<span id="cb18-9"><a href=""></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb18-10"><a href=""></a>    <span class="fu">theme_minimal</span>()</span>
-<span id="cb18-11"><a href=""></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<ol start="2" type="1">
-<li>Rotate axis labels (typically less desirable)</li>
-</ol>
-<div class="sourceCode" id="cb19" data-code-line-numbers="|10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>starwars <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">group_by</span>(eye_color) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb19-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> eye_color, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb19-6"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4C5970"</span>) <span class="sc">+</span></span>
-<span id="cb19-7"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Eye Color of Star Wars Characters"</span>,</span>
-<span id="cb19-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Eye Color"</span>, <span class="at">y =</span> <span class="st">"Number of Star Wars Characters"</span>) <span class="sc">+</span></span>
-<span id="cb19-9"><a href=""></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb19-10"><a href=""></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb19-11"><a href=""></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 </section>
-<section id="comparing-amounts-4" class="slide level2">
+<section id="forcats-factor-vars" class="slide level2">
+<h2>{forcats} (factor vars)</h2>
+<hr>
+<code>fct_relevel()</code> <br>
+<hr>
+<div class="smaller-font">
+<ul>
+<li><code>fct_relevel()</code> <strong>re-orders factors by hand</strong></li>
+<li>You manually specify the order</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>surv_rates_age_class <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href=""></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">fct_relevel</span>(Pclass, <span class="st">"First"</span>, <span class="st">"Second"</span>, <span class="st">"Third"</span>))<span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
+<span id="cb18-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
+<span id="cb18-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="forcats-factor-vars-1" class="slide level2">
+<h2>{forcats} (factor vars)</h2>
+<hr>
+<code>fct_reorder()</code> <br>
+<hr>
+<div class="smaller-font">
+<ul>
+<li><code>fct_reorder()</code> <strong>re-orders factors by values of another variable</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>surv_rates_age_class<span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href=""></a>  <span class="fu">filter</span>(age_group <span class="sc">==</span> <span class="st">"child"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">Pclass =</span> <span class="fu">fct_reorder</span>(Pclass, avg_survival))<span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Pclass, <span class="at">y=</span>avg_survival)) <span class="sc">+</span></span>
+<span id="cb19-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#489FDF"</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Survival Rates by Class for Children"</span>,</span>
+<span id="cb19-7"><a href=""></a>       <span class="at">x =</span> <span class="st">"Class"</span>,</span>
+<span id="cb19-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Survival Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="comparing-amounts-7" class="slide level2 smaller">
 <h2>Comparing Amounts</h2>
 <hr>
 <p>Bar Chart <code>geom_col()</code></p>
@@ -1139,7 +897,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1149,7 +907,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </section>
-<section id="grouping-stacking-faceting" class="slide level2">
+<section id="grouping-stacking-faceting" class="slide level2 smaller">
 <h2>Grouping, Stacking, Faceting</h2>
 <hr>
 <div class="smaller-font">
@@ -1164,7 +922,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul>
 </div>
 </section>
-<section id="grouping-stacking-faceting-1" class="slide level2">
+<section id="grouping-stacking-faceting-1" class="slide level2 smaller">
 <h2>Grouping, Stacking, Faceting</h2>
 <hr>
 Stacking
@@ -1183,14 +941,14 @@ Stacking
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="grouping-stacking-faceting-2" class="slide level2">
+<section id="grouping-stacking-faceting-2" class="slide level2 smaller">
 <h2>Grouping, Stacking, Faceting</h2>
 <hr>
 Dodging
@@ -1211,14 +969,14 @@ Dodging
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="grouping-stacking-faceting-3" class="slide level2">
+<section id="grouping-stacking-faceting-3" class="slide level2 smaller">
 <h2>Grouping, Stacking, Faceting</h2>
 <hr>
 Faceting
@@ -1227,7 +985,7 @@ Faceting
 <div class="sourceCode" id="cb23" data-code-line-numbers="|4-6|7-8,13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb23-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">bill_length_quintiles =</span> <span class="fu">cut_number</span>(bill_length_mm, <span class="dv">5</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb23-3"><a href=""></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_quintiles)) <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a href=""></a>  <span class="fu">group_by</span>(species,bill_length_quintiles) <span class="sc">|&gt;</span> <span class="co"># 1st Group: x-axis, 2nd: bar levels</span></span>
+<span id="cb23-4"><a href=""></a>  <span class="fu">group_by</span>(species,bill_length_quintiles) <span class="sc">|&gt;</span> <span class="co"># 1st Group: facets, 2nd: bar levels</span></span>
 <span id="cb23-5"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">mean_flipper_length =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm=</span>T)) <span class="sc">|&gt;</span></span>
 <span id="cb23-6"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
 <span id="cb23-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_quintiles, <span class="at">y =</span> mean_flipper_length, <span class="at">fill=</span>bill_length_quintiles)) <span class="sc">+</span></span>
@@ -1241,14 +999,14 @@ Faceting
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="comparing-amounts-5" class="slide level2">
+<section id="comparing-amounts-8" class="slide level2 smaller">
 <h2>Comparing Amounts</h2>
 <hr>
 <p>Dot Plots <code>geom_point()</code></p>
@@ -1265,7 +1023,7 @@ Faceting
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center" width="624"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center" width="624"></p>
 </figure>
 </div>
 </div>
@@ -1275,7 +1033,7 @@ Faceting
 </ul>
 </div>
 </section>
-<section id="comparing-amounts-6" class="slide level2">
+<section id="comparing-amounts-9" class="slide level2 smaller">
 <h2>Comparing Amounts</h2>
 <hr>
 <p>Dot Plots <code>geom_point()</code></p>
@@ -1293,14 +1051,14 @@ Faceting
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center" width="624"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center" width="624"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="comparing-amounts-7" class="slide level2">
+<section id="comparing-amounts-10" class="slide level2 smaller">
 <h2>Comparing Amounts</h2>
 <hr>
 <p>Heatmaps <code>geom_tile()</code></p>
@@ -1313,13 +1071,26 @@ Faceting
 <span id="cb26-5"><a href=""></a>    <span class="fu">geom_tile</span>(<span class="at">color=</span><span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="comparing-amounts-11" class="slide level2 smaller">
+<h2>Comparing Amounts</h2>
+<hr>
+<p>Heatmaps <code>geom_tile()</code></p>
+<hr>
+<ul>
+<li>If your data had a large outlier (e.g., Let’s say Delaware spent 10x more than the other states)…
+<ul>
+<li>What happens to the heatmap?</li>
+<li>Why?</li>
+</ul></li>
+</ul>
+</section></section>
 <section>
 <section id="collaborative-practice" class="title-slide slide level1 center">
 <h1>Collaborative Practice</h1>
 
 </section>
-<section id="collaborative-practice-1" class="slide level2">
+<section id="collaborative-practice-1" class="slide level2 smaller">
 <h2>Collaborative Practice</h2>
 <hr>
 <div class="small-font">
@@ -1335,7 +1106,7 @@ Faceting
 </ul>
 </div>
 </section>
-<section id="collaborative-practice-2" class="slide level2">
+<section id="collaborative-practice-2" class="slide level2 smaller">
 <h2>Collaborative Practice</h2>
 <hr>
 <ul>
@@ -1349,11 +1120,11 @@ Faceting
 </ul>
 </section></section>
 <section>
-<section id="schwabish-extensions" class="title-slide slide level1 center">
+<section id="schwabish-extensions" class="title-slide slide level1 smaller center">
 <h1>Schwabish Extensions</h1>
 
 </section>
-<section id="schwabish-extensions-1" class="slide level2">
+<section id="schwabish-extensions-1" class="slide level2 smaller">
 <h2>Schwabish Extensions</h2>
 <hr>
 <p>Lollipop Plots: <code>geom_point()</code> + <code>geom_segment()</code></p>
@@ -1372,32 +1143,32 @@ Faceting
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-31-1.png" class="quarto-figure quarto-figure-center" width="624"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center" width="624"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="schwabish-extensions-2" class="slide level2">
+<section id="schwabish-extensions-2" class="slide level2 smaller">
 <h2>Schwabish Extensions</h2>
 <hr>
 <p>Bullet Charts: <code>geom_col()</code> and/or <code>geom_segment()</code></p>
 <hr>
 
-<img data-src="slides_files/KBoles_Figure1_BulletPlot.png" class="r-stretch quarto-figure-center"><p class="caption">Figure from Boles (in preparation)</p></section></section>
+<img data-src="slides_images/KBoles_Figure1_BulletPlot.png" class="r-stretch quarto-figure-center"><p class="caption">Figure from Boles (in preparation)</p></section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
 
 </section>
-<section id="looking-ahead-1" class="slide level2">
+<section id="looking-ahead-1" class="slide level2 smaller">
 <h2>Looking Ahead</h2>
 <hr>
 <ul>
 <li>Readings:
 <ul>
-<li>Read Holder (2024)
+<li>Read Holder (2024) - not assigning
 <ul>
 <li>Discussion Post</li>
 </ul></li>
