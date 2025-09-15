@@ -1,0 +1,122 @@
+---
+title: "Assignment 5: Comparing Amounts"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+---
+
+This assignment is fairly open-ended. Please consult the slides, particularly attending to the following considerations:
+
+- Make sure you have *amounts* and not *distributions*
+- Make sure the labels are readable
+- Order bars in a logical manner
+- Stack, dodge, or facet, when appropriate
+
+<hr>
+
+#### Getting Started
+1. Add your name into the YAML header. then, load needed packages in the code cell below.
+
+```{r}
+
+```
+
+2. Read the tidykids data into R, and assign a name/object to the data in the code cell below.
+
+```{r}
+
+```
+
+#### Explore the Data
+
+3. Last week in step 2, you were also asked to explore the tidykids data. It's a fine practice to copy/reuse code, so you can copy and paste your code from the last assignment into the code chunk below. Then, make *one addition* to what you did to explore the data last week.
+
+```{r}
+
+```
+
+#### Graphing
+
+4. **Graph 1:** Bar Chart
+
+Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., `geom_col`umn) chart, keeping in mind the aforementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
+
+```{r}
+
+```
+
+**INTERPRETATION:** [Please write response here.]
+
+5. **Graph 2:** If you haven't yet, please *set* (not map!) the color of your bars using a hexidecimal color code or name. (Just copy/paste the code from above.)
+
+Note: You can run `colors()` for color names (do this in the console - not your script), or use any number of web-based tools to find the hex code, e.g.: https://htmlcolorcodes.com/color-picker/. There is also a Color Conversion Chart linked in the Resources in Canvas.
+
+```{r}
+
+```
+
+6. **Graph 3:** Create a stacked, dodged, or faceted bar chart
+
+Create a stacked, dodged, or faceted bar chart, again keeping in mind the (other) considerations. You may find the recording and slides (both uploaded to Canvas) helpful. Please add 1-2 sentences interpreting what you've found. You may need to manipulate the data using various {dplyr} functions to successfully complete this step. It may be a challenge, but for this and the next graph, perfection is not the goal! Getting a feel for when and how to create this kinds of plots is, so try to create something sensible as a first attempt at doing so.
+
+```{r}
+
+```
+
+**INTERPRETATION:** [Please write response here.]
+
+7. **Graph 4:** Set a theme 
+
+Using any of the graphs you have created so far (again, copy/paste the code from above), use the pre-installed themes(https://ggplot2.tidyverse.org/reference/ggtheme.html) or install ggthemes (or another package that provides themes, if you wish) and add the theme to your plot.
+
+```{r}
+
+```
+
+8. **Graph 5:** Histogram!
+
+Histograms were a bit challenging last week. We'll cover them in depth next week! Try again this week using the starwars data set (it is built in and can be accessed by typing `starwars`). Note that you only set one aesthetic (either `x` or `y`) and then use `geom_histogram()`. Adjusting the binwidth is often a good idea!
+
+```{r}
+
+```
+
+#### Bonus
+
+9. **Bonus 1:** Create a different stacked, dodged, or faceted bar chart
+
+Optionally and to push yourself, either change the graph you created for Graph 3 - or create a new graph - using a different type of bar chart than then one you have created. For example, if you created a stacked bar chart, create either a dodged or faceted bar chart. Again, perfection is absolutely not the goal.
+
+```{r}
+
+```
+
+10. **Bonus 2:** Create a bar chart with your data
+
+Again, optionally, read in and create a bar chart with your data (maybe you have some from a project or a paper you're working on? Otherwise, use tidykids or starwars). Add a sentence or two interpreting what you found. 
+
+```{r}
+
+```
+
+**INTERPRETATION:** [Please write response here.]
+
+#### Reflection
+
+**REFLECTION:** [What went well, what was challenging, and what do you want to dive deeper into? Please write your reflection here.]
+
+When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 5 in Canvas.  Please note, you are only submitting the HTML output for this assignment.  
+
+**Rubric**
+
+Name is added: 2 points
+File knits to an HTML: 8 points
+Code chunks have appropriate output: 15 points
+Interpretations and reflection are added: 5 points
+Bonus: 5 points
+Total: 30 points
