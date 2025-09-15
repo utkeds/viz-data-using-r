@@ -41,8 +41,8 @@ Hints:
 5. First, categorize countries into "High GDP" or "Low GDP" groups based on the median GDP per capita for 2007.
 
 Hint:
- - Use `mutate()` and `case_when()` to create a new variable called `gdp_category` that labels countries as "High GDP" if their GDP per capita is equivalent to or above the median, and "Low GDP" if below.
- 
+- Use `mutate()` and `case_when()` to create a new variable called `gdp_category` that labels countries as "High GDP" if their GDP per capita is equivalent to or above the median, and "Low GDP" if below.
+
 ```{r gdp-category-variable-creation}
 
 ```
@@ -81,4 +81,11 @@ Hints:
 ```{r ggsave-heatmap}
 ggsave(plot = last_plot(), filename = "heatmap.jpg", height = 6, width = 10)
 ``` 
- 
+
+10. **EXTENSION:** If time allows, use either the dot plot from #4 or the bar plot from #7 to explore one or more of the following:
+- The difference (both in code and in concept) between setting and mapping aesthetics.
+- The ways in which aes() can be set directly in the ggplot() call, the specific `geom()` function, or both. Also explore overriding and inheriting (see the first few slides from this week).
+
+```{r}
+
+```
