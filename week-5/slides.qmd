@@ -147,7 +147,6 @@ temp
 - `==`
   - A logical check, tests for equality
   - In English "are these equivalent?"
-  - Implicitly returns either `TRUE` (yes) or `FALSE` (no)
   - e.g., `filter(hair_color == "red")`
 
 - `=`
