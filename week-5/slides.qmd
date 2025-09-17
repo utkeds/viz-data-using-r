@@ -145,11 +145,15 @@ temp
 ## `==` vs. `=` {.smaller}
 <hr>
 - `==`
-  - A logical check
-  - In English "is equivalent to?"
+  - A logical check, tests for equality
+  - In English "are these equivalent?"
+  - Implicitly returns either `TRUE` (yes) or `FALSE` (no)
+  - e.g., `filter(hair_color == "red")`
+
 - `=`
   - Assigns
   - In English "set to" or "map to"...
+  - e.g., `fill = "red"`
 
 ## Mapping Versus Setting {.smaller}
 <hr>
