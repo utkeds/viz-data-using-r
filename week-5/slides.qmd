@@ -61,19 +61,9 @@ penguins <- penguins |>
 :::{.extra-small-font}
 - Weekly Check In
 - Review/ Foundational Skills
-    - assigning + printing
-    - `==` vs. `=`
-    - Mapping versus setting in `aes()`
-    - Inheriting aesthetics
-    - Saving plots
 - Reviewing Knaflic (2015), Ch. 1
-- {forcats}
 - Comparing Amounts
     - Bar Plots
-        - Labeling
-            - `coord_flip()`
-            - Ordering Axes
-        - Grouping, Stacking, Faceting
     - Dot Plots
     - Heat Maps
 - Collaborative Practice
