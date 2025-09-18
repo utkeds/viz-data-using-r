@@ -1092,7 +1092,7 @@ Faceting
 <div class="smaller-font">
 <div class="sourceCode" id="cb26" data-code-line-numbers="|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
 <span id="cb26-2"><a href=""></a>  <span class="fu">filter</span>(expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>, region <span class="sc">==</span> <span class="st">"South"</span>, state <span class="sc">!=</span> <span class="st">"District of Columbia"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, <span class="fu">desc</span>(state))) <span class="sc">|&gt;</span> <span class="co"># reorder by spending</span></span>
+<span id="cb26-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, <span class="fu">desc</span>(state))) <span class="sc">|&gt;</span> <span class="co"># reorder alphabetically</span></span>
 <span id="cb26-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> state, <span class="at">fill =</span> inf_adj_perchild)) <span class="sc">+</span></span>
 <span id="cb26-5"><a href=""></a>    <span class="fu">geom_tile</span>(<span class="at">color=</span><span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

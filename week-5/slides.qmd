@@ -948,7 +948,7 @@ Heatmaps `geom_tile()`
 ```{.r code-line-numbers="|5"}
 tidykids |>
   filter(expenditure == "PK12ed", region == "South", state != "District of Columbia") |>
-  mutate(state = fct_reorder(state, desc(state))) |> # reorder by spending
+  mutate(state = fct_reorder(state, desc(state))) |> # reorder alphabetically
   ggplot(aes(x = year, y = state, fill = inf_adj_perchild)) +
     geom_tile(color="white", linewidth = 0.25)
 ```
@@ -958,7 +958,7 @@ tidykids |>
 ```{r, echo=FALSE}
 tidykids |>
   filter(expenditure == "PK12ed", region == "South", state != "District of Columbia") |>
-  mutate(state = fct_reorder(state, desc(state))) |> # reorder by spending
+  mutate(state = fct_reorder(state, desc(state))) |> # reorder alphabetically
   ggplot(aes(x = year, y = state, fill = inf_adj_perchild)) +
     geom_tile(color="white", linewidth = 0.25)
 ```
