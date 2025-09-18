@@ -1044,10 +1044,9 @@ Bullet Charts: `geom_col()` and/or `geom_segment()`
 ## Looking Ahead {.smaller}
 <hr>
 - Readings:
-    - Read Holder (2024) - not assigning
-        - Discussion Post
     - Skim Schwabish (2021), Ch. 6
     - Read Wilke (2019), Chs. 7,9,12
+    - Discussion Post
 - Weekly Assignment
     - Creating and Improving Plots of Amounts
     
