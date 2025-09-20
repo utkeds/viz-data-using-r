@@ -938,8 +938,9 @@ penguins |>
 :::{.smaller-font}
 - Data from the U.S. News and World Report National University Rankings
 - **Step 1:** ***Explore*** <br>Think about the scavenger hunt from a few assignments ago. What variables do you have? What does each row represent?
-- **Step 2:** ***Summarize*** <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.
-- **Step 3:** ***Visualize*** <br>Create two visualizations to answer your RQs.
+- **Step 2:** ***Clean*** <br>Use {dplyr} to clean the data set and prepare it for further analysis.
+- **Step 3:** ***Summarize*** <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.
+- **Step 4:** ***Visualize*** <br>Create two visualizations to answer your RQs.
 <br><br>
 **Due: October 8th, 11:59 PM**
 :::
