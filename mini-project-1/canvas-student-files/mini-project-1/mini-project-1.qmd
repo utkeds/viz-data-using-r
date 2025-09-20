@@ -1,8 +1,13 @@
 ---
 title: "Mini Project 1"
-author: "Amazing Student"
-date: '2022-12-23'
-output: html_document
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
 ---
 
 # Assignment Introduction
