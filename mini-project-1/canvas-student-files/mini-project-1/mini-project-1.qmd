@@ -15,33 +15,41 @@ execute:
 Explore the U.S. News and World Report ranking data using the data created by Reiter. 
 
 Please briefly read about the *National University Rankings* Excel data set here:
-https://andyreiter.com/datasets/
+[https://andyreiter.com/datasets/](https://andyreiter.com/datasets/)
 
-The three sections you must complete are as follows:
+The four sections you must complete are as follows:
 
-1. *Explore*: Demonstrate different ways to explore a data set and become familiar with its contents.
+1. *Explore*: Demonstrate different ways to explore the data set and become familiar with its contents. We have covered many option in class!
 
-2. *Summarize*: Use various `dplyr` functions to filter, condense, aggregate, and transform the data set into various objects that can be used for visualization
+2. *Clean*: Use {dplyr} to clean the data set and prepare it for further analysis.
 
-3. *Visualize*: Present simple but useful visualizations that depict interesting information in an aesthetically appealing way.
+3. *Summarize*: Use various {dplyr} functions to filter, condense, aggregate, and transform the data set into various objects that can be used for visualization.
 
-This is quite open-ended; there are many different sheets (individual files) within the Excel workbook. Which you use is up to you. *Note*: `read_xlsx` and `read_excel` take a sheet argument. Code to prepare the 2020 (the last sheet) and national rankings (the first) are provided in this zip file.
+4. *Visualize*: Present simple but useful visualizations that depict interesting information in an aesthetically appealing way.
 
 # Explore
 
-Here, load and then explore using non-data visualization means. How many rows and columns are there? What do you notice about the data - what is present and what is missing? Add 3-5 bullet pointed notes below one or more code chunks for this step.
+Here, load and then explore using non-data visualization means. How many rows and columns are there? What do you notice about the data - what is present and what is missing? Add 3-5 bullet pointed notes below one or more code cells for this step.
+
+# Clean
+
+Using the `dplyr` functions we have learned, clean the data set. Note: There are blank rows and a few rows with strange values in the data. `slice()`, `distinct()`, and `filter()` will be likely useful here. Create at least one code cell below for this step.
 
 # Summarize
 
-Once you are familiar with the data, think of two research questions you think the data can answer. Write the questions below and *then* use summarize (and other code) to just begin to explore them. Note: you will build upon the summaries in the Visualization section. Note, this doesn't have to be very fleshed out or rigorous: this is about narrowing your exploration in light of questions you could ask of the data.
+Once you are familiar with the data, think of two research questions you think the data can answer. Write the questions below and *then* use `summarize()` (and other code) to begin to explore them. If you get stuck, the practical approach process modeled in Week 4 may help.
 
-Question 1: 
+*Note 1:* you will build upon the summaries in the Visualization section. 
+
+*Note 2:* your questions do not need to be very rigorous: this is about narrowing your exploration in light of questions you could ask of the data.
+
+**Question 1:** [Write your first research question here.] 
 
 ```{r}
 
 ```
 
-Question 2: 
+**Question 2:** [Write your second research question here.]
 
 ```{r}
 
@@ -52,17 +60,17 @@ Question 2:
 Keeping in mind all of the principles of visualization we have learned, all of the `ggplot` functions we have practiced, and all of the visualization code you have seen, develop a visualization that uses the data above. Each visualization should:
 
 1. Present the information clearly
-2. Use custom color palette in at least one visualization
+2. Use a custom color palette in at least one visualization. [This resource](https://r-charts.com/colors/) may be useful.
 3. Use `theme_minimal` or another theme
-4. Have a title, using `labs()`
+4. Have a clear title, and axis labels using `labs()`
 
-Visualization 1 (to answer RQ 1)
+**Visualization 1:** (to answer RQ 1)
 
 ```{r}
 
 ```
 
-Visualization 2 (to answer RQ 2)
+**Visualization 2:** (to answer RQ 2)
 
 ```{r}
 
@@ -72,9 +80,9 @@ Visualization 2 (to answer RQ 2)
 
 Please add a few sentences reflecting on what went well and what was a challenge.
 
-## Knit and submit
+## Render and submit
 
-Be sure to add your name and date. This time, please change the title to something of your choosing that you think captures the work you have done.
+Be sure to add your name and date. This time, please *change the title of this document in the YAML* to something of your choosing that you think captures the work you have done.
 
 Please submit your work as an HTML file in Canvas for Mini Project 1! Good work!
 
