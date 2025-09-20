@@ -1,13 +1,18 @@
 ---
 title: "Assignment 6: Points and Distributions"
-output: html_document
-author: ""
-date: ""
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
 ---
 
 ## 1. Loading, setting up
 
-Please add your name and the date above. 
+Please add your name above. 
 
 Did you know you can read CSV files on the Internet directly into R? Use the code below to do that. Then, print the object `rankings` to ensure it read in correctly.
 
