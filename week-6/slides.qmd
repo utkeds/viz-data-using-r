@@ -85,6 +85,7 @@ titanic <- Titanic |>
 - Which `geom` when?
 - Looking Ahead
 - Intro to **Mini Project #1**
+- Collaborative Work
 
 :::
 
@@ -960,3 +961,18 @@ penguins |>
     - Complete reflections
     - Pose/answer at least one question in the Slack channel
 :::
+
+# Collaborative Work
+
+## Collaborative Work {.smaller}
+<hr>
+- Explore the mini-project together!
+- Load in the data and review it
+- Specifically, focus on:
+  - What the data looks like
+  - What the variables are
+  - The cleaning that needs to be done
+- This is a discussion (planning) session. No need to write code.
+- In whole group, we will discuss the data cleaning. Make sure one person from your group is prepared to share the data cleaning steps you discussed.
+
+# Have a Great Week!
