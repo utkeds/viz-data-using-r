@@ -54,7 +54,7 @@ titanic <- Titanic |>
   janitor::clean_names()
 ```
 
-# Weekly Check In/ <br>Download `.zip`
+# Weekly Check In/ <br>Download `.zip` for Wk 6 & Mini-Project #1
 
 # Start Recording
 
