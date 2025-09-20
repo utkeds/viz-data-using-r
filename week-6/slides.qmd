@@ -1,7 +1,7 @@
 ---
 subtitle: "Visual Storytelling: Distributions and Associations"
 title: "Week 6 - STEM 691"
-author: "Dr. Kelly Boles"
+author: "Dr. Kelly Boles & Dr. Zhen Xu"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -12,7 +12,7 @@ format:
     highlight-style: tango
     title-slide-attributes:
       data-background-color: "#4B4B4B"
-      data-background-image: UnitShortcut.png
+      data-background-image: slides_images/UnitShortcut.png
       data-background-size: 50%
       data-background-position: 50% 9%
     footer: UTK Educational Data Science
@@ -67,10 +67,6 @@ titanic <- Titanic |>
    <!-- - Formatting Your `.Rmd` -->
    <!-- - AI Policy Review -->
    <!-- - Assignment 4, Bonus Q & `na.rm=T` -->
-- Reviewing Holder (2024)
-    <!-- -`geom_point()` -->
-    <!-- -`geom_jitter()` -->
-    <!-- -`geom_beeswarm()` -->
 - Distributions & Associations
     - Single Distributions
         - Histograms
@@ -127,7 +123,7 @@ titanic <- Titanic |>
 <hr>
 
 :::{.smaller-font}
-- **From the syllabus:**  “I acknowledge the use of [Generative AI Tool Name] in the preparation of this answer. Within this question, Generative AI was used to resolve the following problem: [state problem addressed here], with the goal of [state desired outcome here]. Specifically this code was informed by Generative AI: [copy and paste piece(s) of code provided by Generative AI here].”
+- **From the syllabus:**  “I acknowledge the use of [*Generative AI Tool Name*] in the preparation of this answer. Within this question, Generative AI was used to resolve the following problem: [*state problem addressed here*]. Specifically this code was informed by Generative AI: [*copy and paste piece(s) of code provided by Generative AI here*].”
 
     - Many of you are doing this well! Keep it up!
     - All acknowledgements are by question rather than whole assignment.
@@ -150,12 +146,12 @@ summarize(avg_inf_adj_perchild = mean(inf_adj_perchild)*1000)
 ```{r, echo=F, warning=T}
 tidykids |>
   filter(state == "Tennessee") |>
-  group_by(variable) |>
+  group_by(expenditure) |>
   summarize(avg_inf_adj_perchild = mean(inf_adj_perchild)*1000) |>
   ungroup() |>
-  mutate(variable = fct_reorder(variable, replace_na(avg_inf_adj_perchild, 0))) |>
+  mutate(expenditure = fct_reorder(expenditure, replace_na(avg_inf_adj_perchild, 0))) |>
   ggplot() +
-  geom_col(aes(x=variable, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
+  geom_col(aes(x=expenditure, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
   coord_flip() +
   scale_y_continuous(labels = scales::dollar) +
   theme(legend.position = "none")
@@ -173,12 +169,12 @@ summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm=T)*1000)
 ```{r, echo=F}
 tidykids |>
   filter(state == "Tennessee") |>
-  group_by(variable) |>
+  group_by(expenditure) |>
   summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm=T)*1000) |>
   ungroup() |>
-  mutate(variable = fct_reorder(variable, avg_inf_adj_perchild)) |>
+  mutate(expenditure = fct_reorder(expenditure, avg_inf_adj_perchild)) |>
   ggplot() +
-  geom_col(aes(x=variable, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
+  geom_col(aes(x=expenditure, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
   coord_flip() +
   scale_y_continuous(labels = scales::dollar) +
   theme(legend.position = "none")
@@ -188,7 +184,7 @@ Answer: Other_Health **Correct**
 :::
 :::
 
-# Reviewing Holder (2024)
+<!-- # Reviewing Holder (2024)
 
 ## Reviewing Holder (2024)
 <hr>
@@ -205,10 +201,18 @@ Holder proposes some alternatives. Today we'll talk about:
 - `geom_point()`
 - `geom_jitter()`
 - `geom_beeswarm()`
-:::
+::: -->
 
-##
-### Comparing Amounts: `geom_point()`
+
+
+# Showing Amounts + Variability
+
+## Showing Amounts + Variability {.smaller}
+<hr>
+- There are studies that show viewers/readers have a difficult time understanding how to interpret amounts well (especially measures of center)
+- A Solution: Show variability in addition to the amount
+
+## Comparing Amounts: `geom_point()`
 <hr>
 :::{layout="[1,1]" .extra-small-font}
 :::{column}
@@ -445,7 +449,7 @@ penguins |>
 
 # Single Plots
 
-## Single Plots: `geom_histogram()`
+## Single Plots: `geom_histogram()` {.smaller}
 <hr>
 :::{layout="[1,1]" .small-font}
 :::{column}
@@ -478,7 +482,7 @@ penguins |>
   theme(legend.position = "none")
 ```
 
-```{r, echo=F}
+```{r, echo=F, fig.height=4}
 penguins |>
   filter(species == "Adelie") |>
   ggplot(aes(x = bill_length_mm)) +
@@ -504,7 +508,7 @@ $$\text{Freedman-Diaconis Rule: Bin Width} = \frac{2 * IQR}{\sqrt[3]{n}}$$
 - What is a *boxplot*?
 :::
 
-![](boxplot_from_schwabish.png){.fragment}
+![](slides_images/boxplot_from_schwabish.png){.fragment}
 
 :::{.fragment .smaller-font}
 - In `geom_boxplot()`, you most typically use the following arguments:
@@ -548,7 +552,7 @@ penguins |>
 
 - What is a *boxplot*?
 
-![](boxplot_from_schwabish.png)
+![](slides_images/boxplot_from_schwabish.png)
 
 :::{.smaller-font}
 - In `geom_boxplot()`, you most typically use the following arguments:
@@ -593,7 +597,7 @@ penguins |>
 :::{column}
 :::{.incremental}
 - Similar to something you may recognize:
-![](t_pdf_example.jpeg)
+![](slides_images/t_pdf_example.jpeg)
 - Estimates the shape of the sample distribution
 - Area under curve = 1
 - You can calculate what % of each part of distribution is in a certain range
@@ -937,7 +941,7 @@ penguins |>
 - **Step 2:** ***Summarize*** <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.
 - **Step 3:** ***Visualize*** <br>Create two visualizations to answer your RQs.
 <br><br>
-**Due: March 14th, 11:59 PM**
+**Due: October 8th, 11:59 PM**
 :::
 
 ## Mini-Project #1
@@ -948,7 +952,7 @@ penguins |>
     - Functions to explore/wrangle the data are used *correctly*
     - Data wrangling answers the research questions that are posed
     - The information each visualization conveys is clear
-    - Each viz meets the requirements set out in the `.Rmd`
+    - Each viz meets the requirements set out in the `.qmd`
         - Custom color
         - Use a theme
         - Use `labs`

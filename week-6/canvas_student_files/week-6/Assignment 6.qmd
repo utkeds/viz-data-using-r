@@ -10,74 +10,70 @@ execute:
     message: false
 ---
 
-## 1. Loading, setting up
+Please add your name in the YAML header above. 
 
-Please add your name above. 
+#### Getting Started
+1. You will need to load {tidyverse} for this assignment. Add a code cell below and load the package.
 
-Did you know you can read CSV files on the Internet directly into R? Use the code below to do that. Then, print the object `rankings` to ensure it read in correctly.
+2. Did you know you can read CSV files on the Internet directly into R? Use the code below to do that. Then, print or view the object `rankings` to ensure it read in correctly.
 
 ```{r}
-rankings <- read_csv("https://raw.githubusercontent.com/utkeds/viz-data-using-r/master/us-news-rankings-2020-processed.csv")
-rankings %>% 
+rankings <- read_csv("https://raw.githubusercontent.com/utkeds/viz-data-using-r/main/week-6/us-news-rankings-2020-processed.csv")
+
+rankings |> 
   glimpse()
 ```
-As with any data set, your first step is to become familiar with the variables, values, and structure of the data. So, in a code chunk below this text (add one), use a few functions to explore the data, focusing on getting a grip on the number of rows and columns and the meaning of the rows and columns. 
+As with any data set, your first step is to become familiar with the variables, values, and structure of the data. So, in a code cell below this text (add one), use a few functions to explore the data, focusing on getting a grip on the number of rows and columns and the meaning of the rows and columns. 
 
-## 2. A basic histogram
+#### Plotting Distributions: Histograms, Density, and Boxplots
 
-Create a code chunk and write ggplot2 code to create a histogram for a single variable. You may want to play around with several variables; some may have more variability than others. Furthermore, the ranking variables won't have any kind of normal distribution, so these may be worth avoiding for this and the next few steps that focus upon visualizing distributions. In addition to choosing a variable. justify with a few lines of text your choice for the `binwidth` or `bins` arguments of `geom_histogram()`. 
+3. **Histogram** Create a code cell and write ggplot2 code to create a histogram for a single variable. You may want to play around with several variables; some may have more variability than others. Furthermore, the ranking variables won't have any kind of normal distribution, so these may be worth avoiding for this and the next few steps that focus upon visualizing distributions. In addition to choosing a variable. justify with a few lines of text your choice for the `binwidth` or `bins` arguments of `geom_histogram()`. 
 
-## 3. A basic density plot
+**JUSTIFICATION:** [Please write justification here.]
 
-Using the same variable, create a density plot. 
+4. **Density Plot** Using the same variable, create a density plot. 
 
-## 4. A basic boxplot
+5. **Basic Boxplot** One last time - please create a box plot!
 
-One last time - please create a box plot!
+#### Plotting Multiple Distributions
 
-## 5. Multiple distributions for public and private schools
+6. Use `fill` to plot multiple distributions for public and private schools. You will need to filter the data to communicate the key take-away about these schools. Choose from density plots, ridgeline plots, violin plots with geom points, or boxplots with geom points. Be sure to play around with the alpha value so that the distributions appear in an easy-to-view way. Please write your research question above the code cell, your code in the code cell, and then complete the reflection below.
 
-Use `fill` to plot multiple distributions for public and private schools. You will need to filter the data to communicate the key take-away about these schools. Choose from density plots, ridgeline plots, violin plots with geom points,or boxplots with geom points. Be sure to play around with the alpha value so that the distributions appear in an easy-to-view way. Please write your research question above the code chunk, your code in the code chunk, and then complete the reflection below.
-
-Research question:
+**RESEARCH QUESTION:** [Please write your research question here.]
 
 ```{r}
 
 
 ```
 
-Please add a few sentences here reflecting on your graph. What do you notice and can you claim based upon it?
+**REFLECTION:** [Please add a few sentences here reflecting on your graph. What do you notice and can you claim based upon it?]
 
-- 
-- 
+#### Scatterplots & Aesthetics
 
-## 6. Scatterplot
+7. **Scatterplot** Now, please create a scatterplot using two or more numeric variables. Carefully select the variables to learn something interesting about their association.
 
-Now, please create a scatterplot using two or more numeric variables. Carefully select the variables to learn something interesting about their association.
 
-## 7. Scatterplot plus color
+8. **Scatterplot Plus Color** Color the points by a third variable of your choosing, again selecting this with the aim of revealing a pattern of note or interest in the data. When you choose a third variable to color the points, is this setting or mapping? Why? What difference does this make in your code?
 
-Color the points by a third variable of your choosing, again selecting this with the aim of revealing a pattern of note or interest in the data.
+**RESPONSE:** [Please write response here.]
 
-## 8. Scatterplot plus color and shape
-
-Use the `public_private` variable to use different shapes for the points.
+9. **Scaterplot Plus Color & Shape** Use the `public_private` variable to use different shapes for the points.
 
 That's it! The next two graphs are optional reaches for you to push further, if you like. Please do complete the reflection (step #11), too.
 
-## 9. Optional Reach #1
+#### Optional Reach
 
-Add a line for your association. Try adding the equation for the line (consult the slides to see how!).
+10. Add a line for your association. Try adding the equation for the line (consult the slides to see how!).
 
-## 10. Reflection
+#### Reflection
 
-Please add a sentence or two next reflecting on this assignment. What went well, what was challenging, and what do you want to dive deeper into?
+11. **REFLECTION:** [Please add a sentence or two next reflecting on this assignment. What went well, what was challenging, and what do you want to dive deeper into?]
 
-Important: After you knit, check the HTML file. Does it appear as you intended? Does any output print that is too long? Is your version of R needing to be updated? Do your name and date appear? Share any questions you have in Canvas about fine-tuning your .Rmd output.
+Important: After you knit, check the HTML file. Does it appear as you intended?
 
 Submit for Assignment 6 in Canvas. 
 
-**Rubric**
+**RUBRIC**
 
 Name is added: 2 points
 File knits to an HTML: 8 points
