@@ -90,9 +90,10 @@ Please submit your work as an HTML file in Canvas for Mini Project 1! Good work!
 
 | Criteria                                                            | Yes/No |
 |:--------------------------------------------------------------------|:-------|
-| The file knits without errors                                       |   []   |
+| Dataset has been cleaned well                                       |   []   |
 | Functions to explore the data are used correctly                    |   []   |
 | The data wrangling answers each question the student asks           |   []   |
 | The information each visualization depicts is clear                 |   []   |
 | Each visualization employees meet aformentioned requirements        |   []   |
 | Slack has been used either to ask/answer a question at least once   |   []   |
+| One plot has been posted to the plot gallery on Canvas              |   []   |
