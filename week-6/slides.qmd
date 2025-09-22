@@ -117,6 +117,16 @@ titanic <- Titanic |>
     - expenditure types!
   - `filter()` is your friend!
 
+# Successfully Rendering Documents
+
+## Successfully Rendering Documents {.smaller}
+<hr>
+- How can you check that your document rendered correctly?
+  - It is an .html file.
+  - Before submitting, double click on it to open
+    - It will open in your default web browser (Chrome, Firefox, etc.)
+  - Does it look nice? If so, submit!
+  - Is it a bunch of black text crammed together on a white background? If so, check your code and try again.
 
 # AI Policy Review
 
@@ -212,6 +222,36 @@ Holder proposes some alternatives. Today we'll talk about:
 <hr>
 - There are studies that show viewers/readers have a difficult time understanding how to interpret amounts well (especially measures of center)
 - A Solution: Show variability in addition to the amount
+
+## Showing Amounts + Variability {.smaller}
+<hr>
+- In your discipline's literature/plots, do you see error bars?
+- If so, what do they typically represent?
+
+```{r, echo=F, fig.height=3, fig.width=5}
+#acknowledging within-group variability with +/- 1 SD error bars
+
+penguins |>
+  group_by(species) |>
+  summarize(avg_bill_length = mean(bill_length_mm, na.rm=T),
+            sd_bill_length = sd(bill_length_mm, na.rm=T)) |>
+  ungroup() |>
+  mutate(species = fct_reorder(species, avg_bill_length)) |>
+  ggplot(aes(x = species, y = avg_bill_length)) +
+  geom_col(aes(fill=species)) +
+  geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
+                    ymax = avg_bill_length + sd_bill_length), width = 0.2)+
+  coord_flip() +
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
 
 ## Comparing Amounts: `geom_point()`
 <hr>
@@ -457,6 +497,7 @@ penguins |>
 
 :::{.fragment}
 - What is a *histogram*?
+- How is it different from a *barplot*?
 :::
 
 :::{.fragment .smaller-font}
@@ -510,6 +551,10 @@ $$\text{Freedman-Diaconis Rule: Bin Width} = \frac{2 * IQR}{\sqrt[3]{n}}$$
 :::
 
 ![](slides_images/boxplot_from_schwabish.png){.fragment}
+
+:::{.fragment .smaller-font}
+- Based on medians (not means!) and quartiles
+:::
 
 :::{.fragment .smaller-font}
 - In `geom_boxplot()`, you most typically use the following arguments:
@@ -946,20 +991,21 @@ penguins |>
 **Due: October 8th, 11:59 PM**
 :::
 
-## Mini-Project #1
+## Mini-Project #1 EDIT THIS
 <hr>
 :::{.smaller-font}
 - Rubric:
-    - Knits without errors
     - Functions to explore/wrangle the data are used *correctly*
+    - Dataset has been cleaned *satisfactorily*
     - Data wrangling answers the research questions that are posed
     - The information each visualization conveys is clear
     - Each viz meets the requirements set out in the `.qmd`
         - Custom color
         - Use a theme
-        - Use `labs`
+        - Use `labs` for title + axis labels
     - Complete reflections
     - Pose/answer at least one question in the Slack channel
+    - Posted at least one plot to gallery (discussion in Canvas)
 :::
 
 # Collaborative Work
