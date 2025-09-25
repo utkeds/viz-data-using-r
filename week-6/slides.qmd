@@ -991,7 +991,7 @@ penguins |>
 **Due: October 8th, 11:59 PM**
 :::
 
-## Mini-Project #1 EDIT THIS
+## Mini-Project #1
 <hr>
 :::{.smaller-font}
 - Rubric:
