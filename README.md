@@ -1,6 +1,6 @@
 # Permissions and Use Policy
 
-These instructional materials were developed by **[Your Name]**, **[Colleague 1’s Name]**, and **[Colleague 2’s Name]**, Department of [X], University of Tennessee, for use in **[Course Title/Number]**.  
+These instructional materials were developed by Dr. Joshua Rosenberg (UTK), Dr. Kelly Boles (UTK), and Isabella Velásquez (Posit), for use in **STEM 691**.  
 
 ## License
 This repository is licensed under a **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)**.  
