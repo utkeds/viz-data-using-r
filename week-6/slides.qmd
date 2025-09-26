@@ -241,7 +241,6 @@ penguins |>
   geom_col(aes(fill=species)) +
   geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
                     ymax = avg_bill_length + sd_bill_length), width = 0.2)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
        x = "Species",
        y = "Bill Length (mm)") +
@@ -270,7 +269,6 @@ penguins |>
   geom_col(aes(fill=species)) +
   geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
                     ymax = avg_bill_length + sd_bill_length), width = 0.2)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
        x = "Species",
        y = "Bill Length (mm)") +
@@ -294,7 +292,6 @@ penguins |>
   geom_col(aes(fill=species)) +
   geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
                     ymax = avg_bill_length + sd_bill_length), width = 0.2)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
        x = "Species",
        y = "Bill Length (mm)") +
@@ -317,16 +314,15 @@ penguin_means <- penguins |>
 
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
-  ggplot(aes(x = species, y = bill_length_mm)) +
+  ggplot(aes(x = bill_length_mm, y = species)) +
   geom_point(aes(color=species)) +
   geom_segment(data=penguin_means,
-               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
-                   y = mean_bill_length, yend = mean_bill_length), 
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
                color = "black", linewidth = 1)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
-       x = "Species",
-       y = "Bill Length (mm)") +
+       x = "Bill Length (mm)",
+       y = "Species") +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01")) +
@@ -344,16 +340,15 @@ penguin_means <- penguins |>
 
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
-  ggplot(aes(x = species, y = bill_length_mm)) +
+  ggplot(aes(x = bill_length_mm, y = species)) +
   geom_point(aes(color=species)) +
   geom_segment(data=penguin_means,
-               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
-                   y = mean_bill_length, yend = mean_bill_length), 
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
                color = "black", linewidth = 1)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
-       x = "Species",
-       y = "Bill Length (mm)") +
+       x = "Bill Length (mm)",
+       y = "Species") +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01")) +
@@ -377,16 +372,15 @@ penguin_means <- penguins |>
 
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
-  ggplot(aes(x = species, y = bill_length_mm)) +
-  geom_jitter(aes(color=species), width = .18, alpha = .5) +
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_jitter(aes(color=species), height = .18, alpha = .5) +
   geom_segment(data=penguin_means,
-               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
-                   y = mean_bill_length, yend = mean_bill_length), 
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
                color = "black", linewidth = 1)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
-       x = "Species",
-       y = "Bill Length (mm)") +
+       x = "Bill Length (mm)",
+       y = "Species") +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01")) +
@@ -404,16 +398,15 @@ penguin_means <- penguins |>
 
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
-  ggplot(aes(x = species, y = bill_length_mm)) +
-  geom_jitter(aes(color=species), width = .18, alpha = .5) +
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_jitter(aes(color=species), height = .18, alpha = .5) +
   geom_segment(data=penguin_means,
-               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
-                   y = mean_bill_length, yend = mean_bill_length), 
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
                color = "black", linewidth = 1)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
-       x = "Species",
-       y = "Bill Length (mm)") +
+       x = "Bill Length (mm)",
+       y = "Species") +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01")) +
@@ -439,16 +432,15 @@ penguin_means <- penguins |>
 
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
-  ggplot(aes(x = species, y = bill_length_mm)) +
+  ggplot(aes(x = bill_length_mm, y = species)) +
   geom_beeswarm(aes(color=species), alpha = .5) +
   geom_segment(data=penguin_means,
-               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
-                   y = mean_bill_length, yend = mean_bill_length), 
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
                color = "black", linewidth = 1)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
-       x = "Species",
-       y = "Bill Length (mm)") +
+       x = "Bill Length (mm)",
+       y = "Species") +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01")) +
@@ -468,16 +460,15 @@ penguin_means <- penguins |>
 
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
-  ggplot(aes(x = species, y = bill_length_mm)) +
+  ggplot(aes(x = bill_length_mm, y = species)) +
   geom_beeswarm(aes(color=species), alpha = .5) +
   geom_segment(data=penguin_means,
-               aes(x = as.numeric(species) - 0.2, xend = as.numeric(species) + 0.2,
-                   y = mean_bill_length, yend = mean_bill_length), 
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
                color = "black", linewidth = 1)+
-  coord_flip() +
   labs(title = "Bill Length by Penguin Species",
-       x = "Species",
-       y = "Bill Length (mm)") +
+       x = "Bill Length (mm)",
+       y = "Species") +
   scale_color_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01")) +
@@ -648,7 +639,7 @@ penguins |>
 - Area under curve = 1
 - You can calculate what % of each part of distribution is in a certain range
 - Better for large datasets; amount of data in tails may be exaggerated in small datasets
-- Y axis is hard from some audiences to interpret
+- Y axis is hard for some audiences to interpret
 
 :::
 :::
@@ -768,34 +759,32 @@ penguins |>
 
 ```{.r code-line-numbers="|3-4"}
 penguins |>
-  ggplot(aes(x = bill_length_mm, y=species)) +
+  ggplot(aes(x=species, y = bill_length_mm)) +
   geom_violin(aes(fill = species),color = "black", alpha = .7) +
-  geom_jitter(width = 0.08, alpha = 0.4, color = "black", size = 1) +
+  geom_jitter(width = 0.3, alpha = 0.4, color = "black", size = 1) +
   theme_minimal() +
   theme(legend.position = "none") +
   labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
-       x = "Bill Length (mm)",
-       y = "Density") +
+       x = "Density",
+       y = "Bill Length (mm)") +
   scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
-  coord_flip()
+                               "Adelie" = "#FF6A01"))
 ```
 
 ```{r, echo=F, fig.height=3.5, fig.width=10}
 penguins |>
-  ggplot(aes(x = bill_length_mm, y=species)) +
+  ggplot(aes(x=species, y = bill_length_mm)) +
   geom_violin(aes(fill = species),color = "black", alpha = .7) +
-  geom_jitter(width = 0.08, alpha = 0.4, color = "black", size = 1) +
+  geom_jitter(width = 0.3, alpha = 0.4, color = "black", size = 1) +
   theme_minimal() +
   theme(legend.position = "none") +
   labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
-       x = "Bill Length (mm)",
-       y = "Density") +
+       x = "Density",
+       y = "Bill Length (mm)") +
   scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
-  coord_flip()
+                               "Adelie" = "#FF6A01"))
 ```
 
 :::
@@ -968,6 +957,7 @@ penguins |>
 <hr>
 - Readings:
     - Wilke (2019), Chapters 13-14
+    - Skim Desbarats (2021)
     - Skim plots in Schwabish (2021), Chapter 5
 - Weekly Assignment:
     - Graphing Distributions and Scatterplots
