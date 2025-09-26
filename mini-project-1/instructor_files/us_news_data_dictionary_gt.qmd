@@ -1,0 +1,52 @@
+---
+title: "Data Dictionary: U.S. News University Rankings (2020)"
+format: html
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+library(gt)
+library(dplyr)
+
+# Build data dictionary as a tibble
+dict <- tibble::tribble(
+  ~Variable, ~Description, ~Type, ~Example,
+  "school", "University name (with state)", "character", "Princeton University (NJ)",
+  "public_private", "Institution control (public vs. private)", "character", "private",
+  "overall_score", "U.S. News overall score (0–100)", "double", "100.0",
+  "peer_assessment_score", "Average rating by peer institutions (1–5 scale)", "double", "4.9",
+  "graduation_and_retention_rank", "Ranking based on graduation and retention outcomes", "double", "2.0",
+  "average_first_year_retention_rate", "% of first-year students who return for year 2", "double", "98.0",
+  "predicted_graduation_rate", "Predicted % of students graduating in 6 years", "double", "95.0",
+  "actual_graduation_rate", "Actual % of students graduating in 6 years", "double", "96.0",
+  "over_underperformance", "Difference between actual and predicted graduation rate", "double", "1.0",
+  "pell_gradrate", "Graduation rate of Pell Grant recipients (%)", "double", "93.0",
+  "social_mobility_rank", "Rank based on outcomes for Pell Grant students", "double", "23.0",
+  "faculty_resources_rank", "Rank based on faculty-related metrics (salary, class size, etc.)", "double", "3.0",
+  "percent_of_classes_under_20", "% of classes with <20 students", "double", "74.0",
+  "percent_of_classes_of_50_or_more_students", "% of classes with ≥50 students", "double", "10.0",
+  "student_faculty_ratio", "Ratio of students to faculty", "double", "5.0",
+  "selectivity_rank", "Admissions selectivity ranking", "double", "11.0",
+  "sat_act_25th_percentile", "25th percentile SAT/ACT composite score", "double", "1440.0",
+  "sat_act_75th_percentile", "75th percentile SAT/ACT composite score", "double", "1570.0",
+  "first_year_students_in_top_10_percent_of_high_school_class", "% of freshmen in top 10% of HS class", "double", "91.0",
+  "acceptance_rate", "% of applicants accepted", "double", "5.0",
+  "financial_resources_rank", "Rank based on financial resources per student", "double", "12.0",
+  "average_alumni_giving_rate", "% of alumni who donate to institution", "double", "59.0"
+)
+
+# Render with gt
+dict |>
+  gt() |>
+  tab_header(title = "Data Dictionary: U.S. News University Rankings (2020)") |>
+  cols_width(
+    Variable ~ px(180),
+    Description ~ px(360),
+    Type ~ px(100),
+    Example ~ px(160)
+  ) |>
+  tab_options(table.font.size = 12)
+```
