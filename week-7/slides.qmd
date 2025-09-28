@@ -1,7 +1,7 @@
 ---
 subtitle: "Visual Storytelling: Lines and Curves"
 title: "Week 7 - STEM 691"
-author: "Dr. Kelly Boles"
+author: "Dr. Kelly Boles & Dr. Zhen Xu"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -12,7 +12,7 @@ format:
     highlight-style: tango
     title-slide-attributes:
       data-background-color: "#4B4B4B"
-      data-background-image: UnitShortcut.png
+      data-background-image: slides_images/UnitShortcut.png
       data-background-size: 50%
       data-background-position: 50% 9%
     footer: UTK Educational Data Science
@@ -26,9 +26,9 @@ knitr:
 
 ```{r setup, include=FALSE, echo=FALSE}
 library(tidyverse)
-library(tidykids)
+# library(tidykids)
 
-tidykids <- tidykids |>
+tidykids <- read_csv("tidykids.csv") |>
   mutate(region = case_when(
     state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
                  "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
@@ -54,10 +54,7 @@ tidykids <- tidykids |>
 :::{.extra-small-font}
 - **Weekly Check In**
 - **Review/ Foundational Skills**
-   - AI Policy Review
-   - Horizontal Plots
-   - A Change to {tidykids}
-   - Some Notes About Data Wrangling
+  - `pivot_wider()`
 - **Lines & Curves**
     - *Principles of Line Plots*
     - *Time Series Data*
@@ -92,44 +89,8 @@ tidykids <- tidykids |>
 :::
 
 # Review/ <br>Foundational Skills
-
-## Gen AI Use
-<hr>
-
-:::{.smaller-font}
-- **From the syllabus:** “I acknowledge the use of [Generative AI Tool Name] in the preparation of this answer. Within this question, Generative AI was used to resolve the following problem: [state problem addressed here]. Specifically this code was informed by Generative AI: [copy and paste piece(s) of code provided by Generative AI here].”
-
-    - This should be *by code chunk*, not by assignment
-    - Some are overusing AI
-      - Think of AI as a last-resort, not the place to start
-      - First turn to: Slides, Slack channel, peers, me
-      - My #1 goal is for you to leave this class feeling confident in your ability to use {ggplot}
-:::
-
-## Horizontal Plots
-<hr>
-- 1st choice: If you know you want a horizontal plot, write it that way
-- 2nd choice: `coord_flip()`
-
-## A Change to tidykids {.smaller}
-<hr>
-
-```r
-tidykids |>
-  mutate("expenditure" = variable)
-```
-
-- This change will be reflected on all tidykids.csv files through rest of course
-
-## A Note About Data Wrangling
-<hr>
-- It is crucial to know what data you are representing
- - Call `View(data)`
- - Call `head(data)`
- - Call `data`
- - Run partial code chunks
  
-## A Note About Data Wrangling {.smaller}
+<!-- ## A Note About Data Wrangling {.smaller}
 <hr>
 
 :::{.smaller-font}
@@ -138,23 +99,37 @@ tidykids |>
 tidykids |> 
   filter(year >= 2000, region == "Midwest") |> 
   mutate(state = fct_reorder(state, inf_adj_perchild)) |> 
-  ggplot(aes(x=state, y=inf_adj_perchild)) +
+  ggplot(aes(x=inf_adj_perchild, y=state)) +
   geom_col(width = 0.7, fill="pink") +
-  coord_flip() +
-  scale_y_continuous(labels = scales::dollar) +
+  scale_x_continuous(labels = scales::dollar) +
   labs(title = "Inflation-Adjusted Per-Child Spending in Midwest States after 2000",
-       x = "State",
-       y = "Inflation-Adjusted Per-Child Spending") +
+       x = "Inflation-Adjusted Per-Child Spending (in $1000s USD)",
+       y = "State") +
   theme_bw()
 ```
+::: -->
+
+## Pivoting Longer/Wider {.smaller}
+<hr>
+
+- sometimes your data is in a format different than what you need
+- `pivot_longer()` and `pivot_wider()` are your friends
+- typically when working in R (esp. {tidyverse}), longer is better
+- Today: [`pivot_wider()` - See documentation](https://tidyr.tidyverse.org/reference/pivot_wider.html)
+
+
+![](slides_images/pivot_wider_malaria.png)
+
+:::{.extra-small-font}
+Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.com/en/
 :::
 
 ## Pivoting Longer/Wider {.smaller}
 <hr>
-:::{.extra-small-font}
-- sometimes your data is in a format different than what you need
-- `pivot_longer()` and `pivot_wider()` are your friends
-- typically when working in R (esp. tidyverse), longer is better
+- How might we pivot our `tidykids` data wider?
+  - **Example 1** Scenario: 
+    - I want my new columns to be the `expenditure` types
+    - I want the values in these columns to be from `inf_adj_perchild`
 
 `original`
 ```{r}
@@ -163,7 +138,28 @@ tidykids <- tidykids|>
 head(tidykids,5)
 ```
 
-[`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html)
+## Pivoting Longer/Wider {.smaller}
+<hr>
+- How might we pivot our `tidykids` data wider?
+  - **Example 1** Scenario: 
+    - I want my new columns to be the `expenditure` types
+    - I want the values in these columns to be from `inf_adj_perchild`
+
+```{r}
+wider_1 <- tidykids|>
+  select(-raw, -inf_adj) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild)
+
+head(wider_1,5)
+```
+
+
+## Pivoting Longer/Wider {.smaller}
+<hr>
+- Very important to look at the documentation for pivot functions
+  - They are robust and will do a lot, but can be confusing
+  - [`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html)
+  - **Example 2: ** - I kept all three `raw`, `inf_adj`, and `inf_adj_perchild` columns
 ```{r}
 wider <- tidykids |>
   pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
@@ -171,17 +167,18 @@ wider <- tidykids |>
 head(wider,5)
 ```
 
-:::
 
 # Lines & Curves
 
 ## Improve This
 <hr>
-![](no-lines.png)
+- How could we improve this plot?
+![](slides_images/no-lines.png)
 
 ## Improve This
 <hr>
-![](groups.png)
+- How could we improve this plot?
+![](slides_images/groups.png)
 
 ## Principles of Line Plots
 <hr>
@@ -195,10 +192,12 @@ head(wider,5)
 <hr>
 :::{.smaller-font}
 1. Connecting lines can visually connect individual data points that have a temporal pattern
+    - Note: Temporal variable typically on the x-axis
 2. Fitted lines can show the more general trend over time
 3. You can add a variety of fitted lines, including linear, quadratic, and smooth lines and curves
 4. When you add lines, you don't always need to add points
 5. With multiple groups, lines are nearly essential
+    - You will need to specify a `group` variable
 :::
 
 ## Time Series Data
@@ -208,7 +207,7 @@ head(wider,5)
 - Some wrangling:
 :::
 
-:::{.extra-small-font}
+:::{.smaller-font}
 ```{r}
 tidykids_tn <- tidykids |>
   filter(state == "Tennessee",
@@ -216,8 +215,8 @@ tidykids_tn <- tidykids |>
 ```
 :::
 
-:::{layout="[1,1]" .smaller-font}
-:::{column}
+:::{.columns .smaller-font}
+:::{.column}
 <br>
 ```{r, fig.height=5}
 tidykids_tn |>
@@ -226,7 +225,7 @@ tidykids_tn |>
 ```
 :::
 
-:::{column}
+:::{.column}
 <br>
 ```{r, fig.height=5}
 tidykids_tn |>
@@ -243,8 +242,8 @@ tidykids_tn |>
 - How can we add lines to our `geom_point()` plot?
     - Add a layer and group argument!
 
-:::{layout="[5,5]" .extra-small-font}
-:::{column}
+:::{.columns .extra-small-font}
+:::{.column}
 ```{r, fig.height=5}
 tidykids_tn |>
   ggplot(aes(x=as.factor(year), y=inf_adj_perchild))+
@@ -252,7 +251,7 @@ tidykids_tn |>
 ```
 :::
 
-:::{column}
+:::{.column}
 ```{.r code-line-numbers="|2,3"}
 tidykids_tn |>
   ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
@@ -275,10 +274,10 @@ tidykids_tn |>
 ## Time Series Data
 <hr>
 - We can also turn this into an area plot!
-- Note: Starts at 0!
+- Note: Y axis starts at 0!
 
-:::{layout="[1,1]" .extra-small-font}
-:::{column}
+:::{.columns .extra-small-font}
+:::{.column}
 ```{.r code-line-numbers="|3-4"}
 tidykids_tn |>
   ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
@@ -296,7 +295,7 @@ tidykids_tn |>
 ```
 :::
 
-:::{column}
+:::{.column}
 ```{.r code-line-numbers="|3-4"}
 tidykids_tn |>
   ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
@@ -333,8 +332,8 @@ tidykids_south <- tidykids |>
 ```
 :::
 
-:::{layout="[1,1]" .extra-small-font}
-:::{column}
+:::{.columns .extra-small-font}
+:::{.column}
 <br><br>
 ```{.r code-line-numbers="|2-3"}
 tidykids_south |>
@@ -350,7 +349,7 @@ tidykids_south |>
   theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
 ```
 :::
-:::{column}
+:::{.column}
 <br>`gghighlight()`<br>
 ```{.r code-line-numbers="|1,7"}
 library(gghighlight)
@@ -373,6 +372,15 @@ tidykids_south |>
 ```
 :::
 :::
+
+## The {ggplot2} group argument {.smaller}
+<hr>
+- Notice there is a `group = state` mapping in `aes()`
+- Sometimes {ggplot2} can try and guess the `group` variable
+  - But it doesn't often work
+- **Takeaway**: Always specify a `group` variable
+<br><br>
+- *Note*: If you forget, you'll often get a zig-zagged line that tries to connect all y for every value of x (a mess!)
 
 # Lines/Curves for Patterns
 
@@ -399,8 +407,8 @@ tidykids_wide <- tidykids |>
 ```
 :::
 
-:::{layout="[1,1]" .extra-small-font}
-:::{column}
+:::{.columns .extra-small-font}
+:::{.column}
 <br>
 Linear Regression
 ```{r}
@@ -411,7 +419,7 @@ tidykids_wide |>
 ```
 :::
 
-:::{column}
+:::{.column}
 <br>
 Quadratic Curve Using Linear Regression
 ```{r}
@@ -422,6 +430,8 @@ tidykids_wide |>
 ```
 :::
 :::
+
+<!-- *Linear in the parameters (betas) but not in the model specification.* -->
 
 ## Smoothers
 <hr>
@@ -445,7 +455,7 @@ tidykids_wide |>
 - Add vertical lines to your plot
 :::
 
-:::{.extra-small-font}
+:::{.smaller-font}
 `geom_vline()`
 ```{r, fig.height=4}
 tidykids_wide |>
@@ -453,18 +463,18 @@ tidykids_wide |>
   geom_vline(xintercept = mean(tidykids_wide$highered, na.rm = T), color = "red") +
   geom_point()
 ```
-:::
+
 :::
 
 
 ## `geom_vline()` & `geom_hline()`
 <hr>
 :::{.smaller-font}
-- Add vertical or horizontal lines to your plot
+- Add horizontal lines to your plot
 :::
 
 
-:::{.extra-small-font}
+:::{.smaller-font}
 `geom_hline()`
 ```{r, fig.height=4}
 tidykids_wide |>
@@ -472,7 +482,7 @@ tidykids_wide |>
   geom_hline(yintercept = mean(tidykids_wide$PK12ed, na.rm = T), color = "blue") +
   geom_point()
 ```
-:::
+
 :::
 
 # Collaborative Practice
@@ -531,6 +541,7 @@ tidykids_PK12ed_tnneighbors_bump |>
   scale_y_reverse() +
   theme(legend.position = "none")
 ```
+
 :::
 
 ## Sankey Diagram
@@ -553,10 +564,12 @@ tidykids_PK12ed_tnneighbors_bump |>
 <hr>
 :::{.smaller-font}
 1. Connecting lines can visually connect individual data points that have a temporal pattern
+    - Note: Temporal variable typically on the x-axis
 2. Fitted lines can show the more general trend over time
 3. You can add a variety of fitted lines, including linear, quadratic, and smooth lines and curves
 4. When you add lines, you don't always need to add points
 5. With multiple groups, lines are nearly essential
+    - You will need to specify a `group` variable
 :::
 
 # Looking Ahead
@@ -569,7 +582,7 @@ tidykids_PK12ed_tnneighbors_bump |>
 - No Weekly Assignment
 - Mini-Project #1
 
-# Mini-Project #1
+<!-- # Mini-Project #1
 
 ## Mini-Project #1
 <hr>
@@ -596,4 +609,4 @@ tidykids_PK12ed_tnneighbors_bump |>
         - Use `labs`
     - Complete reflections
     - Pose/answer at least one question in the Slack channel
-:::
+::: -->

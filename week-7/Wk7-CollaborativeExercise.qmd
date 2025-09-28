@@ -1,8 +1,13 @@
 ---
 title: "Week 7: Library Spending Over Time"
-author: "Your Name"
+author: "Fabulous Student"
 date: "`r Sys.Date()`"
-output: html_document
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
 ---
   
 ## Introduction

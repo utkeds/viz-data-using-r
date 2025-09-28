@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Week 7 Slides</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Kelly Boles" />
+    <script src="slides_files/header-attrs-2.28/header-attrs.js"></script>
+    <script src="slides_files/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="slides_files/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Press Ctrl+C to Copy"})</script>
+    <link href="slides_files/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+    <link href="slides_files/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="slides_files/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="slides_files/panelset-0.3.0/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Week 7 Slides
+]
+.subtitle[
+## How and when do use lines and curves?
+]
+.author[
+### <strong>Kelly Boles</strong>
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+# Purpose and Agenda
+
+This week, we answer the following question: How and when do use lines and curves?
+
+## What we'll do in this presentation
+
+- Sample graph
+- Recap
+- Assignment recap
+- Discussion summary
+- Key concept #1 - Lines and curves
+- Code-along
+- Mini project
+- Reflection/brief survey
+- What's next: Mini project
+
+---
+
+## What do you think . . . 
+
+is a positive feature of this graph?
+is a negative feature
+
+![](week-7-ex.jpeg)
+
+---
+
+# Another (less effective)
+
+![](week-7-ex-1.jpeg)
+---
+
+# Recap
+
+- We stepped back a bit and asked, which graph do we create when?
+- We explored ways of visualizing distributions (histograms, density plots, boxplots, violin plots a bit) and scatter plots and their accoutrements
+- You used a fairly complex dataset on U.S. news rankings
+
+---
+
+## Assignment recap
+
+![](week-7-ex-2-a.png)
+
+---
+
+## Assignment recap
+
+![](week-7-ex-2-b.png)
+
+---
+
+## Assignment recap
+
+![](week-7-ex-2-c.png)
+
+---
+
+## Assignment recap
+
+![](week-7-ex-2-d.png)
+
+---
+
+## Assignment recap
+
+![](week-7-ex-2-e.png)
+
+---
+
+# Discussion summary
+
+Which geom is best? It depends!
+
+&gt; The tidykids dataset could be represented in a variety of different visualizations. For example, a histogram would work to visualize the inflation adjusted amount per child that Tennessee spent on the Pell grant between 1997 and 2016. If we wanted to compare how much the inflation adjusted amount per child spent on the Pell grant was for different states in the south, we could create a density plot with different lines and shades for each state, showing the data over a range of years.
+
+&gt; When looking at multiple large datasets, such as the tree box plot shared by a classmate,  box-plots are extremely useful for comparing data distributions simultaneously.
+
+---
+
+# Key concept: Lines and curves
+
+How could this chart be improved?
+
+![](no-lines.png)
+
+---
+
+# Reading Discussion
+
+How could this chart be improved?
+
+![](groups.png)
+
+---
+# Time**lines**
+
+Today we are going to talk about timeseries data and how to make time**lines** - line charts - from them. 
+In addition, we will look at how to make area charts and how to make line charts when there are multiple groups.
+
+---
+# Time**lines**
+
+## Overall principles 
+
+1. Connecting lines can visually connect individual data points that have a temporal pattern
+2. Fitted lines can show the more general trend over time
+3. You can add a variety of fitted lines, including linear, quadratic, and smooth lines and curves
+4. When you add lines, you don't always need to add points
+5. With multiple groups, lines are nearly essential
+
+Let's dive in, illustrate, and practice
+
+---
+
+# Time**lines**
+
+Consider that we already know how to graph timeseries data with `geom_col()` and `geom_point`:
+
+
+
+.pull-left[
+
+``` r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y))+
+  geom_col()
+```
+
+![](slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+``` r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y))+
+  geom_point()
+```
+
+![](slides_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+]
+
+---
+# Time**lines**
+
+How could we add lines to these points?
+
+Hint: Remember, ggplots are built in layers:
+
+![](slides_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+# Time**lines**
+
+Voila!
+
+![](slides_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+# Time**lines**
+
+We can easily make this into an area chart, too. However, note that `geom_area` acts like a bar or column - it uses the fill aesthetic *AND* it starts at a zero baseline, which may elide important differences between data points. 
+
+.pull-left[
+
+
+``` r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y, group=1))+
+  geom_area()+
+  geom_point()
+```
+
+![](slides_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+``` r
+data %&gt;%
+  ggplot(aes(x=as.factor(x), y=y, group=1))+
+  geom_line()+
+  geom_area(alpha=.3)+
+  coord_cartesian(ylim=
+                    c(45000,56000))
+```
+
+![](slides_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Timelines With Many Groups
+
+![](slides_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+
+---
+
+# Curves
+
+- A critical difference is between *connecting* lines and *fitted* lines, or curves
+
+- *Connecting line*: Connects the points (slide 17 as one of several examples)
+- *Fitted lines*: Can take different forms: linear, quadratic, interpolated using fancy math
+
+---
+
+
+``` r
+data %&gt;% 
+  ggplot(aes(x = x, y = y)) +
+  geom_smooth(method = "lm", se = FALSE) + # often helpful
+  geom_point()
+```
+
+![](slides_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+---
+
+
+``` r
+data %&gt;% 
+  ggplot(aes(x = x, y = y)) +
+  # fits quadratic curve using linear regression
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE) + 
+  geom_point()
+```
+
+![](slides_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+
+
+``` r
+data %&gt;% 
+  ggplot(aes(x = x, y = y)) +
+   # by default, uses a flexible way to create a smooth curve 
+  geom_smooth(se = FALSE) +
+  geom_point()
+```
+
+![](slides_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+ 
+---
+
+# Overall principles 
+
+1. Connecting lines can visually connect individual data points that have a temporal pattern
+2. Fitted lines can show the more general trend over time
+3. You can add a variety of fitted lines, including linear, quadratic, and smooth lines and curves
+4. When you add lines, you don't always need to add points
+5. With multiple groups, lines are nearly essential
+
+---
+
+# Code-along
+
+
+.panelset[
+
+
+.panel[.panel-name[rankings data]
+
+We'll use the **U.S News and World Report college rankings data** (from Reiter)
+
+We will read this in a new way - copy this code! Please download the `.xlsx` file. 
+
+Let's first look at it.
+
+]
+
+.panel[.panel-name[2020 data prep]
+
+Let's work together through `2020-us-news-prep.R`
+
+]
+
+.panel[.panel-name[single ranking]
+
+Let's create a visualization of a single schools' ranking:
+  - Connected lines
+  - Fitted lines
+
+]
+
+.panel[.panel-name[several rankings]
+
+Let's create a visualization of several schools' ranking:
+  - Connected lines
+  - Fitted lines
+  - Top 25
+
+]
+
+]
+
+---
+
+# What's next?
+
+## Assignments/Tasks
+
+**Mini Project #1** - due the Friday after we return from spring break (3/22 @ 11:59 pm)
+
+---
+
+# Reflection/brief survey
+
+- [Syllabus](https://docs.google.com/document/d/1HjOQ9Pgkg4JSQhgUX8NGjX6hJIHyOE9Q/edit#heading=h.y5e0ybp1dm8j)
+- Survey (2-3 min. max): https://forms.gle/dQMQGu6Hr9kevqMq7
+- A brief reflection:
+  - In my first or second year, emailed my department chair asking for a letter of recommendation 2-3 days before it was needed
+  - She said: no big deal! It happens to all of us
+  - Planfulness and restfulness are good, but sometimes life happens and we have to do our best
+  - I appreciate you doing your best, sharing input with me, and me trying my best
+
+---
+
+# Check out
+
+- What's one thing you took away from today?
+- What's one thing you want to learn more about?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
