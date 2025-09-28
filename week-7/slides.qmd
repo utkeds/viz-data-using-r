@@ -400,6 +400,13 @@ tidykids_south |>
 <br><br>
 - *Note*: If you forget, you'll often get a zig-zagged line that tries to connect all y for every value of x (a mess!)
 
+```{r, fig.height=5, echo=FALSE}
+tidykids_south |>
+  ggplot(aes(x=year, y=inf_adj_perchild))+
+  geom_line()+
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
+```
+
 # Lines/Curves for Patterns
 
 ## Lines/Curves for Patterns
