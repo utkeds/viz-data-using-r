@@ -271,7 +271,8 @@ penguins |>
                     ymax = avg_bill_length + sd_bill_length), width = 0.2)+
   labs(title = "Bill Length by Penguin Species",
        x = "Species",
-       y = "Bill Length (mm)") +
+       y = "Bill Length (mm)",
+       caption = "Error bars represent +/-1 SD") +
   scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01")) +
@@ -294,7 +295,8 @@ penguins |>
                     ymax = avg_bill_length + sd_bill_length), width = 0.2)+
   labs(title = "Bill Length by Penguin Species",
        x = "Species",
-       y = "Bill Length (mm)") +
+       y = "Bill Length (mm)",
+       caption = "Error bars represent +/-1 SD") +
   scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
                                "Gentoo" = "#077175",
                                "Adelie" = "#FF6A01")) +

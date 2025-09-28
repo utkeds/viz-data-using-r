@@ -63,7 +63,7 @@ That's it! The next two graphs are optional reaches for you to push further, if 
 
 #### Optional Reach
 
-10. Add a line for your association. Try adding the equation for the line (consult the slides to see how!).
+10. Add a line for your association. Try adding the equation for the line (consult the [{ggpubr} documentation](https://cran.r-project.org/web/packages/ggpubr/refman/ggpubr.html#stat_regline_equation) to see how).
 
 #### Reflection
 

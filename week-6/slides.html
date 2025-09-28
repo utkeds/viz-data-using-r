@@ -459,12 +459,13 @@ Holder proposes some alternatives. Today we'll talk about:
 <span id="cb4-12"><a href=""></a>                    <span class="at">ymax =</span> avg_bill_length <span class="sc">+</span> sd_bill_length), <span class="at">width =</span> <span class="fl">0.2</span>)<span class="sc">+</span></span>
 <span id="cb4-13"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bill Length by Penguin Species"</span>,</span>
 <span id="cb4-14"><a href=""></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
-<span id="cb4-15"><a href=""></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb4-16"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb4-17"><a href=""></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb4-18"><a href=""></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
-<span id="cb4-19"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-20"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-15"><a href=""></a>       <span class="at">y =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb4-16"><a href=""></a>       <span class="at">caption =</span> <span class="st">"Error bars represent +/-1 SD"</span>) <span class="sc">+</span></span>
+<span id="cb4-17"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb4-18"><a href=""></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb4-19"><a href=""></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb4-20"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-21"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
