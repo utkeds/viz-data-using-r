@@ -109,6 +109,24 @@ tidykids |>
 ```
 ::: -->
 
+
+# Data Dictionary for U.S. News University Rankings (2020)
+
+## Data Dictionary for University Rankings Data {.smaller}
+<hr>
+- In the Mini-Project #1 module, a [data dictionary](https://utkeds.github.io/viz-data-using-r/mini-project-1/canvas-student-files/mini-project-1/us_news_data_dictionary.html) was uploaded last week
+- One note:
+
+```{r}
+rankings <- read_csv("https://raw.githubusercontent.com/utkeds/viz-data-using-r/main/week-6/us-news-rankings-2020-processed.csv")
+
+rankings |>
+  select(school, predicted_graduation_rate, actual_graduation_rate, over_underperformance) |>
+  head(5)
+```
+
+# Pivoting Longer/Wider
+
 ## Pivoting Longer/Wider {.smaller}
 <hr>
 
