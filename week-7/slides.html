@@ -836,10 +836,14 @@ tidykids |>
 <div class="smaller-font">
 <p><code>geom_vline()</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>tidykids_wide <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highered, <span class="at">y =</span> PK12ed)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href=""></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(tidykids_wide<span class="sc">$</span>highered, <span class="at">na.rm =</span> T), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb23-4"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>mean_highered <span class="ot">&lt;-</span> tidykids_wide <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(highered, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href=""></a>  <span class="fu">pull</span>(m)</span>
+<span id="cb23-4"><a href=""></a></span>
+<span id="cb23-5"><a href=""></a>tidykids_wide <span class="sc">|&gt;</span></span>
+<span id="cb23-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highered, <span class="at">y =</span> PK12ed)) <span class="sc">+</span></span>
+<span id="cb23-7"><a href=""></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mean_highered, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb23-8"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -861,10 +865,14 @@ tidykids |>
 <div class="smaller-font">
 <p><code>geom_hline()</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>tidykids_wide <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highered, <span class="at">y =</span> PK12ed)) <span class="sc">+</span></span>
-<span id="cb24-3"><a href=""></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(tidykids_wide<span class="sc">$</span>PK12ed, <span class="at">na.rm =</span> T), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>mean_pk12ed <span class="ot">&lt;-</span> tidykids_wide <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">m =</span> <span class="fu">mean</span>(PK12ed, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href=""></a>  <span class="fu">pull</span>(m)</span>
+<span id="cb24-4"><a href=""></a></span>
+<span id="cb24-5"><a href=""></a>tidykids_wide <span class="sc">|&gt;</span></span>
+<span id="cb24-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> highered, <span class="at">y =</span> PK12ed)) <span class="sc">+</span></span>
+<span id="cb24-7"><a href=""></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mean_pk12ed, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>

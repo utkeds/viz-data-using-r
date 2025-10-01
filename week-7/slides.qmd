@@ -490,9 +490,13 @@ tidykids_wide |>
 :::{.smaller-font}
 `geom_vline()`
 ```{r, fig.height=4}
+mean_highered <- tidykids_wide |>
+  summarize(m = mean(highered, na.rm = T)) |>
+  pull(m)
+
 tidykids_wide |>
   ggplot(aes(x = highered, y = PK12ed)) +
-  geom_vline(xintercept = mean(tidykids_wide$highered, na.rm = T), color = "red") +
+  geom_vline(xintercept = mean_highered, color = "red") +
   geom_point()
 ```
 
@@ -509,9 +513,13 @@ tidykids_wide |>
 :::{.smaller-font}
 `geom_hline()`
 ```{r, fig.height=4}
+mean_pk12ed <- tidykids_wide |>
+  summarize(m = mean(PK12ed, na.rm = T)) |>
+  pull(m)
+
 tidykids_wide |>
   ggplot(aes(x = highered, y = PK12ed)) +
-  geom_hline(yintercept = mean(tidykids_wide$PK12ed, na.rm = T), color = "blue") +
+  geom_hline(yintercept = mean_pk12ed, color = "blue") +
   geom_point()
 ```
 
