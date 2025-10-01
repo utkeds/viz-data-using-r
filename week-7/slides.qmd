@@ -109,6 +109,13 @@ tidykids |>
 ```
 ::: -->
 
+## Having Trouble Rendering?
+<hr>
+- There has been some trouble rendering documents
+  - Particularly happening with backticks that form the bounds of code cells
+  ![](slides_images/linebreak_after_codecell.png)
+  - How to fix?
+    - Make sure there is a blank line after each code cell (hit enter)
 
 # Data Dictionary for U.S. News University Rankings (2020)
 
