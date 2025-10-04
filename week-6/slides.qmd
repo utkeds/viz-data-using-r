@@ -932,6 +932,89 @@ penguins |>
 ```
 :::
 
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.extra-small-font}
+- Add a trendline and regression equation
+
+```{.r code-line-numbers="|6-7|"}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_regline_equation()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_regline_equation()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.extra-small-font}
+- Add an overall trendline and regression equation
+
+```{.r code-line-numbers="|6-7|"}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_regline_equation(aes(color=NULL))+
+  geom_smooth(aes(color=NULL), method="lm", color = "black")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_regline_equation(aes(color= NULL))+
+  geom_smooth(aes(color= NULL), method="lm", color="black")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+:::
+
+
 # Which `geom_` when?
 
 ## Which `geom_` when?
