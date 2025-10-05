@@ -1,233 +1,330 @@
 ---
-subtitle: "Themes and colors in {ggplot2}"
-title: "Week 08 - STEM 691"
-author: "Joshua Rosenberg and Isabella Velásquez"
+subtitle: "Themes and Colors"
+title: "Week 8 - STEM 691"
+author: "Dr. Kelly Boles & Dr. Zhen Xu"
 format:
   revealjs:
-    theme: simple
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
     transition: fade
     background-transition: fade
     highlight-style: tango
     title-slide-attributes:
       data-background-color: "#4B4B4B"
+      data-background-image: slides_images/UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
 knitr:
   opts_chunk: 
     fig.align: center
     echo: true
+    warning: false
+    message: false
 ---
 
-# Today's Agenda
+# Weekly Check In/ <br>Download `.zip`
 
-- Intro
-- Mid-semester feedback
-- This week and next
-- Topic 1: Themes
-- Topic 2: Colors
-- What's next
+# Start Recording
 
-# Intro
+## Today's Agenda
+<hr>
 
-# Mid-semester feedback
+:::{.extra-small-font}
+- **Weekly Check In**
+- **Where Are We?**
+- **Foundational Skills**
+    - CRAN vs. remotes
+    - `pivot_longer`
+- **Themes**
+    - Pre-Built
+    - Packages
+    - Custom
+- **Color**
+    - Built-in Color
+    - Color Palettes
+    - Accessibility
+- **Collaborative Practice**
+- **Looking Ahead**
+:::
 
-Passing to Josh!
+## Norms
+<hr>
 
-## This week and next week
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-Take a sad plot...
-
-![](images/sadplot.png){width=400px}
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
 
 :::
 
-::: {.column width="50%"}
+# Review/ <br>Foundational Skills
 
-And make it better!
+## CRAN vs. remotes
+<hr>
 
-![](images/better.png){width=400px}
+- Most packages are downloadable from CRAN but not all
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+- `tidyverse` is on CRAN
+- `remotes` is a package on CRAN that allows you to install packages from elsewhere
+
+```{r}
+#install.packages("tidyverse")
+library(tidyverse)
+
+#install.packages("remotes")
+library(remotes)
+```
 
 :::
 
+:::{column}
+- `dsbox` is not on CRAN but is downloadable from GitHub
+- We will use the `install_github()` function from `remotes` to install `dsbox`
+
+```{r}
+#install_github("tidyverse/dsbox")
+library(dsbox)
+```
+
+:::
+:::
+
+## New data today = AAUP
+<hr>
+
+:::{.smaller-font}
+The American Association of University Professors (AAUP) is a nonprofit
+membership association of faculty and other academic professionals. This report
+compiled by the AAUP shows trends in instructional staff as a proportion of 
+employees between 1975 and 2011.
+:::
+
+::::{.fragment .extra-small-font}
+```{r, echo=F}
+library(knitr) #ignore this -> just doing it for the kable to print all cols
+instructors <- instructors #in dsbox, assigning so it shows in environment
+kable(instructors)
+```
 ::::
 
-::: aside
-Source: Alison Hill, [Take a Sad Plot & Make It Better](https://www.apreshill.com/talk/2019-rladies-melbourne/), 2019
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+**Question**: Is this data in tidy format? Why or why not?
+:::
+::::
+
+::::{.fragment .extra-small-font}
+```{r, echo=F}
+kable(head(instructors,5))
+```
+::::
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+**Answer**: No:
+
+- *Violates #1*. The column names (except year) are position types, which should be values in a column.
+- *Violates #2*. Each row has multiple observations for that year.
+- *Violates #3*. The same value types (proportions of whole workforce) are spread across multiple columns.
+:::
+::::
+
+::::{.fragment}
+**Let's tidy**
+::::
+
+## tidy data & `pivot_longer` {.smaller}
+<hr>
+
+- Longer data (tidy data) is often preferred, esp. in {tidyverse}
+- `pivot_longer()` is your friend
+  - See documentation [here](https://tidyr.tidyverse.org/reference/pivot_longer.html)
+  - Inverse operation of `pivot_wider()`
+
+![](slides_images/pivot_longer_malaria.png)
+
+:::{.extra-small-font}
+Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.com/en/
 :::
 
-## This week and next week
+## tidy data & `pivot_longer` {.smaller}
+<hr>
 
-![](images/canvas.png){fig-align="center" width=500px}
+**Requirements for tidy data:**
 
-::: aside
-Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinystats.github.io/teacups-giraffes-and-statistics/)
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+:::{.fragment .extra-small-font}
+
+- How might we begin to pivot this longer?
+  - Which columns? `cols`
+  - What should I call the new column that holds the old column names? `names_to`
+  - What should I call the new column that holds the old values? `values_to`
+
 :::
 
-## Today's data: Instructional staff employment trends
-
-The American Association of University Professors (AAUP) is a nonprofit membership association of faculty and other academic professionals. This report compiled by the AAUP shows trends in instructional staff employees between 1975 and 2011.
-
-## Today's data: Instructional staff employment trends
-
-```{r}
-#| echo: true
-# remotes::install_github("tidyverse/dsbox")
-library(dsbox)
-library(readr)
-
-staff <- dsbox::instructors
-head(staff)
+:::{.fragment .extra-small-font}
+```{r, echo=F}
+kable(head(instructors,5))
 ```
 
-## Today's data: Instructional staff employment trends
-
-To use this table with {ggplot2}, we need to first reshape the data to have one variable for faculty type and one variable for year (convert from 'wide' to 'long').
-
-**How do we do this?**
-
-## Today's data: Instructional staff employment trends
-
-We use `pivot_longer()` from {tidyr} to make the data 'longer'.
-
-![](images/tidyr-longer-wider.gif){fig-align="center" width=350px}
-
-::: aside
-Source: [tidyexplain](https://www.garrickadenbuie.com/project/tidyexplain/#pivot-wider-and-longer) by Garrick Aden-Buie
 :::
 
-## Today's data: Instructional staff employment trends
+## tidy data & `pivot_longer`
+<hr>
 
-```r
-pivot_longer(data, cols, names_to = "name")
+:::{.smaller-font}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+`pivot_longer()`
+:::
+::::
+
+::::{.fragment .smaller-font}
+```{r}
+staff_long <- instructors |>
+  pivot_longer(cols = -year, #cols: "Which columns do I pivot?"
+               names_to = "position", #names_to: "What should I call the new column that holds the old column names?"
+               values_to = "proportion") #values_to: "What should I call the new column that holds the old values?"
+head(staff_long,10)
 ```
+::::
 
-* The first argument is `data` 
-* The second argument, `cols`, is where you specify which columns to pivot into longer format – in this case all columns except for `year`
-* The third argument, names_to, is a string specifying the name of the column to create from the data stored in the column names of data – in this case `faculty_type`
+# Review: Line Plots
 
-## Today's data: Instructional staff employment trends
+## Review: Line Plots {.smaller}
+<hr>
 
 ```{r}
-library(dplyr)
-library(tidyr)
-
-staff_long <- staff %>%
-  pivot_longer(cols = -year, names_to = "faculty_type") %>%
-  mutate(date = as.Date(paste0(year, "-01-01")))
-
-staff_long
-```
-
-# Topic 1: Themes
-
-## Recap from last week
-
-Timelines with {ggplot2}
-
-```{r}
-library(ggplot2)
-
-p <- staff_long %>%
-  ggplot(aes(x = year, y = value, color = faculty_type)) +
-  geom_line()
+p <- staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position, group = position)) +
+  geom_line() #Note: color argument should implicitly handle grouping
 
 p
 ```
 
-## Recall ggplot2 anatomy
+## Recall {ggplot2} Components
+<hr>
 
-Plots made with {ggplot2} are made of numerous layers.
+Plots made with {ggplot2} are made of numerous components.
 
-![](images/gglayers.png){fig-align="center"}
+![](slides_images/gglayers.png){fig-align="center"}
 
-## Recall ggplot2 anatomy
 
+## Recall {ggplot2} Layers
+<hr>
 Today, we'll be focusing on `theme()`.
 
-![](images/theme.png){fig-align="center"}
+![](slides_images/theme.png){fig-align="center"}
 
-## Themes and non-data ink {.smaller}
 
-The 'theme' involves editing the content that supports the data but does not deliver the quantitative information itself: background, grid lines, ticks, labels, legends, etc. -- "non-data ink".
+# Data-to-Ink Ratios
 
-:::: {.columns}
+## Suggestion from Tufte
+<hr>
 
-::: {.column width="50%"}
-
-![Low data-ink ratio](images/low.png)
+:::{.smaller-font}
+- Edward Tufte, a statistician and professor emeritus at Yale University, is known for his work in data viz.
+- Tufte suggests that the data should be the "star of the show" in a visualization --> the data-ink ratio should be high
 :::
 
-::: {.column width="50%"}
-![High data-ink ratio](images/high.png)
+**What does this mean?**
+<br><br>
+
+:::{.fragment}
+data-to-ink ratio $= \frac{data\:ink}{total\:ink}$
+
+[Think again about the necessity of all the non-data components of your plot - e.g., your theme!]{.smaller-font}
+:::
+
+## Themes and non-data ink
+<hr>
+
+:::{.smaller-font}
+The 'theme' involves editing the content that supports the data but does not deliver the quantitative information itself: background, grid lines, ticks, labels, legends, etc. -- "non-data ink".
+:::
+
+:::{layout="[1,1]"}
+::: {column}
+
+![Low data-ink ratio](slides_images/low.png)
+:::
+
+::: {column}
+![High data-ink ratio](slides_images/high.png)
 :::
 
 ::::
 
-::: aside
-[Edward Tufte Principles of Data Visualization](https://infovis-wiki.net/wiki/Data-Ink_Ratio)
+## Themes and non-data ink
+<hr>
+![](slides_images/data-ink.gif){fig-align="center"}
+
+:::aside
+This is all subjective!... Avoid "chartjunk!"
 :::
 
-## Increasing the data-ink ratio
+# Themes
 
-![](images/data-ink.gif){fig-align="center"}
+## Pre-Built Themes
+<hr>
 
-## Why worry about the data-ink ratio? {.smaller}
-
-Some believe that a higher data-ink ratio is better because it allows the audience to focus on the data rather than unnecessary elements that do not contribute to the message.
-
-. . .
-
-This is a subjective take! 
-
-![](images/mona.jpg){width=350 fig-align="center"}
-
-::: aside
-Source: Mona Chalabi
+:::{.smaller-font}
+- {ggplot2} already has [several themes](https://ggplot2.tidyverse.org/reference/ggtheme.html) built in
+- You've used these already:
+    - `theme_minimal()`
+    - `theme_light()`
+    - `theme_dark()`
+    - `theme_bw()`
+    - `theme_void()`
+    - `theme_classic()`
+    - `theme_linedraw()`
+    - `theme_test()`
+    - `theme_gray()`
 :::
 
-# Pre-built themes
+# Other Theme Packages
 
-## Built-in themes  {auto-animate="true"}
-
-{ggplot2} comes with a number of built-in themes:
-
-```{r}
-p +
-  theme_bw()
-```
-
-## Built-in themes  {auto-animate="true"}
-
-{ggplot2} comes with seven built-in themes, including:
-
-```{r}
-p +
-  theme_dark()
-```
-
-## Built-in themes  {auto-animate="true"}
-
-{ggplot2} comes with seven built-in themes, including:
-
-```{r}
-p +
-  theme_void()
-```
-
-## Built-in themes  {auto-animate="true"}
-
-{ggplot2} comes with seven built-in themes, including:
-
-```{r}
-p +
-  theme_minimal()
-```
-
-## Theme packages  {auto-animate="true"}
-
-Community-contributed packages provide even more themes:
+## Theme Packages - {ggthemes} {.smaller}
+<hr>
+[{ggthemes}](https://jrnold.github.io/ggthemes/reference/index.html)
 
 ```{r}
 library(ggthemes)
@@ -236,9 +333,9 @@ p +
   theme_tufte()
 ```
 
-## Theme packages  {auto-animate="true"}
-
-Community-contributed packages provide even more themes:
+## Theme Packages - {ggthemes} {.smaller}
+<hr>
+[{ggthemes}](https://jrnold.github.io/ggthemes/reference/index.html)
 
 ```{r}
 library(ggthemes)
@@ -247,9 +344,9 @@ p +
   theme_solarized()
 ```
 
-## Theme packages {auto-animate="true"}
-
-Community-contributed packages provide even more themes:
+## Theme Packages - {ggthemes} {.smaller}
+<hr>
+[{ggthemes}](https://jrnold.github.io/ggthemes/reference/index.html)
 
 ```{r}
 library(ggthemes)
@@ -258,31 +355,76 @@ p +
   theme_excel()
 ```
 
-## Finding theme packages
+## Theme Packages - {pilot} {.smaller}
+<hr>
+[{pilot}](https://github.com/olihawkins/pilot)
 
-* hrbrthemes
-* ggtech
-* pilot
-
-Really great source at: <https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics>
-
-# Custom themes
-
-## `theme()` anatomy {auto-animate="true"}
+:::{.extra-small-font}
+- accessible
+- for discrete data only
+- modern
+:::
 
 ```{r}
-p <- 
-  staff_long %>%
-  ggplot(aes(x = year, y = value, color = faculty_type)) +
+#remotes::install_github("olihawkins/pilot")
+library(pilot)
+
+p + theme_pilot()
+```
+
+## Theme Packages - {hrbrthemes} {.smaller}
+<hr>
+[{hrbrthemes}](https://github.com/hrbrmstr/hrbrthemes)
+
+:::{.extra-small-font}
+- typography-centered themes
+- discrete & continuous themes
+- modern
+:::
+
+```{r}
+library(hrbrthemes)
+
+p + theme_ipsum_rc()
+```
+
+## And So Many More! {.smaller}
+<hr>
+Check out [Erik Gahner's github page](https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics) for an incredible list!
+
+
+# Custom Themes
+
+## Custom Themes {.smaller}
+<hr>
+- You can make your own theme!
+- Create your theme settings in one .R script and copy/paste them into your current script. Don't recreate the wheel.
+
+```{r}
+my_theme <- theme(
+  legend.position = "bottom",
+  panel.background = element_rect(fill = "white")
+  )
+p + my_theme
+```
+
+## `theme()` anatomy {.smaller auto-animate="true"}
+<hr>
+- Our starting plot for today
+  - Note: I am storing it to an object `p` for later use
+
+```{r}
+p <- staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position)) +
   geom_line() +
   labs(title = "Instructional staff employment trends")
 
 p
 ```
 
-## `theme()` anatomy {auto-animate="true"}
-
-### Make the title 16 point and bold
+## `theme()` anatomy {.smaller auto-animate="true"}
+<hr>
+Make the title 16 point and bold
 
 ```{r}
 p +
@@ -291,9 +433,9 @@ p +
     )
 ```
 
-## `theme()` anatomy {auto-animate="true"}
-
-### Place legend on the bottom
+## `theme()` anatomy {.smaller auto-animate="true"}
+<hr>
+Place legend on the bottom
 
 ```{r}
 p +
@@ -303,9 +445,9 @@ p +
     )
 ```
 
-## `theme()` anatomy {auto-animate="true"}
-
-### Make the background white
+## `theme()` anatomy {.smaller auto-animate="true"}
+<hr>
+Make the background white
 
 ```{r}
 p +
@@ -313,25 +455,21 @@ p +
     plot.title = element_text(face = "bold", size = 16),
     legend.position = "bottom",
     panel.background = element_rect(fill = "white")
-  )
+    )
 ```
 
-## `theme()` anatomy reference guide
-
-![](images/ggplot_elements.png){width=725px fig-align="center"}
+## `theme()` Anatomy Reference Guide
+<hr>
+![](slides_images/ggplot_elements.png){width=725px fig-align="center"}
 
 ::: aside
-Source: https://bookdown.org/alapo/learnr/data-visualisation.html
+Source: [https://bookdown.org/alapo/learnr/data-visualisation.html](https://bookdown.org/alapo/learnr/data-visualisation.html)
 
-Full list of elements available at ggplot2.tidyverse.org/reference/theme
+Full list of elements available at [ggplot2.tidyverse.org/reference/theme](https://ggplot2.tidyverse.org/reference/theme)
 :::
 
-# Modifying theme components
-
-To modify an individual theme component, use code like `plot + theme(element.name = element_function())`.
-
-## Modifying theme components
-
+## Modifying theme components {.smaller}
+<hr>
 Four basic types of built-in element functions:
 
 * `element_text()` draws labels and headings:
@@ -341,8 +479,8 @@ p +
   theme(plot.title = element_text(size = 70))
 ```
 
-## Modifying theme components
-
+## Modifying theme components {.smaller}
+<hr>
 Four basic types of built-in element functions:
 
 * `element_line()` draws lines by color, linewidth and linetype: 
@@ -352,8 +490,8 @@ p +
   theme(panel.grid.major = element_line(color = "black"))
 ```
 
-## Modifying theme components
-
+## Modifying theme components {.smaller}
+<hr>
 Four basic types of built-in element functions:
 
 * `element_rect()` draws rectangles, mostly used for backgrounds
@@ -363,8 +501,8 @@ p +
   theme(plot.background = element_rect(color = "red", linewidth = 2))
 ```
 
-## Modifying theme components
-
+## Modifying theme components {.smaller}
+<hr>
 Four basic types of built-in element functions:
 
 * `element_blank()` draws nothing
@@ -374,8 +512,8 @@ p +
   theme(axis.title.x = element_blank())
 ```
 
-## Modifying theme components
-
+## Modifying theme components {.smaller}
+<hr>
 Modify multiple theme components in the same `theme()`
 
 ```{r}
@@ -386,8 +524,8 @@ p +
         axis.title.x = element_blank())
 ```
 
-## Modifying theme components
-
+## Modifying theme components {.smaller}
+<hr>
 Can also add on to an existing theme:
 
 ```{r}
@@ -404,13 +542,13 @@ p +
 
 What happens if you put `theme()` before `theme_minimal()`?
 
-# Code along
+# BREAK
 
-# Topic 2: Colors
+# Colors
 
 ## Built-in colors {.smaller}
-
-* R comes pre-loaded with 657 named colors
+<hr>
+* R comes pre-loaded with [657 named colors](https://r-charts.com/colors/)
 * You can also specify any color using a hex code (#RRGGBB)
 * Use the `colors()` command to see the available named colors
 
@@ -419,13 +557,13 @@ colors()
 ```
 
 ## Built-in colors
-
+<hr>
 Use the name of the color in quotes:
 
 ```{r}
 #| code-line-numbers: "|3"
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion)) +
   geom_col(fill = "royalblue")
 ```
 
@@ -434,25 +572,25 @@ staff_long %>%
 What if you put `fill = "royalblue"` inside of `aes()`?
 
 ## Built-in colors
-
+<hr>
 Inside of `aes()`, `fill` maps to the data, *not* the geometry.
 
 ```{r}
 #| code-line-numbers: "|2"
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = "royalblue")) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = "royalblue")) +
   geom_col()
 ```
 
 ## Built-in colors
-
+<hr>
 You can specify colors for specific values using `scale_fill_manual` and a named vector:
 
 ```{r}
 #| eval: false
 #| code-line-numbers: "|4-11|"
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion)) +
   geom_col() +
   scale_fill_manual(
     values = c(
@@ -466,15 +604,15 @@ staff_long %>%
 ```
 
 ## Built-in colors {.smaller}
-
+<hr>
 You can specify colors for specific values using `scale_fill_manual` and a named vector:
 
 ```{r}
 #| echo: false
 #| error: true
 #| eval: true
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion)) +
   geom_col() +
   scale_fill_manual(
     values = c(
@@ -490,14 +628,14 @@ staff_long %>%
 Why are there no colors?
 
 ## Built-in colors
-
+<hr>
 You can specify colors for specific values using `scale_fill_manual` and a named vector **as long as `fill` is mapped to the data**:
 
 ```{r}
 #| eval: false
 #| code-line-numbers: "|2,4-11"
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
   scale_fill_manual(
     values = c(
@@ -511,14 +649,14 @@ staff_long %>%
 ```
 
 ## Built-in colors
-
+<hr>
 You can specify colors for specific values using `scale_fill_manual` and a named vector **as long as `fill` is mapped to the data**:
 
 ```{r}
 #| error: true
 #| echo: false
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
   scale_fill_manual(
     values = c(
@@ -532,14 +670,14 @@ staff_long %>%
 ```
 
 ## Built-in colors {.smaller}
-
+<hr>
 What about our earlier line graph?
 
 ```{r}
 #| code-line-numbers: "|2,4"
 #| error: true
-staff_long %>%
-  ggplot(aes(x = year, y = value, color = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position)) +
   geom_line() +
   scale_fill_manual(
     values = c(
@@ -553,13 +691,13 @@ staff_long %>%
 ```
 
 ## Built-in colors {.smaller}
-
+<hr>
 We need to make sure we're mapping the correct aesthetic:
 
 ```{r}
 #| code-line-numbers: "|2,4"
-staff_long %>%
-  ggplot(aes(x = year, y = value, color = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position)) +
   geom_line() +
   scale_color_manual(
     values = c(
@@ -572,29 +710,31 @@ staff_long %>%
   )
 ```
 
-## {ggplot2} palette packages
+# Other Palette Packages
 
+## {ggplot2} palette packages
+<hr>
 There are a ton of amazing palette packages out there! Here is an example from [MetBrewer](https://github.com/BlakeRMills/MetBrewer):
 
 ```{r}
 library(MetBrewer)
 
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
   scale_fill_manual(values = met.brewer("Hokusai1"))
 ```
 
 ## {ggplot2} palette packages
-
+<hr>
 Let's try the [Egypt](https://github.com/BlakeRMills/MetBrewer?tab=readme-ov-file#egypt) palette:
 
 ```{r}
 #| eval: false
 library(MetBrewer)
 
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
   scale_fill_manual(values = met.brewer("Egypt"))
 ```
@@ -606,8 +746,8 @@ staff_long %>%
 #| error: true
 library(MetBrewer)
 
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
   scale_fill_manual(values = met.brewer("Egypt"))
 ```
@@ -616,148 +756,314 @@ staff_long %>%
 <br>
 Why didn't this work?
 
-## {ggplot2} palette packages
+# viridis
 
-The {viridis} package provides continuous palettes:
+## viridis {.smaller}
+<hr>
+- viridis is one of the most popular palettes in ggplot and in data viz
+- There is a package for it {viridis}
+- But it's now built into {ggplot2}
+  - You may see two ways to incorporate viridis into plots because of its dual availability
 
-![](images/viridis.png){fig-align="center"}
+![](slides_images/viridis_palette_ordered.png){fig-align="center"}
 
-## viridis
+## viridis {.smaller}
+<hr>
 
-Let's see it in action:
+- How to use built-in viridis in your {ggplot2} code:
+  - Know your mapping variable (discrete or continuous?)
+  - Know your aesthetic (fill or color?)
+
+```{r echo=F}
+library(gt)
+
+data <- tibble::tribble(
+  ~label, ~"Discrete Variable", ~"Continuous Variable",
+  "Fill<br><i>(Background Color)</i>", 
+  "`scale_fill_viridis_d()`", 
+  "`scale_fill_viridis_c()`",
+  "Color<br><i>(Outline Color)</i>", 
+  "`scale_color_viridis_d()`", 
+  "`scale_color_viridis_c()`"
+)
+
+data |>
+  gt() |>
+  fmt_markdown(columns = everything()) |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels(everything())
+  ) |>
+  tab_options(
+    table.font.names = "Arial",
+    table.align = "center",
+    data_row.padding = px(6),
+    column_labels.border.top.width = px(1),
+    column_labels.border.bottom.width = px(1),
+    table.border.top.width = px(1)
+  )
+```
+## viridis {.smaller}
+<hr>
+- The default color option is viridis itself (Option D).
+
+- *Note*: I am mapping color to `proportion`, a continuous variable.)
 
 ```{r}
-library(viridis)
-
-staff_long %>%
-  ggplot(aes(x = date, y = value, color = value)) +
+staff_long |>
+  ggplot(aes(x = as.integer(year), y = proportion, color = proportion, group = position)) +
   geom_point() +
-  scale_color_viridis()
+  geom_line() +
+  scale_color_viridis_c()
 ```
+## viridis {.smaller}
+<hr>
+You can specify other options for viridis, too!
 
-## viridis
+:::{.columns}
 
+:::{.column}
+![](slides_images/viridis_palette_ordered.png){fig-align="center"}
+:::
+
+:::{.column .extra-small-font}
+
+```{r}
+staff_long |>
+  ggplot(aes(x = as.integer(year), y = proportion, color = proportion, group = position)) +
+  geom_point() +
+  geom_line() +
+  scale_color_viridis_c(option="A")
+```
+:::
+:::
+
+## viridis {.smaller}
+<hr>
 How about with our bar chart?
 
 ```{r}
 #| eval: false
-library(viridis)
-
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
-  scale_fill_viridis()
+  scale_fill_viridis_c()
 ```
 
-## viridis
-
+## viridis {.smaller}
+<hr>
 How about with our bar chart?
 
 ```{r}
 #| error: true
-library(viridis)
-
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
-  scale_fill_viridis()
+  scale_fill_viridis_c()
 ```
 
 <br>
-<br>
 
-Why didn't it work? Let's check out the documentation: <https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html>
+Why didn't it work?
 
-## viridis
-
-viridis uses **continuous** palettes and our data is **discrete**.
+## viridis {.smaller}
+<hr>
+We were trying to use the function for a **continuous** palette and our data is **discrete**.
 
 ```{r}
-#| code-line-numbers: "|6"
-library(viridis)
-
-staff_long %>%
-  ggplot(aes(x = faculty_type, y = value, fill = faculty_type)) +
+#| code-line-numbers: "|4"
+staff_long |>
+  ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
-  scale_fill_viridis(discrete = TRUE)
+  scale_fill_viridis_d(option="G")
 ```
 
-## viridis  {auto-animate="true"}
-
-How would you use viridis on our line graph?
+## viridis  {.smaller auto-animate="true"}
+<hr>
+How would you use viridis on our line graph where `color = position`?
 
 ```{r}
-library(viridis)
-
-staff_long %>%
-  ggplot(aes(x = year, y = value, color = faculty_type)) +
+staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position)) +
   geom_line()
 ```
 
-## viridis  {auto-animate="true"}
-
-How would you use viridis on our line graph? Answer: `scale_color_viridis(discrete = TRUE)`.
+## viridis  {.smaller auto-animate="true"}
+<hr>
+How would you use viridis on our line graph where `color = position`? Answer: `scale_color_viridis_d()`.
 
 ```{r}
-#| code-line-numbers: "6"
-library(viridis)
-
-staff_long %>%
-  ggplot(aes(x = year, y = value, color = faculty_type)) +
+#| code-line-numbers: "4"
+staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position)) +
   geom_line() +
-  scale_color_viridis(discrete = TRUE)
+  scale_color_viridis_d()
 ```
 
-## Checklist of tips
-
+## Checklist of tips {.smaller}
+<hr>
 * Make sure to map to the data appropriately in `aes()` if you are mapping to data; otherwise, it will map to geometry
 * Make sure your `color` or `fill` match, i.e., you are not trying to apply `color` to a `fill` aesthetic
 * Make sure that if you are using a discrete palette, you have enough values
 * Make sure that you are not trying to apply a continuous palette to discrete values
 
-## Finding palette packages
-
-* MetBrewer
-* wesanderson
-* severance
+## Finding palette packages {.smaller}
+<hr>
+* [{MetBrewer}](https://github.com/BlakeRMills/MetBrewer)
+* [{wesanderson}](https://github.com/karthik/wesanderson)
+* [{ggsci}](https://nanx.me/ggsci/)
 
 This is a fantastic resource: <https://github.com/EmilHvitfeldt/r-color-palettes>
 
+## Finding palette packages {.smaller}
+<hr>
+
+:::{.smaller-font}
+- Wouldn't it be great if these palettes were contained in one package?
+  - {paletteer} has *most* of them easily in one package (not all)
+  - You still have to install the package with the palette you want, but you can access them all in the same way (with the same syntax) in {paleteer}
+- Once installed, {paleteer} works a lot like {ggplot2}'s built-in viridis
+:::
+
+```{r echo=F}
+library(gt)
+
+data2 <- tibble::tribble(
+  ~label, ~"Discrete Variable", ~"Continuous Variable",
+  "Fill<br><i>(Background Color)</i>", 
+  "`scale_fill_paletteer_d()`", 
+  "`scale_fill_paletteer_c()`",
+  "Color<br><i>(Outline Color)</i>", 
+  "`scale_color_paletteer_d()`", 
+  "`scale_color_paletteer_c()`"
+)
+
+data2 |>
+  gt() |>
+  fmt_markdown(columns = everything()) |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels(everything())
+  ) |>
+  tab_options(
+    table.font.names = "Arial",
+    table.align = "center",
+    data_row.padding = px(6),
+    column_labels.border.top.width = px(1),
+    column_labels.border.bottom.width = px(1),
+    table.border.top.width = px(1)
+  )
+```
+:::{.smaller-font}
+- The main difference is that {paletteer} uses the **"package_name::palette_name"** of the palette instead of the `option="D"` syntax
+
+- Find the **"package_name::palette_name"** you want on the [{paletteer} website](https://r-graph-gallery.com/color-palette-finder)
+  - They also print with `paletteer::palettes_c_names` and `paletteer::palettes_d_names`
+:::
+
+## Finding palette packages {.smaller}
+<hr>
+
+```{r}
+#| code-line-numbers: "|1,2,7"
+#install.packages("nationalparkcolors")
+library(paletteer)
+
+staff_long |>
+  ggplot(aes(x = year, y = proportion, color = position)) +
+  geom_line() +
+  scale_color_paletteer_d("nationalparkcolors::Acadia")
+```
+
+## Finding palette packages {.smaller}
+<hr>
+
+```{r}
+#| code-line-numbers: "1,2,7"
+#install.packages("pals")
+library(paletteer)
+
+staff_long |>
+  ggplot(aes(x = year, y = proportion, color = proportion, group = position)) +
+  geom_line() +
+  scale_color_paletteer_c("pals::ocean.haline")
+```
+
+## BONUS: {unicol} {.smaller}
+<hr>
+- [{unicol}](https://hneth.github.io/unicol/) has color palettes for different universities
+- It [does not have one for UTK](https://hneth.github.io/unicol/articles/color_pals.html)
+- But they do provide [instructions to contribute one at the bottom of the page](https://hneth.github.io/unicol/)
+
+
 # Accessibility
 
-## Colors
-
+## Colors {.smaller}
+<hr>
 Some people do not possess the usual complement of color receptors and so can distinguish fewer colors than others.
 
 * Because of this, it is important to consider how a color palette will look to people with common forms of color blindness.
 
 You also want to check the contrast between colors to make text legible for visitors with low vision.
 
-* WebAIM checker: https://webaim.org/resources/contrastchecker/
+* WebAIM checker: [https://webaim.org/resources/contrastchecker/](https://webaim.org/resources/contrastchecker/)
 
-## Colors
 
+## Colors {.smaller}
+<hr>
 There are tools to help check your palettes:
 
-* Vischeck.com
-* {dichromat} and {colorBlindness} packages simulate color blindness
+* [vischeck.com](https://vischeck.com/vischeck/vischeckImage.php)
 
-![](images/colorblindness.png){fig-align="center"}
+![](slides_images/colorblindness.png){fig-align="center"}
 
-# Code along
+## Colors {.smaller}
+<hr>
+There are tools to help check your palettes:
 
-# What's next
+* {dichromat} and {colorblindr} packages simulate color blindness
 
-* Reading: 
+```{r}
+#install.packages("colorblindr")
+library(colorblindr)
 
-  * Fundamentals of Data Visualization by Claus O. Wilke
-  * Data Visualization Principles: Lessons from Tufte by Mike Pantoliano 
-  * Top Ten Chart Dos and Don’ts by Angela Zoss
+#Using our plot `p`
 
-* Assignment: Take a sad plot and make it better
+cvd_grid(p)
+```
 
-# Attribution for materials used today
+## Colors {.smaller}
+<hr>
+Some color palettes also consider accessibility:
 
+* {viridis} is designed to be perceptually uniform (visually consistent change in color + accessible)
+* {RColorBrewer} has colorblind-friendly palettes
+* {MetBrewer} has colorblind-friendly palettes
+* {Paletteer}'s [website](https://r-graph-gallery.com/color-palette-finder) help you visualize palettes to approximate effects of colorblindness
+* Accessible Custom Color Palette Generator: [https://venngage.com/tools/accessible-color-palette-generator](https://venngage.com/tools/accessible-color-palette-generator)
+
+# Collaborative Practice
+
+## Collaborative Practice
+<hr>
+- Launch into breakout rooms.
+- Cameras off: 3-5 min to review task
+- Cameras on: collaborative task work
+
+# Looking Ahead
+
+## Looking Ahead
+<hr>
+- Reading:
+    - Schwabish (2021), Ch 2
+    - Christiansen (2023), Ch 9
+    - France (2020)
+
+- Discussion Post
+- Assignment 8: Graphing and Improving Plots
+
+## Attribution for some materials used today {.smaller}
+<hr>
 * Data Science in a Box by Mine Çetinkaya-Rundel
 * <https://datasciencebox.org/>
 * License: [Creative Commons Attribution-ShareAlike 4.0 International](https://datasciencebox.org/license)
