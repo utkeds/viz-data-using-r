@@ -1,13 +1,14 @@
 ---
 title: "Creating Custom Themes in ggplot2"
-author: "Names Here Please"
+author: "Fabulous Student"
 date: "`r Sys.Date()`"
-output: html_document
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## Introduction
 
@@ -45,11 +46,11 @@ Wrangle the data to keep the `year`, `state`, `variable`, and `inf_adj_perchild`
 
 ## Step 3: Create a Basic Plot
 
-Create a line plot that shows the `inf_adj_perchild` spending over time for all the states. Additionally, facet_wrap by region. Assign color by region but group by state. Add plot and axis labels. Create a code chunk below to do this. Assign the plot to an object called `p`.
+Create a line plot that shows the `inf_adj_perchild` spending over time for all the states. Additionally, facet_wrap by region. In your `facet_wrap()` call, add `scales = "free_x"` or `scales = "free_y"` depending on which axis your states are on (make the state axis free). Add plot and axis labels. Create a code chunk below to do this. Assign the plot to an object called `p`.
 
 ## Step 4: Use a Theme Package
 
-Use a theme package of your choosing (e.g., MetBrewer) to add a theme to your plot. Create a code chunk below and assign the plot to `p_theme`.
+Use a theme package of your choosing (e.g., MetBrewer or something from Paletteer) to add a theme to your plot. Create a code chunk below and assign the plot to `p_theme`.
 
 ## Step 5: Customize the Theme
 

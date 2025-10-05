@@ -1,8 +1,13 @@
 ---
 title: "Assignment 8: Themes and Colors"
-output: html_document
-author: ""
-date: ""
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
 ---
 
 **Please add your name and the date above.**
@@ -13,17 +18,17 @@ Fisheries and Aquaculture Department of the Food and Agriculture Organization of
 
 A researcher shared with you the following visualization they created based on these data: https://datasciencebox.org/course-materials/lab-instructions/lab-06/img/fisheries.png
 
-Can you help them make improve them? 
+Can you help them improve it? 
 
 ## 1. Brainstorming
 
 First, brainstorm how you would improve these visualizations. Write up the changes/decisions you made as bullet points. It’s ok if some of your improvements are aspirational, i.e. you don’t know how to implement it, but you think it’s a good idea.
 
-- [Brainstorm idea 1]
-- [Brainstorm idea 2]
-- [Brainstorm idea 3]
+- **Brainstorm idea 1:** [Please write brainstorm idea #1 here.]
+- **Brainstorm idea 2:** [Please write brainstorm idea #2 here.]
+- **Brainstorm idea 3:** [Please write brainstorm idea #3 here.]
 
-## 1. Load and view data
+## 2. Load and explore data
 
 Please install the Data Science in a Box package by running `remotes::install_github("tidyverse/dsbox")` in your console.
 
@@ -31,40 +36,43 @@ Please install the Data Science in a Box package by running `remotes::install_gi
 library(dsbox)
 library(tidyverse)
 
+# This is your data from the researcher
 fisheries <- dsbox::fisheries
 ```
 
-Please check out the data, either by running `View(fisheries)` or running the code below:
+Please explore the data in at least two different ways below.
 
 ```{r}
-dplyr::glimpse(fisheries)
+
 ```
 
 Write out three exploratory details about the data:
 
-1. [DETAIL 1]
+1. **Data detail #1:** [Please write data detail #1 here.]
 
-2. [DETAIL 2]
+2. **Data detail #2:** [Please write data detail #2 here.]
 
-3. [DETAIL 3]
+3. **Data detail #3:** [Please write data detail #3 here.]
 
-Is this data in long or wide format?
+## 3. Data format identification
 
-- [YOUR ANSWER]
+Is this data in long or wide format? Why?
 
-## 2. Visualize the data
+- **YOUR ANSWER:** [Please write your answer here.]
+
+## 4. Visualize the data
 
 Create a new data visualization for these data that implements what we learned in class. Please be sure to do the following:
 
-- Add a pre-built {ggplot2} theme Or theme from a package
+- Add a pre-built {ggplot2} theme or theme from another package
 - Add 2 theme changes of your choice (title, gridlines, etc.) using `theme()`
-- Add a color palette of your choice from an external package (not built into {ggplot2}). Many options are available here: <https://github.com/EmilHvitfeldt/r-color-palettes>
+- Add a color palette of your choice from an external package (not built into {ggplot2}). Many options are available here: <https://github.com/EmilHvitfeldt/r-color-palettes> or in {paletteer}.
 - Move the legend to the bottom
 
-## 3. Reflection
-How did it go? What was challenging? What did you learn?
+## 5. Reflection
+**REFLECTION:** [Please add a sentence or two next reflecting on this assignment. What went well, what was challenging, and what did you learn?]
 
-## 4. Submit
+## 6. Submit
 
 Submit .html file in Canvas. 
 
