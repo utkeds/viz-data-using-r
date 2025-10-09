@@ -28,7 +28,7 @@ You will need to load the `tidykids` dataset and {tidyverse} package to complete
 
 ## Step 2: Wrangle the Data
 
-Wrangle the data to keep the `year`, `state`, `variable`, and `inf_adj_perchild` columns. Also, create a region variable. I have supplied starter code for the region variable below. Finally, filter `variable` for  PK12ed spending.
+Wrangle the data to keep the `year`, `state`, `expenditure`, and `inf_adj_perchild` columns. Also, create a region variable. I have supplied starter code for the region variable below. Finally, filter `variable` for  PK12ed spending.
 
 ```{r wrangling}
 # mutate(region = case_when(
