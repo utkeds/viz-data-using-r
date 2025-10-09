@@ -291,6 +291,23 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <h1>Review/ <br>Foundational Skills</h1>
 
 </section>
+<section id="cleaning-the-data" class="slide level2 smaller">
+<h2>Cleaning the data</h2>
+<hr>
+<ul>
+<li>Let’s talk a bit about cleaning data
+<ul>
+<li>Some cleaning steps we would do at first to “clean up” the dataset
+<ul>
+<li>Remove the erroneous values in `public_private’</li>
+<li>Separate the <code>sat_act</code> variables into separate variables (different ways to do this)</li>
+<li>Remove the meaninless rows (e.g.&nbsp;extra rows in middle of the dataset)</li>
+</ul></li>
+<li>We would not want to <code>filter(!is.na(x))</code> for every variable at the beginning of the analysis (or use other code that does the same thing, like <code>complete.cases()</code>)</li>
+</ul>
+<strong><em>WHY?</em></strong></li>
+</ul>
+</section>
 <section id="cran-vs.-remotes" class="slide level2">
 <h2>CRAN vs.&nbsp;remotes</h2>
 <hr>
@@ -987,7 +1004,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <hr>
 <p>Four basic types of built-in element functions:</p>
 <ul>
-<li><code>element_text()</code> draws labels and headings:</li>
+<li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a> draws labels and headings:</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>p <span class="sc">+</span></span>
@@ -1000,7 +1017,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <hr>
 <p>Four basic types of built-in element functions:</p>
 <ul>
-<li><code>element_line()</code> draws lines by color, linewidth and linetype:</li>
+<li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a> draws lines by color, linewidth and linetype:</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>p <span class="sc">+</span></span>
@@ -1013,7 +1030,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <hr>
 <p>Four basic types of built-in element functions:</p>
 <ul>
-<li><code>element_rect()</code> draws rectangles, mostly used for backgrounds</li>
+<li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_rect()</code></a> draws rectangles, mostly used for backgrounds</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>p <span class="sc">+</span></span>
@@ -1026,7 +1043,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <hr>
 <p>Four basic types of built-in element functions:</p>
 <ul>
-<li><code>element_blank()</code> draws nothing</li>
+<li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_blank()</code></a> draws nothing</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>p <span class="sc">+</span></span>
@@ -1494,23 +1511,23 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fnjucqxntn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fnjucqxntn table {
+<div id="omscfxrzbm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#omscfxrzbm table {
   font-family: Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fnjucqxntn thead, #fnjucqxntn tbody, #fnjucqxntn tfoot, #fnjucqxntn tr, #fnjucqxntn td, #fnjucqxntn th {
+#omscfxrzbm thead, #omscfxrzbm tbody, #omscfxrzbm tfoot, #omscfxrzbm tr, #omscfxrzbm td, #omscfxrzbm th {
   border-style: none;
 }
 
-#fnjucqxntn p {
+#omscfxrzbm p {
   margin: 0;
   padding: 0;
 }
 
-#fnjucqxntn .gt_table {
+#omscfxrzbm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1536,12 +1553,12 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-left-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_caption {
+#omscfxrzbm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fnjucqxntn .gt_title {
+#omscfxrzbm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1553,7 +1570,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-bottom-width: 0;
 }
 
-#fnjucqxntn .gt_subtitle {
+#omscfxrzbm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1565,7 +1582,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-top-width: 0;
 }
 
-#fnjucqxntn .gt_heading {
+#omscfxrzbm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1577,13 +1594,13 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-right-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_bottom_border {
+#omscfxrzbm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_col_headings {
+#omscfxrzbm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 1px;
   border-top-color: #D3D3D3;
@@ -1598,7 +1615,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-right-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_col_heading {
+#omscfxrzbm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1618,7 +1635,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   overflow-x: hidden;
 }
 
-#fnjucqxntn .gt_column_spanner_outer {
+#omscfxrzbm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1630,15 +1647,15 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 4px;
 }
 
-#fnjucqxntn .gt_column_spanner_outer:first-child {
+#omscfxrzbm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fnjucqxntn .gt_column_spanner_outer:last-child {
+#omscfxrzbm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fnjucqxntn .gt_column_spanner {
+#omscfxrzbm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: #D3D3D3;
@@ -1650,11 +1667,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   width: 100%;
 }
 
-#fnjucqxntn .gt_spanner_row {
+#omscfxrzbm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fnjucqxntn .gt_group_heading {
+#omscfxrzbm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1680,7 +1697,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   text-align: left;
 }
 
-#fnjucqxntn .gt_empty_group_heading {
+#omscfxrzbm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1695,15 +1712,15 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   vertical-align: middle;
 }
 
-#fnjucqxntn .gt_from_md > :first-child {
+#omscfxrzbm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fnjucqxntn .gt_from_md > :last-child {
+#omscfxrzbm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fnjucqxntn .gt_row {
+#omscfxrzbm .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -1722,7 +1739,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   overflow-x: hidden;
 }
 
-#fnjucqxntn .gt_stub {
+#omscfxrzbm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1735,7 +1752,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#fnjucqxntn .gt_stub_row_group {
+#omscfxrzbm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1749,15 +1766,15 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   vertical-align: top;
 }
 
-#fnjucqxntn .gt_row_group_first td {
+#omscfxrzbm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fnjucqxntn .gt_row_group_first th {
+#omscfxrzbm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fnjucqxntn .gt_summary_row {
+#omscfxrzbm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1767,16 +1784,16 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#fnjucqxntn .gt_first_summary_row {
+#omscfxrzbm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_first_summary_row.thick {
+#omscfxrzbm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fnjucqxntn .gt_last_summary_row {
+#omscfxrzbm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1786,7 +1803,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-bottom-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_grand_summary_row {
+#omscfxrzbm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1796,7 +1813,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#fnjucqxntn .gt_first_grand_summary_row {
+#omscfxrzbm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1806,7 +1823,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-top-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_last_grand_summary_row_top {
+#omscfxrzbm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1816,11 +1833,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-bottom-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_striped {
+#omscfxrzbm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fnjucqxntn .gt_table_body {
+#omscfxrzbm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1829,7 +1846,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-bottom-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_footnotes {
+#omscfxrzbm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1843,7 +1860,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-right-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_footnote {
+#omscfxrzbm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1852,7 +1869,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#fnjucqxntn .gt_sourcenotes {
+#omscfxrzbm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1866,7 +1883,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-right-color: #D3D3D3;
 }
 
-#fnjucqxntn .gt_sourcenote {
+#omscfxrzbm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1874,72 +1891,72 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#fnjucqxntn .gt_left {
+#omscfxrzbm .gt_left {
   text-align: left;
 }
 
-#fnjucqxntn .gt_center {
+#omscfxrzbm .gt_center {
   text-align: center;
 }
 
-#fnjucqxntn .gt_right {
+#omscfxrzbm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fnjucqxntn .gt_font_normal {
+#omscfxrzbm .gt_font_normal {
   font-weight: normal;
 }
 
-#fnjucqxntn .gt_font_bold {
+#omscfxrzbm .gt_font_bold {
   font-weight: bold;
 }
 
-#fnjucqxntn .gt_font_italic {
+#omscfxrzbm .gt_font_italic {
   font-style: italic;
 }
 
-#fnjucqxntn .gt_super {
+#omscfxrzbm .gt_super {
   font-size: 65%;
 }
 
-#fnjucqxntn .gt_footnote_marks {
+#omscfxrzbm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fnjucqxntn .gt_asterisk {
+#omscfxrzbm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fnjucqxntn .gt_indent_1 {
+#omscfxrzbm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fnjucqxntn .gt_indent_2 {
+#omscfxrzbm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fnjucqxntn .gt_indent_3 {
+#omscfxrzbm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fnjucqxntn .gt_indent_4 {
+#omscfxrzbm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fnjucqxntn .gt_indent_5 {
+#omscfxrzbm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fnjucqxntn .katex-display {
+#omscfxrzbm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fnjucqxntn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#omscfxrzbm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2119,23 +2136,23 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="upzudkicxe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#upzudkicxe table {
+<div id="bijlmujkzt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bijlmujkzt table {
   font-family: Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#upzudkicxe thead, #upzudkicxe tbody, #upzudkicxe tfoot, #upzudkicxe tr, #upzudkicxe td, #upzudkicxe th {
+#bijlmujkzt thead, #bijlmujkzt tbody, #bijlmujkzt tfoot, #bijlmujkzt tr, #bijlmujkzt td, #bijlmujkzt th {
   border-style: none;
 }
 
-#upzudkicxe p {
+#bijlmujkzt p {
   margin: 0;
   padding: 0;
 }
 
-#upzudkicxe .gt_table {
+#bijlmujkzt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2161,12 +2178,12 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-left-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_caption {
+#bijlmujkzt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#upzudkicxe .gt_title {
+#bijlmujkzt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2178,7 +2195,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-bottom-width: 0;
 }
 
-#upzudkicxe .gt_subtitle {
+#bijlmujkzt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2190,7 +2207,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-top-width: 0;
 }
 
-#upzudkicxe .gt_heading {
+#bijlmujkzt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2202,13 +2219,13 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-right-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_bottom_border {
+#bijlmujkzt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_col_headings {
+#bijlmujkzt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 1px;
   border-top-color: #D3D3D3;
@@ -2223,7 +2240,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-right-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_col_heading {
+#bijlmujkzt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2243,7 +2260,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   overflow-x: hidden;
 }
 
-#upzudkicxe .gt_column_spanner_outer {
+#bijlmujkzt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2255,15 +2272,15 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 4px;
 }
 
-#upzudkicxe .gt_column_spanner_outer:first-child {
+#bijlmujkzt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#upzudkicxe .gt_column_spanner_outer:last-child {
+#bijlmujkzt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#upzudkicxe .gt_column_spanner {
+#bijlmujkzt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: #D3D3D3;
@@ -2275,11 +2292,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   width: 100%;
 }
 
-#upzudkicxe .gt_spanner_row {
+#bijlmujkzt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#upzudkicxe .gt_group_heading {
+#bijlmujkzt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2305,7 +2322,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   text-align: left;
 }
 
-#upzudkicxe .gt_empty_group_heading {
+#bijlmujkzt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2320,15 +2337,15 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   vertical-align: middle;
 }
 
-#upzudkicxe .gt_from_md > :first-child {
+#bijlmujkzt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#upzudkicxe .gt_from_md > :last-child {
+#bijlmujkzt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#upzudkicxe .gt_row {
+#bijlmujkzt .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -2347,7 +2364,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   overflow-x: hidden;
 }
 
-#upzudkicxe .gt_stub {
+#bijlmujkzt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2360,7 +2377,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#upzudkicxe .gt_stub_row_group {
+#bijlmujkzt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2374,15 +2391,15 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   vertical-align: top;
 }
 
-#upzudkicxe .gt_row_group_first td {
+#bijlmujkzt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#upzudkicxe .gt_row_group_first th {
+#bijlmujkzt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#upzudkicxe .gt_summary_row {
+#bijlmujkzt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2392,16 +2409,16 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#upzudkicxe .gt_first_summary_row {
+#bijlmujkzt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_first_summary_row.thick {
+#bijlmujkzt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#upzudkicxe .gt_last_summary_row {
+#bijlmujkzt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2411,7 +2428,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-bottom-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_grand_summary_row {
+#bijlmujkzt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2421,7 +2438,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#upzudkicxe .gt_first_grand_summary_row {
+#bijlmujkzt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2431,7 +2448,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-top-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_last_grand_summary_row_top {
+#bijlmujkzt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2441,11 +2458,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-bottom-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_striped {
+#bijlmujkzt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#upzudkicxe .gt_table_body {
+#bijlmujkzt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2454,7 +2471,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-bottom-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_footnotes {
+#bijlmujkzt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2468,7 +2485,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-right-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_footnote {
+#bijlmujkzt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2477,7 +2494,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#upzudkicxe .gt_sourcenotes {
+#bijlmujkzt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2491,7 +2508,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   border-right-color: #D3D3D3;
 }
 
-#upzudkicxe .gt_sourcenote {
+#bijlmujkzt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2499,72 +2516,72 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
   padding-right: 5px;
 }
 
-#upzudkicxe .gt_left {
+#bijlmujkzt .gt_left {
   text-align: left;
 }
 
-#upzudkicxe .gt_center {
+#bijlmujkzt .gt_center {
   text-align: center;
 }
 
-#upzudkicxe .gt_right {
+#bijlmujkzt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#upzudkicxe .gt_font_normal {
+#bijlmujkzt .gt_font_normal {
   font-weight: normal;
 }
 
-#upzudkicxe .gt_font_bold {
+#bijlmujkzt .gt_font_bold {
   font-weight: bold;
 }
 
-#upzudkicxe .gt_font_italic {
+#bijlmujkzt .gt_font_italic {
   font-style: italic;
 }
 
-#upzudkicxe .gt_super {
+#bijlmujkzt .gt_super {
   font-size: 65%;
 }
 
-#upzudkicxe .gt_footnote_marks {
+#bijlmujkzt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#upzudkicxe .gt_asterisk {
+#bijlmujkzt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#upzudkicxe .gt_indent_1 {
+#bijlmujkzt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#upzudkicxe .gt_indent_2 {
+#bijlmujkzt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#upzudkicxe .gt_indent_3 {
+#bijlmujkzt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#upzudkicxe .gt_indent_4 {
+#bijlmujkzt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#upzudkicxe .gt_indent_5 {
+#bijlmujkzt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#upzudkicxe .katex-display {
+#bijlmujkzt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#upzudkicxe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bijlmujkzt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2696,7 +2713,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <ul>
 <li>{viridis} is designed to be perceptually uniform (visually consistent change in color + accessible)</li>
 <li>{RColorBrewer} has colorblind-friendly palettes</li>
-<li>{MetBrewer} has colorblind-friendly palettes</li>
+<li><a href="https://github.com/BlakeRMills/MetBrewer">{MetBrewer}</a> has colorblind-friendly palettes</li>
 <li>{Paletteer}’s <a href="https://r-graph-gallery.com/color-palette-finder">website</a> help you visualize palettes to approximate effects of colorblindness</li>
 <li>Accessible Custom Color Palette Generator: <a href="https://venngage.com/tools/accessible-color-palette-generator">https://venngage.com/tools/accessible-color-palette-generator</a></li>
 </ul>
@@ -2733,6 +2750,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Discussion Post</li>
 <li>Assignment 8: Graphing and Improving Plots</li>
 </ul>
+<p><strong>Mini-Project #2:</strong> Assigned Next Week</p>
 </section>
 <section id="attribution-for-some-materials-used-today" class="slide level2 smaller">
 <h2>Attribution for some materials used today</h2>

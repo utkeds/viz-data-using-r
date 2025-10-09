@@ -66,6 +66,17 @@ knitr:
 
 # Review/ <br>Foundational Skills
 
+## Cleaning the data {.smaller}
+<hr>
+- Let's talk a bit about cleaning data
+  - Some cleaning steps we would do at first to "clean up" the dataset
+    - Remove the erroneous values in `public_private'
+    - Separate the `sat_act` variables into separate variables (different ways to do this)
+    - Remove the meaninless rows (e.g. extra rows in middle of the dataset)
+  - We would not want to `filter(!is.na(x))` for every variable at the beginning of the analysis (or use other code that does the same thing, like `complete.cases()`)
+
+  ***WHY?***
+
 ## CRAN vs. remotes
 <hr>
 
@@ -472,7 +483,7 @@ Full list of elements available at [ggplot2.tidyverse.org/reference/theme](https
 <hr>
 Four basic types of built-in element functions:
 
-* `element_text()` draws labels and headings:
+* [`element_text()`](https://ggplot2.tidyverse.org/reference/element.html) draws labels and headings:
 
 ```{r}
 p +
@@ -483,7 +494,7 @@ p +
 <hr>
 Four basic types of built-in element functions:
 
-* `element_line()` draws lines by color, linewidth and linetype: 
+* [`element_line()`](https://ggplot2.tidyverse.org/reference/element.html) draws lines by color, linewidth and linetype: 
 
 ```{r}
 p +
@@ -494,7 +505,7 @@ p +
 <hr>
 Four basic types of built-in element functions:
 
-* `element_rect()` draws rectangles, mostly used for backgrounds
+* [`element_rect()`](https://ggplot2.tidyverse.org/reference/element.html) draws rectangles, mostly used for backgrounds
 
 ```{r}
 p +
@@ -505,7 +516,7 @@ p +
 <hr>
 Four basic types of built-in element functions:
 
-* `element_blank()` draws nothing
+* [`element_blank()`](https://ggplot2.tidyverse.org/reference/element.html) draws nothing
 
 ```{r}
 p +
@@ -1038,7 +1049,7 @@ Some color palettes also consider accessibility:
 
 * {viridis} is designed to be perceptually uniform (visually consistent change in color + accessible)
 * {RColorBrewer} has colorblind-friendly palettes
-* {MetBrewer} has colorblind-friendly palettes
+* [{MetBrewer}](https://github.com/BlakeRMills/MetBrewer) has colorblind-friendly palettes
 * {Paletteer}'s [website](https://r-graph-gallery.com/color-palette-finder) help you visualize palettes to approximate effects of colorblindness
 * Accessible Custom Color Palette Generator: [https://venngage.com/tools/accessible-color-palette-generator](https://venngage.com/tools/accessible-color-palette-generator)
 
@@ -1061,6 +1072,9 @@ Some color palettes also consider accessibility:
 
 - Discussion Post
 - Assignment 8: Graphing and Improving Plots
+
+**Mini-Project #2:** Assigned Next Week
+
 
 ## Attribution for some materials used today {.smaller}
 <hr>
