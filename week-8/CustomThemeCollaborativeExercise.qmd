@@ -17,6 +17,7 @@ In this activity, you will create a custom theme for a plot visualizing spending
 Resources you will/may need:
 
 - [MetBrewer documentation](https://github.com/BlakeRMills/MetBrewer)
+- [Viridis documentation](https://ggplot2.tidyverse.org/reference/scale_viridis.html)
 - [Built-in R Color](https://r-charts.com/colors/)
 - [`theme()` cheatsheet](https://bookdown.org/alapo/learnr/images/ggplot_elements2.png)
 - [`theme()` documentation](https://ggplot2.tidyverse.org/reference/theme)
@@ -24,73 +25,130 @@ Resources you will/may need:
 
 ## Step 1: Load the Required Libraries and Data
 
-You will need to load the `tidykids` dataset and {tidyverse} package to complete this activity. Create a code chunk below and load them both.
+You will need to load the `tidykids` dataset and {tidyverse} package to complete this activity. Create code cells below to do this.
 
-## Step 2: Wrangle the Data
+```{r}
 
-Wrangle the data to keep the `year`, `state`, `variable`, and `inf_adj_perchild` columns. Also, create a region variable. I have supplied starter code for the region variable below. Finally, filter `variable` for  PK12ed spending.
+```
+
+## Step 2: Wrangle the Data and Create a Plot (Already Completed For You)
+
+Wrangle the data to keep the `year`, `state`, `expenditure`, and `inf_adj_perchild` columns. Also, create a region variable. I have supplied starter code for the region variable below. Finally, filter `expenditure` for  PK12ed spending.
+
+```{r region_var}
+
+tidykids <- tidykids |>
+  mutate(region = case_when(
+      state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
+                  "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
+      state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
+                  "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
+      state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
+                  "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
+                  "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
+      state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
+                  "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
+    ))
+
+```
 
 ```{r wrangling}
-# mutate(region = case_when(
-#     state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
-#                  "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
-#     state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
-#                  "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
-#     state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
-#                  "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
-#                  "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
-#     state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
-#                  "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
-#   ))
+tidykids_plot <- tidykids |>
+  select(year, state, expenditure, inf_adj_perchild, region) |>
+  filter(expenditure == "PK12ed")
 ```
 
-## Step 3: Create a Basic Plot
+## Step 3: Create Two Plots (Already Completed For You)
 
-Create a line plot that shows the `inf_adj_perchild` spending over time for all the states. Additionally, facet_wrap by region. In your `facet_wrap()` call, add `scales = "free_x"` or `scales = "free_y"` depending on which axis your states are on (make the state axis free). Add plot and axis labels. Create a code chunk below to do this. Assign the plot to an object called `p`.
+Create a line plot that shows the `inf_adj_perchild` spending over time for all the states. Additionally, facet_wrap by region. Add plot and axis labels. Create a code chunk below to do this..
 
-## Step 4: Use a Theme Package
+```{r plot_1}
+p1 <- tidykids_plot |>
+  ggplot(aes(x = as.integer(year), y = inf_adj_perchild*1000, color = region, group = state)) +
+  geom_line() +
+  scale_y_continuous(labels =scales::dollar) +
+  labs(title = "Inflation-Adjusted Per-Child Spending on PreK-12 Education",
+   x = "Year",
+   y = "Inflation-Adjusted Per-Child Spending (USD)",
+   color = "Region") +
+  facet_wrap(~region)
 
-Use a theme package of your choosing (e.g., MetBrewer or something from Paletteer) to add a theme to your plot. Create a code chunk below and assign the plot to `p_theme`.
 
-## Step 5: Customize the Theme
-
-Using the starter code below, let's make some edits to the theme you chose (i.e., you'll override some portions of the theme you chose in step 4). To do this, we'll begin creating a custom theme to add to your plot. For each additional theme element instruction, copy/paste your code from 5a to 5b, then 5b to 5c, and so on. This will help you build your custom theme step-by-step.
-
-```{r 5a-plot_title}
-my_theme <- theme(
-  # Increase the size of the plot title to size 18
-  # Bold the title
-)
+p1
 ```
 
-```{r 5b-axis_labels}
-# Copy your completed code from 5a here and then:
+```{r plot_2}
+p2 <- tidykids_plot |>
+  ggplot(aes(x = as.integer(year), y = inf_adj_perchild*1000, color = inf_adj_perchild*1000, group = state)) +
+  geom_line() +
+  scale_y_continuous(labels =scales::dollar) +
+  labs(title = "Inflation-Adjusted Per-Child Spending on PreK-12 Education",
+   x = "Year",
+   y = "Inflation-Adjusted Per-Child Spending (USD)",
+   color = "USD") +
+  facet_wrap(~region)
 
-# Set the font size for by x and y axis titles to 14. Change the color for each to smokey gray (#4B4B4B).
 
+p2
+```
+
+## Step 4: Add a Theme
+
+Use a theme package of your choosing (e.g., {ggthemes}, {hrbrthemes}, {pilot}, etc.) to add a theme to your plots. Create a code chunk below and assign the plots to `p1_theme` and `p2_theme`.
+
+```{r p1_theme}
 
 ```
 
-```{r 5c-customize_background}
-# Copy your completed code from 5b here and then:
-
-# Change the background color of the plot to a light gray. Add a black border around each panel.
+```{r p2_theme}
 
 ```
 
-```{r 5d-gridlines}
-# Copy your completed code from 5c here and then:
+## Step 5: Customizing the Color Palette
 
-# Remove the minor gridlines from the plot. Change the color of the major gridlines to white.
+Most themes have associated color palettes, but you can still override them. Let's apply a new color palette to your `p1_theme` and `p2_theme` plots.
+
+For p1, use a color palette from {MetBrewer} and for p2, use a color palette from the built-in viridis options. Create a code chunk below and assign the plots to `p1_palette` and `p2_palette`.
+
+```{r p1_palette}
 
 ```
+
+```{r p2_palette}
+
+```
+
+## Step 6: Finishing Touches: Customize the Theme
+
+Using the starter code below, let's make some edits to the theme you chose (i.e., you'll override some portions of the theme you chose in step 4). To do this, we'll use the 'theme()' function. 
+
+- Increase the size of the plot title to size 18
+- Bold the title
+- Set the font size for by x and y axis titles to 14
+- Change the color for the x and y axis titles to smokey gray (#4B4B4B)
+- Change the background color of the plot to a color of your choice 
+- Add a border around each panel
+- Remove the minor gridlines from the plot
+- Change the color of the major gridlines to a color of your choice
+- Move the legend to the bottom of the plot
+- Change the strip background to a color of your choosing
+- Change the strip text color to a color of your choosing
 
 ```{r 5e-legend}
-# Copy your completed code from 5d here and then:
-
-# Change the legend position to the bottom of the plot.
+my_theme <- theme(
+  # Add your changes here
+)
 ```
 
 ## Step 6: Finalize the Plot
 
-Let's combine everything into a final plot. This may not look fantastic, depending on the combination of the theme package you chose plus the specific asks in part 5, but the point is that you were able to do both! Create a code chunk below and assign the plot to an object called `p_final`. To do this, you will want to combine either `p + custom_theme_package + 5e` or `p_theme + 5e`. Do this in a code chunk below. Make sure you call `p_final` at the end of the chunk to display the plot.
+Let's combine everything into final plots. This may not look fantastic, depending on the combination of the theme package you chose plus the palette plus the specific asks in part 6, but the point is that you were able to make these changes! Create a code chunk below and add your `p1_palette + my_theme` and `p2_palette + my_theme` plots to `p1_final` and `p2_final`. Call `p1_final` and `p2_final` to see your final plots.
+
+```{r p1_final}
+
+```
+
+
+```{r p2_final}
+
+```
