@@ -72,7 +72,7 @@ knitr:
   - Some cleaning steps we would do at first to "clean up" the dataset
     - Remove the erroneous values in `public_private'
     - Separate the `sat_act` variables into separate variables (different ways to do this)
-    - Remove the meaninless rows (e.g. extra rows in middle of the dataset)
+    - Remove the meaningless rows (e.g. extra rows in middle of the dataset)
   - We would not want to `filter(!is.na(x))` for every variable at the beginning of the analysis (or use other code that does the same thing, like `complete.cases()`)
 
   ***WHY?***
