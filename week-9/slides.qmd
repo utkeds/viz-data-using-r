@@ -503,7 +503,7 @@ Cairo uses this example of a "rich" plot in his book *How Charts Lie*:
   - Choose your style guide from the list
   - Review it
   - Compare its components to Christiansen and France
-  - If you have enough time, compare the guide you chose to another from the 
+  - If you have enough time, compare the guide you chose to another from the list
 
 - *Choose a spokesperson to report back!*
 <br>**BREAKOUT ROOMS (10-15 min)**
@@ -564,7 +564,8 @@ p <- p +
   labs(
     title = "Instructional Staff Employment Proportions in 2011",
     caption = "Source: American Association of University Professors (AAUP)",
-    y = "Percentage"
+    y = "Percentage",
+    fill = "Position"
   )
 
 p
@@ -996,8 +997,8 @@ p
     - Chang (2024), Ch. 7
     - Chang (2024), Ch. 11
     - R Coder (2024)
-- Assignment: Begin work on mini-project #2
-- Assignment: Individually complete collaborative practice if not finished
+- **Assignment:** Begin work on mini-project #2
+- **Assignment:** Individually complete collaborative practice if not finished
 
 <!-- ## Next Semester + Beyond
 <hr>
