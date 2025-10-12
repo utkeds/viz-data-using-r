@@ -37,16 +37,17 @@ library(tidykids)
 <hr>
 
 :::{.smaller-font}
-- **Weekly Check In**
-- **Review / Foundational Skills**
-- **Basic Principles**
-- **`theme()` + text**
-- **`scale_*_*`**
-- **Text `geom_*()`s**
-- **Fonts**
-- **Collaborative Practice**
-- **Mini-Project #2**
-- **Looking Ahead**
+- Weekly Check In
+- Review / Foundational Skills
+  - plotly
+- Basic Principles
+- `theme()` + text
+- `scale_*_*`
+- Text `geom_*()`s
+- Fonts
+- Collaborative Practice
+- Mini-Project #2
+- Looking Ahead
 :::
 
 ## Norms
@@ -64,29 +65,13 @@ library(tidykids)
 
 :::
 
-## Norms
-<hr>
-
-:::{.compact-font}
-| In person norms | And also, for online learning... |
-|----------|----------|
-| **Be fully present** to each other & the work. | **Keep your video on** when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
-| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
-| **Embrace collaboration**. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
-| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
-| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
-| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
-
-:::
-
 # Review / Foundational Skills
 
 ## Mini Project #1
 <hr>
 - Great work!
 - Lots of really nice plots
-- Remember that the main goal of a viz is clarity!
-- If you'd like to share --> discussion board in Mod. 9
+- Finishing up grading now
 
 ## Mini Project #1 & {plotly}
 <hr>
@@ -107,7 +92,6 @@ library(tidykids)
 p <- tidykids |>
   filter(year == 2016,
          expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
   ggplot(aes(x= SNAP, y= PK12ed)) +
   geom_point(color = "blue")
@@ -121,7 +105,6 @@ p
 p <- tidykids |>
   filter(year == 2016,
          expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
   ggplot(aes(x= SNAP, y= PK12ed)) +
   geom_point(color = "blue")
@@ -297,7 +280,7 @@ ggplotly(p, tooltip = "text")
 :::
 :::::
 
-## `case_when()`{.smallest}
+<!-- ## `case_when()`{.smallest}
 <hr>
 ::::::{.extra-small-font}
 - We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
@@ -470,22 +453,13 @@ toy |>
 ```
 ::::
 :::
-::::::
-
-# Readings
-
-## Readings
-<hr>
-- Readings from Christiansen, Schwabish, Fung, and Wilke
-- What resonated? What do you question?
-
-Zoom Whiteboard
+:::::: -->
 
 # Recap & Continuing Today...
 
 ## {ggplot2} is our canvas
 <hr>
-![](images/canvas.png){fig-align="center" width=500px}
+![](slides_images/canvas.png){fig-align="center" width=500px}
 
 ::: aside
 Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinystats.github.io/teacups-giraffes-and-statistics/)
@@ -497,7 +471,7 @@ Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinys
 
 --- Alberto Cairo
 
-## Text and visualization
+## Text and Visualization
 <hr>
 :::: columns
 
@@ -516,18 +490,33 @@ Cairo uses this example of a "rich" plot in his book *How Charts Lie*:
 
 ::: {.column width="65%"}
 
-![](images/cairo_example@2x.png){width=500px}
+![](slides_images/cairo_example@2x.png){width=500px}
 :::
 
 ::::
 
-## AAUP Data Today
+## Using Christiansen and France {.smaller}
+<hr>
+- Christiansen, Ch. 9 (2023) and France (2020) provide several suggestions for typographic choices for visualizing data
+- In groups, we will choose ONE style guide and compare it to Christiansen and France
+  - Find your group document on Canvas
+  - Choose your style guide from the list
+  - Review it
+  - Compare its components to Christiansen and France
+  - If you have enough time, compare the guide you chose to another from the 
+
+- *Choose a spokesperson to report back!*
+<br>**BREAKOUT ROOMS (10-15 min)**
+  
+  
+
+## AAUP Data Today {.smaller}
 <hr>
 - Same data as last week
 
 :::{.smaller-font}
 ```{r}
-remotes::install_github("tidyverse/dsbox")
+#remotes::install_github("tidyverse/dsbox")
 library(dsbox)
 
 staff <- dsbox::instructors
@@ -586,7 +575,7 @@ p
 
 ## Recap: Themes in {ggplot2} anatomy
 <hr>
-![](images/theme.png){fig-align="center"}
+![](slides_images/theme.png){fig-align="center"}
 
 ## What does `theme()` allow us to edit?
 <hr>
@@ -700,7 +689,7 @@ p
 
 ## Recap: Geoms in {ggplot2} anatomy
 <hr>
-![](images/geoms.png){fig-align="center"}
+![](slides_images/geoms.png){fig-align="center"}
 
 ## What do geoms allow us to do?
 <hr>
@@ -842,7 +831,7 @@ p
 ## {ggtext}
 <hr>
 - Can also use {ggtext} to remove need for legend
-![](images/MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
+![](slides_images//MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
 
 ## {ggtext}{.smaller}
 <hr>
@@ -855,7 +844,7 @@ labs(y = "Marginal Effects", title = "Marginal Effects of
 <b><span style = 'color: #EDBAD4;'>Rural:Remote</span></b>
 Locale on AP® STEM Success<br><i>Comparison: Suburb</i>")
 ```
-![](images/MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
+![](slides_images/MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
 
 # Fonts
 
@@ -877,7 +866,7 @@ p <- p +
 p
 ```
 
-## Using other fonts
+## Using other fonts {.smaller}
 <hr>
 Text drawing is handled differently by each graphics device (GD):
 
@@ -888,21 +877,21 @@ Text drawing is handled differently by each graphics device (GD):
 
 The devices do not specify fonts in the same way, so if you want a font to work everywhere you need to configure the devices in different ways.
 
-## Using other fonts
+## Using other fonts {.smaller}
 <hr>
 Two packages simplify fonts a bit:
 
 - **{showtext}**, [https://github.com/yixuan/showtext](https://github.com/yixuan/showtext), by Yixuan Qiu, makes GD-independent plots by rendering all text as polygons
-- **{extrafont}**, [https://github.com/wch/extrafont](https://github.com/wch/extrafont), by Winston Chang, converts fonts to a standard format that all devices can use
+- **{extrafont}**, [https://github.com/fbertran/extrafont](https://github.com/fbertran/extrafont), by Winston Chang, converts fonts to a standard format that all devices can use
 
-## Using Google fonts with {showtext}
+## Using Google fonts with {showtext} {.smaller}
 <hr>
 - `font_add_google(name, family)` adds a font
   - `name` is the name of the font searched in [Google Fonts](https://fonts.google.com/)
   - `family` is the name you assign
 - The `showtext_auto()` function tells R to render text using {showtext}
 
-## Using Google fonts with {showtext}
+## Using Google fonts with {showtext} {.smaller}
 <hr>
 Changing `text` edits the font family for the plot fonts.
 
@@ -923,14 +912,14 @@ p <- p +
 You may need to install additional packages for `font_add_google()`. On Windows, be prepared to install {jsonlite} and {curl}.
 :::
 
-## Using Google fonts with {showtext}
+## Using Google fonts with {showtext} {.smaller}
 <hr>
-- Something didn't work...
+- Why didn't the title change? Everything else worked...
 ```{r}
 p
 ```
 
-## Using Google fonts with {showtext}
+## Using Google fonts with {showtext} {.smaller}
 <hr>
 You can specify fonts for different plot elements, as well.
 
@@ -944,13 +933,13 @@ p <- p +
 # Note I could have specified "open-sans" here to fix the earlier issue.
 ```
 
-## Using Google fonts with {showtext}
+## Using Google fonts with {showtext} {.smaller}
 <hr>
 ```{r}
 p
 ```
 
-## Using custom fonts with {showtext}
+## Using custom fonts with {showtext} {.smaller}
 <hr>
 `font_add()` adds a font file like `.ttf`
 
@@ -967,13 +956,13 @@ p <- p +
                                      family = "Asenine"))
 ```
 
-## Using custom fonts with {showtext}
+## Using custom fonts with {showtext} {.smaller}
 <hr>
 ```{r}
 p
 ```
 
-## Other helpful packages for text
+## Other helpful packages for text {.smaller}
 <hr>
 - {ggrepel} - repel overlapping text labels
 - {ggforce} - extends {ggplot2} in various ways
@@ -981,7 +970,7 @@ p
 - {ggfittext} - fit text into boxes
 - {directlabels} - puts labels close to data
 
-## Accessibility
+## Accessibility {.smaller}
 <hr>
 - Sufficient labels
 - Do not rely on color alone
@@ -990,7 +979,7 @@ p
 
 # BREAK
 
-## Collaborative Practice
+## Collaborative Practice {.smaller}
 <hr>
 - You will do Steps 3-5.
     - 1,2, & 6 have been done for you.
@@ -999,11 +988,10 @@ p
 - Cameras on: collaborative task work
 - Individual option
 
-# [Mini-Project #2](https://utk.instructure.com/courses/224783/assignments/2132664)
+# [Mini-Project #2](https://utk.instructure.com/courses/239375/assignments/2326753)
 
 ## Looking Ahead
 <hr>
-- Next Week: In-Class Observation
 - Reading:
     - Chang (2024), Ch. 7
     - Chang (2024), Ch. 11
@@ -1011,8 +999,8 @@ p
 - Assignment: Begin work on mini-project #2
 - Assignment: Individually complete collaborative practice if not finished
 
-## Next Semester + Beyond
+<!-- ## Next Semester + Beyond
 <hr>
 - If you aren't registered already, please consider the [Educational Data Science Graduate Certificate](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/#courses).
 - This class completes 25% of what you need.
-- The capstone can be shaped around your interests/research.
+- The capstone can be shaped around your interests/research. -->

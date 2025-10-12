@@ -1,0 +1,138 @@
+---
+title: "Assignment 9: Text and Font"
+output: html_document
+author: ""
+date: ""
+---
+
+**Please add your name and the date above.**
+
+## Introduction
+
+The `dcbikeshare` data from {dsbox} data include daily bike rental counts (by members and casual users) of Capital Bikeshare in Washington, DC in 2011 and 2012 as well as weather information on these days.
+
+The original data sources are http://capitalbikeshare.com/system-data and http://www.freemeteo.com.
+
+The codebook is below:
+
+| Variable name    | Description 
+|:--------|:-------------------------------------------------------------
+| `instant`		| record index
+| `dteday` 		| date
+| `season` 		| season (1:winter, 2:spring, 3:summer, 4:fall)
+| `yr` 		    | year (0: 2011, 1:2012)
+| `mnth` 		  | month (1 to 12)
+| `holiday` 	| whether day is holiday or not (extracted from http://dchr.dc.gov/page/holiday-schedule)
+| `weekday` 	| day of the week
+| `workingday`| if day is neither weekend nor holiday is 1, otherwise is 0.
+| `weathersit`| 1: Clear, Few clouds, Partly cloudy, Partly cloudy
+|             | 2: Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist
+|             | 3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds
+|             | 4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog
+| `temp` 			| Normalized temperature in Celsius. The values are divided by 41 (max)
+| `atemp`			| Normalized feeling temperature in Celsius. The values are divided by 50 (max)
+| `hum` 			| Normalized humidity. The values are divided by 100 (max)
+| `windspeed`	| Normalized wind speed. The values are divided by 67 (max)
+| `casual`		| Count of casual users
+| `registered`| Count of registered users
+| `cnt` 		  | Count of total rental bikes including both casual and registered
+
+## 1. Load and view data
+
+If you have not done so already, please install the Data Science in a Box package by running `remotes::install_github("tidyverse/dsbox")` in your console.
+
+```{r}
+library(dsbox)
+
+dcbikeshare <- dsbox::dcbikeshare
+```
+
+Take a look at the data. What type of variables are `season`, `mnth`, `holiday`, and `weekday`? What issues may this pose in our analysis?
+
+ANSWER #1:
+
+## 2. Meaningful level names
+
+We would like our `season` variable to be a factor variable where we can see that `1` is `winter`, `2` is `spring`, etc. per the codebook. We can edit `season` using the `mutate()` function from dplyr. Using `fct_relevel`, we can order the levels so they read in a logical order.
+
+```{r}
+library(dplyr)
+
+dcbikeshare <- dsbox::dcbikeshare %>%
+  mutate(
+    season = case_when(
+      season == 1 ~ "winter",
+      season == 2 ~ "spring",
+      season == 3 ~ "summer",
+      season == 4 ~ "fall"
+    ),
+    season = fct_relevel(season, "spring", "summer", "fall", "winter")
+  )
+```
+
+Could you recode:
+
+- `holiday`, where `0` is `no` and `1` is `yes`
+- `workingday`, where `0` is `no` and `1` is `yes`?
+
+```{r}
+
+```
+
+## 3. Create raw values for temperature, humidity, and windspeed
+
+Calculate raw temperature, feeling temperature, humidity, and windspeed as their values given in the dataset multiplied by the maximum raw values stated in the codebook for each variable. Instead of writing over the existing variables, create new ones called `temperature_raw`, `feeling_temperature_raw`, `humidity_raw`, `windspeed_raw.`
+
+```{r}
+dcbikeshare <- ___ %>%
+  mutate(
+    temperature_raw = temp * 41,
+    feeling_temperature_raw = atemp * ___,
+    humidity_raw = ___ * ___,
+    windspeed_raw = ___ * ___
+  )
+```
+
+## 4. Recreating this visualization
+
+Recreate the following visualization: https://github.com/utkeds/viz-data-using-r/blob/main/week-9/images/assignment-viz.png
+
+```{r}
+
+```
+
+## 5. Edit the visualization
+
+Edit this visualization, using what we learned in class. Please be sure to do the following:
+
+- 1 `element_text()` edit
+- Increase the y-axis scale slightly
+- Add an annotation at the highest temperature
+- Edit the font of any element in the visualization
+
+BONUS: Use {ggtext} in the subtitle.
+
+## 6. Reflection
+
+Important: After you knit, check the HTML file. 
+
+- Does it appear as you intended?
+- Does any output print that is too long?
+- Do your name and date appear?
+
+Share any questions you have in Canvas about fine-tuning your .Rmd output.
+
+## 7. Submit
+
+Submit for Assignment 9 in Canvas. 
+
+**Rubric**
+
+- Name is added: 2 points
+- File knits to an HTML: 4 points
+- Answer #1 correct: 2 points
+- Recode code is correct: 4 points (2 each)
+- Mutate code is correct: 3 points (1 each)
+- Visualization + text/font edits: 15 points (5 each)
+
+Total: 30 points

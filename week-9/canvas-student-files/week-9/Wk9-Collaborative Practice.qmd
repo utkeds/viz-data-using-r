@@ -1,14 +1,14 @@
 ---
 title: "Wk9-Collaborative Practice"
-author: "Names Here Please"
+author: "Fabulous Student"
 date: "`r Sys.Date()`"
-output: html_document
----
-
-# Please add warning=F, message=F
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+-
 
 ```{r load-tidykids}
 library(tidyverse)
