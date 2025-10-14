@@ -639,6 +639,13 @@ More details on the parameters can be found in `vignette("ggplot2-specs")`.
 
 # scale_*_*
 
+## scale_*_* functions{.smaller}
+<hr>
+- See the [{ggplot}](https://rstudio.github.io/cheatsheets/data-visualization.pdf) cheatsheet for a list of `scale_*_*` functions
+- We've already used some of these last week to create custom palettes
+- I think of these like a family of functions
+  - Common set of core arguments
+
 ## Editing axes {.smaller}
 <hr>
 We can edit the start/end of axes using `scale_*_*`.
