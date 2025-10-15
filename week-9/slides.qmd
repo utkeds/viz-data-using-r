@@ -194,8 +194,8 @@ p <- tidykids |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
   ggplot(aes(x= SNAP, y= PK12ed)) +
   geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
-  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+  scale_x_continuous(labels = scales::label_currency()) +
+  scale_y_continuous(labels = scales::label_currency())
 
 ggplotly(p)
 ```
@@ -212,8 +212,8 @@ p <- tidykids |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
   ggplot(aes(x= SNAP, y= PK12ed)) +
   geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
-  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+  scale_x_continuous(labels = scales::label_currency()) +
+  scale_y_continuous(labels = scales::label_currency())
 
 ggplotly(p)
 ```
@@ -248,8 +248,8 @@ p <- tidykids |>
   ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ", state, "<br>SNAP: ", SNAP,
                                                "<br>PK12Ed: ", PK12ed))) +
   geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
-  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+  scale_x_continuous(labels = scales::label_currency()) +
+  scale_y_continuous(labels = scales::label_currency())
 
 ggplotly(p, tooltip = "text")
 ```
@@ -267,8 +267,8 @@ p <- tidykids |>
   ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ", state, "<br>SNAP: ", SNAP,
                                                "<br>PK12Ed: ", PK12ed))) +
   geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
-  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+  scale_x_continuous(labels = scales::label_currency()) +
+  scale_y_continuous(labels = scales::label_currency())
 
 ggplotly(p, tooltip = "text")
 ```
@@ -304,8 +304,8 @@ p <- tidykids |>
                                                scales::dollar(SNAP),"<br>PK12Ed: ",
                                                scales::dollar(PK12ed)))) +
   geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
-  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+  scale_x_continuous(labels = scales::label_currency()) +
+  scale_y_continuous(labels = scales::label_currency())
 
 ggplotly(p, tooltip = "text")
 ```
@@ -324,8 +324,8 @@ p <- tidykids |>
                                                scales::dollar(SNAP),"<br>PK12Ed: ",
                                                scales::dollar(PK12ed)))) +
   geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency(currency="USD")) +
-  scale_y_continuous(labels = scales::label_currency(currency="USD"))
+  scale_x_continuous(labels = scales::label_currency()) +
+  scale_y_continuous(labels = scales::label_currency())
 
 ggplotly(p, tooltip = "text")
 ```
@@ -660,7 +660,7 @@ p <- p +
     panel.grid = element_blank(), #remove lines
     panel.background = element_blank(), #remove rectangles
     axis.title.x = element_blank(), #remove text
-    legend.position = "none" #odd one - take note
+    #legend.position = "none" #odd one - take note
   )
 
 p
@@ -713,6 +713,10 @@ p <- p +
 p
 ```
 
+:::{.smaller-font}
+- There are [other `label_*()` functions](https://scales.r-lib.org/reference/index.html) too
+:::
+
 ## Editing axes {.smaller}
 <hr>
 We can also use `scale_*_*` to edit the labels on the axes.
@@ -730,25 +734,50 @@ p
 
 ## Editing axes {.smaller}
 <hr>
-We can also use `scale_*_*` to edit the labels or in the legend.
+We can also use `scale_*_*` to edit the labels in the legend.
 
-- Note: We already removed the legend, but this would work!
-
-```r
+:::{.smaller-font}
+- We already used scale_fill_manual() to create a custom palette with {MetBrewer}, so I'm just adding the labels argument in to what we already had.
+:::
+  
+```{r}
 p <- p +
-  scale_color_discrete(labels = c("full_time_non_tenure_track" = "Full Time Non-Tenure Track", 
+  scale_fill_manual(values = met.brewer("Hokusai1",
+                                        direction = -1),
+                    labels = c("full_time_non_tenure_track" = "Full Time Non-Tenure Track", 
                               "full_time_tenure_track" = "Full Time Tenure Track",
                               "full_time_tenured" = "Full Time Tenured",
                               "grad_student" = "Grad Student",
                               "part_time" = "Part Time"))
 
+```
+
+## Editing axes {.smaller}
+<hr>
+We can also use `scale_*_*` to edit the labels in the legend.
+
+```{r}
 p
 ```
 
 
+## `theme()` allows us to edit data ink {.smaller}
+<hr>
+- Now I'll remove the legend 
+
+```{r}
+#| code-line-numbers: "|3"
+p <- p + 
+  theme(
+    legend.position = "none" #odd one - take note
+  )
+
+p
+```
+
 # Text `geom_*`s
 
-## Recap: Geoms in {ggplot2} anatomy
+## Recap: Geoms in {ggplot2} anatomy {.smaller}
 <hr>
 ![](slides_images/geoms.png){fig-align="center"}
 
@@ -762,7 +791,7 @@ ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) +
   geom_text()
 ```
 
-## Text geoms
+## Text geoms {.smaller}
 <hr>
 Text geoms are useful for labeling plots. They can be used by themselves as scatterplots or in combination with other geoms, for example, for labeling points or for annotating the height of bars.
 
@@ -774,7 +803,7 @@ Text geoms are useful for labeling plots. They can be used by themselves as scat
 {ggplot2} text documentation: <https://ggplot2.tidyverse.org/reference/geom_text.html>
 :::
 
-## `geom_text()`
+## `geom_text()` {.smaller}
 <hr>
 ```{r}
 #| code-line-numbers: "|1|2|3"
@@ -783,7 +812,7 @@ p + geom_text(aes(label = scales::percent(proportion / 100)),
               size = 3.5)
 ```
 
-## `geom_label()`
+## `geom_label()` {.smaller}
 <hr>
 ```{r}
 p + geom_label(aes(label = scales::percent(proportion / 100)),
@@ -819,12 +848,16 @@ What if instead of hard coding our numbers, we calculate it from our data?
 pt_pct_1975 <- 
   staff_long |> 
   filter(position == "part_time", year == "1975") |> 
-  pull(proportion) #This is just the number 24
+  pull(proportion)
+
+pt_pct_1975
 
 pt_pct_2011 <- 
   staff_long |> 
   filter(position == "part_time", year == "2011") |> 
-  pull(proportion) #This is 41.3
+  pull(proportion)
+
+pt_pct_2011
 ```
 
 ## `annotate()`{.smaller}
