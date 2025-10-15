@@ -807,7 +807,7 @@ Text geoms are useful for labeling plots. They can be used by themselves as scat
 <hr>
 ```{r}
 #| code-line-numbers: "|1|2|3"
-p + geom_text(aes(label = scales::percent(proportion / 100)),
+p + geom_text(aes(label = scales::label_percent(scale=1)(proportion)),
               vjust = -0.5,
               size = 3.5)
 ```
@@ -815,7 +815,7 @@ p + geom_text(aes(label = scales::percent(proportion / 100)),
 ## `geom_label()` {.smaller}
 <hr>
 ```{r}
-p + geom_label(aes(label = scales::percent(proportion / 100)),
+p + geom_label(aes(label = scales::label_percent(scales=1)(proportion)),
                vjust = -0.5,
                size = 3.5)
 ```
@@ -864,16 +864,16 @@ pt_pct_2011
 <hr>
 ```{r}
 #| code-line-numbers: "|6|7|8|9|10|11|12"
-p <- p + geom_text(aes(label = scales::percent(proportion / 100)),
+p <- p + geom_text(aes(label = scales::label_percent(scale=1)(proportion)),
                 vjust = -0.5,
                 size = 3.5) +
   annotate(
     geom = "text",
     label = paste0(
       "Part-time faculty percentage has increased\nfrom ",
-      scales::percent(pt_pct_1975 / 100),
+      scales::label_percent(scale=1)(pt_pct_1975),
       " in 1975 to ",
-      scales::percent(pt_pct_2011 / 100),
+      scales::label_percent(scale=1)(pt_pct_2011),
       " in 2011."
     ),
     x = 5.5,
@@ -909,7 +909,7 @@ p <- p +
   labs(
     subtitle = paste0(
       "Part-timers made up <b><span style = 'color:#C6473E;'>",
-      scales::percent(prop_pt),
+      scales::label_percent()(prop_pt),
       "</span></b> of faculty in 2011"
     )
   ) +
