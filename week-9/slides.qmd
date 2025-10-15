@@ -79,7 +79,7 @@ library(tidykids)
 - How can you fix this?
   1. In YAML Header:
     - Added out-width: "100%"
-      - Means plots should be full width of the document (default is only 80%) 
+      - Makes plots the full width of the document (default is 80%) 
 
 ```r
 ---
@@ -118,6 +118,8 @@ p
 ---
 ```
 - Can also set this in the YAML header (under embed-resources) to change the default size and not have to do it in each code cell
+
+# Mini Project #1
 
 ## Mini Project #1
 <hr>
