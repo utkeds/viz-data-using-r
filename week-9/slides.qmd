@@ -145,6 +145,7 @@ p
 p <- tidykids |>
   filter(year == 2016,
          expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
   ggplot(aes(x= SNAP, y= PK12ed)) +
   geom_point(color = "blue")
@@ -158,6 +159,7 @@ p
 p <- tidykids |>
   filter(year == 2016,
          expenditure %in% c("PK12ed","SNAP")) |>
+  select(-raw,-inf_adj) |> 
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
   ggplot(aes(x= SNAP, y= PK12ed)) +
   geom_point(color = "blue")
