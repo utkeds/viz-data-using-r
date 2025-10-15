@@ -39,6 +39,7 @@ library(tidykids)
 :::{.smaller-font}
 - Weekly Check In
 - Review / Foundational Skills
+  - "squished plots"
   - plotly
 - Basic Principles
 - `theme()` + text
@@ -67,11 +68,61 @@ library(tidykids)
 
 # Review / Foundational Skills
 
+## "Squished Plots" {.smaller}
+<hr>
+- Some of your have been experiencing "squished" plots
+  - Often happens when you have a plots with lots of panels (facets), or combined plots with {patchwork} and {cowplot}
+ 
+
+## "Squished Plots" {.smaller}
+<hr>
+- How can you fix this?
+  1. In YAML Header:
+    - Added out-width: "100%"
+      - Means plots should be full width of the document (default is only 80%) 
+
+```r
+---
+title: "Untitled"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    out-width: "100%"
+---
+```
+
+## "Squished Plots" {.smaller}
+<hr>
+- How can you fix this?
+  2. In code cell where you create the plot:
+    - Set fig-width: and fig-height:
+    - Otherwise, [defaults to 7 and 5 (in)](https://quarto.org/docs/computations/execution-options.html#figure-options)
+
+```r
+#| fig-width: 8
+#| fig-height: 6
+
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed)) +
+  geom_point(color = "blue")
+
+p
+---
+```
+- Can also set this in the YAML header (under embed-resources) to change the default size and not have to do it in each code cell
+
 ## Mini Project #1
 <hr>
 - Great work!
 - Lots of really nice plots
-- Finishing up grading now
 
 ## Mini Project #1 & {plotly}
 <hr>
@@ -639,7 +690,7 @@ More details on the parameters can be found in `vignette("ggplot2-specs")`.
 
 # scale_*_*
 
-## scale_*_* functions{.smaller}
+## scale_*_* functions {.smaller}
 <hr>
 - See the [{ggplot}](https://rstudio.github.io/cheatsheets/data-visualization.pdf) cheatsheet for a list of `scale_*_*` functions
 - We've already used some of these last week to create custom palettes
