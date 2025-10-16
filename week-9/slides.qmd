@@ -128,7 +128,7 @@ p
 - Some notes:
   - {ggplot2} automatically drops NAs (you don't have to filter them out)
   - When showing amounts, also show variability!
-  - Clarity is answering your research question is key
+  - Clarity in answering your research question is key
     - Plot "fanciness" far less important than clarity!
 
 ## Mini Project #1 & {plotly}
