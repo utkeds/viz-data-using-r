@@ -682,7 +682,7 @@ p
 ```{r}
 #| code-line-numbers: "|2"
 p <- p +
-  theme(axis.text.x = element_text(angle = 45, vjust = .5))
+  theme(axis.text.x = element_text(face="bold", angle = 45, vjust = .5))
 ```
 
 ## `theme()` lets us edit text elements {.smaller}
@@ -699,7 +699,7 @@ More details on the parameters can be found in `vignette("ggplot2-specs")`.
 
 # scale_*_*
 
-## scale_*_* functions {.smaller}
+## scale_*_* functions
 <hr>
 - See the [{ggplot}](https://rstudio.github.io/cheatsheets/data-visualization.pdf) cheatsheet for a list of `scale_*_*` functions
 - We've already used some of these last week to create custom palettes
@@ -822,7 +822,7 @@ p + geom_text(aes(label = scales::label_percent(scale=1)(proportion)),
 ## `geom_label()` {.smaller}
 <hr>
 ```{r}
-p + geom_label(aes(label = scales::label_percent(scales=1)(proportion)),
+p + geom_label(aes(label = scales::label_percent(scale=1)(proportion)),
                vjust = -0.5,
                size = 3.5)
 ```
