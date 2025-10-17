@@ -1,0 +1,898 @@
+---
+subtitle: "Text and Fonts in {ggplot2}"
+title: "Week 9 - STEM 691"
+author: "Dr. Kelly Boles & Dr. Zhen Xu"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: slides_images/UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r, echo=F}
+library(tidyverse)
+library(tidykids)
+```
+
+# Weekly Check In/ <br>Download `.zip`
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.smaller-font}
+- Weekly Check In
+- Review / Foundational Skills
+  - "squished plots"
+  - plotly
+- Basic Principles
+- `theme()` + text
+- `scale_*_*`
+- Text `geom_*()`s
+- Fonts
+- Collaborative Practice
+- Mini-Project #2
+- Looking Ahead
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Review / Foundational Skills
+
+## "Squished Plots" {.smaller}
+<hr>
+- Some of your have been experiencing "squished" plots
+  - Often happens when you have a plots with lots of panels (facets), or combined plots with {patchwork} and {cowplot}
+ 
+
+## "Squished Plots" {.smaller}
+<hr>
+- How can you fix this?
+  1. In YAML Header:
+    - Added out-width: "100%"
+      - Makes plots the full width of the document (default is 80%) 
+
+```r
+---
+title: "Untitled"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    out-width: "100%"
+---
+```
+
+## "Squished Plots" {.smaller}
+<hr>
+- How can you fix this?
+  2. In code cell where you create the plot:
+    - Set fig-width: and fig-height:
+    - Otherwise, [defaults to 7 and 5 (in)](https://quarto.org/docs/computations/execution-options.html#figure-options)
+
+```r
+#| fig-width: 8
+#| fig-height: 6
+
+p <- tidykids |>
+  filter(year == 2016,
+         expenditure %in% c("PK12ed","SNAP")) |>
+  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
+  ggplot(aes(x= SNAP, y= PK12ed)) +
+  geom_point(color = "blue")
+
+p
+---
+```
+- Can also set this in the YAML header (under embed-resources) to change the default size and not have to do it in each code cell
+
+# Mini Project #1
+
+## Mini Project #1
+<hr>
+- Great work!
+- Lots of really nice plots
+- Some notes:
+  - {ggplot2} automatically drops NAs (you don't have to filter them out)
+  - When showing amounts, also show variability!
+  - Clarity in answering your research question is key
+    - Plot "fanciness" far less important than clarity!
+
+<!-- ## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{layout=[1,1]}
+::::{column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+
+::::
+::::{column}
+
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{layout=[1,1]}
+::::{column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+
+::::
+::::{column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{layout=[1,1]}
+::::{column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+Simple Case + Catch All (Note: NAs)
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    .default = "not one"
+  ))
+```
+::::
+::::{column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{layout=[1,1]}
+::::{column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+Simple Case + Catch All (Note: NAs)
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    .default = "not one"
+  ))
+```
+::::
+::::{column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+Simple Case + Catch All + Preserve NAs
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    is.na(x) ~ NA,
+    .default = "not one"
+  ))
+```
+::::
+:::
+:::::: -->
+
+# Recap & Continuing Today...
+
+## {ggplot2} is our canvas
+<hr>
+![](slides_images/canvas.png){fig-align="center" width=500px}
+
+::: aside
+Art by [Desirée De Leon](http://desiree.rbind.io/), [CC-BY-NC-ND](https://tinystats.github.io/teacups-giraffes-and-statistics/)
+:::
+
+## Text and Visualization
+<hr>
+> “Make words and visuals work together effectively — not just showing the data, but explaining the data; helping readers become more visually literate, and reinforcing the main messages the graphic is displaying.”
+
+--- Alberto Cairo
+
+## Text and Visualization
+<hr>
+:::: columns
+
+::: {.column width="35%" .smaller-font}
+
+Cairo uses this example of a "rich" plot in his book *How Charts Lie*:
+
+- There is a title and a subtitle
+- There is a easy to understand legend
+- There are defined x- and y-axes
+- There is an annotation
+- There is a caption
+- All text is horizontal (the way we naturally read)
+
+:::
+
+::: {.column width="65%"}
+
+![](slides_images/cairo_example@2x.png){width=500px}
+:::
+
+::::
+
+## Using Christiansen and France {.smaller}
+<hr>
+- Christiansen, Ch. 9 (2023) and France (2020) provide several suggestions for typographic choices for visualizing data
+- In groups, we will choose ONE style guide and compare it to Christiansen and France
+  - Find your group document on Canvas
+  - Choose your style guide from the list
+  - Review it
+  - Compare its components to Christiansen and France
+  - If you have enough time, compare the guide you chose to another from the list
+
+- *Choose a spokesperson to report back!*
+<br>**BREAKOUT ROOMS (10-15 min)**
+  
+  
+
+## AAUP Data Today {.smaller}
+<hr>
+- Same data as last week
+
+:::{.smaller-font}
+```{r}
+#remotes::install_github("tidyverse/dsbox")
+library(dsbox)
+
+staff <- dsbox::instructors
+
+staff_long <- staff |>
+  pivot_longer(cols = -year,
+               names_to = "position",
+               values_to = "proportion") |>
+  mutate(date = as.Date(paste0(year, "-01-01")))
+
+staff_long
+```
+:::
+
+## Creating a Plot - Column Chart
+<hr>
+```{r}
+p <- staff_long |> 
+  filter(year == 2011) |>  
+  ggplot(aes(x = position, y = proportion, fill = position)) +
+  geom_col()
+
+p
+```
+
+## Creating a Plot - Custom Palette
+<hr>
+:::{.smaller-font}
+```{r}
+library(MetBrewer)
+
+# Chose to reverse the direction of palette as per documentation
+p <- p + scale_fill_manual(values = met.brewer("Hokusai1",
+                                        direction = -1))
+
+p
+```
+:::
+
+## Creating a Plot - Adding Some Text
+<hr>
+:::{.smaller-font}
+```{r}
+p <- p +
+  labs(
+    title = "Instructional Staff Employment Proportions in 2011",
+    caption = "Source: American Association of University Professors (AAUP)",
+    y = "Percentage",
+    fill = "Position"
+  )
+
+p
+```
+:::
+
+# Themes + text
+
+## Recap: Themes in {ggplot2} anatomy
+<hr>
+![](slides_images/theme.png){fig-align="center"}
+
+## What does `theme()` allow us to edit?
+<hr>
+The 'theme' involves editing the content that supports the data but does not deliver the quantitative information itself: "data ink".
+
+- Text
+
+. . .
+
+- Rectangles
+
+. . .
+
+- Lines
+
+. . .
+
+- Draw nothing
+
+## `theme()` allows us to edit data ink {.smaller}
+<hr>
+- Includes text
+
+```{r}
+#| code-line-numbers: "|3|4|5|6"
+p <- p + 
+  theme(
+    panel.grid = element_blank(), #remove lines
+    panel.background = element_blank(), #remove rectangles
+    axis.title.x = element_blank(), #remove text
+    #legend.position = "none" #odd one - take note
+  )
+
+p
+```
+
+## `theme()` lets us edit text elements {.smaller}
+<hr>
+
+- `element_text()` sets the font size, colour and face of text elements like `plot.title`.
+- You can control the font `family`, `face`, `colour`, `size` (in points), `hjust`, `vjust`, `angle` (in degrees) and `lineheight`.
+
+```{r}
+#| code-line-numbers: "|2"
+p <- p +
+  theme(axis.text.x = element_text(face="bold", angle = 45, vjust = .5))
+```
+
+## `theme()` lets us edit text elements {.smaller}
+<hr>
+
+```{r}
+#| code-line-numbers: "|2"
+p
+```
+
+::: aside
+More details on the parameters can be found in `vignette("ggplot2-specs")`.
+:::
+
+# scale_*_*
+
+## scale_*_* functions
+<hr>
+- See the [{ggplot}](https://rstudio.github.io/cheatsheets/data-visualization.pdf) cheatsheet for a list of `scale_*_*` functions
+- We've already used some of these last week to create custom palettes
+- I think of these like a family of functions
+  - Common set of core arguments
+
+## Editing axes {.smaller}
+<hr>
+We can edit the start/end of axes using `scale_*_*`.
+
+```{r}
+#| code-line-numbers: "|2|3|4"
+p <- p +
+  scale_y_continuous(limits = c(0, 100),
+                     breaks = seq(0,100,20),
+                     labels = scales::label_percent(scale=1))
+
+p
+```
+
+:::{.smaller-font}
+- There are [other `label_*()` functions](https://scales.r-lib.org/reference/index.html) too
+:::
+
+## Editing axes {.smaller}
+<hr>
+We can also use `scale_*_*` to edit the labels on the axes.
+
+```{r}
+p <- p +
+  scale_x_discrete(labels = c("full_time_non_tenure_track" = "Full Time Non-Tenure Track", 
+                              "full_time_tenure_track" = "Full Time Tenure Track",
+                              "full_time_tenured" = "Full Time Tenured",
+                              "grad_student" = "Grad Student",
+                              "part_time" = "Part Time"))
+
+p
+```
+
+## Editing axes {.smaller}
+<hr>
+We can also use `scale_*_*` to edit the labels in the legend.
+
+:::{.smaller-font}
+- We already used scale_fill_manual() to create a custom palette with {MetBrewer}, so I'm just adding the labels argument in to what we already had.
+:::
+  
+```{r}
+p <- p +
+  scale_fill_manual(values = met.brewer("Hokusai1",
+                                        direction = -1),
+                    labels = c("full_time_non_tenure_track" = "Full Time Non-Tenure Track", 
+                              "full_time_tenure_track" = "Full Time Tenure Track",
+                              "full_time_tenured" = "Full Time Tenured",
+                              "grad_student" = "Grad Student",
+                              "part_time" = "Part Time"))
+
+```
+
+## Editing axes {.smaller}
+<hr>
+We can also use `scale_*_*` to edit the labels in the legend.
+
+```{r}
+p
+```
+
+
+## `theme()` allows us to edit data ink {.smaller}
+<hr>
+- Now I'll remove the legend 
+
+```{r}
+#| code-line-numbers: "|3"
+p <- p + 
+  theme(
+    legend.position = "none" #odd one - take note
+  )
+
+p
+```
+
+# Text `geom_*`s
+
+## Recap: Geoms in {ggplot2} anatomy {.smaller}
+<hr>
+![](slides_images/geoms.png){fig-align="center"}
+
+## What do geoms allow us to do?
+<hr>
+- **geoms**: Geometric objects like points, lines, bars
+- And also, text!
+
+```{r}
+ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) + 
+  geom_text()
+```
+
+## Text geoms {.smaller}
+<hr>
+Text geoms are useful for labeling plots. They can be used by themselves as scatterplots or in combination with other geoms, for example, for labeling points or for annotating the height of bars.
+
+- `geom_text()` adds text to the plot
+- `geom_label()` draws a rectangle behind the text
+- `annotate()` adds labels at specified points
+
+::: aside
+{ggplot2} text documentation: <https://ggplot2.tidyverse.org/reference/geom_text.html>
+:::
+
+## `geom_text()` {.smaller}
+<hr>
+```{r}
+#| code-line-numbers: "|1|2|3"
+p + geom_text(aes(label = scales::label_percent(scale=1)(proportion)),
+              vjust = -0.5,
+              size = 3.5)
+```
+
+## `geom_label()` {.smaller}
+<hr>
+```{r}
+p + geom_label(aes(label = scales::label_percent(scale=1)(proportion)),
+               vjust = -0.5,
+               size = 3.5)
+```
+
+## `annotate()` {.smaller}
+<hr>
+To add labels at specified points, use `annotate()` with `annotate(geom = "text", ...)` or `annotate(geom = "label", ...)`.
+
+```{r}
+#| code-line-numbers: "|2-10|3|5-6|7-8|9|4"
+#| eval: false
+p +
+  annotate(
+    geom = "text",
+    label = "Part-time faculty percentage has increased\nfrom x% in 1975 to x% in 2011.",
+    x = 5.5,
+    y = 60,
+    size = 3,
+    colour = "#C6473E",
+    hjust = "right" #Can give number or specify left, right, center
+  )
+```
+- This is when you want to hard code the numbers (e.g., x%) - not recommended
+
+## `annotate()` {.smaller}
+<hr>
+What if instead of hard coding our numbers, we calculate it from our data?
+
+```{r}
+pt_pct_1975 <- 
+  staff_long |> 
+  filter(position == "part_time", year == "1975") |> 
+  pull(proportion)
+
+pt_pct_1975
+
+pt_pct_2011 <- 
+  staff_long |> 
+  filter(position == "part_time", year == "2011") |> 
+  pull(proportion)
+
+pt_pct_2011
+```
+
+## `annotate()`{.smaller}
+<hr>
+```{r}
+#| code-line-numbers: "|6|7|8|9|10|11|12"
+p <- p + geom_text(aes(label = scales::label_percent(scale=1)(proportion)),
+                vjust = -0.5,
+                size = 3.5) +
+  annotate(
+    geom = "text",
+    label = paste0(
+      "Part-time faculty percentage has increased\nfrom ",
+      scales::label_percent(scale=1)(pt_pct_1975),
+      " in 1975 to ",
+      scales::label_percent(scale=1)(pt_pct_2011),
+      " in 2011."
+    ),
+    x = 5.5,
+    y = 60,
+    size = 3,
+    colour = "#C6473E",
+    hjust = "right"
+  )
+```
+
+## `annotate()`
+<hr>
+```{r}
+p
+```
+
+# {ggtext}
+
+## {ggtext}{.smaller}
+<hr>
+```{r}
+#| code-line-numbers: "|3-8|11-12,16|13,15|14|18"
+library(ggtext)
+
+prop_pt <-
+  staff_long |>
+  mutate(prop = proportion / 100) |>
+  filter(year == 2011,
+         position == "part_time") |>
+  pull(prop)
+
+p <- p +
+  labs(
+    subtitle = paste0(
+      "Part-timers made up <b><span style = 'color:#C6473E;'>",
+      scales::label_percent()(prop_pt),
+      "</span></b> of faculty in 2011"
+    )
+  ) +
+  theme(plot.subtitle = ggtext::element_markdown()) #Makes the html work!
+```
+
+## {ggtext}
+<hr>
+```{r}
+p
+```
+
+## {ggtext}
+<hr>
+- Can also use {ggtext} to remove need for legend
+![](slides_images//MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
+
+## {ggtext}{.smaller}
+<hr>
+```r
+labs(y = "Marginal Effects", title = "Marginal Effects of 
+<b><span style = 'color: #D8A419;'>City</span></b>,
+<b><span style = 'color: #7B8400;'>Town</span></b>,
+<b><span style = 'color: #C61A72;'>Rural:Fringe</span></b>,
+<b><span style = 'color: #D65E9B;'>Rural:Distant</span></b>, & 
+<b><span style = 'color: #EDBAD4;'>Rural:Remote</span></b>
+Locale on AP® STEM Success<br><i>Comparison: Suburb</i>")
+```
+![](slides_images/MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
+
+# Fonts
+
+## `family` aesthetic {.smaller}
+<hr>
+- The `family` aesthetic provides the name of a font. This aesthetic does allow you to use the name of a system font, but some care is required.
+- There are only three fonts that are guaranteed to work everywhere: “sans” (the default), “serif”, or “mono”.
+
+```{r}
+#| code-line-numbers: "|2-3"
+p <- p +
+  theme(plot.title = element_text(size = 18,
+                                  family = "serif"))
+```
+
+## `family` aesthetic {.smaller}
+<hr>
+```{r}
+p
+```
+
+## Using other fonts {.smaller}
+<hr>
+Text drawing is handled differently by each graphics device (GD):
+
+- `windows()` (for Windows)
+- `quartz()` (for Macs)
+- `x11()` (mostly for Linux)
+- `RStudioGD()` within RStudio
+
+The devices do not specify fonts in the same way, so if you want a font to work everywhere you need to configure the devices in different ways.
+
+## Using other fonts {.smaller}
+<hr>
+Two packages simplify fonts a bit:
+
+- **{showtext}**, [https://github.com/yixuan/showtext](https://github.com/yixuan/showtext), by Yixuan Qiu, makes GD-independent plots by rendering all text as polygons
+- **{extrafont}**, [https://github.com/fbertran/extrafont](https://github.com/fbertran/extrafont), by Winston Chang, converts fonts to a standard format that all devices can use
+
+## Using Google fonts with {showtext} {.smaller}
+<hr>
+- `font_add_google(name, family)` adds a font
+  - `name` is the name of the font searched in [Google Fonts](https://fonts.google.com/)
+  - `family` is the name you assign
+- The `showtext_auto()` function tells R to render text using {showtext}
+
+## Using Google fonts with {showtext} {.smaller}
+<hr>
+Changing `text` edits the font family for the plot fonts.
+
+```{r}
+#| code-line-numbers: "|3|5|8-9"
+library(showtext)
+
+font_add_google(name = "Open Sans", family = "open-sans")
+
+showtext_auto() #necessary for it to work
+
+p <- p +
+  theme(text = element_text(size = 9,
+                            family = "open-sans"))
+```
+
+::: {.callout-tip}
+You may need to install additional packages for `font_add_google()`. On Windows, be prepared to install {jsonlite} and {curl}.
+:::
+
+## Using Google fonts with {showtext} {.smaller}
+<hr>
+- Why didn't the title change? Everything else worked...
+```{r}
+p
+```
+
+## Using Google fonts with {showtext} {.smaller}
+<hr>
+You can specify fonts for different plot elements, as well.
+
+```{r}
+#| code-line-numbers: "|1|4-5"
+font_add_google(name = "Schoolbell", family = "bell")
+
+p <- p +
+  theme(plot.title = element_text(size = 18,
+                                  family = "bell"))
+# Note I could have specified "open-sans" here to fix the earlier issue.
+```
+
+## Using Google fonts with {showtext} {.smaller}
+<hr>
+```{r}
+p
+```
+
+## Using custom fonts with {showtext} {.smaller}
+<hr>
+`font_add()` adds a font file like `.ttf`
+
+- `family` is the family name of the font
+- `regular` is the font file path
+
+```{r}
+#| code-line-numbers: "|1-2|5-6"
+font_add(family = "Asenine",
+         regular = here::here("week-9", "ASENINE_.ttf"))
+
+p <- p +
+  theme(plot.title = element_text(size = 18,
+                                     family = "Asenine"))
+```
+
+## Using custom fonts with {showtext} {.smaller}
+<hr>
+```{r}
+p
+```
+
+## Other helpful packages for text {.smaller}
+<hr>
+- {ggrepel} - repel overlapping text labels
+- {ggforce} - extends {ggplot2} in various ways
+- {gghighlight} - direct labeling in {ggplot2}
+- {ggfittext} - fit text into boxes
+- {directlabels} - puts labels close to data
+
+## Accessibility {.smaller}
+<hr>
+- Sufficient labels
+- Do not rely on color alone
+- Label significant parts of the graph
+- Use labels and legends that clearly mark and distinguish the data points
+
+# BREAK
+
+## Collaborative Practice {.smaller}
+<hr>
+- You will do Steps 3-5.
+    - 1,2, & 6 have been done for you.
+- Launch into breakout rooms.
+- Cameras off: 3-5 min to review task
+- Cameras on: collaborative task work
+- Individual option
+
+# [Mini-Project #2](https://utk.instructure.com/courses/239375/assignments/2326753)
+
+## Looking Ahead
+<hr>
+- Reading:
+    - Chang (2024), Ch. 7
+    - Chang (2024), Ch. 11
+    - R Coder (2024)
+- **Assignment:** Begin work on mini-project #2
+- **Assignment:** Individually complete collaborative practice if not finished
+
+<!-- ## Next Semester + Beyond
+<hr>
+- If you aren't registered already, please consider the [Educational Data Science Graduate Certificate](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/#courses).
+- This class completes 25% of what you need.
+- The capstone can be shaped around your interests/research. -->
