@@ -1,0 +1,71 @@
+---
+title: "Week 10 Assignment"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    out-width: "100%"
+---
+
+```{r package-install}
+library(tidyverse)
+library(patchwork)
+```
+
+This week's assignment is quite simple. You are going to re-use some of your old graphs in order to practice making compound graphics and small multiples and using annotations. Throughout, you are not expected to pay attention to all of the aesthetic elements of the plot, but please ensure that the plots are interpretable and accessible through your use of themes, color, labels, text and fonts, etc.
+
+## Compound Plots with patchwork
+
+Using a previous data set and related analyses and/or visualizations, combine separate plots using `patchwork`. For some additional functionality (or examples), check out its documentation: https://patchwork.data-imaginist.com/index.html
+
+
+
+## Small Multiples with facet_wrap()
+
+Using a previous data set (and analysis), develop a data visualization that uses small multiples. To add a little pizazz and style your facets, consider consulting these resources:
+
+- http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
+- https://www.datanovia.com/en/blog/how-to-change-ggplot-facet-labels/
+
+
+## Annotations
+
+Again using a previous data set and related analyses and/or visualizations, add two or more annotation layers to a plot OR use gghighlight.
+
+
+```{r}
+
+```
+
+## Reflection
+
+Important note: After you render, check the HTML file. 
+
+- Does it appear as you intended?
+- Does any output print that is too long?
+- Do your name and date appear?
+
+Share any questions you have in Canvas about fine-tuning your .qmd output.
+
+And, please answer this question: How did this assignment go? What went well and what was a challenge? Please add 1-2 sentences.
+
+**REFLECTION GOES HERE**:
+
+## 4. Submit
+
+Please be sure to add your name and the date. Knit and submit!
+
+**Rubric**
+
+Name is added: 2 points
+File knits to an HTML: 4 points
+patchwork plot: 6 points
+faceted plot: 6 points
+Annotated plot: 6 points
+Attention to the aesthetics are considered: 6 points
+
+Total: 30 points

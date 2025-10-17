@@ -1,0 +1,318 @@
+---
+subtitle: "Design {ggplot2}"
+title: "Week 10 - STEM 691"
+author: "Joshua Rosenberg and Isabella Velásquez"
+format:
+  revealjs:
+    theme: simple
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+---
+
+```{r, echo = FALSE}
+library(palmerpenguins)
+library(tidyverse)
+library(gghighlight)
+
+flipper_hist_1 <- 
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()
+
+
+flipper_hist_2 <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  facet_wrap(~species)+
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "Distribution of flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  theme(legend.position = "none")
+```
+
+# Today's agenda
+
+- Recap
+- Assignment highlights
+- Reading highlights
+- Key concept: Design
+- Code-along 
+- Assignment
+- Looking ahead
+
+# Recap
+
+## Themes and color
+
+- We dove deep into themes - the content that supports the data
+  - Ready-made
+  - Custom themes
+- We also dove deep into color
+  - Ready-made
+  - Manually set
+  
+## Text and fonts
+
+- Then we explored text and fonts
+  - A recap of setting labels and further editing themes
+  - Using geoms to display text - `geom_text()`, `geom_label()`, and `annotate()`
+  - We also found out how to access and use specific fonts
+
+## Assignment highlights
+
+![](images/ex-1.png)
+
+## Assignment highlights
+
+![](images/ex-2.png)
+
+## Reading takeaways
+
+**Redundant Coding by C. Wilke**
+
+- The concept of *redundant coding*, which involves using additional visual elements like shapes in conjunction with colors
+- Direct labeling is advocated over the use of legends to reduce the burden on the reader
+- The reliance solely on color for data differentiation can be problematic and that incorporating multiple visual cues can broaden the audience
+
+## Reading takeaways
+
+**Unspoken Rules of Visualization by C. Fung**
+
+- The importance of adhering to conventional practices unless deviating for a specific reason.
+- How certain "unspoken rules," like starting bar chart axes at zero and maintaining conventional axis labeling, impact the audience's understanding and interpretation of the data
+- The need for clear and purposeful deviations from standard practices (balance!)
+
+# Key concept: Design
+
+## Design with `ggplot`
+
+There are many ways to better design your data visualizations in `ggplot`.
+
+A key way is to ensure you employ principles of color, text, and shape to make your data visualization as readable as possible.
+
+Additionally, today we'll explore (in a little more depth):
+
+1. composite plots
+2. faceting
+3. annotations
+
+## Compound Figures with `patchwork`
+
+Rather than using a design element *within* a plot, what if we wanted to connect multiple plots together?
+
+We can use the `patchwork` package!
+
+Let's begin with two separate plots.
+
+## Plot 1
+
+```{r echo=FALSE, fig.height=4}
+flipper_hist_2
+```
+
+## Plot 2
+
+```{r include=FALSE}
+mass_flipper <- ggplot(data = penguins, 
+                       aes(x = flipper_length_mm,
+                           y = body_mass_g)) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 3,
+             alpha = 0.8) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin size, Palmer Station LTER",
+       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
+       x = "Flipper length (mm)",
+       y = "Body mass (g)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme_minimal()+
+  theme(legend.position = c(0.2, 0.7),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot")
+```
+
+```{r echo=FALSE, fig.height=4}
+mass_flipper
+```
+
+## Compound Figures with `patchwork`
+
+```{r}
+library(patchwork)
+flipper_hist_2 + mass_flipper
+```
+
+## Compound Figures with `patchwork`
+
+To add two plots next to each other, we use `+` or `|`. To add two plots on top of each other, we use `/`
+
+We can also set different widths and heights using:
+
+```
++ plot_layout(widths = c(2, 1), heights = c(2, 1))
+```
+
+This means the first plot is 2x the size of the second.
+
+More is in the [`patchwork` documentation on controlling layout](https://patchwork.data-imaginist.com/articles/guides/layout.html).
+
+## Small Multiples with `facet_wrap`
+
+For this example, we will use the `palmerpenguins` package.
+
+```{r echo=FALSE, fig.height=4}
+flipper_hist_1
+```
+
+## Small Multiples with `facet_wrap`
+
+Small Multiples
+
+```{r echo=FALSE, fig.height=4}
+flipper_hist_2
+```
+
+## Small Multiples with `facet_wrap`
+
+To create, the regular plot, we used the following code
+
+```{r eval=FALSE, include=TRUE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()
+```
+
+## Small Multiples with `facet_wrap`
+
+To create the faceted plot, we used the following code
+
+
+```{r eval=FALSE, include=TRUE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") + 
+  scale_fill_manual(values = 
+          c("darkorange","purple","cyan4")) +
+  labs(x = "Flipper length (mm)",
+       y = "Frequency",
+       title = "Distribution of flipper lengths")+
+  theme_minimal()+
+  facet_wrap(~species, nrow = 1, scales = "free_y")+
+  theme(legend.position = "none")
+```
+
+## Annotations:  _a geom_ without data.
+
+Here's a plot:
+
+```{r,  out.width = "30%"}
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()
+
+p
+```
+
+## Annotations: Example
+
+```{r,  out.width = "30%"}
+p + 
+  annotate("text", x = 3, y = 30, 
+             label = "These cars are fuel-efficient")
+```
+
+## Annotations: Fancier
+
+```{r, out.width = "30%"}
+p + annotate("text", x = 3, y = 30, 
+             label = "These cars are fuel-efficient") +
+  annotate("rect", xmin = 1.25, xmax = 2.5, ymin = 25, ymax = 35,
+  alpha = .2) +
+  theme_minimal()
+```
+
+## Annotations: gghighlight
+
+```{r, include = FALSE}
+d <- purrr::map_dfr(
+  letters,
+  ~ data.frame(
+    idx = 1:400,
+    value = cumsum(runif(400, -1, 1)),
+    type = .,
+    flag = sample(c(TRUE, FALSE), size = 400, replace = TRUE),
+    stringsAsFactors = FALSE
+  )
+)
+```
+
+```{r}
+ggplot(d) +
+  geom_line(aes(x = idx, y = value, colour = type)) # ahh!
+```
+
+## Annotations: gghighlight
+
+Learn much more [here](https://cran.r-project.org/web/packages/gghighlight/vignettes/gghighlight.html)
+
+```{r}
+ggplot(d) +
+  geom_line(aes(x = idx, y = value, colour = type)) + # ahh!
+  gghighlight(min(value) < -20)
+```
+
+# Code along
+
+
+# Mini Project Final Project Plans
+
+[Assignment](https://utk.instructure.com/courses/196893/assignments/1779345?module_item_id=3994393)
+
+In groups, briefly (2 min. max per person) discuss your plans:
+
+- What data you are planning to use
+- What plans (if any) you have for the three visualizations you will create
+- What challenges you anticipate or questions you have
+
+## What's next
+
+* Assignment
+* Mini Project #2 (planning for the final project)
+
+# Check out
+
+When can text be used effectively in visualization/when can it be used inefficiently?
+
+# Attribution for materials used today
+
+* Data Science in a Box by Mine Çetinkaya-Rundel
+* <https://datasciencebox.org/>
+* License: [Creative Commons Attribution-ShareAlike 4.0 International](https://datasciencebox.org/license)
