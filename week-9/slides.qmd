@@ -10,6 +10,7 @@ format:
     transition: fade
     background-transition: fade
     highlight-style: tango
+    embed-resources: true
     title-slide-attributes:
       data-background-color: "#4B4B4B"
       data-background-image: slides_images/UnitShortcut.png
