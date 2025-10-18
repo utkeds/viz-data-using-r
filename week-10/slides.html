@@ -295,9 +295,282 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <ul>
 <li>Some of you experienced {showtext} font sizing issues</li>
 <li>This is a known issue with {showtext} and {ggplot2}</li>
-<li>Largely happens on Windows machines</li>
-<li>If this happened in your homework, I will provide a piece of code in your Canvas feedback to help</li>
+<li>Happens on Retina devices</li>
+<li>Solution <a href="https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html#working-with-r-markdown">HERE</a></li>
 </ul>
+</section></section>
+<section>
+<section id="more-on-data-cleaning-advanced-case_when" class="title-slide slide level1 center">
+<h1>More on Data Cleaning (Advanced <code>case_when()</code>)</h1>
+
+</section>
+<section id="case_when" class="slide level2">
+<h2><code class="smaller">case_when()</code></h2>
+<hr>
+<div class="extra-small-font">
+<ul>
+<li>We’ve used <code>case_when()</code> (with <code>mutate()</code>) quite a bit before, but it can do even more!</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+      x
+  &lt;int&gt;
+1     1
+2     2
+3     3
+4    NA</code></pre>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<p>Simple Case</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"one"</span>,</span>
+<span id="cb2-4"><a href=""></a>    x <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"two"</span></span>
+<span id="cb2-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x y    
+  &lt;int&gt; &lt;chr&gt;
+1     1 one  
+2     2 two  
+3     3 &lt;NA&gt; 
+4    NA &lt;NA&gt; </code></pre>
+</div>
+</div>
+</div><div class="column">
+
+</div></div>
+</div>
+</section>
+<section id="case_when-1" class="slide level2">
+<h2><code class="smallest">case_when()</code></h2>
+<hr>
+<div class="extra-small-font">
+<ul>
+<li>We’ve used <code>case_when()</code> (with <code>mutate()</code>) quite a bit before, but it can do even more!</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+      x
+  &lt;int&gt;
+1     1
+2     2
+3     3
+4    NA</code></pre>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<p>Simple Case</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"one"</span>,</span>
+<span id="cb5-4"><a href=""></a>    x <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"two"</span></span>
+<span id="cb5-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x y    
+  &lt;int&gt; &lt;chr&gt;
+1     1 one  
+2     2 two  
+3     3 &lt;NA&gt; 
+4    NA &lt;NA&gt; </code></pre>
+</div>
+</div>
+</div><div class="column">
+<p>Simple Case + Re-use Variable</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb7-4"><a href=""></a>    <span class="at">.default =</span> x</span>
+<span id="cb7-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x     y
+  &lt;int&gt; &lt;dbl&gt;
+1     1     0
+2     2     2
+3     3     3
+4    NA    NA</code></pre>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="case_when-2" class="slide level2">
+<h2><code class="smallest">case_when()</code></h2>
+<hr>
+<div class="extra-small-font">
+<ul>
+<li>We’ve used <code>case_when()</code> (with <code>mutate()</code>) quite a bit before, but it can do even more!</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+      x
+  &lt;int&gt;
+1     1
+2     2
+3     3
+4    NA</code></pre>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<p>Simple Case</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"one"</span>,</span>
+<span id="cb10-4"><a href=""></a>    x <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"two"</span></span>
+<span id="cb10-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x y    
+  &lt;int&gt; &lt;chr&gt;
+1     1 one  
+2     2 two  
+3     3 &lt;NA&gt; 
+4    NA &lt;NA&gt; </code></pre>
+</div>
+</div>
+<p>Simple Case + Catch All (Note: NAs)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"one"</span>,</span>
+<span id="cb12-4"><a href=""></a>    <span class="at">.default =</span> <span class="st">"not one"</span></span>
+<span id="cb12-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x y      
+  &lt;int&gt; &lt;chr&gt;  
+1     1 one    
+2     2 not one
+3     3 not one
+4    NA not one</code></pre>
+</div>
+</div>
+</div><div class="column">
+<p>Simple Case + Re-use Variable</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb14-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb14-4"><a href=""></a>    <span class="at">.default =</span> x</span>
+<span id="cb14-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x     y
+  &lt;int&gt; &lt;dbl&gt;
+1     1     0
+2     2     2
+3     3     3
+4    NA    NA</code></pre>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="case_when-3" class="slide level2">
+<h2><code class="smallest">case_when()</code></h2>
+<hr>
+<div class="extra-small-font">
+<ul>
+<li>We’ve used <code>case_when()</code> (with <code>mutate()</code>) quite a bit before, but it can do even more!</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+      x
+  &lt;int&gt;
+1     1
+2     2
+3     3
+4    NA</code></pre>
+</div>
+</div>
+<div class="columns">
+<div class="column">
+<p>Simple Case</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"one"</span>,</span>
+<span id="cb17-4"><a href=""></a>    x <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"two"</span></span>
+<span id="cb17-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x y    
+  &lt;int&gt; &lt;chr&gt;
+1     1 one  
+2     2 two  
+3     3 &lt;NA&gt; 
+4    NA &lt;NA&gt; </code></pre>
+</div>
+</div>
+<p>Simple Case + Catch All (Note: NAs)</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb19-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"one"</span>,</span>
+<span id="cb19-4"><a href=""></a>    <span class="at">.default =</span> <span class="st">"not one"</span></span>
+<span id="cb19-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x y      
+  &lt;int&gt; &lt;chr&gt;  
+1     1 one    
+2     2 not one
+3     3 not one
+4    NA not one</code></pre>
+</div>
+</div>
+</div><div class="column">
+<p>Simple Case + Re-use Variable</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb21-4"><a href=""></a>    <span class="at">.default =</span> x</span>
+<span id="cb21-5"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x     y
+  &lt;int&gt; &lt;dbl&gt;
+1     1     0
+2     2     2
+3     3     3
+4    NA    NA</code></pre>
+</div>
+</div>
+<p>Simple Case + Catch All + Preserve NAs</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>toy <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">case_when</span>(</span>
+<span id="cb23-3"><a href=""></a>    x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"one"</span>,</span>
+<span id="cb23-4"><a href=""></a>    <span class="fu">is.na</span>(x) <span class="sc">~</span> <span class="cn">NA</span>,</span>
+<span id="cb23-5"><a href=""></a>    <span class="at">.default =</span> <span class="st">"not one"</span></span>
+<span id="cb23-6"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+      x y      
+  &lt;int&gt; &lt;chr&gt;  
+1     1 one    
+2     2 not one
+3     3 not one
+4    NA &lt;NA&gt;   </code></pre>
+</div>
+</div>
+</div></div>
+</div>
 </section>
 <section id="one-more-pkg-ggrepel" class="slide level2 smaller">
 <h2>One More Pkg {ggrepel}</h2>
@@ -309,16 +582,16 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>equivalent to <code>geom_text()</code> and <code>geom_label()</code> but with repelling</li>
 </ul>
 </div>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
-<span id="cb1-3"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb1-4"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span>
-<span id="cb1-5"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb1-6"><a href=""></a></span>
-<span id="cb1-7"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
-<span id="cb1-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb1-10"><a href=""></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span>
+<span id="cb25-5"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb25-6"><a href=""></a></span>
+<span id="cb25-7"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
+<span id="cb25-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-10"><a href=""></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
 <div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -326,7 +599,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -336,7 +609,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -354,18 +627,18 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>equivalent to <code>geom_text()</code> and <code>geom_label()</code> but with repelling</li>
 </ul>
 </div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href=""></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"California"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
-<span id="cb2-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-5"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span>
-<span id="cb2-6"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb2-7"><a href=""></a></span>
-<span id="cb2-8"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
-<span id="cb2-9"><a href=""></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"California"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-10"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
-<span id="cb2-11"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-12"><a href=""></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href=""></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"California"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-5"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span>
+<span id="cb26-6"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb26-7"><a href=""></a></span>
+<span id="cb26-8"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
+<span id="cb26-9"><a href=""></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"California"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-10"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
+<span id="cb26-11"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-12"><a href=""></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
 <div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -373,7 +646,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -383,7 +656,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -401,18 +674,18 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>equivalent to <code>geom_text()</code> and <code>geom_label()</code> but with repelling</li>
 </ul>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href=""></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"California"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-5"><a href=""></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span>
-<span id="cb3-6"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb3-7"><a href=""></a></span>
-<span id="cb3-8"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
-<span id="cb3-9"><a href=""></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"California"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-10"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
-<span id="cb3-11"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-12"><a href=""></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href=""></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"California"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-5"><a href=""></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span>
+<span id="cb27-6"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb27-7"><a href=""></a></span>
+<span id="cb27-8"><a href=""></a>tidykids_wider <span class="sc">|&gt;</span></span>
+<span id="cb27-9"><a href=""></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">"California"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-10"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_edsubs, <span class="at">y =</span> inf_adj_parkrec)) <span class="sc">+</span></span>
+<span id="cb27-11"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-12"><a href=""></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
 <div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -420,7 +693,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -430,7 +703,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -484,26 +757,26 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="column">
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb4-2"><a href=""></a></span>
-<span id="cb4-3"><a href=""></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>species)) <span class="sc">+</span></span>
-<span id="cb4-5"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color=</span><span class="st">"#4F4F4F"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Flipper Length vs. Bill Length"</span>,</span>
-<span id="cb4-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
-<span id="cb4-9"><a href=""></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb4-10"><a href=""></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb4-11"><a href=""></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb4-12"><a href=""></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
-<span id="cb4-13"><a href=""></a>   <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-14"><a href=""></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span>
-<span id="cb4-15"><a href=""></a></span>
-<span id="cb4-16"><a href=""></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb28-2"><a href=""></a></span>
+<span id="cb28-3"><a href=""></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>species)) <span class="sc">+</span></span>
+<span id="cb28-5"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color=</span><span class="st">"#4F4F4F"</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb28-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Flipper Length vs. Bill Length"</span>,</span>
+<span id="cb28-8"><a href=""></a>       <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb28-9"><a href=""></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb28-10"><a href=""></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb28-11"><a href=""></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb28-12"><a href=""></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>)) <span class="sc">+</span></span>
+<span id="cb28-13"><a href=""></a>   <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb28-14"><a href=""></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span>
+<span id="cb28-15"><a href=""></a></span>
+<span id="cb28-16"><a href=""></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -511,23 +784,23 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div><div class="column">
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href=""></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb5-3"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Flipper Length by Species"</span>,</span>
-<span id="cb5-5"><a href=""></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
-<span id="cb5-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
-<span id="cb5-8"><a href=""></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
-<span id="cb5-9"><a href=""></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
-<span id="cb5-10"><a href=""></a>   <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb5-11"><a href=""></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span>
-<span id="cb5-12"><a href=""></a></span>
-<span id="cb5-13"><a href=""></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href=""></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb29-3"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Flipper Length by Species"</span>,</span>
+<span id="cb29-5"><a href=""></a>       <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb29-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb29-7"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span> <span class="ot">=</span> <span class="st">"#C65CCB"</span>,</span>
+<span id="cb29-8"><a href=""></a>                               <span class="st">"Gentoo"</span> <span class="ot">=</span> <span class="st">"#077175"</span>,</span>
+<span id="cb29-9"><a href=""></a>                               <span class="st">"Adelie"</span> <span class="ot">=</span> <span class="st">"#FF6A01"</span>))<span class="sc">+</span></span>
+<span id="cb29-10"><a href=""></a>   <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb29-11"><a href=""></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span>
+<span id="cb29-12"><a href=""></a></span>
+<span id="cb29-13"><a href=""></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -543,14 +816,14 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Simplest case</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co">#install.packages("patchwork")</span></span>
-<span id="cb6-2"><a href=""></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb6-3"><a href=""></a></span>
-<span id="cb6-4"><a href=""></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="co">#install.packages("patchwork")</span></span>
+<span id="cb30-2"><a href=""></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb30-3"><a href=""></a></span>
+<span id="cb30-4"><a href=""></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -566,11 +839,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li><code>+</code> operator tries to keep the plots in a square-ish grid; fills by row</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>p1 <span class="sc">+</span> p1 <span class="sc">+</span> p2 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>p1 <span class="sc">+</span> p1 <span class="sc">+</span> p2 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -586,11 +859,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li><code>|</code> operator creates columns</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>p1 <span class="sc">|</span> p1 <span class="sc">|</span> p2 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>p1 <span class="sc">|</span> p1 <span class="sc">|</span> p2 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -606,11 +879,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li><code>/</code> operator creates rows</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>p1 <span class="sc">/</span> p1 <span class="sc">/</span> p2 <span class="sc">/</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>p1 <span class="sc">/</span> p1 <span class="sc">/</span> p2 <span class="sc">/</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -625,11 +898,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Let’s combine them</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>p1 <span class="sc">|</span> p2 <span class="sc">/</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>p1 <span class="sc">|</span> p2 <span class="sc">/</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-31-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -645,11 +918,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>You can also use parentheses to group, just like in math</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -686,18 +959,18 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li><strong>#1</strong>: In chat! What’s my code?…</li>
 </ul>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="patchwork-11" class="slide level2 smaller">
 <h2>{patchwork}</h2>
 <hr>
 <ul>
 <li><strong>#1</strong>: In chat! What’s my code?…</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p3</span>
-<span id="cb12-2"><a href=""></a></span>
-<span id="cb12-3"><a href=""></a><span class="co">#(p1 + p2) / p3 Also works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>(p1 <span class="sc">|</span> p2) <span class="sc">/</span> p3</span>
+<span id="cb36-2"><a href=""></a></span>
+<span id="cb36-3"><a href=""></a><span class="co">#(p1 + p2) / p3 Also works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-35-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="patchwork-12" class="slide level2 smaller">
 <h2>{patchwork}</h2>
 <hr>
@@ -705,18 +978,18 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li><strong>#2</strong>: In chat! What’s my code?…</li>
 </ul>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="patchwork-13" class="slide level2 smaller">
 <h2>{patchwork}</h2>
 <hr>
 <ul>
 <li><strong>#2</strong>: In chat! What’s my code?…</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>p1 <span class="sc">|</span> (p2 <span class="sc">|</span> p3) <span class="sc">/</span> p4</span>
-<span id="cb13-2"><a href=""></a></span>
-<span id="cb13-3"><a href=""></a><span class="co"># p1 | (p2 + p3) / p4 Also works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>p1 <span class="sc">|</span> (p2 <span class="sc">|</span> p3) <span class="sc">/</span> p4</span>
+<span id="cb37-2"><a href=""></a></span>
+<span id="cb37-3"><a href=""></a><span class="co"># p1 | (p2 + p3) / p4 Also works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="patchwork-14" class="slide level2 smaller">
 <h2>{patchwork}</h2>
 <hr>
@@ -724,19 +997,19 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li><strong>#3</strong>: In chat! What’s my code?…</li>
 </ul>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="patchwork-15" class="slide level2 smaller">
 <h2>{patchwork}</h2>
 <hr>
 <ul>
 <li><strong>#3</strong>: In chat! What’s my code?…</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>(p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span> p4) <span class="sc">/</span> p5</span>
-<span id="cb14-2"><a href=""></a></span>
-<span id="cb14-3"><a href=""></a><span class="co"># ((p1 | p2)/(p3 | p4)) / p5 Also (generally) works</span></span>
-<span id="cb14-4"><a href=""></a><span class="co"># ((p1 + p2)/(p3 + p4)) / p5 Also (generally) works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>(p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span> p4) <span class="sc">/</span> p5</span>
+<span id="cb38-2"><a href=""></a></span>
+<span id="cb38-3"><a href=""></a><span class="co"># ((p1 | p2)/(p3 | p4)) / p5 Also (generally) works</span></span>
+<span id="cb38-4"><a href=""></a><span class="co"># ((p1 + p2)/(p3 + p4)) / p5 Also (generally) works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-39-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="patchwork-16" class="slide level2 smaller">
 <h2>{patchwork}</h2>
 <hr>
@@ -747,23 +1020,23 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
 <div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>(p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span> p4) <span class="sc">/</span> p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>(p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span> p4) <span class="sc">/</span> p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-40-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>((p1 <span class="sc">+</span> p2)<span class="sc">/</span>(p3 <span class="sc">+</span> p4)) <span class="sc">/</span> p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>((p1 <span class="sc">+</span> p2)<span class="sc">/</span>(p3 <span class="sc">+</span> p4)) <span class="sc">/</span> p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-41-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -782,25 +1055,25 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
 <div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># Two groupings: 50% and 50%</span></span>
-<span id="cb17-2"><a href=""></a>(p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span> p4) <span class="sc">/</span> p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="co"># Two groupings: 50% and 50%</span></span>
+<span id="cb41-2"><a href=""></a>(p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3 <span class="sc">+</span> p4) <span class="sc">/</span> p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div><div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="co"># Three groupings: 33%, 33%, and 33%</span></span>
-<span id="cb18-2"><a href=""></a>((p1 <span class="sc">+</span> p2)<span class="sc">/</span>(p3 <span class="sc">+</span> p4)) <span class="sc">/</span> p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="co"># Three groupings: 33%, 33%, and 33%</span></span>
+<span id="cb42-2"><a href=""></a>((p1 <span class="sc">+</span> p2)<span class="sc">/</span>(p3 <span class="sc">+</span> p4)) <span class="sc">/</span> p5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-43-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -816,13 +1089,13 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>I made several plots with penguins data (hidden code)</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>combined_plot <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> p4 <span class="sc">|</span> p5) <span class="co">#Note: It does the same default space distribution horizontally</span></span>
-<span id="cb19-2"><a href=""></a></span>
-<span id="cb19-3"><a href=""></a>combined_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>combined_plot <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> p4 <span class="sc">|</span> p5) <span class="co">#Note: It does the same default space distribution horizontally</span></span>
+<span id="cb43-2"><a href=""></a></span>
+<span id="cb43-3"><a href=""></a>combined_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-44-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -837,13 +1110,13 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>This is the configuration I want. Let’s make it look better…</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>combined_plot_2 <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> (p4 <span class="sc">|</span> p5))</span>
-<span id="cb20-2"><a href=""></a></span>
-<span id="cb20-3"><a href=""></a>combined_plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>combined_plot_2 <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> (p4 <span class="sc">|</span> p5))</span>
+<span id="cb44-2"><a href=""></a></span>
+<span id="cb44-3"><a href=""></a>combined_plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-31-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-45-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -858,11 +1131,11 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>These legends are all providing the same information…</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>combined_plot_2 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>combined_plot_2 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-46-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -878,13 +1151,13 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Otherwise, I can clean the legends up in the original plots with <code>theme(legend.position = "none")</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>combined_plot_2 <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> (p4 <span class="sc">|</span> p5))</span>
-<span id="cb22-2"><a href=""></a>combined_plot_2 <span class="ot">&lt;-</span> combined_plot_2 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span>
-<span id="cb22-3"><a href=""></a>combined_plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>combined_plot_2 <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2) <span class="sc">/</span> (p3 <span class="sc">|</span> (p4 <span class="sc">|</span> p5))</span>
+<span id="cb46-2"><a href=""></a>combined_plot_2 <span class="ot">&lt;-</span> combined_plot_2 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">'collect'</span>)</span>
+<span id="cb46-3"><a href=""></a>combined_plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-48-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -900,13 +1173,13 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Can use numbers, letters, roman numerals for tags (upper/lowercase)</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>combined_plot_2 <span class="ot">&lt;-</span> combined_plot_2 <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">'Fig 1.4: Plotting Portraits of Perplexing Penguins'</span>,</span>
-<span id="cb23-2"><a href=""></a>                                                     <span class="at">tag_levels =</span> <span class="st">'A'</span>)</span>
-<span id="cb23-3"><a href=""></a>combined_plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>combined_plot_2 <span class="ot">&lt;-</span> combined_plot_2 <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">'Fig 1.4: Plotting Portraits of Perplexing Penguins'</span>,</span>
+<span id="cb47-2"><a href=""></a>                                                     <span class="at">tag_levels =</span> <span class="st">'A'</span>)</span>
+<span id="cb47-3"><a href=""></a>combined_plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-35-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-49-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -942,18 +1215,18 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Works similarly, but feels a bit more complicated</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="co">#install.packages("cowplot")</span></span>
-<span id="cb24-2"><a href=""></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb24-3"><a href=""></a></span>
-<span id="cb24-4"><a href=""></a>top_row <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>))</span>
-<span id="cb24-5"><a href=""></a>bottom_row <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(p3, p4, p5, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>))</span>
-<span id="cb24-6"><a href=""></a>combined_plot_4 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(top_row, bottom_row, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb24-7"><a href=""></a></span>
-<span id="cb24-8"><a href=""></a>combined_plot_4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="co">#install.packages("cowplot")</span></span>
+<span id="cb48-2"><a href=""></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb48-3"><a href=""></a></span>
+<span id="cb48-4"><a href=""></a>top_row <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>))</span>
+<span id="cb48-5"><a href=""></a>bottom_row <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(p3, p4, p5, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>))</span>
+<span id="cb48-6"><a href=""></a>combined_plot_4 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(top_row, bottom_row, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb48-7"><a href=""></a></span>
+<span id="cb48-8"><a href=""></a>combined_plot_4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-50-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -986,16 +1259,16 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb25-2"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
-<span id="cb25-3"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb25-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
-<span id="cb25-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb25-6"><a href=""></a>       <span class="at">title =</span> <span class="st">"Distribution of Flipper Lengths"</span>)<span class="sc">+</span></span>
-<span id="cb25-7"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb49-2"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb49-3"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb49-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
+<span id="cb49-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb49-6"><a href=""></a>       <span class="at">title =</span> <span class="st">"Distribution of Flipper Lengths"</span>)<span class="sc">+</span></span>
+<span id="cb49-7"><a href=""></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-51-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="faceting-1" class="slide level2 smaller">
 <h2>Faceting</h2>
 <hr>
@@ -1006,18 +1279,18 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb26-2"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
-<span id="cb26-3"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb26-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
-<span id="cb26-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb26-6"><a href=""></a>       <span class="at">title =</span> <span class="st">"Distribution of flipper lengths"</span>)<span class="sc">+</span></span>
-<span id="cb26-7"><a href=""></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb26-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb26-9"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb50-2"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb50-3"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb50-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
+<span id="cb50-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb50-6"><a href=""></a>       <span class="at">title =</span> <span class="st">"Distribution of flipper lengths"</span>)<span class="sc">+</span></span>
+<span id="cb50-7"><a href=""></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb50-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb50-9"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-52-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="faceting-2" class="slide level2 smaller">
 <h2>Faceting</h2>
 <hr>
@@ -1028,18 +1301,18 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb27-2"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
-<span id="cb27-3"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb27-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
-<span id="cb27-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb27-6"><a href=""></a>       <span class="at">title =</span> <span class="st">"Distribution of flipper lengths"</span>)<span class="sc">+</span></span>
-<span id="cb27-7"><a href=""></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb27-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span></span>
-<span id="cb27-9"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb51-2"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb51-3"><a href=""></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>,<span class="st">"purple"</span>,<span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
+<span id="cb51-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb51-6"><a href=""></a>       <span class="at">title =</span> <span class="st">"Distribution of flipper lengths"</span>)<span class="sc">+</span></span>
+<span id="cb51-7"><a href=""></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb51-8"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span></span>
+<span id="cb51-9"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-39-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-53-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="faceting-3" class="slide level2 smaller">
 <h2>Faceting</h2>
 <hr>
@@ -1050,20 +1323,20 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="smaller-font">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, inf_adj_perchild)) <span class="sc">|&gt;</span></span>
-<span id="cb28-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state)) <span class="sc">+</span></span>
-<span id="cb28-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#007A33"</span>, <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb28-6"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb28-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Inflation Adjusted Per Child Expenditure on Pre-K Through 12 Education (2016)"</span>)<span class="sc">+</span></span>
-<span id="cb28-8"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb28-9"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
-<span id="cb28-10"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>tidykids <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>, expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">fct_reorder</span>(state, inf_adj_perchild)) <span class="sc">|&gt;</span></span>
+<span id="cb52-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state)) <span class="sc">+</span></span>
+<span id="cb52-5"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"#007A33"</span>, <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb52-6"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb52-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Inflation Adjusted Per Child Expenditure on Pre-K Through 12 Education (2016)"</span>)<span class="sc">+</span></span>
+<span id="cb52-8"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb52-9"><a href=""></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb52-10"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-41-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-55-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1082,16 +1355,16 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>a plot to build on…</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>p8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb29-2"><a href=""></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb29-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
-<span id="cb29-4"><a href=""></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
-<span id="cb29-5"><a href=""></a>    <span class="at">y=</span> <span class="st">"MPG"</span>)</span>
-<span id="cb29-6"><a href=""></a></span>
-<span id="cb29-7"><a href=""></a>p8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>p8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb53-2"><a href=""></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb53-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
+<span id="cb53-4"><a href=""></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb53-5"><a href=""></a>    <span class="at">y=</span> <span class="st">"MPG"</span>)</span>
+<span id="cb53-6"><a href=""></a></span>
+<span id="cb53-7"><a href=""></a>p8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-56-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="annotations-text" class="slide level2 smaller">
 <h2>Annotations: Text</h2>
 <hr>
@@ -1099,19 +1372,19 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>We learned about <code>text</code> and <code>label</code> annotations last week.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>p9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb30-2"><a href=""></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb30-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
-<span id="cb30-4"><a href=""></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
-<span id="cb30-5"><a href=""></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
-<span id="cb30-6"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb30-7"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
-<span id="cb30-8"><a href=""></a>          <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>)</span>
-<span id="cb30-9"><a href=""></a>  </span>
-<span id="cb30-10"><a href=""></a>p9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a>p9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb54-2"><a href=""></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb54-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
+<span id="cb54-4"><a href=""></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb54-5"><a href=""></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
+<span id="cb54-6"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb54-7"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb54-8"><a href=""></a>          <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>)</span>
+<span id="cb54-9"><a href=""></a>  </span>
+<span id="cb54-10"><a href=""></a>p9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-43-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-57-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="annotations-text-rect" class="slide level2 smaller">
 <h2>Annotations: Text + Rect</h2>
 <hr>
@@ -1119,20 +1392,20 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Let’s add a rectangle to highlight a specific area of the plot</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>p10 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb31-2"><a href=""></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb31-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
-<span id="cb31-4"><a href=""></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
-<span id="cb31-5"><a href=""></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
-<span id="cb31-6"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb31-7"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
-<span id="cb31-8"><a href=""></a>           <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>) <span class="sc">+</span></span>
-<span id="cb31-9"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="fl">1.5</span>, <span class="at">xmax =</span> <span class="fl">2.5</span>, <span class="at">ymin =</span> <span class="dv">25</span>, <span class="at">ymax =</span> <span class="dv">35</span>, <span class="at">alpha =</span> .<span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"cornflowerblue"</span>)</span>
-<span id="cb31-10"><a href=""></a></span>
-<span id="cb31-11"><a href=""></a>p10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>p10 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb55-2"><a href=""></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb55-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
+<span id="cb55-4"><a href=""></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb55-5"><a href=""></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
+<span id="cb55-6"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb55-7"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb55-8"><a href=""></a>           <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>) <span class="sc">+</span></span>
+<span id="cb55-9"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"rect"</span>, <span class="at">xmin =</span> <span class="fl">1.5</span>, <span class="at">xmax =</span> <span class="fl">2.5</span>, <span class="at">ymin =</span> <span class="dv">25</span>, <span class="at">ymax =</span> <span class="dv">35</span>, <span class="at">alpha =</span> .<span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"cornflowerblue"</span>)</span>
+<span id="cb55-10"><a href=""></a></span>
+<span id="cb55-11"><a href=""></a>p10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-44-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-58-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="annotations-gghighlight" class="slide level2 smaller">
 <h2>Annotations: {gghighlight}</h2>
 <hr>
@@ -1140,22 +1413,22 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Or use {gghighlight} to highlight specific points on the plot</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">library</span>(gghighlight)</span>
-<span id="cb32-2"><a href=""></a></span>
-<span id="cb32-3"><a href=""></a>p11 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb32-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"cornflowerblue"</span>)<span class="sc">+</span></span>
-<span id="cb32-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
-<span id="cb32-6"><a href=""></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
-<span id="cb32-7"><a href=""></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
-<span id="cb32-8"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb32-9"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
-<span id="cb32-10"><a href=""></a>           <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>)<span class="sc">+</span></span>
-<span id="cb32-11"><a href=""></a>  <span class="fu">gghighlight</span>(mpg <span class="sc">&gt;</span> <span class="dv">25</span>)</span>
-<span id="cb32-12"><a href=""></a></span>
-<span id="cb32-13"><a href=""></a>p11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="fu">library</span>(gghighlight)</span>
+<span id="cb56-2"><a href=""></a></span>
+<span id="cb56-3"><a href=""></a>p11 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb56-4"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"cornflowerblue"</span>)<span class="sc">+</span></span>
+<span id="cb56-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Weight vs. MPG of Cars"</span>,</span>
+<span id="cb56-6"><a href=""></a>    <span class="at">x =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb56-7"><a href=""></a>    <span class="at">y=</span> <span class="st">"MPG"</span>) <span class="sc">+</span></span>
+<span id="cb56-8"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb56-9"><a href=""></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb56-10"><a href=""></a>           <span class="at">label =</span> <span class="st">"These cars are fuel efficient"</span>)<span class="sc">+</span></span>
+<span id="cb56-11"><a href=""></a>  <span class="fu">gghighlight</span>(mpg <span class="sc">&gt;</span> <span class="dv">25</span>)</span>
+<span id="cb56-12"><a href=""></a></span>
+<span id="cb56-13"><a href=""></a>p11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-45-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-59-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section id="mini-project-2-final" class="title-slide slide level1 center">
 <h1><a href="https://utk.instructure.com/courses/239375/assignments/2326753">Mini-Project #2 &amp; Final</a></h1>
 

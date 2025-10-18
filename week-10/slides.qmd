@@ -74,8 +74,185 @@ library(tidykids)
 <hr>
 - Some of you experienced {showtext} font sizing issues
 - This is a known issue with {showtext} and {ggplot2}
-- Largely happens on Windows machines
-- If this happened in your homework, I will provide a piece of code in your Canvas feedback to help
+- Happens on Retina devices
+- Solution [HERE](https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html#working-with-r-markdown)
+
+# More on Data Cleaning (Advanced `case_when()`)
+
+## `case_when()`{.smaller}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", "3", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{.columns}
+::::{.column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+
+::::
+::::{.column}
+
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", "3", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{.columns}
+::::{.column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+
+::::
+::::{.column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", "3",NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{.columns}
+::::{.column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+Simple Case + Catch All (Note: NAs)
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    .default = "not one"
+  ))
+```
+::::
+::::{.column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+
+::::
+:::
+::::::
+
+## `case_when()`{.smallest}
+<hr>
+::::::{.extra-small-font}
+- We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
+
+```{r, echo=FALSE}
+toy <- as_tibble(as.integer(c("1", "2", "3", NA)))
+colnames(toy) <- "x"
+
+toy
+```
+
+:::{.columns}
+::::{.column}
+Simple Case
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    x == 2 ~ "two"
+  ))
+```
+
+Simple Case + Catch All (Note: NAs)
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    .default = "not one"
+  ))
+```
+::::
+::::{.column}
+Simple Case + Re-use Variable
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ 0,
+    .default = x
+  ))
+```
+
+Simple Case + Catch All + Preserve NAs
+```{r}
+toy |>
+  mutate(y = case_when(
+    x == 1 ~ "one",
+    is.na(x) ~ NA,
+    .default = "not one"
+  ))
+```
+::::
+:::
+::::::
 
 ## One More Pkg {ggrepel}{.smaller}
 <hr>
