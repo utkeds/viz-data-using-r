@@ -68,14 +68,32 @@ library(tidykids)
 
 :::
 
+## PRO TIP
+<hr>
+- There is a way to block comment out multiple lines of code (helpful to save code when you don't want it to run)
+
+1. Highlight the lines of code you want to comment out
+2. `Cmd` (Mac)  OR  `Ctrl` (Windows) + `/`
+
+
 # Building on Week 9
 
 ## Homework 9: {showtext} font sizing {.smaller}
 <hr>
 - Some of you experienced {showtext} font sizing issues
-- This is a known issue with {showtext} and {ggplot2}
-- Happens on Retina devices
-- Solution [HERE](https://cran.rstudio.com/web/packages/showtext/vignettes/introduction.html#working-with-r-markdown)
+- Problem ONE: The annotation gets tiny after using {showtext}
+- One solution: Add the annotation after the {showtext} step
+  - I will change the assignment for next semester so this is less of an issue
+
+## Homework 9: {showtext} font sizing {.smaller}
+<hr>
+- Some of you experienced applying a {showtext} font but it not showing up in the plot pane (although it does when rendered)
+- Problem TWO: The plot pane and the rendering mechanism work differently
+- Solution: Specify in the code cell that you want to use {showtext}
+
+```r
+#| fig.showtext : TRUE
+```
 
 # More on Data Cleaning (Advanced `case_when()`)
 

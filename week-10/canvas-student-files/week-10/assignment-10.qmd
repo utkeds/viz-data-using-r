@@ -11,7 +11,7 @@ execute:
     out-width: "100%"
 ---
 
-```{r package-install}
+```{r package-load}
 library(tidyverse)
 library(patchwork)
 ```
@@ -34,7 +34,7 @@ Using a previous data set (and analysis), develop a data visualization that uses
 
 ## Annotations
 
-Again using a previous data set and related analyses and/or visualizations, add two or more annotation layers to a plot OR use gghighlight.
+Again using a previous data set and related analyses and/or visualizations, add two or more annotation layers to a plot OR use gghighlight (counts as one of two annotations).
 
 
 ```{r}
@@ -46,8 +46,6 @@ Again using a previous data set and related analyses and/or visualizations, add 
 Important note: After you render, check the HTML file. 
 
 - Does it appear as you intended?
-- Does any output print that is too long?
-- Do your name and date appear?
 
 Share any questions you have in Canvas about fine-tuning your .qmd output.
 
