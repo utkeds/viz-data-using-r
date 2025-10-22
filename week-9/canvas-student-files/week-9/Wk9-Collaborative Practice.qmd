@@ -69,7 +69,25 @@ library(MetBrewer)
 
 ```
 
-## STEP 4: Add annotation
+## STEP 4: Fonts!
+- Install the {showtext} package and/or load it, depending if you've already initially installed it
+- In your console, run `font_families_google()` and pick a font you'd like to use for your plot. You can see them at [Google Fonts](fonts.google.com). Make sure to note the exact name of the font you want to use from the `font_families_google()` output.
+- Use `font_add_google` to make the font available for use in your plot
+- Run `showtext_auto()` to enable the use of the font
+- Change the font in your plot to the one you've selected using `theme(text = element_text(family = "fontname"))`
+
+```{r fonts}
+#| fig.showtext = TRUE
+
+#install.packages("showtext")
+library(showtext)
+
+font_add_google(name="", family="")
+
+```
+
+
+## STEP 5: Add annotation
 - The amount spent by the northeastern (1st)  and southern (2nd) states in 2016 has been calculated for you. Now, calculate the difference between the two values and store as a third object in your environment
 - Use `annotate` to:
     - Add a two-line (`\n` = line break) annotation near the northeastern line in 2016, focusing on the gap between the northeast and the south
@@ -104,22 +122,6 @@ p <- p + annotate(
 
 # Note: Because of the way we keep overwriting p, if you make a mistake, you will want to go back and re-run steps 2 and 3 before re-running this code chunk. This is why I typically write plots all in one call, but I wanted to break it up for this exercise.
 ```
-
-## STEP 5: Fonts!
-- Install the {showtext} package and/or load it, depending if you've already initially installed it
-- In your console, run `font_families_google()` and pick a font you'd like to use for your plot. You can see them at [Google Fonts](fonts.google.com). Make sure to note the exact name of the font you want to use from the `font_families_google()` output.
-- Use `font_add_google` to make the font available for use in your plot
-- Run `showtext_auto()` to enable the use of the font
-- Change the font in your plot to the one you've selected using `theme(text = element_text(family = "fontname"))`
-
-```{r fonts}
-#install.packages("showtext")
-library(showtext)
-
-font_add_google(name="", family="")
-
-```
-
 
 ## STEP 6: Output your plot (Already complete)
 
