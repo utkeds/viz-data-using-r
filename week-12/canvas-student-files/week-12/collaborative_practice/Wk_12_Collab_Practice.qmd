@@ -1,0 +1,50 @@
+---
+title: "Collaborative Practice: Tables with {gt}"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    out-width: "100%"
+---
+
+## Introduction
+  
+In this exercise, you will use the `penguins` dataset from the Palmer Archipelago in Antarctica to create a professional table summarizing penguin measurements.
+You will wrangle the data, calculate summary statistics, and use the {gt} package to create and style a publication-ready table.
+
+## Research Question
+
+What are the average body and bill measurements for different penguin species across the islands in the Palmer Archipelago?
+
+## Instructions
+
+1. **Load Required Packages and Dataset**
+   - Load the `palmerpenguins` package
+   - Load the `tidyverse` package
+   - Load the `gt` package
+   - Examine the `penguins` dataset
+
+2. **Data Wrangling**:
+   - In a code chunk you create below, do the following:
+     - Group the data by `species` and `island`
+     - Calculate the mean `bill_length_mm`, `bill_depth_mm`, and `body_mass_g` for each group using `summarize()`
+     - Remember to use `na.rm = TRUE` in your `mean()` functions to handle missing values
+
+3. **Create a Basic Table**:
+   - Pipe your wrangled data into `gt()`
+   - Add a title using `tab_header()` with the title "Palmer Penguins: Average Measurements by Species and Island"
+   - Add a subtitle "Data from Palmer Station, Antarctica"
+
+4. **Style Your Table**:
+   - Use `tab_spanner()` to group the bill measurement columns under a label "Bill Measurements (mm)"
+   - Add a footnote to the `body_mass_g` column noting "Body mass measured in grams" using `tab_footnote()`
+   - Use `tab_options()` to set `data_row.padding` to `px(5)`
+
+5. **Reflection**:
+   - Which species-island combination has the largest average body mass?
+   - What differences do you notice in bill measurements across species?
+   - How does the table format help communicate the data compared to viewing the raw tibble?

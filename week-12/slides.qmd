@@ -1224,14 +1224,11 @@ tab_1 |>
 
 ## Collaborative Practice{.smaller}
 <hr>
-- You have `01_02_Collaborative_Practice.Rmd` in your .zip file
-    - All the code is written. Your job is to read the prompts and edit it to build facility with {gt}.
+- You have `Wk_12_Collab_Practice.qmd` in your .zip file
+    - Uses {palmerpenguins} data (palmerpenguins::penguins)
 - Launch into breakout rooms.
 - Cameras off: 3-5 min to review task
 - Cameras on: collaborative task work
-- No need to submit this one.
-- If you have time remaining:
-    - Open 03 and work through it together
 
 <!-- ## Final Project / Wk 14{.smaller} -->
 <!-- <hr> -->
@@ -1257,9 +1254,6 @@ If interested, file 5: adding summary rows and file 6: table option functions ex
     - Muth (2018)
     - Schwabish (2021), Chapter 7
 - Assignment: Creating and Styling Tables
-  - Due NEXT Wednesday (4/23)
-- Mini Project #2
-  - Due THIS Wednesday (4/16)
 
 ## Attribution for Materials Used Today{.smaller}
 <hr>
