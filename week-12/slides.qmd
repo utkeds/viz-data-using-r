@@ -1197,7 +1197,7 @@ tab_1 |>
 
 ## `tab_options()` function{.smaller}
 <hr>
-- Change the padding of data rows to 5 pixels
+- Change the padding of data rows to 3 pixels
 ```{r}
 tab_1 |> 
   tab_options(data_row.padding = px(3)) # px() helper function used here
