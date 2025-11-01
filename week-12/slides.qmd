@@ -1,6 +1,6 @@
 ---
 subtitle: "Tables in {gt}"
-title: "Week 11 - STEM 691"
+title: "Week 12 - STEM 691"
 author: "Dr. Kelly Boles & Dr. Zhen Xu"
 format:
   revealjs:
