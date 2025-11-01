@@ -1,0 +1,58 @@
+---
+title: "Untitled"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    out-width: "100%"
+---
+
+<!--Load in your packages. -->
+```{r packages}
+
+```
+
+### 1. Reading in Data
+- You may use your own data, tidykids data, starwars data, or palmerpenguins data.
+```{r read_in_data}
+
+```
+
+### 2. Wrangling Data
+```{r wrangle_data}
+
+```
+
+### 3. Creating a Table with {gt}
+Requirements for table:
+
+- A title
+- A stub
+- A source note
+- Either Markdown `md()` or HTML `html()` styling
+- At least one `tab_style()` argument
+```{r create_table}
+
+```
+
+### 4. Adding in Bonus Features
++ 5 pts. for using idea from Tutorial #3
++ 5 pts. for using idea from Tutorial #4
+```{r table_with_bonus_features}
+
+```
+
+***REQUIRED DOCUMENTATION FOR BONUS!***
+Which feature did you implement...
+
+- **From Tutorial #3:** [ANSWER HERE]
+- **From Tutorial #4:** [ANSWER HERE]
+
+### 5. Reflection
+How did this assignment go? What did you learn? What would you do differently next time? 
+
+**Reflection:** [Please write your reflection here.]

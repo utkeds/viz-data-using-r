@@ -1,0 +1,183 @@
+/*-- scss:defaults --*/
+
+//Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+//Fonts
+$font-family-sans-serif: 'Montserrat', sans-serif !default;
+
+//Headings
+$presentation-heading-font: "Tinos", serif !default;
+$presentation-heading-color: #FF8200 !default;
+$subheading-font: "Montserrat", sans-serif !default;
+$subheading-color: #2197A9 !default;
+
+//Colors
+$orange: #FF8200;
+$white: #FFFFFF;
+$gray: #4B4B4B;
+$valley: #00746F;
+$torch: #E65933;
+$globe: #006C93;
+$limestone: #F0EDE3;
+$sunsphere: #FED535;
+$river: #517C96;
+$leconte: #8D2048;
+$rock: #A7A9AC;
+$summit: #B9E1E2;
+$legacy: #579584;
+$buckskin: #705550;
+$switchgrass: #ABC178;
+$regalia: #754A7E;
+$fountain: #2197A9;
+$eureka: #EBEA64;
+$energy: #EE3E80;
+
+//Font Color Classes
+.valley-color {
+  color: #00746F;
+}
+
+.globe-color {
+  color: #006C93;
+}
+
+.river-color{
+  color: #517C96;
+}
+
+.leconte-color{
+  color: #8D2048;
+}
+
+.rock-color{
+  color: #A7A9AC;
+}
+
+.summit-color{
+  color: #B9E1E2;
+}
+
+.legacy-color{
+  color: #579584;
+}
+
+.buckskin-color{
+  color: #705550;
+}
+
+.switchgrass-color{
+  color: #ABC178;
+}
+
+.regalia-color{
+  color: #754A7E;
+}
+
+.fountain-color{
+  color: #2197A9;
+}
+
+.eureak-color{
+  color: #EBEA64;
+}
+
+.energy-color{
+  color: #EE3E80;
+}
+
+
+//Grammar of Graphics Font Color Classes
+.data-color {
+  color: #2A2C7C;
+}
+
+.aesthetics-color {
+  color: #552E91;
+}
+
+.geometries-color {
+  color: #7F2E92;
+}
+
+.scales-color {
+  color: #B32B8F;
+}
+
+.facets-color {
+  color: #D5536F;
+}
+
+.coordinates-color {
+  color: #F07C50;
+}
+
+.labels-color {
+  color: #FBAB33;
+}
+
+.theme-color {
+  color: #F4E420;
+}
+
+// Base Document colors
+$link-color: $fountain;
+$link-color-hover: $valley;
+$body-color: $gray;
+
+/*-- scss:rules --*/
+#title-slide {
+  .title {
+    font-size: 2em;
+    color: $white;
+  }
+  .subtitle {
+    color: $orange;
+  }
+  .quarto-title-author {
+    color: $white;
+  }
+}
+
+// horizontal line
+hr { 
+  border: 3px solid $gray;
+  border-radius: 2px;
+  margin-bottom: 15px;
+}
+
+// norms font
+.compact-font{
+  line-height: 1em;
+  font-size: 0.6em;
+};
+
+.small-font{
+  font-size: 34px;
+}
+
+.smaller-font{
+  font-size: 24px;
+}
+
+.extra-small-font{
+  font-size: 18px;
+}
+
+.sorta-tiny-font{
+  font-size: 12px;
+}
+
+.tiny-font{
+  font-size: 10px;
+}
+
+figcaption {
+  font-size: 0.1em; /* Adjust the size as needed */
+  color: #666; /* Optional: adjust the color */
+}
+
+//shade alternate rows of table
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #dcf0f0;
+}
