@@ -1,7 +1,7 @@
 ---
 subtitle: "Tables in {gt}"
 title: "Week 11 - STEM 691"
-author: "Dr. Kelly Boles"
+author: "Dr. Kelly Boles & Dr. Zhen Xu"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -12,7 +12,7 @@ format:
     highlight-style: tango
     title-slide-attributes:
       data-background-color: "#4B4B4B"
-      data-background-image: UnitShortcut.png
+      data-background-image: slides_images/UnitShortcut.png
       data-background-size: 50%
       data-background-position: 50% 9%
     footer: UTK Educational Data Science
@@ -37,6 +37,7 @@ library(tidyverse)
 
 :::{.smaller-font}
 - **Weekly Check In**
+- **Foundational Skills**
 - **Tables in {gt}**
     - What can you do with {gt}?
     - How do you use {gt}? 
@@ -59,22 +60,63 @@ library(tidyverse)
 
 :::
 
-# Revisiting Last Week
+# Foundational Skills
 
-## alt tags in .Rmd {.smaller}
+## alt tags in .qmd {.smaller}
 <hr>
-- Last week, there was a question about creating alt tags in an .Rmd file
+- Last week, there was a question about creating alt tags in a .qmd file
 - This is *optional* for your final project.
-- When you create your code chunk, you can add an alt tag there
-![](Rmd_alt_text.png)
+- When you create your code cell, you can add an alt tag there
 
-## Setting up knitr chunk options {.smaller}
+```r
+#| fig-alt: "This is alt text."
+```
+
+## Sizing Composite Plots {.smaller}
 <hr>
-- I kept noticing some strange behavior even when you set `message=F` and `warning=F` in the knitr options
-- Solution: Do not set the knitr options in the same block where you are loading the packages
-- Instead, set the options first, then load the packages in a second code chunk
-![](do_not_do_this.png)
+- Recall you can edit the size of the cell output (inches):
 
+```r
+#| fig-width: 8
+#| fig-height: 6
+```
+
+- You can also manually [set the vertical and horizontal proportions](https://patchwork.data-imaginist.com/articles/guides/layout.html) of the composite plot in {patchwork}
+
+```r
+p1 + p2 + p3 + p4 +
+  plot_layout(widths = c(2, 1))
+```
+
+## Preview vs. Rendered vs. ggsave() {.smaller}
+<hr>
+- RStudio handled this better than Positron
+- One suggestion: Explicitly set the size of the plot in the code cell and in ggsave 
+  - *both in inches*
+- Don't go by plot preview pane
+- Render early and often and go by rendered preview
+
+## But what size do I want? {.smaller}
+<hr>
+**A Hack**
+
+```r
+# Pop-up: (call in console)
+quartz() #MacOS ONLY
+windows() #Windows ONLY
+x11() #Linux ONLY
+
+# Make your plot here
+data |>
+  ggplot()
+
+# Get dimensions of pop-up (call in console)
+dev.size("in") #Use these for your cell output specifications (fig-height, fig-width) and ggsave
+
+ggsave("plotname.png", width = ?, height = ?, units = "in")
+
+```
+# Tables
 
 ## Tables in R{.smaller}
 <hr>
@@ -191,7 +233,7 @@ gt(
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/1_Basic_gt_table.png)
+![](slides_images/1_Basic_gt_table.png)
 :::
 
 :::{column}
@@ -219,7 +261,7 @@ exibble |>
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/2_Row_to_stub.png)
+![](slides_images/2_Row_to_stub.png)
 - The stub doesn't have a column label. We can add a stubhead label later, if desired.
 :::
 
@@ -257,7 +299,7 @@ exibble
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/3_Row_group_label.png)
+![](slides_images/3_Row_group_label.png)
 
 :::
 
@@ -282,12 +324,12 @@ exibble |>
 
 ## The `gt()` Function{.smaller}
 <hr>
-- Note that we can also use `group_by()` to add *row group labels*
+- Note that we can also use `dplyr::group_by()` to add *row group labels*
 
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/3_Row_group_label.png)
+![](slides_images/3_Row_group_label.png)
 
 :::
 
@@ -318,7 +360,7 @@ exibble |>
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/3_Row_group_label.png)
+![](slides_images/3_Row_group_label.png)
 
 :::
 
@@ -372,9 +414,9 @@ gtcars
 <hr>
 - Let's select a few variables and preview what `gtcars` would look like in a table
 
-:::{layout="[1,1]" .smaller-font}
+:::{.columns .smaller-font}
 
-:::{column}
+:::{.column}
 <br>
 ```{r}
 gtcars |>
@@ -383,7 +425,7 @@ gtcars |>
 ```
 :::
 
-:::{column}
+:::{.column}
 - We can exclude the row numbers:
 ```{r}
 gtcars |>
@@ -441,27 +483,27 @@ gt_tbl
 :::{column}
 <br><br><br>
 [- Write an HTML file.]{.extra-small-font}
-```{r, eval=FALSE}
+```r
 gt_tbl |> gtsave("tab_1.html")
 ```
 <br>
 [- Get a PNG file by using the .png extension.]{.extra-small-font}
-```{r, eval=FALSE}
+```r
 gt_tbl |> gtsave("tab_1.png")
 ```
 <br>
 [- Get a LaTeX file by using the .tex extension.]{.extra-small-font}
-```{r, eval=FALSE}
+```r
 gt_tbl |> gtsave("tab_1.tex")
 ```
 <br>
 [- Get a RTF file by using the .rtf extension.]{.extra-small-font}
-```{r, eval=FALSE}
+```r
 gt_tbl |> gtsave("tab_1.rtf")
 ```
 <br>
 [- Get a Word file by using the .docx extension.]{.extra-small-font}
-```{r, eval=FALSE}
+```r
 gt_tbl |> gtsave("tab_1.docx")
 ```
 :::
@@ -540,8 +582,8 @@ tab_header(
 :::{column}
 ```r
 gtcars |>
-  select(mfr, model, msrp) |>
-  slice(1:5) |>
+  select(mfr, model, msrp) |> #Making a small table for slide
+  slice(1:5) |> #Making a small table for slide
   gt() |>
   tab_header(
     title = md("Data listing from **gtcars**"),
@@ -549,7 +591,7 @@ gtcars |>
   )
 ```
 
-![](teacher/4_Table_header.png)
+![](slides_images/4_Table_header.png)
 :::
 
 :::{column}
@@ -585,18 +627,27 @@ tab_stubhead(
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/4_Table_header.png)
+```r
+gtcars |>
+  select(model, year, hp, trq) |> #Making a small table for slide
+  slice(1:5) |> #Making a small table for slide
+  gt(rowname_col = "model") |>
+  tab_stubhead(label = "car")
+```
+
+![](slides_images/4_Table_header.png)
 :::
 
 :::{column}
 <br>
-```{r}
+```{r, echo=F}
 gtcars |>
-  select(model, year, hp, trq) |>
-  slice(1:5) |>
+  select(model, year, hp, trq) |> #Making a small table for slide
+  slice(1:5) |> #Making a small table for slide
   gt(rowname_col = "model") |>
   tab_stubhead(label = "car")
 ```
+
 :::
 
 :::
@@ -621,26 +672,40 @@ tab_spanner(
 ## `tab_spanner()` function{.smaller}
 <hr>
 
-:::{layout="[1,1]" .smaller-font}
+:::{.columns .smaller-font}
 
-:::{column}
-![](teacher/5_Table_spanner.png)
-:::
+:::{.column}
 
-:::{column}
-<br>
-1. I'm going to make a smaller version of `gtcars` to work with.
-```{r}
+```r
 gtcars_small <- 
   gtcars |>
   dplyr::select(
     -mfr, -trim, bdy_style, drivetrain,
     -drivetrain, -trsmn, -ctry_origin
-  ) |>
-  dplyr::slice(1:8)
+  ) |> #Making a small table for slide
+  dplyr::slice(1:8) #Making a small table for slide
 
 gtcars_small
 ```
+
+![](slides_images/5_Table_spanner.png)
+:::
+
+:::{.column}
+<br>
+1. I'm going to make a smaller version of `gtcars` to work with.
+```{r, echo=F}
+gtcars_small <- 
+  gtcars |>
+  dplyr::select(
+    -mfr, -trim, bdy_style, drivetrain,
+    -drivetrain, -trsmn, -ctry_origin
+  ) |> #Making a small table for slide
+  dplyr::slice(1:8) #Making a small table for slide
+
+gtcars_small
+```
+
 :::
 
 :::
@@ -651,15 +716,24 @@ gtcars_small
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/5_Table_spanner.png)
+
+```r
+gtcars_small |>
+ gt(rowname_col = "model")
+```
+
+![](slides_images/5_Table_spanner.png)
+
 :::
 
 :::{column}
 <br>
 2. Let's look at the table in **gt** so that we know where we are starting from.
-```{r}
+
+```{r, echo=F}
 gtcars_small |> gt(rowname_col = "model")
 ```
+
 :::
 
 :::
@@ -670,7 +744,8 @@ gtcars_small |> gt(rowname_col = "model")
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/5_Table_spanner.png)
+
+![](slides_images/5_Table_spanner.png)
 :::
 
 :::{column}
@@ -694,7 +769,7 @@ gtcars_small |>
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/5_Table_spanner.png)
+![](slides_images/5_Table_spanner.png)
 :::
 
 :::{column}
@@ -730,7 +805,7 @@ tab_source_note(
 :::{layout="[1,1]" .smaller-font}
 
 :::{column}
-![](teacher/7_Table_source_notes.png)
+![](slides_images/7_Table_source_notes.png)
 :::
 
 :::{column}
@@ -769,7 +844,7 @@ tab_footnote(
 :::{layout="[1,1]" .extra-small-font}
 
 :::{column}
-![](teacher/7_Table_source_notes.png)
+![](slides_images/7_Table_source_notes.png)
 
 Cell target functions:
 
@@ -825,9 +900,9 @@ tab_style(
 ## `tab_style()` function{.smaller}
 <hr>
 
-:::{layout="[1,1]" .extra-small-font}
+:::{.columns .extra-small-font}
 
-:::{column}
+:::{.column}
 - `cell_text()`
 - Let's change all of the text in the body of this table to Times New Roman
 ```{r}
@@ -837,7 +912,7 @@ exibble |>
 ```
 :::
 
-:::{column}
+:::{.column}
 <br>
 ```{r}
 exibble |>
@@ -855,9 +930,9 @@ exibble |>
 ## `tab_style()` function{.smaller}
 <hr>
 
-:::{layout="[1,1]" .extra-small-font}
+:::{.columns .extra-small-font}
 
-:::{column}
+:::{.column}
 - `cell_text()`
 - Nah! I'd prefer a Google Font... in **both** body and the `currency` column label (not `num`).
 ```{r}
@@ -869,7 +944,7 @@ exibble |>
 - Recommendations on some Google fonts can be found by using `info_google_fonts()`
 :::
 
-:::{column}
+:::{.column}
 ```{r}
 exibble |>
   dplyr::select(num, currency) |>
@@ -890,9 +965,9 @@ exibble |>
 - `cell_text()` and `cell_fill()`
 - Conditional fill colors / font styling by cell
 
-:::{layout="[1,1]" .smaller-font}
+:::{.columns .smaller-font}
 
-:::{column}
+:::{.column width="75%"}
 ```{r, eval=F}
 exibble |>
   dplyr::select(num, currency) |>
@@ -924,7 +999,7 @@ exibble |>
 ```
 :::
 
-:::{column}
+:::{.column width="25%"}
 ```{r, echo=FALSE}
 exibble |>
   dplyr::select(num, currency) |>
@@ -964,9 +1039,9 @@ exibble |>
 - Conditional text and fill colors by row
 - New dataset: `sp500` stock market index
 
-:::{layout="[1,1]" .smaller-font}
+:::{.columns .smaller-font}
 
-:::{column}
+:::{.column}
 ```{r, eval=F}
 sp500 |>
   dplyr::filter(
@@ -989,7 +1064,7 @@ sp500 |>
 ```
 :::
 
-:::{column}
+:::{.column}
 ```{r, echo=FALSE}
 sp500 |>
   dplyr::filter(

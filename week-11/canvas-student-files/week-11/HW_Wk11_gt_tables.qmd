@@ -1,17 +1,17 @@
 ---
-title: "Creating and Styling Tables in {gt}"
-author: "Amazing Student"
+title: "Untitled"
+author: "Fabulous Student"
 date: "`r Sys.Date()`"
-output: html_document
-editor_options: 
-  chunk_output_type: console
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    out-width: "100%"
 ---
-<!-- Please edit the knitr options chunk to include message=FALSE and warning=FALSE. -->
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-<!--Load in your packages separately. -->
+<!--Load in your packages. -->
 ```{r packages}
 
 ```
@@ -45,13 +45,14 @@ Requirements for table:
 ```{r table_with_bonus_features}
 
 ```
-REQUIRED DOCUMENTATION FOR BONUS!
+
+***REQUIRED DOCUMENTATION FOR BONUS!***
 Which feature did you implement...
 
-- From Tutorial #3: ANSWER HERE
-- From Tutorial #4: ANSWER HERE
+- **From Tutorial #3:** [ANSWER HERE]
+- **From Tutorial #4:** [ANSWER HERE]
 
 ### 5. Reflection
 How did this assignment go? What did you learn? What would you do differently next time? 
 
-ANSWER HERE
+**Reflection:** [Please write your reflection here.]

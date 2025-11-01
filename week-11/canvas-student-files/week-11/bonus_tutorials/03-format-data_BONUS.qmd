@@ -1,12 +1,17 @@
 ---
-title: "Formatting Data"
-output: html_document
-editor_options: 
-  chunk_output_type: console
+title: "Untitled"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    out-width: "100%"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r packages, include=FALSE}
 library(gt)
 library(tidyverse)
 ```
