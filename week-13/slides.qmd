@@ -1114,10 +1114,13 @@ The University of Tennessee, Knoxville, offers an online graduate certificate in
 
 # Looking Ahead
 
-## Next Week's Structure
+## Next Week's Structure {.smaller}
 <hr>
 - Test drive zoom timers
-- Preview [peer feedback form](https://airtable.com/appxk3cJS5Wp4CYK4/shrNo1yJwUrKLYtPl)
+- Final rubric (incorporating your suggestions)
+- Preview peer feedback form
+  - [Section A](https://airtable.com/appxk3cJS5Wp4CYK4/shrNo1yJwUrKLYtPl)
+  - [Section B](https://airtable.com/appBVRcTY7OGYJROm/shrHYges8GlncbhPN)
   - Praise
   - Question
   - Polish
