@@ -661,10 +661,9 @@ First 10 features:
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>tn_districts_sf <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb18-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb18-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> tn_districts_sf, <span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -678,10 +677,9 @@ First 10 features:
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>tn_counties_sf <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb19-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb19-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> tn_counties_sf, <span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -693,10 +691,9 @@ First 10 features:
 <li>US States</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>us_states_sf <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb20-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
-<span id="cb20-4"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb20-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> us_states_sf,<span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
+<span id="cb20-3"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>YUCK!</p>

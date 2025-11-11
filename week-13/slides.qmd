@@ -404,9 +404,8 @@ We can plot our output from tigris using ggplot2 and `geom_sf()`:
 ```{r}
 #| echo: true
 
-tn_districts_sf |>
 ggplot() + 
-  geom_sf(color="#993414", fill="#FFFFFF") +
+  geom_sf(data = tn_districts_sf, color="#993414", fill="#FFFFFF") +
   theme_void()
 ```
 
@@ -422,9 +421,8 @@ We can plot our output from tigris using ggplot2 and `geom_sf()`:
 ```{r}
 #| echo: true
 
-tn_counties_sf |>
 ggplot() + 
-  geom_sf(color="#993414", fill="#FFFFFF") +
+  geom_sf(data = tn_counties_sf, color="#993414", fill="#FFFFFF") +
   theme_void()
 ```
 
@@ -436,10 +434,9 @@ We can plot our output from tigris using ggplot2 and `geom_sf()`:
 
 ```{r}
 #| echo: true
-#| 
-us_states_sf |>
+
 ggplot() + 
-  geom_sf(color="#993414", fill="#FFFFFF") +
+  geom_sf(data = us_states_sf,color="#993414", fill="#FFFFFF") +
   theme_void()
 ```
 YUCK!
