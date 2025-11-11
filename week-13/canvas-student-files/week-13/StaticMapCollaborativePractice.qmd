@@ -72,10 +72,10 @@ ozmap_states_sf <- ozmaps::ozmap_states
 ```
 
 ### 7. Final plot
-- Plot the new joined data.
-- Fill each state with the new `Population` variable.
+- Plot the new joined data. (Case #2)
+- Fill each state with the new `Population` variable. (Case #2)
 - Make the outlines of each state white.
-- Use `geom_point()` to plot the capital city of each state.
+- Use `geom_point()` to plot the capital city of each state. (Case #1)
 
 ```{r final_plot}
 
