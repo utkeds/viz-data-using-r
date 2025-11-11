@@ -12,7 +12,7 @@ execute:
 ---
 
 ```{r setup, include=FALSE}
-library(ozmaps)
+library(ozmaps) #Austrailaian Shapefiles
 library(sf)
 library(tidyverse)
 ```
@@ -26,14 +26,13 @@ ozmap_states_sf <- ozmaps::ozmap_states
 
 ### 2. Check the class of `ozmap_states_sf`
 - If it's an `sf` object, you're good to go.
-- If not, convert it to an `sf` object using `st_as_sf()`. Remember! You'll need to know which projection the data is in.
 
 ```{r check_class}
 
 ```
 
 ### 3. Plot `ozmap_states_sf`
-- Assign a different fill color to each state.
+- Assign a different fill color to each state. fill = as.factor(NAME)
 - Make the outlines of each state white.
 - Also use `geom_sf_label(aes(label = ????))` to label each state.
 - Remove the plot legend.
@@ -65,7 +64,7 @@ ozmap_states_sf <- ozmaps::ozmap_states
 - Variable to join on:
 
 ### 6. Joining `oz_states_sf` and `oz_pop`
-- Note that we can `left_join()` the two datasets together using the common variable this time. We are dealing with one projection (not the AK/HI problem), and have a common variable to join on.
+- Note that we can `left_join()` the two datasets together using the common variable this time. We have a common variable to join on.
 - Use `left_join()` to join the two datasets together.
 
 ```{r join_oz}
