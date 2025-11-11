@@ -1,23 +1,34 @@
 ---
-subtitle: "Static maps with {ggplot2}"
+subtitle: "Maps with {sf} and {ggplot}"
 title: "Week 13 - STEM 691"
-author: "Joshua Rosenberg and Isabella Velásquez"
+author: "Dr. Kelly Boles & Dr. Zhen Xu"
 format:
   revealjs:
-    theme: simple
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
     transition: fade
     background-transition: fade
     highlight-style: tango
     title-slide-attributes:
       data-background-color: "#4B4B4B"
+      data-background-image: slides_images/UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
 knitr:
   opts_chunk: 
     fig.align: center
     echo: true
+    warning: false
+    message: false
 ---
 
 ```{r setup, include=FALSE}
+##NOTE TO SELF: NEED TO ACTUALLY USE {here} so I don't have to edit the file paths when running each chunk to include "week-13" and then take them out to knit. So annoying.
+
 library(tidyverse)
+library(palmerpenguins)
 
 state_by_region <- read_csv("https://github.com/cphalpert/census-regions/blob/master/us%20census%20bureau%20regions%20and%20divisions.csv?raw=true") # data on U.S. states' regions
 
@@ -34,234 +45,264 @@ dat <-
     left_join(state_by_region)
 ```
 
-# Today's agenda
+# Weekly Check In/ <br>Download `.zip`
 
-- Final project discussion/updates
-- Polygon maps (`geom_polygon()`)
-- Vector spatial data and simple features (`geom_sf()`)
-- Finding geometries: tigris and `st_read()`
-- Creating choropleth maps
-- Layering geoms
+# Start Recording
 
-# Final project discussion/updates
+## Today's Agenda
+<hr>
 
-## Quick discussion
+:::{.smaller-font}
+- Weekly Check In
+<!-- - Polygon maps (`geom_polygon()`) -->
+- Vector spatial data and {sf}
+- Finding geometries/shapefiles: tigris and `st_read()`
+- Two Use Cases 
+  - Plotting points
+  - Creating choropleth maps
+- Collaborative Practice
+- Looking Ahead
+:::
 
-In breakout rooms, please discuss (around one sentence each):
+## Norms
+<hr>
 
-- A description of the data set you plan to use
-- Where you are in terms of progress on code to read and start to explore the data
-- Which visualizations you plan to create 
-- What questions you have or what challenges you anticipate
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
 
-*Then* please discuss 1-2 punchlines to share with the class
+:::
 
-# Mapping with ggplot2
-
-## Making maps
-
-Map making — the art of cartography — is an ancient skill involving communication, attention to detail, and an element of creativity. 
-
-```{r}
-#| echo: false
-#| out.width: 60%
-#| fig-align: center
-knitr::include_graphics("early-world-map.jpg")
-```
+<!-- # Mapping with ggplot2 -->
 
 ## Visualizing data with maps
-
+<hr>
 In addition to being fun and creative, cartography also has important practical applications. A carefully crafted map can be the best way of visualizing data.
 
 ```{r}
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("airbnb-occupancy-eclipse.png")
+knitr::include_graphics("slides_images/airbnb-occupancy-eclipse.png")
 ```
 
-## Visualizing data with maps
+<!-- ## Visualizing data with maps -->
+<!-- <hr> -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| out.width: 60% -->
+<!-- #| fig-align: center -->
+<!-- knitr::include_graphics("slides_images/heatmap_2x.png") -->
+<!-- ``` -->
 
-```{r}
-#| echo: false
-#| out.width: 60%
-#| fig-align: center
-knitr::include_graphics("heatmap_2x.png")
-```
+<!-- # Polygon maps -->
 
-## Discussion
+<!-- ## The {maps} package -->
+<!-- <hr> -->
+<!-- The {maps} package contains many outlines of continents, countries, states, and counties. It's not very accurate or up-to-date, but is built into R. -->
 
-- Do you have a favorite example of a map that displays data?
-- Have you made a map before that you'd like to share?
+<!-- To install {maps}, run the following: -->
 
-# Polygon maps
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- install.packages("maps") -->
+<!-- library(maps) -->
+<!-- ``` -->
 
-## The maps package
+<!-- ## Long/lat data with {maps} -->
+<!-- <hr> -->
+<!-- The {maps} package can access geographic longitude/latitude data with `map_data()`. -->
 
-The maps package contains many outlines of continents, countries, states, and counties. It's not very accurate or up-to-date, but is built into R.
+<!-- ```{r} -->
+<!-- library(ggplot2) -->
+<!-- library(dplyr) -->
 
-To install maps, run the following:
+<!-- nc_counties <- map_data("county", "north carolina")  -->
 
-```{r}
-#| eval: false
-install.packages("maps")
-```
+<!-- head(nc_counties) -->
+<!-- ``` -->
 
-## Long/lat data with the maps package
+<!-- ## The {maps} package{.smaller} -->
+<!-- <hr> -->
+<!-- - `long` is longitude. Things to the west of the prime meridian are negative. -->
+<!-- - `lat` is latitude. -->
+<!-- - `region` and `subregion` tell what region or subregion a set of points surrounds. -->
+<!-- - `group` controls (among other things) whether adjacent points should be connected by lines. If they are in the same group, then they get connected, but if they are in different groups then they don’t. -->
+<!--     - Having points in different groups means that ggplot "lifts the pen" when going between them. -->
 
-The maps package can access geographic longitude/latitude data with `map_data()`.
+<!-- ```{r} -->
+<!-- head(nc_counties) -->
+<!-- ``` -->
 
-```{r}
-library(ggplot2)
-library(dplyr)
+<!-- ## Plotting long/lat with geom_point(){.smaller} -->
+<!-- <hr> -->
+<!-- We can plot long/lat coordinates with `geom_point()`. -->
 
-nc_counties <- map_data("county", "north carolina") 
+<!-- - `coord_quickmap()` adjusts the axes to ensure that longitude and latitude are rendered on the same scale -->
 
-head(nc_counties)
-```
+<!-- ```{r} -->
+<!-- ggplot(nc_counties, aes(long, lat)) +  -->
+<!--   geom_point(size = .25, show.legend = FALSE) + -->
+<!--   coord_quickmap() -->
+<!-- ``` -->
 
-## The maps package
+<!-- ## geom_polygon() -->
+<!-- <hr> -->
+<!-- `geom_polygon()` "connects" the dots. -->
 
-- `long` is longitude. Things to the west of the prime meridian are negative.
-- `lat` is latitude.
-- `region` and `subregion` tell what region or subregion a set of points surrounds.
-- `group` controls (among other things) whether adjacent points should be connected by lines. If they are in the same group, then they get connected, but if they are in different groups then they don’t.
-    - Having points in different groups means that ggplot "lifts the pen" when going between them.
+<!-- ```{r} -->
+<!-- ggplot(nc_counties, aes(long, lat, group = group)) + -->
+<!--   geom_polygon(fill = "white", colour = "grey50") +  -->
+<!--   coord_quickmap() -->
+<!-- ``` -->
 
-```{r}
-head(nc_counties)
-```
+<!-- ## Danger of long/lat data -->
+<!-- <hr> -->
+<!-- ::: {.callout-warning} -->
+<!-- However, “longitude-latitude” data format is not the primary file type used in real world mapping. -->
+<!-- ::: -->
 
-## Plotting long/lat with geom_point()
+# Vector spatial data and simple features {sf}
 
-We can plot long/lat coordinates with `geom_point()`.
-
-- `coord_quickmap()` adjusts the axes to ensure that longitude and latitude are rendered on the same scale
-
-```{r}
-ggplot(nc_counties, aes(long, lat)) + 
-  geom_point(size = .25, show.legend = FALSE) +
-  coord_quickmap()
-```
-
-## geom_polygon()
-
-`geom_polygon()` "connects" the dots.
-
-```{r}
-ggplot(nc_counties, aes(long, lat, group = group)) +
-  geom_polygon(fill = "white", colour = "grey50") + 
-  coord_quickmap()
-```
-
-## Danger of long/lat data
-
-::: {.callout-warning}
-However, “longitude-latitude” data format is not typically used in real world mapping.
-:::
-
-# Vector spatial data and simple features
-
-## Vector spatial data
-
+## Vector spatial data {.smaller}
+<hr>
 - *Vector spatial data* is a spatial data model that represents geographic features as points, lines, and polygons
-- Vector spatial data is a common file format for mapping data
 - Typically, these are encoded with the simple features (sf) encoding
+- We can check if an object is of class sf using `class()`
 
-## The sf package
+```{r}
+#| echo: FALSE
+library(sf)
+nc_sf <- st_read(system.file("shape/nc.shp", package="sf"), quiet = TRUE)
+```
 
-- We can use the sf package to work with vector spatial data
+```{r}
+class(nc_sf)
+```
+
+- Compatible with the tidyverse packages
+
+## The {sf} package {.smaller}
+<hr>
+- We can use the {sf} package to work with vector spatial data
 - Install the package by running:
 
 ```r
-install.packages("sf")
-```
-
-## The sf package
-
-- The sf package uses the class of simple feature (`sf`) for vector spatial data in R
-- The sf package was designed to replace the sp package, which has been one of the most popular and powerful spatial packages in R for more than a decade
-- sf represents vector spatial data much like a regular R data frame, but with a special column, `geometry`, that represents the shape of each feature
-- An important benefit is its compatibility with the tidyverse packages
-
-## Inspecting objects of class sf
-
-The sf package provides a simply way of storing geographic information and the attributes of the geographic units in a single dataset.
-
-In the example below, `nc` is of the class sf:
-
-```{r}
+#install.packages("sf")
 library(sf)
-nc <- st_read(system.file("shape/nc.shp", package="sf"))
 ```
+- [{sf} cheat sheet](https://github.com/rstudio/cheatsheets/blob/main/sf.pdf)
 
-## Inspecting objects of class sf
+## The {sf} package {.smaller}
+<hr>
 
-Inspecting the object reveals its `sf` class:
+:::{.extra-small-font}
+- {sf} represents vector spatial data much like a regular R data frame, but with a special column, `geometry`, that represents the shape of each feature
+  - last column is the geometry, specifically each cell in it is call a simple feature geometry (sfg)
 
-```{r}
-class(nc)
-```
-
-## The sf package
-
-Now, let’s take a look inside of nc.
-
-- The variable `geometry` at the end, where each row represents a single simple feature geographic unit (sfg; in this case, county)
 - There are different types of sfgs (`POINT`, `LINESTRING`, `POLYGON`, `MULTIPOLYGON`, etc)
+:::
+
+::: {.r-stack}
+![](slides_images/Geometry_Primitives_Wikipedia.png){.fragment width="600" height="300"}
+
+![](slides_images/Multipart_Geometries_Wikipedia.png){.fragment width="600" height="300"}
+:::
+
+::: aside
+Graphics Source: [Wikipedia](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry)
+:::
+
+## The {sf} package{.smaller}
+<hr>
 - An sf object is essentially a dataframe with geometric information stored as a variable (column)
-
-## The sf package
-
 ```{r}
 #| echo: true
-nc
+
+# Shapefile of 100 NC Counties
+nc_sf |>
+  select(1:3,5:6,15)
 ```
 
 ## `geom_sf()`
-
-- As of ggplot2 version 3.0, there is support for plotting simple features objects directly with the function `geom_sf()`
+<hr>
 - `geom_sf()` allows for visualizing sf objects
+  - It is a {ggplot} geom, so it can be used in the same way as other geoms
 - Conveniently, `geom_sf()` automatically detects the geometry type of spatial objects stored in sf and draw maps accordingly
-- The underlying principles and syntax to create maps and non-spatial figures are very similar
 
 ## `geom_sf()`
-
+<hr>
 ```{r}
-ggplot(nc) + 
-  geom_sf() + 
-  theme_void() +
-  coord_sf()
+ggplot() + 
+  geom_sf(data = nc_sf)
 ```
 
-## Specifying the aesthetics
 
+## `geom_sf()`
+<hr>
+```{r}
+ggplot() + 
+  geom_sf(data = nc_sf) + 
+  theme_void() #removes bg, grids, axes, etc.
+```
+
+## Specifying the aesthetics{.smaller}
+<hr>
 Since it is a ggplot2 object, we can define aesthetics as usual, in this case, `fill` and `color`:
 
 ```{r}
 #| echo: true
 library(ggplot2)
 
-ggplot(data = nc) +
-  geom_sf(fill = "#0C1337",
-          color = "white") +
-  theme_void() +
-  coord_sf()
+ggplot() +
+  geom_sf(data = nc_sf,fill = "#0C1337", color = "white") +
+  theme_void()
 ```
 
 # Finding geometries
 
-# The tigris package
+## Finding geometries {.smaller}
+<hr>
+- The `nc` data is included with the {sf} package, but in practice, you will need to find your shapefiles
 
-## The tigris package
+- Two major types of files for this:
+    1. Shapefiles (.shp + dependencies)
+        - Usually download as a .zip
+        - Contains multiple files with the same name but different extensions
+        - e.g., `my_shapefile.shp`, `my_shapefile.shx`, `my_shapefile.dbf`, etc.
+    2. geoJSON (.geojson)
+- We'll focus on shapefiles, which are the most common format
+  
+## Shapefiles {.smaller}  
+<hr> 
+- Shapefiles are a collection of files that store the geometry and attributes of geographic features
+- e.g., if you wanted to have a map of the counties in Tennessee, you would need a shapefile that contains the geometry of each county in Tennessee
+  - Otherwise, you would need to construct the boundaries/geometries yourself.
+- Some typical use cases:
+  - You want to fill in counties with colors based on some data
+  - You want to overlay points on a map, like the locations of schools in Tennessee
 
-tigris is an R package that allows users to directly download and use TIGER/Line shapefiles from the US Census Bureau using R.
+
+# The {tigris} package
+
+## The {tigris} package{.smaller}
+<hr>
+One option for shapefiles: {tigris} is an R package that allows users to directly download and use TIGER/Line shapefiles from the US Census Bureau using R.
 
 TIGER stands for *Topologically Integrated Geographic Encoding and Referencing* and include three general types of data:
 
 - Legal entities
+    - States, counties, school districts, etc.
 - Statistical entities
+    - Census groups, blocks used for statistical reporting
 - Geographic features
+    - Roads, rivers, landmarks, etc.
 
 ```{r}
 #| eval: false
@@ -269,347 +310,869 @@ install.packages("tigris")
 ```
 
 
-## The tigris package
+## The {tigris} package{.smaller}
+<hr>
+- tigris functions return simple features objects with a default year of 2024.
+  - Many functions in the package like `states()` and `counties()` and `roads()`
+  - See all function options: <https://github.com/walkerke/tigris>
+  - The functions have different arguments, so check documentation for each (e.g., `?states()`)
+  
+:::{layout="[1,1,1]"}
+:::{column}
+```r
+states(
+)
+```
+:::
 
-tigris functions return simple features objects with a default year of 2021.
+:::{column}
+```r
+counties(
+  state = "TN"
+)
+```
+:::
 
-- See all options: <https://github.com/walkerke/tigris>
-- In some cases, this subsetting is optional; in other cases, state and/or county arguments will be required.
+:::{column}
+```r
+roads(
+  state = "TN",
+  county = "Knox"
+)
+```
+:::
+:::
 
-```{r, results = "hide", message = FALSE, warning = FALSE}
+- Note: TIGER data is well known to struggle with water features, so be cautious. There are other places to find good shapefiles, too!
+
+## The {tigris} package{.smaller}
+<hr>
+```{r, eval=FALSE}
 library(tigris)
 
-tn_districts <- school_districts("Tennessee")
+tn_districts_sf <- school_districts("Tennessee")
+tn_districts_sf
 ```
 
-## The tigris package
+```{r, results = "hide", message = FALSE, warning = FALSE, echo=FALSE}
+library(tigris)
 
-```{r}
-tn_districts
+tn_districts_sf <- school_districts("Tennessee")
 ```
 
-## The tigris package
+```{r, echo=FALSE}
+tn_districts_sf
+```
+::: aside
+Codebook of variables available [here](https://nces.ed.gov/programs/edge/docs/EDGE_SDBOUNDARIES_COMPOSITE_2016.pdf)
+:::
 
+## The {tigris} package{.smaller}
+<hr>
+For example, we can pull the following (example plots follow):
+
+- TN School Districts
+
+```{r, results = "hide", message = FALSE, warning = FALSE, echo=TRUE}
+
+tn_districts_sf <- school_districts("Tennessee")
+```
+
+- TN Counties
+
+```{r, results = "hide", message = FALSE, warning = FALSE, echo=TRUE}
+
+tn_counties_sf <- counties(state="TN")
+```
+
+- US States
+
+```{r, results = "hide", message = FALSE, warning = FALSE, echo=TRUE}
+
+us_states_sf <- states()
+```
+
+## The {tigris} package{.smaller}
+<hr>
+
+:::{.extra-small-font}
 We can plot our output from tigris using ggplot2 and `geom_sf()`:
+
+- TN School Districts
+:::
 
 ```{r}
 #| echo: true
-ggplot(tn_districts) + 
-  geom_sf()
+
+tn_districts_sf |>
+ggplot() + 
+  geom_sf(color="#993414", fill="#FFFFFF") +
+  theme_void()
 ```
+
+## The {tigris} package{.smaller}
+<hr>
+
+:::{.extra-small-font}
+We can plot our output from tigris using ggplot2 and `geom_sf()`:
+
+- TN Counties
+:::
+
+```{r}
+#| echo: true
+
+tn_counties_sf |>
+ggplot() + 
+  geom_sf(color="#993414", fill="#FFFFFF") +
+  theme_void()
+```
+
+## The {tigris} package{.smaller}
+<hr>
+We can plot our output from tigris using ggplot2 and `geom_sf()`:
+
+- US States
+
+```{r}
+#| echo: true
+#| 
+us_states_sf |>
+ggplot() + 
+  geom_sf(color="#993414", fill="#FFFFFF") +
+  theme_void()
+```
+YUCK!
+
+## {USSF} package {.smaller}
+<hr>
+
+- I use the [{ussf} package](https://github.com/dcl-docs/ussf) for my US states shapefile
+
+```r
+# install.packages("remotes")
+remotes::install_github("dcl-docs/ussf")
+```
+
+```{r}
+library(ussf)
+
+boundaries(geography = "state") |>
+  ggplot() + 
+  geom_sf(color="#993414", fill="#FFFFFF") +
+  theme_void()
+```
+
 
 # Reading shapefiles
 
 ## Reading shapefiles
+<hr>
+- A second option for shapefiles is to find one on the internet, download it, and read it into R
+- There are lots of places to get shapefiles:
 
-- The shapefile format is a geospatial vector data format for geographic information system (GIS) software
--  The shapefile format can spatially describe vector features: points, lines, and polygons
+:::{layout="[1,1]"}
 
-## Reading shapefiles
+:::{column}
+- [IPUMS](https://international.ipums.org/international/gis.shtml)
+- [GADM](https://gadm.org/)
+- [Natural Earth](https://www.naturalearthdata.com/downloads/)
+- [Eurostat](https://ec.europa.eu/eurostat/web/gisco/geodata)
+- [OpenDataSoft](https://public.opendatasoft.com/explore/dataset/world-administrative-boundaries/table/?location=2,42.07882,0.00845&basemap=jawg.light)
+:::
 
-- The term "shapefile" is quite common, but the format consists of a collection of files with a common filename prefix, stored in the same directory
-- The three mandatory files have filename extensions .`shp`, `.shx`, and `.dbf`
-- The actual shapefile relates specifically to the .shp file, but alone is incomplete for distribution as the other supporting files are required
+:::{column}
+- [Free GIS Data](https://freegisdata.rtwilson.com/)
+- [Geofabrik/OSM Data](https://download.geofabrik.de/)
+- [U.S. Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html)
+- [SimpleMaps](https://simplemaps.com/data/world-cities)
+- [NCES](https://nces.ed.gov/programs/edge/Geographic/DistrictBoundaries)
+:::
 
-## Reading shapefiles
+:::
 
-Let's say we want to map the Zoning districts from Knox County (available here: <https://www.arcgis.com/home/item.html?id=481b8a768b20403998fb9b454f35d23b>).
+## Reading shapefiles{.smaller}
+<hr>
+- Lots of government agencies and organizations provide shapefiles for free, including [Knox County](https://knoxplanning.org/data/open-data)
+- Let's say we want to map the Zoning districts from Knox County (available here: <https://www.arcgis.com/home/item.html?id=481b8a768b20403998fb9b454f35d23b>).
 
-- We download the shapefile(s) and save it in our Week 13 folder.
+- I downloaded the shapefile .zip and saved it in my Week 12 folder.
+- When I unpacked the folder, I renamed it to `shapefiles` for ease.
 
 ```{r}
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("knox.png")
+knitr::include_graphics("slides_images/knox.png")
 ```
 
-## Reading shapefiles
+## Reading shapefiles{.smaller}
+<hr>
+::: {.callout-note}
+## Note: The `st_` prefix
 
-Save all the files in the same folder:
+In {sf} spatial functions have the pre-fix `st_`
+:::
 
-```{r}
-#| echo: false
-#| out.width: 60%
-#| fig-align: center
-knitr::include_graphics("files.png")
-```
+I'll use the function `st_read()` to read in the shapefile
 
-## Reading shapefiles
-
-Use the function `st_read()` to read the files
-
-- `dsn`: the path to folder in which the shapefile(s) you want to import is stored.
-- name of the shapefile
+- `dsn`: the path to the shapefile folder
+- `layer`: name of the shapefile
 
 ```{r}
 #| echo: true
-knox_zones <-
-    st_read(dsn = here::here("week-13", "shapefiles"),
-            "Knoxville-Knox_County_Zoning")
+knox_zones_sf <-
+    st_read(dsn = "shapefiles",
+            layer = "Knoxville-Knox_County_Zoning")
 ```
 
-## Reading shapefiles
+## Reading shapefiles{.smaller}
+<hr>
+
+::: {.callout-tip}
+When naming objects, I like to use the `_sf` suffix to indicate that it is a simple feature object. This helps me remember that it is a spatial object and not a regular data frame.
+:::
 
 ```{r}
-ggplot(data = knox_zones) +
-  geom_sf() +
-  coord_sf()
+#| echo: true
+knox_zones_sf <-
+    st_read(dsn = "shapefiles",
+            layer = "Knoxville-Knox_County_Zoning")
 ```
 
-# Code along
+- This output says it has a projected CRS. What does that mean ?
 
-# Creating choropleth maps
+# Understanding CRS
 
-## Choropleth maps
+## Understanding CRS{.smaller}
+<hr>
 
-Geographical heat maps, also known as choropleth maps, are one way of visualizing our geographic data.
+:::{.extra-small-font}
+- Geometries can be projected (projected Coordinate Reference System) or unprojected (geodetic Coordinate Reference System)
+   - **Geodetic CRS** = Earth as geodetic sphere (curved coordinates: lat/long)
+   - **Projected CRS** = Earth as a flat surface (flat coordinates: x/y)
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(rnaturalearth) #Easy world map
+world_sf <- ne_countries(scale = "medium", returnclass = "sf") #getting world map from pkg
+```
+
+:::{.columns}
+
+:::::{.column}
+**Geodetic CRS** = sphere
+
+[- Note: R still flattens, but you aren't telling it how]{.extra-small-font}
+```{r}
+ggplot(world_sf) +
+  geom_sf() +
+  ggtitle("Geodetic CRS (WGS84, degrees)")
+```
+:::::
+
+:::::{.column}
+**Projected CRS** = flattened
+
+[- Algorithmically projected (using math)]{.extra-small-font}
+```{r}
+world_proj_sf <- st_transform(world_sf, crs = "+proj=moll") 
+#reprojecting to Mollweide - good for world maps
+ggplot(world_proj_sf) +
+  geom_sf() +
+  ggtitle("Projected CRS (Mollweide, meters)")
+```
+:::::
+
+:::
+:::
+
+<!-- ## Understanding projections{.smaller}
+<hr>
+- Geometries can be projected (projected Coordinate Reference System) or unprojected (geodetic Coordinate Reference System)
+  - What's the difference?
+
+**Geodetic CRS** = Earth as geodetic sphere
+```{r}
+tn_districts_sf |>
+  select(3:4) |>
+  head(1)
+```
+
+- The most common/often default geodetic CRS is WGS84 (EPSG: 4326)
+
+## Understanding projections{.smaller}
+<hr>
+- Geometries can be projected (projected Coordinate Reference System) or unprojected (geodetic Coordinate Reference System)
+  - What's the difference?
+
+**Projected CRS** = Earth as a flat surface
+```{r}
+knox_zones_sf |>
+  select(1,3,10,11) |>
+  head(1)
+```
+
+## Understanding projections{.smaller}
+<hr>
+- Projected CRS vs. Geodetic CRS: What are implications?
+
+```{r, warning=FALSE, message=FALSE}
+library(rnaturalearth) #Easy world map
+world_sf <- ne_countries(scale = "medium", returnclass = "sf") #getting world map from pkg
+```
+
+:::{layout="[1,1]"}
+
+:::::{column}
+**Geodetic CRS** = sphere
+
+[- Note: R still flattens, but you aren't telling it how]{.extra-small-font}
+```{r}
+ggplot(world_sf) +
+  geom_sf() +
+  ggtitle("Geodetic CRS (WGS84, degrees)")
+```
+:::::
+
+:::::{column}
+**Projected CRS** = flattened
+```{r}
+world_proj_sf <- st_transform(world_sf, crs = "+proj=moll")
+#reprojecting to Mollweide - good for world maps
+ggplot(world_proj_sf) +
+  geom_sf() +
+  ggtitle("Projected CRS (Mollweide, meters)")
+```
+:::::
+
+:::
+
+<!-- ## Understanding projections{.smaller} -->
+<!-- <hr> -->
+<!-- - Cylindrical, conical, and planar projections are the three main types of map projections -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| out.width: 50% -->
+<!-- #| fig-align: center -->
+<!-- knitr::include_graphics("slides_images/projection_families.png") -->
+<!-- ``` -->
+
+<!-- ::: aside -->
+<!-- Source: [QGIS: Coordinate Reference Systems](https://docs.qgis.org/3.34/en/docs/gentle_gis_introduction/coordinate_reference_systems.html) -->
+<!-- ::: -->
+
+<!-- ## Understanding projections{.smaller}
+<hr>
+:::{layout="[1,1,]"}
+
+:::{column}
+**Why use a geodetic CRS?**
+
+- Preserves true latitude and longitude
+:::
+
+:::{column}
+**Why use a projected CRS?**
+
+- Preserves area, distance, or direction
+- Distance and area calculations are more accurate
+- Can created local maps with minimal distortion
+:::
+:::
+- All projections have a CRS, not all CRSes have projections
+- Standardized CRSes have a [unique EPSG code](https://spatialreference.org/ref/epsg/) -->
+
+## Understanding CRS{.smaller}
+<hr>
+:::{layout="[1,1,]"}
+
+:::{column}
+**Why use a geodetic CRS?**
+
+::::{.extra-small-font}
+- Preserves true latitude and longitude
+::::
+```{r, echo=FALSE}
+ggplot(world_sf) +
+  geom_sf() +
+  ggtitle("Geodetic CRS (WGS84, degrees)")
+```
+:::
+
+:::{column}
+**Why use a projected CRS?**
+
+::::{.extra-small-font}
+- Preserves area, distance, or direction
+- Distance and area calculations are more accurate
+- Can created local maps with minimal distortion
+::::
+```{r, echo=FALSE}
+world_proj_sf <- st_transform(world_sf, crs = "+proj=moll") 
+#reprojecting to Mollweide - good for world maps
+ggplot(world_proj_sf) +
+  geom_sf() +
+  ggtitle("Projected CRS (Mollweide, meters)")
+```
+:::
+:::
+
+## Understanding Projections{.smaller}
+<hr>
+
+:::{.extra-small-font}
+- Projected CRS
+  - Three main projection families (ways to flatten globe):
+    - Cylindrical (e.g., Mercator)
+    - Conical (e.g., Albers)
+    - Planar (e.g., Lambert)
+
+  - Preserve different things (area, distance, direction, etc.)
+
+:::
 
 ```{r}
 #| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("photo.png")
+knitr::include_graphics("slides_images/projection_families.png")
 ```
+## Understanding EPSG Codes {.smaller}
+<hr>
 
-## Joining data with long/lat data
+:::{.extra-small-font}
+- Each specific combination of:
+  - Projection (or not)
+  - Regional Focus
+  - CRS
+  - and other characteristics...
 
-Let's say we're using the `world_map` data from maps:
+- ... is given an [EPSG code](https://spatialreference.org/ref/epsg/)
+:::
+
+## Understanding CRS {.smaller}
+<hr>
+
+:::{.extra-small-font}
+<!-- - Is the CRS of `knox_zones_sf` geodetic or projected?
+- What is the [EPSG](https://spatialreference.org/ref/epsg/2915/) code for the CRS of `knox_zones_sf`? -->
+- The `st_crs()` function returns the CRS of an sf object (scroll down to see EPSG code)
+- EPSG code for knox_zones_sf is [2915](https://spatialreference.org/ref/epsg/2915)
 
 ```{r}
-world_map <- map_data("world")
-head(world_map)
+st_crs(knox_zones_sf)
 ```
 
-## Joining data with long/lat data
+:::
 
-We can plot the world using `geom_polygon()`:
+# Two Applications/Cases
+
+# #1: Adding Our Own<br>Data/Points (.csv)<br>to Map
+
+## Plotting the shapefile {.smaller}
+<hr>
+```{r}
+# Step 1: Plot the shapefile
+ggplot() +
+  geom_sf(data = knox_zones_sf)
+```
+
+## Adding our data as `.csv` {.smaller}
+<hr>
+```{r}
+# Step 2: Read in the data for the points (lat/long)
+knox_sites <- read_csv("KnoxSites.csv")
+
+knox_sites
+```
+
+## Converting our data to sf object {.smaller}
+<hr>
+- Creating an sf object from a data frame requires the `st_as_sf()` function
+```{r}
+# Step 3: Convert the point data to an sf object
+knox_sites_sf <- st_as_sf(knox_sites, 
+                          coords = c("Longitude", "Latitude"), crs = 4326)
+# Our knox_sites data is in CRS 4326, as it's in latitude/longitude degrees
+
+class(knox_sites_sf)
+```
+
+## Plotting our data {.smaller}
+<hr>
+
+:::{.extra-small-font}
+- Can we just plot it? knox_sites_sf is in 4326 and knox_zones_sf is in 2915...
+- Yes! R automatically transforms the CRS of the `knox_sites_sf` to match the `knox_zones_sf`
+  - This is called "projecting-on-the-fly"
+
+:::
 
 ```{r}
-ggplot(world_map, aes(x = long, y = lat, group = group)) +
-  geom_polygon() +
-  coord_quickmap()
+# Step 4: Add the points sf object as a new geom_sf() layer
+ggplot() +
+  geom_sf(data = knox_zones_sf) +
+  geom_sf(data = knox_sites_sf, color = "#FF8200", size = 3)
 ```
 
-## Joining data with long/lat data
+# #2: Choropleth Maps
 
-Now, we have a dataset called `regions_data` with corresponding data:
+## Choropleth maps
+<hr>
+Geographical heat maps, also known as choropleth maps, are one way of visualizing geographic data.
 
 ```{r}
-#| include: false
-set.seed(123)
-
-regions_data <-
-    world_map %>% 
-    select(region) %>% 
-    distinct() %>% 
-    mutate(value = sample(100:1000, n()))
+#| echo: false
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("slides_images/photo.png")
 ```
+
+## Joining spatial data - FIPS {.smaller}
+<hr>
+- To make choropleths we often need to join data
+- Yay! We have an easy variable to join on:
+  - The Federal Information Processing Standards (FIPS) have specific codes for [states, counties](https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt), etc.
+  - FIPS often included in datasets
 
 ```{r}
-head(regions_data)
+#| echo: false
+#| out.width: 60%
+#| fig-align: center
+knitr::include_graphics("slides_images/dplyr_joins.svg")
 ```
 
-## Joining data with long/lat data
-
-There are various ways of joining different datasets together. One common type is a left join.
-
+## Joining spatial data - FIPS
+<hr>
 > Keep all rows from `x`, and all columns from `x` and `y`. Rows in `x` with no match in `y` will have `NA` values in the new columns.
 
 ```{r}
+#| echo: false
 #| out.width: 60%
 #| fig-align: center
-knitr::include_graphics("left-join.gif")
+knitr::include_graphics("slides_images/left-join.gif")
 ```
 
-## Joining data with long/lat data
+## Joining spatial data - FIPS{.smaller}
+<hr>
+```{r}
+# Step 1: Identify your shapefile
+states_sf <-boundaries("state", resolution = "5m")
 
-We can join the data based on their common key (`region`) using dplyr's `left_join()`
+states_sf |>
+  select(1,5:10) |>
+  head()
+```
 
-Syntax:
+## Joining spatial data - FIPS{.smaller}
+<hr>
+We can plot the states using `geom_sf()`:
 
 ```{r}
-#| eval: false
-left_join(x, y, by = "key")
+# Step 2 (Optional): Preview the shapefile
+ggplot()+
+  geom_sf(data=states_sf)
 ```
 
-## Joining data with long/lat data
+## Joining spatial data - FIPS{.smaller}
+<hr>
+Now, we will use data on state population counts from the 2020 Census from {tidycensus}:
+<!-- Note: You need to have installed the {tidycensus} API key to render this -->
+```{r}
+#install.packages("tidycensus")
+library(tidycensus)
 
-This is how you join the `world_map` and `regions_data` together:
+# Step 3: Load in your data
+pop_counts_2020 <- get_decennial(geography = "state",
+                                             variables = "DP1_0001C",
+                                             year = 2020,
+                                             sumfile = "dp")
+
+head(pop_counts_2020)
+```
+
+## Joining spatial data - FIPS{.smaller}
+<hr>
+
+:::{.extra-small-font}
 
 ```{r}
-joined_world_data <- left_join(world_map, regions_data, by = "region")
-head(joined_world_data)
+# Step 4: Identify variable(s) to join on
+```
+:::{.columns}
+:::{.column}
+
+```{r}
+head(states_sf)[1]
+```
+:::
+:::{.column}
+
+```{r}
+head(pop_counts_2020)[1]
+```
+:::
+:::
+
+- Note that both `states_sf` AND `pop_counts_2020` have a FIPS code variable
+  - We can join them together using `left_join()` and the FIPS code!
+  - Note that the FIPS code is called `STATEFP` in `states_sf` and `GEOID` in `pop_counts_2020`
+
+:::
+
+
+## Joining spatial data - FIPS{.smaller}
+<hr>
+
+```{r}
+# Step 5: Left Join... left_join(shapefile_sf, data_sf)
+joined_state_data_sf <- left_join(states_sf, pop_counts_2020, by = c("STATEFP" = "GEOID"))
+
+joined_state_data_sf |>
+  select(1,5:6,10:13) |>
+  head()
 ```
 
-## Joining data with long/lat data
+## Joining spatial data - FIPS {.smaller}
+<hr>
 
-Add the data as an aesthetic in your ggplot object with `fill()`
+:::{.extra-small-font}
+Discussion about `left_join()`:
 
+1. What is `NAME.x` and `NAME.y`?
+2. What happens if states_sf (the `x` argument) has a state that is not in pop_counts_2020 (the `y` argument)?
+3. What happens if pop_counts_2020 has a state that is not in states_sf?
+
+
+```{r}
+joined_state_data_sf <- left_join(states_sf, pop_counts_2020, by = c("STATEFP" = "GEOID"))
+
+joined_state_data_sf |>
+  select(1,5:6,10:13) |>
+  head(3)
+```
+:::
+
+## Plotting spatial data{.smaller}
+<hr>
+- Add the data as an aesthetic in your ggplot object with `fill()`
 - Be sure to include in your `aes()` since it's referring to data
 
 ```{r}
-ggplot(joined_world_data, aes(x = long, y = lat, group = group, fill = value)) +
-  geom_polygon() +
-  coord_quickmap()
+# Step 6: Plot using the joined data
+library(viridis) # You shouldn't need this, but my slides were being difficult
+
+ggplot()+
+  geom_sf(data=joined_state_data_sf, aes(fill = value))+
+  scale_fill_viridis_c(option = "magma", labels = scales::label_comma(), direction = -1)
 ```
 
-# Layering geoms
+<!-- # Layering geoms \n(a review)
 
-## Long/lat dataset
+## Plotting points (State Capitals){.smaller}
+<hr>
+Let's say we have another dataset with longitude/latitude data for each state capital's city center:
 
-Let's say we have another dataset with longitude/latitude data for different points:
+:::{layout="[4,3]"}
+
+:::{column}
+```{r}
+joined_state_data_sf |>
+  select(1,6,13) |>
+  head(3)
+```
+:::
+
+:::{column}
+```{r}
+state_capitals <- 
+  read_csv("us-state-capitals.csv")
+
+head(state_capitals)
+```
+:::
+:::
+
+:::aside
+Capitals data from [jasperdebie's github](https://github.com/jasperdebie/VisInfo/blob/master/us-state-capitals.csv)
+:::
+
+## Add to map{.smaller}
+<hr>
+- Let's plot them
+- Oh no! [{ussf}](https://github.com/dcl-docs/ussf) handled the AK/HI problem, but our `.csv` file still has the AK/HI problem
+```{r}
+state_capitals_sf <- st_as_sf(state_capitals, coords = c("longitude", "latitude"), crs = 4326)
+
+ggplot() +
+  geom_sf(data=joined_state_data_sf, aes(fill = value))+
+  geom_sf(data=state_capitals_sf, shape =8, color="limegreen" )+
+  scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
+```
+
+## Add to map{.smaller}
+<hr>
+- This is fixable (but complicated since it's a custom CRS). Contact me if you need to address this issue in your final project.
+
+```{r, echo=F}
+#Taken from {ussf}
+albers_contig <-"+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +no_defs"
+albers_alaska <-"+proj=aea +lat_1=55 +lat_2=65 +lat_0=50 +lon_0=-154 +x_0=0 +y_0=0 +datum=WGS84 +no_defs"
+albers_hawaii <-"+proj=aea +lat_1=8 +lat_2=18 +lat_0=13 +lon_0=-157 +x_0=0 +y_0=0 +datum=WGS84 +no_defs"
+
+contig <-
+  state_capitals_sf |>
+  filter(!name %in% c("Alaska","Hawaii")) |>
+  st_transform(crs = albers_contig)
+
+bbox_contig <- st_bbox(contig)
+
+position <- function(bbox, x_offset, y_offset) {
+  st_sfc(st_point(c(
+    bbox$xmin + x_offset * (bbox$xmax - bbox$xmin),
+    bbox$ymin + y_offset * (bbox$ymax - bbox$ymin)
+  )))
+}
+
+alaska_crop <- c(xmin = -172, xmax = -125, ymin = 50, ymax = 75)
+alaska_scale <- 0.35
+alaska_x_offset <- 0.145
+alaska_y_offset <- -0.12
+#alaska_y_offset <- 0.119
+
+#Pulling each state observation out of sf object so I can delete the two old ones
+alaska <-
+  state_capitals_sf %>%
+  filter(name == "Alaska") %>%
+  st_crop(alaska_crop) %>%
+  st_transform(crs = albers_alaska) %>%
+  st_set_geometry(
+    (st_geometry(.) - st_centroid(st_union(st_geometry(.)))) *
+      alaska_scale +
+      position(
+        bbox = bbox_contig,
+        x_offset = alaska_x_offset,
+        y_offset = alaska_y_offset)) %>%
+  st_set_crs(value = albers_contig)
+
+hawaii_crop <- c(xmin = -165, xmax = -150, ymin = 15, ymax = 25)
+hawaii_scale <- 1
+hawaii_x_offset <- 0.25
+hawaii_y_offset <- -0.1
+
+hawaii <-
+  state_capitals_sf %>%
+  filter(name == "Hawaii") %>%
+  st_crop(hawaii_crop) %>%
+  st_transform(crs = albers_hawaii) %>%
+  st_set_geometry(
+    (st_geometry(.) - st_centroid(st_union(st_geometry(.)))) *
+      hawaii_scale +
+      position(
+        bbox = bbox_contig,
+        x_offset = hawaii_x_offset,
+        y_offset = hawaii_y_offset)) %>%
+  st_set_crs(value = albers_contig)
+
+#Deleting the old ones
+state_capitals_sf <- state_capitals_sf |>
+  filter(name != "Alaska" & name != "Hawaii")
+
+#Adding the new ones back
+state_capitals_sf <- state_capitals_sf |>
+  st_transform(crs = albers_contig)
+state_capitals_sf <- rbind(state_capitals_sf, alaska, hawaii)
+```
 
 ```{r}
-#| include: false
-points_data <-
-    tibble::tribble(
-               ~Place.Name, ~Latitude,  ~Longitude,
-          "Wisconsin, USA",      44.5,       -89.5,
-      "West Virginia, USA",        39,       -80.5,
-            "Vermont, USA",        44,  -72.699997,
-          "Texas, the USA",        31,        -100,
-    "South Dakota, the US",      44.5,        -100,
-    "Rhode Island, the US", 41.742325,  -71.742332,
-          "Oregon, the US",        44,      -120.5,
-           "New York, USA",        43,         -75,
-      "New Hampshire, USA",        44,       -71.5,
-           "Nebraska, USA",      41.5,        -100,
-          "Kansas, the US",      38.5,         -98,
-        "Mississippi, USA",        33,         -90,
-           "Illinois, USA",        40,         -89,
-        "Delaware, the US",        39,       -75.5,
-        "Connecticut, USA", 41.599998,  -72.699997,
-        "Arkansas, the US", 34.799999,  -92.199997,
-            "Indiana, USA", 40.273502,  -86.126976,
-           "Missouri, USA", 38.573936,   -92.60376,
-            "Florida, USA", 27.994402,  -81.760254,
-             "Nevada, USA", 39.876019, -117.224121,
-          "Maine, the USA", 45.367584,  -68.972168,
-           "Michigan, USA", 44.182205,  -84.506836,
-        "Georgia, the USA", 33.247875,  -83.441162,
-             "Hawaii, USA", 19.741755, -155.844437,
-             "Alaska, USA", 66.160507, -153.369141,
-          "Tennessee, USA", 35.860119,  -86.660156,
-           "Virginia, USA", 37.926868,  -78.024902,
-         "New Jersey, USA", 39.833851,  -74.871826,
-           "Kentucky, USA", 37.839333,   -84.27002,
-       "North Dakota, USA", 47.650589, -100.437012,
-          "Minnesota, USA",  46.39241,   -94.63623,
-       "Oklahoma, the USA", 36.084621,  -96.921387,
-            "Montana, USA",  46.96526, -109.533691,
-     "Washington, the USA", 47.751076, -120.740135,
-               "Utah, USA",  39.41922, -111.950684,
-           "Colorado, USA", 39.113014, -105.358887,
-               "Ohio, USA", 40.367474,  -82.996216,
-            "Alabama, USA",  32.31823,  -86.902298,
-           "Iowa, the USA", 42.032974,  -93.581543,
-         "New Mexico, USA", 34.307144, -106.018066,
-     "South Carolina, USA", 33.836082,  -81.163727,
-       "Pennsylvania, USA", 41.203323,  -77.194527,
-            "Arizona, USA", 34.048927, -111.093735,
-           "Maryland, USA", 39.045753,  -76.641273,
-      "Massachusetts, USA", 42.407211,  -71.382439,
-         "California, USA", 36.778259, -119.417931,
-              "Idaho, USA", 44.068203, -114.742043,
-            "Wyoming, USA",  43.07597, -107.290283,
-     "North Carolina, USA", 35.782169,  -80.793457,
-          "Louisiana, USA",  30.39183,  -92.329102
-    )
+ggplot() +
+  geom_sf(data=joined_state_data_sf, aes(fill = value))+
+  geom_sf(data=state_capitals_sf, shape =8, color="limegreen" )+
+  scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
 ```
 
-```{r}
-#| include: false
-set.seed(123)
-state_map <- map_data("state")
-
-state_data <-
-    state_map %>% 
-    select(state = region) %>% 
-    distinct() %>% 
-    mutate(value = sample(100:1000, n()))
+```{r, echo=F}
+# coords <- st_coordinates(state_capitals_sf)
+# df <- cbind(st_drop_geometry(state_capitals_sf), coords)
+# 
+# ggplot() +
+#   geom_sf(data=joined_state_data_sf, aes(fill = value))+
+#   geom_point(data=df, aes(x = X, y = Y),  shape =8, color="limegreen" )+
+#   scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
 ```
+-->
 
-```{r}
-#| echo: true
-head(state_map)
-head(state_data)
-```
+# Collaborative Practice
 
-## Create a map of the U.S.
-
-```{r}
-state_map <- map_data("state")
-
-joined_state_data <- left_join(state_map, state_data, join_by("region" == "state"))
-```
-
-## Create a choropleth map of the U.S.
-
-```{r}
-ggplot(data = joined_state_data, aes(x = long, y = lat, fill = value, group = region)) +
-  geom_polygon() +
-  coord_quickmap()
-```
-
-## Adding points to a map
-
-```{r}
-head(points_data)
-```
-
-## Adding points to a map
-
-```{r}
-ggplot(data = joined_state_data) +
-  geom_polygon(aes(x = long, y = lat, fill = value, group = region)) +
-  geom_point(data = points_data,
-             aes(x = Longitude, y = Latitude)) +
-  coord_quickmap()
-```
-
-# Classes next fall!
-
-## 680
-
-STEM 680: Foundations of Educational Data Science I (3 credits) – Mon., 12:00 – 2:30 pm, online and synchronous
-
-Intended to support graduate-level students to be able to apply data science methods to topics of teaching, learning, and educational systems. Introduces students to the data science software and programming language R. Course activities focusing on preparing, using, and visualizing complex data sources for analysis using the tidyverse suite of R packages. Data ethics are foregrounded. Includes an introduction to text analysis/Natural Language Processing. No pre-requisites or programming experience is required.
-
-## 685
-
-STEM 685: Foundations of Educational Data Science II (3 credits) – Thurs., 9:00 – 11:00 am, online and synchronous
-
-Intended to support graduate students to use data science methods to study new technology-based environments, such as online courses, educational technology platforms, and social media-based networks. Advanced data visualization and social network analysis techniques are emphasized. More advanced methods around writing custom functions and using machine learning for analyzing complex data sources are introduced. Course involves the use of the statistical software R.
-
-## 691
-
-STEM 691: Visualizing Data Using R (3 credits) – Tues., 3:00– 5:00 pm, online and synchronous
-
-Intended to support students to create static visualizations (e.g., visualizations for inclusion in presentations and publications) and dynamic visualizations (e.g., those that can allow researchers and others to interact with the visualization). Will use educational examples and data sets but is open to students across programs. Course involves the use of the statistical software R.
-
-## Incoming faculty
-
-[Kelly Boles](https://cset.stanford.edu/about/our-team/kelly-boles)
-[Hanall Sung](https://ed.unc.edu/people/hanall-sung/)
 
 ## Grad certificate
-
+<hr>
 The University of Tennessee, Knoxville, offers an online graduate certificate in Educational Data Science for students interested in digital data collection, analysis, visualization, and more in educational settings. The certificate can be added to current graduate students’ studies or pursued as a stand-alone certificate for graduate-level students.
 
-Link: https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/
+- [More Info](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/)
+- [Apply Here](https://gradschool.utk.edu/academics/forms-central/admission-to-a-graduate-certificate-program/)
 
-# Wrap up
+# Looking Ahead
 
-* Assignment: tidycensus + tigris
-* Readings:
-  * [What to consider when creating choropleth maps](https://blog.datawrapper.de/choroplethmaps/)
-  * [Policies to influence perceptions about COVID-19 risk: The case of maps](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8932671/)
+## Next Week's Structure
+<hr>
+- Test drive zoom timers
+- Preview [peer feedback form](https://airtable.com/appxk3cJS5Wp4CYK4/shrNo1yJwUrKLYtPl)
+  - Praise
+  - Question
+  - Polish
+  
+## Looking Ahead {.smaller}
+<hr>
+- Next week:
+  - Final Project Presentations!
+  - 5 min presentation of your final project
+    - 1 overview slide, 3 plots
+- Homework:
+  - Complete slides in shared Google Slides by Wednesday night
+  - Complete PingPong post test by Wednesday night
+  - Complete TN Voice
+  - Final project Canvas submissions due 12/4, 11:59pm
+    - Remember to explicitly state your research question for each viz
+    - Define each variable used and how measured/units
+    - Preview your .html before submitting. It should like a finished report!
 
-## Other data sources
+<!-- ## Looking Ahead -->
+<!-- <hr> -->
+<!-- * Assignment: Mapping ACS & Census Data -->
+<!-- * Readings: -->
+<!--   * Leaflet: -->
+<!--       * [Goldstein-Greenwood, J. (2020)](https://library.virginia.edu/data/articles/data-scientist-as-cartographer-an-introduction-to-making-interactive-maps-in-r-with-leaflet) -->
+<!--       * [R Coder (2024)](https://r-charts.com/spatial/interactive-maps-leaflet/) -->
+<!--   * plot_ly: -->
+<!--       * [Sievert, C. (2019), Chapter 2](https://plotly-r.com/overview) -->
+<!--       * [Sievert, C. (2019), Chapter 4](https://plotly-r.com/maps) -->
 
-* The USAboundaries package, https://github.com/ropensci/USAboundaries contains state, county and zip code data for the US
-* The rnaturalearth package (South 2017) bundles up the free, high-quality data from https://naturalearthdata.com/
-* The osmar package, https://cran.r-project.org/package=osmar wraps up the OpenStreetMap API so you can access a wide range of vector data including individual streets and buildings
+<!-- ## Other data sources{.smaller} -->
+<!-- <hr> -->
+<!-- * The USAboundaries package, [https://github.com/ropensci/USAboundaries](https://github.com/ropensci/USAboundaries) contains state, county and zip code data for the US -->
+<!-- * The rnaturalearth package (South 2017) bundles up the free, high-quality data from [https://naturalearthdata.com/](https://naturalearthdata.com/) -->
+<!-- * The osmar package, [https://cran.r-project.org/package=osmar](https://cran.r-project.org/package=osmar) wraps up the OpenStreetMap API so you can access a wide range of vector data including individual streets and buildings -->
 
-# Office hours
+<!-- ## Sources of `.shp` files{.smaller} -->
+<!-- <hr> -->
+
+<!-- :::{layout="[1,1]"} -->
+
+<!-- :::{column} -->
+<!-- - [IPUMS](https://international.ipums.org/international/gis.shtml) -->
+<!-- - [GADM](https://gadm.org/) -->
+<!-- - [Natural Earth](https://www.naturalearthdata.com/downloads/) -->
+<!-- - [Eurostat](https://ec.europa.eu/eurostat/web/gisco/geodata) -->
+<!-- - [OpenDataSoft](https://public.opendatasoft.com/explore/dataset/world-administrative-boundaries/table/?location=2,42.07882,0.00845&basemap=jawg.light) -->
+<!-- ::: -->
+
+<!-- :::{column} -->
+<!-- - [Free GIS Data](https://freegisdata.rtwilson.com/) -->
+<!-- - [Geofabrik/OSM Data](https://download.geofabrik.de/) -->
+<!-- - [U.S. Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html) -->
+<!-- - [SimpleMaps](https://simplemaps.com/data/world-cities) -->
+<!-- - [NCES](https://nces.ed.gov/programs/edge/Geographic/DistrictBoundaries) -->
+<!-- ::: -->
+
+<!-- ::: -->
