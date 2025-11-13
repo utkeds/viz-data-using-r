@@ -701,8 +701,9 @@ First 10 features:
 <section id="ussf-package" class="slide level2 smaller">
 <h2>{USSF} package</h2>
 <hr>
+<div class="smaller-font">
 <ul>
-<li>I use the <a href="https://github.com/dcl-docs/ussf">{ussf} package</a> for my US states shapefile</li>
+<li>I use the <a href="https://github.com/dcl-docs/ussf">{ussf} package</a> for my US states shapefile <sup>1</sup></li>
 </ul>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># install.packages("remotes")</span></span>
 <span id="cb21-2"><a href=""></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"dcl-docs/ussf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -713,9 +714,16 @@ First 10 features:
 <span id="cb22-4"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb22-5"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
 <span id="cb22-6"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Others like <a href="https://github.com/wmurphyrd/fiftystater">{fiftystater}</a></p></li></ol></aside></section></section>
 <section>
 <section id="reading-shapefiles" class="title-slide slide level1 center">
 <h1>Reading shapefiles</h1>
@@ -1482,13 +1490,72 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="co"># Step 6: Plot using the joined data</span></span>
-<span id="cb51-2"><a href=""></a><span class="fu">library</span>(viridis) <span class="co"># You shouldn't need this, but my slides were being difficult</span></span>
-<span id="cb51-3"><a href=""></a></span>
-<span id="cb51-4"><a href=""></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb51-5"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value))<span class="sc">+</span></span>
-<span id="cb51-6"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb51-2"><a href=""></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb51-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value))<span class="sc">+</span></span>
+<span id="cb51-4"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-49-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="plotting-spatial-data-1" class="slide level2 smaller">
+<h2>Plotting spatial data</h2>
+<hr>
+<p><span class="extra-small-font"><strong>STEPS 7 - 10 are a repeat of Case #1</strong></span><br> - If you want to plot points (like state capitals), read in that data</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a><span class="co"># Step 7: Read in state capitals data (lat/long)</span></span>
+<span id="cb52-2"><a href=""></a>state_capitals <span class="ot">&lt;-</span> </span>
+<span id="cb52-3"><a href=""></a>  <span class="fu">read_csv</span>(<span class="st">"us-state-capitals.csv"</span>)</span>
+<span id="cb52-4"><a href=""></a></span>
+<span id="cb52-5"><a href=""></a><span class="fu">head</span>(state_capitals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  name       description latitude longitude
+  &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;
+1 Alabama    Montgomery      32.4     -86.3
+2 Alaska     Juneau          58.3    -134. 
+3 Arizona    Phoenix         33.4    -112. 
+4 Arkansas   Little Rock     34.7     -92.3
+5 California Sacramento      38.6    -121. 
+6 Colorado   Denver          39.7    -105. </code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-spatial-data-2" class="slide level2 smaller">
+<h2>Plotting spatial data</h2>
+<hr>
+<p><span class="extra-small-font"><strong>STEPS 7 - 10 are a repeat of Case #1</strong></span><br> - Check the <code>class()</code> of your new <code>state_capitals</code> object</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="co"># Step 8: Check the class() - we need an sf object!</span></span>
+<span id="cb54-2"><a href=""></a></span>
+<span id="cb54-3"><a href=""></a><span class="fu">class</span>(state_capitals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-spatial-data-3" class="slide level2 smaller">
+<h2>Plotting spatial data</h2>
+<hr>
+<p><span class="extra-small-font"><strong>STEPS 7 - 10 are a repeat of Case #1</strong></span><br> - Convert the <code>state_capitals</code> object to an sf object</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="co"># Step 9: Use `st_as_sf()` to convert to an sf object. We'll use crs = 4326. It's</span></span>
+<span id="cb56-2"><a href=""></a><span class="co"># standard for lat/long coordinates.</span></span>
+<span id="cb56-3"><a href=""></a></span>
+<span id="cb56-4"><a href=""></a>state_capitals_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(state_capitals, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="plotting-spatial-data-4" class="slide level2 smaller">
+<h2>Plotting spatial data</h2>
+<hr>
+<p><span class="extra-small-font"><strong>STEPS 7 - 10 are a repeat of Case #1</strong></span><br> - Add another <code>geom_sf()</code> layer to your plot</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="co"># Step 10: Add capitals to the map</span></span>
+<span id="cb57-2"><a href=""></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb57-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value))<span class="sc">+</span></span>
+<span id="cb57-4"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>state_capitals_sf, <span class="at">shape =</span><span class="dv">8</span>, <span class="at">color=</span><span class="st">"limegreen"</span> )<span class="sc">+</span></span>
+<span id="cb57-5"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-53-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p><span class="extra-small-font">- This is the AK/HI problem.</span></p>
 <!-- # Layering geoms \n(a review)
 
 ## Plotting points (State Capitals){.smaller}
@@ -1582,44 +1649,26 @@ ggplot() +
 ```
 
 ::: {.cell-output-display}
-![](slides_files/figure-revealjs/unnamed-chunk-52-1.png){fig-align='center' width=960}
+![](slides_files/figure-revealjs/unnamed-chunk-56-1.png){fig-align='center' width=960}
 :::
-:::
-
-
-## Add to map{.smaller}
-<hr>
-- This is fixable (but complicated since it's a custom CRS). Contact me if you need to address this issue in your final project.
-
-
-::: {.cell layout-align="center"}
-
-:::
-
-
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-ggplot() +
-  geom_sf(data=joined_state_data_sf, aes(fill = value))+
-  geom_sf(data=state_capitals_sf, shape =8, color="limegreen" )+
-  scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
-```
-
-::: {.cell-output-display}
-![](slides_files/figure-revealjs/unnamed-chunk-54-1.png){fig-align='center' width=960}
-:::
-:::
-
-
-
-::: {.cell layout-align="center"}
-
 :::
 
 -->
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-49-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+</section>
+<section id="plotting-spatial-data-5" class="slide level2 smaller">
+<h2>Plotting spatial data</h2>
+<hr>
+<ul>
+<li>This is fixable (but complicated since it’s a custom CRS). Contact me if you need to address this issue in your final project.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb58-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value))<span class="sc">+</span></span>
+<span id="cb58-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>state_capitals_sf, <span class="at">shape =</span><span class="dv">8</span>, <span class="at">color=</span><span class="st">"limegreen"</span> )<span class="sc">+</span></span>
+<span id="cb58-4"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-58-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="collaborative-practice" class="title-slide slide level1 center">
 <h1>Collaborative Practice</h1>
@@ -1715,6 +1764,7 @@ ggplot() +
 <!-- ::: -->
 
 </section></section>
+
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

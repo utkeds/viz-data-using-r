@@ -28,6 +28,7 @@ knitr:
 ##NOTE TO SELF: NEED TO ACTUALLY USE {here} so I don't have to edit the file paths when running each chunk to include "week-13" and then take them out to knit. So annoying.
 
 library(tidyverse)
+library(viridis)
 library(palmerpenguins)
 
 state_by_region <- read_csv("https://github.com/cphalpert/census-regions/blob/master/us%20census%20bureau%20regions%20and%20divisions.csv?raw=true") # data on U.S. states' regions
@@ -444,7 +445,8 @@ YUCK!
 ## {USSF} package {.smaller}
 <hr>
 
-- I use the [{ussf} package](https://github.com/dcl-docs/ussf) for my US states shapefile
+:::{.smaller-font}
+- I use the [{ussf} package](https://github.com/dcl-docs/ussf) for my US states shapefile ^[Others like [{fiftystater}](https://github.com/wmurphyrd/fiftystater)]
 
 ```r
 # install.packages("remotes")
@@ -452,6 +454,7 @@ remotes::install_github("dcl-docs/ussf")
 ```
 
 ```{r}
+#| fig-height: 3
 library(ussf)
 
 boundaries(geography = "state") |>
@@ -460,6 +463,7 @@ boundaries(geography = "state") |>
   theme_void()
 ```
 
+:::
 
 # Reading shapefiles
 
@@ -957,12 +961,57 @@ joined_state_data_sf |>
 
 ```{r}
 # Step 6: Plot using the joined data
-library(viridis) # You shouldn't need this, but my slides were being difficult
-
 ggplot()+
   geom_sf(data=joined_state_data_sf, aes(fill = value))+
   scale_fill_viridis_c(option = "magma", labels = scales::label_comma(), direction = -1)
 ```
+## Plotting spatial data{.smaller}
+<hr>
+[**STEPS 7 - 10 are a repeat of Case #1**]{.extra-small-font}<br>
+- If you want to plot points (like state capitals), read in that data
+
+```{r}
+# Step 7: Read in state capitals data (lat/long)
+state_capitals <- 
+  read_csv("us-state-capitals.csv")
+
+head(state_capitals)
+```
+## Plotting spatial data{.smaller}
+<hr>
+[**STEPS 7 - 10 are a repeat of Case #1**]{.extra-small-font}<br>
+- Check the `class()` of your new `state_capitals` object
+
+```{r}
+# Step 8: Check the class() - we need an sf object!
+
+class(state_capitals)
+```
+
+## Plotting spatial data{.smaller}
+<hr>
+[**STEPS 7 - 10 are a repeat of Case #1**]{.extra-small-font}<br>
+- Convert the `state_capitals` object to an sf object
+
+```{r}
+# Step 9: Use `st_as_sf()` to convert to an sf object. We'll use crs = 4326. It's
+# standard for lat/long coordinates.
+
+state_capitals_sf <- st_as_sf(state_capitals, coords = c("longitude", "latitude"), crs = 4326)
+```
+## Plotting spatial data{.smaller}
+<hr>
+[**STEPS 7 - 10 are a repeat of Case #1**]{.extra-small-font}<br>
+- Add another `geom_sf()` layer to your plot
+
+```{r}
+# Step 10: Add capitals to the map
+ggplot()+
+  geom_sf(data=joined_state_data_sf, aes(fill = value))+
+  geom_sf(data=state_capitals_sf, shape =8, color="limegreen" )+
+  scale_fill_viridis_c(option = "magma", labels = scales::label_comma(), direction = -1)
+```
+[- This is the AK/HI problem.]{.extra-small-font}
 
 <!-- # Layering geoms \n(a review)
 
@@ -1006,8 +1055,9 @@ ggplot() +
   geom_sf(data=state_capitals_sf, shape =8, color="limegreen" )+
   scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
 ```
+-->
 
-## Add to map{.smaller}
+## Plotting spatial data{.smaller}
 <hr>
 - This is fixable (but complicated since it's a custom CRS). Contact me if you need to address this issue in your final project.
 
@@ -1085,7 +1135,7 @@ state_capitals_sf <- rbind(state_capitals_sf, alaska, hawaii)
 ggplot() +
   geom_sf(data=joined_state_data_sf, aes(fill = value))+
   geom_sf(data=state_capitals_sf, shape =8, color="limegreen" )+
-  scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
+  scale_fill_viridis_c(option = "magma", labels = scales::label_comma(), direction = -1)
 ```
 
 ```{r, echo=F}
@@ -1097,7 +1147,6 @@ ggplot() +
 #   geom_point(data=df, aes(x = X, y = Y),  shape =8, color="limegreen" )+
 #   scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
 ```
--->
 
 # Collaborative Practice
 

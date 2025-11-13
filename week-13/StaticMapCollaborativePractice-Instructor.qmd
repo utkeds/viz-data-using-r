@@ -1,0 +1,104 @@
+---
+title: "Maps Collaborative Practice"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    out-width: "100%"
+---
+
+```{r setup, include=FALSE}
+library(ozmaps) #Austrailaian Shapefiles
+library(sf)
+library(tidyverse)
+```
+
+### 1. Load Oz Maps shapefile/sf object
+Just run this chunk to load the `ozmap_states` object from the `ozmaps` package.
+
+```{r load_ozmaps}
+ozmap_states_sf <- ozmaps::ozmap_states
+```
+
+### 2. Check the class of `ozmap_states_sf`
+- If it's an `sf` object, you're good to go.
+
+```{r check_class}
+class(ozmap_states_sf)
+```
+
+### 3. Plot `ozmap_states_sf`
+- Assign a different fill color to each state. fill = as.factor(NAME)
+- Make the outlines of each state white.
+- Also use `geom_sf_label(aes(label = ????))` to label each state.
+- Remove the plot legend.
+- Apply `theme_void()` to remove the background and axis labels.
+
+```{r plot1_ozmaps}
+ozmap_states_sf |>
+ggplot() +
+  geom_sf(aes(fill = as.factor(NAME)), color = "white") +
+  geom_sf_label(aes(label = NAME)) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+### 4. Remove Australian Capital Territory and Other Territories Features (Rows)
+- Copy/paste the code from the previous chunk.
+- Use the pipe operator and `slice()` to remove the rows for the Australian Capital Territory and Other Territories.
+- Replot the map.
+
+```{r plot2_ozmaps}
+ozmap_states_sf |>
+  slice(-8,-9) |>
+ggplot() +
+  geom_sf(aes(fill = as.factor(NAME)), color = "white") +
+  geom_sf_label(aes(label = NAME)) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+### 5. Add some more data into the plot
+- `oz_pop.csv` is included in your `.zip` file. Load it in below.
+- Inspect `oz_pop.csv`. What variables does it include? What class is it? What variable does it have in common with `ozmap_states_sf` (to join on)?
+```{r oz_pop}
+oz_pop <- read_csv("oz_pop.csv")
+```
+
+**ANSWERS**:
+- Variables:
+- Class:
+- Variable to join on:
+
+### 6. Joining `oz_states_sf` and `oz_pop`
+- Note that we can `left_join()` the two datasets together using the common variable this time. We have a common variable to join on.
+- Use `left_join()` to join the two datasets together.
+
+```{r join_oz}
+#CHANGE: Make variable names the same
+ozmap_states_sf <-ozmap_states_sf |>
+  left_join(oz_pop, by = c("NAME"="State/Territory"))
+```
+
+### 7. Final plot
+- Plot the new joined data. (Case #2)
+- Fill each state with the new `Population` variable. (Case #2)
+- Make the outlines of each state white.
+- Use `geom_point()` to plot the capital city of each state. (Case #1)
+
+```{r final_plot}
+# Need to make it pipe in within the examples
+# x = long and y = lat
+ozmap_states_sf |>
+    slice(-8,-9) |>
+ggplot() +
+  geom_sf(aes(fill = Population), color = "white") +
+  geom_point(aes(x=long_cap, y=lat_cap), color = "limegreen") +
+  geom_sf_label(aes(label = NAME)) +
+  theme_void() +
+  theme(legend.position = "none")
+```
