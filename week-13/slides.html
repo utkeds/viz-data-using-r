@@ -1118,7 +1118,7 @@ ggplot(world_proj_sf) +
 <section id="understanding-epsg-codes" class="slide level2 smaller">
 <h2>Understanding EPSG Codes</h2>
 <hr>
-<div class="extra-small-font">
+<div class="smaller-font">
 <ul>
 <li>Each specific combination of:
 <ul>
@@ -1265,7 +1265,7 @@ PROJCRS["NAD83(HARN) / Tennessee (ftUS)",
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="co"># Step 4: Add the points sf object as a new geom_sf() layer</span></span>
 <span id="cb36-2"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb36-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_zones_sf) <span class="sc">+</span></span>
-<span id="cb36-4"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_sites_sf, <span class="at">color =</span> <span class="st">"#FF8200"</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-4"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_sites_sf, <span class="at">fill =</span> <span class="st">"#FF8200"</span>, <span class="at">color =</span> <span class="st">"#000"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
@@ -1674,6 +1674,36 @@ ggplot() +
 <h1>Collaborative Practice</h1>
 
 </section>
+<section id="next-semester-pt.-i" class="slide level2 smaller">
+<h2>Next Semester (Pt. I)</h2>
+<hr>
+<ul>
+<li><strong>STEM 680:</strong> Foundations of Educational Data Science I (Online, Async)
+<ul>
+<li>2 Sync Meetings</li>
+<li>Dr.&nbsp;Hanall Sung</li>
+</ul></li>
+<li><strong>STEM 691:</strong> Visualizing Data in R (Online, Sync)
+<ul>
+<li>Thurs: 3-5pm</li>
+<li>Dr.&nbsp;Huibin Zhang</li>
+</ul></li>
+<li><strong>STEM 695:</strong> Capstone in Educational Data Science (Online, Sync)
+<ul>
+<li>Date/Time: TBD based on student/faculty schedules</li>
+<li>Dr.&nbsp;Joshua Rosenberg</li>
+</ul></li>
+<li><strong>TPTE 595:</strong> AI for Educators (Online, Async)
+<ul>
+<li>Dr.&nbsp;Yukyeong Song</li>
+</ul></li>
+</ul>
+</section>
+<section id="next-semester-pt.-ii" class="slide level2 smaller">
+<h2>Next Semester (Pt. II)</h2>
+<hr>
+<p><span class="smaller-font">A note about STEM 685: While we had planned to offer this course, we’re unable to do so this spring. For those seeking alternate courses that count toward the Educational Data Science graduate certificate, consider AI for Educators (TPTE 495/595) or, for on-campus students, Statistics in Applied Fields (ESM 678; in-person, Wednesday, 4:10–6:35 pm).</span></p>
+</section>
 <section id="grad-certificate" class="slide level2">
 <h2>Grad certificate</h2>
 <hr>
@@ -1693,7 +1723,7 @@ ggplot() +
 <hr>
 <ul>
 <li>Test drive zoom timers</li>
-<li>Final rubric (incorporating your suggestions)</li>
+<li><a href="https://docs.google.com/document/d/1RhTHWw_j7MMMcBEc4dE1-acwGPWu5uDBAY7KT2IEQ5I/edit?usp=sharing">Final rubric</a> (incorporating your suggestions)</li>
 <li>Preview peer feedback form
 <ul>
 <li><a href="https://airtable.com/appxk3cJS5Wp4CYK4/shrNo1yJwUrKLYtPl">Section A</a></li>
@@ -1718,9 +1748,8 @@ ggplot() +
 </ul></li>
 <li>Homework:
 <ul>
-<li>Complete slides in shared Google Slides by Wednesday night</li>
-<li>Complete PingPong post test by Wednesday night</li>
-<li>Complete TN Voice</li>
+<li>Complete slides in shared Google Slides by Wednesday night <!-- - Complete PingPong post test by Wednesday night
+- Complete TN Voice --></li>
 <li>Final project Canvas submissions due 12/4, 11:59pm
 <ul>
 <li>Remember to explicitly state your research question for each viz</li>

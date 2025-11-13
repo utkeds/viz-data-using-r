@@ -741,7 +741,7 @@ knitr::include_graphics("slides_images/projection_families.png")
 ## Understanding EPSG Codes {.smaller}
 <hr>
 
-:::{.extra-small-font}
+:::{.smaller-font}
 - Each specific combination of:
   - Projection (or not)
   - Regional Focus
@@ -813,7 +813,7 @@ class(knox_sites_sf)
 # Step 4: Add the points sf object as a new geom_sf() layer
 ggplot() +
   geom_sf(data = knox_zones_sf) +
-  geom_sf(data = knox_sites_sf, color = "#FF8200", size = 3)
+  geom_sf(data = knox_sites_sf, fill = "#FF8200", color = "#000", linewidth = 1, size = 3, shape = 21)
 ```
 
 # #2: Choropleth Maps
@@ -1150,6 +1150,32 @@ ggplot() +
 
 # Collaborative Practice
 
+## Next Semester (Pt. I) {.smaller}
+<hr>
+
+- **STEM 680:** Foundations of Educational Data Science I (Online, Async)
+  - 2 Sync Meetings
+  - Dr. Hanall Sung
+
+- **STEM 691:** Visualizing Data in R (Online, Sync)
+  - Thurs: 3-5pm
+  - Dr. Huibin Zhang
+
+- **STEM 695:** Capstone in Educational Data Science (Online, Sync)
+  - Date/Time: TBD based on student/faculty schedules
+  - Dr. Joshua Rosenberg
+
+- **TPTE 595:** AI for Educators (Online, Async)
+  - Dr. Yukyeong Song
+
+## Next Semester (Pt. II) {.smaller}
+<hr>
+[A note about STEM 685: While we had planned to offer this course, we're unable to do so this 
+spring. For those seeking alternate courses that count toward the Educational Data Science 
+graduate certificate, consider AI for Educators (TPTE 495/595) or, for on-campus students, 
+Statistics in Applied Fields (ESM 678; in-person, Wednesday, 4:10–6:35 pm).]{.smaller-font}
+
+
 
 ## Grad certificate
 <hr>
@@ -1163,7 +1189,7 @@ The University of Tennessee, Knoxville, offers an online graduate certificate in
 ## Next Week's Structure {.smaller}
 <hr>
 - Test drive zoom timers
-- Final rubric (incorporating your suggestions)
+- [Final rubric](https://docs.google.com/document/d/1RhTHWw_j7MMMcBEc4dE1-acwGPWu5uDBAY7KT2IEQ5I/edit?usp=sharing) (incorporating your suggestions)
 - Preview peer feedback form
   - [Section A](https://airtable.com/appxk3cJS5Wp4CYK4/shrNo1yJwUrKLYtPl)
   - [Section B](https://airtable.com/appBVRcTY7OGYJROm/shrHYges8GlncbhPN)
@@ -1179,8 +1205,8 @@ The University of Tennessee, Knoxville, offers an online graduate certificate in
     - 1 overview slide, 3 plots
 - Homework:
   - Complete slides in shared Google Slides by Wednesday night
-  - Complete PingPong post test by Wednesday night
-  - Complete TN Voice
+  <!-- - Complete PingPong post test by Wednesday night
+  - Complete TN Voice -->
   - Final project Canvas submissions due 12/4, 11:59pm
     - Remember to explicitly state your research question for each viz
     - Define each variable used and how measured/units
