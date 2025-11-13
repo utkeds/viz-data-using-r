@@ -1424,6 +1424,7 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <section id="joining-spatial-data---fips-6" class="slide level2 smaller">
 <h2>Joining spatial data - FIPS</h2>
 <hr>
+<p><strong>Note the syntax when the join variable names are different</strong></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="co"># Step 5: Left Join... left_join(shapefile_sf, data_sf)</span></span>
 <span id="cb47-2"><a href=""></a>joined_state_data_sf <span class="ot">&lt;-</span> <span class="fu">left_join</span>(states_sf, pop_counts_2020, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"STATEFP"</span> <span class="ot">=</span> <span class="st">"GEOID"</span>))</span>

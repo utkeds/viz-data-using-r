@@ -32,7 +32,7 @@ class(ozmap_states_sf)
 ```
 
 ### 3. Plot `ozmap_states_sf`
-- Assign a different fill color to each state. fill = as.factor(NAME)
+- Assign a different fill color to each state.
 - Make the outlines of each state white.
 - Also use `geom_sf_label(aes(label = ????))` to label each state.
 - Remove the plot legend.
@@ -41,7 +41,7 @@ class(ozmap_states_sf)
 ```{r plot1_ozmaps}
 ozmap_states_sf |>
 ggplot() +
-  geom_sf(aes(fill = as.factor(NAME)), color = "white") +
+  geom_sf(aes(fill = NAME), color = "white") +
   geom_sf_label(aes(label = NAME)) +
   theme_void() +
   theme(legend.position = "none")
@@ -84,10 +84,10 @@ ozmap_states_sf <-ozmap_states_sf |>
 ```
 
 ### 7. Final plot
-- Plot the new joined data. (Case #2)
-- Fill each state with the new `Population` variable. (Case #2)
+- Plot the new joined data.
+- Fill each state with the new `Population` variable.
 - Make the outlines of each state white.
-- Use `geom_point()` to plot the capital city of each state. (Case #1)
+- Use `geom_point()` to plot the capital city of each state.
 
 ```{r final_plot}
 # Need to make it pipe in within the examples

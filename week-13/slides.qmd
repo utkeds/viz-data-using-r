@@ -925,6 +925,7 @@ head(pop_counts_2020)[1]
 ## Joining spatial data - FIPS{.smaller}
 <hr>
 
+**Note the syntax when the join variable names are different**
 ```{r}
 # Step 5: Left Join... left_join(shapefile_sf, data_sf)
 joined_state_data_sf <- left_join(states_sf, pop_counts_2020, by = c("STATEFP" = "GEOID"))

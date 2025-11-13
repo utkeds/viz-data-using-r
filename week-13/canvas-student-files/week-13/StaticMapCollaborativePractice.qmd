@@ -32,7 +32,7 @@ ozmap_states_sf <- ozmaps::ozmap_states
 ```
 
 ### 3. Plot `ozmap_states_sf`
-- Assign a different fill color to each state. (e.g.,`fill = as.factor(NAME)`)
+- Assign a different fill color to each state.
 - Make the outlines of each state white.
 - Also use `geom_sf_label(aes(label = ????))` to label each state.
 - Remove the plot legend.
@@ -44,7 +44,7 @@ ozmap_states_sf <- ozmaps::ozmap_states
 
 ### 4. Remove Australian Capital Territory and Other Territories Features (Rows)
 - Copy/paste the code from the previous chunk.
-- Use the pipe operator and `slice()` to remove the rows for the Australian Capital Territory and Other Territories.
+- Use `slice()` to remove the rows for the Australian Capital Territory and Other Territories.
 - Replot the map.
 
 ```{r plot2_ozmaps}
@@ -64,7 +64,7 @@ ozmap_states_sf <- ozmaps::ozmap_states
 - Variable to join on:
 
 ### 6. Joining `oz_states_sf` and `oz_pop`
-- Note that we can `left_join()` the two datasets together using the common variable this time. We have a common variable to join on.
+- Note that we can `left_join()` the two datasets together using the common variable this time. We have a common variable to join on. However, note that they have different variable names.
 - Use `left_join()` to join the two datasets together.
 
 ```{r join_oz}
@@ -85,14 +85,14 @@ ozmap_states_sf <- ozmaps::ozmap_states
 - But!! oz_pop.csv also has lat/long coordinates for each state/territory capital.
 - Use `oz_pop.csv` to plot the capitals for each state/territory.
 
-- To use the lat/long coordinates to plot the capitals, we need to convert the `oz_pop.csv` object to an `sf` object. Let's check to see if it's an `sf` object currently.
+- To use the lat/long coordinates to plot the capitals, we need to convert the `oz_pop` object to an `sf` object. Let's check to see if it's an `sf` object currently.
 
 ```{r check_class2}
 
 ```
 
 ### 9. Convert oz_pop.csv to an sf object
-- Convert the `oz_pop.csv` object to an `sf` object using `st_as_sf()`. Use `crs = 4326` as it's the standard for lat/long coordinates.
+- Convert the `oz_pop` object to an `sf` object using `st_as_sf()`. Use `crs = 4326` as it's the standard for lat/long coordinates.
 
 ```{r oz_pop_to_sf}
 
