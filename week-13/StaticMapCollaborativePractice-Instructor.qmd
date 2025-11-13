@@ -79,7 +79,6 @@ oz_pop <- read_csv("oz_pop.csv")
 - Use `left_join()` to join the two datasets together.
 
 ```{r join_oz}
-#CHANGE: Make variable names the same
 ozmap_states_sf <-ozmap_states_sf |>
   left_join(oz_pop, by = c("NAME"="State/Territory"))
 ```
