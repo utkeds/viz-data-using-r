@@ -438,9 +438,9 @@ gtcars |>
 
 # `gtsave()`
 
-## The `gt_save()` Function{.smaller}
+## The `gtsave()` Function{.smaller}
 <hr>
-- `gt_save()` helps us save our gt tables to a variety of different file types
+- `gtsave()` helps us save our gt tables to a variety of different file types
     - .html
     - .pdf
     - .png
@@ -449,7 +449,7 @@ gtcars |>
     - .docx
 - similar to `ggsave()` from {ggplot2}
 
-## The `gt_save()` Function{.smaller}
+## The `gtsave()` Function{.smaller}
 <hr>
 
 :::{layout="[1,1]" .smaller-font}
