@@ -64,6 +64,7 @@ library(tidyverse)
 
 # Please do PingPong Final Survey
 # Please do TNVoice
+# Slack
 
 ## Looking Ahead
 <hr>
