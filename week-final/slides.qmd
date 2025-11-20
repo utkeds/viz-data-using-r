@@ -62,8 +62,8 @@ library(tidyverse)
 
 # Final Projects Celebrations!
 
-# Please do PingPong Final Survey
-# Please do TNVoice
+# Please do [PingPong Final Survey](https://harvard.pdx1.qualtrics.com/jfe/form/SV_3QtLKIgYn9mURLw)
+# Please do [TNVoice](https://planning.utk.edu/)
 # Slack
 
 ## Looking Ahead
