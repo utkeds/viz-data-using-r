@@ -546,6 +546,12 @@ tidykids_wide |>
 - Create time series plot
 - Implement {gghighlight}
 
+# Amounts, Distributions, or Line?
+
+## Amounts, Distributions, or Line?
+<hr>
+![Beigel, F et al. (2025). The drain of scientific publishing. *arXiv.* https://doi.org/10.48550/arXiv.2511.04820](slides_images/amounts_distributions_line.png)
+
 # Schwabish Extensions
 
 ## Bump Chart
