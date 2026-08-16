@@ -1,6 +1,6 @@
 # Permissions and Use Policy
 
-These instructional materials were developed by Dr. Joshua Rosenberg (UTK), Dr. Kelly Boles (UTK), and Isabella Velásquez (Posit), for use in **STEM 691**.  
+These instructional materials were developed by Dr. Joshua Rosenberg (UTK), Dr. Kelly Boles (UTK), and Isabella Velásquez (Posit), for use in **CADE 691**.  
 
 ## License
 This repository is licensed under a **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)**.  
