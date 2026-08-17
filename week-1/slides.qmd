@@ -1,7 +1,7 @@
 ---
 subtitle: "Course Introduction"
-title: "Week 1 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 1 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -32,8 +32,8 @@ library(ggtext)
 
 # Authenticate with Google for Survey Viz
 gs4_auth(
-  scopes = "https://www.googleapis.com/auth/spreadsheets.readonly")
-
+  scopes = "https://www.googleapis.com/auth/spreadsheets.readonly"
+)
 ```
 
 # Welcome!
@@ -48,8 +48,7 @@ gs4_auth(
 - Introductions
 - Pre-work
 - Tutorial / discussion review
-- `.qmd` & activity
-- Cairo (2013) discussion/ Miro activity
+- Cairo (2013) discussion/ Group activity
 - Looking ahead
 
 ## Syllabus Review {.smaller}
@@ -57,20 +56,20 @@ gs4_auth(
 - [Syllabus](https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing) is available on Canvas. 
   - Living document: may be updated throughout the semester. 
 - If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
-  - Slack us to let us know of any discrepancies, please!
+  - Slack me to let me know of any discrepancies, please!
 
 ## Canvas Review {.smaller}
 <hr>
-- [Canvas](https://utk.instructure.com/courses/213032) = Primary platform for this course.
+- [Canvas](https://utk.instructure.com/courses/261125) = Primary platform for this course.
 - All materials you need will be posted here.
 - "Module" page is home base.
-- If an item is missing, please let us know.
+- If an item is missing, please let me know.
 
 ## Getting Help {.smaller}
 <hr>
 - Many ways to get help:
   1. Class Slack ([eddatascienceatutk.slack.com](https://eddatascienceatutk.slack.com/))
-  2. Ping Pong AI, ChatGPT, etc. (see syllabus for policy)
+  2. [UT AI Hub](https://oit.utk.edu/ai/aihub/) (see syllabus for policy)
   3. Email
 
 ## Norms 
@@ -110,55 +109,88 @@ gs4_auth(
 library(tidyverse)
 library(ussf)
 library(sf)
-us_counties18sf_tn <- subset(boundaries(geography="county"),STATEFP %in% c("47"))
-us_counties18_easttn <- subset(us_counties18sf_tn,COUNTYFP %in% c("091","163","019","171",
-                                                          "179","073","067",
-                                                          "013","057","063","029",
-                                                          "089","025","173",
-                                                          "155","151","001","129",
-                                                          "145","105","123","009"))
+us_counties18sf_tn <- subset(
+  boundaries(geography = "county"),
+  STATEFP %in% c("47")
+)
+us_counties18_easttn <- subset(
+  us_counties18sf_tn,
+  COUNTYFP %in%
+    c(
+      "091",
+      "163",
+      "019",
+      "171",
+      "179",
+      "073",
+      "067",
+      "013",
+      "057",
+      "063",
+      "029",
+      "089",
+      "025",
+      "173",
+      "155",
+      "151",
+      "001",
+      "129",
+      "145",
+      "105",
+      "123",
+      "009"
+    )
+)
 
 
-us_counties18_greeneco <- subset(us_counties18sf_tn,COUNTYFP %in% c("059"))
-us_counties18_knoxco <- subset(us_counties18sf_tn,COUNTYFP %in% c("093"))
-us_states18sf <- subset(boundaries(geography="state"), STATEFP %in% c("47"))
+us_counties18_greeneco <- subset(us_counties18sf_tn, COUNTYFP %in% c("059"))
+us_counties18_knoxco <- subset(us_counties18sf_tn, COUNTYFP %in% c("093"))
+us_states18sf <- subset(boundaries(geography = "state"), STATEFP %in% c("47"))
 
 
 greene_co_tn <- ggplot() +
-  geom_sf(data=us_counties18_easttn, fill="#ffffff", color="#262626", lwd=.5, show.legend=NA)+
-  geom_sf(data=us_counties18_greeneco, fill="#7B8400", color="#262626", lwd=.5, show.legend=NA)+
-  geom_sf(data=us_counties18_knoxco, fill="#FF8300", color="#262626", lwd=.5, show.legend=NA)+
-  geom_sf(data=us_states18sf, fill=NA, color="#262626", lwd=1, show.legend = NA)+
-  theme(text = element_text(family="Roboto Condensed"),
-        axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks = element_blank(),
-        legend.key = element_blank(),
-        legend.background = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.background = element_blank())
+  geom_sf(
+    data = us_counties18_easttn,
+    fill = "#ffffff",
+    color = "#262626",
+    lwd = .5,
+    show.legend = NA
+  ) +
+  geom_sf(
+    data = us_counties18_greeneco,
+    fill = "#7B8400",
+    color = "#262626",
+    lwd = .5,
+    show.legend = NA
+  ) +
+  geom_sf(
+    data = us_counties18_knoxco,
+    fill = "#FF8300",
+    color = "#262626",
+    lwd = .5,
+    show.legend = NA
+  ) +
+  geom_sf(
+    data = us_states18sf,
+    fill = NA,
+    color = "#262626",
+    lwd = 1,
+    show.legend = NA
+  ) +
+  theme(
+    text = element_text(family = "Roboto Condensed"),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank(),
+    legend.key = element_blank(),
+    legend.background = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.background = element_blank()
+  )
 
 greene_co_tn
 ```
 
-:::
-
-## Zhen's Introduction {.smaller}
-<hr>
-
-::: {layout="[3,2]"}
-::::{.smaller-font}
-- Postdoctoral Research Associate, Community Engaged Disciplinary and Educational Researchers in STEM (CEDERS) Program, TPTE
-- **Experience:**
-  - Ph.D. in Educational Technology, University of Florida; minor in Research and Evaluation Methodology (quantitative research methods)
-  - Postdoctoral Research Associate, University of North Carolina at Chapel Hill
-- **Research interests:** 
-  - Educational game design
-    - Spatial cognition in STEM learning
-  - Data science education
-  - Socioscientific issue-based science teaching and learning
-::::
-![](slide_images/zhen_hometown.jpg)
 :::
 
 ## Your Introductions {.smaller}
@@ -177,57 +209,97 @@ greene_co_tn
 <hr>
 ```{r survey-results-pt1, echo=FALSE}
 #Import six variables from the Google Form Student Survey
-# df <- read_sheet("https://docs.google.com/spreadsheets/d/1FsM0BXtfrT-x5wGUBNW0QNA3ia-0DCzeP6nxfrK9Fzw/edit?gid=478049066#gid=478049066") |>
-#   select(c(9:14))
 
-df <- read_sheet("https://docs.google.com/spreadsheets/d/1wFWUV3yH8qKzDDV4xop7L0YIxVC2_dXAPj2-5QQPR7Q/edit?gid=201277961#gid=201277961") |>
+df <- read_sheet(
+  "https://docs.google.com/spreadsheets/d/1wFWUV3yH8qKzDDV4xop7L0YIxVC2_dXAPj2-5QQPR7Q/edit?gid=201277961#gid=201277961"
+) |>
   select(c(9:14))
 
 #Max count for scaling gridlines
 max_count <- df %>%
-    pivot_longer(cols = 1:3, names_to = "Question", values_to = "Response") %>%
-    group_by(Question, Response) %>%
-    summarise(count = n(), .groups = "drop") %>%
-    summarise(max_n = max(count)) %>%
-    pull(max_n) + 2
+  pivot_longer(cols = 1:3, names_to = "Question", values_to = "Response") %>%
+  group_by(Question, Response) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  summarise(max_n = max(count)) %>%
+  pull(max_n) +
+  2
 
 how_often_graphs <- df |>
   select(c(1:3)) |>
-  pivot_longer(cols = everything(), names_to = "Question", values_to = "Response") |>
-  mutate(Response = fct_relevel(Response,c("Never", "Less than once per year", "Several times per year", "Monthly", "Weekly", "Daily")),
-         Question = fct_relevel(Question,c("How often do you currently use each of the following? [Statistical software with a point-and-click graphical user interface (e.g., SPSS, SAS)]",
-                                           "How often do you currently use each of the following? [Spreadsheet software (e.g., Excel, Google Sheets)]",
-                                           "How often do you currently use each of the following? [Data analysis notebooks (e.g., R Markdown, Jupyter Notebook) or programming languages (e.g., R, python)]")),
-         Question = fct_recode(Question,"<b style='color:#2D912A; font-size:7.5pt;'>Point-and-Click Software:</b><span style='font-size:7.5pt;'> SPSS, SAS, etc.</span>"="How often do you currently use each of the following? [Statistical software with a point-and-click graphical user interface (e.g., SPSS, SAS)]",
-                                          "<b style='color:#792E84; font-size:7.5pt;'>Spreadsheets:</b><span style='font-size:7.5pt;'> Excel, Google Sheets, etc.</span>"="How often do you currently use each of the following? [Spreadsheet software (e.g., Excel, Google Sheets)]",
-                                          "<b style='color:#E06100; font-size:7.5pt;'>Programming Languages & Notebooks:</b><span style='font-size:7.5pt;'> R, Python, etc.</span>"="How often do you currently use each of the following? [Data analysis notebooks (e.g., R Markdown, Jupyter Notebook) or programming languages (e.g., R, python)]")) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "Question",
+    values_to = "Response"
+  ) |>
+  mutate(
+    Response = fct_relevel(
+      Response,
+      c(
+        "Never",
+        "Less than once per year",
+        "Several times per year",
+        "Monthly",
+        "Weekly",
+        "Daily"
+      )
+    ),
+    Question = fct_relevel(
+      Question,
+      c(
+        "How often do you currently use each of the following? [Statistical software with a point-and-click graphical user interface (e.g., SPSS, SAS)]",
+        "How often do you currently use each of the following? [Spreadsheet software (e.g., Excel, Google Sheets)]",
+        "How often do you currently use each of the following? [Data analysis notebooks (e.g., R Markdown, Jupyter Notebook) or programming languages (e.g., R, python)]"
+      )
+    ),
+    Question = fct_recode(
+      Question,
+      "<b style='color:#2D912A; font-size:7.5pt;'>Point-and-Click Software:</b><span style='font-size:7.5pt;'> SPSS, SAS, etc.</span>" = "How often do you currently use each of the following? [Statistical software with a point-and-click graphical user interface (e.g., SPSS, SAS)]",
+      "<b style='color:#792E84; font-size:7.5pt;'>Spreadsheets:</b><span style='font-size:7.5pt;'> Excel, Google Sheets, etc.</span>" = "How often do you currently use each of the following? [Spreadsheet software (e.g., Excel, Google Sheets)]",
+      "<b style='color:#E06100; font-size:7.5pt;'>Programming Languages & Notebooks:</b><span style='font-size:7.5pt;'> R, Python, etc.</span>" = "How often do you currently use each of the following? [Data analysis notebooks (e.g., R Markdown, Jupyter Notebook) or programming languages (e.g., R, python)]"
+    )
+  ) |>
   ggplot(aes(x = Response, fill = Question)) +
-  geom_bar(aes(fill=Question),position = "dodge", stat = "count", alpha=.7) +
-  geom_text(aes(label = after_stat(count)), 
-            stat = "count", 
-            position = position_dodge(width = 0.9), 
-            vjust = 0,
-            hjust = -1) +
+  geom_bar(
+    aes(fill = Question),
+    position = "dodge",
+    stat = "count",
+    alpha = .7
+  ) +
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    position = position_dodge(width = 0.9),
+    vjust = 0,
+    hjust = -1
+  ) +
   geom_hline(yintercept = 0, color = "black", linewidth = 1.5) +
-  labs(title="How often do you use...?",
-       x = NULL,
-       y = NULL) +
+  labs(title = "How often do you use...?", x = NULL, y = NULL) +
   theme_minimal() +
-  scale_fill_manual(values = c("#2D912A","#792E84","#E06100")) +
-  scale_y_continuous(expand = expansion(mult = c(0, 0)), limits = c(0, max_count), 
-  breaks = seq(0, max_count, by = 2)) +
-  theme(text = element_text(family = "Roboto Condensed"),
-        legend.position = "none",
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.grid.major.y = element_blank(),
-        panel.grid.major.x = element_line(color="#bfbfbf"),
-        plot.title = element_text(family = "DIN Condensed", size=22, hjust = 0, margin=margin(b=20)),
-        axis.text.y = element_text(size = 11),
-        axis.text.x = element_text(size = 11),
-        strip.text = element_markdown(),
-        panel.spacing = unit(3,"lines"))+
-  coord_flip()+
+  scale_fill_manual(values = c("#2D912A", "#792E84", "#E06100")) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0)),
+    limits = c(0, max_count),
+    breaks = seq(0, max_count, by = 2)
+  ) +
+  theme(
+    text = element_text(family = "Roboto Condensed"),
+    legend.position = "none",
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(color = "#bfbfbf"),
+    plot.title = element_text(
+      family = "DIN Condensed",
+      size = 22,
+      hjust = 0,
+      margin = margin(b = 20)
+    ),
+    axis.text.y = element_text(size = 11),
+    axis.text.x = element_text(size = 11),
+    strip.text = element_markdown(),
+    panel.spacing = unit(3, "lines")
+  ) +
+  coord_flip() +
   facet_wrap(~Question)
 
 how_often_graphs
@@ -239,49 +311,90 @@ how_often_graphs
 
 #Max count for scaling gridlines
 max_count_2 <- df %>%
-    pivot_longer(cols = 4:6, names_to = "Question", values_to = "Response") %>%
-    group_by(Question, Response) %>%
-    summarise(count = n(), .groups = "drop") %>%
-    summarise(max_n = max(count)) %>%
-    pull(max_n) + 2
+  pivot_longer(cols = 4:6, names_to = "Question", values_to = "Response") %>%
+  group_by(Question, Response) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  summarise(max_n = max(count)) %>%
+  pull(max_n) +
+  2
 
 level_of_confidence_graphs <- df |>
   select(c(4:6)) |>
-  pivot_longer(cols = everything(), names_to = "Question", values_to = "Response") |>
-  mutate(Response = fct_relevel(Response,c("Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree","Strongly agree")),
-         Question = fct_relevel(Question,c("Please rate your level of agreement with the following statements. [While working on a data analysis project, if I got stuck, I can find ways of overcoming the problem.]",
-                                           "Please rate your level of agreement with the following statements. [I know how to search for answers to my technical questions online. (2)]",
-                                           "Please rate your level of agreement with the following statements. [I am confident in my ability to make use of statistical software to work with data.]")),
-         Question = fct_recode(Question,"<span style='font-size:7.5pt;'>...confident in </span><b style='color:#28AF7F; font-size:7.5pt;'>Overcoming Problems</b>"="Please rate your level of agreement with the following statements. [While working on a data analysis project, if I got stuck, I can find ways of overcoming the problem.]",
-                               "<span style='font-size:7.5pt;'>...confident in </span><b style='color:#32648E; font-size:7.5pt;'>Searching for Technical Answers Online</b>"="Please rate your level of agreement with the following statements. [I know how to search for answers to my technical questions online. (2)]",
-                               "<span style='font-size:7.5pt;'>...confident in </span><b style='color:#481568; font-size:7.5pt;'>Making Use of Statistical Software</b>"="Please rate your level of agreement with the following statements. [I am confident in my ability to make use of statistical software to work with data.]")) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "Question",
+    values_to = "Response"
+  ) |>
+  mutate(
+    Response = fct_relevel(
+      Response,
+      c(
+        "Strongly disagree",
+        "Disagree",
+        "Somewhat disagree",
+        "Neither agree nor disagree",
+        "Somewhat agree",
+        "Agree",
+        "Strongly agree"
+      )
+    ),
+    Question = fct_relevel(
+      Question,
+      c(
+        "Please rate your level of agreement with the following statements. [While working on a data analysis project, if I got stuck, I can find ways of overcoming the problem.]",
+        "Please rate your level of agreement with the following statements. [I know how to search for answers to my technical questions online. (2)]",
+        "Please rate your level of agreement with the following statements. [I am confident in my ability to make use of statistical software to work with data.]"
+      )
+    ),
+    Question = fct_recode(
+      Question,
+      "<span style='font-size:7.5pt;'>...confident in </span><b style='color:#28AF7F; font-size:7.5pt;'>Overcoming Problems</b>" = "Please rate your level of agreement with the following statements. [While working on a data analysis project, if I got stuck, I can find ways of overcoming the problem.]",
+      "<span style='font-size:7.5pt;'>...confident in </span><b style='color:#32648E; font-size:7.5pt;'>Searching for Technical Answers Online</b>" = "Please rate your level of agreement with the following statements. [I know how to search for answers to my technical questions online. (2)]",
+      "<span style='font-size:7.5pt;'>...confident in </span><b style='color:#481568; font-size:7.5pt;'>Making Use of Statistical Software</b>" = "Please rate your level of agreement with the following statements. [I am confident in my ability to make use of statistical software to work with data.]"
+    )
+  ) |>
   ggplot(aes(x = Response, fill = Question)) +
-  geom_bar(aes(fill=Question),position = "dodge", stat = "count", alpha=.7) +
-  geom_text(aes(label = after_stat(count)), 
-            stat = "count", 
-            position = position_dodge(width = 0.9), 
-            vjust = 0,
-            hjust = -1) +
+  geom_bar(
+    aes(fill = Question),
+    position = "dodge",
+    stat = "count",
+    alpha = .7
+  ) +
+  geom_text(
+    aes(label = after_stat(count)),
+    stat = "count",
+    position = position_dodge(width = 0.9),
+    vjust = 0,
+    hjust = -1
+  ) +
   geom_hline(yintercept = 0, color = "black", linewidth = 1.5) +
-  labs(title="To what degree are you...?",
-       x = NULL,
-       y = NULL) +
+  labs(title = "To what degree are you...?", x = NULL, y = NULL) +
   theme_minimal() +
-  scale_fill_manual(values = c("#28AF7F","#32648E","#481568")) +
-  scale_y_continuous(expand = expansion(mult = c(0, 0)), limits = c(0, max_count_2), 
-  breaks = seq(0, max_count, by = 2)) +
-  theme(text = element_text(family = "Roboto Condensed"),
-        legend.position = "none",
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.grid.major.y = element_blank(),
-        panel.grid.major.x = element_line(color="#bfbfbf"),
-        plot.title = element_text(family = "DIN Condensed", size=22, hjust = 0, margin=margin(b=20)),
-        axis.text.y = element_text(size = 11),
-        axis.text.x = element_text(size = 11),
-        strip.text = element_markdown(),
-        panel.spacing = unit(3,"lines"))+
-  coord_flip()+
+  scale_fill_manual(values = c("#28AF7F", "#32648E", "#481568")) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0)),
+    limits = c(0, max_count_2),
+    breaks = seq(0, max_count, by = 2)
+  ) +
+  theme(
+    text = element_text(family = "Roboto Condensed"),
+    legend.position = "none",
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(color = "#bfbfbf"),
+    plot.title = element_text(
+      family = "DIN Condensed",
+      size = 22,
+      hjust = 0,
+      margin = margin(b = 20)
+    ),
+    axis.text.y = element_text(size = 11),
+    axis.text.x = element_text(size = 11),
+    strip.text = element_markdown(),
+    panel.spacing = unit(3, "lines")
+  ) +
+  coord_flip() +
   facet_wrap(~Question)
 
 level_of_confidence_graphs
@@ -290,35 +403,18 @@ level_of_confidence_graphs
 ## Fun Things From Discussion {.smaller}
 <hr>
 :::{layout="[1,1], [1,1], [1,1]"}
-- Runner
-- Gardener
-- Rock climber
-- Rock collector
-- Coffee and ramen connoisseurs
-- Personal hairstylist (in training?)
-- Double jointed
-- Career educator
-- Paraglider
-- Tap dancer
+- Cross-Country Runner
+- Crosstitcher
+- Multilingual
 
-![](slide_images/running_shoes.png){width=10%}
+![](slide_images/cross_stitch.jpeg){width=10%}
 :::
 
-<!-- # R Projects
-
-## Creating an R Project {.smaller}
-<hr>
-- If you haven't already, let's create an R Project for this class.
-- In [Canvas](https://utk.instructure.com/courses/239375) there is a zip file for `week-1` with all the files you need.
-- Download and unzip the file.
-- Put the `week-1` folder in your `.Rproj` folder.
-- Delete the zip
-- Open the `.Rproj` file in R Studio -->
 
 ## Class File Storage {.smaller}
 <hr>
 - If you haven't already, let's create a folder for this class.
-- In [Canvas](https://utk.instructure.com/courses/239375) there is a .zip file for `week-1` with all the files you need.
+- In [Canvas](https://utk.instructure.com/courses/261125) there is a .zip file for `week-1` with all the files you need.
 - Download and extract the files.
 - Put the `week-1` folder in your class folder.
 - Delete the .zip
@@ -351,8 +447,10 @@ level_of_confidence_graphs
     - R can't read comments. These are for you!
 - You save an R script and submit it as it is (.R file)
   - Not true with Quarto Markdown (.qmd) files!!
+    - We'll work with these next week.
 
-# Quarto Markdown (.qmd)<br>*File Type #2*
+ 
+<!-- # Quarto Markdown (.qmd)<br>*File Type #2*
 
 ## Quarto Markdown Documents {.smaller}
 <hr>
@@ -483,7 +581,7 @@ You can name the code cells (makes for better error messages). I named this one 
 <hr>
 - In [Canvas](https://utk.instructure.com/courses/239375) you will find an activity called `Quarto Markdown: In-Class Activity`
 - It should open up another page with instructions.
-- In the `week-1` folder you will find the file for the activity called `Quarto_In_Class_Activity.qmd`.
+- In the `week-1` folder you will find the file for the activity called `Quarto_In_Class_Activity.qmd`. -->
 
 
 # Critiquing Data Viz
@@ -521,13 +619,14 @@ For each visualization:
 
 ## Breakout Rooms & Miro {.smaller}
 <hr>
-Using your breakout room #, go to the corresponding Miro board linked in Canvas.
+Using your breakout room #, go to the corresponding Google Doc linked in Canvas.
 
 Breakout room structure:
 
 - **Individual Think Time**: ~ 5 min (camera off / mute)
   - Review document
 - **Introductions**: ~ 3 min (camera on/ unmute)
+  - Your name/program
 - **Collaborative Work** (camera on/unmute)
 
 ## Cairo (2013), Chapter 2
@@ -547,11 +646,8 @@ Breakout room structure:
 <hr>
 - Week 1 Assignment
   - Packages, Functions, Data
-- PingPong AI
-  - Take pre-survey
-  - Watch video
 - Readings & Discussion
-  - Healy (2018), Ch. 1
+  - Healy (2018), Chs. 1 & 2
   - Estrellado et al. (2020), Ch. 6 (modified)
   - Week 2 Discussion
   
@@ -559,7 +655,7 @@ Breakout room structure:
 
 ## "Reading" in this class... {.smaller}
 <hr>
-- We use different verbs in the modules to describe the reading:
+- I use different verbs in the modules to describe the reading:
 
   - Read (traditional reading --> solidly skim)
   - Skim (quick reading)

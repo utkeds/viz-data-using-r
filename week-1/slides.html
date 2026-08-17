@@ -6,21 +6,27 @@
 <script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-1b3e43c72e8be34557c75123b0b69e0d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
-  <meta name="author" content="Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu">
-  <title>Week 1 - STEM 691</title>
+  <meta name="author" content="Dr.&nbsp;Kelly Boles">
+  <title>Week 1 - CADE 691</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -29,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-d21a626542045e24fd9e2a46a94419b5.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-52399d9833641d7984214112e248f81f.css">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -127,13 +133,13 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#4B4B4B" data-background-image="slide_images/UnitShortcut.png" data-background-position="50% 9%" data-background-size="50%" class="quarto-title-block center">
-  <h1 class="title">Week 1 - STEM 691</h1>
+  <h1 class="title">Week 1 - CADE 691</h1>
   <p class="subtitle">Course Introduction</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu 
+Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </div>
@@ -159,8 +165,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Introductions</li>
 <li>Pre-work</li>
 <li>Tutorial / discussion review</li>
-<li><code>.qmd</code> &amp; activity</li>
-<li>Cairo (2013) discussion/ Miro activity</li>
+<li>Cairo (2013) discussion/ Group activity</li>
 <li>Looking ahead</li>
 </ul>
 </section>
@@ -174,7 +179,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 <li>If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
 <ul>
-<li>Slack us to let us know of any discrepancies, please!</li>
+<li>Slack me to let me know of any discrepancies, please!</li>
 </ul></li>
 </ul>
 </section>
@@ -182,10 +187,10 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <h2>Canvas Review</h2>
 <hr>
 <ul>
-<li><a href="https://utk.instructure.com/courses/213032">Canvas</a> = Primary platform for this course.</li>
+<li><a href="https://utk.instructure.com/courses/261125">Canvas</a> = Primary platform for this course.</li>
 <li>All materials you need will be posted here.</li>
 <li>“Module” page is home base.</li>
-<li>If an item is missing, please let us know.</li>
+<li>If an item is missing, please let me know.</li>
 </ul>
 </section>
 <section id="getting-help" class="slide level2 smaller">
@@ -195,7 +200,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>Many ways to get help:
 <ol type="1">
 <li>Class Slack (<a href="https://eddatascienceatutk.slack.com/">eddatascienceatutk.slack.com</a>)</li>
-<li>Ping Pong AI, ChatGPT, etc. (see syllabus for policy)</li>
+<li><a href="https://oit.utk.edu/ai/aihub/">UT AI Hub</a> (see syllabus for policy)</li>
 <li>Email</li>
 </ol></li>
 </ul>
@@ -281,36 +286,6 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 </div>
 </section>
-<section id="zhens-introduction" class="slide level2 smaller">
-<h2>Zhen’s Introduction</h2>
-<hr>
-<div class="quarto-layout-panel" data-layout="[3,2]">
-<div class="quarto-layout-row">
-<div class="smaller-font quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
-<ul>
-<li>Postdoctoral Research Associate, Community Engaged Disciplinary and Educational Researchers in STEM (CEDERS) Program, TPTE</li>
-<li><strong>Experience:</strong>
-<ul>
-<li>Ph.D.&nbsp;in Educational Technology, University of Florida; minor in Research and Evaluation Methodology (quantitative research methods)</li>
-<li>Postdoctoral Research Associate, University of North Carolina at Chapel Hill</li>
-</ul></li>
-<li><strong>Research interests:</strong>
-<ul>
-<li>Educational game design
-<ul>
-<li>Spatial cognition in STEM learning</li>
-</ul></li>
-<li>Data science education</li>
-<li>Socioscientific issue-based science teaching and learning</li>
-</ul></li>
-</ul>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: center;">
-<p><img data-src="slide_images/zhen_hometown.jpg"></p>
-</div>
-</div>
-</div>
-</section>
 <section id="your-introductions" class="slide level2 smaller">
 <h2>Your Introductions</h2>
 <hr>
@@ -348,40 +323,23 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
-<li>Runner</li>
-<li>Gardener</li>
-<li>Rock climber</li>
-<li>Rock collector</li>
-<li>Coffee and ramen connoisseurs</li>
-<li>Personal hairstylist (in training?)</li>
-<li>Double jointed</li>
-<li>Career educator</li>
-<li>Paraglider</li>
-<li>Tap dancer</li>
+<li>Cross-Country Runner</li>
+<li>Crosstitcher</li>
+<li>Multilingual</li>
 </ul>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slide_images/running_shoes.png"></p>
+<p><img data-src="slide_images/cross_stitch.jpeg"></p>
 </div>
 </div>
 </div>
-<!-- # R Projects
-
-## Creating an R Project {.smaller}
-<hr>
-- If you haven't already, let's create an R Project for this class.
-- In [Canvas](https://utk.instructure.com/courses/239375) there is a zip file for `week-1` with all the files you need.
-- Download and unzip the file.
-- Put the `week-1` folder in your `.Rproj` folder.
-- Delete the zip
-- Open the `.Rproj` file in R Studio -->
 </section>
 <section id="class-file-storage" class="slide level2 smaller">
 <h2>Class File Storage</h2>
 <hr>
 <ul>
 <li>If you haven’t already, let’s create a folder for this class.</li>
-<li>In <a href="https://utk.instructure.com/courses/239375">Canvas</a> there is a .zip file for <code>week-1</code> with all the files you need.</li>
+<li>In <a href="https://utk.instructure.com/courses/261125">Canvas</a> there is a .zip file for <code>week-1</code> with all the files you need.</li>
 <li>Download and extract the files.</li>
 <li>Put the <code>week-1</code> folder in your class folder.</li>
 <li>Delete the .zip</li>
@@ -432,93 +390,69 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 <li>You save an R script and submit it as it is (.R file)
 <ul>
-<li>Not true with Quarto Markdown (.qmd) files!!</li>
+<li>Not true with Quarto Markdown (.qmd) files!!
+<ul>
+<li>We’ll work with these next week.</li>
+</ul></li>
 </ul></li>
 </ul>
-</section></section>
-<section>
-<section id="quarto-markdown-.qmd-file-type-2" class="title-slide slide level1 center">
-<h1>Quarto Markdown (.qmd)<br><em>File Type #2</em></h1>
+<!-- # Quarto Markdown (.qmd)<br>*File Type #2*
 
-</section>
-<section id="quarto-markdown-documents" class="slide level2 smaller">
-<h2>Quarto Markdown Documents</h2>
+## Quarto Markdown Documents {.smaller}
 <hr>
-<div class="quarto-layout-panel" data-layout="[50,50]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slide_images/quarto_raw.png"></p>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slide_images/quarto_rendered.png" class="fragment"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="quarto-markdown-documents-1" class="slide level2 smaller">
-<h2>Quarto Markdown Documents</h2>
+:::{layout="[50,50]"}
+
+:::{column}
+![](slide_images/quarto_raw.png)
+:::
+
+:::{column}
+![](slide_images/quarto_rendered.png){.fragment}
+:::
+:::
+
+## Quarto Markdown Documents {.smaller}
 <hr>
-<ul>
-<li>A quarto document is a data scientist’s answer to Microsoft Word/PowerPoint</li>
-<li>A Quarto Markdown document is written in markdown (a <strong>plain text</strong> format) [the Microsoft part] and contains <strong>cells of embedded R code</strong> [the R script part].</li>
-<li>The markdown file is then processed and converted into a <strong>PDF, Word, or HTML file</strong>.</li>
-<li>File extension: <code>.qmd</code></li>
-</ul>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>Quarto also supports other languages like Python, but we won’t use them in this class.</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="quarto---plain-text-markdown" class="slide level2 smaller">
-<h2>Quarto - Plain Text (Markdown)</h2>
+
+- A quarto document is a data scientist's answer to Microsoft Word/PowerPoint
+- A Quarto Markdown document is written in markdown (a **plain text** format) [the Microsoft part] and contains **cells of embedded R code** [the R script part].
+- The markdown file is then processed and converted into a **PDF, Word, or HTML file**.
+- File extension: `.qmd`
+
+::: {.callout-tip}
+- Quarto also supports other languages like Python, but we won't use them in this class.
+:::
+
+## Quarto - Plain Text (Markdown) {.smaller}
 <hr>
-<div class="quarto-layout-panel" data-layout="[50,50]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img data-src="slide_images/QmdPlainTextExample.png"><br><span class="small-font">Plain Text in <code>.qmd</code></span></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img data-src="slide_images/MarkdownPlainTextFormatting.png"><br><span class="small-font">Plain Text Formatting</span></p>
-</div>
-</div>
-</div>
-<p><span class="extra-small-font">- Note: verbatim formatting is created with backtick (tilde) key, not single quotation</span></p>
-</section>
-<section id="quarto---code-cells-r" class="slide level2 smaller">
-<h2>Quarto - Code Cells (R)</h2>
+
+:::{layout="[50,50]"}
+![](slide_images/QmdPlainTextExample.png)<br>[Plain Text in `.qmd`]{.small-font}
+
+![](slide_images/MarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
+
+:::
+
+[- Note: verbatim formatting is created with backtick (tilde) key, not single quotation]{.extra-small-font}
+
+## Quarto - Code Cells (R){.smaller}
 <hr>
-<ul>
-<li>Another part of a Quarto Markdown document is the <strong>code cells</strong>.</li>
-</ul>
-<div class="quarto-layout-panel" data-layout="[50,50]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img data-src="slide_images/QMarkdownCodeChunkExample.png"><br><span class="small-font">Code Cell in a <code>.qmd</code></span></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<ul>
-<li>This is a code cell as displayed in the Positron IDE.</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="quarto-layout-panel" data-layout="[50,50]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<pre><code>title: "Example Quarto Document"
+
+- Another part of a Quarto Markdown document is the **code cells**.
+
+:::{layout="[50,50]"}
+![](slide_images/QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.qmd`]{.small-font}
+
+
+- This is a code cell as displayed in the Positron IDE.
+
+:::
+
+:::{layout="[50,50]"}
+```
+title: "Example Quarto Document"
 author: "Fabulous Student"
-date: "2025-08-24"
+date: "2026-08-16"
 format:
   html:
     embed-resources: true
@@ -526,22 +460,21 @@ execute:
   echo: true
   warning: false
   message: false
-  eval: true</code></pre>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<ul>
-<li>You can use code cell options in the header (called YAML) of a <code>.qmd</code> to establish defaults for the full document. <br></li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="quarto---code-cells-r-1" class="slide level2 smaller">
-<h2>Quarto - Code Cells (R)</h2>
+  eval: true
+```
+
+- You can use code cell options in the header (called YAML) of a `.qmd` to establish defaults for the full document.
+<br>
+
+:::
+
+## Quarto - Code Cells (R){.smaller}
 <hr>
-<pre><code>title: "Example Quarto Document"
+
+```
+title: "Example Quarto Document"
 author: "Fabulous Student"
-date: "2025-08-24"
+date: "2026-08-16"
 format:
   html:
     embed-resources: true
@@ -549,70 +482,52 @@ execute:
   echo: true
   warning: false
   message: false
-  eval: true</code></pre>
-<p>? What do these parameters do ?</p>
-<div class="smaller-font">
-<ul>
-<li><strong>echo</strong>: Whether to show the code in the output document</li>
-<li><strong>warning</strong>: Whether to show warnings in the output document</li>
-<li><strong>message</strong>: Whether to print messages in the output document</li>
-<li><strong>eval</strong>: Whether to run the code in the cell</li>
-</ul>
-</div>
-</section>
-<section id="quarto---code-cells-r-2" class="slide level2 smaller">
-<h2>Quarto - Code Cells (R)</h2>
-<hr>
-<ul>
-<li><p>The default options will be applied to all code cells in the document, unless you override them.</p></li>
-<li><p>You override the defaults by adding options in the header of an individual code cell.</p></li>
-</ul>
+  eval: true
+```
 
-<img data-src="slide_images/Override_chunk_defaults.png" class="r-stretch"><div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>You can name the code cells (makes for better error messages). I named this one “test-block”.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="quarto---rendering-errors" class="slide level2 smaller">
-<h2>Quarto - Rendering Errors</h2>
+? What do these parameters do ?
+
+:::{.smaller-font}
+
+- **echo**: Whether to show the code in the output document
+- **warning**: Whether to show warnings in the output document
+- **message**: Whether to print messages in the output document
+- **eval**: Whether to run the code in the cell
+:::
+
+
+## Quarto - Code Cells (R){.smaller}
 <hr>
-<ul>
-<li>When Quarto docs fail to render, it will tell you which cell the error is in:
-<ul>
-<li>Note: I had named this cell “error-chunk”.</li>
-</ul></li>
-</ul>
-<p><img data-src="slide_images/CodeChunkRenderError.png"><br><span class="small-font">Error in lines 29-31</span></p>
-</section>
-<section id="quarto" class="slide level2 smaller">
-<h2>Quarto</h2>
+- The default options will be applied to all code cells in the document, unless you override them.
+
+- You override the defaults by adding options in the header of an individual code cell.
+
+![](slide_images/Override_chunk_defaults.png)
+
+::: {.callout-tip}
+You can name the code cells (makes for better error messages). I named this one "test-block".
+:::
+
+
+## Quarto - Rendering Errors {.smaller}
 <hr>
-<ul>
-<li>Most of your homework will be submitted as a Quarto Markdown files.
-<ul>
-<li>Starting next week…</li>
-<li>This week’s homework is a simple .R script (like in week-0 Tutorial #1)</li>
-</ul></li>
-<li>We focus on <code>.html</code> outputs from your Quarto documents because Canvas can read them and they support interactive plots, but you can also output to PDF and slides (like these), among other formats.</li>
-</ul>
-</section>
-<section id="quarto-markdown---plain-text---activity" class="slide level2 smaller">
-<h2>Quarto Markdown - Plain Text - Activity</h2>
+- When Quarto docs fail to render, it will tell you which cell the error is in:
+  - Note: I had named this cell "error-chunk".
+
+![](slide_images/CodeChunkRenderError.png)<br>[Error in lines 29-31]{.small-font}
+
+## Quarto {.smaller}
 <hr>
-<ul>
-<li>In <a href="https://utk.instructure.com/courses/239375">Canvas</a> you will find an activity called <code>Quarto Markdown: In-Class Activity</code></li>
-<li>It should open up another page with instructions.</li>
-<li>In the <code>week-1</code> folder you will find the file for the activity called <code>Quarto_In_Class_Activity.qmd</code>.</li>
-</ul>
+- Most of your homework will be submitted as a Quarto Markdown files.
+  - Starting next week...
+  - This week's homework is a simple .R script (like in week-0 Tutorial #1)
+- We focus on `.html` outputs from your Quarto documents because Canvas can read them and they support interactive plots, but you can also output to PDF and slides (like these), among other formats.
+
+## Quarto Markdown - Plain Text - Activity {.smaller}
+<hr>
+- In [Canvas](https://utk.instructure.com/courses/239375) you will find an activity called `Quarto Markdown: In-Class Activity`
+- It should open up another page with instructions.
+- In the `week-1` folder you will find the file for the activity called `Quarto_In_Class_Activity.qmd`. -->
 </section></section>
 <section>
 <section id="critiquing-data-viz" class="title-slide slide level1 center">
@@ -650,14 +565,17 @@ execute:
 <section id="breakout-rooms-miro" class="slide level2 smaller">
 <h2>Breakout Rooms &amp; Miro</h2>
 <hr>
-<p>Using your breakout room #, go to the corresponding Miro board linked in Canvas.</p>
+<p>Using your breakout room #, go to the corresponding Google Doc linked in Canvas.</p>
 <p>Breakout room structure:</p>
 <ul>
 <li><strong>Individual Think Time</strong>: ~ 5 min (camera off / mute)
 <ul>
 <li>Review document</li>
 </ul></li>
-<li><strong>Introductions</strong>: ~ 3 min (camera on/ unmute)</li>
+<li><strong>Introductions</strong>: ~ 3 min (camera on/ unmute)
+<ul>
+<li>Your name/program</li>
+</ul></li>
 <li><strong>Collaborative Work</strong> (camera on/unmute)</li>
 </ul>
 </section>
@@ -682,14 +600,9 @@ execute:
 <ul>
 <li>Packages, Functions, Data</li>
 </ul></li>
-<li>PingPong AI
-<ul>
-<li>Take pre-survey</li>
-<li>Watch video</li>
-</ul></li>
 <li>Readings &amp; Discussion
 <ul>
-<li>Healy (2018), Ch. 1</li>
+<li>Healy (2018), Chs. 1 &amp; 2</li>
 <li>Estrellado et al.&nbsp;(2020), Ch. 6 (modified)</li>
 <li>Week 2 Discussion</li>
 </ul></li>
@@ -700,7 +613,7 @@ execute:
 <h2>“Reading” in this class…</h2>
 <hr>
 <ul>
-<li><p>We use different verbs in the modules to describe the reading:</p>
+<li><p>I use different verbs in the modules to describe the reading:</p>
 <ul>
 <li>Read (traditional reading –&gt; solidly skim)</li>
 <li>Skim (quick reading)</li>
@@ -899,7 +812,7 @@ execute:
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1011,13 +924,14 @@ execute:
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
