@@ -29,6 +29,14 @@ knitr:
 library(googlesheets4)
 library(tidyverse)
 library(ggtext)
+library(showtext)
+
+font_add(
+  "DIN Condensed",
+  regular = "/System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf"
+)
+font_add_google("Roboto Condensed", "Roboto Condensed")
+showtext_auto()
 
 # Authenticate with Google for Survey Viz
 gs4_auth(
