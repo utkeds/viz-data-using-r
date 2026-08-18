@@ -632,7 +632,7 @@ For each visualization:
 
 :::
 
-## Breakout Rooms & Miro {.smaller}
+## Breakout Rooms & Plot Critique {.smaller}
 <hr>
 Using your breakout room #, go to the corresponding Google Doc linked in Canvas.
 
