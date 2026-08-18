@@ -420,6 +420,7 @@ level_of_confidence_graphs
 - Teachers
 - Vol Families
 - Music-makers
+- Technicians
 
 ![](slide_images/cross_stitch.jpeg){width=10%}
 :::
