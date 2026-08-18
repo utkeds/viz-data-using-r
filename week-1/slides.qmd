@@ -439,7 +439,7 @@ level_of_confidence_graphs
 
 ## Why Positron/.Qmd and not RStudio/.Rmd {.smaller}
 <hr>
-- Posit (the parent company of both) is moving toward Positrong and away from RStudio
+- Posit (the parent company of both) is moving toward Positron and away from RStudio
 - Hadley Wickham says that new R programmers should not be taught RStudio
   - RStudio is currently being maintained, but unclear how long
 - The team that built/maintained .Rmd was let go around 2025
