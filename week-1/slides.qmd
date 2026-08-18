@@ -437,7 +437,7 @@ level_of_confidence_graphs
   2. [UT AI Hub](https://oit.utk.edu/ai/aihub/) (see syllabus for policy)
   3. Email
 
-## Why Positron/.Qmd and not RStudio/.Rmd
+## Why Positron/.Qmd and not RStudio/.Rmd {.smaller}
 <hr>
 - Posit (the parent company of both) is moving toward Positrong and away from RStudio
 - Hadley Wickham says that new R programmers should not be taught RStudio
