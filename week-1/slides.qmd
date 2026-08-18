@@ -411,9 +411,15 @@ level_of_confidence_graphs
 ## Fun Things From Discussion {.smaller}
 <hr>
 :::{layout="[1,1], [1,1], [1,1]"}
-- Cross-Country Runner
+- Cross-Country Runners & Triatheletes
 - Crosstitcher
 - Multilingual
+- New Chess Player
+- Familial Stuffed-Crust Legacy
+- Travelers
+- Teachers
+- Vol Families
+- Music-makers
 
 ![](slide_images/cross_stitch.jpeg){width=10%}
 :::
