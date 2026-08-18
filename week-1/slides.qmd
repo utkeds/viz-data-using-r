@@ -50,50 +50,14 @@ gs4_auth(
 
 ## Today's Agenda {.smaller}
 <hr>
+- Introductions
+- Norms
 - Syllabus review
 - Canvas review
-- Norms
-- Introductions
 - Pre-work
 - Tutorial / discussion review
 - Cairo (2013) discussion/ Group activity
 - Looking ahead
-
-## Syllabus Review {.smaller}
-<hr>
-- [Syllabus](https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing) is available on Canvas. 
-  - Living document: may be updated throughout the semester. 
-- If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
-  - Slack me to let me know of any discrepancies, please!
-
-## Canvas Review {.smaller}
-<hr>
-- [Canvas](https://utk.instructure.com/courses/261125) = Primary platform for this course.
-- All materials you need will be posted here.
-- "Module" page is home base.
-- If an item is missing, please let me know.
-
-## Getting Help {.smaller}
-<hr>
-- Many ways to get help:
-  1. Class Slack ([eddatascienceatutk.slack.com](https://eddatascienceatutk.slack.com/))
-  2. [UT AI Hub](https://oit.utk.edu/ai/aihub/) (see syllabus for policy)
-  3. Email
-
-## Norms 
-<hr>
-
-:::{.compact-font}
-| In person norms | And also, for online learning... |
-|----------|----------|
-| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
-| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
-| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
-| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
-| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
-| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
-
-:::
 
 # Introductions
 
@@ -210,8 +174,6 @@ greene_co_tn
   - fun
   - interesting
   - restful
-
-# Today's Work
 
 ## Pre-Course Surveys—Recap
 <hr>
@@ -425,6 +387,62 @@ level_of_confidence_graphs
 ![](slide_images/cross_stitch.jpeg){width=10%}
 :::
 
+## Norms 
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+## Syllabus Review {.smaller}
+<hr>
+- [Syllabus](https://docs.google.com/document/d/1XsOksob949cF2kGR3GuwpLJrZ3tpGzzJ19pUXH7c2Jo/edit?usp=sharing) is available on Canvas. 
+  - Living document: may be updated throughout the semester. 
+- If there is a discrepancy between the syllabus and Canvas, Canvas takes precedence.
+  - Slack me to let me know of any discrepancies, please!
+
+## Nature of Discussions & Readings {.smaller}
+<hr>
+- Readings vary in nature
+  - Some are websites/labs
+  - Others are chapters
+- Online discussions are scattered throughout the course and denoted by *** in the syllabus.
+
+## AI Policy {.smaller}
+<hr>
+- *Mixed use* policy (as per UTK policy)
+  - AI may be used to analyze and troubleshoot code *after* you have already manually written it.
+- Include acknowledgement in each question where you used AI (either as a comment or text outside of code block):
+  - “I acknowledge the use of [Generative AI Tool Name: Claude/Gemini/ChatGPT/etc.] in the writing of this code. Specifically, I encountered the following issue: [state problem addressed here], and with Generative AI's help, I learned to resolve it by [state how problem addressed here].”
+
+## Canvas Review {.smaller}
+<hr>
+- [Canvas](https://utk.instructure.com/courses/261125) = Primary platform for this course.
+- All materials you need will be posted here.
+- "Module" page is home base.
+- If an item is missing, please let me know.
+
+## Getting Help {.smaller}
+<hr>
+- Many ways to get help:
+  1. Class Slack ([eddatascienceatutk.slack.com](https://eddatascienceatutk.slack.com/))
+  2. [UT AI Hub](https://oit.utk.edu/ai/aihub/) (see syllabus for policy)
+  3. Email
+
+## Why Positron/.Qmd and not RStudio/.Rmd
+<hr>
+- Posit (the parent company of both) is moving toward Positrong and away from RStudio
+- Hadley Wickham says that new R programmers should not be taught RStudio
+  - RStudio is currently being maintained, but unclear how long
+- The team that built/maintained .Rmd was let go around 2025
 
 ## Class File Storage {.smaller}
 <hr>
