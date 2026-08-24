@@ -38,11 +38,14 @@ library(gt)
 
 - Weekly Check In
 - Norms
-- Collaborative Norms
-- Information Architect Activity (Wk 1)
+- Intro to Quarto Files (.Qmd)
+- Understanding Packages 
+  - Installing
+  - Loading
 - {tidyverse} Introduction
   - {dplyr} Basics
   - {ggplot2} Preview
+- Collaborative Norms
 - {palmerpenguins} Scavenger Hunt
 - Looking Ahead
 
@@ -61,7 +64,138 @@ library(gt)
 
 :::
 
-# Last Week
+# Intro to Quarto Markdown (.qmd)<br>*File Type #2*
+
+## Quarto Markdown Documents {.smaller}
+<hr>
+:::{layout="[50,50]"}
+
+:::{column}
+![](slide_images/quarto_raw.png)
+:::
+
+:::{column}
+![](slide_images/quarto_rendered.png){.fragment}
+:::
+:::
+
+## Quarto Markdown Documents {.smaller}
+<hr>
+
+- A quarto document is a data scientist's answer to Microsoft Word/PowerPoint
+- A Quarto Markdown document is written in markdown (a **plain text** format) [the Microsoft part] and contains **cells of embedded R code** [the R script part].
+- The markdown file is then processed and converted into a **PDF, Word, or HTML file**.
+- File extension: `.qmd`
+
+::: {.callout-tip}
+- Quarto also supports other languages like Python, but we won't use them in this class.
+:::
+
+## Quarto - Plain Text (Markdown) {.smaller}
+<hr>
+
+:::{layout="[50,50]"}
+![](slide_images/QmdPlainTextExample.png)<br>[Plain Text in `.qmd`]{.small-font}
+
+![](slide_images/MarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
+
+:::
+
+[- Note: verbatim formatting is created with backtick (tilde) key, not single quotation]{.extra-small-font}
+
+## Quarto - Code Cells (R){.smaller}
+<hr>
+
+- Another part of a Quarto Markdown document is the **code cells**.
+
+:::{layout="[50,50]"}
+![](slide_images/QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.qmd`]{.small-font}
+
+
+- This is a code cell as displayed in the Positron IDE.
+
+:::
+
+:::{layout="[50,50]"}
+```
+title: "Example Quarto Document"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+  eval: true
+```
+
+- You can use code cell options in the header (called YAML) of a `.qmd` to establish defaults for the full document.
+<br>
+
+:::
+
+## Quarto - Code Cells (R){.smaller}
+<hr>
+
+```
+title: "Example Quarto Document"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+  eval: true
+```
+
+? What do these parameters do ?
+
+:::{.smaller-font}
+
+- **echo**: Whether to show the code in the output document
+- **warning**: Whether to show warnings in the output document
+- **message**: Whether to print messages in the output document
+- **eval**: Whether to run the code in the cell
+:::
+
+
+## Quarto - Code Cells (R){.smaller}
+<hr>
+- The default options will be applied to all code cells in the document, unless you override them.
+
+- You override the defaults by adding options in the header of an individual code cell.
+
+![](slide_images/Override_chunk_defaults.png)
+
+::: {.callout-tip}
+You can name the code cells (makes for better error messages). I named this one "test-block".
+:::
+
+
+## Quarto - Rendering Errors {.smaller}
+<hr>
+- When Quarto docs fail to render, it will tell you which cell the error is in:
+  - Note: I had named this cell "error-chunk".
+
+![](slide_images/CodeChunkRenderError.png)<br>[Error in lines 29-31]{.small-font}
+
+## Quarto {.smaller}
+<hr>
+- Most of your homework will be submitted as a Quarto Markdown files.
+  - Starting next week...
+  - This week's homework is a simple .R script (like in week-0 Tutorial #1)
+- We focus on `.html` outputs from your Quarto documents because Canvas can read them and they support interactive plots, but you can also output to PDF and slides (like these), among other formats.
+
+## Quarto Markdown - Plain Text - Activity {.smaller}
+<hr>
+- In [Canvas](https://utk.instructure.com/courses/239375) you will find an activity called `Quarto Markdown: In-Class Activity`
+- It should open up another page with instructions.
+- In the `week-1` folder you will find the file for the activity called `Quarto_In_Class_Activity.qmd`.
 
 ## From Last Week {.smaller}
 <hr>
@@ -71,11 +205,9 @@ library(gt)
   - Quarto is sensitive to line spacing
     - e.g., If a bullet doesn't format and you've checked the markdown formatting, put a line break/return before you start the list
 
-## From Last Week {.smaller}
+## YAML Header for Quarto {.smaller}
 <hr>
-- YAML header is also sensitive
-- We've added another line in the default header in order to retain the formatting once uploaded to Canvas 
-  - It makes the Quarto .html rendering behave like the R Markdown .html rendering
+- YAML header is very sensitive
 
 ```r
 ---
@@ -90,73 +222,8 @@ execute:
     message: false
 ---
 ```
-- All documents have been updated to reflect this.
-
-## Collaborative Norms - Breakouts{.smaller}
-<hr>
-- **Individual Think Time**: ~ 5 min (camera off / mute)
-  - Review document
-  - Review prompts
-  - Start planning possible approaches/pseudocode
-- **Introductions**: ~ 3 min (camera on/ unmute)
-- **Collaborative Work** (camera on/unmute)
-
-## Collaborative Norms - Slack {.smaller}
-<hr>
-- Slack is also a great collaborative tool!
-  - It accepts markdown formatting
-  - Honors both in-line `verbatim` formatting and code cells
-  - You can create a Direct Message group and share code/files with each other or the instructors
-![](slides_images/DM_in_Slack.png)
-<br>
-<br>
-- **Try it!** DM yourself in Slack or post in the class channel to see how backticks work in Slack.
-
-# Information Architect (Wk 1)
-
-## Information Architect {.smaller}
-<hr>
-Cairo (2013), Chapter 1, p. 17
-
-> "The role of an information architect is to anticipate this [visualization decoding] process and generate order before people's brains try to do it on their own "
-
-## Information Architect {.smaller}
-<hr>
-For each visualization:
-
-:::{.small-font}
-- What is the goal of the information architect?
-  - *If clear* (general agreement):
-    - Does the visual align well with the goal?
-    - Is it convincing?
-    - How could it be further improved?
-  - *If unclear* (some disagreement):
-    - What elements of the visual are conflicting?
-    - How could the visual be improved to better clarify the potential goal(s)?
-
-:::
-
-## Information Architect {.smaller}
-<hr>
-Using your breakout room #, go to the corresponding Miro board linked in Canvas.
-
-Breakout room structure:
-
-- **Individual Think Time**: ~ 5 min (camera off / mute)
-  - Review document
-- **Introductions**: ~ 3 min (camera on/ unmute)
-- **Collaborative Work** (camera on/unmute)
-
-## Cairo (2013), Chapter 2
-<hr>
-:::{.small-font}
-*On visualizations as tools:*
-<br>
-<br>
-"It is tempting to propose rock-solid rules—if you want to show change through time, use a time-series chart; if you need to compare, use a bar chart; or to display correlation, use a scatterplot... But reality is complex... What is really important is to remember that no matter how creative and innovative you wish to be in your graphics and visualizations, the first thing you must do... is **ask yourself what users are likely to try to do with your tool.**
-:::
-<br>
-(Cairo, 2013, p. 43)
+- Most documents have this already.
+- If not, copy/paste above to a new Quarto Doc.
 
 # Welcome to the {tidyverse}
 
@@ -785,9 +852,8 @@ starwars |>
 ```{r eval=F}
 starwars |>
   mutate(one = height^2) |>
-  mutate(two = height*mass) |>
-  mutate(hair_color = ifelse(is.na(hair_color),
-                             "unknown", hair_color))
+  mutate(two = height * mass) |>
+  mutate(hair_color = ifelse(is.na(hair_color), "unknown", hair_color))
 ```
 :::
 
@@ -808,9 +874,8 @@ starwars |>
 ```{r eval=T}
 starwars |>
   mutate(one = height^2) |>
-  mutate(two = height*mass) |>
-  mutate(hair_color = ifelse(is.na(hair_color),
-                             "unknown", hair_color))
+  mutate(two = height * mass) |>
+  mutate(hair_color = ifelse(is.na(hair_color), "unknown", hair_color))
 ```
 :::
 
@@ -827,10 +892,11 @@ starwars |>
 :::{.fragment .small-font}
 ```{r eval=T}
 starwars |>
-  mutate(one = height^2,
-        two = height*mass,
-        hair_color = ifelse(is.na(hair_color),
-                             "unknown", hair_color))
+  mutate(
+    one = height^2,
+    two = height * mass,
+    hair_color = ifelse(is.na(hair_color), "unknown", hair_color)
+  )
 ```
 :::
 
@@ -862,6 +928,29 @@ starwars |>
 - {ggplot2} or {ggplot} is most popular data viz package in R.
 - Part of the {tidyverse}
 - We'll learn more in Week 4, but we'll use it a bit today.
+
+# Collaborative Norm
+
+## Collaborative Norms - Breakouts{.smaller}
+<hr>
+- **Individual Think Time**: ~ 3 min (camera off / mute)
+  - Review document
+  - Review prompts
+  - Start planning possible approaches/pseudocode
+- **Introductions**: ~ 3 min (camera on/ unmute)
+- **Collaborative Work** (camera on/unmute)
+
+## Collaborative Norms - Slack {.smaller}
+<hr>
+- Slack is also a great collaborative tool!
+  - It accepts markdown formatting
+  - Honors both in-line `verbatim` formatting and code cells
+  - You can create a Direct Message group and share code/files with each other or the instructors
+![](slides_images/DM_in_Slack.png)
+<br>
+<br>
+- **Try it!** DM yourself in Slack or post in the class channel to see how backticks work in Slack.
+
 
 # {PalmerPenguins} Scavenger Hunt
 
