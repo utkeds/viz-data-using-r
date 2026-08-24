@@ -1,5 +1,5 @@
 ---
-subtitle: "R Basics & {tidyverse}"
+subtitle: "Quarto Basics & {tidyverse}"
 title: "Week 2 - CADE 691"
 author: "Dr. Kelly Boles"
 format:
@@ -40,8 +40,6 @@ library(gt)
 - Norms
 - Intro to Quarto Files (.Qmd)
 - Understanding Packages 
-  - Installing
-  - Loading
 - {tidyverse} Introduction
   - {dplyr} Basics
   - {ggplot2} Preview
@@ -66,148 +64,44 @@ library(gt)
 
 # Intro to Quarto Markdown (.qmd)<br>*File Type #2*
 
+## Creating a Quarto Document {.smaller}
+<hr>
+
+:::{layout = "[30,70]"}
+
+:::{column}
+1. Create New File
+![](slides_images/Create_New_File.png)
+:::
+
+:::{column}
+2. Select "Quarto Document"
+![](slides_images/Create_Quarto_Document.png)
+:::
+
+:::
+*Most of the time, a .qmd file will be provided for you in the .zip file.*
+
 ## Quarto Markdown Documents {.smaller}
 <hr>
+Components of a Quarto Markdown Document
+
 :::{layout="[50,50]"}
 
 :::{column}
-![](slide_images/quarto_raw.png)
+![](slides_images/quarto_raw.png)
 :::
 
 :::{column}
-![](slide_images/quarto_rendered.png){.fragment}
+![](slides_images/quarto_raw_components.png){.fragment}
 :::
 :::
 
-## Quarto Markdown Documents {.smaller}
+# YAML Header
+
+## YAML Header
 <hr>
-
-- A quarto document is a data scientist's answer to Microsoft Word/PowerPoint
-- A Quarto Markdown document is written in markdown (a **plain text** format) [the Microsoft part] and contains **cells of embedded R code** [the R script part].
-- The markdown file is then processed and converted into a **PDF, Word, or HTML file**.
-- File extension: `.qmd`
-
-::: {.callout-tip}
-- Quarto also supports other languages like Python, but we won't use them in this class.
-:::
-
-## Quarto - Plain Text (Markdown) {.smaller}
-<hr>
-
-:::{layout="[50,50]"}
-![](slide_images/QmdPlainTextExample.png)<br>[Plain Text in `.qmd`]{.small-font}
-
-![](slide_images/MarkdownPlainTextFormatting.png)<br>[Plain Text Formatting]{.small-font}
-
-:::
-
-[- Note: verbatim formatting is created with backtick (tilde) key, not single quotation]{.extra-small-font}
-
-## Quarto - Code Cells (R){.smaller}
-<hr>
-
-- Another part of a Quarto Markdown document is the **code cells**.
-
-:::{layout="[50,50]"}
-![](slide_images/QMarkdownCodeChunkExample.png)<br>[Code Cell in a `.qmd`]{.small-font}
-
-
-- This is a code cell as displayed in the Positron IDE.
-
-:::
-
-:::{layout="[50,50]"}
-```
-title: "Example Quarto Document"
-author: "Fabulous Student"
-date: "`r Sys.Date()`"
-format:
-  html:
-    embed-resources: true
-execute:
-  echo: true
-  warning: false
-  message: false
-  eval: true
-```
-
-- You can use code cell options in the header (called YAML) of a `.qmd` to establish defaults for the full document.
-<br>
-
-:::
-
-## Quarto - Code Cells (R){.smaller}
-<hr>
-
-```
-title: "Example Quarto Document"
-author: "Fabulous Student"
-date: "`r Sys.Date()`"
-format:
-  html:
-    embed-resources: true
-execute:
-  echo: true
-  warning: false
-  message: false
-  eval: true
-```
-
-? What do these parameters do ?
-
-:::{.smaller-font}
-
-- **echo**: Whether to show the code in the output document
-- **warning**: Whether to show warnings in the output document
-- **message**: Whether to print messages in the output document
-- **eval**: Whether to run the code in the cell
-:::
-
-
-## Quarto - Code Cells (R){.smaller}
-<hr>
-- The default options will be applied to all code cells in the document, unless you override them.
-
-- You override the defaults by adding options in the header of an individual code cell.
-
-![](slide_images/Override_chunk_defaults.png)
-
-::: {.callout-tip}
-You can name the code cells (makes for better error messages). I named this one "test-block".
-:::
-
-
-## Quarto - Rendering Errors {.smaller}
-<hr>
-- When Quarto docs fail to render, it will tell you which cell the error is in:
-  - Note: I had named this cell "error-chunk".
-
-![](slide_images/CodeChunkRenderError.png)<br>[Error in lines 29-31]{.small-font}
-
-## Quarto {.smaller}
-<hr>
-- Most of your homework will be submitted as a Quarto Markdown files.
-  - Starting next week...
-  - This week's homework is a simple .R script (like in week-0 Tutorial #1)
-- We focus on `.html` outputs from your Quarto documents because Canvas can read them and they support interactive plots, but you can also output to PDF and slides (like these), among other formats.
-
-## Quarto Markdown - Plain Text - Activity {.smaller}
-<hr>
-- In [Canvas](https://utk.instructure.com/courses/239375) you will find an activity called `Quarto Markdown: In-Class Activity`
-- It should open up another page with instructions.
-- In the `week-1` folder you will find the file for the activity called `Quarto_In_Class_Activity.qmd`.
-
-## From Last Week {.smaller}
-<hr>
-- Markdown activity:
-  - Markdown is sensitive to spacing
-    - e.g., single spaces between dashes and words to make bullets
-  - Quarto is sensitive to line spacing
-    - e.g., If a bullet doesn't format and you've checked the markdown formatting, put a line break/return before you start the list
-
-## YAML Header for Quarto {.smaller}
-<hr>
-- YAML header is very sensitive
+- The YAML header is very sensitive
 
 ```r
 ---
@@ -225,26 +119,189 @@ execute:
 - Most documents have this already.
 - If not, copy/paste above to a new Quarto Doc.
 
+# How to Style Plain Text in .Qmd <br> *Markdown Formatting*
+
+## Quarto - Plain Text (Markdown) {.smaller}
+<hr>
+
+In the plan text sections of a .qmd file, we can style text like you would in Microsoft Word - we just don't have the buttons to click!
+
+:::{layout="[50,50]"}
+![](slides_images/Markdown_Formatting.png)<br>[An example text section in a `.qmd`]{.small-font}
+
+![](slides_images/MarkdownPlainTextFormatting.png)<br>[Healy, Ch. 2, Figure 2.1]{.small-font}
+
+:::
+
+[- Note: verbatim formatting is created with backtick (tilde - next to #1) key, not single quotation]{.extra-small-font}
+
+# Working with Code Cells in .Qmd
+
+## Quarto - Code Cells (R){.smaller}
+<hr>
+
+- A final part of a Quarto Document is the **code cells**.
+- You can insert a code cell by clicking this button in Positron (or by manually typing it what it generates):
+![](slides_images/Insert_Code_Blocks.png)
+
+- This is a code cell in a .qmd document:
+![](slides_images/Code_Cell.png)
+
+## Quarto - Code Cells (R){.smaller}
+<hr>
+Working in Code Cells:
+
+:::{layout="[50,50]"}
+
+:::{column}
+![](slides_images/Naming_Code_Cell.png)
+![](slides_images/Comment_Code_Cell.png)
+![](slides_images/Code_Code_Cell.png)
+:::
+
+:::{column}
+- You can name the code cells (helpful when you have errors)
+<br>
+<br>
+<br>
+<br>
+- To write regular text within the cell, you need to use comments with an `#`
+<br>
+<br>
+- Then, of course, we write the actual R code in the cell.
+:::
+
+:::
+
+## Quarto - Code Cells (R){.smaller}
+<hr>
+Running Code Cells:
+
+:::{layout="[50,50]"}
+
+:::{column}
+![](slides_images/Run_Cell.png)
+![](slides_images/Run_All.png)
+:::
+
+:::{column}
+- You can run code cells one-by-one. Note that this is a bit like a recipe, running them individually out-of-order can cause problems.
+<br>
+<br>
+- You can also run all of the code in the file ("Run All"), which runs the cells in order.
+:::
+
+:::
+
+## Quarto - Code Cells (R){.smaller}
+<hr>
+
+- You can use code cell options in the YAML header to establish code block defaults for the full document.
+  - See the four parameters beneath "execute"
+
+```r
+title: "Example Quarto Document"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+  eval: true
+```
+
+:::{.smaller-font}
+
+- **echo**: Whether to show the code in the output document
+- **warning**: Whether to show warnings in the output document
+- **message**: Whether to print messages in the output document
+- **eval**: Whether to run the code in the cell
+:::
+
+# Rendering Quarto Docs
+
+## Rendering .qmds {.smaller}
+<hr>
+We don't just save and upload .qmd documents (like we have .R scripts). Instead, we "render" them to get a finished product—HTML, .docx, PDF, etc. We use HTML in this class. **I will often ask you to upload both the .html and .qmd files to Canvas.**
+
+:::{layout="[50,50]"}
+
+:::{column}
+![](slides_images/quarto_raw.png)
+:::
+
+:::{column}
+![](slides_images/quarto_rendered.png)
+:::
+:::
+
+## Rendering .qmds {.smaller}
+<hr>
+Rendering Quarto Documents
+![](slides_images/Rendering_Qmd_Files.png)
+
+- You will end up with two files:
+  - Original .qmd (editable)
+  - Rendered Product: .html (or .docx, PDF, etc.)
+
+## Rendering .qmds: Errors {.smaller}
+<hr>
+- When Quarto docs fail to render, it will tell you which cell the error is in:
+  - Note: Earlier we had named this cell "load-data".
+
+![](slides_images/Code_Cell_Error.png)<br>[Error in load-data cell, lines 7-12]{.small-font}
+
+
+## Final Thoughts Re: Quarto {.smaller}
+<hr>
+- Most of your homework will be submitted as a Quarto Markdown files.
+  - Starting this week...
+- We focus on `.html` outputs from your Quarto documents because Canvas can read them and they support interactive plots, but you can also output to PDF and slides (like these), among other formats.
+
+<!-- # Markdown Activity<br>*If Time Allows*
+
+## Quarto Markdown - Plain Text - Activity {.smaller}
+<hr>
+*If time allows:*
+
+- In Canvas you will find an activity called `Quarto Markdown: In-Class Activity`
+- It should open up another page with instructions.
+- In the `week-2` folder you will find the file for the activity called `Quarto_In_Class_Activity.qmd`.
+
+## Takeaways from Activity {.smaller}
+<hr>
+- Markdown activity:
+  - Markdown is sensitive to spacing
+    - e.g., single spaces between dashes and words to make bullets
+  - Quarto is sensitive to line spacing
+    - e.g., If a bullet doesn't format and you've checked the markdown formatting, put a line break/return before you start the list
+    - Make sure you have a blank line between the code block and your first line of text -->
+
 # Welcome to the {tidyverse}
 
-## Installing Packages {.smaller}
+## Installing & Loading Packages {.smaller}
 <hr>
+##### Installing Packages
 - You only install a package once on your computer (the first time you use it)
 - Note: I do this in the console (aka scratchpad)
+- Example: Downloading software from the internet to install on your computer
 ```r
 install.packages("tidyverse")
 ```
-<br>
-
+##### Loading Packages
 - Then, each time you want to use it you will need to load it from your package library
 - Do this in your `.R` script or `.qmd` file itself (usually at the top)
+- Example: Opening the installed software each time you want to use it
 ```r
 library(tidyverse)
 ```
 
 ## {tidyverse} Intro {.smaller}
 <hr>
-- The *tidyverse* is a collection of packages for data science
+- The *tidyverse* is a [collection of packages](https://tidyverse.org/packages/#core-tidyverse) for data science
   - The packages can be loaded separately, but just loading {tidyverse} installs eight core packages.
   - We'll largely focus on two:
     1. {dplyr} - data wrangling
@@ -788,17 +845,17 @@ starwars |>
 
 ::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
 
-[`rename("new_var_name" = old_var_name)`]{.fragment .medium-small-font}
+[`rename(new_var_name = old_var_name)`]{.fragment .medium-small-font}
 
 [- You need to assign the changes to keep them!]{.extra-small-font .fragment}
 
 ::::{.fragment .medium-small-font}
 ```{r}
 renamed_starwars <- starwars |>
-  rename("weight" = mass)
+  rename(weight = mass)
 
 # starwars <- starwars |>
-#   rename("weight" = mass)
+#   rename(weight = mass)
 
 renamed_starwars
 ```
@@ -847,17 +904,16 @@ starwars |>
 3. Can we simplify it?
 :::
 
-::::{.fragment .medium-small-font}
-
+:::
+:::
+:::{.fragment .small-font}
+<br>
 ```{r eval=F}
 starwars |>
   mutate(one = height^2) |>
   mutate(two = height * mass) |>
   mutate(hair_color = ifelse(is.na(hair_color), "unknown", hair_color))
 ```
-:::
-
-:::
 :::
 
 ## {dplyr} Basic Functions
@@ -900,25 +956,14 @@ starwars |>
 ```
 :::
 
-## How do I know the code ran? {.smaller}
-<hr>
-- There are a several ways to check
-  - call the object
-  - `print()` the object
-  - `str()` the object
-  - `glimpse()` the object
-  - `View()` the object
-- Also look at the variables pane in the secondary sidebar
-  - `>` Will expand the object
-- No error in the console!
-  - i.e., you get a `>` in the console instead of error message
-
 ## How do I know the code ran?
 <hr>
 - There are a several ways to check
   - `print()` the object
   - `str()` the object
   - `glimpse()` the object
+- No error in the console!
+  - i.e., you get a `>` in the console instead of error message
 - Also look at the variables pane in the secondary sidebar
 
 # {ggplot2} Preview
@@ -929,7 +974,11 @@ starwars |>
 - Part of the {tidyverse}
 - We'll learn more in Week 4, but we'll use it a bit today.
 
-# Collaborative Norm
+# Break<br>*Pause Recording*
+
+# Resume Recording
+
+# Collaborative Norms
 
 ## Collaborative Norms - Breakouts{.smaller}
 <hr>
@@ -940,7 +989,7 @@ starwars |>
 - **Introductions**: ~ 3 min (camera on/ unmute)
 - **Collaborative Work** (camera on/unmute)
 
-## Collaborative Norms - Slack {.smaller}
+<!-- ## Collaborative Norms - Slack {.smaller}
 <hr>
 - Slack is also a great collaborative tool!
   - It accepts markdown formatting
@@ -949,7 +998,7 @@ starwars |>
 ![](slides_images/DM_in_Slack.png)
 <br>
 <br>
-- **Try it!** DM yourself in Slack or post in the class channel to see how backticks work in Slack.
+- **Try it!** DM yourself in Slack or post in the class channel to see how backticks work in Slack. -->
 
 
 # {PalmerPenguins} Scavenger Hunt
@@ -958,12 +1007,14 @@ starwars |>
 <hr>
 - In the `week-2` folder you will find an activity called `palmer_penguins_scavenger_hunt.qmd`
 - The `.qmd` file has instructions embedded.
-- You will be sent into breakout rooms.
+- I will open breakout rooms.
 - Everyone should have the .qmd file open and be ready to work together.
 - Cameras should be on at all times possible.
+- One person should share their screen, but EVERYONE should contribute.
+- This is not about getting the document finished; it's about the collaboration and talking through each step.
 - ONLY 1 RENDERED (.html) should be submitted.
-  - That is, each person in the group should submit the same document. EACH member should submit!
-  - Slack is great to share the .html rendered file with the whole group
+  - **That is, each person in the group should submit the same document. EACH member should submit!**
+  - Slack is great to share the .html rendered file with the whole group (via DM, you can add multiple people)
 - Make sure everyone's name is in author field!
 
 ## Scavenger Hunt 2 of 2 {.smaller}
@@ -990,5 +1041,4 @@ Breakout room structure:
 
 ## Office Hours
 <hr>
-- Wednesday, 3-4pm
-- Same Zoom link as class
+- By Appointment
