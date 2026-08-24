@@ -41,9 +41,6 @@ library(gt)
 - Intro to Quarto Files (.Qmd)
 - Understanding Packages 
 - {tidyverse} Introduction
-  - {dplyr} Basics
-  - {ggplot2} Preview
-- Collaborative Norms
 - {palmerpenguins} Scavenger Hunt
 - Looking Ahead
 
@@ -978,16 +975,16 @@ starwars |>
 
 # Resume Recording
 
-# Collaborative Norms
+<!-- # Collaborative Norms -->
 
-## Collaborative Norms - Breakouts{.smaller}
+<!-- ## Collaborative Norms - Breakouts{.smaller}
 <hr>
 - **Individual Think Time**: ~ 3 min (camera off / mute)
   - Review document
   - Review prompts
   - Start planning possible approaches/pseudocode
 - **Introductions**: ~ 3 min (camera on/ unmute)
-- **Collaborative Work** (camera on/unmute)
+- **Collaborative Work** (camera on/unmute) -->
 
 <!-- ## Collaborative Norms - Slack {.smaller}
 <hr>
@@ -1005,11 +1002,9 @@ starwars |>
 
 ## Scavenger Hunt 1 of 2 {.smaller}
 <hr>
-- In the `week-2` folder you will find an activity called `palmer_penguins_scavenger_hunt.qmd`
+- In the `week-2` folder you will find `palmer_penguins_scavenger_hunt.qmd`
 - The `.qmd` file has instructions embedded.
-- I will open breakout rooms.
 - Everyone should have the .qmd file open and be ready to work together.
-- Cameras should be on at all times possible.
 - One person should share their screen, but EVERYONE should contribute.
 - This is not about getting the document finished; it's about the collaboration and talking through each step.
 - ONLY 1 RENDERED (.html) should be submitted.
@@ -1021,7 +1016,7 @@ starwars |>
 <hr>
 Breakout room structure:
 
-- **Individual Think Time**: ~ 5 min (camera off / mute)
+- **Individual Think Time**: ~ 3 min (camera off / mute)
   - Review document
   - Review prompts
   - Start planning possible approaches/pseudocode
