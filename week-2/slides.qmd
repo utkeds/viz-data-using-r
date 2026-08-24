@@ -1,7 +1,7 @@
 ---
 subtitle: "R Basics & {tidyverse}"
-title: "Week 2 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 2 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
