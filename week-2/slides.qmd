@@ -1124,7 +1124,7 @@ Breakout room structure:
 - Readings
   - **Work Through** Beck (n.d.)
   - **Skim** dplyr cheatsheet
-  - **Skim** Wickham et al., (2023)
+  - **Skim** Wickham et al., (2023) [Optional/Advanced]
 
 ## Office Hours
 <hr>
