@@ -16,7 +16,7 @@ execute:
 <!-- 2. Now, in the code cell below, please load {palmerpenguins}, {tidyverse}, and {janitor} pkgs. -->
 <!-- NOTE: You will likely need to first install {palmerpenguins} and {janitor} in your console (if you don't have them installed). To do this, it is `install.packages("palmerpenguins")`. After installed, then you should be able to load them without error in your "packages" code cell below.-->
 
-```{r packages, include=FALSE}
+```{r packages}
 #Load the three packages here
 library(palmerpenguins)
 library(tidyverse)
@@ -25,7 +25,7 @@ library(janitor)
 
 <!-- 3. Now, run the code cell above using the "Run Cell" play button in the upper left. -->
 
-<!-- 4. Run the code cell below to assign the penguins data set in {palmerpenguins} to an object called `penguins` and then use `janitor::clean_names()` to clean up the variable names. -->
+<!-- 4. Write code in the cell below to assign the penguins data set in {palmerpenguins} to an object called `penguins` and then use `janitor::clean_names()` to clean up the variable names. Finally, run the code cell. -->
 
 ```{r penguins_object}
 
@@ -37,7 +37,7 @@ library(janitor)
 
 ```
 
-<!-- 6. For this exercise, we are only interested in the "Chinstrap" species of penguin. Use a base R pipe and filter to isolate only the Chinstrap penguin data. Assign this new subset to object "chinstrap". -->
+<!-- 6. For this exercise, we are only interested in the "Chinstrap" species of penguin. Use a pipe and filter to isolate only the Chinstrap penguin data. Assign this new subset to a new object "chinstrap". -->
 
 ```{r filter_chinstrap}
 
@@ -63,10 +63,12 @@ d. and tell it to set the color to sex. -->
 
 ```{r}
 ggplot(DATAFRAME_NAME, aes(x = X_VARIABLE, y = Y_VARIABLE)) +
-          geom_point(aes(color = COLOR_VARIABLE)) +
-  labs(title = "Chinstrap Penguins: Bill Length vs. Flipper Length",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)")
+  geom_point(aes(color = COLOR_VARIABLE)) +
+  labs(
+    title = "Chinstrap Penguins: Bill Length vs. Flipper Length",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
 ```
 
 <!-- 10. Run the code cell above using the "Run Cell" play button in the upper left. Your first ggplot visualization!-->
