@@ -306,6 +306,35 @@ library(tidyverse)
 
 # {dplyr} Basics
 
+## {dplyr} Basic Functions
+<hr>
+#### Loading Data (Two Ways)
+
+::: {.columns .small-font}
+
+::: {.column width="45%"}
+
+1. Data that already exists in a package (like in tidyverse)
+  a. Can use as-is OR assign to a variable. Assigning to a variable lets it show up in the variables pane.
+
+
+```r
+starwars <- starwars
+```
+:::
+
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+
+2. Loading data from a file (like a .csv), we'll use `read_csv()` which is a function in `tidyverse`.
+  a. Make sure you have the folder open in Positron where the data is stored. Otherwise, it won't be able to find the file.
+
+```r
+starwars <- read_csv("starwars_data.csv")
+```
+
+:::
+:::
+
 ## {dplyr} Basics
 <hr>
 - From Estrellado et al. (2020)
