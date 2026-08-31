@@ -30,7 +30,7 @@ library(palmerpenguins)
 library(gt)
 ```
 
-# Weekly Check In, Download `.zip`, Download Slides
+# Weekly Check In, Download `.zip`, Open Folder in Positron
 
 # Start Recording
 
@@ -39,12 +39,9 @@ library(gt)
 
 - Weekly Check In / .zip Download
 - Additional Foundational Skills
-    - Other File Types
-    - Documentation / Help
-    - Troubleshooting Errors
 - Reviewing {dplyr} Basics
 - More {dplyr}
-    - Collaborative Work
+- Collaborative Work 🚢
 - {forcats}
 - Looking Ahead
 
@@ -66,30 +63,72 @@ library(gt)
 
 # Additional Foundational Skills
 
-## How do I know the code ran? {.smaller}
+## `read.csv()` versus `read_csv()` {.smaller}
 <hr>
-- There are a several ways to check
-  - call the object
-  - `print()` the object
-  - `str()` the object
-  - `glimpse()` the object
-  - `describe()` the object {psych}
-  - `View()` the object
-- Also look at the variables pane in the secondary sidebar
-  - `>` Will expand the object
-- No error in the console!
-  - i.e., you get a `>` in the console instead of error message
+:::{layout="[50,50]"}
+:::{.column}
+#### `read.csv()`
+- Part of Base R
+- Returns a dataframe
+- Slower on larger files
+- Printing = verbose
+:::
+:::{.column}
+#### `read_csv()`
+- Part of `tidyverse`
+  - `library(tidyverse)`
+- Returns a tibble
+- Faster on larger files
+- Printing = compact
+:::
+:::
+
+## Double-Colon `::` Operator {.smaller}
+<hr>
+- At least three typical use cases for `::`
+  1. Don't want to load full package
+      - Not: `library(janitor)` for just `clean_names()`
+      - Instead: `janitor::clean_names()`
+
+## Double-Colon `::` Operator {.smaller}
+<hr>
+  2. Avoiding package conflicts
+     ![](slides_images/tidyverse_conflicts.png)
+      - Both `dplyr` and `stats` packages have `filter()`
+      - Lets you specify which `filter()` function to use
+  3. Clarity of code
+      - Makes it clear which function comes from which package
+
+## Logical Operators {.smaller}
+<hr>
+- `&` and
+- `|` or
+- `!` not
+
+## Comparison Operators {.smaller}
+<hr>
+- `==` is equivalent to
+- `!=` is not equivalent to
+- `>` greater than
+- `>=` greater than or equivalent to
+
+## Assignment Operators {.smaller}
+<hr>
+- `<-`
+- `=`
+
 
 ## Reading Documentation
 <hr>
  - `?function_name` or `help(function_name)` will pull documentation
+  - e.g. `?rename`
  - Can also access on web (Google is your friend!)
 
 ## Other File Types
 <hr>
 :::{.compact-font}
-- Ability to read in a data file is critical\
-<br>
+- Ability to read in a data file is critical
+<br><br>
 - Often, data is stored in a `.csv` file
     - `read_csv()` function in `readr` package (part of [tidyverse core](https://www.tidyverse.org/packages/#core-tidyverse))
 <br>  
@@ -107,13 +146,13 @@ library(gt)
 
 :::
 
-## Troubleshooting Errors {.smaller}
+<!-- ## Troubleshooting Errors {.smaller}
 <hr>
 - **Demo**
     - Follow along with `Troubleshooting_Errors_Demo.qmd`:
       - Reading in an Excel file
       - Three types of errors <!-- (forget to load package, file in wrong place, don't store/assign it and call it later) -->
-      - Accessing via file pane > Import Dataset
+      - Accessing via file pane > Import Dataset -->
       
 # Reviewing {dplyr} Basics
 
@@ -364,6 +403,52 @@ starwars_a |>
   filter(hair_color == "brown")
 ```
 
+:::
+
+:::
+:::
+
+## {dplyr} Basic Functions
+<hr>
+`filter_out()`
+<br>
+<hr>
+::: {.columns .small-font}
+
+::: {.column width="45%"}
+
+**Example data – starwars**
+
+```{r echo=FALSE}
+starwars |>
+  slice(1:5) |>
+  select(name:skin_color) |>
+  gt() |>
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(13),
+    data_row.padding = px(2)
+  ) |>
+  tab_style(
+    style = cell_fill(color = "#f9f9f9"),
+    locations = cells_body(rows = c(1, 3, 5))
+  ) |>
+  opt_table_lines(extent = "none")
+```
+
+:::
+
+::: {.column style="border-left: 4px solid #FF8200; padding-left: 1em;"}
+
+[`data |> filter_out(is.na(var))`]{.fragment .medium-small-font}
+
+[- Use this to **filter rows**]{.extra-small-font .fragment}
+
+:::{.fragment .smaller-font}
+```{r}
+starwars_a |>
+  filter_out(is.na(hair_color))
+```
 :::
 
 :::
@@ -718,7 +803,7 @@ starwars_a <- starwars_a |>
     has_hair = case_when(
       hair_color == "brown" ~ TRUE,
       hair_color == "blond" ~ TRUE,
-      TRUE ~ FALSE
+      .default = FALSE
     )
   )
 ```
@@ -770,7 +855,7 @@ starwars_b <- starwars_a |>
     has_hair = case_when(
       hair_color %in% c("brown", "blond") ~ TRUE,
       is.na(hair_color) ~ NA,
-      TRUE ~ FALSE,
+      .default = FALSE
     )
   )
 ```
@@ -1367,7 +1452,7 @@ starwars |>
 :::{.smaller-font}
 - Open your `dplyr_titanic_practice.qmd` file.
 - We'll go to breakout rooms.
-- We will come around and answer questions. This one is more in-depth.
+- I will float and answer questions. This one is more in-depth.
 - Resources:
     - Week 2 slides
     - Week 3 slides
@@ -1610,3 +1695,4 @@ surv_rates_age_class |>
     - Read Healy (2012), Chapter 3
     - Intro to {ggplot2}
     - Skim {ggplot2} cheatsheet
+      - ?Print it?

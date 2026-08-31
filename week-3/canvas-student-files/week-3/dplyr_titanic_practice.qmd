@@ -32,15 +32,14 @@ Read in the Titanic data from the `Titanic-Dataset.csv` file. It is in the zip f
 
 ```
 
-In the [Estrellado reading](https://datascienceineducation.com/c06) from Week 2, the authors introduced the `clean_names()` function from the `janitor` package. We used this function during the {palmerpenguins} scavenger hunt, too. Use this function to clean the variable names in the dataset. Hint: It's good practice to load all packages at the beginning of your script (i.e. go back and load {janitor} with tidyverse). In the code chunk below, use the `clean_names()` function to clean the variable names. Should you store the cleaned dataset to a new name/object?
+In the [Estrellado reading](https://datascienceineducation.com/c06) from Week 2, the authors introduced the `clean_names()` function from the `janitor` package. We used this function during the {palmerpenguins} scavenger hunt, too. Use this function to clean the variable names in the dataset. In the code chunk below, use the `clean_names()` function to clean the variable names. Should you store the cleaned dataset to a new name/object?
 
 #### 3. Clean Variable Names
 ```{r clean_names}
 
 ```
 
-Open the [codebook for the `titanic` dataset](https://www.kaggle.com/c/titanic/data) Then, in the
-code block below, use `glimpse()` to preview the dataset. You may also want to use str() to see more about its structure, or use describe() from the {psych} package. After reviewing the dataset, answer the following question.
+Open the [codebook for the `titanic` dataset](https://www.kaggle.com/c/titanic/data) Then, in the code block below, use glimpse() to preview the dataset. You may also want to use str() to see more about its structure, or use describe() from the {psych} package. After reviewing the dataset, answer the following question.
 
 ```{r glimpse}
 

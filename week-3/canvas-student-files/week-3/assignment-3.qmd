@@ -111,19 +111,19 @@ execute:
 
 ```
 
-## G: Reflect, knit, and share your report (Required)
+## G: Reflect, render, and share your report (Required)
 
 How did this assignment go? What went well --- or what was tricky? Briefly (a sentence or two is fine!) reflect below.
 
 **REFLECTION:** [Please write your reflection here.]
 
-When complete, please render the file as .html (be sure to add your name at the top!) and submit it for Assignment 3 in Canvas. Please note, you are only submitting the HTML output for this assignment.  
+When complete, please render the file as .html (be sure to add your name at the top!) and submit it for Assignment 3 in Canvas. Please note, you will submit both the .qmd file and HTML output for this assignment.  
 
 **Nice job!**
 
 ## Rubric (30 pts.)
 
 - Name is added: 2 points
-- File knits to an HTML: 8 points
+- File renders to an HTML: 8 points
 - Code chunks have appropriate output: 15 points
 - Interpretations and reflection are added: 5 points
