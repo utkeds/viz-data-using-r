@@ -21,7 +21,7 @@ execute:
 
 
 #### Read in Data
-2. Read in the gapminder CSV data and assign it a name. Use the `read_csv()` function to do this.
+2. Read in the gapminder CSV data and assign it an object (name of your choice). Use the `read_csv()` function to do this.
 
 ```{r}
 
