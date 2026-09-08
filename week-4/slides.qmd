@@ -933,7 +933,7 @@ Understanding R Variable Types
   - Character (`name` from StarWars)
   - Logical (`Survived` from Titanic)
 - Continuous
-  - Numeric/Double (`height` from StarWars)
+  - Numeric/Double (`mass` from StarWars)
   - Integer (`age` in Titanic) ***(Integers can also be discrete, often when only a few)
   - Dates/Times
 
