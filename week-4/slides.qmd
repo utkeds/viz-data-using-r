@@ -1142,7 +1142,7 @@ str(starwars[, 1:5])
 :::
 :::
 
-# Walkthrough Available for Viewing (after class)
+<!-- # Walkthrough Available for Viewing (after class) -->
 
 <!-- ## Example 2: Your Turn! -->
 <!-- <hr> -->
