@@ -1137,9 +1137,8 @@ Identify the relevant [variables]{.scales-color} and [calculations]{.fountain-co
 - Week 4 Assignment:
     - Wrangling & Graphing
 - Reading:
-    - **Skim** Knaflic Intro
     - **Read** Knaflic Chapter 1 (Same pdf)
     - **Skim** Schwabish (see all the different types of graphs)
     - **Read** Wilke Chapter 6
-    - Discussion Post
+    - [Changed] NO Discussion Post
 

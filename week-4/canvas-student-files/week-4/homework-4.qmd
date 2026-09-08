@@ -1,0 +1,115 @@
+---
+title: "Example 2: Your Turn! (Two Continuous Variables)"
+subtitle: "Planning a {ggplot}"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+---
+
+We haven't learned `ggplot()` syntax yet -- that's next week! This is a **planning exercise**, following the same four steps we walked through in "Example 1" during lecture, so that when we do learn `ggplot2`, you have one model to help you think through what you're trying to build.
+
+The difference from Example 1: that example compared a **discrete** variable (region) to a **continuous** one (spending), using `geom_col()`. This time, you'll plan a graph comparing **two continuous variables** -- which calls for a different `geom`.
+
+## The Research Question
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+What is the relationship between year and per-child spending on K-12 education, for a state of your choice?
+:::
+
+## Step 1: Relevant Variables & Calculations
+
+Just like in Example 1, break the RQ down into its parts.
+
+1. What are the variables involved in this RQ? (Hint: look at the `expenditure` column in the [tidykids codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html) to see which numeric column represents "spending.")
+2. For each variable, is it **discrete** or **continuous**?
+3. Is there a calculation involved (e.g., a mean, like in Example 1), or are we just plotting the values as they are?
+
+**YOUR ANSWER:**
+
+- Variable 1 (discrete / continuous): [ANSWER HERE]
+- Variable 2 (discrete / continuous): [ANSWER HERE]
+- Calculation needed (if any, or if none): [ANSWER HERE]
+
+## Step 2: Identify `geom`s with the Cheatsheet
+
+Open the {ggplot2} cheatsheet (on Canvas). Find the section for **"Two Variables: Both Continuous."**
+
+1. List 1-2 `geom`s from that section that could show the relationship between two continuous variables.
+2. Which one do you think best answers *this* RQ, and why? (Hint: Multiple answers could work here. Also, since one variable is year, you might consider whether a second `geom` layered on top -- to help show a trend -- would be useful in addition to your first choice.) If you aren't sure, just make a guess. This isn't being graded for "correctness".
+
+**YOUR ANSWER:**
+
+- `geom`s available: [ANSWER HERE]
+- Best choice for this RQ: [ANSWER HERE]
+- Why: [ANSWER HERE]
+
+## Step 3: Sketch
+
+Just like the sketches in Example 1, draw a quick, rough sketch of what you expect this graph to look like *before* you build it. This can be on paper (take a photo) or in any drawing tool (e.g, https://excalidraw.com/) -- it doesn't need to be pretty.
+
+Include:
+
+- Which variable is on the x-axis, which is on the y-axis. Include labels!
+- What each point/mark on the graph represents (hint: what is the unit of observation here?)
+- Roughly what pattern you'd *expect* to see (increasing? decreasing? flat? something else?) -- this is a prediction, not a right/wrong answer
+
+**[Upload your sketched image to Canvas as a second file with your rendered .html.]**
+
+## Step 4: Plan the Data Wrangling
+
+This is the part you already know how to do! Using {dplyr} functions we've learned, plan out -- in words first, then in code -- how you'd get the data into the shape needed for the graph you sketched above.
+
+Think about:
+
+- What (likely two things) do you need to `filter()` for?
+- Which of the three numeric spending columns (`raw`, `inf_adj`, or `inf_adj_perchild`) makes the most sense to use for this RQ, and why?
+
+Write your plan in words first:
+
+**PLAN:** [Please write response here.]
+
+Then write the code to actually produce that wrangled dataset (do **not** write any `ggplot()` code yet -- just get the data ready):
+
+Load tidyverse in this cell.
+```{r load_packages}
+library(tidyverse)
+```
+
+Read in the data in this cell.
+```{r load_data}
+
+```
+
+Execute your wrangling plan in this cell. Keep only the columns you want to inform your plot (i.e., you'll drop some variables here).
+```{r wrangle}
+
+```
+
+
+Print the first several rows (that is, type the name of the object, use `print()`), so the .html shows a bit of the data when rendered) of your wrangled dataset below to confirm it looks the way you expect (one row per year, for your chosen state and expenditure type):
+
+```{r print_data}
+
+```
+
+## Challenge (Optional)
+
+If you want, take your wrangled data and create your plot. If you aren't sure how to make a ggplot yet, that's fine. You will soon in the next couple of weeks. This is completely optional.
+
+```{r challenge}
+
+```
+
+## Reflection
+
+1. Looking at your wrangled data (not necessarily a graph yet, unless you did the challenge), what early hints do you see about the relationship between year and spending?
+2. How did this go? Remember, this is just one way to plan out your plot. Some people reorder these steps, and others have a completely different approach that works for them, and that's great!
+
+**REFLECTION:** [Please write response here.]
+
+
