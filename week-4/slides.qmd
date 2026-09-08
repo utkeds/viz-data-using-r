@@ -139,6 +139,12 @@ tidykids <- tidykids |>
 
 :::
 
+## Reminder of AI Policy on Syllabus
+<hr>
+- Remember, if you use AI on homework, you must use the language provided on the syllabus to explain how you used it.
+
+- Please do not use AI on in-class work.
+
 # Additional Foundational Skills
 
 # Logical Operators
