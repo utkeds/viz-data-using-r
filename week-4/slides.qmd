@@ -729,7 +729,7 @@ p <- tidykids |>
   coord_flip() +
   labs(
     title = "Per Pupil Spending by State",
-    x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
+    x = "Per Pupil Spending in 2016 Dollars",
     y = "State"
   )
 p
