@@ -922,6 +922,31 @@ Identify the relevant [variables]{.scales-color} and [calculations]{.fountain-co
 1. U.S. Regions
 2. Inflation-Adjusted Spending Per Child
 
+## Example 1: Pre-work [Commercial Break]
+<hr>
+Understanding R Variable Types
+
+:::{.smaller-font}
+
+- Discrete
+  - Factor (`Pclass` from Titanic)
+  - Character (`name` from StarWars)
+  - Logical (`Survived` from Titanic)
+- Continuous
+  - Numeric/Double (`height` from StarWars)
+  - Integer (`age` in Titanic) ***(Integers can also be discrete, often when only a few)
+  - Dates/Times
+
+:::
+
+## Example 1: Pre-work [Commercial Break]
+<hr>
+Understanding R Variable Types
+
+```{r}
+str(starwars[, 1:5])
+```
+
 ## Example 1: Pre-work
 <hr>
 - **Step 1:** Relevant [Variables]{.scales-color} & [Calculations]{.fountain-color}
