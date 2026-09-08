@@ -14,7 +14,7 @@ This assignment will be a little more open-ended than past assignments, given th
 
 ## 1. Get set up
 
-First, change the name in the YAML header. Load tidyverse. Create a code cell below to do this.
+First, change the author name in the YAML header. Load tidyverse. Create a code cell below to do this. This time I am not providing it for you. (Hint: Remember there is a button!)
 
 Then read the tidykids data into R, and assign a name/object to the data. Create a code cell below to do this.
 
@@ -39,7 +39,7 @@ Create a scatterplot. For this plot, keep things simple. Use only (i.e., filter 
 
 In the next step, you'll extend this graph a bit. Note that the codebook is [here](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html). As a tool, Healy Ch. 3 reading gives scatterplot code (borrow it, if you want)!
 
-Let the open-endedness be fun, not a burden here. In your work, I am looking for effort, not perfect code or output.
+Let the open-endedness be fun, not a burden here. In your work, I am looking for effort, not perfect code or output. Make sure if you assign your plot to an object, you call (just write the name) of the object at the bottom of the code cell so the plot shows up!
 
 ```{r}
 
@@ -83,7 +83,7 @@ The requirements are:
 
 - Use an expenditure (i.e., filter `expenditure` for a different expenditure type) that is different from any you used above.
 - Include a different state than the one(s) you used above, or use multiple states or regions.
-- Share _what_ you planned to show and _how_ you showed it (after your code chunk and output)
+- Share _what_ you planned to show and _how_ you showed it (after your code cell and output)
 - Have fun with this! Any other changes (or absence of changes) are up to you!
 
 ```{r}
@@ -94,14 +94,7 @@ The requirements are:
 
 **HOW I PLANNED TO SHOW IT:** [Please write response here.]
 
-## 8. Reflecting on the Grammar of Graphics with AI
-Let's use AI to help us reflect on the grammar of graphics. Please use either Ping Pong AI (if you are participating) or another AI tool of choice (if you do not have Ping Pong access) to pose the question prompt below. It will ask you some questions. Please respond to it at least twice. Then, copy/paste your interaction below for credit. Your responses do not have to be polished;  interact with it as you normally would. This is about *learning* not perfection.
-
-**Question/AI Prompt:** Ask me to explain the grammar of graphics, specifically the three layers a plot must contain. Ask me questions to determine my understanding about these three. Then give me feedback on my understanding and offer suggestions to refine it.
-
-**RESPONSE:** [Please paste conversation/response here.]
-
-## 9. Reflection
+## 8. Reflection
 How did this assignment go? What were the pain points? What did you enjoy? What would you like to learn more about? 
 **REFLECTION:** [Please write response here.]
 
@@ -112,7 +105,7 @@ Please note, you are only submitting the HTML output for this assignment.
 
 ## 10. Bonus
 
-Each variable in the `expenditure` column of the `tidykids` data set represents a different type of spending. Which type of adjusted spending per child, on average in $1,000s, is highest for Tennessee? 
+Each variable in the `expenditure` column of the `tidykids` data set represents a different type of spending. Which type of adjusted spending per child, on average, is highest for Tennessee? 
 
 **Make a simple bar chart showing this. Color the barchart by the average.**
 

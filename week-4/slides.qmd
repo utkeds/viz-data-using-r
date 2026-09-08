@@ -1111,7 +1111,7 @@ Identify the relevant [variables]{.scales-color} and [calculations]{.fountain-co
 :::
 :::
 
-<!-- # Walkthrough Available for Viewing (after class) -->
+# Walkthrough Available for Viewing (after class)
 
 <!-- ## Example 2: Your Turn! -->
 <!-- <hr> -->

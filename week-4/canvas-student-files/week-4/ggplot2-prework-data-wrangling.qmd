@@ -20,7 +20,7 @@ execute:
 
 ```
 
-<!--- Let's review the data. How many variables/columns are available in the tidykids dataset? How many distinct (hint!) levels of the variable `expenditure` are there? -->
+<!--- Let's review the data. How many variables/columns are available in the tidykids dataset? How many distinct (hint! `expenditure` types are there? -->
 
 ```{r num_vars}
 
@@ -37,12 +37,12 @@ execute:
 
 ```
 
-<!-- You want to create a new region variable. Create this using what we learned last week. Note that this code is provided in Canvas because it is long to type (and easy to typo!). Please create the new region variable for the filtered 2016 data (i.e., use the object you stored to above).-->
+<!-- You want to create a new region variable. Create this using what we learned last week re: mutate and case_when. Note that this code is provided in Canvas because it is long to type (and easy to typo!). Please create the new region variable for the filtered 2016 data (i.e., use the object you stored to above).-->
 ```{r create_region_variable}
 
 ```
 
-<!-- You want to focus only on library expenditures. Look at the [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html) to find the variable name for library expenditures. Then, using the data from the question above, filter for it.-->
+<!-- You want to focus only on library expenditures. Look at the [codebook](https://jrosen48.github.io/tidykids/articles/tidykids-codebook.html) to find the `expenditures` value for library expenditures. Then, using the data from the question above, filter for it.-->
 
 ```{r filter_library_expenditures}
 
