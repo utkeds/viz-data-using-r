@@ -1,7 +1,7 @@
 ---
 subtitle: "Intro to {ggplot2}"
-title: "Week 4 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 4 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -32,21 +32,77 @@ titanic <- read_csv("Titanic-Dataset.csv") |>
   janitor::clean_names()
 
 tidykids <- tidykids |>
-  mutate(region = case_when(
-    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
-                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
-    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
-                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
-    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
-                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
-                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
-    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
-                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
-  ))|>
+  mutate(
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "Northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "Midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "South",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "West"
+    )
+  ) |>
   janitor::clean_names()
 ```
 
-# Weekly Check In, Download `.zip`, Download Slides, {ggplot} Cheatsheet
+# Weekly Check In, Download `.zip`, Download Slides, Open Wk4 Folder
 
 # Start Recording
 
@@ -98,25 +154,25 @@ tidykids <- tidykids |>
 3. **`&`** (and)
 ![](slides_images/and_num_line.png)
 
-# The Pipe `|>` and Assignment Operator `<-`
+# The Pipe `|>` Operator
 
-## Differences Between the Pipe `|>` and the Assignment Operator `<-` {.smaller}
+## Understanding the Pipe `|>` Operator {.smaller}
 <hr>
 - The pipe `|>` is used to chain functions together
-- Recall Q11 from last night's homework
+- Think about it as a water pipe, it lets the data "flow" through the whole chain of functions you specify.
 
 :::{.columns}
 
 :::{.column .extra-small-font}
-**Original Way**
+**Original/Base R Way**
 
 - The data is the first argument of every function, which get called separately
 ```{r}
-step_1 <-select(starwars, name, species, height)
+step_1 <- select(starwars, name, species, height)
 
 step_2 <- filter(step_1, species == "Droid")
 
-step_3 <- summarize(step_2, mean_height = mean(height, na.rm=TRUE))
+step_3 <- summarize(step_2, mean_height = mean(height, na.rm = TRUE))
 step_3
 ```
 
@@ -129,9 +185,9 @@ step_3
 
 ```{r}
 combined <- starwars |>
-   select(name, species, height) |>
-   filter(species == "Droid") |>
-   summarize(mean_height = mean(height, na.rm=TRUE))
+  select(name, species, height) |>
+  filter(species == "Droid") |>
+  summarize(mean_height = mean(height, na.rm = TRUE))
 
 combined
 ```
@@ -141,16 +197,6 @@ combined
 :::
 
 # Strategies for Object Assignment
-
-## Breakout Room Discussion {.smaller}
-<hr>
-**Discussion Prompts**
-
-- What are the pros/cons of creating a new object?
-
-- When assigning, when might you...
-  - ...create a new object?
-  - ...overwrite an existing object?
 
 ## Strategies for Assignment
 <hr>
@@ -180,11 +226,13 @@ titanic <- titanic |>
 
 ```{r creating age_group}
 titanic <- titanic |>
-  mutate(age_group = case_when(
-    age < 13 ~ "child",
-    age >= 13 & age < 18 ~ "teen",
-    age >= 18 ~ "adult"
-  ))
+  mutate(
+    age_group = case_when(
+      age < 13 ~ "child",
+      age >= 13 & age < 18 ~ "teen",
+      age >= 18 ~ "adult"
+    )
+  )
 ```
 
 
@@ -348,7 +396,7 @@ titanic_ageclass_summary |>
 :::
 
 :::{column}
-```{.r code-line-numbers="|1-6"}
+```{.r code-line-numbers="|7"}
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed") |>
@@ -361,11 +409,13 @@ p <- tidykids |>
 Output:
 ```{r piped ggplot2 call, echo=F}
 p <- tidykids |>
-  filter(year == 2016,
-         expenditure == "PK12ed") |>
-  mutate(state = case_when(
-         state == "District of Columbia" ~ "DC",
-         TRUE ~ state.abb[match(state, state.name)])) |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(
+    state = case_when(
+      state == "District of Columbia" ~ "DC",
+      TRUE ~ state.abb[match(state, state.name)]
+    )
+  ) |>
   ggplot()
 
 p
@@ -387,7 +437,7 @@ p
 
 :::{column}
 
-```{.r code-line-numbers="|7"}
+```{.r code-line-numbers="7"}
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed") |>
@@ -402,11 +452,13 @@ p
 Output:
 ```{r, echo=F}
 p <- tidykids |>
-  filter(year == 2016,
-         expenditure == "PK12ed") |>
-  mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(
+    state = case_when(
+      state == "District of Columbia" ~ "DC",
+      TRUE ~ state.abb[match(state, state.name)]
+    )
+  ) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region))
 
 p
@@ -429,7 +481,7 @@ p
 
 :::{column}
 
-```{.r code-line-numbers="|8"}
+```{.r code-line-numbers="8"}
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed")|>
@@ -444,11 +496,13 @@ p
 Output:
 ```{r, echo=F}
 p <- tidykids |>
-  filter(year == 2016,
-  expenditure == "PK12ed")|>
-  mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(
+    state = case_when(
+      state == "District of Columbia" ~ "DC",
+      TRUE ~ state.abb[match(state, state.name)]
+    )
+  ) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point()
 
@@ -474,7 +528,7 @@ p
 
 :::{column}
 :::{.smaller-font}
-```{.r code-line-numbers="|9"}
+```{.r code-line-numbers="9"}
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed")|>
@@ -490,11 +544,13 @@ p
 Output:
 ```{r, echo=F}
 p <- tidykids |>
-  filter(year == 2016,
-  expenditure == "PK12ed")|>
-  mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(
+    state = case_when(
+      state == "District of Columbia" ~ "DC",
+      TRUE ~ state.abb[match(state, state.name)]
+    )
+  ) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format())
@@ -523,7 +579,7 @@ p
 
 :::{column}
 :::{.smaller-font}
-```{.r code-line-numbers="|10"}
+```{.r code-line-numbers="10"}
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed")|>
@@ -539,11 +595,13 @@ p
 ```
 ```{r, echo=F}
 p <- tidykids |>
-  filter(year == 2016,
-  expenditure == "PK12ed")|>
-  mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(
+    state = case_when(
+      state == "District of Columbia" ~ "DC",
+      TRUE ~ state.abb[match(state, state.name)]
+    )
+  ) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
@@ -574,7 +632,7 @@ p
 
 :::{column}
 :::{.smaller-font}
-```{.r code-line-numbers="|11"}
+```{.r code-line-numbers="11"}
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed")|>
@@ -592,11 +650,13 @@ p
 
 ```{r, echo=F}
 p <- tidykids |>
-  filter(year == 2016,
-  expenditure == "PK12ed")|>
-  mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(
+    state = case_when(
+      state == "District of Columbia" ~ "DC",
+      TRUE ~ state.abb[match(state, state.name)]
+    )
+  ) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
@@ -629,7 +689,7 @@ p
 
 :::{column}
 :::{.extra-small-font}
-```{.r code-line-numbers="|12-14"}
+```{.r code-line-numbers="12-14"}
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed")|>
@@ -649,19 +709,23 @@ p
 
 ```{r, echo=F}
 p <- tidykids |>
-  filter(year == 2016,
-  expenditure == "PK12ed")|>
-  mutate(state = case_when(
-          state == "District of Columbia" ~ "DC",
-          TRUE ~ state.abb[match(state, state.name)])) |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(
+    state = case_when(
+      state == "District of Columbia" ~ "DC",
+      TRUE ~ state.abb[match(state, state.name)]
+    )
+  ) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
   facet_wrap(~region, scales = "free_x") +
   coord_flip() +
-  labs(title = "Per Pupil Spending by State",
-       x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
-       y = "State")
+  labs(
+    title = "Per Pupil Spending by State",
+    x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
+    y = "State"
+  )
 p
 ```
 :::
@@ -688,7 +752,7 @@ p
 
 :::{column}
 :::{.extra-small-font}
-```{.r code-line-numbers="|15-17"}
+```{.r code-line-numbers="15-17"}
 p <- tidykids |>
   filter(year == 2016,
          expenditure == "PK12ed")|>
@@ -712,22 +776,28 @@ p
 
 ```{r, echo=F}
 p <- tidykids |>
-  filter(year == 2016,
-  expenditure == "PK12ed")|>
-  mutate(state = case_when(
-    state == "District of Columbia" ~ "DC",
-    TRUE ~ state.abb[match(state, state.name)])) |>
+  filter(year == 2016, expenditure == "PK12ed") |>
+  mutate(
+    state = case_when(
+      state == "District of Columbia" ~ "DC",
+      TRUE ~ state.abb[match(state, state.name)]
+    )
+  ) |>
   ggplot(aes(x = inf_adj_perchild, y = state, color = region)) +
   geom_point() +
   scale_x_continuous(labels = scales::dollar_format()) +
   facet_wrap(~region, scales = "free_x") +
   coord_flip() +
-  labs(title = "Per Pupil Spending by State",
-       x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
-       y = "State")+
+  labs(
+    title = "Per Pupil Spending by State",
+    x = "Per Pupil Spending in 2016 Dollars (In $1000s)",
+    y = "State"
+  ) +
   theme_minimal() +
-  theme(legend.position = "none",
-        axis.text.x = element_text(size = 8, angle = 45, hjust = 1))
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(size = 8, angle = 45, hjust = 1)
+  )
 p
 ```
 :::
@@ -736,7 +806,7 @@ p
 
 ## Grammar of Graphics {.smaller}
 <hr>
-- So, at a high level, there are three steps to creating a `ggplot2` visualization:
+- So, at a high level, there are three required steps to creating a `ggplot2` visualization:
     1. [**Data**]{.data-color}: Specify what data you want to visualize, 
     2. [**Aesthetics**]{.aesthetics-color}: which relationships you want to visualize, and
     3. [**Geometries**]{.geometries-color}: how you want the relationships to appear.
@@ -780,24 +850,166 @@ p
 :::{.smaller-font}
 [**RQ**]{.regalia-color}
 
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
 - How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
     - How do the regions compare to the national average?
+:::
 
 :::{.fragment}
 
 [**My Thinking:**]{.regalia-color}  
 
-1. Draw a quick sketch of the graph I want to create.
-2. Identify the `geoms`(look at their documentation if needed)
-3. Identify the `data`/data wrangling needed.
+1. Identify the relevant variables/calculations needed to answer RQ
+2. Identify the `geoms`(look at [cheatsheet](https://opensource.posit.co/resources/cheatsheets/data-visualization/) if needed)
+3. Draw a quick sketch of the graph I want to create.
+3. Identify the data wrangling needed.
 :::
 :::
 
 ## Example 1: Pre-work
 <hr>
-- [**Step 1:** My Sketch]{.smaller-font}
+- **Step 1:** Relevant Variables & Calculations
+
+Identify the relevant variables and calculations needed to answer RQ
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?
+    - How do the regions compare to the national average?
+:::
+
+## Example 1: Pre-work
+<hr>
+- **Step 1:** Relevant Variables & Calculations
+
+Identify the relevant [variables]{.scales-color} and calculations needed to answer RQ
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do [U.S. regions]{.scales-color} compare in their average [inflation-adjusted per-child spending]{.scales-color} on public K-12 education in 2016? 
+    - How do the regions compare to the national average?
+:::
+
+## Example 1: Pre-work
+<hr>
+- **Step 1:** Relevant Variables & Calculations
+
+Identify the relevant [variables]{.scales-color} and [calculations]{.fountain-color} needed to answer RQ
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do [U.S. regions]{.scales-color} compare in their [average]{.fountain-color} [inflation-adjusted per-child spending]{.scales-color} on public K-12 education in 2016? 
+    - How do the regions compare to the national average?
+:::
+
+## Example 1: Pre-work
+<hr>
+- **Step 1:** Relevant [Variables]{.scales-color} & [Calculations]{.fountain-color}
+
+:::{.smaller-font}
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do [U.S. regions]{.scales-color} compare in their [average]{.fountain-color} [inflation-adjusted per-child spending]{.scales-color} on public K-12 education in 2016? 
+    - How do the regions compare to the national average?
+:::
+:::
+
+**Variables:**
+
+1. U.S. Regions
+2. Inflation-Adjusted Spending Per Child
+
+## Example 1: Pre-work
+<hr>
+- **Step 1:** Relevant [Variables]{.scales-color} & [Calculations]{.fountain-color}
+
+:::{.smaller-font}
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do [U.S. regions]{.scales-color} compare in their [average]{.fountain-color} [inflation-adjusted per-child spending]{.scales-color} on public K-12 education in 2016? 
+    - How do the regions compare to the national average?
+:::
+:::
+
+**Variables:**
+
+1. U.S. Regions (Discrete)
+2. Inflation-Adjusted Spending Per Child (Continuous)
+
+## Example 1: Pre-work
+<hr>
+- **Step 2:** Identify `geom_`s with [cheatsheet](https://opensource.posit.co/resources/cheatsheets/data-visualization/)
+
+:::{.smaller-font}
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
+:::
+:::
 
 :::{layout="[1,1]" .smaller-font}
+:::{column}
+**Variables:**
+
+1. U.S. Regions (Discrete)
+2. Inflation-Adjusted Spending Per Child (Continuous)
+:::
+:::{column}
+
+:::
+:::
+
+## Example 1: Pre-work
+<hr>
+- **Step 2:** Identify `geom_`s with [cheatsheet](https://opensource.posit.co/resources/cheatsheets/data-visualization/)
+
+:::{.smaller-font}
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
+:::
+:::
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+**Variables:**
+
+1. U.S. Regions (Discrete)
+2. Inflation-Adjusted Spending Per Child (Continuous)
+:::
+:::{column}
+**`geom_`s from cheatsheet**
+
+- `geom_col()`
+- `geom_boxplot()`
+- `geom_dotplot()`
+- `geom_violin()`
+:::
+:::
+
+## Example 1: Pre-work
+<hr>
+- **Step 3:** Choose `geom_`s and sketch
+
+:::{layout="[1,1]" .smaller-font}
+:::{column}
+:::{.smaller-font}
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
+:::
+:::
+
+- geom_col()
+
+:::{.smaller-font}
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do the regions compare to the national average? 
+:::
+:::
+
+- geom_hline()
+:::
+
+
 :::{column}
 ![](slides_images/practical_approach/excalidraw_sketch.png)
 
@@ -808,92 +1020,98 @@ p
 
 ## Example 1: Pre-work
 <hr>
+- **Step 3:** Choose `geom_`s and sketch
 
 :::{layout="[1,1]" .smaller-font}
 :::{column}
-![](slides_images/practical_approach/excalidraw_sketch.png)
+:::{.smaller-font}
 
-- **Step 2:** Which geoms? [(see cheatsheet)](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
-    
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
 :::
+:::
+
+- [geom_col()]{.scales-color}
+
+:::{.smaller-font}
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do the regions compare to the national average? 
+:::
+:::
+
+- geom_hline()
+:::
+
+
+:::{column}
+![](slides_images/practical_approach/excalidraw_sketch_cols.png)
+
+:::
+
 
 :::
 
 ## Example 1: Pre-work
 <hr>
+- **Step 3:** Choose `geom_`s and sketch
 
 :::{layout="[1,1]" .smaller-font}
 :::{column}
-![](slides_images/practical_approach/excalidraw_sketch_cols.png){height=70%}
+:::{.smaller-font}
 
-- **Step 2:** Which geoms? [(see cheatsheet)](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
-    - [geom_col()]{.scales-color}
-    
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
 :::
+:::
+
+- geom_col()
+
+:::{.smaller-font}
+
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do the regions compare to the national average? 
+:::
+:::
+
+- [geom_hline()]{.switchgrass-color}
+:::
+
+
+:::{column}
+![](slides_images/practical_approach/excalidraw_sketch_hline.png)
+
+:::
+
 
 :::
 
 ## Example 1: Pre-work
 <hr>
+- **Step 4:** Plan for Data Wrangling
 
 :::{layout="[1,1]" .smaller-font}
 :::{column}
-![](slides_images/practical_approach/excalidraw_sketch_hline.png){height=70%}
 
-- **Step 2:** Which geoms? [(see cheatsheet)](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
-    - geom_col()
-    - [geom_hline()]{.switchgrass-color}
+:::{style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;"}
+- How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016? 
+  - How do the regions compare to the national average?
 :::
-
-:::
-
-## Example 1: Pre-work
-<hr>
-
-:::{layout="[1,1]" .smaller-font}
-:::{column}
-![](slides_images/practical_approach/excalidraw_sketch.png)
-
-- Which geoms?
-    - geom_col()
-    - geom_hline()
 :::
 
 :::{column}
-- **Step 3:** What variables/data wrangling do I need?
-  
-  **Breakout Rooms**
+  1. Create a `region` variable
+  2. Filter `year` for 2016
+  3. Filter `expenditure` for "PK12ed"
+  4. Group by `region`
+      - Summarize:
+          - mean
+  5. Calculate national mean (separate from tibble)
 
 :::
 :::
 
-# Breakout Rooms
-
-## Example 1: Pre-work
-<hr>
-
-:::{layout="[1,1]" .smaller-font}
-:::{column}
-![](slides_images/practical_approach/excalidraw_sketch.png)
-
-- Which geoms?
-    - geom_col()
-    - geom_hline()
-:::
-
-:::{column}
-- **Step 3:** What variables/data wrangling do I need?
-    1. Create a `region` variable
-    2. Filter `year` for 2016
-    3. Filter `expenditure` for "PK12ed"
-    4. Calculate national mean (separate from tibble)
-    5. Group by `region`
-        - Summarize:
-            - mean
-:::
-:::
-
-# Walkthrough Available for Viewing (after class)
+<!-- # Walkthrough Available for Viewing (after class) -->
 
 <!-- ## Example 2: Your Turn! -->
 <!-- <hr> -->

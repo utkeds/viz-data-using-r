@@ -6,21 +6,27 @@
 <script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-1b3e43c72e8be34557c75123b0b69e0d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
-  <meta name="author" content="Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu">
-  <title>Week 4 - STEM 691</title>
+  <meta name="author" content="Dr.&nbsp;Kelly Boles">
+  <title>Week 4 - CADE 691</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -93,7 +99,7 @@
     code span.vs { color: #4e9a06; } /* VerbatimString */
     code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-d21a626542045e24fd9e2a46a94419b5.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-52399d9833641d7984214112e248f81f.css">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -191,20 +197,20 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#4B4B4B" data-background-image="slides_images/UnitShortcut.png" data-background-position="50% 9%" data-background-size="50%" class="quarto-title-block center">
-  <h1 class="title">Week 4 - STEM 691</h1>
+  <h1 class="title">Week 4 - CADE 691</h1>
   <p class="subtitle">Intro to {ggplot2}</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu 
+Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </div>
 
 </section>
-<section id="weekly-check-in-download-.zip-download-slides-ggplot-cheatsheet" class="title-slide slide level1 center">
-<h1>Weekly Check In, Download <code>.zip</code>, Download Slides, {ggplot} Cheatsheet</h1>
+<section id="weekly-check-in-download-.zip-download-slides-open-wk4-folder" class="title-slide slide level1 center">
+<h1>Weekly Check In, Download <code>.zip</code>, Download Slides, Open Wk4 Folder</h1>
 
 </section>
 
@@ -305,30 +311,30 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ol>
 </section></section>
 <section>
-<section id="the-pipe-and-assignment-operator--" class="title-slide slide level1 center">
-<h1>The Pipe <code>|&gt;</code> and Assignment Operator <code>&lt;-</code></h1>
+<section id="the-pipe-operator" class="title-slide slide level1 center">
+<h1>The Pipe <code>|&gt;</code> Operator</h1>
 
 </section>
-<section id="differences-between-the-pipe-and-the-assignment-operator--" class="slide level2 smaller">
-<h2>Differences Between the Pipe <code>|&gt;</code> and the Assignment Operator <code>&lt;-</code></h2>
+<section id="understanding-the-pipe-operator" class="slide level2 smaller">
+<h2>Understanding the Pipe <code>|&gt;</code> Operator</h2>
 <hr>
 <ul>
 <li>The pipe <code>|&gt;</code> is used to chain functions together</li>
-<li>Recall Q11 from last night’s homework</li>
+<li>Think about it as a water pipe, it lets the data “flow” through the whole chain of functions you specify.</li>
 </ul>
 <div class="columns">
 <div class="column extra-small-font">
-<p><strong>Original Way</strong></p>
+<p><strong>Original/Base R Way</strong></p>
 <ul>
 <li>The data is the first argument of every function, which get called separately</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>step_1 <span class="ot">&lt;-</span><span class="fu">select</span>(starwars, name, species, height)</span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a>step_2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(step_1, species <span class="sc">==</span> <span class="st">"Droid"</span>)</span>
-<span id="cb1-4"><a href=""></a></span>
-<span id="cb1-5"><a href=""></a>step_3 <span class="ot">&lt;-</span> <span class="fu">summarize</span>(step_2, <span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
-<span id="cb1-6"><a href=""></a>step_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a>step_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(starwars, name, species, height)</span>
+<span id="cb1-2"><a href="" aria-label="2"></a></span>
+<span id="cb1-3"><a href="" aria-label="3"></a>step_2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(step_1, species <span class="sc">==</span> <span class="st">"Droid"</span>)</span>
+<span id="cb1-4"><a href="" aria-label="4"></a></span>
+<span id="cb1-5"><a href="" aria-label="5"></a>step_3 <span class="ot">&lt;-</span> <span class="fu">summarize</span>(step_2, <span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-6"><a href="" aria-label="6"></a>step_3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   mean_height
@@ -342,12 +348,12 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>The pipe feeds your data through a series of functions in one call</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>combined <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href=""></a>   <span class="fu">select</span>(name, species, height) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href=""></a>   <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Droid"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href=""></a>   <span class="fu">summarize</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
-<span id="cb3-5"><a href=""></a></span>
-<span id="cb3-6"><a href=""></a>combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-label="1"></a>combined <span class="ot">&lt;-</span> starwars <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="" aria-label="2"></a>  <span class="fu">select</span>(name, species, height) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="" aria-label="3"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Droid"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="" aria-label="4"></a>  <span class="fu">summarize</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb3-5"><a href="" aria-label="5"></a></span>
+<span id="cb3-6"><a href="" aria-label="6"></a>combined</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   mean_height
@@ -362,19 +368,6 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <h1>Strategies for Object Assignment</h1>
 
 </section>
-<section id="breakout-room-discussion" class="slide level2 smaller">
-<h2>Breakout Room Discussion</h2>
-<hr>
-<p><strong>Discussion Prompts</strong></p>
-<ul>
-<li><p>What are the pros/cons of creating a new object?</p></li>
-<li><p>When assigning, when might you…</p>
-<ul>
-<li>…create a new object?</li>
-<li>…overwrite an existing object?</li>
-</ul></li>
-</ul>
-</section>
 <section id="strategies-for-assignment" class="slide level2">
 <h2>Strategies for Assignment</h2>
 <hr>
@@ -385,8 +378,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href=""></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-label="1"></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="" aria-label="2"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="strategies-for-assignment-1" class="slide level2">
@@ -399,8 +392,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>passenger_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="" aria-label="2"></a>  <span class="fu">select</span>(<span class="sc">-</span>passenger_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="strategies-for-assignment-2" class="slide level2">
@@ -413,12 +406,14 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-3"><a href=""></a>    age <span class="sc">&lt;</span> <span class="dv">13</span> <span class="sc">~</span> <span class="st">"child"</span>,</span>
-<span id="cb7-4"><a href=""></a>    age <span class="sc">&gt;=</span> <span class="dv">13</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"teen"</span>,</span>
-<span id="cb7-5"><a href=""></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"adult"</span></span>
-<span id="cb7-6"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-label="1"></a>titanic <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="" aria-label="2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="" aria-label="3"></a>    <span class="at">age_group =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-4"><a href="" aria-label="4"></a>      age <span class="sc">&lt;</span> <span class="dv">13</span> <span class="sc">~</span> <span class="st">"child"</span>,</span>
+<span id="cb7-5"><a href="" aria-label="5"></a>      age <span class="sc">&gt;=</span> <span class="dv">13</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"teen"</span>,</span>
+<span id="cb7-6"><a href="" aria-label="6"></a>      age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"adult"</span></span>
+<span id="cb7-7"><a href="" aria-label="7"></a>    )</span>
+<span id="cb7-8"><a href="" aria-label="8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="strategies-for-assignment-3" class="slide level2">
@@ -431,8 +426,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>titanic_children <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href=""></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">13</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-label="1"></a>titanic_children <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">13</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="strategies-for-assignment-4" class="slide level2">
@@ -445,16 +440,16 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>titanic_ageclass_summary <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href=""></a>  <span class="fu">group_by</span>(pclass) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href=""></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a>titanic_ageclass_summary <span class="ot">&lt;-</span> titanic <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="" aria-label="2"></a>  <span class="fu">group_by</span>(pclass) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="" aria-label="3"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="" aria-label="4"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="smaller-font">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="table-striped caption-top" data-quarto-postprocess="true">
+<table class="table-striped caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">pclass</th>
@@ -639,13 +634,13 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <p><img data-src="slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Data.png" width="300"></p>
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
-<div class="sourceCode" id="cb10" data-code-line-numbers="|1-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb10-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb10-5"><a href=""></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
-<span id="cb10-6"><a href=""></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href=""></a>  <span class="fu">ggplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb10-3"><a href="" aria-label="3"></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-5"><a href="" aria-label="5"></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
+<span id="cb10-6"><a href="" aria-label="6"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="" aria-label="7"></a>  <span class="fu">ggplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br> Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -678,15 +673,15 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <p><img data-src="slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Aesthetics.png" width="300"></p>
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
-<div class="sourceCode" id="cb11" data-code-line-numbers="|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb11-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb11-5"><a href=""></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
-<span id="cb11-6"><a href=""></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
-<span id="cb11-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region))</span>
-<span id="cb11-8"><a href=""></a>  </span>
-<span id="cb11-9"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb11-3"><a href="" aria-label="3"></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb11-5"><a href="" aria-label="5"></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
+<span id="cb11-6"><a href="" aria-label="6"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="" aria-label="7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region))</span>
+<span id="cb11-8"><a href="" aria-label="8"></a>  </span>
+<span id="cb11-9"><a href="" aria-label="9"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br> Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -720,16 +715,16 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <p><img data-src="slides_images/GrammarOfGraphicsViz/GrammarOfGraphics-Geometries.png" width="300"></p>
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
-<div class="sourceCode" id="cb12" data-code-line-numbers="|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb12-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb12-5"><a href=""></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
-<span id="cb12-6"><a href=""></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb12-8"><a href=""></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb12-9"><a href=""></a>  </span>
-<span id="cb12-10"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb12-3"><a href="" aria-label="3"></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-5"><a href="" aria-label="5"></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
+<span id="cb12-6"><a href="" aria-label="6"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="" aria-label="7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="" aria-label="8"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb12-9"><a href="" aria-label="9"></a>  </span>
+<span id="cb12-10"><a href="" aria-label="10"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -765,17 +760,17 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="smaller-font">
-<div class="sourceCode" id="cb13" data-code-line-numbers="|9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb13-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb13-5"><a href=""></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
-<span id="cb13-6"><a href=""></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb13-8"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-9"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>())</span>
-<span id="cb13-10"><a href=""></a>  </span>
-<span id="cb13-11"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-code-line-numbers="9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb13-3"><a href="" aria-label="3"></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-5"><a href="" aria-label="5"></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
+<span id="cb13-6"><a href="" aria-label="6"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="" aria-label="7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="" aria-label="8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-9"><a href="" aria-label="9"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>())</span>
+<span id="cb13-10"><a href="" aria-label="10"></a>  </span>
+<span id="cb13-11"><a href="" aria-label="11"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Output:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -813,18 +808,18 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="smaller-font">
-<div class="sourceCode" id="cb14" data-code-line-numbers="|10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb14-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb14-5"><a href=""></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
-<span id="cb14-6"><a href=""></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
-<span id="cb14-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb14-8"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb14-9"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb14-10"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
-<span id="cb14-11"><a href=""></a>  </span>
-<span id="cb14-12"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-code-line-numbers="10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb14-3"><a href="" aria-label="3"></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb14-5"><a href="" aria-label="5"></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
+<span id="cb14-6"><a href="" aria-label="6"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="" aria-label="7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="" aria-label="8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-9"><a href="" aria-label="9"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="" aria-label="10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
+<span id="cb14-11"><a href="" aria-label="11"></a>  </span>
+<span id="cb14-12"><a href="" aria-label="12"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -862,19 +857,19 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="smaller-font">
-<div class="sourceCode" id="cb15" data-code-line-numbers="|11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb15-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb15-5"><a href=""></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
-<span id="cb15-6"><a href=""></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
-<span id="cb15-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb15-8"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb15-9"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb15-10"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb15-11"><a href=""></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb15-12"><a href=""></a>  </span>
-<span id="cb15-13"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-code-line-numbers="11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb15-3"><a href="" aria-label="3"></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-5"><a href="" aria-label="5"></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
+<span id="cb15-6"><a href="" aria-label="6"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="" aria-label="7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="" aria-label="8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-9"><a href="" aria-label="9"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="" aria-label="10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="" aria-label="11"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb15-12"><a href="" aria-label="12"></a>  </span>
+<span id="cb15-13"><a href="" aria-label="13"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -913,21 +908,21 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="extra-small-font">
-<div class="sourceCode" id="cb16" data-code-line-numbers="|12-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb16-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb16-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb16-5"><a href=""></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
-<span id="cb16-6"><a href=""></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
-<span id="cb16-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb16-8"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb16-9"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb16-10"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb16-11"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb16-12"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Per Pupil Spending by State"</span>,</span>
-<span id="cb16-13"><a href=""></a>       <span class="at">x =</span> <span class="st">"Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)"</span>,</span>
-<span id="cb16-14"><a href=""></a>       <span class="at">y =</span> <span class="st">"State"</span>)</span>
-<span id="cb16-15"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" data-code-line-numbers="12-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb16-3"><a href="" aria-label="3"></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb16-5"><a href="" aria-label="5"></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
+<span id="cb16-6"><a href="" aria-label="6"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="" aria-label="7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="" aria-label="8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-9"><a href="" aria-label="9"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="" aria-label="10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="" aria-label="11"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb16-12"><a href="" aria-label="12"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Per Pupil Spending by State"</span>,</span>
+<span id="cb16-13"><a href="" aria-label="13"></a>       <span class="at">x =</span> <span class="st">"Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)"</span>,</span>
+<span id="cb16-14"><a href="" aria-label="14"></a>       <span class="at">y =</span> <span class="st">"State"</span>)</span>
+<span id="cb16-15"><a href="" aria-label="15"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -967,25 +962,25 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="extra-small-font">
-<div class="sourceCode" id="cb17" data-code-line-numbers="|15-17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href=""></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
-<span id="cb17-3"><a href=""></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
-<span id="cb17-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
-<span id="cb17-5"><a href=""></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
-<span id="cb17-6"><a href=""></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
-<span id="cb17-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
-<span id="cb17-8"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-9"><a href=""></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb17-10"><a href=""></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb17-11"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb17-12"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Per Pupil Spending by State"</span>,</span>
-<span id="cb17-13"><a href=""></a>       <span class="at">x =</span> <span class="st">"Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)"</span>,</span>
-<span id="cb17-14"><a href=""></a>       <span class="at">y =</span> <span class="st">"State"</span>)<span class="sc">+</span></span>
-<span id="cb17-15"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb17-16"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb17-17"><a href=""></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb17-18"><a href=""></a>        </span>
-<span id="cb17-19"><a href=""></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-code-line-numbers="15-17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> tidykids <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2016</span>,</span>
+<span id="cb17-3"><a href="" aria-label="3"></a>         expenditure <span class="sc">==</span> <span class="st">"PK12ed"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="" aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-5"><a href="" aria-label="5"></a>         state <span class="sc">==</span> <span class="st">"District of Columbia"</span> <span class="sc">~</span> <span class="st">"DC"</span>,</span>
+<span id="cb17-6"><a href="" aria-label="6"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> state.abb[<span class="fu">match</span>(state, state.name)])) <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a href="" aria-label="7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> inf_adj_perchild, <span class="at">y =</span> state, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="" aria-label="8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-9"><a href="" aria-label="9"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="" aria-label="10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="" aria-label="11"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb17-12"><a href="" aria-label="12"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Per Pupil Spending by State"</span>,</span>
+<span id="cb17-13"><a href="" aria-label="13"></a>       <span class="at">x =</span> <span class="st">"Per Pupil Spending in 2016 Dollars (Adjusted for Inflation)"</span>,</span>
+<span id="cb17-14"><a href="" aria-label="14"></a>       <span class="at">y =</span> <span class="st">"State"</span>)<span class="sc">+</span></span>
+<span id="cb17-15"><a href="" aria-label="15"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-16"><a href="" aria-label="16"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb17-17"><a href="" aria-label="17"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb17-18"><a href="" aria-label="18"></a>        </span>
+<span id="cb17-19"><a href="" aria-label="19"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1004,7 +999,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <h2>Grammar of Graphics</h2>
 <hr>
 <ul>
-<li>So, at a high level, there are three steps to creating a <code>ggplot2</code> visualization:
+<li>So, at a high level, there are three required steps to creating a <code>ggplot2</code> visualization:
 <ol type="1">
 <li><span class="data-color"><strong>Data</strong></span>: Specify what data you want to visualize,</li>
 <li><span class="aesthetics-color"><strong>Aesthetics</strong></span>: which relationships you want to visualize, and</li>
@@ -1074,18 +1069,21 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <hr>
 <div class="smaller-font">
 <p><span class="regalia-color"><strong>RQ</strong></span></p>
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
 <ul>
 <li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?
 <ul>
 <li>How do the regions compare to the national average?</li>
 </ul></li>
 </ul>
+</div>
 <div class="fragment">
 <p><span class="regalia-color"><strong>My Thinking:</strong></span></p>
 <ol type="1">
+<li>Identify the relevant variables/calculations needed to answer RQ</li>
+<li>Identify the <code>geoms</code>(look at <a href="https://opensource.posit.co/resources/cheatsheets/data-visualization/">cheatsheet</a> if needed)</li>
 <li>Draw a quick sketch of the graph I want to create.</li>
-<li>Identify the <code>geoms</code>(look at their documentation if needed)</li>
-<li>Identify the <code>data</code>/data wrangling needed.</li>
+<li>Identify the data wrangling needed.</li>
 </ol>
 </div>
 </div>
@@ -1094,117 +1092,287 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <h2>Example 1: Pre-work</h2>
 <hr>
 <ul>
-<li><span class="smaller-font"><strong>Step 1:</strong> My Sketch</span></li>
+<li><strong>Step 1:</strong> Relevant Variables &amp; Calculations</li>
 </ul>
-<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides_images/practical_approach/excalidraw_sketch.png"></p>
-</div>
-</div>
+<p>Identify the relevant variables and calculations needed to answer RQ</p>
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?
+<ul>
+<li>How do the regions compare to the national average?</li>
+</ul></li>
+</ul>
 </div>
 </section>
 <section id="example-1-pre-work-1" class="slide level2">
 <h2>Example 1: Pre-work</h2>
 <hr>
-<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides_images/practical_approach/excalidraw_sketch.png"></p>
 <ul>
-<li><strong>Step 2:</strong> Which geoms? <a href="https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf">(see cheatsheet)</a></li>
+<li><strong>Step 1:</strong> Relevant Variables &amp; Calculations</li>
 </ul>
-</div>
-</div>
+<p>Identify the relevant <span class="scales-color">variables</span> and calculations needed to answer RQ</p>
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do <span class="scales-color">U.S. regions</span> compare in their average <span class="scales-color">inflation-adjusted per-child spending</span> on public K-12 education in 2016?
+<ul>
+<li>How do the regions compare to the national average?</li>
+</ul></li>
+</ul>
 </div>
 </section>
 <section id="example-1-pre-work-2" class="slide level2">
 <h2>Example 1: Pre-work</h2>
 <hr>
-<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides_images/practical_approach/excalidraw_sketch_cols.png"></p>
 <ul>
-<li><strong>Step 2:</strong> Which geoms? <a href="https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf">(see cheatsheet)</a>
+<li><strong>Step 1:</strong> Relevant Variables &amp; Calculations</li>
+</ul>
+<p>Identify the relevant <span class="scales-color">variables</span> and <span class="fountain-color">calculations</span> needed to answer RQ</p>
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
 <ul>
-<li><span class="scales-color">geom_col()</span></li>
+<li>How do <span class="scales-color">U.S. regions</span> compare in their <span class="fountain-color">average</span> <span class="scales-color">inflation-adjusted per-child spending</span> on public K-12 education in 2016?
+<ul>
+<li>How do the regions compare to the national average?</li>
 </ul></li>
 </ul>
-</div>
-</div>
 </div>
 </section>
 <section id="example-1-pre-work-3" class="slide level2">
 <h2>Example 1: Pre-work</h2>
 <hr>
-<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides_images/practical_approach/excalidraw_sketch_hline.png"></p>
 <ul>
-<li><strong>Step 2:</strong> Which geoms? <a href="https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf">(see cheatsheet)</a>
+<li><strong>Step 1:</strong> Relevant <span class="scales-color">Variables</span> &amp; <span class="fountain-color">Calculations</span></li>
+</ul>
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
 <ul>
-<li>geom_col()</li>
-<li><span class="switchgrass-color">geom_hline()</span></li>
+<li>How do <span class="scales-color">U.S. regions</span> compare in their <span class="fountain-color">average</span> <span class="scales-color">inflation-adjusted per-child spending</span> on public K-12 education in 2016?
+<ul>
+<li>How do the regions compare to the national average?</li>
 </ul></li>
 </ul>
 </div>
 </div>
-</div>
+<p><strong>Variables:</strong></p>
+<ol type="1">
+<li>U.S. Regions</li>
+<li>Inflation-Adjusted Spending Per Child</li>
+</ol>
 </section>
 <section id="example-1-pre-work-4" class="slide level2">
 <h2>Example 1: Pre-work</h2>
 <hr>
-<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides_images/practical_approach/excalidraw_sketch.png"></p>
 <ul>
-<li>Which geoms?
+<li><strong>Step 1:</strong> Relevant <span class="scales-color">Variables</span> &amp; <span class="fountain-color">Calculations</span></li>
+</ul>
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
 <ul>
-<li>geom_col()</li>
-<li>geom_hline()</li>
+<li>How do <span class="scales-color">U.S. regions</span> compare in their <span class="fountain-color">average</span> <span class="scales-color">inflation-adjusted per-child spending</span> on public K-12 education in 2016?
+<ul>
+<li>How do the regions compare to the national average?</li>
 </ul></li>
 </ul>
 </div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<ul>
-<li><p><strong>Step 3:</strong> What variables/data wrangling do I need?</p>
-<p><strong>Breakout Rooms</strong></p></li>
-</ul>
 </div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="breakout-rooms" class="title-slide slide level1 center">
-<h1>Breakout Rooms</h1>
-
+<p><strong>Variables:</strong></p>
+<ol type="1">
+<li>U.S. Regions (Discrete)</li>
+<li>Inflation-Adjusted Spending Per Child (Continuous)</li>
+</ol>
 </section>
 <section id="example-1-pre-work-5" class="slide level2">
 <h2>Example 1: Pre-work</h2>
 <hr>
+<ul>
+<li><strong>Step 2:</strong> Identify <code>geom_</code>s with <a href="https://opensource.posit.co/resources/cheatsheets/data-visualization/">cheatsheet</a></li>
+</ul>
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?</li>
+</ul>
+</div>
+</div>
 <div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="slides_images/practical_approach/excalidraw_sketch.png"></p>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>Variables:</strong></p>
+<ol type="1">
+<li>U.S. Regions (Discrete)</li>
+<li>Inflation-Adjusted Spending Per Child (Continuous)</li>
+</ol>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+
+</div>
+</div>
+</div>
+</section>
+<section id="example-1-pre-work-6" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
 <ul>
-<li>Which geoms?
+<li><strong>Step 2:</strong> Identify <code>geom_</code>s with <a href="https://opensource.posit.co/resources/cheatsheets/data-visualization/">cheatsheet</a></li>
+</ul>
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?</li>
+</ul>
+</div>
+</div>
+<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>Variables:</strong></p>
+<ol type="1">
+<li>U.S. Regions (Discrete)</li>
+<li>Inflation-Adjusted Spending Per Child (Continuous)</li>
+</ol>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong><code>geom_</code>s from cheatsheet</strong></p>
+<ul>
+<li><code>geom_col()</code></li>
+<li><code>geom_boxplot()</code></li>
+<li><code>geom_dotplot()</code></li>
+<li><code>geom_violin()</code></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="example-1-pre-work-7" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
+<ul>
+<li><strong>Step 3:</strong> Choose <code>geom_</code>s and sketch</li>
+</ul>
+<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?</li>
+</ul>
+</div>
+</div>
 <ul>
 <li>geom_col()</li>
+</ul>
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do the regions compare to the national average?</li>
+</ul>
+</div>
+</div>
+<ul>
 <li>geom_hline()</li>
+</ul>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="slides_images/practical_approach/excalidraw_sketch.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-1-pre-work-8" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
+<ul>
+<li><strong>Step 3:</strong> Choose <code>geom_</code>s and sketch</li>
+</ul>
+<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?</li>
+</ul>
+</div>
+</div>
+<ul>
+<li><span class="scales-color">geom_col()</span></li>
+</ul>
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do the regions compare to the national average?</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>geom_hline()</li>
+</ul>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="slides_images/practical_approach/excalidraw_sketch_cols.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-1-pre-work-9" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
+<ul>
+<li><strong>Step 3:</strong> Choose <code>geom_</code>s and sketch</li>
+</ul>
+<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>geom_col()</li>
+</ul>
+<div class="smaller-font">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do the regions compare to the national average?</li>
+</ul>
+</div>
+</div>
+<ul>
+<li><span class="switchgrass-color">geom_hline()</span></li>
+</ul>
+</div>
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="slides_images/practical_approach/excalidraw_sketch_hline.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-1-pre-work-10" class="slide level2">
+<h2>Example 1: Pre-work</h2>
+<hr>
+<ul>
+<li><strong>Step 4:</strong> Plan for Data Wrangling</li>
+</ul>
+<div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div style="background-color: #e0e0e0; padding: 10px; border-radius: 5px;">
+<ul>
+<li>How do U.S. regions compare in their average inflation-adjusted per-child spending on public K-12 education in 2016?
+<ul>
+<li>How do the regions compare to the national average?</li>
 </ul></li>
 </ul>
 </div>
+</div>
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<ul>
-<li><strong>Step 3:</strong> What variables/data wrangling do I need?
 <ol type="1">
 <li>Create a <code>region</code> variable</li>
 <li>Filter <code>year</code> for 2016</li>
 <li>Filter <code>expenditure</code> for “PK12ed”</li>
-<li>Calculate national mean (separate from tibble)</li>
 <li>Group by <code>region</code>
 <ul>
 <li>Summarize:
@@ -1212,14 +1380,12 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <li>mean</li>
 </ul></li>
 </ul></li>
-</ol></li>
-</ul>
+<li>Calculate national mean (separate from tibble)</li>
+</ol>
 </div>
 </div>
 </div>
-</section></section>
-<section id="walkthrough-available-for-viewing-after-class" class="title-slide slide level1 center">
-<h1>Walkthrough Available for Viewing (after class)</h1>
+<!-- # Walkthrough Available for Viewing (after class) -->
 <!-- ## Example 2: Your Turn! -->
 <!-- <hr> -->
 <!-- [**RQ**]{.regalia-color} -->
@@ -1228,8 +1394,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <!--     - How do the regional distributions compare to the national mean? -->
 <!-- ::: -->
 <!-- [**Breakout Rooms/Posit Cloud**]{.regalia-color} -->
-</section>
-
+</section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
@@ -1444,7 +1609,7 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1556,13 +1721,14 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
