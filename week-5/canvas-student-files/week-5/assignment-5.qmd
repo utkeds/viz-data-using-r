@@ -34,17 +34,19 @@ This assignment is fairly open-ended. Please consult the slides, particularly at
 
 #### Explore the Data
 
-3. Last week in step 2, you were also asked to explore the tidykids data. It's a fine practice to copy/reuse code, so you can copy and paste your code from the last assignment into the code chunk below. Then, make *one addition* to what you did to explore the data last week.
+3. Use one or more techniques (up to you) to explore the data, such as `glimpse()`, simply printing the name of the data, the `describe()` function from the {psych} package, etc. Do so below, adding one or more lines of interpretation of what you see (e.g., the data's dimensions, any issues with variable names, etc.).
 
 ```{r}
 
 ```
 
+**INTERPRETATION:** [Please write response here.]
+
 #### Graphing
 
 4. **Graph 1:** Bar Chart
 
-Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., `geom_col`umn) chart, keeping in mind the aforementioned considerations. Then, add 1-2 sentences interpreting your visualization.  Like last week, please let the open-endedness be fun, not a burden. 
+Please complete an effective visualization of amounts using the tidykids data with a bar (i.e., `geom_col`umn) chart. Then, add 1-2 sentences interpreting your visualization.  Please let the open-endedness be fun, not a burden. 
 
 ```{r}
 
@@ -62,7 +64,7 @@ Note: You can run `colors()` for color names (do this in the console - not your 
 
 6. **Graph 3:** Create a stacked, dodged, or faceted bar chart
 
-Create a stacked, dodged, or faceted bar chart, again keeping in mind the (other) considerations. You may find the recording and slides (both uploaded to Canvas) helpful. Please add 1-2 sentences interpreting what you've found. You may need to manipulate the data using various {dplyr} functions to successfully complete this step. It may be a challenge, but for this and the next graph, perfection is not the goal! Getting a feel for when and how to create this kinds of plots is, so try to create something sensible as a first attempt at doing so.
+Create a stacked, dodged, or faceted bar chart. You may find the recording and slides (both uploaded to Canvas) helpful. Please add 1-2 sentences interpreting what you've found. You may need to manipulate the data using various {dplyr} functions to successfully complete this step. It may be a challenge, but for this and the next graph, perfection is not the goal! Getting a feel for when and how to create this kinds of plots is, so try to create something sensible as a first attempt at doing so.
 
 ```{r}
 
@@ -80,7 +82,7 @@ Using any of the graphs you have created so far (again, copy/paste the code from
 
 8. **Graph 5:** Histogram!
 
-Histograms were a bit challenging last week. We'll cover them in depth next week! Try again this week using the starwars data set (it is built in and can be accessed by typing `starwars`). Note that you only set one aesthetic (either `x` or `y`) and then use `geom_histogram()`. Adjusting the binwidth is often a good idea!
+This may be more of a challenge (we'll look at histograms in depth next week). Consulting the {ggplot2} cheat sheet (see Canvas) as a support, create a histogram for a single expenditure (filter `expenditure` for a single type of expenditure). Change one of the axis labels and add a title and/or subtitle using the `labs()` function. You will have to choose one of `raw`, `inf_adj`, or `inf_adj_perchild` to consider. Some sample histogram code is provided in the Canvas module.
 
 ```{r}
 
@@ -110,13 +112,5 @@ Again, optionally, read in and create a bar chart with your data (maybe you have
 
 **REFLECTION:** [What went well, what was challenging, and what do you want to dive deeper into? Please write your reflection here.]
 
-When complete, please knit the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 5 in Canvas.  Please note, you are only submitting the HTML output for this assignment.  
+When complete, please render the result to an HTML (be sure to add your name at the top!) and submit that for Assignment 5 in Canvas.  Please note, you are only submitting the HTML output for this assignment.  
 
-**Rubric**
-
-Name is added: 2 points
-File knits to an HTML: 8 points
-Code chunks have appropriate output: 15 points
-Interpretations and reflection are added: 5 points
-Bonus: 5 points
-Total: 30 points
