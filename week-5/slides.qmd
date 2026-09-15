@@ -1,7 +1,7 @@
 ---
 subtitle: "Visual Storytelling: Comparing Amounts"
-title: "Week 5 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 5 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -31,17 +31,73 @@ library(palmerpenguins)
 library(gt)
 
 tidykids <- tidykids |>
-  mutate(region = case_when(
-    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
-                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
-    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
-                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
-    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
-                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
-                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
-    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
-                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
-  ))|>
+  mutate(
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "Northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "Midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "South",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "West"
+    )
+  ) |>
   janitor::clean_names()
 
 starwars <- starwars |>
@@ -98,7 +154,7 @@ penguins <- penguins |>
 ```{r}
 #Prints output fine!
 
-tidykids|>
+tidykids |>
   head(3)
 ```
 
@@ -111,7 +167,7 @@ tidykids|>
 ```{r}
 #Oh no! No output :(
 
-temp <- tidykids|>
+temp <- tidykids |>
   head(3)
 ```
     
@@ -124,7 +180,7 @@ temp <- tidykids|>
 ```{r}
 #Nice!
 
-temp <- tidykids|>
+temp <- tidykids |>
   head(3)
 
 temp
@@ -192,7 +248,7 @@ tidykids |>
 ```{r, echo=FALSE}
 natnl_mean <- tidykids |>
   filter(year == 2016, expenditure == "PK12ed") |>
-  summarize(national_mean = mean(inf_adj_perchild, na.rm=T)) |>
+  summarize(national_mean = mean(inf_adj_perchild, na.rm = T)) |>
   pull(national_mean)
 ```
 
@@ -216,8 +272,8 @@ tidykids |>
 ```{r, fig.height=4}
 tidykids |>
   filter(year == 2016, expenditure == "PK12ed") |>
-  mutate(state = fct_reorder(state, region)) |> 
-  ggplot() + 
+  mutate(state = fct_reorder(state, region)) |>
+  ggplot() +
   geom_col(aes(x = state, y = inf_adj_perchild, color = region)) # aes explicitly specified within geom_col()
 ```
 
@@ -233,9 +289,9 @@ tidykids |>
 ```{r, fig.height=4}
 tidykids |>
   filter(year == 2016, expenditure == "PK12ed") |>
-  mutate(state = fct_reorder(state, region)) |> 
+  mutate(state = fct_reorder(state, region)) |>
   ggplot(aes(x = state, y = inf_adj_perchild, color = region)) +
-  geom_col(aes(color = state))# Overrides color within geom_col
+  geom_col(aes(color = state)) # Overrides color within geom_col
 ```
 
 :::
@@ -251,7 +307,14 @@ tidykids |>
     - higher quality images for journals
 
 ```{r, eval=FALSE}
-ggsave("my_plot.png", plot = last_plot(), width = 1200, height = 650, units = "px", dpi = 300)
+ggsave(
+  "my_plot.png",
+  plot = last_plot(),
+  width = 1200,
+  height = 650,
+  units = "px",
+  dpi = 300
+)
 ```
 <br>
 
@@ -274,7 +337,7 @@ ggsave("my_plot.png", plot = last_plot(), width = 1200, height = 650, units = "p
     - Knaflick (Business) - "What data is available that will help make my point?"
     - (Research): What data is available that illustrates my finding/result?"
 
-**Thanks for engaging with discussion post.**
+<!-- **Thanks for engaging with discussion post.** -->
 
 :::
 
@@ -296,6 +359,8 @@ ggsave("my_plot.png", plot = last_plot(), width = 1200, height = 650, units = "p
 - If you have **distributions** wait until next week!
 
 **Question:** From the reading (Wilke), what is the distinction between amounts and distributions?
+[*Amounts:* Viz focuses on the magnitude of quantitative values.]{.fragment}
+[*Distributions:* How a particular variable is distributed in the dataset]{.fragment}
 
 ## Comparing Amounts {.smaller}
 <hr>
@@ -322,10 +387,13 @@ penguins |>
 ```{r, fig.height=2.5, fig.width=4.5, echo=FALSE}
 penguins |>
   ggplot(aes(x = species)) +
-    geom_bar(fill = "#6ABCEB") +
-    labs(title = "Number of Observations by Penguin Species",
-       x = "Penguin Species", y = "Number of Observations") +
-    theme_minimal()
+  geom_bar(fill = "#6ABCEB") +
+  labs(
+    title = "Number of Observations by Penguin Species",
+    x = "Penguin Species",
+    y = "Number of Observations"
+  ) +
+  theme_minimal()
 ```
 :::
 
@@ -353,10 +421,13 @@ penguins |>
   summarize(n = n()) |>
   ungroup() |>
   ggplot(aes(x = species, y = n)) +
-    geom_col(fill = "#6ABCEB") +
-    labs(title = "Number of Observations by Penguin Species",
-       x = "Penguin Species", y = "Number of Observations") +
-    theme_minimal()
+  geom_col(fill = "#6ABCEB") +
+  labs(
+    title = "Number of Observations by Penguin Species",
+    x = "Penguin Species",
+    y = "Number of Observations"
+  ) +
+  theme_minimal()
 ```
 :::
 
@@ -378,11 +449,13 @@ starwars |>
   summarize(n = n()) |>
   ungroup() |>
   ggplot(aes(x = eye_color, y = n)) +
-    geom_col(fill = "#4C5970") +
-    labs(title = "Eye Color of Star Wars Characters",
-       x = "Eye Color", y = "Number of Star Wars Characters") +
-    theme_minimal()
-  
+  geom_col(fill = "#4C5970") +
+  labs(
+    title = "Eye Color of Star Wars Characters",
+    x = "Eye Color",
+    y = "Number of Star Wars Characters"
+  ) +
+  theme_minimal()
 ```
 
 :::
@@ -424,11 +497,13 @@ starwars |>
   summarize(n = n()) |>
   ungroup() |>
   ggplot(aes(x = n, y = eye_color)) +
-    geom_col(fill = "#4C5970") +
-    labs(title = "Eye Color of Star Wars Characters",
-       x = "Number of Star Wars Characters", y = "Eye Color") +
-    theme_minimal()
-  
+  geom_col(fill = "#4C5970") +
+  labs(
+    title = "Eye Color of Star Wars Characters",
+    x = "Number of Star Wars Characters",
+    y = "Eye Color"
+  ) +
+  theme_minimal()
 ```
 
 :::
@@ -474,12 +549,14 @@ starwars |>
   summarize(n = n()) |>
   ungroup() |>
   ggplot(aes(x = eye_color, y = n)) +
-    geom_col(fill = "#4C5970") +
-    labs(title = "Eye Color of Star Wars Characters",
-       x = "Eye Color", y = "Number of Star Wars Characters") +
-    coord_flip() +
-    theme_minimal()
-  
+  geom_col(fill = "#4C5970") +
+  labs(
+    title = "Eye Color of Star Wars Characters",
+    x = "Eye Color",
+    y = "Number of Star Wars Characters"
+  ) +
+  coord_flip() +
+  theme_minimal()
 ```
 
 :::
@@ -525,12 +602,14 @@ starwars |>
   summarize(n = n()) |>
   ungroup() |>
   ggplot(aes(x = eye_color, y = n)) +
-    geom_col(fill = "#4C5970") +
-    labs(title = "Eye Color of Star Wars Characters",
-       x = "Eye Color", y = "Number of Star Wars Characters") +
-    theme_minimal() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-  
+  geom_col(fill = "#4C5970") +
+  labs(
+    title = "Eye Color of Star Wars Characters",
+    x = "Eye Color",
+    y = "Number of Star Wars Characters"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
 :::
@@ -568,49 +647,58 @@ Bar Chart `geom_col()`
 titanic <- read_csv("Titanic-Dataset.csv")
 
 surv_rates_age_class <- titanic |>
-  mutate(age_group = case_when(
-    Age < 13 ~ "child",
-    Age >= 13 & Age < 19 ~ "teen",
-    Age >=18 ~ "adult")) |>
-  group_by(Pclass, age_group)|>
+  mutate(
+    age_group = case_when(
+      Age < 13 ~ "child",
+      Age >= 13 & Age < 19 ~ "teen",
+      Age >= 18 ~ "adult"
+    )
+  ) |>
+  group_by(Pclass, age_group) |>
   summarize(
     avg_survival = mean(Survived, na.rm = TRUE),
-    n = n()) |>
-  ungroup()|>
-  filter(!is.na(age_group))|>
+    n = n()
+  ) |>
+  ungroup() |>
+  filter(!is.na(age_group)) |>
   arrange(desc(avg_survival))
 
-surv_rates_age_class$Pclass <- plyr::mapvalues(surv_rates_age_class$Pclass,
-                                         from = c(1,2,3),
-                                         to = c("First", "Second", "Third"))
+surv_rates_age_class$Pclass <- plyr::mapvalues(
+  surv_rates_age_class$Pclass,
+  from = c(1, 2, 3),
+  to = c("First", "Second", "Third")
+)
 
 surv_rates_age_class <- surv_rates_age_class |>
   mutate(Pclass = fct_relevel(Pclass, "Second", "Third", "First"))
-
 ```
 
 ```{r, eval=FALSE}
 surv_rates_age_class |>
-  filter(age_group == "child")|>
-  mutate(Pclass = fct_relevel(Pclass, "First", "Second", "Third"))|>
-  ggplot(aes(x=Pclass, y=avg_survival)) +
-  geom_col(fill="#489FDF") +
-  labs(title = "Survival Rates by Class for Children",
-       x = "Class",
-       y = "Survival Rate")
+  filter(age_group == "child") |>
+  mutate(Pclass = fct_relevel(Pclass, "First", "Second", "Third")) |>
+  ggplot(aes(x = Pclass, y = avg_survival)) +
+  geom_col(fill = "#489FDF") +
+  labs(
+    title = "Survival Rates by Class for Children",
+    x = "Class",
+    y = "Survival Rate"
+  )
 ```
 
 :::
 
 ```{r, echo=FALSE}
-surv_rates_age_class|>
-  filter(age_group == "child")|>
-  mutate(Pclass = fct_relevel(Pclass, "First", "Second", "Third"))|>
-  ggplot(aes(x=Pclass, y=avg_survival)) +
-  geom_col(fill="#489FDF") +
-  labs(title = "Survival Rates by Class for Children",
-       x = "Class",
-       y = "Survival Rate")
+surv_rates_age_class |>
+  filter(age_group == "child") |>
+  mutate(Pclass = fct_relevel(Pclass, "First", "Second", "Third")) |>
+  ggplot(aes(x = Pclass, y = avg_survival)) +
+  geom_col(fill = "#489FDF") +
+  labs(
+    title = "Survival Rates by Class for Children",
+    x = "Class",
+    y = "Survival Rate"
+  )
 ```
 
 
@@ -625,26 +713,30 @@ surv_rates_age_class|>
 - `fct_reorder()` **re-orders factors by values of another variable**
 
 ```{r, eval=FALSE}
-surv_rates_age_class|>
-  filter(age_group == "child")|>
-  mutate(Pclass = fct_reorder(Pclass, avg_survival))|>
-  ggplot(aes(x=Pclass, y=avg_survival)) +
-  geom_col(fill="#489FDF") +
-  labs(title = "Survival Rates by Class for Children",
-       x = "Class",
-       y = "Survival Rate")
+surv_rates_age_class |>
+  filter(age_group == "child") |>
+  mutate(Pclass = fct_reorder(Pclass, avg_survival)) |>
+  ggplot(aes(x = Pclass, y = avg_survival)) +
+  geom_col(fill = "#489FDF") +
+  labs(
+    title = "Survival Rates by Class for Children",
+    x = "Class",
+    y = "Survival Rate"
+  )
 ```
 :::
 
 ```{r, echo=FALSE}
-surv_rates_age_class|>
-  filter(age_group == "child")|>
-  mutate(Pclass = fct_reorder(Pclass, desc(avg_survival)))|>
-  ggplot(aes(x=Pclass, y=avg_survival)) +
-  geom_col(fill="#489FDF") +
-  labs(title = "Survival Rates by Class for Children",
-       x = "Class",
-       y = "Survival Rate")
+surv_rates_age_class |>
+  filter(age_group == "child") |>
+  mutate(Pclass = fct_reorder(Pclass, desc(avg_survival))) |>
+  ggplot(aes(x = Pclass, y = avg_survival)) +
+  geom_col(fill = "#489FDF") +
+  labs(
+    title = "Survival Rates by Class for Children",
+    x = "Class",
+    y = "Survival Rate"
+  )
 ```
 
 
@@ -689,12 +781,14 @@ starwars |>
   ungroup() |>
   mutate(eye_color = fct_reorder(eye_color, n)) |>
   ggplot(aes(x = eye_color, y = n)) +
-    geom_col(fill = "#4C5970") +
-    labs(title = "Eye Color of Star Wars Characters",
-       x = "Eye Color", y = "Number of Star Wars Characters") +
-    coord_flip() +
-    theme_minimal()
-  
+  geom_col(fill = "#4C5970") +
+  labs(
+    title = "Eye Color of Star Wars Characters",
+    x = "Eye Color",
+    y = "Number of Star Wars Characters"
+  ) +
+  coord_flip() +
+  theme_minimal()
 ```
 :::
 :::
@@ -721,14 +815,17 @@ Stacking
 
 ```{r, fig.height=4.5, fig.width=8, echo=FALSE}
 penguins |>
-  group_by(island,species) |>
+  group_by(island, species) |>
   summarize(n = n()) |>
   ungroup() |>
   ggplot(aes(x = island, y = n)) +
-    geom_col(aes(fill=species), position="stack") +
-    labs(title = "Number of Penguin Species Observations per Island",
-       x = "Island", y = "Number of Observations") +
-    theme_minimal()
+  geom_col(aes(fill = species), position = "stack") +
+  labs(
+    title = "Number of Penguin Species Observations per Island",
+    x = "Island",
+    y = "Number of Observations"
+  ) +
+  theme_minimal()
 ```
 
 :::
@@ -754,14 +851,17 @@ penguins |>
 
 ```{r, fig.height=3, fig.width=6, echo=FALSE}
 penguins |>
-  group_by(island,species) |>
+  group_by(island, species) |>
   summarize(n = n()) |>
   ungroup() |>
   ggplot(aes(x = island, y = n)) +
-    geom_col(aes(fill=species), position="stack") +
-    labs(title = "Number of Penguin Species Observations per Island",
-       x = "Island", y = "Number of Observations") +
-    theme_minimal()
+  geom_col(aes(fill = species), position = "stack") +
+  labs(
+    title = "Number of Penguin Species Observations per Island",
+    x = "Island",
+    y = "Number of Observations"
+  ) +
+  theme_minimal()
 ```
 
 :::
@@ -776,20 +876,27 @@ Dodging
 - **Discussion:** What is this graph showing you?
 
 ```{r, fig.height=4.5, fig.width=8, echo=FALSE}
-colors_seven = RColorBrewer::brewer.pal(8, "PuBu")[3:7]
+colors_seven <- RColorBrewer::brewer.pal(8, "PuBu")[3:7]
 
 penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
-  group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
-  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm=T)) |>
+  group_by(species, bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = T)) |>
   ungroup() |>
-  ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
-    geom_col(position="dodge", alpha = 0.9) +
-    labs(title = "Mean Flipper Length by Species and Bill Length Quintile",
-       x = "Species", y = "Mean Flipper Length (mm)") +
-    scale_fill_manual(values = colors_seven) +
-    theme_minimal()
+  ggplot(aes(
+    x = species,
+    y = mean_flipper_length,
+    fill = bill_length_quintiles
+  )) +
+  geom_col(position = "dodge", alpha = 0.9) +
+  labs(
+    title = "Mean Flipper Length by Species and Bill Length Quintile",
+    x = "Species",
+    y = "Mean Flipper Length (mm)"
+  ) +
+  scale_fill_manual(values = colors_seven) +
+  theme_minimal()
 ```
 
 :::
@@ -817,20 +924,27 @@ penguins |>
 
 
 ```{r, fig.height=3, fig.width=6, echo=FALSE}
-colors_seven = RColorBrewer::brewer.pal(8, "PuBu")[3:7]
+colors_seven <- RColorBrewer::brewer.pal(8, "PuBu")[3:7]
 
 penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
-  group_by(species,bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
-  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm=T)) |>
+  group_by(species, bill_length_quintiles) |> # 1st Group: x-axis, 2nd: bar levels
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = T)) |>
   ungroup() |>
-  ggplot(aes(x = species, y = mean_flipper_length, fill = bill_length_quintiles)) +
-    geom_col(position="dodge", alpha = 0.9) +
-    labs(title = "Mean Flipper Length by Species and Bill Length Quintile",
-       x = "Species", y = "Mean Flipper Length (mm)") +
-    scale_fill_manual(values = colors_seven) +
-    theme_minimal()
+  ggplot(aes(
+    x = species,
+    y = mean_flipper_length,
+    fill = bill_length_quintiles
+  )) +
+  geom_col(position = "dodge", alpha = 0.9) +
+  labs(
+    title = "Mean Flipper Length by Species and Bill Length Quintile",
+    x = "Species",
+    y = "Mean Flipper Length (mm)"
+  ) +
+  scale_fill_manual(values = colors_seven) +
+  theme_minimal()
 ```
 
 :::
@@ -860,21 +974,28 @@ penguins |>
 
 
 ```{r, fig.height=3, fig.width=6, echo=FALSE}
-colors_seven = RColorBrewer::brewer.pal(8, "PuBu")[3:7]
+colors_seven <- RColorBrewer::brewer.pal(8, "PuBu")[3:7]
 
 penguins |>
   mutate(bill_length_quintiles = cut_number(bill_length_mm, 5)) |>
   filter(!is.na(bill_length_quintiles)) |>
-  group_by(species,bill_length_quintiles) |> # 1st Group: facets, 2nd: bar levels
-  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm=T)) |>
+  group_by(species, bill_length_quintiles) |> # 1st Group: facets, 2nd: bar levels
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = T)) |>
   ungroup() |>
-  ggplot(aes(x = bill_length_quintiles, y = mean_flipper_length, fill=bill_length_quintiles)) +
-    geom_col() +
-    labs(title = "Mean Flipper Length by Species and Bill Length Quintile",
-       x = "Bill Length (mm) Quintile", y = "Mean Flipper Length (mm)") +
-    scale_fill_manual(values = colors_seven) +
-    theme(axis.text.x = element_text(angle = 45, hjust = 0.75, vjust=0.75)) +
-    facet_wrap(~species)
+  ggplot(aes(
+    x = bill_length_quintiles,
+    y = mean_flipper_length,
+    fill = bill_length_quintiles
+  )) +
+  geom_col() +
+  labs(
+    title = "Mean Flipper Length by Species and Bill Length Quintile",
+    x = "Bill Length (mm) Quintile",
+    y = "Mean Flipper Length (mm)"
+  ) +
+  scale_fill_manual(values = colors_seven) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.75, vjust = 0.75)) +
+  facet_wrap(~species)
 ```
 
 :::
@@ -897,12 +1018,20 @@ tidykids |>
 ```
 ```{r, fig.height=3, fig.width = 6.5, echo=FALSE}
 tidykids |>
-  filter(year == 2016, expenditure == "PK12ed", region =="South", state != "District of Columbia") |>
+  filter(
+    year == 2016,
+    expenditure == "PK12ed",
+    region == "South",
+    state != "District of Columbia"
+  ) |>
   ggplot(aes(x = inf_adj_perchild, y = state)) +
-    geom_point(color="purple", size=3) +
-    labs(title = "Per Child Education Spending by Southern States",
-       x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)", y = "State") +
-    theme_minimal()
+  geom_point(color = "purple", size = 3) +
+  labs(
+    title = "Per Child Education Spending by Southern States",
+    x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)",
+    y = "State"
+  ) +
+  theme_minimal()
 ```
 - **Discussion:** How could we improve this plot?
 
@@ -927,13 +1056,21 @@ tidykids |>
 ```
 ```{r, fig.height=3, fig.width = 6.5, echo=FALSE}
 tidykids |>
-  filter(year == 2016, expenditure == "PK12ed", region =="South", state != "District of Columbia") |>
+  filter(
+    year == 2016,
+    expenditure == "PK12ed",
+    region == "South",
+    state != "District of Columbia"
+  ) |>
   mutate(state = fct_reorder(state, inf_adj_perchild)) |> # reorder by spending
   ggplot(aes(x = inf_adj_perchild, y = state)) +
-    geom_point(color="purple", size=3) +
-    labs(title = "Per Child Education Spending by Southern States in 2016",
-       x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)", y = "State") +
-    theme_minimal()
+  geom_point(color = "purple", size = 3) +
+  labs(
+    title = "Per Child Education Spending by Southern States in 2016",
+    x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)",
+    y = "State"
+  ) +
+  theme_minimal()
 ```
 
 :::
@@ -957,10 +1094,14 @@ tidykids |>
 
 ```{r, echo=FALSE}
 tidykids |>
-  filter(expenditure == "PK12ed", region == "South", state != "District of Columbia") |>
+  filter(
+    expenditure == "PK12ed",
+    region == "South",
+    state != "District of Columbia"
+  ) |>
   mutate(state = fct_reorder(state, desc(state))) |> # reorder alphabetically
   ggplot(aes(x = year, y = state, fill = inf_adj_perchild)) +
-    geom_tile(color="white", linewidth = 0.25)
+  geom_tile(color = "white", linewidth = 0.25)
 ```
 
 ## Comparing Amounts {.smaller}
@@ -1019,14 +1160,22 @@ tidykids |>
 
 ```{r, fig.height=3, fig.width = 6.5, echo=FALSE}
 tidykids |>
-  filter(year == 2016, expenditure == "PK12ed", region =="South", state != "District of Columbia") |>
+  filter(
+    year == 2016,
+    expenditure == "PK12ed",
+    region == "South",
+    state != "District of Columbia"
+  ) |>
   mutate(state = fct_reorder(state, inf_adj_perchild)) |> # reorder by spending
   ggplot(aes(x = inf_adj_perchild, y = state)) +
-    geom_point(color="purple", size=3) +
-    geom_segment(aes(xend = 0, yend = state), color = "purple") + #inherits x & y from ggplot()
-    labs(title = "Per Child Education Spending by Southern States in 2016",
-       x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)", y = "State") +
-    theme_minimal()
+  geom_point(color = "purple", size = 3) +
+  geom_segment(aes(xend = 0, yend = state), color = "purple") + #inherits x & y from ggplot()
+  labs(
+    title = "Per Child Education Spending by Southern States in 2016",
+    x = "Per Child Education Spending (2016 Inflation Adjusted Thousands of USD)",
+    y = "State"
+  ) +
+  theme_minimal()
 ```
 
 :::
@@ -1037,7 +1186,7 @@ Bullet Charts: `geom_col()` and/or `geom_segment()`
 
 <hr>
 
-![Figure from Boles (in preparation)](slides_images/KBoles_Figure1_BulletPlot.png)
+![Figure from Boles (2026)](slides_images/KBoles_Figure1_BulletPlot.png)
 
 # Looking Ahead
 
@@ -1046,7 +1195,7 @@ Bullet Charts: `geom_col()` and/or `geom_segment()`
 - Readings:
     - Skim Schwabish (2021), Ch. 6
     - Read Wilke (2019), Chs. 7,9,12
-    - Discussion Post
+    - *Change:* No discussion post!
 - Weekly Assignment
     - Creating and Improving Plots of Amounts
     
