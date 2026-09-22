@@ -1,7 +1,7 @@
 ---
 subtitle: "Visual Storytelling: Distributions and Associations"
-title: "Week 6 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 6 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -30,17 +30,73 @@ library(tidykids)
 library(palmerpenguins)
 
 tidykids <- tidykids |>
-  mutate(region = case_when(
-    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
-                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
-    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
-                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
-    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
-                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
-                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
-    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
-                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
-  ))|>
+  mutate(
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "Northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "Midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "South",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "West"
+    )
+  ) |>
   janitor::clean_names()
 
 starwars <- starwars |>
@@ -117,18 +173,18 @@ titanic <- Titanic |>
     - expenditure types!
   - `filter()` is your friend!
 
-# Successfully Rendering Documents
+<!-- # Successfully Rendering Documents -->
 
-## Successfully Rendering Documents {.smaller}
+<!-- ## Successfully Rendering Documents {.smaller}
 <hr>
 - How can you check that your document rendered correctly?
   - It is an .html file.
   - Before submitting, double click on it to open
     - It will open in your default web browser (Chrome, Firefox, etc.)
   - Does it look nice? If so, submit!
-  - Is it a bunch of black text crammed together on a white background? If so, check your code and try again.
+  - Is it a bunch of black text crammed together on a white background? If so, check your code and try again. -->
 
-# AI Policy Review
+<!-- # AI Policy Review
 
 ## AI Policy Review
 <hr>
@@ -138,7 +194,7 @@ titanic <- Titanic |>
 
     - Many of you are doing this well! Keep it up!
     - All acknowledgements are by question rather than whole assignment.
-:::
+::: -->
 
 # The Importance of `na.rm=T`
 
@@ -158,11 +214,17 @@ summarize(avg_inf_adj_perchild = mean(inf_adj_perchild)*1000)
 tidykids |>
   filter(state == "Tennessee") |>
   group_by(expenditure) |>
-  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild)*1000) |>
+  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild) * 1000) |>
   ungroup() |>
-  mutate(expenditure = fct_reorder(expenditure, replace_na(avg_inf_adj_perchild, 0))) |>
+  mutate(
+    expenditure = fct_reorder(expenditure, replace_na(avg_inf_adj_perchild, 0))
+  ) |>
   ggplot() +
-  geom_col(aes(x=expenditure, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
+  geom_col(aes(
+    x = expenditure,
+    y = avg_inf_adj_perchild,
+    fill = avg_inf_adj_perchild
+  )) +
   coord_flip() +
   scale_y_continuous(labels = scales::dollar) +
   theme(legend.position = "none")
@@ -181,11 +243,15 @@ summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm=T)*1000)
 tidykids |>
   filter(state == "Tennessee") |>
   group_by(expenditure) |>
-  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm=T)*1000) |>
+  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm = T) * 1000) |>
   ungroup() |>
   mutate(expenditure = fct_reorder(expenditure, avg_inf_adj_perchild)) |>
   ggplot() +
-  geom_col(aes(x=expenditure, y=avg_inf_adj_perchild, fill=avg_inf_adj_perchild)) +
+  geom_col(aes(
+    x = expenditure,
+    y = avg_inf_adj_perchild,
+    fill = avg_inf_adj_perchild
+  )) +
   coord_flip() +
   scale_y_continuous(labels = scales::dollar) +
   theme(legend.position = "none")
@@ -233,20 +299,33 @@ Holder proposes some alternatives. Today we'll talk about:
 
 penguins |>
   group_by(species) |>
-  summarize(avg_bill_length = mean(bill_length_mm, na.rm=T),
-            sd_bill_length = sd(bill_length_mm, na.rm=T)) |>
+  summarize(
+    avg_bill_length = mean(bill_length_mm, na.rm = T),
+    sd_bill_length = sd(bill_length_mm, na.rm = T)
+  ) |>
   ungroup() |>
   mutate(species = fct_reorder(species, avg_bill_length)) |>
   ggplot(aes(x = species, y = avg_bill_length)) +
-  geom_col(aes(fill=species)) +
-  geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
-                    ymax = avg_bill_length + sd_bill_length), width = 0.2)+
-  labs(title = "Bill Length by Penguin Species",
-       x = "Species",
-       y = "Bill Length (mm)") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
+  geom_col(aes(fill = species)) +
+  geom_errorbar(
+    aes(
+      ymin = avg_bill_length - sd_bill_length,
+      ymax = avg_bill_length + sd_bill_length
+    ),
+    width = 0.2
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Species",
+    y = "Bill Length (mm)"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
   theme_minimal() +
   theme(legend.position = "none")
 ```
@@ -285,21 +364,34 @@ penguins |>
 
 penguins |>
   group_by(species) |>
-  summarize(avg_bill_length = mean(bill_length_mm, na.rm=T),
-            sd_bill_length = sd(bill_length_mm, na.rm=T)) |>
+  summarize(
+    avg_bill_length = mean(bill_length_mm, na.rm = T),
+    sd_bill_length = sd(bill_length_mm, na.rm = T)
+  ) |>
   ungroup() |>
   mutate(species = fct_reorder(species, avg_bill_length)) |>
   ggplot(aes(x = species, y = avg_bill_length)) +
-  geom_col(aes(fill=species)) +
-  geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
-                    ymax = avg_bill_length + sd_bill_length), width = 0.2)+
-  labs(title = "Bill Length by Penguin Species",
-       x = "Species",
-       y = "Bill Length (mm)",
-       caption = "Error bars represent +/-1 SD") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
+  geom_col(aes(fill = species)) +
+  geom_errorbar(
+    aes(
+      ymin = avg_bill_length - sd_bill_length,
+      ymax = avg_bill_length + sd_bill_length
+    ),
+    width = 0.2
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Species",
+    y = "Bill Length (mm)",
+    caption = "Error bars represent +/-1 SD"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
   theme_minimal() +
   theme(legend.position = "none")
 ```
@@ -343,17 +435,30 @@ penguin_means <- penguins |>
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
   ggplot(aes(x = bill_length_mm, y = species)) +
-  geom_point(aes(color=species)) +
-  geom_segment(data=penguin_means,
-               aes(x = mean_bill_length, xend = mean_bill_length,
-               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
-               color = "black", linewidth = 1)+
-  labs(title = "Bill Length by Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Species") +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
+  geom_point(aes(color = species)) +
+  geom_segment(
+    data = penguin_means,
+    aes(
+      x = mean_bill_length,
+      xend = mean_bill_length,
+      y = as.numeric(species) - 0.2,
+      yend = as.numeric(species) + 0.2
+    ),
+    color = "black",
+    linewidth = 1
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Species"
+  ) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
   theme_minimal() +
   theme(legend.position = "none")
 ```
@@ -401,17 +506,30 @@ penguin_means <- penguins |>
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
   ggplot(aes(x = bill_length_mm, y = species)) +
-  geom_jitter(aes(color=species), height = .18, alpha = .5) +
-  geom_segment(data=penguin_means,
-               aes(x = mean_bill_length, xend = mean_bill_length,
-               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
-               color = "black", linewidth = 1)+
-  labs(title = "Bill Length by Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Species") +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
+  geom_jitter(aes(color = species), height = .18, alpha = .5) +
+  geom_segment(
+    data = penguin_means,
+    aes(
+      x = mean_bill_length,
+      xend = mean_bill_length,
+      y = as.numeric(species) - 0.2,
+      yend = as.numeric(species) + 0.2
+    ),
+    color = "black",
+    linewidth = 1
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Species"
+  ) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
   theme_minimal() +
   theme(legend.position = "none")
 ```
@@ -463,17 +581,30 @@ penguin_means <- penguins |>
 penguins |>
   mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
   ggplot(aes(x = bill_length_mm, y = species)) +
-  geom_beeswarm(aes(color=species), alpha = .5) +
-  geom_segment(data=penguin_means,
-               aes(x = mean_bill_length, xend = mean_bill_length,
-               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
-               color = "black", linewidth = 1)+
-  labs(title = "Bill Length by Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Species") +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
+  geom_beeswarm(aes(color = species), alpha = .5) +
+  geom_segment(
+    data = penguin_means,
+    aes(
+      x = mean_bill_length,
+      xend = mean_bill_length,
+      y = as.numeric(species) - 0.2,
+      yend = as.numeric(species) + 0.2
+    ),
+    color = "black",
+    linewidth = 1
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Species"
+  ) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
   theme_minimal() +
   theme(legend.position = "none")
 ```
@@ -490,7 +621,7 @@ penguins |>
 
 :::{.fragment}
 - What is a *histogram*?
-- How is it different from a *barplot*?
+- How is it different from a *bar plot*?
 :::
 
 :::{.fragment .smaller-font}
@@ -521,11 +652,13 @@ penguins |>
 penguins |>
   filter(species == "Adelie") |>
   ggplot(aes(x = bill_length_mm)) +
-  geom_histogram(binwidth=1.5, fill = "#FF6A01", color = "black") +
+  geom_histogram(binwidth = 1.5, fill = "#FF6A01", color = "black") +
   theme_minimal() +
-  labs(title = "Bill Length of Adelie Penguins",
-       x = "Bill Length (mm)",
-       y = "Count") +
+  labs(
+    title = "Bill Length of Adelie Penguins",
+    x = "Bill Length (mm)",
+    y = "Count"
+  ) +
   theme(legend.position = "none")
 ```
 
@@ -575,8 +708,7 @@ penguins |>
   ggplot(aes(x = species, y = bill_length_mm)) +
   geom_boxplot(width = 0.2, color = "#FF6A01") +
   theme_minimal() +
-  labs(title = "Bill Length of Adelie Penguins",
-       y = "Bill Length (mm)") +
+  labs(title = "Bill Length of Adelie Penguins", y = "Bill Length (mm)") +
   theme(legend.position = "none")
 ```
 :::
@@ -622,8 +754,7 @@ penguins |>
   geom_boxplot(width = 0.2, color = "#FF6A01") +
   geom_jitter(width = 0.08, alpha = 0.4, color = "#FF6A01", size = 1) +
   theme_minimal() +
-  labs(title = "Bill Length of Adelie Penguins",
-       y = "Bill Length (mm)") +
+  labs(title = "Bill Length of Adelie Penguins", y = "Bill Length (mm)") +
   theme(legend.position = "none")
 ```
 :::
@@ -668,9 +799,11 @@ penguins |>
   ggplot(aes(x = bill_length_mm)) +
   geom_density(fill = "#FF6A01", color = "black", alpha = .7) +
   theme_minimal() +
-  labs(title = "Bill Length of Adelie Penguins",
-       x = "Bill Length (mm)",
-       y = "Density") +
+  labs(
+    title = "Bill Length of Adelie Penguins",
+    x = "Bill Length (mm)",
+    y = "Density"
+  ) +
   theme(legend.position = "none")
 ```
 
@@ -701,14 +834,20 @@ penguins |>
 ```{r, echo=F, fig.height=3, fig.width=10}
 penguins |>
   ggplot(aes(x = bill_length_mm)) +
-  geom_density(aes(fill = species),color = "black", alpha = .7) +
+  geom_density(aes(fill = species), color = "black", alpha = .7) +
   theme_minimal() +
-  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
-       x = "Bill Length (mm)",
-       y = "Density") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))
+  labs(
+    title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+    x = "Bill Length (mm)",
+    y = "Density"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  )
 ```
 
 :::
@@ -739,15 +878,21 @@ penguins |>
 library(ggridges)
 
 penguins |>
-  ggplot(aes(x = bill_length_mm, y=species)) +
-  geom_density_ridges(aes(fill = species),color = "black", alpha = .7) +
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_density_ridges(aes(fill = species), color = "black", alpha = .7) +
   theme_minimal() +
-  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
-       x = "Bill Length (mm)",
-       y = "Density") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))
+  labs(
+    title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+    x = "Bill Length (mm)",
+    y = "Density"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  )
 ```
 
 :::
@@ -755,7 +900,7 @@ penguins |>
 ## Multiple Plots: `geom_violin()`
 <hr>
 :::{.extra-small-font}
-- Blend of boxplot and density plot
+- Think of like a mirrored density plot
 - Shows the distribution of the data
 - May suggest data exists where it doesn't
 
@@ -776,17 +921,23 @@ penguins |>
 
 ```{r, echo=F, fig.height=3.5, fig.width=10}
 penguins |>
-  ggplot(aes(x=species, y = bill_length_mm)) +
-  geom_violin(aes(fill = species),color = "black", alpha = .7) +
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_violin(aes(fill = species), color = "black", alpha = .7) +
   geom_jitter(width = 0.3, alpha = 0.4, color = "black", size = 1) +
   theme_minimal() +
   theme(legend.position = "none") +
-  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
-       x = "Density",
-       y = "Bill Length (mm)") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))
+  labs(
+    title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+    x = "Density",
+    y = "Bill Length (mm)"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  )
 ```
 
 :::
@@ -814,14 +965,20 @@ penguins |>
 ```{r, echo=FALSE, fig.height=4, fig.width=10}
 penguins |>
   ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color = species), alpha = .7, size=3) +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  theme_minimal()+
-  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)")
+  geom_point(aes(color = species), alpha = .7, size = 3) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
 ```
 :::
 
@@ -829,7 +986,7 @@ penguins |>
 <hr>
 
 :::{.smaller-font}
-- Can map a third variable to `shape`
+- Can map an additional variable to `shape`
 
 ```{.r}
 penguins |>
@@ -847,14 +1004,20 @@ penguins |>
 ```{r, echo=FALSE, fig.height=4, fig.width=10}
 penguins |>
   ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color = species, shape=sex), alpha = .7, size=3) +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  theme_minimal()+
-  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)")
+  geom_point(aes(color = species, shape = sex), alpha = .7, size = 3) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
 ```
 :::
 
@@ -880,14 +1043,20 @@ penguins |>
 ```{r, echo=FALSE, fig.height=4, fig.width=10}
 penguins |>
   ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color = species, size= body_mass_g), alpha = .7) +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  theme_minimal()+
-  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)")
+  geom_point(aes(color = species, size = body_mass_g), alpha = .7) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
 ```
 :::
 
@@ -918,17 +1087,23 @@ penguins |>
 library(ggpubr)
 
 penguins |>
-  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
-  geom_point(aes(size=body_mass_g), alpha = .7) +
-  stat_cor()+
-  geom_smooth(method="lm")+
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  theme_minimal()+
-  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)")
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point(aes(size = body_mass_g), alpha = .7) +
+  stat_cor() +
+  geom_smooth(method = "lm") +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
 ```
 :::
 
@@ -959,17 +1134,23 @@ penguins |>
 library(ggpubr)
 
 penguins |>
-  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
-  geom_point(aes(size=body_mass_g), alpha = .7) +
-  stat_regline_equation()+
-  geom_smooth(method="lm")+
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  theme_minimal()+
-  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)")
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point(aes(size = body_mass_g), alpha = .7) +
+  stat_regline_equation() +
+  geom_smooth(method = "lm") +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
 ```
 :::
 
@@ -1000,17 +1181,23 @@ penguins |>
 library(ggpubr)
 
 penguins |>
-  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
-  geom_point(aes(size=body_mass_g), alpha = .7) +
-  stat_regline_equation(aes(color= NULL))+
-  geom_smooth(aes(color= NULL), method="lm", color="black")+
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  theme_minimal()+
-  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)")
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point(aes(size = body_mass_g), alpha = .7) +
+  stat_regline_equation(aes(color = NULL)) +
+  geom_smooth(aes(color = NULL), method = "lm", color = "black") +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
 ```
 :::
 
@@ -1063,7 +1250,7 @@ penguins |>
 - **Step 3:** ***Summarize*** <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.
 - **Step 4:** ***Visualize*** <br>Create two visualizations to answer your RQs.
 <br><br>
-**Due: October 8th, 11:59 PM**
+**Due: October 7th, 11:59 PM**
 :::
 
 ## Mini-Project #1
