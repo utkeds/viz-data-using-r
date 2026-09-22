@@ -18,9 +18,11 @@ Please add your name in the YAML header above.
 2. Did you know you can read CSV files on the Internet directly into R? Use the code below to do that. Then, print or view the object `rankings` to ensure it read in correctly.
 
 ```{r}
-rankings <- read_csv("https://raw.githubusercontent.com/utkeds/viz-data-using-r/main/week-6/us-news-rankings-2020-processed.csv")
+rankings <- read_csv(
+  "https://raw.githubusercontent.com/utkeds/viz-data-using-r/main/week-6/us-news-rankings-2020-processed.csv"
+)
 
-rankings |> 
+rankings |>
   glimpse()
 ```
 As with any data set, your first step is to become familiar with the variables, values, and structure of the data. So, in a code cell below this text (add one), use a few functions to explore the data, focusing on getting a grip on the number of rows and columns and the meaning of the rows and columns. 
@@ -43,7 +45,6 @@ As with any data set, your first step is to become familiar with the variables, 
 
 ```{r}
 
-
 ```
 
 **REFLECTION:** [Please add a few sentences here reflecting on your graph. What do you notice and can you claim based upon it?]
@@ -63,13 +64,13 @@ That's it! The next two graphs are optional reaches for you to push further, if 
 
 #### Optional Reach
 
-10. Add a line for your association. Try adding the equation for the line (consult the [{ggpubr} documentation](https://cran.r-project.org/web/packages/ggpubr/refman/ggpubr.html#stat_regline_equation) to see how).
+10. Add a line for your association. Try adding the equation for the line (consult the [{ggpubr} documentation](https://cran.r-project.org/web/packages/ggpubr/refman/ggpubr.html#stat_regline_equation) or the class slides to see how).
 
 #### Reflection
 
 11. **REFLECTION:** [Please add a sentence or two next reflecting on this assignment. What went well, what was challenging, and what do you want to dive deeper into?]
 
-Important: After you knit, check the HTML file. Does it appear as you intended?
+Important: After you render, check the HTML file. Does it appear as you intended?
 
 Submit for Assignment 6 in Canvas. 
 
