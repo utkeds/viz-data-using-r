@@ -1,0 +1,1286 @@
+---
+subtitle: "Visual Storytelling: Distributions and Associations"
+title: "Week 6 - CADE 691"
+author: "Dr. Kelly Boles"
+format:
+  revealjs:
+    theme: [simple, utk_eds_style.scss]
+    mainfont: Montserrat
+    slide-number: true
+    transition: fade
+    background-transition: fade
+    highlight-style: tango
+    title-slide-attributes:
+      data-background-color: "#4B4B4B"
+      data-background-image: slides_images/UnitShortcut.png
+      data-background-size: 50%
+      data-background-position: 50% 9%
+    footer: UTK Educational Data Science
+knitr:
+  opts_chunk: 
+    fig.align: center
+    echo: true
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+library(tidyverse)
+library(tidykids)
+library(palmerpenguins)
+
+tidykids <- tidykids |>
+  mutate(
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "Northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "Midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "South",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "West"
+    )
+  ) |>
+  janitor::clean_names()
+
+starwars <- starwars |>
+  janitor::clean_names()
+
+penguins <- penguins |>
+  janitor::clean_names()
+
+titanic <- Titanic |>
+  as_tibble() |>
+  janitor::clean_names()
+```
+
+# Weekly Check In/ <br>Download `.zip` for Wk 6 & Mini-Project #1
+
+# Start Recording
+
+## Today's Agenda
+<hr>
+
+:::{.extra-small-font}
+- Weekly Check In
+- Review/ Foundational Skills
+   <!-- - Formatting Your `.Rmd` -->
+   <!-- - AI Policy Review -->
+   <!-- - Assignment 4, Bonus Q & `na.rm=T` -->
+- Distributions & Associations
+    - Single Distributions
+        - Histograms
+        - Box Plot
+      <!-- - Plus `geom_jitter()` -->
+        - Density Plot
+    - Multiple Distributions
+        <!-- - Density Plots -->
+        <!--   - setting `alpha` -->
+        - Ridgeline Plots
+        - Violin Plots
+    - Associations
+        - Scatterplots
+            <!-- - Setting vs. Mapping: `shape` -->
+            <!-- - Setting vs. Mapping: `size` -->
+- Which `geom` when?
+- Looking Ahead
+- Intro to **Mini Project #1**
+- Collaborative Work
+
+:::
+
+## Norms
+<hr>
+
+:::{.compact-font}
+| In person norms | And also, for online learning... |
+|----------|----------|
+| Be fully present to each other & the work. | Keep your video on when possible. In large groups, mute your microphone when not talking. Close/mute/minimize other apps and devices to avoid distraction. |
+| Assume positive intent & also take responsibility for the impact you have. | Remember online interaction masks even more of the full story. Notice when you are making assumptions, and seek information to check them. |
+| Embrace collaboration. | Use the gallery view so you can see everyone. Use breakout groups as an opportunity to collaborate. |
+| Be open to learning and accept non-closure. | Expect the inevitable technical glitches and learning curves. Exercise patience with one another. |
+| Be aware of when to step up and step back. When stepping back, do so as an active listener. | Try out different modes of participation. Step back by making space for others to engage in these. |
+| Land your plane--get to the point you intended. | We all know how hard it is to be talked at, especially in a Zoom session, so let's keep it to a minimum. |
+
+:::
+
+# Review/ <br>Foundational Skills
+
+# AHH, tidykids!
+
+## AHH, tidykids!
+<hr>
+- This dataset is a little trickier than what we've worked with before
+  - It has multiple:
+    - years,
+    - states,
+    - expenditure types!
+  - `filter()` is your friend!
+
+<!-- # Successfully Rendering Documents -->
+
+<!-- ## Successfully Rendering Documents {.smaller}
+<hr>
+- How can you check that your document rendered correctly?
+  - It is an .html file.
+  - Before submitting, double click on it to open
+    - It will open in your default web browser (Chrome, Firefox, etc.)
+  - Does it look nice? If so, submit!
+  - Is it a bunch of black text crammed together on a white background? If so, check your code and try again. -->
+
+<!-- # AI Policy Review
+
+## AI Policy Review
+<hr>
+
+:::{.smaller-font}
+- **From the syllabus:**  “I acknowledge the use of [*Generative AI Tool Name*] in the preparation of this answer. Within this question, Generative AI was used to resolve the following problem: [*state problem addressed here*]. Specifically this code was informed by Generative AI: [*copy and paste piece(s) of code provided by Generative AI here*].”
+
+    - Many of you are doing this well! Keep it up!
+    - All acknowledgements are by question rather than whole assignment.
+::: -->
+
+# The Importance of `na.rm=T`
+
+## The Importance of `na.rm=T`
+<hr>
+
+**Assignment 4, Bonus Question:** Which type of adjusted spending per child, on average in $1,000s, is highest for Tennessee?
+
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+
+```{.r}
+summarize(avg_inf_adj_perchild = mean(inf_adj_perchild)*1000)
+```
+
+```{r, echo=F, warning=T}
+tidykids |>
+  filter(state == "Tennessee") |>
+  group_by(expenditure) |>
+  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild) * 1000) |>
+  ungroup() |>
+  mutate(
+    expenditure = fct_reorder(expenditure, replace_na(avg_inf_adj_perchild, 0))
+  ) |>
+  ggplot() +
+  geom_col(aes(
+    x = expenditure,
+    y = avg_inf_adj_perchild,
+    fill = avg_inf_adj_perchild
+  )) +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar) +
+  theme(legend.position = "none")
+```
+Answer: PK12ed **Incorrect**
+
+:::
+
+:::{column}
+
+```{.r}
+summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm=T)*1000)
+```
+<br>
+```{r, echo=F}
+tidykids |>
+  filter(state == "Tennessee") |>
+  group_by(expenditure) |>
+  summarize(avg_inf_adj_perchild = mean(inf_adj_perchild, na.rm = T) * 1000) |>
+  ungroup() |>
+  mutate(expenditure = fct_reorder(expenditure, avg_inf_adj_perchild)) |>
+  ggplot() +
+  geom_col(aes(
+    x = expenditure,
+    y = avg_inf_adj_perchild,
+    fill = avg_inf_adj_perchild
+  )) +
+  coord_flip() +
+  scale_y_continuous(labels = scales::dollar) +
+  theme(legend.position = "none")
+```
+Answer: Other_Health **Correct**
+
+:::
+:::
+
+<!-- # Reviewing Holder (2024)
+
+## Reviewing Holder (2024)
+<hr>
+
+:::{.smaller-font}
+**Takeaways:**
+
+1. Some audiences interpret particular geoms (generally those which focus on comparing amounts w/o acknowledging within-group variability) in ways that are not intended.
+ - at the least: not fully correct
+ - at the worst: harmful
+ 
+Holder proposes some alternatives. Today we'll talk about:
+
+- `geom_point()`
+- `geom_jitter()`
+- `geom_beeswarm()`
+::: -->
+
+
+
+# Showing Amounts + Variability
+
+## Showing Amounts + Variability {.smaller}
+<hr>
+- There are studies that show viewers/readers have a difficult time understanding how to interpret amounts well (especially measures of center)
+- A Solution: Show variability in addition to the amount
+
+## Showing Amounts + Variability {.smaller}
+<hr>
+- In your discipline's literature/plots, do you see error bars?
+- If so, what do they typically represent?
+
+```{r, echo=F, fig.height=3, fig.width=5}
+#acknowledging within-group variability with +/- 1 SD error bars
+
+penguins |>
+  group_by(species) |>
+  summarize(
+    avg_bill_length = mean(bill_length_mm, na.rm = T),
+    sd_bill_length = sd(bill_length_mm, na.rm = T)
+  ) |>
+  ungroup() |>
+  mutate(species = fct_reorder(species, avg_bill_length)) |>
+  ggplot(aes(x = species, y = avg_bill_length)) +
+  geom_col(aes(fill = species)) +
+  geom_errorbar(
+    aes(
+      ymin = avg_bill_length - sd_bill_length,
+      ymax = avg_bill_length + sd_bill_length
+    ),
+    width = 0.2
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Species",
+    y = "Bill Length (mm)"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+## Comparing Amounts: `geom_point()`
+<hr>
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+```{.r code-line-numbers="|4-7|9-12|"}
+#acknowledging within-group variability with +/- 1 SD error bars
+
+penguins |>
+  group_by(species) |>
+  summarize(avg_bill_length = mean(bill_length_mm, na.rm=T),
+            sd_bill_length = sd(bill_length_mm, na.rm=T)) |>
+  ungroup() |>
+  mutate(species = fct_reorder(species, avg_bill_length)) |>
+  ggplot(aes(x = species, y = avg_bill_length)) +
+  geom_col(aes(fill=species)) +
+  geom_errorbar(aes(ymin = avg_bill_length - sd_bill_length,
+                    ymax = avg_bill_length + sd_bill_length), width = 0.2)+
+  labs(title = "Bill Length by Penguin Species",
+       x = "Species",
+       y = "Bill Length (mm)",
+       caption = "Error bars represent +/-1 SD") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=3, fig.width=5}
+#acknowledging within-group variability with +/- 1 SD error bars
+
+penguins |>
+  group_by(species) |>
+  summarize(
+    avg_bill_length = mean(bill_length_mm, na.rm = T),
+    sd_bill_length = sd(bill_length_mm, na.rm = T)
+  ) |>
+  ungroup() |>
+  mutate(species = fct_reorder(species, avg_bill_length)) |>
+  ggplot(aes(x = species, y = avg_bill_length)) +
+  geom_col(aes(fill = species)) +
+  geom_errorbar(
+    aes(
+      ymin = avg_bill_length - sd_bill_length,
+      ymax = avg_bill_length + sd_bill_length
+    ),
+    width = 0.2
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Species",
+    y = "Bill Length (mm)",
+    caption = "Error bars represent +/-1 SD"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+:::
+
+:::{column}
+```{.r code-line-numbers="|3-6|11|3-6,12-15|"}
+# `geom_point()` gives us overplotting but acknowleges each datum
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_point(aes(color=species)) +
+  geom_segment(data=penguin_means,
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
+               color = "black", linewidth = 1)+
+  labs(title = "Bill Length by Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Species") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=3, fig.width=5}
+# `geom_point()` gives us overplotting but acknowledges each datum
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_point(aes(color = species)) +
+  geom_segment(
+    data = penguin_means,
+    aes(
+      x = mean_bill_length,
+      xend = mean_bill_length,
+      y = as.numeric(species) - 0.2,
+      yend = as.numeric(species) + 0.2
+    ),
+    color = "black",
+    linewidth = 1
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Species"
+  ) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+:::
+:::
+
+##
+#### `geom_jitter()`
+<hr>
+:::{.extra-small-font}
+```{.r code-line-numbers="|11|"}
+# `geom_jitter()` randomly moves points small bits along x and y to avoid overplotting
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_jitter(aes(color=species), height = .18, alpha = .5) +
+  geom_segment(data=penguin_means,
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
+               color = "black", linewidth = 1)+
+  labs(title = "Bill Length by Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Species") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=3, fig.width=5}
+# `geom_jitter()` randomly moves points small bits along x and y to avoid overplotting
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_jitter(aes(color = species), height = .18, alpha = .5) +
+  geom_segment(
+    data = penguin_means,
+    aes(
+      x = mean_bill_length,
+      xend = mean_bill_length,
+      y = as.numeric(species) - 0.2,
+      yend = as.numeric(species) + 0.2
+    ),
+    color = "black",
+    linewidth = 1
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Species"
+  ) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+:::
+
+##
+### `geom_beeswarm()`
+<hr>
+:::{.extra-small-font}
+```{.r code-line-numbers="|4,14|"}
+# `geom_beeswarm()` systematically arranges points as close as possible
+# to avoid overplotting
+
+library(ggbeeswarm)
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_beeswarm(aes(color=species), alpha = .5) +
+  geom_segment(data=penguin_means,
+               aes(x = mean_bill_length, xend = mean_bill_length,
+               y = as.numeric(species) - 0.2, yend = as.numeric(species) + 0.2), 
+               color = "black", linewidth = 1)+
+  labs(title = "Bill Length by Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Species") +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=3, fig.width=5}
+# `geom_beeswarm()` systematically arranges points as close as possible
+# to avoid overplotting
+library(ggbeeswarm)
+
+penguin_means <- penguins |>
+  group_by(species) |>
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) |>
+  ungroup()
+
+penguins |>
+  mutate(species = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap")) |>
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_beeswarm(aes(color = species), alpha = .5) +
+  geom_segment(
+    data = penguin_means,
+    aes(
+      x = mean_bill_length,
+      xend = mean_bill_length,
+      y = as.numeric(species) - 0.2,
+      yend = as.numeric(species) + 0.2
+    ),
+    color = "black",
+    linewidth = 1
+  ) +
+  labs(
+    title = "Bill Length by Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Species"
+  ) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+:::
+
+# Distributions & Associations
+
+# Single Plots
+
+## Single Plots: `geom_histogram()` {.smaller}
+<hr>
+:::{layout="[1,1]" .small-font}
+:::{column}
+
+:::{.fragment}
+- What is a *histogram*?
+- How is it different from a *bar plot*?
+:::
+
+:::{.fragment .smaller-font}
+- In `geom_histogram()`, you most typically use the following arguments:
+    - `aes(x = variable)`
+    - `binwidth = ?` 
+    OR 
+    - `bins = ?`
+:::
+:::
+
+:::{.fragment .smaller-font}
+
+:::{column}
+```{.r code-line-numbers="|4"}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth=1.5, fill = "#FF6A01", color = "black") +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Count") +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F, fig.height=4}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = 1.5, fill = "#FF6A01", color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Bill Length of Adelie Penguins",
+    x = "Bill Length (mm)",
+    y = "Count"
+  ) +
+  theme(legend.position = "none")
+```
+
+$$\text{Freedman-Diaconis Rule: Bin Width} = \frac{2 * IQR}{\sqrt[3]{n}}$$
+:::
+:::
+:::
+
+## Single Plots: `geom_boxplot()`
+<hr>
+:::{layout="[1,1]" .small-font}
+:::{column}
+
+:::{.fragment}
+- What is a *boxplot*?
+:::
+
+![](slides_images/boxplot_from_schwabish.png){.fragment}
+
+:::{.fragment .smaller-font}
+- Based on medians (not means!) and quartiles
+:::
+
+:::{.fragment .smaller-font}
+- In `geom_boxplot()`, you most typically use the following arguments:
+    - `aes(x = cat_variable, y = quant_variable)`
+:::
+:::
+
+:::{.fragment .smaller-font}
+
+:::{column}
+```{.r code-line-numbers="|4"}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_boxplot(width = 0.2, color = "#FF6A01") +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       y = "Bill Length (mm)") +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_boxplot(width = 0.2, color = "#FF6A01") +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins", y = "Bill Length (mm)") +
+  theme(legend.position = "none")
+```
+:::
+:::
+:::
+
+##
+### `geom_boxplot()` + `geom_jitter()`
+<hr>
+:::{layout="[1,1]" .small-font}
+:::{column}
+
+- What is a *boxplot*?
+
+![](slides_images/boxplot_from_schwabish.png)
+
+:::{.smaller-font}
+- In `geom_boxplot()`, you most typically use the following arguments:
+    - `aes(x = cat_variable, y = quant_variable)`
+
+:::
+:::
+
+:::{column}
+:::{.smaller-font}
+```{.r code-line-numbers="|4-5"}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_boxplot(width = 0.2, color = "#FF6A01") +
+  geom_jitter(width = 0.08, alpha = 0.4, color = "#FF6A01", size = 1) +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       y = "Bill Length (mm)") +
+  theme(legend.position = "none")
+```
+
+
+```{r, echo=F}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_boxplot(width = 0.2, color = "#FF6A01") +
+  geom_jitter(width = 0.08, alpha = 0.4, color = "#FF6A01", size = 1) +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins", y = "Bill Length (mm)") +
+  theme(legend.position = "none")
+```
+:::
+:::
+:::
+
+## Single Plots: `geom_density()`
+<hr>
+:::{layout="[1,1]" .extra-small-font}
+:::{column}
+:::{.incremental}
+- Similar to something you may recognize:
+![](slides_images/t_pdf_example.jpeg)
+- Estimates the shape of the sample distribution
+- Area under curve = 1
+- You can calculate what % of each part of distribution is in a certain range
+- Better for large datasets; amount of data in tails may be exaggerated in small datasets
+- Y axis is hard for some audiences to interpret
+
+:::
+:::
+
+:::{.fragment .smaller-font}
+
+:::{column}
+<br><br>
+```{.r code-line-numbers="|4"}
+penguins |>
+  filter(species == "Adelie") |> 
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(fill = "#FF6A01", color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  theme(legend.position = "none")
+```
+
+```{r, echo=F}
+penguins |>
+  filter(species == "Adelie") |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(fill = "#FF6A01", color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length of Adelie Penguins",
+    x = "Bill Length (mm)",
+    y = "Density"
+  ) +
+  theme(legend.position = "none")
+```
+
+:::
+:::
+:::
+
+# Multiple Plots
+
+## Multiple Plots: `geom_density()`
+<hr>
+:::{.smaller-font}
+- You may want to compare distributions across groups
+
+```{.r code-line-numbers="|3"}
+penguins |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(aes(fill = species),color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))
+```
+<br>
+```{r, echo=F, fig.height=3, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm)) +
+  geom_density(aes(fill = species), color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+    x = "Bill Length (mm)",
+    y = "Density"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  )
+```
+
+:::
+
+## Multiple Plots: Ridgeline
+<hr>
+:::{.extra-small-font}
+- To increase clarity, you may want to use a ridgeline plot
+- This is a type of density plot that stacks the densities on top of each other
+- Can compare without overlap
+
+```{.r code-line-numbers="|1|4-5"}
+library(ggridges)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y=species)) +
+  geom_density_ridges(aes(fill = species),color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Bill Length (mm)",
+       y = "Density") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))
+```
+
+```{r, echo=F, fig.height=3.5, fig.width=10}
+library(ggridges)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = species)) +
+  geom_density_ridges(aes(fill = species), color = "black", alpha = .7) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+    x = "Bill Length (mm)",
+    y = "Density"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  )
+```
+
+:::
+
+## Multiple Plots: `geom_violin()`
+<hr>
+:::{.extra-small-font}
+- Think of like a mirrored density plot
+- Shows the distribution of the data
+- May suggest data exists where it doesn't
+
+```{.r code-line-numbers="|3-4"}
+penguins |>
+  ggplot(aes(x=species, y = bill_length_mm)) +
+  geom_violin(aes(fill = species),color = "black", alpha = .7) +
+  geom_jitter(width = 0.3, alpha = 0.4, color = "black", size = 1) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+       x = "Density",
+       y = "Bill Length (mm)") +
+  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))
+```
+
+```{r, echo=F, fig.height=3.5, fig.width=10}
+penguins |>
+  ggplot(aes(x = species, y = bill_length_mm)) +
+  geom_violin(aes(fill = species), color = "black", alpha = .7) +
+  geom_jitter(width = 0.3, alpha = 0.4, color = "black", size = 1) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(
+    title = "Bill Length of Chinstrap, Gentoo, & Adelie Penguins",
+    x = "Density",
+    y = "Bill Length (mm)"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  )
+```
+
+:::
+
+# Associations
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.smaller-font}
+
+```{.r}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species), alpha = .7, size=3) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species), alpha = .7, size = 3) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.smaller-font}
+- Can map an additional variable to `shape`
+
+```{.r}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape=sex), alpha = .7, size=3) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, shape = sex), alpha = .7, size = 3) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.smaller-font}
+- Can map a third variable to `shape` or `size`
+
+```{.r}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, size= body_mass_g), alpha = .7) +
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(aes(color = species, size = body_mass_g), alpha = .7) +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.extra-small-font}
+- Add a trendline, correlation coefficient, and p-value
+
+```{.r code-line-numbers="|6-7|"}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_cor()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point(aes(size = body_mass_g), alpha = .7) +
+  stat_cor() +
+  geom_smooth(method = "lm") +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.extra-small-font}
+- Add a trendline and regression equation
+
+```{.r code-line-numbers="|6-7|"}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_regline_equation()+
+  geom_smooth(method="lm")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point(aes(size = body_mass_g), alpha = .7) +
+  stat_regline_equation() +
+  geom_smooth(method = "lm") +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
+```
+:::
+
+## Scatterplot: `geom_point()`
+<hr>
+
+:::{.extra-small-font}
+- Add an overall trendline and regression equation
+
+```{.r code-line-numbers="|6-7|"}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color=species)) +
+  geom_point(aes(size=body_mass_g), alpha = .7) +
+  stat_regline_equation(aes(color=NULL))+
+  geom_smooth(aes(color=NULL), method="lm", color = "black")+
+  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
+                               "Gentoo" = "#077175",
+                               "Adelie" = "#FF6A01"))+
+  theme_minimal()+
+  labs(title = "Bill Length vs. Flipper Length of Three Penguin Species",
+       x = "Bill Length (mm)",
+       y = "Flipper Length (mm)")
+```
+
+```{r, echo=FALSE, fig.height=4, fig.width=10}
+library(ggpubr)
+
+penguins |>
+  ggplot(aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point(aes(size = body_mass_g), alpha = .7) +
+  stat_regline_equation(aes(color = NULL)) +
+  geom_smooth(aes(color = NULL), method = "lm", color = "black") +
+  scale_color_manual(
+    values = c(
+      "Chinstrap" = "#C65CCB",
+      "Gentoo" = "#077175",
+      "Adelie" = "#FF6A01"
+    )
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Bill Length vs. Flipper Length of Three Penguin Species",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  )
+```
+:::
+
+
+# Which `geom_` when?
+
+## Which `geom_` when?
+<hr>
+
+:::{.smaller-font}
+- When to use **columns or bars**?
+  - Visualizing amounts across categories
+  - *Stacking*: Useful when the sum of the amounts represented by the bars if of interest
+  - *Dodging* (grouping): Useful when we want to draw out comparisons within a category
+  - *Faceting*: Useful in similar cases as dodging
+- When to use **points**?
+  - associations between x and y (and z)
+  - certain amounts (when the bars are all similar lengths)
+  - for time-related data
+- When to use **histograms, density plots, and the like**?
+  - to visualize the distribution of data
+  - can also be used to visualize multiple distributions
+
+:::
+
+# Looking Ahead
+
+## Looking Ahead:
+<hr>
+- Readings:
+    - Wilke (2019), Chapters 13-14
+    - Skim Desbarats (2021)
+    - Skim plots in Schwabish (2021), Chapter 5
+- Weekly Assignment:
+    - Graphing Distributions and Scatterplots
+      - Note: New Data + A Little Cleaning
+
+# Stop Recording
+
+# Start New Recording
+  
+# Mini-Project #1
+
+## Mini-Project #1
+<hr>
+:::{.smaller-font}
+- Data from the U.S. News and World Report National University Rankings
+- **Step 1:** ***Explore*** <br>Think about the scavenger hunt from a few assignments ago. What variables do you have? What does each row represent?
+- **Step 2:** ***Clean*** <br>Use {dplyr} to clean the data set and prepare it for further analysis.
+- **Step 3:** ***Summarize*** <br>Wrangle the data to get it into the format needed to answer two RQs of your choosing.
+- **Step 4:** ***Visualize*** <br>Create two visualizations to answer your RQs.
+<br><br>
+**Due: October 7th, 11:59 PM**
+:::
+
+## Mini-Project #1
+<hr>
+:::{.smaller-font}
+- Rubric:
+    - Functions to explore/wrangle the data are used *correctly*
+    - Dataset has been cleaned *satisfactorily*
+    - Data wrangling answers the research questions that are posed
+    - The information each visualization conveys is clear
+    - Each viz meets the requirements set out in the `.qmd`
+        - Custom color
+        - Use a theme
+        - Use `labs` for title + axis labels
+    - Complete reflections
+    - Pose/answer at least one question in the Slack channel
+    - Posted at least one plot to gallery (discussion in Canvas)
+:::
+
+# Collaborative Work
+
+## Collaborative Work {.smaller}
+<hr>
+- Explore the mini-project together!
+- Load in the data and review it
+- Specifically, focus on:
+  - What the data looks like
+  - What the variables are
+  - The cleaning that needs to be done
+- This is a discussion (planning) session. No need to write code.
+- In whole group, we will discuss the data cleaning. Make sure one person from your group is prepared to share the data cleaning steps you discussed.
+
+# Have a Great Week!

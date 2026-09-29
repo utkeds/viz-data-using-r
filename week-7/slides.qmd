@@ -1,7 +1,7 @@
 ---
 subtitle: "Visual Storytelling: Lines and Curves"
-title: "Week 7 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 7 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -29,19 +29,74 @@ library(tidyverse)
 # library(tidykids)
 
 tidykids <- read_csv("tidykids.csv") |>
-  mutate(region = case_when(
-    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
-                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
-    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
-                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
-    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
-                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
-                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
-    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
-                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
-  ))|>
+  mutate(
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "Northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "Midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "South",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "West"
+    )
+  ) |>
   janitor::clean_names()
-
 ```
 
 # Weekly Check In/ <br>Download `.zip`
@@ -88,26 +143,27 @@ tidykids <- read_csv("tidykids.csv") |>
 
 :::
 
-# Review/ <br>Foundational Skills
+
+<!-- # Review/ <br>Foundational Skills
  
-<!-- ## A Note About Data Wrangling {.smaller}
+ ## A Note About Data Wrangling {.smaller}
 <hr>
 
-:::{.smaller-font}
-
 ```{r, echo=TRUE, fig.height=4}
-tidykids |> 
-  filter(year >= 2000, region == "Midwest") |> 
-  mutate(state = fct_reorder(state, inf_adj_perchild)) |> 
-  ggplot(aes(x=inf_adj_perchild, y=state)) +
-  geom_col(width = 0.7, fill="pink") +
+tidykids |>
+  filter(year >= 2000, region == "Midwest") |>
+  mutate(state = fct_reorder(state, inf_adj_perchild)) |>
+  ggplot(aes(x = inf_adj_perchild, y = state)) +
+  geom_col(width = 0.7, fill = "pink") +
   scale_x_continuous(labels = scales::dollar) +
-  labs(title = "Inflation-Adjusted Per-Child Spending in Midwest States after 2000",
-       x = "Inflation-Adjusted Per-Child Spending (in $1000s USD)",
-       y = "State") +
+  labs(
+    title = "Inflation-Adjusted Per-Child Spending in Midwest States after 2000",
+    x = "Inflation-Adjusted Per-Child Spending (in $1000s USD)",
+    y = "State"
+  ) +
   theme_bw()
 ```
-::: -->
+
 
 ## Having Trouble Rendering?
 <hr>
@@ -125,14 +181,25 @@ tidykids |>
 - One note:
 
 ```{r}
-rankings <- read_csv("https://raw.githubusercontent.com/utkeds/viz-data-using-r/main/week-6/us-news-rankings-2020-processed.csv")
-
-rankings |>
-  select(school, predicted_graduation_rate, actual_graduation_rate, over_underperformance) |>
-  head(5)
+rankings <- read_csv(
+  "https://raw.githubusercontent.com/utkeds/viz-data-using-r/main/week-6/us-news-rankings-2020-processed.csv"
+)
 ```
 
-# Pivoting Longer/Wider
+```{r}
+rankings |>
+  select(
+    school,
+    predicted_graduation_rate,
+    actual_graduation_rate,
+    over_underperformance
+  ) |>
+  head(5)
+``` 
+
+-->
+
+# Review/ <br>Foundational Skills
 
 ## Pivoting Longer/Wider {.smaller}
 <hr>
@@ -156,11 +223,13 @@ Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.co
     - I want my new columns to be the `expenditure` types
     - I want the values in these columns to be from `inf_adj_perchild`
 
-`original`
+
+##### Original
+
 ```{r}
-tidykids <- tidykids|>
+tidykids <- tidykids |>
   arrange(state, year)
-head(tidykids,5)
+head(tidykids, 5)
 ```
 
 ## Pivoting Longer/Wider {.smaller}
@@ -171,11 +240,11 @@ head(tidykids,5)
     - I want the values in these columns to be from `inf_adj_perchild`
 
 ```{r}
-wider_1 <- tidykids|>
+wider_1 <- tidykids |>
   select(-raw, -inf_adj) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild)
 
-head(wider_1,5)
+head(wider_1, 5)
 ```
 
 
@@ -187,9 +256,12 @@ head(wider_1,5)
   - **Example 2: ** - I kept all three `raw`, `inf_adj`, and `inf_adj_perchild` columns
 ```{r}
 wider <- tidykids |>
-  pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
+  pivot_wider(
+    names_from = expenditure,
+    values_from = c(raw, inf_adj, inf_adj_perchild)
+  )
 
-head(wider,5)
+head(wider, 5)
 ```
 
 
@@ -235,8 +307,7 @@ head(wider,5)
 :::{.smaller-font}
 ```{r}
 tidykids_tn <- tidykids |>
-  filter(state == "Tennessee",
-         expenditure == "PK12ed")
+  filter(state == "Tennessee", expenditure == "PK12ed")
 ```
 :::
 
@@ -245,7 +316,7 @@ tidykids_tn <- tidykids |>
 <br>
 ```{r, fig.height=5}
 tidykids_tn |>
-  ggplot(aes(x=as.factor(year), y=inf_adj_perchild))+
+  ggplot(aes(x = as.factor(year), y = inf_adj_perchild)) +
   geom_col()
 ```
 :::
@@ -254,7 +325,7 @@ tidykids_tn |>
 <br>
 ```{r, fig.height=5}
 tidykids_tn |>
-  ggplot(aes(x=as.factor(year), y=inf_adj_perchild))+
+  ggplot(aes(x = as.factor(year), y = inf_adj_perchild)) +
   geom_point()
 ```
 
@@ -271,7 +342,7 @@ tidykids_tn |>
 :::{.column}
 ```{r, fig.height=5}
 tidykids_tn |>
-  ggplot(aes(x=as.factor(year), y=inf_adj_perchild))+
+  ggplot(aes(x = as.factor(year), y = inf_adj_perchild)) +
   geom_point()
 ```
 :::
@@ -287,8 +358,8 @@ tidykids_tn |>
 
 ```{r, fig.height=3, fig.width=5, echo=FALSE}
 tidykids_tn |>
-  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
-  geom_line()+
+  ggplot(aes(x = as.factor(year), y = inf_adj_perchild, group = state)) +
+  geom_line() +
   geom_point() +
   theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
 ```
@@ -313,8 +384,8 @@ tidykids_tn |>
 
 ```{r, fig.height=5, echo=FALSE}
 tidykids_tn |>
-  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
-  geom_area()+
+  ggplot(aes(x = as.factor(year), y = inf_adj_perchild, group = state)) +
+  geom_area() +
   geom_point() +
   theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
 ```
@@ -331,8 +402,8 @@ tidykids_tn |>
 
 ```{r, fig.height=5, echo=FALSE}
 tidykids_tn |>
-  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
-  geom_area(alpha=.3)+
+  ggplot(aes(x = as.factor(year), y = inf_adj_perchild, group = state)) +
+  geom_area(alpha = .3) +
   geom_line() +
   theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
 ```
@@ -346,17 +417,40 @@ tidykids_tn |>
 :::{.smaller-font}
 - Time series plots can show multiple groups
 - Some wrangling:
-::::
 
 :::{.extra-small-font}
 ```{r}
 tidykids_south <- tidykids |>
-  filter(state %in% c("Tennessee", "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia", "Georgia",
-                      "Kentucky", "North Carolina", "South Carolina", "Virginia", "West Virginia"),
-         expenditure == "PK12ed")
+  filter(
+    state %in%
+      c(
+        "Tennessee",
+        "Alabama",
+        "Mississippi",
+        "Arkansas",
+        "Louisiana",
+        "Oklahoma",
+        "Texas",
+        "District of Columbia",
+        "Georgia",
+        "Kentucky",
+        "North Carolina",
+        "South Carolina",
+        "Virginia",
+        "West Virginia"
+      ),
+    expenditure == "PK12ed"
+  )
 ```
 :::
+:::
 
+
+## Time Series w/ Multiple Groups
+<hr>
+:::{.smaller-font}
+- Time series plots can show multiple groups
+:::
 :::{.columns .extra-small-font}
 :::{.column}
 <br><br>
@@ -369,8 +463,8 @@ tidykids_south |>
 
 ```{r, fig.height=5, echo=FALSE}
 tidykids_south |>
-  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
-  geom_line(aes(color=state))+
+  ggplot(aes(x = as.factor(year), y = inf_adj_perchild, group = state)) +
+  geom_line(aes(color = state)) +
   theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
 ```
 :::
@@ -390,9 +484,9 @@ tidykids_south |>
 library(gghighlight)
 
 tidykids_south |>
-  ggplot(aes(x=as.factor(year), y=inf_adj_perchild, group = state))+
-  geom_line(aes(color=state))+
-  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))+
+  ggplot(aes(x = as.factor(year), y = inf_adj_perchild, group = state)) +
+  geom_line(aes(color = state)) +
+  theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1)) +
   gghighlight(state %in% c("Tennessee", "District of Columbia"))
 ```
 :::
@@ -409,8 +503,8 @@ tidykids_south |>
 
 ```{r, fig.height=5, echo=FALSE}
 tidykids_south |>
-  ggplot(aes(x=year, y=inf_adj_perchild))+
-  geom_line()+
+  ggplot(aes(x = year, y = inf_adj_perchild)) +
+  geom_line() +
   theme(axis.text.x = element_text(size = 6, angle = 45, hjust = 1))
 ```
 
@@ -420,7 +514,7 @@ tidykids_south |>
 <hr>
 - A critical difference is between *connecting* lines and *fitted* lines, or curves
 <br><br>
-- **Connecting line**: Connects the points (slide 19 as one of several examples)
+- **Connecting line**: Connects the points (slide 17 as one of several examples)
 - **Fitted lines**: Can take different forms: linear, quadratic, interpolated using fancy math
 
 ## Fitted Lines
@@ -434,7 +528,7 @@ tidykids_south |>
 ```{r}
 tidykids_wide <- tidykids |>
   filter(year >= 2010) |>
-  select(year,state,expenditure,inf_adj_perchild) |>
+  select(year, state, expenditure, inf_adj_perchild) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild)
 ```
 :::
@@ -457,7 +551,7 @@ Quadratic Curve Using Linear Regression
 ```{r}
 tidykids_wide |>
   ggplot(aes(x = highered, y = pell)) +
-  geom_smooth(method = "lm", formula = y ~ poly (x,2), se = FALSE) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE) +
   geom_point()
 ```
 :::
@@ -562,10 +656,25 @@ tidykids_wide |>
 
 ```{r}
 tidykids_PK12ed_tnneighbors_bump <- tidykids_wide |>
-  filter(state %in% c("Tennessee", "Alabama", "Mississippi", "Arkansas","Georgia", "Kentucky", "North Carolina", "Virginia")) |>
+  filter(
+    state %in%
+      c(
+        "Tennessee",
+        "Alabama",
+        "Mississippi",
+        "Arkansas",
+        "Georgia",
+        "Kentucky",
+        "North Carolina",
+        "Virginia"
+      )
+  ) |>
   select(PK12ed, state, year) |>
   group_by(year) |>
-  mutate(rank = rank(-PK12ed),state_abbr = state.abb[match(state, state.name)]) |>
+  mutate(
+    rank = rank(-PK12ed),
+    state_abbr = state.abb[match(state, state.name)]
+  ) |>
   ungroup()
 ```
 
@@ -580,10 +689,23 @@ tidykids_PK12ed_tnneighbors_bump <- tidykids_wide |>
 ```{r, fig.height=4}
 tidykids_PK12ed_tnneighbors_bump |>
   ggplot(aes(x = year, y = rank, color = state)) +
-  geom_line(aes(group=state, color=state), linewidth = 3, show.legend = F) +
-  geom_point(fill ="#EBEBEB",shape=21, size=11) +
-  geom_text(aes(label = rank, color=state), hjust = 0.5, nudge_x = 0, size = 9, show.legend = F) +
-  geom_text(data = filter(tidykids_PK12ed_tnneighbors_bump, year == 2016), aes(label = state_abbr), nudge_x = 0.4, nudge_y = 0, size = 6, show.legend = F) +
+  geom_line(aes(group = state, color = state), linewidth = 3, show.legend = F) +
+  geom_point(fill = "#EBEBEB", shape = 21, size = 11) +
+  geom_text(
+    aes(label = rank, color = state),
+    hjust = 0.5,
+    nudge_x = 0,
+    size = 9,
+    show.legend = F
+  ) +
+  geom_text(
+    data = filter(tidykids_PK12ed_tnneighbors_bump, year == 2016),
+    aes(label = state_abbr),
+    nudge_x = 0.4,
+    nudge_y = 0,
+    size = 6,
+    show.legend = F
+  ) +
   scale_y_reverse() +
   theme(legend.position = "none")
 ```
