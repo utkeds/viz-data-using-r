@@ -1,7 +1,7 @@
 ---
 subtitle: "Themes and Colors"
-title: "Week 8 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 8 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -145,7 +145,7 @@ kable(instructors)
 
 ::::{.fragment .extra-small-font}
 ```{r, echo=F}
-kable(head(instructors,5))
+kable(head(instructors, 5))
 ```
 ::::
 
@@ -207,7 +207,7 @@ Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.co
 
 :::{.fragment .extra-small-font}
 ```{r, echo=F}
-kable(head(instructors,5))
+kable(head(instructors, 5))
 ```
 
 :::
@@ -231,10 +231,12 @@ kable(head(instructors,5))
 ::::{.fragment .smaller-font}
 ```{r}
 staff_long <- instructors |>
-  pivot_longer(cols = -year, #cols: "Which columns do I pivot?"
-               names_to = "position", #names_to: "What should I call the new column that holds the old column names?"
-               values_to = "proportion") #values_to: "What should I call the new column that holds the old values?"
-head(staff_long,10)
+  pivot_longer(
+    cols = -year, #cols: "Which columns do I pivot?"
+    names_to = "position", #names_to: "What should I call the new column that holds the old column names?"
+    values_to = "proportion"
+  ) #values_to: "What should I call the new column that holds the old values?"
+head(staff_long, 10)
 ```
 ::::
 
@@ -415,7 +417,7 @@ Check out [Erik Gahner's github page](https://github.com/erikgahner/awesome-ggpl
 my_theme <- theme(
   legend.position = "bottom",
   panel.background = element_rect(fill = "white")
-  )
+)
 p + my_theme
 ```
 
@@ -441,7 +443,7 @@ Make the title 16 point and bold
 p +
   theme(
     plot.title = element_text(face = "bold", size = 16)
-    )
+  )
 ```
 
 ## `theme()` anatomy {.smaller auto-animate="true"}
@@ -453,7 +455,7 @@ p +
   theme(
     plot.title = element_text(face = "bold", size = 16),
     legend.position = "bottom"
-    )
+  )
 ```
 
 ## `theme()` anatomy {.smaller auto-animate="true"}
@@ -466,7 +468,7 @@ p +
     plot.title = element_text(face = "bold", size = 16),
     legend.position = "bottom",
     panel.background = element_rect(fill = "white")
-    )
+  )
 ```
 
 ## `theme()` Anatomy Reference Guide
@@ -529,10 +531,12 @@ Modify multiple theme components in the same `theme()`
 
 ```{r}
 p +
-  theme(plot.title = element_text(size = 70),
-        panel.grid.major = element_line(color = "black"),
-        plot.background = element_rect(color = "red", linewidth = 2),
-        axis.title.x = element_blank())
+  theme(
+    plot.title = element_text(size = 70),
+    panel.grid.major = element_line(color = "black"),
+    plot.background = element_rect(color = "red", linewidth = 2),
+    axis.title.x = element_blank()
+  )
 ```
 
 ## Modifying theme components {.smaller}
@@ -543,10 +547,12 @@ Can also add on to an existing theme:
 #| code-line-numbers: |2
 p +
   theme_minimal() +
-  theme(plot.title = element_text(size = 70),
-        panel.grid.major = element_line(colour = "black"),
-        plot.background = element_rect(color = "red", linewidth = 2),
-        axis.title.x = element_blank())
+  theme(
+    plot.title = element_text(size = 70),
+    panel.grid.major = element_line(colour = "black"),
+    plot.background = element_rect(color = "red", linewidth = 2),
+    axis.title.x = element_blank()
+  )
 ```
 
 . . .
@@ -789,12 +795,12 @@ Why didn't this work?
 library(gt)
 
 data <- tibble::tribble(
-  ~label, ~"Discrete Variable", ~"Continuous Variable",
-  "Fill<br><i>(Background Color)</i>", 
-  "`scale_fill_viridis_d()`", 
-  "`scale_fill_viridis_c()`",
-  "Color<br><i>(Outline Color)</i>", 
-  "`scale_color_viridis_d()`", 
+  ~label                              , ~"Discrete Variable" , ~"Continuous Variable" ,
+  "Fill<br><i>(Background Color)</i>" ,
+  "`scale_fill_viridis_d()`"          ,
+  "`scale_fill_viridis_c()`"          ,
+  "Color<br><i>(Outline Color)</i>"   ,
+  "`scale_color_viridis_d()`"         ,
   "`scale_color_viridis_c()`"
 )
 
@@ -822,7 +828,12 @@ data |>
 
 ```{r}
 staff_long |>
-  ggplot(aes(x = as.integer(year), y = proportion, color = proportion, group = position)) +
+  ggplot(aes(
+    x = as.integer(year),
+    y = proportion,
+    color = proportion,
+    group = position
+  )) +
   geom_point() +
   geom_line() +
   scale_color_viridis_c()
@@ -841,10 +852,15 @@ You can specify other options for viridis, too!
 
 ```{r}
 staff_long |>
-  ggplot(aes(x = as.integer(year), y = proportion, color = proportion, group = position)) +
+  ggplot(aes(
+    x = as.integer(year),
+    y = proportion,
+    color = proportion,
+    group = position
+  )) +
   geom_point() +
   geom_line() +
-  scale_color_viridis_c(option="A")
+  scale_color_viridis_c(option = "A")
 ```
 :::
 :::
@@ -886,7 +902,7 @@ We were trying to use the function for a **continuous** palette and our data is 
 staff_long |>
   ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col() +
-  scale_fill_viridis_d(option="G")
+  scale_fill_viridis_d(option = "G")
 ```
 
 ## viridis  {.smaller auto-animate="true"}
@@ -940,12 +956,12 @@ This is a fantastic resource: <https://github.com/EmilHvitfeldt/r-color-palettes
 library(gt)
 
 data2 <- tibble::tribble(
-  ~label, ~"Discrete Variable", ~"Continuous Variable",
-  "Fill<br><i>(Background Color)</i>", 
-  "`scale_fill_paletteer_d()`", 
-  "`scale_fill_paletteer_c()`",
-  "Color<br><i>(Outline Color)</i>", 
-  "`scale_color_paletteer_d()`", 
+  ~label                              , ~"Discrete Variable" , ~"Continuous Variable" ,
+  "Fill<br><i>(Background Color)</i>" ,
+  "`scale_fill_paletteer_d()`"        ,
+  "`scale_fill_paletteer_c()`"        ,
+  "Color<br><i>(Outline Color)</i>"   ,
+  "`scale_color_paletteer_d()`"       ,
   "`scale_color_paletteer_c()`"
 )
 
