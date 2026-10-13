@@ -54,12 +54,12 @@ library(colorblindr)
 
 ```{r}
 # Read in your data
-tidykids <- read_csv("Fill Me In")
+tidykids <- read_csv("canvas-student-files/week-8/tidykids.csv")
 ```
 
 ## Step 2: Wrangle the Data and Build the Base Plots (Already Completed For You)
 
-We filter to PK12ed spending in 1997 and 2016, reshape the data so each state has one row with a column for each year, calculate the percent change between the two years (`pct_change`), and create a `region` variable. Then we build two **base plots** with no theme and the default colors. Each point is a state, and the dashed line marks "no change" (points above it spent more in 2016 than in 1997):
+We filter to PK12ed spending in 1997 and 2016, reshape the data (`pivot_wider()`) so each state has one row with a column for each year, calculate the percent change between the two years (`pct_change`), and create a `region` variable. Then we build two **base plots** with no theme and the default colors. Each point is a state, and the dashed line marks "no change" (points above it spent more in 2016 than in 1997):
 
 - `p_discrete`: points colored by `region` (a **discrete** variable)
 - `p_continuous`: points colored by `pct_change` (a **continuous** variable)
