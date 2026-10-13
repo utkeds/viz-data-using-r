@@ -1210,7 +1210,7 @@ Why didn't it work?
 
 ## viridis {.smaller}
 <hr>
-We were trying to use the function for a **continuous** palette and our data (`position`) is **discrete**.
+We were trying to use the function for a **continuous** palette and our mapped variable (`position`) is **discrete**.
 
 ```{r}
 #| code-line-numbers: "|4"
