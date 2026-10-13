@@ -54,15 +54,15 @@ library(colorblindr)
 
 ```{r}
 # Read in your data
-tidykids <- read_csv("canvas-student-files/week-8/tidykids.csv")
+tidykids <- read_csv("Fill Me In")
 ```
 
-## Step 2: Wrangle the Data and Build the Base Plots (Already Completed For You)
+## Step 2: Wrangle the Data and Build the Base Plots (Already Completed For You - Just Run the Cells)
 
 We filter to PK12ed spending in 1997 and 2016, reshape the data (`pivot_wider()`) so each state has one row with a column for each year, calculate the percent change between the two years (`pct_change`), and create a `region` variable. Then we build two **base plots** with no theme and the default colors. Each point is a state, and the dashed line marks "no change" (points above it spent more in 2016 than in 1997):
 
-- `p_discrete`: points colored by `region` (a **discrete** variable)
-- `p_continuous`: points colored by `pct_change` (a **continuous** variable)
+- `p_discrete`: points colored (mapped) by `region` (a **discrete** variable)
+- `p_continuous`: points colored (mapped) by `pct_change` (a **continuous** variable)
 
 ```{r wrangle}
 tidykids_plot <- tidykids |>
@@ -143,7 +143,7 @@ tidykids_plot <- tidykids |>
   )
 ```
 
-```{r base_plots}
+```{r two_base_plots}
 p_discrete <- tidykids_plot |>
   ggplot(aes(x = spend_1997, y = spend_2016, color = region)) +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
@@ -171,16 +171,21 @@ p_continuous <- tidykids_plot |>
     y = "2016 Spending per Child (inflation-adjusted USD)",
     color = "% change"
   )
+```
 
+```{r discrete_mapping}
 p_discrete
+```
+
+```{r continuous_mapping}
 p_continuous
 ```
 
 ## Step 3: Apply a Theme and Customize It (Plot A)
 
-**Part 1: Pick a theme.** Choose **at least one** theme from {ggthemes}, {pilot}, or {hrbrthemes} and add it to `p_discrete`. Try a couple! Then keep the one you like best for the rest of the activity.
+**Part 1: Pick a theme.** Choose a theme from {ggthemes}, {pilot}, or {hrbrthemes} and add it to `p_discrete`. Try several! Then keep the one you like best (in Step3, Part 3) for the rest of the activity.
 
-Some options from [{ggthemes}](https://jrnold.github.io/ggthemes/): `theme_tufte()`, `theme_solarized()`, `theme_excel()`
+Some options from [{ggthemes}](https://jrnold.github.io/ggthemes/): `theme_tufte()`, `theme_solarized()`, `theme_excel()`, and more!
 
 Some options from [{pilot}](https://github.com/olihawkins/pilot): `theme_pilot()`
 
@@ -190,9 +195,9 @@ Some options from [{hrbrthemes}](https://github.com/hrbrmstr/hrbrthemes):`theme_
 
 ```{r try_themes}
 # Try adding one or more themes to p_discrete and p_continuous here. Which one do you like best?
-# Don't store anything to the plots yet. You'll choose your favorite theme and do that below. For now, think of this as an experimental code block!
+# Don't store anything to the plots yet. You'll choose your favorite theme and do that below. For now, think of this as an experimental/sandbox code block! One example is done below.
 
-# Ex: p_discrete + theme_tufte()
+# p_discrete + theme_tufte()
 
 ```
 
@@ -204,6 +209,11 @@ Some options from [{hrbrthemes}](https://github.com/hrbrmstr/hrbrthemes):`theme_
 - Change the plot background to a color of your choosing
 - Change the major gridlines to a color of your choosing
 
+Resources you may need:
+
+- [`theme()` cheatsheet](https://bookdown.org/alapo/learnr/images/ggplot_elements2.png)
+- [`theme()` documentation](https://ggplot2.tidyverse.org/reference/theme)
+
 *Hint:* you will want `legend.position`, `panel.grid.minor`, `plot.background`, and `panel.grid.major`.
 
 ```{r my_theme}
@@ -213,7 +223,7 @@ my_theme <- theme(
 )
 ```
 
-**Part 3: Put it together.** Add your theme (Step 3, Part 1) and then `my_theme` (Step 3, Part 2) to `p_discrete`, and save the result as `plot_a`.
+**Part 3: Put it together.** Add your favorite theme (Step 3, Part 1) and then `my_theme` customizations (Step 3, Part 2) to `p_discrete`, and store the result as `plot_a`.
 
 ```{r plot_a}
 # plot_a <- p_discrete + ______ + my_theme
@@ -227,7 +237,7 @@ my_theme <- theme(
 
 ## Step 4: Apply a Discrete Color Palette (Plot B)
 
-Now let's override the default colors on `plot_a`. Choose **one**:
+Now let's override the default colors on `plot_a`. Choose **one** palette (but feel free to explore multiple):
 
 - {MetBrewer}: `scale_color_manual(values = met.brewer("PaletteName"))`
 - viridis: `scale_color_viridis_d(option = "...")`
@@ -250,11 +260,11 @@ Store your result as `plot_b`.
 Run `plot_a` (default colors) and `plot_b` (your palette) through `cvd_grid()`. This shows how each plot looks to people with different types of color vision deficiency.
 
 ```{r cvd_a, fig.width=10, fig.height=7}
-# cvd_grid(plot_a)
+
 ```
 
 ```{r cvd_b, fig.width=10, fig.height=7}
-# cvd_grid(plot_b)
+
 ```
 
 ## Step 6 (Stretch): Apply a Continuous Color Palette (Plot C)
@@ -268,7 +278,7 @@ This time, start from `p_continuous` (color is mapped to `pct_change`, a continu
 ```
 
 ```{r cvd_c, fig.width=10, fig.height=7}
-# cvd_grid(plot_c)
+
 ```
 
 ## Step 7: Discuss and Decide

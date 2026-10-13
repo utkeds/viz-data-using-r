@@ -1456,7 +1456,7 @@ Some color palettes also consider accessibility:
 Little different today:lighter coding, more exploring of documentation and what themes/palettes look like. You will make three plots/ test them for accessibility.
 
 - Step 1: Read in data, install/load packages
-- Step 2 (plots): Done for you! Run the 2 cells.
+- Step 2 (plots): Done for you! Run the 4 cells.
 - Step 3+: Get started with theme/palette adjustments. 
 
 **Protocol:**
