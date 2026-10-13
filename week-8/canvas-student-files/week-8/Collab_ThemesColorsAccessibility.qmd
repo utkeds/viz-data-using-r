@@ -1,0 +1,305 @@
+---
+title: "Themes, Colors, and Accessibility: Per-Child Spending Growth by State"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+    error: true
+---
+
+## Introduction
+
+In this activity, you will take a scatterplot comparing each state's per-child PreK-12 spending in 1997 to its spending in 2016 (the `tidykids` dataset) and work through three things we covered today:
+
+1. **Theme:** apply a theme from a theme package, then customize it with `theme()`
+2. **Color:** apply a discrete palette and (if time allows) a continuous palette
+3. **Accessibility:** run your plots through {colorblindr} and decide what/if you would change for accessibility
+
+The data wrangling and the base plots are **already done for you**. Step 1 is setup, Step 2 is done for you, Step 3 is where the assignment really begins!
+
+Resources you will/may need:
+
+- [`theme()` cheatsheet](https://bookdown.org/alapo/learnr/images/ggplot_elements2.png)
+- [`theme()` documentation](https://ggplot2.tidyverse.org/reference/theme)
+- [{ggthemes}](https://jrnold.github.io/ggthemes/), [{pilot}](https://github.com/olihawkins/pilot), [{hrbrthemes}](https://github.com/hrbrmstr/hrbrthemes)
+- [MetBrewer documentation](https://github.com/BlakeRMills/MetBrewer)
+- [viridis documentation](https://ggplot2.tidyverse.org/reference/scale_viridis.html)
+- [{colorblindr}](https://github.com/clauswilke/colorblindr)
+
+## Step 1: Load Libraries and Data
+
+Not every package is on CRAN! {pilot} and {colorblindr} are installed from GitHub with `{remotes}`. If you do not have them yet, run the commented lines **once** in your console (not in this document).
+
+```{r setup}
+# Run these once in the console if needed:
+# install.packages("remotes")
+# install.packages("ggthemes")
+# install.packages("hrbrthemes")
+# install.packages("MetBrewer")
+# remotes::install_github("olihawkins/pilot")
+# remotes::install_github("clauswilke/colorblindr")
+
+# Required: {tidyverse} (reading and wrangling) and {colorblindr} (Step 5). Everything else is your choice.
+library(tidyverse)
+library(colorblindr)
+#library(ggthemes)
+#library(pilot)
+#library(hrbrthemes)
+#library(MetBrewer)
+```
+
+```{r}
+# Read in your data
+tidykids <- read_csv("Fill Me In")
+```
+
+## Step 2: Wrangle the Data and Build the Base Plots (Already Completed For You)
+
+We filter to PK12ed spending in 1997 and 2016, reshape the data so each state has one row with a column for each year, calculate the percent change between the two years (`pct_change`), and create a `region` variable. Then we build two **base plots** with no theme and the default colors. Each point is a state, and the dashed line marks "no change" (points above it spent more in 2016 than in 1997):
+
+- `p_discrete`: points colored by `region` (a **discrete** variable)
+- `p_continuous`: points colored by `pct_change` (a **continuous** variable)
+
+```{r wrangle}
+tidykids_plot <- tidykids |>
+  filter(expenditure == "PK12ed", year %in% c(1997, 2016)) |>
+  select(state, year, inf_adj_perchild) |>
+  pivot_wider(
+    names_from = year,
+    values_from = inf_adj_perchild,
+    names_prefix = "spend_"
+  ) |>
+  mutate(
+    pct_change = (spend_2016 - spend_1997) / spend_1997 * 100,
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "Northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "Midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "South",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "West"
+    )
+  )
+```
+
+```{r base_plots}
+p_discrete <- tidykids_plot |>
+  ggplot(aes(x = spend_1997, y = spend_2016, color = region)) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  geom_point(size = 3) +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::dollar) +
+  labs(
+    title = "Per-Child PreK-12 Spending, 1997 vs. 2016",
+    subtitle = "Each point is a state. The dashed line marks no change.",
+    x = "1997 Spending per Child (inflation-adjusted USD)",
+    y = "2016 Spending per Child (inflation-adjusted USD)",
+    color = "Region"
+  )
+
+p_continuous <- tidykids_plot |>
+  ggplot(aes(x = spend_1997, y = spend_2016, color = pct_change)) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  geom_point(size = 3) +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::dollar) +
+  labs(
+    title = "Per-Child PreK-12 Spending, 1997 vs. 2016",
+    subtitle = "Each point is a state. The dashed line marks no change.",
+    x = "1997 Spending per Child (inflation-adjusted USD)",
+    y = "2016 Spending per Child (inflation-adjusted USD)",
+    color = "% change"
+  )
+
+p_discrete
+p_continuous
+```
+
+## Step 3: Apply a Theme and Customize It (Plot A)
+
+**Part 1: Pick a theme.** Choose **at least one** theme from {ggthemes}, {pilot}, or {hrbrthemes} and add it to `p_discrete`. Try a couple! Then keep the one you like best for the rest of the activity.
+
+Some options from [{ggthemes}](https://jrnold.github.io/ggthemes/): `theme_tufte()`, `theme_solarized()`, `theme_excel()`
+
+Some options from [{pilot}](https://github.com/olihawkins/pilot): `theme_pilot()`
+
+Some options from [{hrbrthemes}](https://github.com/hrbrmstr/hrbrthemes):`theme_ipsum()`, `theme_ipsum_archivo()`, `theme_ipsum_es()`, `theme_ipsum_gs()`, `theme_ipsum_ps()`, `theme_ipsum_pub()`, `theme_ipsum_rc()`, `theme_ipsum_tw()`, `theme_modern_rc()`, `theme_ft_rc()`
+
+> *Note:* `theme_ipsum_*()` requires the font you choose to be installed on your system. If you get font warnings, use `theme_ipsum()` or a different `theme_ipsum_*()` choice instead.
+
+```{r try_themes}
+# Try adding one or more themes to p_discrete and p_continuous here. Which one do you like best?
+# Don't store anything to the plots yet. You'll choose your favorite theme and do that below. For now, think of this as an experimental code block!
+
+# Ex: p_discrete + theme_tufte()
+
+```
+
+**Part 2: Customize with `theme()`.** Store your customizations in an object called `my_theme` so we can reuse it later. I filled in the first one as an example. Add the rest:
+
+- Make the title size 18 and bold *(done for you)*
+- Move the legend to the bottom of the plot
+- Remove the minor gridlines
+- Change the plot background to a color of your choosing
+- Change the major gridlines to a color of your choosing
+
+*Hint:* you will want `legend.position`, `panel.grid.minor`, `plot.background`, and `panel.grid.major`.
+
+```{r my_theme}
+my_theme <- theme(
+  plot.title = element_text(size = 18, face = "bold")
+  # Add your changes here (don't forget the commas!)
+)
+```
+
+**Part 3: Put it together.** Add your theme (Step 3, Part 1) and then `my_theme` (Step 3, Part 2) to `p_discrete`, and save the result as `plot_a`.
+
+```{r plot_a}
+# plot_a <- p_discrete + ______ + my_theme
+
+# plot_a
+```
+
+*Order matters!* `my_theme` goes **after** the pre-built theme. What would happen if you flipped them? Try it and see.
+
+**[Response Here]**
+
+## Step 4: Apply a Discrete Color Palette (Plot B)
+
+Now let's override the default colors on `plot_a`. Choose **one**:
+
+- {MetBrewer}: `scale_color_manual(values = met.brewer("PaletteName"))`
+- viridis: `scale_color_viridis_d(option = "...")`
+- {ggthemes}: [several options](https://jrnold.github.io/ggthemes/): most themes ship with corresponding color palette
+- {pilot}: has `scale_color_pilot()`
+- {hrbrthemes}: has `scale_color_ipsum()`,`scale_color_ft()`, `scale_color_bit12()`
+
+**Try Several:** apply several, but in the end, choose one.
+
+Store your result as `plot_b`.
+
+```{r plot_b}
+# plot_b <- plot_a + ______
+
+# plot_b
+```
+
+## Step 5: Accessibility Check on Plots A and B
+
+Run `plot_a` (default colors) and `plot_b` (your palette) through `cvd_grid()`. This shows how each plot looks to people with different types of color vision deficiency.
+
+```{r cvd_a, fig.width=10, fig.height=7}
+# cvd_grid(plot_a)
+```
+
+```{r cvd_b, fig.width=10, fig.height=7}
+# cvd_grid(plot_b)
+```
+
+## Step 6 (Stretch): Apply a Continuous Color Palette (Plot C)
+
+This time, start from `p_continuous` (color is mapped to `pct_change`, a continuous variable). Add your same theme and `my_theme`, then add a **continuous** viridis palette using `scale_color_viridis_c()`. Try different `option`s (A-H) and pick one. Save the result as `plot_c`, then run it through `cvd_grid()`.
+
+```{r plot_c}
+# plot_c <- p_continuous + ______ + my_theme + ______
+
+# plot_c
+```
+
+```{r cvd_c, fig.width=10, fig.height=7}
+# cvd_grid(plot_c)
+```
+
+## Step 7: Discuss and Decide
+
+Talk with your group, then write a short response to each question. **Everyone should be able to point to something specific on the plots.**
+
+**1. Which plot (A, B, or C if you did it) is hardest to read in the `cvd_grid()` output? Which panel (deuteranomaly, protanomaly, tritanomaly, desaturated) is the worst for it, and why?**
+
+*Your response:*
+
+
+**2. Which plot would you choose to share with an audience, and why?**
+
+*Your response:*
+
+
+**3. Name at least one specific tweak you would make to improve accessibility (e.g., a different palette or `option`, larger points, different point shapes with `shape = region`, direct labels instead of a legend, a lighter background). Why would it help?**
+
+*Your response:*
+
+
+## Bonus: Test Your Tweak
+
+If you have time, make the tweak you described in question 3. Save the new plot as `plot_fixed` and run it through `cvd_grid()`. Did it help?
+
+```{r plot_fixed}
+# plot_fixed <- plot_? + ______
+
+# plot_fixed
+```
+
+```{r cvd_fixed, fig.width=10, fig.height=7}
+# cvd_grid(plot_fixed)
+```

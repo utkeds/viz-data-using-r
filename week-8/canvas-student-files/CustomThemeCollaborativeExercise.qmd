@@ -38,18 +38,73 @@ Wrangle the data to keep the `year`, `state`, `expenditure`, and `inf_adj_perchi
 ```{r region_var}
 
 tidykids <- tidykids |>
-  mutate(region = case_when(
-      state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
-                  "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
-      state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
-                  "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
-      state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
-                  "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
-                  "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "South",
-      state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
-                  "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "West"
-    ))
-
+  mutate(
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "Northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "Midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "South",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "West"
+    )
+  )
 ```
 
 ```{r wrangling}
@@ -64,13 +119,20 @@ Create a line plot that shows the `inf_adj_perchild` spending over time for all 
 
 ```{r plot_1}
 p1 <- tidykids_plot |>
-  ggplot(aes(x = as.integer(year), y = inf_adj_perchild*1000, color = region, group = state)) +
+  ggplot(aes(
+    x = as.integer(year),
+    y = inf_adj_perchild * 1000,
+    color = region,
+    group = state
+  )) +
   geom_line() +
-  scale_y_continuous(labels =scales::dollar) +
-  labs(title = "Inflation-Adjusted Per-Child Spending on PreK-12 Education",
-   x = "Year",
-   y = "Inflation-Adjusted Per-Child Spending (USD)",
-   color = "Region") +
+  scale_y_continuous(labels = scales::dollar) +
+  labs(
+    title = "Inflation-Adjusted Per-Child Spending on PreK-12 Education",
+    x = "Year",
+    y = "Inflation-Adjusted Per-Child Spending (USD)",
+    color = "Region"
+  ) +
   facet_wrap(~region)
 
 
@@ -79,13 +141,20 @@ p1
 
 ```{r plot_2}
 p2 <- tidykids_plot |>
-  ggplot(aes(x = as.integer(year), y = inf_adj_perchild*1000, color = inf_adj_perchild*1000, group = state)) +
+  ggplot(aes(
+    x = as.integer(year),
+    y = inf_adj_perchild * 1000,
+    color = inf_adj_perchild * 1000,
+    group = state
+  )) +
   geom_line() +
-  scale_y_continuous(labels =scales::dollar) +
-  labs(title = "Inflation-Adjusted Per-Child Spending on PreK-12 Education",
-   x = "Year",
-   y = "Inflation-Adjusted Per-Child Spending (USD)",
-   color = "USD") +
+  scale_y_continuous(labels = scales::dollar) +
+  labs(
+    title = "Inflation-Adjusted Per-Child Spending on PreK-12 Education",
+    x = "Year",
+    y = "Inflation-Adjusted Per-Child Spending (USD)",
+    color = "USD"
+  ) +
   facet_wrap(~region)
 
 
@@ -140,7 +209,7 @@ my_theme <- theme(
 )
 ```
 
-## Step 6: Finalize the Plot
+## Step 7: Finalize the Plot
 
 Let's combine everything into final plots. This may not look fantastic, depending on the combination of the theme package you chose plus the palette plus the specific asks in part 6, but the point is that you were able to make these changes! Create a code chunk below and add your `p1_palette + my_theme` and `p2_palette + my_theme` plots to `p1_final` and `p2_final`. Call `p1_final` and `p2_final` to see your final plots.
 

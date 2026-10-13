@@ -1344,7 +1344,7 @@ staff_long |>
 
 ```{r}
 #| out-width: "80%"
-#install.packages("colorblindr")
+#remotes::install_github("clauswilke/colorblindr")
 library(colorblindr)
 
 #Using our plot `p`
