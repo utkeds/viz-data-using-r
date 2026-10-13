@@ -472,6 +472,7 @@ head(staff_long, 10)
 ## Review: Line Plots {.smaller}
 <hr>
 - **Note:** I am storing this plot to `p`
+
 ```{r}
 p <- staff_long |>
   ggplot(aes(x = year, y = percentage, color = position, group = position)) +
@@ -629,6 +630,88 @@ library(hrbrthemes)
 p + theme_ipsum_rc() #ipsum is base theme, rc is font
 ```
 
+## Best Theme Ever?
+<hr>
+In chat, which of these would you use for your work?
+
+```{r, echo=F}
+library(tidyverse)
+library(gt)
+library(ggthemes) # tufte, solarized, excel, economist, wsj
+library(pilot) # theme_pilot
+library(hrbrthemes) # theme_ipsum
+
+# 1. One small base plot (your line plot). No legend, short labels, so
+#    thumbnails stay readable.
+p_base <- staff_long |>
+  ggplot(aes(x = year, y = percentage, color = position, group = position)) +
+  geom_line(linewidth = 1) +
+  labs(title = "Plot title", x = "x axis", y = "y axis")
+
+# Apply a theme, then drop the legend (it has to come AFTER the theme)
+preview <- function(th) p_base + th + theme(legend.position = "none")
+
+previews <- list(
+  A = preview(theme_tufte()),
+  B = preview(theme_solarized()),
+  C = preview(theme_excel()),
+  D = preview(theme_pilot()),
+  E = preview(theme_ipsum()), # needs the Arial Narrow font; see note below
+  F = preview(theme_economist()),
+  G = preview(theme_wsj())
+)
+
+# 2. Save each preview as a small PNG (4 x 2.7 in, so text scales sensibly)
+dir.create("theme_previews", showWarnings = FALSE)
+files <- map_chr(names(previews), \(id) {
+  f <- file.path("theme_previews", paste0(id, ".png"))
+  ggsave(f, previews[[id]], width = 4, height = 2.7, dpi = 150)
+  f
+})
+
+# 3. Labels (change the letters or order here if you like)
+labels <- c(
+  "A. theme_tufte()",
+  "B. theme_solarized()",
+  "C. theme_excel()",
+  "D. theme_pilot()",
+  "E. theme_ipsum()",
+  "F. theme_economist()",
+  "G. theme_wsj()",
+  "H. None of these are exactly what I want for my work"
+)
+
+# 4. A 4-column grid: label row, image row, label row, image row
+tbl <- tibble(
+  c1 = c(labels[1], files[1], labels[5], files[5]),
+  c2 = c(labels[2], files[2], labels[6], files[6]),
+  c3 = c(labels[3], files[3], labels[7], files[7]),
+  c4 = c(labels[4], files[4], labels[8], "") # H has no picture
+)
+
+gt(tbl) |>
+  fmt_image(columns = c1:c3, rows = c(2, 4), height = px(150)) |>
+  fmt_image(columns = c4, rows = 2, height = px(150)) |>
+  tab_style(
+    style = cell_text(weight = "bold", size = px(18), align = "center"),
+    locations = cells_body(rows = c(1, 3))
+  ) |>
+  tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_body(rows = c(2, 4))
+  ) |>
+  tab_options(
+    column_labels.hidden = TRUE,
+    table.width = pct(100),
+    table_body.hlines.style = "none",
+    table_body.vlines.style = "none"
+  )
+
+# Notes
+# - If thumbnails look too small on a slide, raise `height = px(150)` (all three
+#   fmt_image() calls), or split the table into two slides (A-D, then E-H).
+# - If theme_ipsum() throws font warnings, swap in theme_ipsum_rc() or drop it.
+```
 
 # Custom Themes
 
@@ -1359,6 +1442,7 @@ Some color palettes also consider accessibility:
 
 * {viridis} is designed to be perceptually uniform (visually consistent change in color + accessible)
 * {RColorBrewer} has colorblind-friendly palettes
+* {colorspace} also a good option
 * [{MetBrewer}](https://github.com/BlakeRMills/MetBrewer) has colorblind-friendly palettes
 * {Paletteer}'s [website](https://r-graph-gallery.com/color-palette-finder) help you visualize palettes to approximate effects of colorblindness
 * Accessible Custom Color Palette Generator: [https://venngage.com/tools/accessible-color-palette-generator](https://venngage.com/tools/accessible-color-palette-generator)
@@ -1367,6 +1451,8 @@ Some color palettes also consider accessibility:
 
 ## Collaborative Practice
 <hr>
+Little different today - lighter coding, more exploring of documentation/what themes/palettes look like
+
 - Launch into breakout rooms.
 - Cameras off: 3-5 min to review task
 - Cameras on: collaborative task work
