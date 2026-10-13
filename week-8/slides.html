@@ -99,7 +99,7 @@
     code span.vs { color: #4e9a06; } /* VerbatimString */
     code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-52399d9833641d7984214112e248f81f.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-81a985afae02964c7c9a7c1e9eefa65b.css">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -222,14 +222,12 @@ Dr.&nbsp;Kelly Boles
 <section id="todays-agenda" class="slide level2">
 <h2>Today’s Agenda</h2>
 <hr>
-<div class="extra-small-font">
+<div class="smaller-font">
 <ul>
 <li><strong>Weekly Check In</strong></li>
-<li><strong>Where Are We?</strong></li>
 <li><strong>Foundational Skills</strong>
 <ul>
-<li>CRAN vs.&nbsp;remotes</li>
-<li><code>pivot_longer</code></li>
+<li>CRAN vs.&nbsp;{remotes}</li>
 </ul></li>
 <li><strong>Themes</strong>
 <ul>
@@ -295,414 +293,79 @@ Dr.&nbsp;Kelly Boles
 <section>
 <section id="review-foundational-skills" class="title-slide slide level1 center">
 <h1>Review/ <br>Foundational Skills</h1>
+<!-- ## Cleaning the data {.smaller}
+<hr>
+- Let's talk a bit about cleaning data
+  - Some cleaning steps we would do at first to "clean up" the dataset
+    - Remove the erroneous values in `public_private'
+    - Separate the `sat_act` variables into separate variables (different ways to do this)
+    - Remove the meaningless rows (e.g. extra rows in middle of the dataset)
+  - We would not want to `filter(!is.na(x))` for every variable at the beginning of the analysis (or use other code that does the same thing, like `complete.cases()`)
 
+  ***WHY?*** -->
 </section>
-<section id="cleaning-the-data" class="slide level2 smaller">
-<h2>Cleaning the data</h2>
+<section id="cran-install.packages" class="slide level2">
+<h2>CRAN &amp; install.packages()</h2>
 <hr>
+<div class="smaller-font tight-lines">
 <ul>
-<li>Let’s talk a bit about cleaning data
+<li>Most packages are downloadable from CRAN
 <ul>
-<li>Some cleaning steps we would do at first to “clean up” the dataset
+<li>“Comprehensive R Archive Network”</li>
+<li>Hosts thousands of packages
 <ul>
-<li>Remove the erroneous values in `public_private’</li>
-<li>Separate the <code>sat_act</code> variables into separate variables (different ways to do this)</li>
-<li>Remove the meaningless rows (e.g.&nbsp;extra rows in middle of the dataset)</li>
+<li>Quality checks</li>
+<li>Version control</li>
 </ul></li>
-<li>We would not want to <code>filter(!is.na(x))</code> for every variable at the beginning of the analysis (or use other code that does the same thing, like <code>complete.cases()</code>)</li>
+</ul></li>
 </ul>
-<strong><em>WHY?</em></strong></li>
-</ul>
-</section>
-<section id="cran-vs.-remotes" class="slide level2">
-<h2>CRAN vs.&nbsp;remotes</h2>
-<hr>
-<ul>
-<li>Most packages are downloadable from CRAN but not all</li>
-</ul>
+</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a><span class="co">#install.packages("tidyverse")</span></span>
 <span id="cb1-2"><a href="" aria-label="2"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="" aria-label="3"></a></span>
 <span id="cb1-4"><a href="" aria-label="4"></a><span class="co">#install.packages("remotes")</span></span>
-<span id="cb1-5"><a href="" aria-label="5"></a><span class="fu">library</span>(remotes)</span>
-<span id="cb1-6"><a href="" aria-label="6"></a><span class="co">#install_github("tidyverse/dsbox")</span></span>
-<span id="cb1-7"><a href="" aria-label="7"></a><span class="fu">library</span>(dsbox)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="" aria-label="5"></a><span class="fu">library</span>(remotes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="smaller-font quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
 <div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
-<li><code>tidyverse</code> is on CRAN</li>
-<li><code>remotes</code> is a package on CRAN that allows you to install packages from elsewhere</li>
+<li>{tidyverse} is on CRAN</li>
+<li>{remotes} is also a package on CRAN</li>
 </ul>
 </div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+</div>
+</div>
+</section>
+<section id="remotes-install_" class="slide level2">
+<h2>{remotes} &amp; install_*()</h2>
+<hr>
+<div class="smaller-font">
 <ul>
-<li><code>dsbox</code> is not on CRAN but is downloadable from GitHub</li>
-<li>We will use the <code>install_github()</code> function from <code>remotes</code> to install <code>dsbox</code></li>
+<li>Not all packages are downloadable from CRAN</li>
+<li>{remotes} helps us install the ones that aren’t</li>
 </ul>
 </div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-label="1"></a><span class="co">#remotes::install_github("tidyverse/dsbox")</span></span>
+<span id="cb2-2"><a href="" aria-label="2"></a><span class="fu">library</span>(dsbox)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="smaller-font">
+<ul>
+<li>{dsbox} is not on CRAN but is downloadable from GitHub</li>
+<li>We will use the <code>install_github()</code> function from {remotes} to install {dsbox}</li>
+</ul>
 </div>
 </section>
 <section id="new-data-today-aaup" class="slide level2">
 <h2>New data today = AAUP</h2>
 <hr>
 <div class="smaller-font">
-<p>The American Association of University Professors (AAUP) is a nonprofit membership association of faculty and other academic professionals. This report compiled by the AAUP shows trends in instructional staff as a proportion of employees between 1975 and 2011.</p>
+<p>The American Association of University Professors (AAUP) is a nonprofit membership association of faculty and other academic professionals. This report compiled by the AAUP shows trends in instructional staff as a percentage of employees between 1975 and 2011.</p>
 </div>
-<div class="fragment extra-small-font">
 <div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 18%">
-<col style="width: 23%">
-<col style="width: 28%">
-<col style="width: 10%">
-<col style="width: 13%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">year</th>
-<th style="text-align: right;">full_time_tenured</th>
-<th style="text-align: right;">full_time_tenure_track</th>
-<th style="text-align: right;">full_time_non_tenure_track</th>
-<th style="text-align: right;">part_time</th>
-<th style="text-align: right;">grad_student</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1975</td>
-<td style="text-align: right;">29.0</td>
-<td style="text-align: right;">16.1</td>
-<td style="text-align: right;">10.3</td>
-<td style="text-align: right;">24.0</td>
-<td style="text-align: right;">20.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1989</td>
-<td style="text-align: right;">27.6</td>
-<td style="text-align: right;">11.4</td>
-<td style="text-align: right;">14.1</td>
-<td style="text-align: right;">30.4</td>
-<td style="text-align: right;">16.5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1993</td>
-<td style="text-align: right;">25.0</td>
-<td style="text-align: right;">10.2</td>
-<td style="text-align: right;">13.6</td>
-<td style="text-align: right;">33.1</td>
-<td style="text-align: right;">18.1</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1995</td>
-<td style="text-align: right;">24.8</td>
-<td style="text-align: right;">9.6</td>
-<td style="text-align: right;">13.6</td>
-<td style="text-align: right;">33.2</td>
-<td style="text-align: right;">18.8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1999</td>
-<td style="text-align: right;">21.8</td>
-<td style="text-align: right;">8.9</td>
-<td style="text-align: right;">15.2</td>
-<td style="text-align: right;">35.5</td>
-<td style="text-align: right;">18.7</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2001</td>
-<td style="text-align: right;">20.3</td>
-<td style="text-align: right;">9.2</td>
-<td style="text-align: right;">15.5</td>
-<td style="text-align: right;">36.0</td>
-<td style="text-align: right;">19.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2003</td>
-<td style="text-align: right;">19.3</td>
-<td style="text-align: right;">8.8</td>
-<td style="text-align: right;">15.0</td>
-<td style="text-align: right;">37.0</td>
-<td style="text-align: right;">20.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2005</td>
-<td style="text-align: right;">17.8</td>
-<td style="text-align: right;">8.2</td>
-<td style="text-align: right;">14.8</td>
-<td style="text-align: right;">39.3</td>
-<td style="text-align: right;">19.9</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2007</td>
-<td style="text-align: right;">17.2</td>
-<td style="text-align: right;">8.0</td>
-<td style="text-align: right;">14.9</td>
-<td style="text-align: right;">40.5</td>
-<td style="text-align: right;">19.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2009</td>
-<td style="text-align: right;">16.8</td>
-<td style="text-align: right;">7.6</td>
-<td style="text-align: right;">15.1</td>
-<td style="text-align: right;">41.1</td>
-<td style="text-align: right;">19.4</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2011</td>
-<td style="text-align: right;">16.7</td>
-<td style="text-align: right;">7.4</td>
-<td style="text-align: right;">15.4</td>
-<td style="text-align: right;">41.3</td>
-<td style="text-align: right;">19.3</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="tidy-data-pivot_longer" class="slide level2">
-<h2>tidy data &amp; <code>pivot_longer</code></h2>
-<hr>
-<div class="smaller-font">
-<p><strong>Requirements for tidy data:</strong></p>
-<ol type="1">
-<li>Each variable forms a column</li>
-<li>Each observation forms a row</li>
-<li>Each value forms a cell</li>
-</ol>
-<div class="fragment">
-<p><strong>Question</strong>: Is this data in tidy format? Why or why not?</p>
-</div>
-</div>
-<div class="fragment extra-small-font">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 18%">
-<col style="width: 23%">
-<col style="width: 28%">
-<col style="width: 10%">
-<col style="width: 13%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">year</th>
-<th style="text-align: right;">full_time_tenured</th>
-<th style="text-align: right;">full_time_tenure_track</th>
-<th style="text-align: right;">full_time_non_tenure_track</th>
-<th style="text-align: right;">part_time</th>
-<th style="text-align: right;">grad_student</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1975</td>
-<td style="text-align: right;">29.0</td>
-<td style="text-align: right;">16.1</td>
-<td style="text-align: right;">10.3</td>
-<td style="text-align: right;">24.0</td>
-<td style="text-align: right;">20.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1989</td>
-<td style="text-align: right;">27.6</td>
-<td style="text-align: right;">11.4</td>
-<td style="text-align: right;">14.1</td>
-<td style="text-align: right;">30.4</td>
-<td style="text-align: right;">16.5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1993</td>
-<td style="text-align: right;">25.0</td>
-<td style="text-align: right;">10.2</td>
-<td style="text-align: right;">13.6</td>
-<td style="text-align: right;">33.1</td>
-<td style="text-align: right;">18.1</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1995</td>
-<td style="text-align: right;">24.8</td>
-<td style="text-align: right;">9.6</td>
-<td style="text-align: right;">13.6</td>
-<td style="text-align: right;">33.2</td>
-<td style="text-align: right;">18.8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1999</td>
-<td style="text-align: right;">21.8</td>
-<td style="text-align: right;">8.9</td>
-<td style="text-align: right;">15.2</td>
-<td style="text-align: right;">35.5</td>
-<td style="text-align: right;">18.7</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="tidy-data-pivot_longer-1" class="slide level2">
-<h2>tidy data &amp; <code>pivot_longer</code></h2>
-<hr>
-<div class="smaller-font">
-<p><strong>Requirements for tidy data:</strong></p>
-<ol type="1">
-<li>Each variable forms a column</li>
-<li>Each observation forms a row</li>
-<li>Each value forms a cell</li>
-</ol>
-<div class="fragment">
-<p><strong>Answer</strong>: No:</p>
-<ul>
-<li><em>Violates #1</em>. The column names (except year) are position types, which should be values in a column.</li>
-<li><em>Violates #2</em>. Each row has multiple observations for that year.</li>
-<li><em>Violates #3</em>. The same value types (proportions of whole workforce) are spread across multiple columns.</li>
-</ul>
-</div>
-</div>
-<div class="fragment">
-<p><strong>Let’s tidy</strong></p>
-</div>
-</section>
-<section id="tidy-data-pivot_longer-2" class="slide level2 smaller">
-<h2>tidy data &amp; <code>pivot_longer</code></h2>
-<hr>
-<ul>
-<li>Longer data (tidy data) is often preferred, esp.&nbsp;in {tidyverse}</li>
-<li><code>pivot_longer()</code> is your friend
-<ul>
-<li>See documentation <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">here</a></li>
-<li>Inverse operation of <code>pivot_wider()</code></li>
-</ul></li>
-</ul>
-
-<img data-src="slides_images/pivot_longer_malaria.png" class="r-stretch"><div class="extra-small-font">
-<p>Batra, Neal, et al.&nbsp;(2021). <em>The Epidemiologist R Handbook</em>. www.epirhandbook.com/en/</p>
-</div>
-</section>
-<section id="tidy-data-pivot_longer-3" class="slide level2 smaller">
-<h2>tidy data &amp; <code>pivot_longer</code></h2>
-<hr>
-<p><strong>Requirements for tidy data:</strong></p>
-<ol type="1">
-<li>Each variable forms a column</li>
-<li>Each observation forms a row</li>
-<li>Each value forms a cell</li>
-</ol>
-<div class="fragment extra-small-font">
-<ul>
-<li>How might we begin to pivot this longer?
-<ul>
-<li>Which columns? <code>cols</code></li>
-<li>What should I call the new column that holds the old column names? <code>names_to</code></li>
-<li>What should I call the new column that holds the old values? <code>values_to</code></li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment extra-small-font">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 18%">
-<col style="width: 23%">
-<col style="width: 28%">
-<col style="width: 10%">
-<col style="width: 13%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">year</th>
-<th style="text-align: right;">full_time_tenured</th>
-<th style="text-align: right;">full_time_tenure_track</th>
-<th style="text-align: right;">full_time_non_tenure_track</th>
-<th style="text-align: right;">part_time</th>
-<th style="text-align: right;">grad_student</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1975</td>
-<td style="text-align: right;">29.0</td>
-<td style="text-align: right;">16.1</td>
-<td style="text-align: right;">10.3</td>
-<td style="text-align: right;">24.0</td>
-<td style="text-align: right;">20.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1989</td>
-<td style="text-align: right;">27.6</td>
-<td style="text-align: right;">11.4</td>
-<td style="text-align: right;">14.1</td>
-<td style="text-align: right;">30.4</td>
-<td style="text-align: right;">16.5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1993</td>
-<td style="text-align: right;">25.0</td>
-<td style="text-align: right;">10.2</td>
-<td style="text-align: right;">13.6</td>
-<td style="text-align: right;">33.1</td>
-<td style="text-align: right;">18.1</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1995</td>
-<td style="text-align: right;">24.8</td>
-<td style="text-align: right;">9.6</td>
-<td style="text-align: right;">13.6</td>
-<td style="text-align: right;">33.2</td>
-<td style="text-align: right;">18.8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1999</td>
-<td style="text-align: right;">21.8</td>
-<td style="text-align: right;">8.9</td>
-<td style="text-align: right;">15.2</td>
-<td style="text-align: right;">35.5</td>
-<td style="text-align: right;">18.7</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="tidy-data-pivot_longer-4" class="slide level2">
-<h2>tidy data &amp; <code>pivot_longer</code></h2>
-<hr>
-<div class="smaller-font">
-<p><strong>Requirements for tidy data:</strong></p>
-<ol type="1">
-<li>Each variable forms a column</li>
-<li>Each observation forms a row</li>
-<li>Each value forms a cell</li>
-</ol>
-<div class="fragment">
-<p><code>pivot_longer()</code></p>
-</div>
-</div>
-<div class="fragment smaller-font">
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-label="1"></a>staff_long <span class="ot">&lt;-</span> instructors <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="" aria-label="2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb2-3"><a href="" aria-label="3"></a>    <span class="at">cols =</span> <span class="sc">-</span>year, <span class="co">#cols: "Which columns do I pivot?"</span></span>
-<span id="cb2-4"><a href="" aria-label="4"></a>    <span class="at">names_to =</span> <span class="st">"position"</span>, <span class="co">#names_to: "What should I call the new column that holds the old column names?"</span></span>
-<span id="cb2-5"><a href="" aria-label="5"></a>    <span class="at">values_to =</span> <span class="st">"proportion"</span></span>
-<span id="cb2-6"><a href="" aria-label="6"></a>  ) <span class="co">#values_to: "What should I call the new column that holds the old values?"</span></span>
-<span id="cb2-7"><a href="" aria-label="7"></a><span class="fu">head</span>(staff_long, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 3
-    year position                   proportion
+    year position                   percentage
    &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt;
  1  1975 full_time_tenured                29  
  2  1975 full_time_tenure_track           16.1
@@ -716,7 +379,414 @@ Dr.&nbsp;Kelly Boles
 10  1989 grad_student                     16.5</code></pre>
 </div>
 </div>
+<!-- 
+::::{.fragment .extra-small-font}
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+
+
+| year| full_time_tenured| full_time_tenure_track| full_time_non_tenure_track| part_time| grad_student|
+|----:|-----------------:|----------------------:|--------------------------:|---------:|------------:|
+| 1975|              29.0|                   16.1|                       10.3|      24.0|         20.5|
+| 1989|              27.6|                   11.4|                       14.1|      30.4|         16.5|
+| 1993|              25.0|                   10.2|                       13.6|      33.1|         18.1|
+| 1995|              24.8|                    9.6|                       13.6|      33.2|         18.8|
+| 1999|              21.8|                    8.9|                       15.2|      35.5|         18.7|
+| 2001|              20.3|                    9.2|                       15.5|      36.0|         19.0|
+| 2003|              19.3|                    8.8|                       15.0|      37.0|         20.0|
+| 2005|              17.8|                    8.2|                       14.8|      39.3|         19.9|
+| 2007|              17.2|                    8.0|                       14.9|      40.5|         19.5|
+| 2009|              16.8|                    7.6|                       15.1|      41.1|         19.4|
+| 2011|              16.7|                    7.4|                       15.4|      41.3|         19.3|
+
+
+:::
+:::
+
+::::
+
+# tidy data + `pivot_longer()`
+
+## tidy data
+<hr>
+
+#### Requirements for tidy data
+
+::: {.smaller-font}
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell (1 cell: 1 value)
+
+    - If you can split it, split it!
+
+        - City, State
+        - ACT/SAT
+        - 26 inches (value + unit)
+:::
+
+## tidy data
+<hr>
+
+```{=html}
+<style>
+  .tidy-toggle { font-size: 0.5em; line-height: 1.4; text-align: left; }
+  .tidy-toggle .tt-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .tidy-toggle .tt-label { opacity: 0.7; margin-right: 6px; }
+  .tidy-toggle button {
+    font: inherit; color: inherit; background: transparent; cursor: pointer;
+    border: 1px solid rgba(128,128,128,0.5); border-radius: 6px; padding: 4px 12px;
+  }
+  .tidy-toggle button:hover { background: rgba(128,128,128,0.15); }
+  .tidy-toggle button.on { background: rgba(128,128,128,0.25); border-color: rgba(128,128,128,0.9); font-weight: 600; }
+  .reveal .tidy-toggle table { width: 100%; margin: 0 0 12px 0; border-collapse: collapse; table-layout: fixed; }
+  .reveal .tidy-toggle table th,
+  .reveal .tidy-toggle table td {
+    padding: 6px 10px; text-align: left; font-family: monospace;
+    border: 1px solid rgba(128,128,128,0.45); transition: background 0.15s;
+  }
+  .reveal .tidy-toggle table th { font-weight: 600; background: rgba(128,128,128,0.12); }
+  .tidy-toggle .h1 { background: rgba(55,138,221,0.35) !important; }
+  .tidy-toggle .h2 { background: rgba(239,159,39,0.40) !important; }
+  .tidy-toggle .h3 { background: rgba(99,153,34,0.40)  !important; }
+  .tidy-toggle .tt-cap {
+    display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px;
+    border-radius: 6px; background: rgba(128,128,128,0.12); min-height: 3.2em;
+  }
+  .tidy-toggle .tt-icon { font-weight: 700; font-size: 1.3em; line-height: 1; }
+  .tidy-toggle .tt-icon.bad  { color: #d9534f; }
+  .tidy-toggle .tt-icon.good { color: #3c9a3c; }
+</style>
+
+<div class="tidy-toggle">
+  <div class="tt-row">
+    <span class="tt-label">Table</span>
+    <button data-mode="wide">Wide</button>
+    <button data-mode="long">Long</button>
+  </div>
+  <div class="tt-row">
+    <span class="tt-label">Check rule</span>
+    <button data-rule="1">1 · Variables are columns</button>
+    <button data-rule="2">2 · Observations are rows</button>
+    <button data-rule="3">3 · Values are cells</button>
+  </div>
+  <div class="tt-table"></div>
+  <div class="tt-cap"><span class="tt-icon"></span><span class="tt-text"></span></div>
 </div>
+
+<script>
+(function () {
+  var years = [1975, 1989];
+  var pos = ['full_time_tenured', 'part_time', 'grad_student'];
+  var vals = { 1975: [29.0, 24.0, 20.5], 1989: [27.6, 30.4, 16.5] };
+
+  var caps = {
+    wide: {
+      1: [false, 'The column names full_time_tenured, part_time, and grad_student are values of one variable (position). Position is a variable, but it has no column of its own.'],
+      2: [false, 'This one row holds three observations: tenured, part-time, and grad students, all in 1975. Each observation should get its own row.'],
+      3: [false, 'Percentage is a single variable, but its values are spread across three columns instead of living in one.']
+    },
+    long: {
+      1: [true, 'Three variables, three columns: year, position, and percentage.'],
+      2: [true, 'One row, one observation: the share of part-time instructors in 1975. The next row is a different observation.'],
+      3: [true, 'Every percentage sits in a single column, one value per cell.']
+    }
+  };
+
+  function cell(tag, txt, cls) {
+    return '<' + tag + (cls ? ' class="' + cls + '"' : '') + '>' + txt + '</' + tag + '>';
+  }
+
+  function init(root) {
+    var mode = 'wide', rule = null;
+
+    function render() {
+      var T = 'ta' + 'ble';
+      var c = rule ? 'h' + rule : '', h = '<' + T + '>';
+
+      if (mode === 'wide') {
+        h += '<tr>' + cell('th', 'year', '');
+        pos.forEach(function (p) { h += cell('th', p, rule === 1 ? c : ''); });
+        h += '</tr>';
+        years.forEach(function (y, i) {
+          var rowOn = rule === 2 && i === 0;
+          h += '<tr>' + cell('td', y, rowOn ? c : '');
+          vals[y].forEach(function (v) {
+            h += cell('td', v.toFixed(1), (rowOn || rule === 3) ? c : '');
+          });
+          h += '</tr>';
+        });
+      } else {
+        h += '<tr>';
+        ['year', 'position', 'percentage'].forEach(function (t) {
+          h += cell('th', t, rule === 1 ? c : '');
+        });
+        h += '</tr>';
+        var n = 0;
+        years.forEach(function (y) {
+          pos.forEach(function (p, j) {
+            var rowOn = rule === 2 && n === 1;
+            h += '<tr>' + cell('td', y, rowOn ? c : '') +
+                 cell('td', p, rowOn ? c : '') +
+                 cell('td', vals[y][j].toFixed(1), (rowOn || rule === 3) ? c : '') + '</tr>';
+            n++;
+          });
+        });
+      }
+      h += '</' + T + '>';
+      root.querySelector('.tt-table').innerHTML = h;
+
+      var icon = root.querySelector('.tt-icon');
+      if (rule === null) {
+        icon.textContent = '';
+        icon.className = 'tt-icon';
+        root.querySelector('.tt-text').textContent = '';
+      } else {
+        var cp = caps[mode][rule];
+        icon.textContent = cp[0] ? '\u2713' : '\u2717';
+        icon.className = 'tt-icon ' + (cp[0] ? 'good' : 'bad');
+        root.querySelector('.tt-text').textContent = cp[1];
+      }
+
+      root.querySelectorAll('[data-mode]').forEach(function (b) {
+        b.classList.toggle('on', b.dataset.mode === mode);
+      });
+      root.querySelectorAll('[data-rule]').forEach(function (b) {
+        b.classList.toggle('on', Number(b.dataset.rule) === rule);
+      });
+    }
+
+    root.querySelectorAll('[data-mode]').forEach(function (b) {
+      b.addEventListener('click', function () { mode = b.dataset.mode; render(); });
+    });
+    root.querySelectorAll('[data-rule]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var n = Number(b.dataset.rule);
+        rule = (rule === n) ? null : n;   // click again to deselect
+        render();
+      });
+    });
+    render();
+  }
+
+  document.querySelectorAll('.tidy-toggle').forEach(init);
+})();
+</script>
+```
+
+:::{.extra-small-font}
+Wickham, H. (2014). Tidy data. Journal of Statistical Software, 59(10), 1-23. https://doi.org/10.18637/jss.v059.i10
+:::
+
+<!-- ## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+**Question**: Is this data in tidy format? Why or why not?
+:::
+::::
+
+::::{.fragment .extra-small-font}
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+
+
+| year| full_time_tenured| full_time_tenure_track| full_time_non_tenure_track| part_time| grad_student|
+|----:|-----------------:|----------------------:|--------------------------:|---------:|------------:|
+| 1975|              29.0|                   16.1|                       10.3|      24.0|         20.5|
+| 1989|              27.6|                   11.4|                       14.1|      30.4|         16.5|
+| 1993|              25.0|                   10.2|                       13.6|      33.1|         18.1|
+| 1995|              24.8|                    9.6|                       13.6|      33.2|         18.8|
+| 1999|              21.8|                    8.9|                       15.2|      35.5|         18.7|
+
+
+:::
+:::
+
+::::
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+**Answer**: No:
+
+- *Violates #1*. The column names (except year) are position types, which should be values in a column.
+- *Violates #2*. Each row has multiple observations for that year.
+- *Violates #3*. The same value types (percentages of whole workforce) are spread across multiple columns.
+:::
+::::
+
+::::{.fragment}
+**Let's tidy**
+:::: -->
+<!-- 
+# tidying the data
+
+## `pivot_longer` {.smaller}
+<hr>
+
+- Long data (tidy data) is often preferred, esp. in {tidyverse}
+- `pivot_longer()` is your friend
+  - See documentation [here](https://tidyr.tidyverse.org/reference/pivot_longer.html)
+  - Inverse operation of `pivot_wider()`
+
+## `pivot_wider` (recap) {.smaller}
+<hr>
+- Last week!
+
+![](slides_images/pivot_wider_malaria.png)
+
+:::{.extra-small-font}
+Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.com/en/
+:::
+
+## `pivot_longer` {.smaller}
+<hr>
+
+- Long data (tidy data) is often preferred, esp. in {tidyverse}
+- `pivot_longer()` is your friend
+  - See documentation [here](https://tidyr.tidyverse.org/reference/pivot_longer.html)
+  - Inverse operation of `pivot_wider()`
+
+![](slides_images/pivot_longer_malaria.png)
+
+:::{.extra-small-font}
+Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.com/en/
+:::
+
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font .tight-lines}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+:::
+
+::: {.fragment .smaller-font}
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+head(instructors, 5)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 5 × 6
+   year full_time_tenured full_time_tenure_track full_time_non_tenure_track
+  <dbl>             <dbl>                  <dbl>                      <dbl>
+1  1975              29                     16.1                       10.3
+2  1989              27.6                   11.4                       14.1
+3  1993              25                     10.2                       13.6
+4  1995              24.8                    9.6                       13.6
+5  1999              21.8                    8.9                       15.2
+# ℹ 2 more variables: part_time <dbl>, grad_student <dbl>
+```
+
+
+:::
+:::
+
+
+::::{.fragment}
+`pivot_longer()`
+::::
+:::
+
+::::{.fragment .smaller-font}
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+staff_long <- instructors |>
+  pivot_longer(
+    cols = !year, # "Which columns do I pivot?"
+    names_to = "position", # "What should I call the new column that holds the old column names?"
+    values_to = "percentage" # "What should I call the new column that holds the old values?"
+  )
+```
+:::
+
+::::
+
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font .tight-lines}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+`pivot_longer()`
+:::
+::::
+
+::::{.fragment .smaller-font}
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+staff_long <- instructors |>
+  pivot_longer(
+    cols = !year, # "Which columns do I pivot?"
+    names_to = "position", # "What should I call the new column that holds the old column names?"
+    values_to = "percentage" # "What should I call the new column that holds the old values?"
+  )
+head(staff_long, 10)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 10 × 3
+    year position                   percentage
+   <dbl> <chr>                           <dbl>
+ 1  1975 full_time_tenured                29  
+ 2  1975 full_time_tenure_track           16.1
+ 3  1975 full_time_non_tenure_track       10.3
+ 4  1975 part_time                        24  
+ 5  1975 grad_student                     20.5
+ 6  1989 full_time_tenured                27.6
+ 7  1989 full_time_tenure_track           11.4
+ 8  1989 full_time_non_tenure_track       14.1
+ 9  1989 part_time                        30.4
+10  1989 grad_student                     16.5
+```
+
+
+:::
+:::
+
+::::
+ -->
 </section></section>
 <section>
 <section id="review-line-plots" class="title-slide slide level1 center">
@@ -726,15 +796,18 @@ Dr.&nbsp;Kelly Boles
 <section id="review-line-plots-1" class="slide level2 smaller">
 <h2>Review: Line Plots</h2>
 <hr>
+<ul>
+<li><strong>Note:</strong> I am storing this plot to <code>p</code></li>
+</ul>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> staff_long <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position, <span class="at">group =</span> position)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>() <span class="co">#Note: color argument should implicitly handle grouping</span></span>
+<span id="cb4-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> percentage, <span class="at">color =</span> position, <span class="at">group =</span> position)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="co">#Note: color argument should implicitly handle grouping</span></span>
 <span id="cb4-4"><a href="" aria-label="4"></a></span>
 <span id="cb4-5"><a href="" aria-label="5"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="recall-ggplot2-components" class="slide level2">
 <h2>Recall {ggplot2} Components</h2>
 <hr>
@@ -761,10 +834,15 @@ Dr.&nbsp;Kelly Boles
 <li>Tufte suggests that the data should be the “star of the show” in a visualization –&gt; the data-ink ratio should be high</li>
 </ul>
 </div>
-<p><strong>What does this mean?</strong> <br><br></p>
+<strong>What does this mean?</strong> <br><br>
+<center>
 <div class="fragment">
-<p>data-to-ink ratio <span class="math inline">\(= \frac{data\:ink}{total\:ink}\)</span></p>
-<p><span class="smaller-font">Think again about the necessity of all the non-data components of your plot - e.g., your theme!</span></p>
+<p><span class="math inline">\(\text{data-to-ink ratio} = \dfrac{\text{data ink}}{\text{total ink}}\)</span></p>
+</div>
+</center>
+<p><br></p>
+<div class="fragment smaller-font tight-lines">
+<p>Think again about the necessity of all the non-data components of your plot - e.g., your theme!</p>
 </div>
 </section>
 <section id="themes-and-non-data-ink" class="slide level2">
@@ -848,7 +926,7 @@ Dr.&nbsp;Kelly Boles
 <span id="cb5-4"><a href="" aria-label="4"></a>  <span class="fu">theme_tufte</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="theme-packages---ggthemes-1" class="slide level2 smaller">
 <h2>Theme Packages - {ggthemes}</h2>
 <hr>
@@ -860,7 +938,7 @@ Dr.&nbsp;Kelly Boles
 <span id="cb6-4"><a href="" aria-label="4"></a>  <span class="fu">theme_solarized</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="theme-packages---ggthemes-2" class="slide level2 smaller">
 <h2>Theme Packages - {ggthemes}</h2>
 <hr>
@@ -872,16 +950,14 @@ Dr.&nbsp;Kelly Boles
 <span id="cb7-4"><a href="" aria-label="4"></a>  <span class="fu">theme_excel</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="theme-packages---pilot" class="slide level2 smaller">
 <h2>Theme Packages - {pilot}</h2>
 <hr>
 <p><a href="https://github.com/olihawkins/pilot">{pilot}</a></p>
-<div class="extra-small-font">
+<div class="extra-small-font tight-lines">
 <ul>
-<li>accessible</li>
-<li>for discrete data only</li>
-<li>modern</li>
+<li>accessible, modern, for discrete data only (no gradients)</li>
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
@@ -891,30 +967,23 @@ Dr.&nbsp;Kelly Boles
 <span id="cb8-4"><a href="" aria-label="4"></a>p <span class="sc">+</span> <span class="fu">theme_pilot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="theme-packages---hrbrthemes" class="slide level2 smaller">
 <h2>Theme Packages - {hrbrthemes}</h2>
 <hr>
 <p><a href="https://github.com/hrbrmstr/hrbrthemes">{hrbrthemes}</a></p>
-<div class="extra-small-font">
+<div class="extra-small-font tight-lines">
 <ul>
-<li>typography-centered themes</li>
-<li>discrete &amp; continuous themes</li>
-<li>modern</li>
+<li>modern, typography-centered, discrete &amp; continuous</li>
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a><span class="fu">library</span>(hrbrthemes)</span>
 <span id="cb9-2"><a href="" aria-label="2"></a></span>
-<span id="cb9-3"><a href="" aria-label="3"></a>p <span class="sc">+</span> <span class="fu">theme_ipsum_rc</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-3"><a href="" aria-label="3"></a>p <span class="sc">+</span> <span class="fu">theme_ipsum_rc</span>() <span class="co">#ipsum is base theme, rc is font</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="and-so-many-more" class="slide level2 smaller">
-<h2>And So Many More!</h2>
-<hr>
-<p>Check out <a href="https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics">Erik Gahner’s github page</a> for an incredible list!</p>
-</section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="custom-themes" class="title-slide slide level1 center">
 <h1>Custom Themes</h1>
@@ -924,76 +993,442 @@ Dr.&nbsp;Kelly Boles
 <h2>Custom Themes</h2>
 <hr>
 <ul>
-<li>You can make your own theme!</li>
-<li>Create your theme settings in one .R script and copy/paste them into your current script. Don’t recreate the wheel.</li>
+<li>Pre-built themes are just when someone has customized all the theme options for you</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a>my_theme <span class="ot">&lt;-</span> <span class="fu">theme</span>(</span>
-<span id="cb10-2"><a href="" aria-label="2"></a>  <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb10-3"><a href="" aria-label="3"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
-<span id="cb10-4"><a href="" aria-label="4"></a>)</span>
-<span id="cb10-5"><a href="" aria-label="5"></a>p <span class="sc">+</span> my_theme</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;theme&gt; List of 144
+ $ line                            : &lt;ggplot2::element_line&gt;
+  ..@ colour       : chr "black"
+  ..@ linewidth    : num 0.5
+  ..@ linetype     : num 1
+  ..@ lineend      : chr "butt"
+  ..@ linejoin     : chr "round"
+  ..@ arrow        : logi FALSE
+  ..@ arrow.fill   : chr "black"
+  ..@ inherit.blank: logi TRUE
+ $ rect                            : &lt;ggplot2::element_rect&gt;
+  ..@ fill         : chr "white"
+  ..@ colour       : chr "black"
+  ..@ linewidth    : num 0.5
+  ..@ linetype     : num 1
+  ..@ linejoin     : chr "round"
+  ..@ inherit.blank: logi TRUE
+ $ text                            : &lt;ggplot2::element_text&gt;
+  ..@ family       : chr ""
+  ..@ face         : chr "plain"
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : chr "black"
+  ..@ size         : num 11
+  ..@ hjust        : num 0.5
+  ..@ vjust        : num 0.5
+  ..@ angle        : num 0
+  ..@ lineheight   : num 0.9
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 0 0
+  ..@ debug        : logi FALSE
+  ..@ inherit.blank: logi TRUE
+ $ title                           : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : NULL
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ point                           : &lt;ggplot2::element_point&gt;
+  ..@ colour       : chr "black"
+  ..@ shape        : num 19
+  ..@ size         : num 1.5
+  ..@ fill         : chr "white"
+  ..@ stroke       : num 0.5
+  ..@ inherit.blank: logi TRUE
+ $ polygon                         : &lt;ggplot2::element_polygon&gt;
+  ..@ fill         : chr "white"
+  ..@ colour       : chr "black"
+  ..@ linewidth    : num 0.5
+  ..@ linetype     : num 1
+  ..@ linejoin     : chr "round"
+  ..@ inherit.blank: logi TRUE
+ $ geom                            : &lt;ggplot2::element_geom&gt;
+  ..@ ink        : chr "black"
+  ..@ paper      : chr "white"
+  ..@ accent     : chr "#3366FF"
+  ..@ linewidth  : num 0.5
+  ..@ borderwidth: num 0.5
+  ..@ linetype   : int 1
+  ..@ bordertype : int 1
+  ..@ family     : chr ""
+  ..@ fontsize   : num 3.87
+  ..@ pointsize  : num 1.5
+  ..@ pointshape : num 19
+  ..@ colour     : NULL
+  ..@ fill       : NULL
+ $ spacing                         : 'simpleUnit' num 5.5points
+  ..- attr(*, "unit")= int 8
+ $ margins                         : &lt;ggplot2::margin&gt; num [1:4] 5.5 5.5 5.5 5.5
+ $ aspect.ratio                    : NULL
+ $ axis.title                      : NULL
+ $ axis.title.x                    : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : num 1
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 2.75 0 0 0
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.title.x.top                : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : num 0
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 2.75 0
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.title.x.bottom             : NULL
+ $ axis.title.y                    : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : num 1
+  ..@ angle        : num 90
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 2.75 0 0
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.title.y.left               : NULL
+ $ axis.title.y.right              : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : num 1
+  ..@ angle        : num -90
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 0 2.75
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.text                       : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : chr "#4D4D4DFF"
+  ..@ size         : 'rel' num 0.8
+  ..@ hjust        : NULL
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : NULL
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.text.x                     : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : num 1
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 2.2 0 0 0
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.text.x.top                 : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 4.95 0
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.text.x.bottom              : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 4.95 0 0 0
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.text.y                     : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : num 1
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 2.2 0 0
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.text.y.left                : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 4.95 0 0
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.text.y.right               : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : NULL
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 0 0 4.95
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.text.theta                 : NULL
+ $ axis.text.r                     : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : num 0.5
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : &lt;ggplot2::margin&gt; num [1:4] 0 2.2 0 2.2
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ axis.ticks                      : &lt;ggplot2::element_blank&gt;
+ $ axis.ticks.x                    : NULL
+ $ axis.ticks.x.top                : NULL
+ $ axis.ticks.x.bottom             : NULL
+ $ axis.ticks.y                    : NULL
+ $ axis.ticks.y.left               : NULL
+ $ axis.ticks.y.right              : NULL
+ $ axis.ticks.theta                : NULL
+ $ axis.ticks.r                    : NULL
+ $ axis.minor.ticks.x.top          : NULL
+ $ axis.minor.ticks.x.bottom       : NULL
+ $ axis.minor.ticks.y.left         : NULL
+ $ axis.minor.ticks.y.right        : NULL
+ $ axis.minor.ticks.theta          : NULL
+ $ axis.minor.ticks.r              : NULL
+ $ axis.ticks.length               : 'rel' num 0.5
+ $ axis.ticks.length.x             : NULL
+ $ axis.ticks.length.x.top         : NULL
+ $ axis.ticks.length.x.bottom      : NULL
+ $ axis.ticks.length.y             : NULL
+ $ axis.ticks.length.y.left        : NULL
+ $ axis.ticks.length.y.right       : NULL
+ $ axis.ticks.length.theta         : NULL
+ $ axis.ticks.length.r             : NULL
+ $ axis.minor.ticks.length         : 'rel' num 0.75
+ $ axis.minor.ticks.length.x       : NULL
+ $ axis.minor.ticks.length.x.top   : NULL
+ $ axis.minor.ticks.length.x.bottom: NULL
+ $ axis.minor.ticks.length.y       : NULL
+ $ axis.minor.ticks.length.y.left  : NULL
+ $ axis.minor.ticks.length.y.right : NULL
+ $ axis.minor.ticks.length.theta   : NULL
+ $ axis.minor.ticks.length.r       : NULL
+ $ axis.line                       : &lt;ggplot2::element_blank&gt;
+ $ axis.line.x                     : NULL
+ $ axis.line.x.top                 : NULL
+ $ axis.line.x.bottom              : NULL
+ $ axis.line.y                     : NULL
+ $ axis.line.y.left                : NULL
+ $ axis.line.y.right               : NULL
+ $ axis.line.theta                 : NULL
+ $ axis.line.r                     : NULL
+ $ legend.background               : &lt;ggplot2::element_blank&gt;
+ $ legend.margin                   : NULL
+ $ legend.spacing                  : 'rel' num 2
+ $ legend.spacing.x                : NULL
+ $ legend.spacing.y                : NULL
+ $ legend.key                      : &lt;ggplot2::element_blank&gt;
+ $ legend.key.size                 : 'simpleUnit' num 1.2lines
+  ..- attr(*, "unit")= int 3
+ $ legend.key.height               : NULL
+ $ legend.key.width                : NULL
+ $ legend.key.spacing              : NULL
+ $ legend.key.spacing.x            : NULL
+ $ legend.key.spacing.y            : NULL
+ $ legend.key.justification        : NULL
+ $ legend.frame                    : NULL
+ $ legend.ticks                    : NULL
+ $ legend.ticks.length             : 'rel' num 0.2
+ $ legend.axis.line                : NULL
+ $ legend.text                     : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : 'rel' num 0.8
+  ..@ hjust        : NULL
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : NULL
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ legend.text.position            : NULL
+ $ legend.title                    : &lt;ggplot2::element_text&gt;
+  ..@ family       : NULL
+  ..@ face         : NULL
+  ..@ italic       : chr NA
+  ..@ fontweight   : num NA
+  ..@ fontwidth    : num NA
+  ..@ colour       : NULL
+  ..@ size         : NULL
+  ..@ hjust        : num 0
+  ..@ vjust        : NULL
+  ..@ angle        : NULL
+  ..@ lineheight   : NULL
+  ..@ margin       : NULL
+  ..@ debug        : NULL
+  ..@ inherit.blank: logi TRUE
+ $ legend.title.position           : NULL
+ $ legend.position                 : chr "right"
+ $ legend.position.inside          : NULL
+ $ legend.direction                : NULL
+ $ legend.byrow                    : NULL
+ $ legend.justification            : chr "center"
+ $ legend.justification.top        : NULL
+ $ legend.justification.bottom     : NULL
+ $ legend.justification.left       : NULL
+ $ legend.justification.right      : NULL
+ $ legend.justification.inside     : NULL
+  [list output truncated]
+ @ complete: logi TRUE
+ @ validate: logi TRUE</code></pre>
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="theme-anatomy" class="slide level2 smaller" data-auto-animate="true">
-<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+</div>
+</section>
+<section id="custom-themes-2" class="slide level2 smaller">
+<h2>Custom Themes</h2>
 <hr>
 <ul>
-<li>Our starting plot for today
-<ul>
-<li>Note: I am storing it to an object <code>p</code> for later use</li>
-</ul></li>
+<li>You can create your theme settings in one .R script and copy/paste them into your current script.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb11-1" class="hljs-ln-code"><a href="" aria-label="1"></a>p <span class="ot">&lt;-</span> staff_long <span class="sc">|&gt;</span></span>
-<span id="cb11-2" class="hljs-ln-code"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
-<span id="cb11-3" class="hljs-ln-code"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb11-4" class="hljs-ln-code"><a href="" aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Instructional staff employment trends"</span>)</span>
-<span id="cb11-5" class="hljs-ln-code"><a href="" aria-label="5"></a></span>
-<span id="cb11-6" class="hljs-ln-code"><a href="" aria-label="6"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="co"># store all your customizations to an object</span></span>
+<span id="cb12-2"><a href="" aria-label="2"></a>my_theme <span class="ot">&lt;-</span> <span class="fu">theme</span>(</span>
+<span id="cb12-3"><a href="" aria-label="3"></a>  <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb12-4"><a href="" aria-label="4"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
+<span id="cb12-5"><a href="" aria-label="5"></a>)</span>
+<span id="cb12-6"><a href="" aria-label="6"></a><span class="co"># add that object to your ggplot</span></span>
+<span id="cb12-7"><a href="" aria-label="7"></a>p <span class="sc">+</span> my_theme</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="theme-anatomy-1" class="slide level2 smaller" data-auto-animate="true">
-<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<!-- ## `theme()` anatomy {.smaller auto-animate="true"}
+<hr>
+- Our starting plot for today
+  - Note: I am storing it to an object `p` for later use -->
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-anatomy" class="slide level2 smaller">
+<h2><code>theme()</code> anatomy</h2>
 <hr>
 <p>Make the title 16 point and bold</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb12-1" class="hljs-ln-code"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb12-2" class="hljs-ln-code"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(</span>
-<span id="cb12-3" class="hljs-ln-code"><a href="" aria-label="3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>)</span>
-<span id="cb12-4" class="hljs-ln-code"><a href="" aria-label="4"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
+<span id="cb13-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-3"><a href="" aria-label="3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>)</span>
+<span id="cb13-4"><a href="" aria-label="4"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="theme-anatomy-2" class="slide level2 smaller" data-auto-animate="true">
-<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-anatomy-1" class="slide level2 smaller">
+<h2><code>theme()</code> anatomy</h2>
 <hr>
 <p>Place legend on the bottom</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb13-1" class="hljs-ln-code"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb13-2" class="hljs-ln-code"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(</span>
-<span id="cb13-3" class="hljs-ln-code"><a href="" aria-label="3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb13-4" class="hljs-ln-code"><a href="" aria-label="4"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb13-5" class="hljs-ln-code"><a href="" aria-label="5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
+<span id="cb14-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb14-3"><a href="" aria-label="3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb14-4"><a href="" aria-label="4"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb14-5"><a href="" aria-label="5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="theme-anatomy-3" class="slide level2 smaller" data-auto-animate="true">
-<h2 data-id="quarto-animate-title"><code>theme()</code> anatomy</h2>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="theme-anatomy-2" class="slide level2 smaller">
+<h2><code>theme()</code> anatomy</h2>
 <hr>
 <p>Make the background white</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb14-2" class="hljs-ln-code"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(</span>
-<span id="cb14-3" class="hljs-ln-code"><a href="" aria-label="3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb14-4" class="hljs-ln-code"><a href="" aria-label="4"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb14-5" class="hljs-ln-code"><a href="" aria-label="5"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
-<span id="cb14-6" class="hljs-ln-code"><a href="" aria-label="6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
+<span id="cb15-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-3"><a href="" aria-label="3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb15-4"><a href="" aria-label="4"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb15-5"><a href="" aria-label="5"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
+<span id="cb15-6"><a href="" aria-label="6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="theme-anatomy-reference-guide" class="slide level2">
 <h2><code>theme()</code> Anatomy Reference Guide</h2>
 <hr>
@@ -1010,94 +1445,159 @@ Dr.&nbsp;Kelly Boles
 <section id="modifying-theme-components" class="slide level2 smaller">
 <h2>Modifying theme components</h2>
 <hr>
-<p>Four basic types of built-in element functions:</p>
-<ul>
-<li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a> draws labels and headings:</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb15-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="modifying-theme-components-1" class="slide level2 smaller">
-<h2>Modifying theme components</h2>
-<hr>
-<p>Four basic types of built-in element functions:</p>
-<ul>
-<li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a> draws lines by color, linewidth and linetype:</li>
-</ul>
-<div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb16-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="modifying-theme-components-2" class="slide level2 smaller">
-<h2>Modifying theme components</h2>
-<hr>
-<p>Four basic types of built-in element functions:</p>
+<span id="cb16-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-3"><a href="" aria-label="3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
+<span id="cb16-4"><a href="" aria-label="4"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb16-5"><a href="" aria-label="5"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
+<span id="cb16-6"><a href="" aria-label="6"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb16-7"><a href="" aria-label="7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-layout-panel" data-layout="[1,2]">
+<div class="quarto-layout-row">
+<div class="column smaller-font tight-lines quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<p><strong>Four basic types</strong> of built-in element functions:</p>
 <ul>
+<li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_text()</code></a> draws labels and headings</li>
+<li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_line()</code></a> draws lines by color, linewidth and linetype</li>
 <li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_rect()</code></a> draws rectangles, mostly used for backgrounds</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb17-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="modifying-theme-components-3" class="slide level2 smaller">
-<h2>Modifying theme components</h2>
-<hr>
-<p>Four basic types of built-in element functions:</p>
-<ul>
 <li><a href="https://ggplot2.tidyverse.org/reference/element.html"><code>element_blank()</code></a> draws nothing</li>
 </ul>
+</div><div class="column quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb18-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="modifying-theme-components-4" class="slide level2 smaller">
-<h2>Modifying theme components</h2>
+</div>
+</div>
+</div></div>
+</div>
+<!-- ## Modifying theme components {.smaller}
 <hr>
-<p>Modify multiple theme components in the same <code>theme()</code></p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb19-2"><a href="" aria-label="2"></a>  <span class="fu">theme</span>(</span>
-<span id="cb19-3"><a href="" aria-label="3"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
-<span id="cb19-4"><a href="" aria-label="4"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb19-5"><a href="" aria-label="5"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
-<span id="cb19-6"><a href="" aria-label="6"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb19-7"><a href="" aria-label="7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+Four basic types of built-in element functions:
 
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="modifying-theme-components-5" class="slide level2 smaller">
+* [`element_text()`](https://ggplot2.tidyverse.org/reference/element.html) draws labels and headings:
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+p +
+  theme(plot.title = element_text(size = 70))
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-22-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+## Modifying theme components {.smaller}
+<hr>
+Four basic types of built-in element functions:
+
+* [`element_line()`](https://ggplot2.tidyverse.org/reference/element.html) draws lines by color, linewidth and linetype: 
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+p +
+  theme(panel.grid.major = element_line(color = "black"))
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-23-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+## Modifying theme components {.smaller}
+<hr>
+Four basic types of built-in element functions:
+
+* [`element_rect()`](https://ggplot2.tidyverse.org/reference/element.html) draws rectangles, mostly used for backgrounds
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+p +
+  theme(plot.background = element_rect(color = "red", linewidth = 2))
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-24-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+## Modifying theme components {.smaller}
+<hr>
+Four basic types of built-in element functions:
+
+* [`element_blank()`](https://ggplot2.tidyverse.org/reference/element.html) draws nothing
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+p +
+  theme(axis.title.x = element_blank())
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-25-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+## Modifying theme components {.smaller}
+<hr>
+Modify multiple theme components in the same `theme()`
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+p +
+  theme(
+    plot.title = element_text(size = 70),
+    panel.grid.major = element_line(color = "black"),
+    plot.background = element_rect(color = "red", linewidth = 2),
+    axis.title.x = element_blank()
+  )
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-26-1.png){fig-align='center' width=960}
+:::
+:::
+
+-->
+</section>
+<section id="modifying-theme-components-1" class="slide level2 smaller">
 <h2>Modifying theme components</h2>
 <hr>
 <p>Can also add on to an existing theme:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
-<span id="cb20-2"><a href="" aria-label="2"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb20-3"><a href="" aria-label="3"></a>  <span class="fu">theme</span>(</span>
-<span id="cb20-4"><a href="" aria-label="4"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
-<span id="cb20-5"><a href="" aria-label="5"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>),</span>
-<span id="cb20-6"><a href="" aria-label="6"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
-<span id="cb20-7"><a href="" aria-label="7"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb20-8"><a href="" aria-label="8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-label="1"></a>p <span class="sc">+</span></span>
+<span id="cb17-2"><a href="" aria-label="2"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a href="" aria-label="3"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-4"><a href="" aria-label="4"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">70</span>),</span>
+<span id="cb17-5"><a href="" aria-label="5"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"black"</span>),</span>
+<span id="cb17-6"><a href="" aria-label="6"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>),</span>
+<span id="cb17-7"><a href="" aria-label="7"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb17-8"><a href="" aria-label="8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
 <p>What happens if you put <code>theme()</code> before <code>theme_minimal()</code>?</p>
+<!-- # BREAK -->
 </div>
 </section></section>
-<section id="break" class="title-slide slide level1 center">
-<h1>BREAK</h1>
-
-</section>
-
 <section>
 <section id="colors" class="title-slide slide level1 center">
 <h1>Colors</h1>
@@ -1112,7 +1612,7 @@ Dr.&nbsp;Kelly Boles
 <li>Use the <code>colors()</code> command to see the available named colors</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-label="1"></a><span class="fu">colors</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-label="1"></a><span class="fu">colors</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "white"                "aliceblue"            "antiquewhite"        
   [4] "antiquewhite1"        "antiquewhite2"        "antiquewhite3"       
@@ -1341,117 +1841,138 @@ Dr.&nbsp;Kelly Boles
 <hr>
 <p>Use the name of the color in quotes:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"royalblue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" data-code-line-numbers="|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> percentage)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"royalblue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
-<p>What if you put <code>fill = "royalblue"</code> inside of <code>aes()</code>?</p>
-</div>
-</section>
+<!-- . . .
+
+What if you put `fill = "royalblue"` inside of `aes()`?
+
+## Built-in colors
+<hr>
+Inside of `aes()`, `fill` maps to the data.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-line-numbers="|2"}
+staff_long |>
+  ggplot(aes(x = position, y = percentage, fill = "royalblue")) +
+  geom_col()
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-30-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+-->
+<!-- ## Built-in colors
+<hr>
+You can specify colors for specific values using `scale_fill_manual` and a named vector:
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-line-numbers="|4-11|"}
+staff_long |>
+  ggplot(aes(x = position, y = percentage)) +
+  geom_col() +
+  scale_fill_manual(
+    values = c(
+      "full_time_non_tenure_track" = "skyblue",
+      "full_time_tenure_track" = "peachpuff1",
+      "full_time_tenured" = "palegreen1",
+      "grad_student" = "sandybrown",
+      "part_time" = "maroon"
+    )
+  )
+```
+:::
+
+
+## Built-in colors {.smaller}
+<hr>
+You can specify colors for specific values using `scale_fill_manual` and a named vector:
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-32-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+Why are there no colors? -->
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-29-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="built-in-colors-2" class="slide level2">
 <h2>Built-in colors</h2>
 <hr>
-<p>Inside of <code>aes()</code>, <code>fill</code> maps to the data, <em>not</em> the geometry.</p>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> is mapped to the data</strong>:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> <span class="st">"royalblue"</span>)) <span class="sc">+</span></span>
-<span id="cb24-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" data-code-line-numbers="|2,4-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> percentage, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb21-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb21-5"><a href="" aria-label="5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb21-6"><a href="" aria-label="6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb21-7"><a href="" aria-label="7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb21-8"><a href="" aria-label="8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb21-9"><a href="" aria-label="9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb21-10"><a href="" aria-label="10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb21-11"><a href="" aria-label="11"></a>    )</span>
+<span id="cb21-12"><a href="" aria-label="12"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-26-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+</section>
 <section id="built-in-colors-3" class="slide level2">
 <h2>Built-in colors</h2>
 <hr>
-<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector:</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|4-11|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion)) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb25-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb25-5"><a href="" aria-label="5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb25-6"><a href="" aria-label="6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb25-7"><a href="" aria-label="7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
-<span id="cb25-8"><a href="" aria-label="8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
-<span id="cb25-9"><a href="" aria-label="9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
-<span id="cb25-10"><a href="" aria-label="10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
-<span id="cb25-11"><a href="" aria-label="11"></a>    )</span>
-<span id="cb25-12"><a href="" aria-label="12"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
+<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> is mapped to the data</strong>:</p>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="built-in-colors-4" class="slide level2 smaller">
-<h2>Built-in colors</h2>
-<hr>
-<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector:</p>
-
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-28-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Why are there no colors?</p>
-</section>
-<section id="built-in-colors-5" class="slide level2">
-<h2>Built-in colors</h2>
-<hr>
-<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> is mapped to the data</strong>:</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" data-code-line-numbers="|2,4-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb26-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb26-5"><a href="" aria-label="5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb26-6"><a href="" aria-label="6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb26-7"><a href="" aria-label="7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
-<span id="cb26-8"><a href="" aria-label="8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
-<span id="cb26-9"><a href="" aria-label="9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
-<span id="cb26-10"><a href="" aria-label="10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
-<span id="cb26-11"><a href="" aria-label="11"></a>    )</span>
-<span id="cb26-12"><a href="" aria-label="12"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="built-in-colors-6" class="slide level2">
-<h2>Built-in colors</h2>
-<hr>
-<p>You can specify colors for specific values using <code>scale_fill_manual</code> and a named vector <strong>as long as <code>fill</code> is mapped to the data</strong>:</p>
-
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="built-in-colors-7" class="slide level2 smaller">
 <h2>Built-in colors</h2>
 <hr>
 <p>What about our earlier line graph?</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb27-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb27-5"><a href="" aria-label="5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb27-6"><a href="" aria-label="6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb27-7"><a href="" aria-label="7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
-<span id="cb27-8"><a href="" aria-label="8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
-<span id="cb27-9"><a href="" aria-label="9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
-<span id="cb27-10"><a href="" aria-label="10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
-<span id="cb27-11"><a href="" aria-label="11"></a>    )</span>
-<span id="cb27-12"><a href="" aria-label="12"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> percentage, <span class="at">color =</span> position)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb22-5"><a href="" aria-label="5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb22-6"><a href="" aria-label="6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb22-7"><a href="" aria-label="7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb22-8"><a href="" aria-label="8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb22-9"><a href="" aria-label="9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb22-10"><a href="" aria-label="10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb22-11"><a href="" aria-label="11"></a>    )</span>
+<span id="cb22-12"><a href="" aria-label="12"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-31-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="built-in-colors-8" class="slide level2 smaller">
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-35-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="built-in-colors-5" class="slide level2 smaller">
 <h2>Built-in colors</h2>
 <hr>
 <p>We need to make sure we’re mapping the correct aesthetic:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
-<span id="cb28-3"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb28-4"><a href="" aria-label="4"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb28-5"><a href="" aria-label="5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb28-6"><a href="" aria-label="6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb28-7"><a href="" aria-label="7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
-<span id="cb28-8"><a href="" aria-label="8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
-<span id="cb28-9"><a href="" aria-label="9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
-<span id="cb28-10"><a href="" aria-label="10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
-<span id="cb28-11"><a href="" aria-label="11"></a>    )</span>
-<span id="cb28-12"><a href="" aria-label="12"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" data-code-line-numbers="|2,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> percentage, <span class="at">color =</span> position)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="" aria-label="4"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb23-5"><a href="" aria-label="5"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb23-6"><a href="" aria-label="6"></a>      <span class="st">"full_time_non_tenure_track"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb23-7"><a href="" aria-label="7"></a>      <span class="st">"full_time_tenure_track"</span> <span class="ot">=</span> <span class="st">"peachpuff1"</span>,</span>
+<span id="cb23-8"><a href="" aria-label="8"></a>      <span class="st">"full_time_tenured"</span> <span class="ot">=</span> <span class="st">"palegreen1"</span>,</span>
+<span id="cb23-9"><a href="" aria-label="9"></a>      <span class="st">"grad_student"</span> <span class="ot">=</span> <span class="st">"sandybrown"</span>,</span>
+<span id="cb23-10"><a href="" aria-label="10"></a>      <span class="st">"part_time"</span> <span class="ot">=</span> <span class="st">"maroon"</span></span>
+<span id="cb23-11"><a href="" aria-label="11"></a>    )</span>
+<span id="cb23-12"><a href="" aria-label="12"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-36-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="other-palette-packages" class="title-slide slide level1 center">
 <h1>Other Palette Packages</h1>
@@ -1460,29 +1981,49 @@ Dr.&nbsp;Kelly Boles
 <section id="ggplot2-palette-packages" class="slide level2">
 <h2>{ggplot2} palette packages</h2>
 <hr>
+<div class="smaller-font">
 <p>There are a ton of amazing palette packages out there! Here is an example from <a href="https://github.com/BlakeRMills/MetBrewer">MetBrewer</a>:</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-label="1"></a><span class="fu">library</span>(MetBrewer)</span>
-<span id="cb29-2"><a href="" aria-label="2"></a></span>
-<span id="cb29-3"><a href="" aria-label="3"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb29-4"><a href="" aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="" aria-label="5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb29-6"><a href="" aria-label="6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Hokusai1"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-33-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-label="1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb24-2"><a href="" aria-label="2"></a></span>
+<span id="cb24-3"><a href="" aria-label="3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="" aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> percentage, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="" aria-label="5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb24-6"><a href="" aria-label="6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Monet"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-layout-panel" data-layout="[1,1]">
+<div class="quarto-layout-row">
+<div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="slides_images/metbrewer_monet.png"></p>
+</div><div class="column quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
 <section id="ggplot2-palette-packages-1" class="slide level2">
 <h2>{ggplot2} palette packages</h2>
 <hr>
+<div class="smaller-font">
 <p>Let’s try the <a href="https://github.com/BlakeRMills/MetBrewer?tab=readme-ov-file#egypt">Egypt</a> palette:</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="" aria-label="1"></a><span class="fu">library</span>(MetBrewer)</span>
-<span id="cb30-2"><a href="" aria-label="2"></a></span>
-<span id="cb30-3"><a href="" aria-label="3"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb30-4"><a href="" aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
-<span id="cb30-5"><a href="" aria-label="5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb30-6"><a href="" aria-label="6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Egypt"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-label="1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb25-2"><a href="" aria-label="2"></a></span>
+<span id="cb25-3"><a href="" aria-label="3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="" aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> percentage, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="" aria-label="5"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb25-6"><a href="" aria-label="6"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">met.brewer</span>(<span class="st">"Egypt"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-layout-panel" data-layout="[1,3]">
+<div class="quarto-layout-row">
+<div class="column quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img data-src="slides_images/metbrewer_egypt.png"></p>
+</div><div class="column quarto-layout-cell" style="flex-basis: 75.0%;justify-content: flex-start;">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-error">
@@ -1491,6 +2032,40 @@ Dr.&nbsp;Kelly Boles
 </div>
 </div>
 <p><br> <br> Why didn’t this work?</p>
+</div>
+</div></div>
+</div>
+</section>
+<section id="ggplot2-palette-packages-2" class="slide level2">
+<h2>{ggplot2} palette packages</h2>
+<hr>
+<div class="smaller-font">
+<ul>
+<li><a href="https://github.com/BlakeRMills/MetBrewer">MetBrewer</a> supports continuous palettes (gradients), too:
+<ul>
+<li>Problem: Not a smooth/perceptually uniform gradient</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|7,11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-label="1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb27-2"><a href="" aria-label="2"></a></span>
+<span id="cb27-3"><a href="" aria-label="3"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="" aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb27-5"><a href="" aria-label="5"></a>    <span class="at">x =</span> <span class="fu">as.integer</span>(year),</span>
+<span id="cb27-6"><a href="" aria-label="6"></a>    <span class="at">y =</span> percentage,</span>
+<span id="cb27-7"><a href="" aria-label="7"></a>    <span class="at">color =</span> percentage,</span>
+<span id="cb27-8"><a href="" aria-label="8"></a>    <span class="at">group =</span> position</span>
+<span id="cb27-9"><a href="" aria-label="9"></a>  )) <span class="sc">+</span></span>
+<span id="cb27-10"><a href="" aria-label="10"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb27-11"><a href="" aria-label="11"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colors =</span> <span class="fu">met.brewer</span>(<span class="st">"Isfahan1"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-40-1.png" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </section></section>
 <section>
@@ -1503,14 +2078,18 @@ Dr.&nbsp;Kelly Boles
 <hr>
 <ul>
 <li>viridis is one of the most popular palettes in ggplot and in data viz</li>
-<li>There is a package for it {viridis}</li>
-<li>But it’s now built into {ggplot2}
-<ul>
-<li>You may see two ways to incorporate viridis into plots because of its dual availability</li>
-</ul></li>
+<li>Built into {ggplot2}</li>
+<li>produces a smooth gradient: equal perceived steps in color (i.e., no big jumps between colors)</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_images/viridis_palette_ordered.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
 
-<img data-src="slides_images/viridis_palette_ordered.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<aside><div>
+<p>Christiansen, J. (2022). Building science graphics: An illustrated guide to communicating science through diagrams and visualizations. CRC Press. [Ch. 8]</p>
+</div></aside></section>
 <section id="viridis-2" class="slide level2 smaller">
 <h2>viridis</h2>
 <hr>
@@ -1523,30 +2102,30 @@ Dr.&nbsp;Kelly Boles
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="bjrbxdgfnv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bjrbxdgfnv table {
+<div id="lzbketsslu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lzbketsslu table {
   font-family: Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bjrbxdgfnv thead, #bjrbxdgfnv tbody, #bjrbxdgfnv tfoot, #bjrbxdgfnv tr, #bjrbxdgfnv td, #bjrbxdgfnv th {
+#lzbketsslu thead, #lzbketsslu tbody, #lzbketsslu tfoot, #lzbketsslu tr, #lzbketsslu td, #lzbketsslu th {
   border-style: none;
 }
 
-#bjrbxdgfnv p {
+#lzbketsslu p {
   margin: 0;
   padding: 0;
 }
 
-#bjrbxdgfnv .gt_table {
+#lzbketsslu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
-  font-size: 16px;
+  font-size: 110%;
   font-weight: normal;
   font-style: normal;
   background-color: #FFFFFF;
@@ -1565,12 +2144,12 @@ Dr.&nbsp;Kelly Boles
   border-left-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_caption {
+#lzbketsslu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bjrbxdgfnv .gt_title {
+#lzbketsslu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1582,7 +2161,7 @@ Dr.&nbsp;Kelly Boles
   border-bottom-width: 0;
 }
 
-#bjrbxdgfnv .gt_subtitle {
+#lzbketsslu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1594,7 +2173,7 @@ Dr.&nbsp;Kelly Boles
   border-top-width: 0;
 }
 
-#bjrbxdgfnv .gt_heading {
+#lzbketsslu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1606,13 +2185,13 @@ Dr.&nbsp;Kelly Boles
   border-right-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_bottom_border {
+#lzbketsslu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_col_headings {
+#lzbketsslu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 1px;
   border-top-color: #D3D3D3;
@@ -1627,7 +2206,7 @@ Dr.&nbsp;Kelly Boles
   border-right-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_col_heading {
+#lzbketsslu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1647,7 +2226,7 @@ Dr.&nbsp;Kelly Boles
   overflow-x: hidden;
 }
 
-#bjrbxdgfnv .gt_column_spanner_outer {
+#lzbketsslu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1659,15 +2238,15 @@ Dr.&nbsp;Kelly Boles
   padding-right: 4px;
 }
 
-#bjrbxdgfnv .gt_column_spanner_outer:first-child {
+#lzbketsslu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bjrbxdgfnv .gt_column_spanner_outer:last-child {
+#lzbketsslu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bjrbxdgfnv .gt_column_spanner {
+#lzbketsslu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: #D3D3D3;
@@ -1679,11 +2258,11 @@ Dr.&nbsp;Kelly Boles
   width: 100%;
 }
 
-#bjrbxdgfnv .gt_spanner_row {
+#lzbketsslu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bjrbxdgfnv .gt_group_heading {
+#lzbketsslu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1709,7 +2288,7 @@ Dr.&nbsp;Kelly Boles
   text-align: left;
 }
 
-#bjrbxdgfnv .gt_empty_group_heading {
+#lzbketsslu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1724,15 +2303,15 @@ Dr.&nbsp;Kelly Boles
   vertical-align: middle;
 }
 
-#bjrbxdgfnv .gt_from_md > :first-child {
+#lzbketsslu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bjrbxdgfnv .gt_from_md > :last-child {
+#lzbketsslu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bjrbxdgfnv .gt_row {
+#lzbketsslu .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -1751,7 +2330,7 @@ Dr.&nbsp;Kelly Boles
   overflow-x: hidden;
 }
 
-#bjrbxdgfnv .gt_stub {
+#lzbketsslu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1764,7 +2343,7 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#bjrbxdgfnv .gt_stub_row_group {
+#lzbketsslu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1778,15 +2357,15 @@ Dr.&nbsp;Kelly Boles
   vertical-align: top;
 }
 
-#bjrbxdgfnv .gt_row_group_first td {
+#lzbketsslu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bjrbxdgfnv .gt_row_group_first th {
+#lzbketsslu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bjrbxdgfnv .gt_summary_row {
+#lzbketsslu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1796,16 +2375,16 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#bjrbxdgfnv .gt_first_summary_row {
+#lzbketsslu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_first_summary_row.thick {
+#lzbketsslu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bjrbxdgfnv .gt_last_summary_row {
+#lzbketsslu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1815,7 +2394,7 @@ Dr.&nbsp;Kelly Boles
   border-bottom-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_grand_summary_row {
+#lzbketsslu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1825,7 +2404,7 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#bjrbxdgfnv .gt_first_grand_summary_row {
+#lzbketsslu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1835,7 +2414,7 @@ Dr.&nbsp;Kelly Boles
   border-top-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_last_grand_summary_row_top {
+#lzbketsslu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1845,11 +2424,11 @@ Dr.&nbsp;Kelly Boles
   border-bottom-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_striped {
+#lzbketsslu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bjrbxdgfnv .gt_table_body {
+#lzbketsslu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1858,7 +2437,7 @@ Dr.&nbsp;Kelly Boles
   border-bottom-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_footnotes {
+#lzbketsslu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1872,7 +2451,7 @@ Dr.&nbsp;Kelly Boles
   border-right-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_footnote {
+#lzbketsslu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1881,7 +2460,7 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#bjrbxdgfnv .gt_sourcenotes {
+#lzbketsslu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1895,7 +2474,7 @@ Dr.&nbsp;Kelly Boles
   border-right-color: #D3D3D3;
 }
 
-#bjrbxdgfnv .gt_sourcenote {
+#lzbketsslu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1903,72 +2482,72 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#bjrbxdgfnv .gt_left {
+#lzbketsslu .gt_left {
   text-align: left;
 }
 
-#bjrbxdgfnv .gt_center {
+#lzbketsslu .gt_center {
   text-align: center;
 }
 
-#bjrbxdgfnv .gt_right {
+#lzbketsslu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bjrbxdgfnv .gt_font_normal {
+#lzbketsslu .gt_font_normal {
   font-weight: normal;
 }
 
-#bjrbxdgfnv .gt_font_bold {
+#lzbketsslu .gt_font_bold {
   font-weight: bold;
 }
 
-#bjrbxdgfnv .gt_font_italic {
+#lzbketsslu .gt_font_italic {
   font-style: italic;
 }
 
-#bjrbxdgfnv .gt_super {
+#lzbketsslu .gt_super {
   font-size: 65%;
 }
 
-#bjrbxdgfnv .gt_footnote_marks {
+#lzbketsslu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bjrbxdgfnv .gt_asterisk {
+#lzbketsslu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bjrbxdgfnv .gt_indent_1 {
+#lzbketsslu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bjrbxdgfnv .gt_indent_2 {
+#lzbketsslu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bjrbxdgfnv .gt_indent_3 {
+#lzbketsslu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bjrbxdgfnv .gt_indent_4 {
+#lzbketsslu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bjrbxdgfnv .gt_indent_5 {
+#lzbketsslu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bjrbxdgfnv .katex-display {
+#lzbketsslu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bjrbxdgfnv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lzbketsslu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2007,66 +2586,74 @@ Dr.&nbsp;Kelly Boles
 <section id="viridis-3" class="slide level2 smaller">
 <h2>viridis</h2>
 <hr>
+<div class="smaller-font tight-lines">
 <ul>
-<li><p>The default color option is viridis itself (Option D).</p></li>
-<li><p><em>Note</em>: I am mapping color to <code>proportion</code>, a continuous variable.)</p></li>
+<li>The default color option is viridis itself (Option D).</li>
+<li><em>Note</em>: I am mapping color to <code>percentage</code>, a continuous variable.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb32-3"><a href="" aria-label="3"></a>    <span class="at">x =</span> <span class="fu">as.integer</span>(year),</span>
-<span id="cb32-4"><a href="" aria-label="4"></a>    <span class="at">y =</span> proportion,</span>
-<span id="cb32-5"><a href="" aria-label="5"></a>    <span class="at">color =</span> proportion,</span>
-<span id="cb32-6"><a href="" aria-label="6"></a>    <span class="at">group =</span> position</span>
-<span id="cb32-7"><a href="" aria-label="7"></a>  )) <span class="sc">+</span></span>
-<span id="cb32-8"><a href="" aria-label="8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb32-9"><a href="" aria-label="9"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb32-10"><a href="" aria-label="10"></a>  <span class="fu">scale_color_viridis_c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" data-code-line-numbers="|5,9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb28-3"><a href="" aria-label="3"></a>    <span class="at">x =</span> <span class="fu">as.integer</span>(year),</span>
+<span id="cb28-4"><a href="" aria-label="4"></a>    <span class="at">y =</span> percentage,</span>
+<span id="cb28-5"><a href="" aria-label="5"></a>    <span class="at">color =</span> percentage,</span>
+<span id="cb28-6"><a href="" aria-label="6"></a>    <span class="at">group =</span> position</span>
+<span id="cb28-7"><a href="" aria-label="7"></a>  )) <span class="sc">+</span></span>
+<span id="cb28-8"><a href="" aria-label="8"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="" aria-label="9"></a>  <span class="fu">scale_color_viridis_c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+</div>
+</div>
+</div>
+</section>
 <section id="viridis-4" class="slide level2 smaller">
 <h2>viridis</h2>
 <hr>
 <p>You can specify other options for viridis, too!</p>
-<div class="columns">
-<div class="column">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb29-3"><a href="" aria-label="3"></a>    <span class="at">x =</span> <span class="fu">as.integer</span>(year),</span>
+<span id="cb29-4"><a href="" aria-label="4"></a>    <span class="at">y =</span> percentage,</span>
+<span id="cb29-5"><a href="" aria-label="5"></a>    <span class="at">color =</span> percentage,</span>
+<span id="cb29-6"><a href="" aria-label="6"></a>    <span class="at">group =</span> position</span>
+<span id="cb29-7"><a href="" aria-label="7"></a>  )) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="" aria-label="8"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb29-9"><a href="" aria-label="9"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"A"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="smaller-font quarto-layout-panel" data-layout="[1,2]">
+<div class="quarto-layout-row">
+<div class="column quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="slides_images/viridis_palette_ordered.png" class="quarto-figure quarto-figure-center"></p>
 </figure>
 </div>
-</div><div class="column extra-small-font">
+</div><div class="column extra-small-font quarto-layout-cell" style="flex-basis: 66.7%;justify-content: flex-start;">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb33-3"><a href="" aria-label="3"></a>    <span class="at">x =</span> <span class="fu">as.integer</span>(year),</span>
-<span id="cb33-4"><a href="" aria-label="4"></a>    <span class="at">y =</span> proportion,</span>
-<span id="cb33-5"><a href="" aria-label="5"></a>    <span class="at">color =</span> proportion,</span>
-<span id="cb33-6"><a href="" aria-label="6"></a>    <span class="at">group =</span> position</span>
-<span id="cb33-7"><a href="" aria-label="7"></a>  )) <span class="sc">+</span></span>
-<span id="cb33-8"><a href="" aria-label="8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb33-9"><a href="" aria-label="9"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb33-10"><a href="" aria-label="10"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"A"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-38-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-43-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
+</div>
 </section>
 <section id="viridis-5" class="slide level2 smaller">
 <h2>viridis</h2>
 <hr>
 <p>How about with our bar chart?</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
-<span id="cb34-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb34-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_viridis_c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> percentage, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb30-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_viridis_c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="viridis-6" class="slide level2 smaller">
@@ -2074,10 +2661,10 @@ Dr.&nbsp;Kelly Boles
 <hr>
 <p>How about with our bar chart?</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
-<span id="cb35-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb35-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_viridis_c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> percentage, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb31-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_viridis_c</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `scale_fill_viridis_c()`:
 ! Discrete value supplied to a continuous scale.
@@ -2090,90 +2677,92 @@ Dr.&nbsp;Kelly Boles
 <section id="viridis-7" class="slide level2 smaller">
 <h2>viridis</h2>
 <hr>
-<p>We were trying to use the function for a <strong>continuous</strong> palette and our data is <strong>discrete</strong>.</p>
+<p>We were trying to use the function for a <strong>continuous</strong> palette and our data (<code>position</code>) is <strong>discrete</strong>.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> proportion, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
-<span id="cb37-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb37-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">"G"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" data-code-line-numbers="|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> percentage, <span class="at">fill =</span> position)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="" aria-label="3"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">"G"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-41-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="viridis-8" class="slide level2 smaller" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">viridis</h2>
+<!-- 
+## viridis  {.smaller}
 <hr>
-<p>How would you use viridis on our line graph where <code>color = position</code>?</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb38-1" class="hljs-ln-code"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb38-2" class="hljs-ln-code"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
-<span id="cb38-3" class="hljs-ln-code"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+How would you use viridis on our line graph where `color = position`?
 
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="viridis-9" class="slide level2 smaller" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">viridis</h2>
-<hr>
-<p>How would you use viridis on our line graph where <code>color = position</code>? Answer: <code>scale_color_viridis_d()</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb39-1" class="hljs-ln-code"><a href="" aria-label="1"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb39-2" class="hljs-ln-code"><a href="" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
-<span id="cb39-3" class="hljs-ln-code"><a href="" aria-label="3"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb39-4" class="hljs-ln-code"><a href="" aria-label="4"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-43-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="checklist-of-tips" class="slide level2 smaller">
-<h2>Checklist of tips</h2>
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+staff_long |>
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2)
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-47-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+## viridis  {.smaller}
 <hr>
-<ul>
-<li>Make sure to map to the data appropriately in <code>aes()</code> if you are mapping to data; otherwise, it will map to geometry</li>
-<li>Make sure your <code>color</code> or <code>fill</code> match, i.e., you are not trying to apply <code>color</code> to a <code>fill</code> aesthetic</li>
-<li>Make sure that if you are using a discrete palette, you have enough values</li>
-<li>Make sure that you are not trying to apply a continuous palette to discrete values</li>
-</ul>
-</section>
-<section id="finding-palette-packages" class="slide level2 smaller">
-<h2>Finding palette packages</h2>
+How would you use viridis on our line graph where `color = position`? Answer: `scale_color_viridis_d()`.
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-line-numbers="4"}
+staff_long |>
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2) +
+  scale_color_viridis_d()
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-48-1.png){fig-align='center' width=960}
+:::
+:::
+
+ -->
+<!-- ## Checklist of tips {.smaller}
 <hr>
-<ul>
-<li><a href="https://github.com/BlakeRMills/MetBrewer">{MetBrewer}</a></li>
-<li><a href="https://github.com/karthik/wesanderson">{wesanderson}</a></li>
-<li><a href="https://nanx.me/ggsci/">{ggsci}</a></li>
-</ul>
-<p>This is a fantastic resource: <a href="https://github.com/EmilHvitfeldt/r-color-palettes" class="uri">https://github.com/EmilHvitfeldt/r-color-palettes</a></p>
-</section>
-<section id="finding-palette-packages-1" class="slide level2 smaller">
-<h2>Finding palette packages</h2>
+* Make sure to map to the data appropriately in `aes()` if you are mapping to data; otherwise, it will map to geometry
+* Make sure your `color` or `fill` match, i.e., you are not trying to apply `color` to a `fill` aesthetic
+* Make sure that if you are using a discrete palette, you have enough values
+* Make sure that you are not trying to apply a continuous palette to discrete values -->
+<!-- ## Finding palette packages {.smaller}
 <hr>
-<div class="smaller-font">
-<ul>
-<li>Wouldn’t it be great if these palettes were contained in one package?
-<ul>
-<li>{paletteer} has <em>most</em> of them easily in one package (not all)</li>
-<li>You still have to install the package with the palette you want, but you can access them all in the same way (with the same syntax) in {paleteer}</li>
-</ul></li>
-<li>Once installed, {paleteer} works a lot like {ggplot2}’s built-in viridis</li>
-</ul>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="mduerieeyp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mduerieeyp table {
+
+:::{.smaller-font}
+- Wouldn't it be great if these palettes were contained in one package?
+  - {paletteer} has *most* of them easily in one package (not all)
+  - You still have to install the package with the palette you want, but you can access them all in the same way (with the same syntax) in {paleteer}
+- Once installed, {paleteer} works a lot like {ggplot2}'s built-in viridis
+:::
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output-display}
+
+```{=html}
+<div id="ioajrmaffh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ioajrmaffh table {
   font-family: Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mduerieeyp thead, #mduerieeyp tbody, #mduerieeyp tfoot, #mduerieeyp tr, #mduerieeyp td, #mduerieeyp th {
+#ioajrmaffh thead, #ioajrmaffh tbody, #ioajrmaffh tfoot, #ioajrmaffh tr, #ioajrmaffh td, #ioajrmaffh th {
   border-style: none;
 }
 
-#mduerieeyp p {
+#ioajrmaffh p {
   margin: 0;
   padding: 0;
 }
 
-#mduerieeyp .gt_table {
+#ioajrmaffh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2199,12 +2788,12 @@ Dr.&nbsp;Kelly Boles
   border-left-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_caption {
+#ioajrmaffh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mduerieeyp .gt_title {
+#ioajrmaffh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2216,7 +2805,7 @@ Dr.&nbsp;Kelly Boles
   border-bottom-width: 0;
 }
 
-#mduerieeyp .gt_subtitle {
+#ioajrmaffh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2228,7 +2817,7 @@ Dr.&nbsp;Kelly Boles
   border-top-width: 0;
 }
 
-#mduerieeyp .gt_heading {
+#ioajrmaffh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2240,13 +2829,13 @@ Dr.&nbsp;Kelly Boles
   border-right-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_bottom_border {
+#ioajrmaffh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_col_headings {
+#ioajrmaffh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 1px;
   border-top-color: #D3D3D3;
@@ -2261,7 +2850,7 @@ Dr.&nbsp;Kelly Boles
   border-right-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_col_heading {
+#ioajrmaffh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2281,7 +2870,7 @@ Dr.&nbsp;Kelly Boles
   overflow-x: hidden;
 }
 
-#mduerieeyp .gt_column_spanner_outer {
+#ioajrmaffh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2293,15 +2882,15 @@ Dr.&nbsp;Kelly Boles
   padding-right: 4px;
 }
 
-#mduerieeyp .gt_column_spanner_outer:first-child {
+#ioajrmaffh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mduerieeyp .gt_column_spanner_outer:last-child {
+#ioajrmaffh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mduerieeyp .gt_column_spanner {
+#ioajrmaffh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-bottom-color: #D3D3D3;
@@ -2313,11 +2902,11 @@ Dr.&nbsp;Kelly Boles
   width: 100%;
 }
 
-#mduerieeyp .gt_spanner_row {
+#ioajrmaffh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mduerieeyp .gt_group_heading {
+#ioajrmaffh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2343,7 +2932,7 @@ Dr.&nbsp;Kelly Boles
   text-align: left;
 }
 
-#mduerieeyp .gt_empty_group_heading {
+#ioajrmaffh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2358,15 +2947,15 @@ Dr.&nbsp;Kelly Boles
   vertical-align: middle;
 }
 
-#mduerieeyp .gt_from_md > :first-child {
+#ioajrmaffh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mduerieeyp .gt_from_md > :last-child {
+#ioajrmaffh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mduerieeyp .gt_row {
+#ioajrmaffh .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -2385,7 +2974,7 @@ Dr.&nbsp;Kelly Boles
   overflow-x: hidden;
 }
 
-#mduerieeyp .gt_stub {
+#ioajrmaffh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2398,7 +2987,7 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#mduerieeyp .gt_stub_row_group {
+#ioajrmaffh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2412,15 +3001,15 @@ Dr.&nbsp;Kelly Boles
   vertical-align: top;
 }
 
-#mduerieeyp .gt_row_group_first td {
+#ioajrmaffh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mduerieeyp .gt_row_group_first th {
+#ioajrmaffh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mduerieeyp .gt_summary_row {
+#ioajrmaffh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2430,16 +3019,16 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#mduerieeyp .gt_first_summary_row {
+#ioajrmaffh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_first_summary_row.thick {
+#ioajrmaffh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mduerieeyp .gt_last_summary_row {
+#ioajrmaffh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2449,7 +3038,7 @@ Dr.&nbsp;Kelly Boles
   border-bottom-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_grand_summary_row {
+#ioajrmaffh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2459,7 +3048,7 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#mduerieeyp .gt_first_grand_summary_row {
+#ioajrmaffh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2469,7 +3058,7 @@ Dr.&nbsp;Kelly Boles
   border-top-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_last_grand_summary_row_top {
+#ioajrmaffh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2479,11 +3068,11 @@ Dr.&nbsp;Kelly Boles
   border-bottom-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_striped {
+#ioajrmaffh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mduerieeyp .gt_table_body {
+#ioajrmaffh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2492,7 +3081,7 @@ Dr.&nbsp;Kelly Boles
   border-bottom-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_footnotes {
+#ioajrmaffh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2506,7 +3095,7 @@ Dr.&nbsp;Kelly Boles
   border-right-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_footnote {
+#ioajrmaffh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2515,7 +3104,7 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#mduerieeyp .gt_sourcenotes {
+#ioajrmaffh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2529,7 +3118,7 @@ Dr.&nbsp;Kelly Boles
   border-right-color: #D3D3D3;
 }
 
-#mduerieeyp .gt_sourcenote {
+#ioajrmaffh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2537,81 +3126,81 @@ Dr.&nbsp;Kelly Boles
   padding-right: 5px;
 }
 
-#mduerieeyp .gt_left {
+#ioajrmaffh .gt_left {
   text-align: left;
 }
 
-#mduerieeyp .gt_center {
+#ioajrmaffh .gt_center {
   text-align: center;
 }
 
-#mduerieeyp .gt_right {
+#ioajrmaffh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mduerieeyp .gt_font_normal {
+#ioajrmaffh .gt_font_normal {
   font-weight: normal;
 }
 
-#mduerieeyp .gt_font_bold {
+#ioajrmaffh .gt_font_bold {
   font-weight: bold;
 }
 
-#mduerieeyp .gt_font_italic {
+#ioajrmaffh .gt_font_italic {
   font-style: italic;
 }
 
-#mduerieeyp .gt_super {
+#ioajrmaffh .gt_super {
   font-size: 65%;
 }
 
-#mduerieeyp .gt_footnote_marks {
+#ioajrmaffh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mduerieeyp .gt_asterisk {
+#ioajrmaffh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mduerieeyp .gt_indent_1 {
+#ioajrmaffh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mduerieeyp .gt_indent_2 {
+#ioajrmaffh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mduerieeyp .gt_indent_3 {
+#ioajrmaffh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mduerieeyp .gt_indent_4 {
+#ioajrmaffh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mduerieeyp .gt_indent_5 {
+#ioajrmaffh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mduerieeyp .katex-display {
+#ioajrmaffh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mduerieeyp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ioajrmaffh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
 </colgroup>
 <thead>
 <tr class="gt_col_headings header">
@@ -2635,55 +3224,68 @@ Dr.&nbsp;Kelly Boles
 </table>
 
 </div>
-</div>
-</div>
-<div class="smaller-font">
-<ul>
-<li><p>The main difference is that {paletteer} uses the <strong>“package_name::palette_name”</strong> of the palette instead of the <code>option="D"</code> syntax</p></li>
-<li><p>Find the <strong>“package_name::palette_name”</strong> you want on the <a href="https://r-graph-gallery.com/color-palette-finder">{paletteer} website</a></p>
-<ul>
-<li>They also print with <code>paletteer::palettes_c_names</code> and <code>paletteer::palettes_d_names</code></li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="finding-palette-packages-2" class="slide level2 smaller">
-<h2>Finding palette packages</h2>
-<hr>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40" data-code-line-numbers="|1,2,7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="" aria-label="1"></a><span class="co">#install.packages("nationalparkcolors")</span></span>
-<span id="cb40-2"><a href="" aria-label="2"></a><span class="fu">library</span>(paletteer)</span>
-<span id="cb40-3"><a href="" aria-label="3"></a></span>
-<span id="cb40-4"><a href="" aria-label="4"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb40-5"><a href="" aria-label="5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> position)) <span class="sc">+</span></span>
-<span id="cb40-6"><a href="" aria-label="6"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb40-7"><a href="" aria-label="7"></a>  <span class="fu">scale_color_paletteer_d</span>(<span class="st">"nationalparkcolors::Acadia"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+```
 
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-45-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="finding-palette-packages-3" class="slide level2 smaller">
-<h2>Finding palette packages</h2>
-<hr>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41" data-code-line-numbers="1,2,7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="" aria-label="1"></a><span class="co">#install.packages("pals")</span></span>
-<span id="cb41-2"><a href="" aria-label="2"></a><span class="fu">library</span>(paletteer)</span>
-<span id="cb41-3"><a href="" aria-label="3"></a></span>
-<span id="cb41-4"><a href="" aria-label="4"></a>staff_long <span class="sc">|&gt;</span></span>
-<span id="cb41-5"><a href="" aria-label="5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> proportion, <span class="at">color =</span> proportion, <span class="at">group =</span> position)) <span class="sc">+</span></span>
-<span id="cb41-6"><a href="" aria-label="6"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb41-7"><a href="" aria-label="7"></a>  <span class="fu">scale_color_paletteer_c</span>(<span class="st">"pals::ocean.haline"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+:::
+:::
 
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-46-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="bonus-unicol" class="slide level2 smaller">
-<h2>BONUS: {unicol}</h2>
+:::{.smaller-font}
+- The main difference is that {paletteer} uses the **"package_name::palette_name"** of the palette instead of the `option="D"` syntax
+
+- Find the **"package_name::palette_name"** you want on the [{paletteer} website](https://r-graph-gallery.com/color-palette-finder)
+  - They also print with `paletteer::palettes_c_names` and `paletteer::palettes_d_names`
+:::
+
+## Finding palette packages {.smaller}
 <hr>
-<ul>
-<li><a href="https://hneth.github.io/unicol/">{unicol}</a> has color palettes for different universities</li>
-<li>It <a href="https://hneth.github.io/unicol/articles/color_pals.html">does not have one for UTK</a></li>
-<li>But they do provide <a href="https://hneth.github.io/unicol/">instructions to contribute one at the bottom of the page</a></li>
-</ul>
-</section></section>
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-line-numbers="|1,2,7"}
+#install.packages("nationalparkcolors")
+library(paletteer)
+
+staff_long |>
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2) +
+  scale_color_paletteer_d("nationalparkcolors::Acadia")
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-50-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+## Finding palette packages {.smaller}
+<hr>
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code  code-line-numbers="1,2,7"}
+#install.packages("pals")
+library(paletteer)
+
+staff_long |>
+  ggplot(aes(x = year, y = percentage, color = percentage, group = position)) +
+  geom_line(linewidth = 2) +
+  scale_color_paletteer_c("pals::ocean.haline")
+```
+
+::: {.cell-output-display}
+![](slides_files/figure-revealjs/unnamed-chunk-51-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+## BONUS: {unicol} {.smaller}
+<hr>
+- [{unicol}](https://hneth.github.io/unicol/) has color palettes for different universities
+- It [does not have one for UTK](https://hneth.github.io/unicol/articles/color_pals.html)
+- But they do provide [instructions to contribute one at the bottom of the page](https://hneth.github.io/unicol/) -->
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-46-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="accessibility" class="title-slide slide level1 center">
 <h1>Accessibility</h1>
@@ -2692,42 +3294,28 @@ Dr.&nbsp;Kelly Boles
 <section id="colors-1" class="slide level2 smaller">
 <h2>Colors</h2>
 <hr>
-<p>Some people do not possess the usual complement of color receptors and so can distinguish fewer colors than others.</p>
+<div class="smaller-font tight-lines">
 <ul>
-<li>Because of this, it is important to consider how a color palette will look to people with common forms of color blindness.</li>
-</ul>
-<p>You also want to check the contrast between colors to make text legible for visitors with low vision.</p>
-<ul>
-<li>WebAIM checker: <a href="https://webaim.org/resources/contrastchecker/">https://webaim.org/resources/contrastchecker/</a></li>
-</ul>
-</section>
-<section id="colors-2" class="slide level2 smaller">
-<h2>Colors</h2>
-<hr>
-<p>There are tools to help check your palettes:</p>
-<ul>
-<li><a href="https://vischeck.com/vischeck/vischeckImage.php">vischeck.com</a></li>
-</ul>
-
-<img data-src="slides_images/colorblindness.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="colors-3" class="slide level2 smaller">
-<h2>Colors</h2>
-<hr>
-<p>There are tools to help check your palettes:</p>
-<ul>
-<li>{dichromat} and {colorblindr} packages simulate color blindness</li>
+<li>Some people can distinguish fewer colors than others.</li>
+<li>{colorblindr} simulates different types of color blindness:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="" aria-label="1"></a><span class="co">#install.packages("colorblindr")</span></span>
-<span id="cb42-2"><a href="" aria-label="2"></a><span class="fu">library</span>(colorblindr)</span>
-<span id="cb42-3"><a href="" aria-label="3"></a></span>
-<span id="cb42-4"><a href="" aria-label="4"></a><span class="co">#Using our plot `p`</span></span>
-<span id="cb42-5"><a href="" aria-label="5"></a></span>
-<span id="cb42-6"><a href="" aria-label="6"></a><span class="fu">cvd_grid</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="" aria-label="1"></a><span class="co">#install.packages("colorblindr")</span></span>
+<span id="cb34-2"><a href="" aria-label="2"></a><span class="fu">library</span>(colorblindr)</span>
+<span id="cb34-3"><a href="" aria-label="3"></a></span>
+<span id="cb34-4"><a href="" aria-label="4"></a><span class="co">#Using our plot `p`</span></span>
+<span id="cb34-5"><a href="" aria-label="5"></a><span class="fu">cvd_grid</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-52-1.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-47-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="colors-4" class="slide level2 smaller">
+</div>
+</div>
+</div>
+</section>
+<section id="colors-2" class="slide level2 smaller">
 <h2>Colors</h2>
 <hr>
 <p>Some color palettes also consider accessibility:</p>
@@ -2761,6 +3349,7 @@ Dr.&nbsp;Kelly Boles
 <section id="looking-ahead-1" class="slide level2">
 <h2>Looking Ahead</h2>
 <hr>
+<div class="smaller-font">
 <ul>
 <li>Reading:
 <ul>
@@ -2768,10 +3357,25 @@ Dr.&nbsp;Kelly Boles
 <li>Christiansen (2023), Ch 9</li>
 <li>France (2020)</li>
 </ul></li>
-<li>Discussion Post</li>
+<li>Comment on Mini Project #1 Plot Gallery
+<ul>
+<li>Something you learned/liked! Celebrate each others’ work!</li>
+</ul></li>
 <li>Assignment 8: Graphing and Improving Plots</li>
 </ul>
+</div>
 <p><strong>Mini-Project #2:</strong> Assigned Next Week</p>
+</section>
+<section id="finding-palette-packages" class="slide level2 smaller">
+<h2>Finding palette packages</h2>
+<hr>
+<ul>
+<li><p><a href="https://github.com/BlakeRMills/MetBrewer">{MetBrewer}</a></p></li>
+<li><p><a href="https://github.com/karthik/wesanderson">{wesanderson}</a></p></li>
+<li><p><a href="https://nanx.me/ggsci/">{ggsci}</a></p></li>
+<li><p>This is a fantastic resource: <a href="https://github.com/EmilHvitfeldt/r-color-palettes" class="uri">https://github.com/EmilHvitfeldt/r-color-palettes</a></p></li>
+<li><p>As is this: <a href="https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics" class="uri">https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics</a></p></li>
+</ul>
 </section>
 <section id="attribution-for-some-materials-used-today" class="slide level2 smaller">
 <h2>Attribution for some materials used today</h2>

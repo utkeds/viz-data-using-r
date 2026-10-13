@@ -31,12 +31,10 @@ knitr:
 ## Today's Agenda
 <hr>
 
-:::{.extra-small-font}
+:::{.smaller-font}
 - **Weekly Check In**
-- **Where Are We?**
 - **Foundational Skills**
-    - CRAN vs. remotes
-    - `pivot_longer`
+    - CRAN vs. {remotes}
 - **Themes**
     - Pre-Built
     - Packages
@@ -66,7 +64,7 @@ knitr:
 
 # Review/ <br>Foundational Skills
 
-## Cleaning the data {.smaller}
+<!-- ## Cleaning the data {.smaller}
 <hr>
 - Let's talk a bit about cleaning data
   - Some cleaning steps we would do at first to "clean up" the dataset
@@ -75,17 +73,24 @@ knitr:
     - Remove the meaningless rows (e.g. extra rows in middle of the dataset)
   - We would not want to `filter(!is.na(x))` for every variable at the beginning of the analysis (or use other code that does the same thing, like `complete.cases()`)
 
-  ***WHY?***
+  ***WHY?*** -->
 
-## CRAN vs. remotes
+## CRAN & install.packages()
 <hr>
 
-- Most packages are downloadable from CRAN but not all
+:::{.smaller-font .tight-lines}
+- Most packages are downloadable from CRAN
+  - "Comprehensive R Archive Network"
+  - Hosts thousands of packages
+    - Quality checks
+    - Version control
+
+:::
 
 :::{layout="[1,1]" .smaller-font}
 :::{column}
-- `tidyverse` is on CRAN
-- `remotes` is a package on CRAN that allows you to install packages from elsewhere
+- {tidyverse} is on CRAN
+- {remotes} is also a package on CRAN
 
 ```{r}
 #install.packages("tidyverse")
@@ -97,16 +102,24 @@ library(remotes)
 
 :::
 
-:::{column}
-- `dsbox` is not on CRAN but is downloadable from GitHub
-- We will use the `install_github()` function from `remotes` to install `dsbox`
+:::
+
+## {remotes} & install_*()
+<hr>
+:::{.smaller-font}
+
+- Not all packages are downloadable from CRAN
+- {remotes} helps us install the ones that aren't 
+:::
 
 ```{r}
-#install_github("tidyverse/dsbox")
+#remotes::install_github("tidyverse/dsbox")
 library(dsbox)
 ```
 
-:::
+:::{.smaller-font}
+- {dsbox} is not on CRAN but is downloadable from GitHub
+- We will use the `install_github()` function from {remotes} to install {dsbox}
 :::
 
 ## New data today = AAUP
@@ -115,10 +128,21 @@ library(dsbox)
 :::{.smaller-font}
 The American Association of University Professors (AAUP) is a nonprofit
 membership association of faculty and other academic professionals. This report
-compiled by the AAUP shows trends in instructional staff as a proportion of 
+compiled by the AAUP shows trends in instructional staff as a percentage of 
 employees between 1975 and 2011.
 :::
 
+```{r, echo=F}
+staff_long <- instructors |>
+  pivot_longer(
+    cols = !year, # "Which columns do I pivot?"
+    names_to = "position", # "What should I call the new column that holds the old column names?"
+    values_to = "percentage" # "What should I call the new column that holds the old values?"
+  )
+head(staff_long, 10)
+```
+
+<!-- 
 ::::{.fragment .extra-small-font}
 ```{r, echo=F}
 library(knitr) #ignore this -> just doing it for the kable to print all cols
@@ -127,7 +151,179 @@ kable(instructors)
 ```
 ::::
 
-## tidy data & `pivot_longer`
+# tidy data + `pivot_longer()`
+
+## tidy data
+<hr>
+
+#### Requirements for tidy data
+
+::: {.smaller-font}
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell (1 cell: 1 value)
+
+    - If you can split it, split it!
+
+        - City, State
+        - ACT/SAT
+        - 26 inches (value + unit)
+:::
+
+## tidy data
+<hr>
+
+```{=html}
+<style>
+  .tidy-toggle { font-size: 0.5em; line-height: 1.4; text-align: left; }
+  .tidy-toggle .tt-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .tidy-toggle .tt-label { opacity: 0.7; margin-right: 6px; }
+  .tidy-toggle button {
+    font: inherit; color: inherit; background: transparent; cursor: pointer;
+    border: 1px solid rgba(128,128,128,0.5); border-radius: 6px; padding: 4px 12px;
+  }
+  .tidy-toggle button:hover { background: rgba(128,128,128,0.15); }
+  .tidy-toggle button.on { background: rgba(128,128,128,0.25); border-color: rgba(128,128,128,0.9); font-weight: 600; }
+  .reveal .tidy-toggle table { width: 100%; margin: 0 0 12px 0; border-collapse: collapse; table-layout: fixed; }
+  .reveal .tidy-toggle table th,
+  .reveal .tidy-toggle table td {
+    padding: 6px 10px; text-align: left; font-family: monospace;
+    border: 1px solid rgba(128,128,128,0.45); transition: background 0.15s;
+  }
+  .reveal .tidy-toggle table th { font-weight: 600; background: rgba(128,128,128,0.12); }
+  .tidy-toggle .h1 { background: rgba(55,138,221,0.35) !important; }
+  .tidy-toggle .h2 { background: rgba(239,159,39,0.40) !important; }
+  .tidy-toggle .h3 { background: rgba(99,153,34,0.40)  !important; }
+  .tidy-toggle .tt-cap {
+    display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px;
+    border-radius: 6px; background: rgba(128,128,128,0.12); min-height: 3.2em;
+  }
+  .tidy-toggle .tt-icon { font-weight: 700; font-size: 1.3em; line-height: 1; }
+  .tidy-toggle .tt-icon.bad  { color: #d9534f; }
+  .tidy-toggle .tt-icon.good { color: #3c9a3c; }
+</style>
+
+<div class="tidy-toggle">
+  <div class="tt-row">
+    <span class="tt-label">Table</span>
+    <button data-mode="wide">Wide</button>
+    <button data-mode="long">Long</button>
+  </div>
+  <div class="tt-row">
+    <span class="tt-label">Check rule</span>
+    <button data-rule="1">1 · Variables are columns</button>
+    <button data-rule="2">2 · Observations are rows</button>
+    <button data-rule="3">3 · Values are cells</button>
+  </div>
+  <div class="tt-table"></div>
+  <div class="tt-cap"><span class="tt-icon"></span><span class="tt-text"></span></div>
+</div>
+
+<script>
+(function () {
+  var years = [1975, 1989];
+  var pos = ['full_time_tenured', 'part_time', 'grad_student'];
+  var vals = { 1975: [29.0, 24.0, 20.5], 1989: [27.6, 30.4, 16.5] };
+
+  var caps = {
+    wide: {
+      1: [false, 'The column names full_time_tenured, part_time, and grad_student are values of one variable (position). Position is a variable, but it has no column of its own.'],
+      2: [false, 'This one row holds three observations: tenured, part-time, and grad students, all in 1975. Each observation should get its own row.'],
+      3: [false, 'Percentage is a single variable, but its values are spread across three columns instead of living in one.']
+    },
+    long: {
+      1: [true, 'Three variables, three columns: year, position, and percentage.'],
+      2: [true, 'One row, one observation: the share of part-time instructors in 1975. The next row is a different observation.'],
+      3: [true, 'Every percentage sits in a single column, one value per cell.']
+    }
+  };
+
+  function cell(tag, txt, cls) {
+    return '<' + tag + (cls ? ' class="' + cls + '"' : '') + '>' + txt + '</' + tag + '>';
+  }
+
+  function init(root) {
+    var mode = 'wide', rule = null;
+
+    function render() {
+      var T = 'ta' + 'ble';
+      var c = rule ? 'h' + rule : '', h = '<' + T + '>';
+
+      if (mode === 'wide') {
+        h += '<tr>' + cell('th', 'year', '');
+        pos.forEach(function (p) { h += cell('th', p, rule === 1 ? c : ''); });
+        h += '</tr>';
+        years.forEach(function (y, i) {
+          var rowOn = rule === 2 && i === 0;
+          h += '<tr>' + cell('td', y, rowOn ? c : '');
+          vals[y].forEach(function (v) {
+            h += cell('td', v.toFixed(1), (rowOn || rule === 3) ? c : '');
+          });
+          h += '</tr>';
+        });
+      } else {
+        h += '<tr>';
+        ['year', 'position', 'percentage'].forEach(function (t) {
+          h += cell('th', t, rule === 1 ? c : '');
+        });
+        h += '</tr>';
+        var n = 0;
+        years.forEach(function (y) {
+          pos.forEach(function (p, j) {
+            var rowOn = rule === 2 && n === 1;
+            h += '<tr>' + cell('td', y, rowOn ? c : '') +
+                 cell('td', p, rowOn ? c : '') +
+                 cell('td', vals[y][j].toFixed(1), (rowOn || rule === 3) ? c : '') + '</tr>';
+            n++;
+          });
+        });
+      }
+      h += '</' + T + '>';
+      root.querySelector('.tt-table').innerHTML = h;
+
+      var icon = root.querySelector('.tt-icon');
+      if (rule === null) {
+        icon.textContent = '';
+        icon.className = 'tt-icon';
+        root.querySelector('.tt-text').textContent = '';
+      } else {
+        var cp = caps[mode][rule];
+        icon.textContent = cp[0] ? '\u2713' : '\u2717';
+        icon.className = 'tt-icon ' + (cp[0] ? 'good' : 'bad');
+        root.querySelector('.tt-text').textContent = cp[1];
+      }
+
+      root.querySelectorAll('[data-mode]').forEach(function (b) {
+        b.classList.toggle('on', b.dataset.mode === mode);
+      });
+      root.querySelectorAll('[data-rule]').forEach(function (b) {
+        b.classList.toggle('on', Number(b.dataset.rule) === rule);
+      });
+    }
+
+    root.querySelectorAll('[data-mode]').forEach(function (b) {
+      b.addEventListener('click', function () { mode = b.dataset.mode; render(); });
+    });
+    root.querySelectorAll('[data-rule]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var n = Number(b.dataset.rule);
+        rule = (rule === n) ? null : n;   // click again to deselect
+        render();
+      });
+    });
+    render();
+  }
+
+  document.querySelectorAll('.tidy-toggle').forEach(init);
+})();
+</script>
+```
+
+:::{.extra-small-font}
+Wickham, H. (2014). Tidy data. Journal of Statistical Software, 59(10), 1-23. https://doi.org/10.18637/jss.v059.i10
+:::
+
+<!-- ## tidy data & `pivot_longer`
 <hr>
 
 :::{.smaller-font}
@@ -165,18 +361,38 @@ kable(head(instructors, 5))
 
 - *Violates #1*. The column names (except year) are position types, which should be values in a column.
 - *Violates #2*. Each row has multiple observations for that year.
-- *Violates #3*. The same value types (proportions of whole workforce) are spread across multiple columns.
+- *Violates #3*. The same value types (percentages of whole workforce) are spread across multiple columns.
 :::
 ::::
 
 ::::{.fragment}
 **Let's tidy**
-::::
+:::: -->
+<!-- 
+# tidying the data
 
-## tidy data & `pivot_longer` {.smaller}
+## `pivot_longer` {.smaller}
 <hr>
 
-- Longer data (tidy data) is often preferred, esp. in {tidyverse}
+- Long data (tidy data) is often preferred, esp. in {tidyverse}
+- `pivot_longer()` is your friend
+  - See documentation [here](https://tidyr.tidyverse.org/reference/pivot_longer.html)
+  - Inverse operation of `pivot_wider()`
+
+## `pivot_wider` (recap) {.smaller}
+<hr>
+- Last week!
+
+![](slides_images/pivot_wider_malaria.png)
+
+:::{.extra-small-font}
+Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.com/en/
+:::
+
+## `pivot_longer` {.smaller}
+<hr>
+
+- Long data (tidy data) is often preferred, esp. in {tidyverse}
 - `pivot_longer()` is your friend
   - See documentation [here](https://tidyr.tidyverse.org/reference/pivot_longer.html)
   - Inverse operation of `pivot_wider()`
@@ -187,35 +403,44 @@ kable(head(instructors, 5))
 Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.com/en/
 :::
 
-## tidy data & `pivot_longer` {.smaller}
+
+## tidy data & `pivot_longer`
 <hr>
 
+:::{.smaller-font .tight-lines}
 **Requirements for tidy data:**
 
 1. Each variable forms a column
 2. Each observation forms a row
 3. Each value forms a cell
-
-:::{.fragment .extra-small-font}
-
-- How might we begin to pivot this longer?
-  - Which columns? `cols`
-  - What should I call the new column that holds the old column names? `names_to`
-  - What should I call the new column that holds the old values? `values_to`
-
 :::
 
-:::{.fragment .extra-small-font}
-```{r, echo=F}
-kable(head(instructors, 5))
+::: {.fragment .smaller-font}
+```{r}
+head(instructors, 5)
 ```
 
+::::{.fragment}
+`pivot_longer()`
+::::
 :::
+
+::::{.fragment .smaller-font}
+```{r, eval=F}
+staff_long <- instructors |>
+  pivot_longer(
+    cols = !year, # "Which columns do I pivot?"
+    names_to = "position", # "What should I call the new column that holds the old column names?"
+    values_to = "percentage" # "What should I call the new column that holds the old values?"
+  )
+```
+::::
+
 
 ## tidy data & `pivot_longer`
 <hr>
 
-:::{.smaller-font}
+:::{.smaller-font .tight-lines}
 **Requirements for tidy data:**
 
 1. Each variable forms a column
@@ -232,23 +457,25 @@ kable(head(instructors, 5))
 ```{r}
 staff_long <- instructors |>
   pivot_longer(
-    cols = -year, #cols: "Which columns do I pivot?"
-    names_to = "position", #names_to: "What should I call the new column that holds the old column names?"
-    values_to = "proportion"
-  ) #values_to: "What should I call the new column that holds the old values?"
+    cols = !year, # "Which columns do I pivot?"
+    names_to = "position", # "What should I call the new column that holds the old column names?"
+    values_to = "percentage" # "What should I call the new column that holds the old values?"
+  )
 head(staff_long, 10)
 ```
 ::::
+ -->
+
 
 # Review: Line Plots
 
 ## Review: Line Plots {.smaller}
 <hr>
-
+- **Note:** I am storing this plot to `p`
 ```{r}
 p <- staff_long |>
-  ggplot(aes(x = year, y = proportion, color = position, group = position)) +
-  geom_line() #Note: color argument should implicitly handle grouping
+  ggplot(aes(x = year, y = percentage, color = position, group = position)) +
+  geom_line(linewidth = 2) #Note: color argument should implicitly handle grouping
 
 p
 ```
@@ -280,11 +507,16 @@ Today, we'll be focusing on `theme()`.
 
 **What does this mean?**
 <br><br>
+<center>
 
 :::{.fragment}
-data-to-ink ratio $= \frac{data\:ink}{total\:ink}$
+$\text{data-to-ink ratio} = \dfrac{\text{data ink}}{\text{total ink}}$
+:::
+</center>
+<br>
 
-[Think again about the necessity of all the non-data components of your plot - e.g., your theme!]{.smaller-font}
+:::{.fragment .smaller-font .tight-lines}
+Think again about the necessity of all the non-data components of your plot - e.g., your theme!
 :::
 
 ## Themes and non-data ink
@@ -372,10 +604,8 @@ p +
 <hr>
 [{pilot}](https://github.com/olihawkins/pilot)
 
-:::{.extra-small-font}
-- accessible
-- for discrete data only
-- modern
+:::{.extra-small-font .tight-lines}
+- accessible, modern, for discrete data only (no gradients)
 :::
 
 ```{r}
@@ -389,53 +619,54 @@ p + theme_pilot()
 <hr>
 [{hrbrthemes}](https://github.com/hrbrmstr/hrbrthemes)
 
-:::{.extra-small-font}
-- typography-centered themes
-- discrete & continuous themes
-- modern
+:::{.extra-small-font .tight-lines}
+- modern, typography-centered, discrete & continuous
 :::
 
 ```{r}
 library(hrbrthemes)
 
-p + theme_ipsum_rc()
+p + theme_ipsum_rc() #ipsum is base theme, rc is font
 ```
-
-## And So Many More! {.smaller}
-<hr>
-Check out [Erik Gahner's github page](https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics) for an incredible list!
 
 
 # Custom Themes
 
 ## Custom Themes {.smaller}
 <hr>
-- You can make your own theme!
-- Create your theme settings in one .R script and copy/paste them into your current script. Don't recreate the wheel.
+- Pre-built themes are just when someone has customized all the theme options for you
 
 ```{r}
+theme_minimal()
+```
+
+## Custom Themes {.smaller}
+<hr>
+- You can create your theme settings in one .R script and copy/paste them into your current script.
+
+```{r}
+# store all your customizations to an object
 my_theme <- theme(
   legend.position = "bottom",
   panel.background = element_rect(fill = "white")
 )
+# add that object to your ggplot
 p + my_theme
 ```
 
-## `theme()` anatomy {.smaller auto-animate="true"}
+<!-- ## `theme()` anatomy {.smaller auto-animate="true"}
 <hr>
 - Our starting plot for today
-  - Note: I am storing it to an object `p` for later use
+  - Note: I am storing it to an object `p` for later use -->
 
-```{r}
+```{r, echo=F}
 p <- staff_long |>
-  ggplot(aes(x = year, y = proportion, color = position)) +
-  geom_line() +
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2) +
   labs(title = "Instructional staff employment trends")
-
-p
 ```
 
-## `theme()` anatomy {.smaller auto-animate="true"}
+## `theme()` anatomy {.smaller}
 <hr>
 Make the title 16 point and bold
 
@@ -446,7 +677,7 @@ p +
   )
 ```
 
-## `theme()` anatomy {.smaller auto-animate="true"}
+## `theme()` anatomy {.smaller}
 <hr>
 Place legend on the bottom
 
@@ -458,7 +689,7 @@ p +
   )
 ```
 
-## `theme()` anatomy {.smaller auto-animate="true"}
+## `theme()` anatomy {.smaller}
 <hr>
 Make the background white
 
@@ -482,6 +713,33 @@ Full list of elements available at [ggplot2.tidyverse.org/reference/theme](https
 :::
 
 ## Modifying theme components {.smaller}
+<hr>
+
+:::{layout="[1,2]"}
+:::{.column .smaller-font .tight-lines}
+**Four basic types** of built-in element functions:
+
+* [`element_text()`](https://ggplot2.tidyverse.org/reference/element.html) draws labels and headings
+* [`element_line()`](https://ggplot2.tidyverse.org/reference/element.html) draws lines by color, linewidth and linetype
+* [`element_rect()`](https://ggplot2.tidyverse.org/reference/element.html) draws rectangles, mostly used for backgrounds
+* [`element_blank()`](https://ggplot2.tidyverse.org/reference/element.html) draws nothing
+:::
+:::{.column}
+
+```{r}
+p +
+  theme(
+    plot.title = element_text(size = 70),
+    panel.grid.major = element_line(color = "black"),
+    plot.background = element_rect(color = "red", linewidth = 2),
+    axis.title.x = element_blank()
+  )
+```
+
+:::
+:::
+
+<!-- ## Modifying theme components {.smaller}
 <hr>
 Four basic types of built-in element functions:
 
@@ -537,7 +795,8 @@ p +
     plot.background = element_rect(color = "red", linewidth = 2),
     axis.title.x = element_blank()
   )
-```
+``` 
+-->
 
 ## Modifying theme components {.smaller}
 <hr>
@@ -559,7 +818,7 @@ p +
 
 What happens if you put `theme()` before `theme_minimal()`?
 
-# BREAK
+<!-- # BREAK -->
 
 # Colors
 
@@ -580,26 +839,28 @@ Use the name of the color in quotes:
 ```{r}
 #| code-line-numbers: "|3"
 staff_long |>
-  ggplot(aes(x = position, y = proportion)) +
+  ggplot(aes(x = position, y = percentage)) +
   geom_col(fill = "royalblue")
 ```
 
-. . .
+<!-- . . .
 
 What if you put `fill = "royalblue"` inside of `aes()`?
 
 ## Built-in colors
 <hr>
-Inside of `aes()`, `fill` maps to the data, *not* the geometry.
+Inside of `aes()`, `fill` maps to the data.
 
 ```{r}
 #| code-line-numbers: "|2"
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = "royalblue")) +
+  ggplot(aes(x = position, y = percentage, fill = "royalblue")) +
   geom_col()
-```
+``` 
 
-## Built-in colors
+-->
+
+<!-- ## Built-in colors
 <hr>
 You can specify colors for specific values using `scale_fill_manual` and a named vector:
 
@@ -607,7 +868,7 @@ You can specify colors for specific values using `scale_fill_manual` and a named
 #| eval: false
 #| code-line-numbers: "|4-11|"
 staff_long |>
-  ggplot(aes(x = position, y = proportion)) +
+  ggplot(aes(x = position, y = percentage)) +
   geom_col() +
   scale_fill_manual(
     values = c(
@@ -629,7 +890,7 @@ You can specify colors for specific values using `scale_fill_manual` and a named
 #| error: true
 #| eval: true
 staff_long |>
-  ggplot(aes(x = position, y = proportion)) +
+  ggplot(aes(x = position, y = percentage)) +
   geom_col() +
   scale_fill_manual(
     values = c(
@@ -642,7 +903,7 @@ staff_long |>
   )
 ```
 
-Why are there no colors?
+Why are there no colors? -->
 
 ## Built-in colors
 <hr>
@@ -652,7 +913,7 @@ You can specify colors for specific values using `scale_fill_manual` and a named
 #| eval: false
 #| code-line-numbers: "|2,4-11"
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col() +
   scale_fill_manual(
     values = c(
@@ -673,7 +934,7 @@ You can specify colors for specific values using `scale_fill_manual` and a named
 #| error: true
 #| echo: false
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col() +
   scale_fill_manual(
     values = c(
@@ -694,8 +955,8 @@ What about our earlier line graph?
 #| code-line-numbers: "|2,4"
 #| error: true
 staff_long |>
-  ggplot(aes(x = year, y = proportion, color = position)) +
-  geom_line() +
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2) +
   scale_fill_manual(
     values = c(
       "full_time_non_tenure_track" = "skyblue",
@@ -714,8 +975,8 @@ We need to make sure we're mapping the correct aesthetic:
 ```{r}
 #| code-line-numbers: "|2,4"
 staff_long |>
-  ggplot(aes(x = year, y = proportion, color = position)) +
-  geom_line() +
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2) +
   scale_color_manual(
     values = c(
       "full_time_non_tenure_track" = "skyblue",
@@ -731,30 +992,50 @@ staff_long |>
 
 ## {ggplot2} palette packages
 <hr>
-There are a ton of amazing palette packages out there! Here is an example from [MetBrewer](https://github.com/BlakeRMills/MetBrewer):
 
+::: {.smaller-font}
+There are a ton of amazing palette packages out there! Here is an example from [MetBrewer](https://github.com/BlakeRMills/MetBrewer):
+:::
+
+::: {layout="[1,1]"}
+:::{.column}
+![](slides_images/metbrewer_monet.png)
+:::
+
+:::{.column}
 ```{r}
 library(MetBrewer)
 
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col() +
-  scale_fill_manual(values = met.brewer("Hokusai1"))
+  scale_fill_manual(values = met.brewer("Monet"))
 ```
+:::
+:::
 
 ## {ggplot2} palette packages
 <hr>
+::: {.smaller-font}
 Let's try the [Egypt](https://github.com/BlakeRMills/MetBrewer?tab=readme-ov-file#egypt) palette:
+:::
 
+::: {layout="[1,3]"}
+:::{.column}
+![](slides_images/metbrewer_egypt.png)
+:::
+
+:::{.column}
 ```{r}
 #| eval: false
 library(MetBrewer)
 
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col() +
   scale_fill_manual(values = met.brewer("Egypt"))
 ```
+
 
 . . .
 
@@ -764,7 +1045,7 @@ staff_long |>
 library(MetBrewer)
 
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col() +
   scale_fill_manual(values = met.brewer("Egypt"))
 ```
@@ -772,17 +1053,47 @@ staff_long |>
 <br>
 <br>
 Why didn't this work?
+:::
+:::
+
+## {ggplot2} palette packages
+<hr>
+
+::: {.smaller-font}
+- [MetBrewer](https://github.com/BlakeRMills/MetBrewer) supports continuous palettes (gradients), too:
+  - Problem: Not a smooth/perceptually uniform gradient
+
+```{r}
+#| code-line-numbers: "|7,11"
+#| out-width: "50%"
+library(MetBrewer)
+
+staff_long |>
+  ggplot(aes(
+    x = as.integer(year),
+    y = percentage,
+    color = percentage,
+    group = position
+  )) +
+  geom_line(linewidth = 2) +
+  scale_color_gradientn(colors = met.brewer("Isfahan1"))
+```
+
+:::
 
 # viridis
 
 ## viridis {.smaller}
 <hr>
 - viridis is one of the most popular palettes in ggplot and in data viz
-- There is a package for it {viridis}
-- But it's now built into {ggplot2}
-  - You may see two ways to incorporate viridis into plots because of its dual availability
+- Built into {ggplot2}
+- produces a smooth gradient: equal perceived steps in color (i.e., no big jumps between colors)
 
-![](slides_images/viridis_palette_ordered.png){fig-align="center"}
+![](slides_images/viridis_palette_ordered.png){fig-align="center" width="60%"}
+
+::: aside
+Christiansen, J. (2022). Building science graphics: An illustrated guide to communicating science through diagrams and visualizations. CRC Press. [Ch. 8]
+:::
 
 ## viridis {.smaller}
 <hr>
@@ -813,6 +1124,7 @@ data |>
   ) |>
   tab_options(
     table.font.names = "Arial",
+    table.font.size = pct(110),
     table.align = "center",
     data_row.padding = px(6),
     column_labels.border.top.width = px(1),
@@ -822,27 +1134,31 @@ data |>
 ```
 ## viridis {.smaller}
 <hr>
-- The default color option is viridis itself (Option D).
 
-- *Note*: I am mapping color to `proportion`, a continuous variable.)
+::: {.smaller-font .tight-lines}
+- The default color option is viridis itself (Option D).
+- *Note*: I am mapping color to `percentage`, a continuous variable.
 
 ```{r}
+#| code-line-numbers: "|5,9"
+#| out-width: "60%"
 staff_long |>
   ggplot(aes(
     x = as.integer(year),
-    y = proportion,
-    color = proportion,
+    y = percentage,
+    color = percentage,
     group = position
   )) +
-  geom_point() +
-  geom_line() +
+  geom_line(linewidth = 2) +
   scale_color_viridis_c()
 ```
+:::
+
 ## viridis {.smaller}
 <hr>
 You can specify other options for viridis, too!
 
-:::{.columns}
+:::{layout="[1,2]" .smaller-font}
 
 :::{.column}
 ![](slides_images/viridis_palette_ordered.png){fig-align="center"}
@@ -854,12 +1170,11 @@ You can specify other options for viridis, too!
 staff_long |>
   ggplot(aes(
     x = as.integer(year),
-    y = proportion,
-    color = proportion,
+    y = percentage,
+    color = percentage,
     group = position
   )) +
-  geom_point() +
-  geom_line() +
+  geom_line(linewidth = 2) +
   scale_color_viridis_c(option = "A")
 ```
 :::
@@ -872,7 +1187,7 @@ How about with our bar chart?
 ```{r}
 #| eval: false
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col() +
   scale_fill_viridis_c()
 ```
@@ -884,7 +1199,7 @@ How about with our bar chart?
 ```{r}
 #| error: true
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col() +
   scale_fill_viridis_c()
 ```
@@ -895,54 +1210,49 @@ Why didn't it work?
 
 ## viridis {.smaller}
 <hr>
-We were trying to use the function for a **continuous** palette and our data is **discrete**.
+We were trying to use the function for a **continuous** palette and our data (`position`) is **discrete**.
 
 ```{r}
 #| code-line-numbers: "|4"
 staff_long |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col() +
   scale_fill_viridis_d(option = "G")
 ```
 
-## viridis  {.smaller auto-animate="true"}
+<!-- 
+## viridis  {.smaller}
 <hr>
 How would you use viridis on our line graph where `color = position`?
 
 ```{r}
 staff_long |>
-  ggplot(aes(x = year, y = proportion, color = position)) +
-  geom_line()
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2)
 ```
 
-## viridis  {.smaller auto-animate="true"}
+## viridis  {.smaller}
 <hr>
 How would you use viridis on our line graph where `color = position`? Answer: `scale_color_viridis_d()`.
 
 ```{r}
 #| code-line-numbers: "4"
 staff_long |>
-  ggplot(aes(x = year, y = proportion, color = position)) +
-  geom_line() +
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2) +
   scale_color_viridis_d()
 ```
+ -->
 
-## Checklist of tips {.smaller}
+
+<!-- ## Checklist of tips {.smaller}
 <hr>
 * Make sure to map to the data appropriately in `aes()` if you are mapping to data; otherwise, it will map to geometry
 * Make sure your `color` or `fill` match, i.e., you are not trying to apply `color` to a `fill` aesthetic
 * Make sure that if you are using a discrete palette, you have enough values
-* Make sure that you are not trying to apply a continuous palette to discrete values
+* Make sure that you are not trying to apply a continuous palette to discrete values -->
 
-## Finding palette packages {.smaller}
-<hr>
-* [{MetBrewer}](https://github.com/BlakeRMills/MetBrewer)
-* [{wesanderson}](https://github.com/karthik/wesanderson)
-* [{ggsci}](https://nanx.me/ggsci/)
-
-This is a fantastic resource: <https://github.com/EmilHvitfeldt/r-color-palettes>
-
-## Finding palette packages {.smaller}
+<!-- ## Finding palette packages {.smaller}
 <hr>
 
 :::{.smaller-font}
@@ -997,8 +1307,8 @@ data2 |>
 library(paletteer)
 
 staff_long |>
-  ggplot(aes(x = year, y = proportion, color = position)) +
-  geom_line() +
+  ggplot(aes(x = year, y = percentage, color = position)) +
+  geom_line(linewidth = 2) +
   scale_color_paletteer_d("nationalparkcolors::Acadia")
 ```
 
@@ -1011,8 +1321,8 @@ staff_long |>
 library(paletteer)
 
 staff_long |>
-  ggplot(aes(x = year, y = proportion, color = proportion, group = position)) +
-  geom_line() +
+  ggplot(aes(x = year, y = percentage, color = percentage, group = position)) +
+  geom_line(linewidth = 2) +
   scale_color_paletteer_c("pals::ocean.haline")
 ```
 
@@ -1020,44 +1330,28 @@ staff_long |>
 <hr>
 - [{unicol}](https://hneth.github.io/unicol/) has color palettes for different universities
 - It [does not have one for UTK](https://hneth.github.io/unicol/articles/color_pals.html)
-- But they do provide [instructions to contribute one at the bottom of the page](https://hneth.github.io/unicol/)
+- But they do provide [instructions to contribute one at the bottom of the page](https://hneth.github.io/unicol/) -->
 
 
 # Accessibility
 
 ## Colors {.smaller}
 <hr>
-Some people do not possess the usual complement of color receptors and so can distinguish fewer colors than others.
 
-* Because of this, it is important to consider how a color palette will look to people with common forms of color blindness.
-
-You also want to check the contrast between colors to make text legible for visitors with low vision.
-
-* WebAIM checker: [https://webaim.org/resources/contrastchecker/](https://webaim.org/resources/contrastchecker/)
-
-
-## Colors {.smaller}
-<hr>
-There are tools to help check your palettes:
-
-* [vischeck.com](https://vischeck.com/vischeck/vischeckImage.php)
-
-![](slides_images/colorblindness.png){fig-align="center"}
-
-## Colors {.smaller}
-<hr>
-There are tools to help check your palettes:
-
-* {dichromat} and {colorblindr} packages simulate color blindness
+:::{.smaller-font .tight-lines}
+* Some people can distinguish fewer colors than others.
+* {colorblindr} simulates different types of color blindness:
 
 ```{r}
+#| out-width: "80%"
 #install.packages("colorblindr")
 library(colorblindr)
 
 #Using our plot `p`
-
 cvd_grid(p)
 ```
+
+:::
 
 ## Colors {.smaller}
 <hr>
@@ -1081,16 +1375,27 @@ Some color palettes also consider accessibility:
 
 ## Looking Ahead
 <hr>
+
+::: {.smaller-font}
 - Reading:
     - Schwabish (2021), Ch 2
     - Christiansen (2023), Ch 9
     - France (2020)
-
-- Discussion Post
+- Comment on Mini Project #1 Plot Gallery
+  - Something you learned/liked! Celebrate each others' work!
 - Assignment 8: Graphing and Improving Plots
+:::
 
 **Mini-Project #2:** Assigned Next Week
 
+## Finding palette packages {.smaller}
+<hr>
+* [{MetBrewer}](https://github.com/BlakeRMills/MetBrewer)
+* [{wesanderson}](https://github.com/karthik/wesanderson)
+* [{ggsci}](https://nanx.me/ggsci/)
+
+- This is a fantastic resource: <https://github.com/EmilHvitfeldt/r-color-palettes>
+- As is this: <https://github.com/erikgahner/awesome-ggplot2?tab=readme-ov-file#themes-and-aesthetics>
 
 ## Attribution for some materials used today {.smaller}
 <hr>

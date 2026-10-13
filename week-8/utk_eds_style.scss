@@ -42,47 +42,47 @@ $energy: #EE3E80;
   color: #006C93;
 }
 
-.river-color{
+.river-color {
   color: #517C96;
 }
 
-.leconte-color{
+.leconte-color {
   color: #8D2048;
 }
 
-.rock-color{
+.rock-color {
   color: #A7A9AC;
 }
 
-.summit-color{
+.summit-color {
   color: #B9E1E2;
 }
 
-.legacy-color{
+.legacy-color {
   color: #579584;
 }
 
-.buckskin-color{
+.buckskin-color {
   color: #705550;
 }
 
-.switchgrass-color{
+.switchgrass-color {
   color: #ABC178;
 }
 
-.regalia-color{
+.regalia-color {
   color: #754A7E;
 }
 
-.fountain-color{
+.fountain-color {
   color: #2197A9;
 }
 
-.eureak-color{
+.eureak-color {
   color: #EBEA64;
 }
 
-.energy-color{
+.energy-color {
   color: #EE3E80;
 }
 
@@ -131,49 +131,59 @@ $body-color: $gray;
     font-size: 2em;
     color: $white;
   }
+
   .subtitle {
     color: $orange;
   }
+
   .quarto-title-author {
     color: $white;
   }
 }
 
 // horizontal line
-hr { 
+hr {
   border: 3px solid $gray;
   border-radius: 2px;
   margin-bottom: 15px;
 }
 
 // norms font
-.compact-font{
+.compact-font {
   line-height: 1em;
   font-size: 0.6em;
-};
+}
 
-.small-font{
+;
+
+.small-font {
   font-size: 34px;
 }
 
-.smaller-font{
+.smaller-font {
   font-size: 24px;
 }
 
-.extra-small-font{
+.tight-lines {
+  line-height: 1;
+}
+
+.extra-small-font {
   font-size: 18px;
 }
 
-.tiny-font{
+.tiny-font {
   font-size: 10px;
 }
 
 figcaption {
-  font-size: 0.1em; /* Adjust the size as needed */
-  color: #666; /* Optional: adjust the color */
+  font-size: 0.1em;
+  /* Adjust the size as needed */
+  color: #666;
+  /* Optional: adjust the color */
 }
 
 //shade alternate rows of table
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #dcf0f0;
+  background-color: #dcf0f0;
 }
