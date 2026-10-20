@@ -40,8 +40,10 @@ library(tidykids)
 :::{.smaller-font}
 - Weekly Check In
 - Review / Foundational Skills
-  - "squished plots"
-  - plotly
+  <!-- - "squished plots"
+  - plotly -->
+  - Mini Project #1
+  - `pivot_longer()`
 - Basic Principles
 - `theme()` + text
 - `scale_*_*`
@@ -69,57 +71,6 @@ library(tidykids)
 
 # Review / Foundational Skills
 
-## "Squished Plots" {.smaller}
-<hr>
-- Some of your have been experiencing "squished" plots
-  - Often happens when you have a plots with lots of panels (facets), or combined plots with {patchwork} and {cowplot}
- 
-
-## "Squished Plots" {.smaller}
-<hr>
-- How can you fix this?
-  1. In YAML Header:
-    - Added out-width: "100%"
-      - Makes plots the full width of the document (default is 80%) 
-
-```r
----
-title: "Untitled"
-author: "Fabulous Student"
-date: "`r Sys.Date()`"
-format:
-  html:
-    embed-resources: true
-execute:
-    warning: false
-    message: false
-    out-width: "100%"
----
-```
-
-## "Squished Plots" {.smaller}
-<hr>
-- How can you fix this?
-  2. In code cell where you create the plot:
-    - Set fig-width: and fig-height:
-    - Otherwise, [defaults to 7 and 5 (in)](https://quarto.org/docs/computations/execution-options.html#figure-options)
-
-```r
-#| fig-width: 8
-#| fig-height: 6
-
-p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed)) +
-  geom_point(color = "blue")
-
-p
----
-```
-- Can also set this in the YAML header (under embed-resources) to change the default size and not have to do it in each code cell
-
 # Mini Project #1
 
 ## Mini Project #1
@@ -127,227 +78,10 @@ p
 - Great work!
 - Lots of really nice plots
 - Some notes:
-  - {ggplot2} automatically drops NAs (you don't have to filter them out)
+  - Excercise care in cleaning
   - When showing amounts, also show variability!
   - Clarity in answering your research question is key
-    - Plot "fanciness" far less important than clarity!
 
-## Mini Project #1 & {plotly}
-<hr>
-:::::{.smaller-font}
-:::{layout=[1,1]}
-
-::::{column}
-
-- {plotly} is a package that can make your ggplot interactive
-
-1. Make the plot first
-2. Store it to an object like `p`
-3. Call `ggploty(p)`
-
-::::
-::::{column}
-```r
-p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed)) +
-  geom_point(color = "blue")
-
-p
-```
-
-```{r, echo=FALSE}
-#| fig-width: 6
-#| fig-height: 4
-p <- tidykids |>
-  filter(year == 2016, expenditure %in% c("PK12ed", "SNAP")) |>
-  select(-raw, -inf_adj) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x = SNAP, y = PK12ed)) +
-  geom_point(color = "blue")
-
-p
-```
-::::
-:::
-:::::
-
-## Mini Project #1 & {plotly}
-<hr>
-:::::{.smaller-font}
-:::{layout=[1,1]}
-
-::::{column}
-
-- {plotly} is a package that can make your ggplot interactive
-
-1. Make the plot first
-2. Store it to an object like `p`
-3. Call `ggploty(p)`
-
-::::
-::::{column}
-```r
-#install.packages("plotly")
-library(plotly)
-
-p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed)) +
-  geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency()) +
-  scale_y_continuous(labels = scales::label_currency())
-
-ggplotly(p)
-```
-```{r, echo=FALSE}
-#| fig-width: 6
-#| fig-height: 4
-#install.packages("plotly")
-library(plotly)
-
-p <- tidykids |>
-  filter(year == 2016, expenditure %in% c("PK12ed", "SNAP")) |>
-  select(-raw, -inf_adj) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x = SNAP, y = PK12ed)) +
-  geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency()) +
-  scale_y_continuous(labels = scales::label_currency())
-
-ggplotly(p)
-```
-::::
-:::
-:::::
-
-## Mini Project #1 & {plotly}
-<hr>
-:::::{.smaller-font}
-:::{layout=[1,1]}
-
-::::{column}
-
-- {plotly} is a package that can make your ggplot interactive
-
-1. Make the plot first
-2. Store it to an object like `p`
-3. Call `ggploty(p)`
-
-::::
-::::{column}
-```r
-#install.packages("plotly")
-library(plotly)
-
-p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ", state, "<br>SNAP: ", SNAP,
-                                               "<br>PK12Ed: ", PK12ed))) +
-  geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency()) +
-  scale_y_continuous(labels = scales::label_currency())
-
-ggplotly(p, tooltip = "text")
-```
-```{r, echo=FALSE}
-#| fig-width: 5
-#| fig-height: 3.5
-#install.packages("plotly")
-library(plotly)
-
-p <- tidykids |>
-  filter(year == 2016, expenditure %in% c("PK12ed", "SNAP")) |>
-  select(-raw, -inf_adj) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(
-    x = SNAP,
-    y = PK12ed,
-    text = paste0("State: ", state, "<br>SNAP: ", SNAP, "<br>PK12Ed: ", PK12ed)
-  )) +
-  geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency()) +
-  scale_y_continuous(labels = scales::label_currency())
-
-ggplotly(p, tooltip = "text")
-```
-::::
-:::
-:::::
-
-## Mini Project #1 & {plotly}
-<hr>
-:::::{.smaller-font}
-:::{layout=[1,1]}
-
-::::{column}
-
-- {plotly} is a package that can make your ggplot interactive
-
-1. Make the plot first
-2. Store it to an object like `p`
-3. Call `ggploty(p)`
-
-::::
-::::{column}
-```r
-#install.packages("plotly")
-library(plotly)
-
-p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ",state,"<br>SNAP: ",
-                                               scales::dollar(SNAP),"<br>PK12Ed: ",
-                                               scales::dollar(PK12ed)))) +
-  geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency()) +
-  scale_y_continuous(labels = scales::label_currency())
-
-ggplotly(p, tooltip = "text")
-```
-```{r, echo=FALSE}
-#| fig-width: 5
-#| fig-height: 3.5
-#install.packages("plotly")
-library(plotly)
-
-p <- tidykids |>
-  filter(year == 2016, expenditure %in% c("PK12ed", "SNAP")) |>
-  select(-raw, -inf_adj) |>
-  pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(
-    x = SNAP,
-    y = PK12ed,
-    text = paste0(
-      "State: ",
-      state,
-      "<br>SNAP: ",
-      scales::dollar(SNAP),
-      "<br>PK12Ed: ",
-      scales::dollar(PK12ed)
-    )
-  )) +
-  geom_point(color = "blue") +
-  scale_x_continuous(labels = scales::label_currency()) +
-  scale_y_continuous(labels = scales::label_currency())
-
-ggplotly(p, tooltip = "text")
-```
-::::
-:::
-:::::
 
 <!-- ## `case_when()`{.smallest}
 <hr>
@@ -544,6 +278,287 @@ toy |>
 :::
 :::::: -->
 
+::::{.fragment .extra-small-font}
+```{r, echo=F}
+library(knitr) #ignore this -> just doing it for the kable to print all cols
+library(dsbox)
+instructors <- instructors #in dsbox, assigning so it shows in environment
+#kable(instructors)
+```
+::::
+
+# tidy data + `pivot_longer()`
+
+## tidy data
+<hr>
+
+#### Requirements for tidy data
+
+::: {.smaller-font}
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell (1 cell: 1 value) and not spread across mult. columns
+
+    - If you can split it, split it!
+
+        - City, State
+        - ACT/SAT
+        - 26 inches (value + unit)
+:::
+
+## tidy data
+<hr>
+
+```{=html}
+<style>
+  .tidy-toggle { font-size: 0.5em; line-height: 1.4; text-align: left; }
+  .tidy-toggle .tt-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .tidy-toggle .tt-label { opacity: 0.7; margin-right: 6px; }
+  .tidy-toggle button {
+    font: inherit; color: inherit; background: transparent; cursor: pointer;
+    border: 1px solid rgba(128,128,128,0.5); border-radius: 6px; padding: 4px 12px;
+  }
+  .tidy-toggle button:hover { background: rgba(128,128,128,0.15); }
+  .tidy-toggle button.on { background: rgba(128,128,128,0.25); border-color: rgba(128,128,128,0.9); font-weight: 600; }
+  .reveal .tidy-toggle table { width: 100%; margin: 0 0 12px 0; border-collapse: collapse; table-layout: fixed; }
+  .reveal .tidy-toggle table th,
+  .reveal .tidy-toggle table td {
+    padding: 6px 10px; text-align: left; font-family: monospace;
+    border: 1px solid rgba(128,128,128,0.45); transition: background 0.15s;
+  }
+  .reveal .tidy-toggle table th { font-weight: 600; background: rgba(128,128,128,0.12); }
+  .tidy-toggle .h1 { background: rgba(55,138,221,0.35) !important; }
+  .tidy-toggle .h2 { background: rgba(239,159,39,0.40) !important; }
+  .tidy-toggle .h3 { background: rgba(99,153,34,0.40)  !important; }
+  .tidy-toggle .tt-cap {
+    display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px;
+    border-radius: 6px; background: rgba(128,128,128,0.12); min-height: 3.2em;
+  }
+  .tidy-toggle .tt-icon { font-weight: 700; font-size: 1.3em; line-height: 1; }
+  .tidy-toggle .tt-icon.bad  { color: #d9534f; }
+  .tidy-toggle .tt-icon.good { color: #3c9a3c; }
+</style>
+
+<div class="tidy-toggle">
+  <div class="tt-row">
+    <span class="tt-label">Table</span>
+    <button data-mode="wide">Wide</button>
+    <button data-mode="long">Long</button>
+  </div>
+  <div class="tt-row">
+    <span class="tt-label">Check rule</span>
+    <button data-rule="1">1 · Variables are columns</button>
+    <button data-rule="2">2 · Observations are rows</button>
+    <button data-rule="3">3 · Values are cells</button>
+  </div>
+  <div class="tt-table"></div>
+  <div class="tt-cap"><span class="tt-icon"></span><span class="tt-text"></span></div>
+</div>
+
+<script>
+(function () {
+  var years = [1975, 1989];
+  var pos = ['full_time_tenured', 'part_time', 'grad_student'];
+  var vals = { 1975: [29.0, 24.0, 20.5], 1989: [27.6, 30.4, 16.5] };
+
+  var caps = {
+    wide: {
+      1: [false, 'The column names full_time_tenured, part_time, and grad_student are values of one variable (position). Position is a variable, but it has no column of its own.'],
+      2: [false, 'This one row holds three observations: tenured, part-time, and grad students, all in 1975. Each observation should get its own row.'],
+      3: [false, 'Percentage is a single variable, but its values are spread across three columns instead of living in one.']
+    },
+    long: {
+      1: [true, 'Three variables, three columns: year, position, and percentage.'],
+      2: [true, 'One row, one observation: the share of part-time instructors in 1975. The next row is a different observation.'],
+      3: [true, 'Every percentage sits in a single column, one value per cell.']
+    }
+  };
+
+  function cell(tag, txt, cls) {
+    return '<' + tag + (cls ? ' class="' + cls + '"' : '') + '>' + txt + '</' + tag + '>';
+  }
+
+  function init(root) {
+    var mode = 'wide', rule = null;
+
+    function render() {
+      var T = 'ta' + 'ble';
+      var c = rule ? 'h' + rule : '', h = '<' + T + '>';
+
+      if (mode === 'wide') {
+        h += '<tr>' + cell('th', 'year', '');
+        pos.forEach(function (p) { h += cell('th', p, rule === 1 ? c : ''); });
+        h += '</tr>';
+        years.forEach(function (y, i) {
+          var rowOn = rule === 2 && i === 0;
+          h += '<tr>' + cell('td', y, rowOn ? c : '');
+          vals[y].forEach(function (v) {
+            h += cell('td', v.toFixed(1), (rowOn || rule === 3) ? c : '');
+          });
+          h += '</tr>';
+        });
+      } else {
+        h += '<tr>';
+        ['year', 'position', 'percentage'].forEach(function (t) {
+          h += cell('th', t, rule === 1 ? c : '');
+        });
+        h += '</tr>';
+        var n = 0;
+        years.forEach(function (y) {
+          pos.forEach(function (p, j) {
+            var rowOn = rule === 2 && n === 1;
+            h += '<tr>' + cell('td', y, rowOn ? c : '') +
+                 cell('td', p, rowOn ? c : '') +
+                 cell('td', vals[y][j].toFixed(1), (rowOn || rule === 3) ? c : '') + '</tr>';
+            n++;
+          });
+        });
+      }
+      h += '</' + T + '>';
+      root.querySelector('.tt-table').innerHTML = h;
+
+      var icon = root.querySelector('.tt-icon');
+      if (rule === null) {
+        icon.textContent = '';
+        icon.className = 'tt-icon';
+        root.querySelector('.tt-text').textContent = '';
+      } else {
+        var cp = caps[mode][rule];
+        icon.textContent = cp[0] ? '\u2713' : '\u2717';
+        icon.className = 'tt-icon ' + (cp[0] ? 'good' : 'bad');
+        root.querySelector('.tt-text').textContent = cp[1];
+      }
+
+      root.querySelectorAll('[data-mode]').forEach(function (b) {
+        b.classList.toggle('on', b.dataset.mode === mode);
+      });
+      root.querySelectorAll('[data-rule]').forEach(function (b) {
+        b.classList.toggle('on', Number(b.dataset.rule) === rule);
+      });
+    }
+
+    root.querySelectorAll('[data-mode]').forEach(function (b) {
+      b.addEventListener('click', function () { mode = b.dataset.mode; render(); });
+    });
+    root.querySelectorAll('[data-rule]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var n = Number(b.dataset.rule);
+        rule = (rule === n) ? null : n;   // click again to deselect
+        render();
+      });
+    });
+    render();
+  }
+
+  document.querySelectorAll('.tidy-toggle').forEach(init);
+})();
+</script>
+```
+
+:::{.extra-small-font}
+Wickham, H. (2014). Tidy data. Journal of Statistical Software, 59(10), 1-23. https://doi.org/10.18637/jss.v059.i10
+:::
+
+
+# tidying the data
+
+## `pivot_longer` {.smaller}
+<hr>
+
+- Long data (tidy data) is often preferred, esp. in {tidyverse}
+- `pivot_longer()` is your friend
+  - See documentation [here](https://tidyr.tidyverse.org/reference/pivot_longer.html)
+  - Inverse operation of `pivot_wider()`
+
+## `pivot_wider` (recap) {.smaller}
+<hr>
+- Recently:
+
+![](slides_images/pivot_wider_malaria.png)
+
+:::{.extra-small-font}
+Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.com/en/
+:::
+
+## `pivot_longer` {.smaller}
+<hr>
+
+- Long data (tidy data) is often preferred, esp. in {tidyverse}
+- `pivot_longer()` is your friend
+  - See documentation [here](https://tidyr.tidyverse.org/reference/pivot_longer.html)
+  - Inverse operation of `pivot_wider()`
+
+![](slides_images/pivot_longer_malaria.png)
+
+:::{.extra-small-font}
+Batra, Neal, et al. (2021). *The Epidemiologist R Handbook*. www.epirhandbook.com/en/
+:::
+
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font .tight-lines}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+:::
+
+::: {.fragment .smaller-font}
+```{r}
+head(instructors, 5)
+```
+
+::::{.fragment}
+`pivot_longer()`
+::::
+:::
+
+::::{.fragment .smaller-font}
+```{r, eval=F}
+staff_long <- instructors |>
+  pivot_longer(
+    cols = -year, # "Which columns do I pivot?"
+    names_to = "position", # "What should I call the new column that holds the old column names?"
+    values_to = "percentage" # "What should I call the new column that holds the old values?"
+  )
+```
+::::
+
+
+## tidy data & `pivot_longer`
+<hr>
+
+:::{.smaller-font .tight-lines}
+**Requirements for tidy data:**
+
+1. Each variable forms a column
+2. Each observation forms a row
+3. Each value forms a cell
+
+::::{.fragment}
+
+`pivot_longer()`
+:::
+::::
+
+::::{.fragment .smaller-font}
+```{r}
+staff_long <- instructors |>
+  pivot_longer(
+    cols = -year, # "Which columns do I pivot?"
+    names_to = "position", # "What should I call the new column that holds the old column names?"
+    values_to = "percentage" # "What should I call the new column that holds the old values?"
+  )
+head(staff_long, 10)
+```
+::::
+
+
+ 
+
 # Recap & Continuing Today...
 
 ## {ggplot2} is our canvas
@@ -584,7 +599,7 @@ Cairo uses this example of a "rich" plot in his book *How Charts Lie*:
 
 ::::
 
-## Using Christiansen and France {.smaller}
+<!-- ## Using Christiansen and France {.smaller}
 <hr>
 - Christiansen, Ch. 9 (2023) and France (2020) provide several suggestions for typographic choices for visualizing data
 - In groups, we will choose ONE style guide and compare it to Christiansen and France
@@ -596,8 +611,8 @@ Cairo uses this example of a "rich" plot in his book *How Charts Lie*:
 
 - *Choose a spokesperson to report back!*
 <br>**BREAKOUT ROOMS (10-15 min)**
-  
-  
+-->
+ 
 
 ## AAUP Data Today {.smaller}
 <hr>
@@ -605,15 +620,6 @@ Cairo uses this example of a "rich" plot in his book *How Charts Lie*:
 
 :::{.smaller-font}
 ```{r}
-#remotes::install_github("tidyverse/dsbox")
-library(dsbox)
-
-staff <- dsbox::instructors
-
-staff_long <- staff |>
-  pivot_longer(cols = -year, names_to = "position", values_to = "proportion") |>
-  mutate(date = as.Date(paste0(year, "-01-01")))
-
 staff_long
 ```
 :::
@@ -623,7 +629,7 @@ staff_long
 ```{r}
 p <- staff_long |>
   filter(year == 2011) |>
-  ggplot(aes(x = position, y = proportion, fill = position)) +
+  ggplot(aes(x = position, y = percentage, fill = position)) +
   geom_col()
 
 p
@@ -646,6 +652,7 @@ p
 <hr>
 :::{.smaller-font}
 ```{r}
+#| fig-height: 4.5
 p <- p +
   labs(
     title = "Instructional Staff Employment Proportions in 2011",
@@ -850,7 +857,7 @@ Text geoms are useful for labeling plots. They can be used by themselves as scat
 #| code-line-numbers: "|1|2|3"
 p +
   geom_text(
-    aes(label = scales::label_percent(scale = 1)(proportion)),
+    aes(label = scales::label_percent(scale = 1)(percentage)),
     vjust = -0.5,
     size = 3.5
   )
@@ -861,7 +868,7 @@ p +
 ```{r}
 p +
   geom_label(
-    aes(label = scales::label_percent(scale = 1)(proportion)),
+    aes(label = scales::label_percent(scale = 1)(percentage)),
     vjust = -0.5,
     size = 3.5
   )
@@ -872,7 +879,6 @@ p +
 To add labels at specified points, use `annotate()` with `annotate(geom = "text", ...)` or `annotate(geom = "label", ...)`.
 
 ```{r}
-#| code-line-numbers: "|2-10|3|5-6|7-8|9|4"
 #| eval: false
 p +
   annotate(
@@ -895,25 +901,27 @@ What if instead of hard coding our numbers, we calculate it from our data?
 pt_pct_1975 <-
   staff_long |>
   filter(position == "part_time", year == "1975") |>
-  pull(proportion)
+  pull(percentage)
 
 pt_pct_1975
 
 pt_pct_2011 <-
   staff_long |>
   filter(position == "part_time", year == "2011") |>
-  pull(proportion)
+  pull(percentage)
 
 pt_pct_2011
 ```
 
 ## `annotate()`{.smaller}
 <hr>
+
+:::{.smaller-font}
 ```{r}
-#| code-line-numbers: "|6|7|8|9|10|11|12"
+#| code-line-numbers: "|9|10|11|12|13|14|15"
 p <- p +
   geom_text(
-    aes(label = scales::label_percent(scale = 1)(proportion)),
+    aes(label = scales::label_percent(scale = 1)(percentage)),
     vjust = -0.5,
     size = 3.5
   ) +
@@ -933,6 +941,7 @@ p <- p +
     hjust = "right"
   )
 ```
+:::
 
 ## `annotate()`
 <hr>
@@ -944,21 +953,21 @@ p
 
 ## {ggtext}{.smaller}
 <hr>
+
 ```{r}
-#| code-line-numbers: "|3-8|11-12,16|13,15|14|18"
+#| code-line-numbers: "|3-6|8-9|10-11,16|12|13-15|"
 library(ggtext)
 
-prop_pt <-
+per_pt <-
   staff_long |>
-  mutate(prop = proportion / 100) |>
   filter(year == 2011, position == "part_time") |>
-  pull(prop)
+  pull()
 
 p <- p +
   labs(
     subtitle = paste0(
       "Part-timers made up <b><span style = 'color:#C6473E;'>",
-      scales::label_percent()(prop_pt),
+      scales::label_percent(scale = 1)(per_pt),
       "</span></b> of faculty in 2011"
     )
   ) +
@@ -974,10 +983,15 @@ p
 ## {ggtext}
 <hr>
 - Can also use {ggtext} to remove need for legend
-![](slides_images//MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
+![](slides_images//MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png){width=70%}
+
+:::aside
+Boles & Domingue (under review)
+:::
 
 ## {ggtext}{.smaller}
 <hr>
+
 ```r
 labs(y = "Marginal Effects", title = "Marginal Effects of 
 <b><span style = 'color: #D8A419;'>City</span></b>,
@@ -987,7 +1001,11 @@ labs(y = "Marginal Effects", title = "Marginal Effects of
 <b><span style = 'color: #EDBAD4;'>Rural:Remote</span></b>
 Locale on AP® STEM Success<br><i>Comparison: Suburb</i>")
 ```
-![](slides_images/MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png)
+![](slides_images/MarginalEffectsofLocaleonAPSTEMSuccessRuralDisag.png){width=50%}
+
+:::aside
+Boles & Domingue (under review)
+:::
 
 # Fonts
 
@@ -1038,11 +1056,11 @@ Two packages simplify fonts a bit:
 Changing `text` edits the font family for the plot fonts.
 
 ```{r}
-#| code-line-numbers: "|3|5|8-9"
+#| code-line-numbers: "|3|4|5|7-8"
 library(showtext)
 
 font_add_google(name = "Open Sans", family = "open-sans")
-
+showtext_opts(dpi = 300) #Helps fonts play nice with ggsave()
 showtext_auto() #necessary for it to work
 
 p <- p +
@@ -1088,7 +1106,7 @@ p
 
 ```{r}
 #| code-line-numbers: "|1-2|5-6"
-font_add(family = "Asenine", regular = here::here("week-9", "ASENINE_.ttf"))
+font_add(family = "Asenine", regular = ("ASENINE_.ttf"))
 
 p <- p +
   theme(plot.title = element_text(size = 18, family = "Asenine"))
