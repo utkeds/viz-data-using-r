@@ -277,12 +277,22 @@ toy |>
 :::
 :::::: -->
 
+## Data From Last Week = AAUP
+<hr>
+
+:::{.smaller-font}
+The American Association of University Professors (AAUP) is a nonprofit
+membership association of faculty and other academic professionals. This report
+compiled by the AAUP shows trends in instructional staff as a percentage of 
+employees between 1975 and 2011.
+:::
+
 ::::{.fragment .extra-small-font}
 ```{r, echo=F}
 library(knitr) #ignore this -> just doing it for the kable to print all cols
 library(dsbox)
 instructors <- instructors #in dsbox, assigning so it shows in environment
-#kable(instructors)
+kable(instructors)
 ```
 ::::
 
@@ -853,7 +863,6 @@ Text geoms are useful for labeling plots. They can be used by themselves as scat
 ## `geom_text()` {.smaller}
 <hr>
 ```{r}
-#| code-line-numbers: "|1|2|3"
 p +
   geom_text(
     aes(label = scales::label_percent(scale = 1)(percentage)),
@@ -890,6 +899,25 @@ p +
     hjust = "right" #Can give number or specify left, right, center
   )
 ```
+
+## `annotate()` {.smaller}
+<hr>
+To add labels at specified points, use `annotate()` with `annotate(geom = "text", ...)` or `annotate(geom = "label", ...)`.
+
+```{r, echo=F}
+p +
+  annotate(
+    geom = "text",
+    label = "Part-time faculty percentage has increased\nfrom x% in 1975 to x% in 2011.",
+    x = 5.5,
+    y = 60,
+    size = 3,
+    colour = "#C6473E",
+    hjust = "right" #Can give number or specify left, right, center
+  )
+```
+
+
 - This is when you want to hard code the numbers (e.g., x%) - not recommended
 
 ## `annotate()` {.smaller}
@@ -1048,6 +1076,7 @@ Two packages simplify fonts a bit:
 - `font_add_google(name, family)` adds a font
   - `name` is the name of the font searched in [Google Fonts](https://fonts.google.com/)
   - `family` is the name you assign
+- The `showtext_opts(dpi=300)` sets the dpi to same default as `ggsave()`
 - The `showtext_auto()` function tells R to render text using {showtext}
 
 ## Using Google fonts with {showtext} {.smaller}
@@ -1141,7 +1170,6 @@ p
 - Launch into breakout rooms.
 - Cameras off: 3-5 min to review task
 - Cameras on: collaborative task work
-- Individual option
 
 # [Mini-Project #2](https://utk.instructure.com/courses/239375/assignments/2326753)
 
