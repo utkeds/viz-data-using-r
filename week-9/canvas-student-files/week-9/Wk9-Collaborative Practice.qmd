@@ -27,17 +27,73 @@ tidykids <- read_csv("tidykids.csv")
 tidykids <- tidykids |>
   select(state, expenditure, year, inf_adj_perchild) |>
   filter(expenditure == "PK12ed") |>
- mutate(region = case_when(
-    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island",
-                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "northeast",
-    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
-                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "midwest",
-    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina",
-                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee",
-                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma", "Texas", "District of Columbia") ~ "south",
-    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona",
-                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii", "Alaska") ~ "west"
-  )) |>
+  mutate(
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "south",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "west"
+    )
+  ) |>
   group_by(region, year) |>
   summarize(mean_inf_adj_perchild = mean(inf_adj_perchild, na.rm = TRUE)) |>
   ungroup()
@@ -49,8 +105,10 @@ tidykids <- tidykids |>
 p <- tidykids |>
   ggplot(aes(x = as.integer(year), y = mean_inf_adj_perchild, color = region)) +
   geom_line(aes(group = region)) +
-  labs(title = "U.S. Regional Spending on PK-12 Education by Year",
-       y = "Inflation-Adjusted Spending Per Child\n(in Thousands of USD)")
+  labs(
+    title = "U.S. Regional Spending on PK-12 Education by Year",
+    y = "Inflation-Adjusted Spending Per Child\n(in Thousands of USD)"
+  )
 ```
 
 ## STEP 3: Customize palette & theme (START HERE)
@@ -65,8 +123,7 @@ p <- tidykids |>
 
 ```{r theme-and-palette}
 library(MetBrewer)
-# p <- p + 
-
+# p <- p +
 ```
 
 ## STEP 4: Fonts!
@@ -82,8 +139,7 @@ library(MetBrewer)
 #install.packages("showtext")
 library(showtext)
 
-font_add_google(name="", family="")
-
+font_add_google(name = "", family = "")
 ```
 
 
@@ -127,4 +183,11 @@ p <- p + annotate(
 
 ```{r final-plot}
 p
+```
+
+## BONUS: Create a plot of your choice and use {ggtext} to add color to the plot title/subtitle in lieu of a legend (see slides for how to do this).
+
+
+```{r bonus}
+
 ```

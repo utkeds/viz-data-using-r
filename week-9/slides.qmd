@@ -44,7 +44,6 @@ library(tidykids)
   - plotly -->
   - Mini Project #1
   - `pivot_longer()`
-- Basic Principles
 - `theme()` + text
 - `scale_*_*`
 - Text `geom_*()`s
