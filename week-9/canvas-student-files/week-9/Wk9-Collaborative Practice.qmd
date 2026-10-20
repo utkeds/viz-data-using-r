@@ -8,7 +8,6 @@ format:
 execute:
     warning: false
     message: false
-    out-width: "100%"
 ---
 
 ```{r load-tidykids}
