@@ -1,7 +1,7 @@
 ---
 subtitle: "Text and Fonts in {ggplot2}"
-title: "Week 9 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 9 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -163,11 +163,10 @@ p
 #| fig-width: 6
 #| fig-height: 4
 p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |> 
+  filter(year == 2016, expenditure %in% c("PK12ed", "SNAP")) |>
+  select(-raw, -inf_adj) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed)) +
+  ggplot(aes(x = SNAP, y = PK12ed)) +
   geom_point(color = "blue")
 
 p
@@ -214,11 +213,10 @@ ggplotly(p)
 library(plotly)
 
 p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
+  filter(year == 2016, expenditure %in% c("PK12ed", "SNAP")) |>
+  select(-raw, -inf_adj) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed)) +
+  ggplot(aes(x = SNAP, y = PK12ed)) +
   geom_point(color = "blue") +
   scale_x_continuous(labels = scales::label_currency()) +
   scale_y_continuous(labels = scales::label_currency())
@@ -268,12 +266,14 @@ ggplotly(p, tooltip = "text")
 library(plotly)
 
 p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
+  filter(year == 2016, expenditure %in% c("PK12ed", "SNAP")) |>
+  select(-raw, -inf_adj) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ", state, "<br>SNAP: ", SNAP,
-                                               "<br>PK12Ed: ", PK12ed))) +
+  ggplot(aes(
+    x = SNAP,
+    y = PK12ed,
+    text = paste0("State: ", state, "<br>SNAP: ", SNAP, "<br>PK12Ed: ", PK12ed)
+  )) +
   geom_point(color = "blue") +
   scale_x_continuous(labels = scales::label_currency()) +
   scale_y_continuous(labels = scales::label_currency())
@@ -324,13 +324,21 @@ ggplotly(p, tooltip = "text")
 library(plotly)
 
 p <- tidykids |>
-  filter(year == 2016,
-         expenditure %in% c("PK12ed","SNAP")) |>
-  select(-raw,-inf_adj) |>
+  filter(year == 2016, expenditure %in% c("PK12ed", "SNAP")) |>
+  select(-raw, -inf_adj) |>
   pivot_wider(names_from = expenditure, values_from = inf_adj_perchild) |>
-  ggplot(aes(x= SNAP, y= PK12ed, text = paste0("State: ",state,"<br>SNAP: ",
-                                               scales::dollar(SNAP),"<br>PK12Ed: ",
-                                               scales::dollar(PK12ed)))) +
+  ggplot(aes(
+    x = SNAP,
+    y = PK12ed,
+    text = paste0(
+      "State: ",
+      state,
+      "<br>SNAP: ",
+      scales::dollar(SNAP),
+      "<br>PK12Ed: ",
+      scales::dollar(PK12ed)
+    )
+  )) +
   geom_point(color = "blue") +
   scale_x_continuous(labels = scales::label_currency()) +
   scale_y_continuous(labels = scales::label_currency())
@@ -358,10 +366,12 @@ toy
 Simple Case
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    x == 2 ~ "two"
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      x == 2 ~ "two"
+    )
+  )
 ```
 
 
@@ -391,10 +401,12 @@ toy
 Simple Case
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    x == 2 ~ "two"
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      x == 2 ~ "two"
+    )
+  )
 ```
 
 
@@ -403,10 +415,12 @@ toy |>
 Simple Case + Re-use Variable
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ 0,
-    .default = x
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ 0,
+      .default = x
+    )
+  )
 ```
 
 
@@ -431,29 +445,35 @@ toy
 Simple Case
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    x == 2 ~ "two"
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      x == 2 ~ "two"
+    )
+  )
 ```
 
 Simple Case + Catch All (Note: NAs)
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    .default = "not one"
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      .default = "not one"
+    )
+  )
 ```
 ::::
 ::::{column}
 Simple Case + Re-use Variable
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ 0,
-    .default = x
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ 0,
+      .default = x
+    )
+  )
 ```
 
 
@@ -478,39 +498,47 @@ toy
 Simple Case
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    x == 2 ~ "two"
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      x == 2 ~ "two"
+    )
+  )
 ```
 
 Simple Case + Catch All (Note: NAs)
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    .default = "not one"
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      .default = "not one"
+    )
+  )
 ```
 ::::
 ::::{column}
 Simple Case + Re-use Variable
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ 0,
-    .default = x
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ 0,
+      .default = x
+    )
+  )
 ```
 
 Simple Case + Catch All + Preserve NAs
 ```{r}
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    is.na(x) ~ NA,
-    .default = "not one"
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      is.na(x) ~ NA,
+      .default = "not one"
+    )
+  )
 ```
 ::::
 :::
@@ -583,9 +611,7 @@ library(dsbox)
 staff <- dsbox::instructors
 
 staff_long <- staff |>
-  pivot_longer(cols = -year,
-               names_to = "position",
-               values_to = "proportion") |>
+  pivot_longer(cols = -year, names_to = "position", values_to = "proportion") |>
   mutate(date = as.Date(paste0(year, "-01-01")))
 
 staff_long
@@ -595,8 +621,8 @@ staff_long
 ## Creating a Plot - Column Chart
 <hr>
 ```{r}
-p <- staff_long |> 
-  filter(year == 2011) |>  
+p <- staff_long |>
+  filter(year == 2011) |>
   ggplot(aes(x = position, y = proportion, fill = position)) +
   geom_col()
 
@@ -610,8 +636,7 @@ p
 library(MetBrewer)
 
 # Chose to reverse the direction of palette as per documentation
-p <- p + scale_fill_manual(values = met.brewer("Hokusai1",
-                                        direction = -1))
+p <- p + scale_fill_manual(values = met.brewer("Hokusai1", direction = -1))
 
 p
 ```
@@ -663,7 +688,7 @@ The 'theme' involves editing the content that supports the data but does not del
 
 ```{r}
 #| code-line-numbers: "|3|4|5|6"
-p <- p + 
+p <- p +
   theme(
     panel.grid = element_blank(), #remove lines
     panel.background = element_blank(), #remove rectangles
@@ -683,7 +708,7 @@ p
 ```{r}
 #| code-line-numbers: "|2"
 p <- p +
-  theme(axis.text.x = element_text(face="bold", angle = 45, vjust = .5))
+  theme(axis.text.x = element_text(face = "bold", angle = 45, vjust = .5))
 ```
 
 ## `theme()` lets us edit text elements {.smaller}
@@ -714,9 +739,11 @@ We can edit the start/end of axes using `scale_*_*`.
 ```{r}
 #| code-line-numbers: "|2|3|4"
 p <- p +
-  scale_y_continuous(limits = c(0, 100),
-                     breaks = seq(0,100,20),
-                     labels = scales::label_percent(scale=1))
+  scale_y_continuous(
+    limits = c(0, 100),
+    breaks = seq(0, 100, 20),
+    labels = scales::label_percent(scale = 1)
+  )
 
 p
 ```
@@ -731,11 +758,15 @@ We can also use `scale_*_*` to edit the labels on the axes.
 
 ```{r}
 p <- p +
-  scale_x_discrete(labels = c("full_time_non_tenure_track" = "Full Time Non-Tenure Track", 
-                              "full_time_tenure_track" = "Full Time Tenure Track",
-                              "full_time_tenured" = "Full Time Tenured",
-                              "grad_student" = "Grad Student",
-                              "part_time" = "Part Time"))
+  scale_x_discrete(
+    labels = c(
+      "full_time_non_tenure_track" = "Full Time Non-Tenure Track",
+      "full_time_tenure_track" = "Full Time Tenure Track",
+      "full_time_tenured" = "Full Time Tenured",
+      "grad_student" = "Grad Student",
+      "part_time" = "Part Time"
+    )
+  )
 
 p
 ```
@@ -750,14 +781,16 @@ We can also use `scale_*_*` to edit the labels in the legend.
   
 ```{r}
 p <- p +
-  scale_fill_manual(values = met.brewer("Hokusai1",
-                                        direction = -1),
-                    labels = c("full_time_non_tenure_track" = "Full Time Non-Tenure Track", 
-                              "full_time_tenure_track" = "Full Time Tenure Track",
-                              "full_time_tenured" = "Full Time Tenured",
-                              "grad_student" = "Grad Student",
-                              "part_time" = "Part Time"))
-
+  scale_fill_manual(
+    values = met.brewer("Hokusai1", direction = -1),
+    labels = c(
+      "full_time_non_tenure_track" = "Full Time Non-Tenure Track",
+      "full_time_tenure_track" = "Full Time Tenure Track",
+      "full_time_tenured" = "Full Time Tenured",
+      "grad_student" = "Grad Student",
+      "part_time" = "Part Time"
+    )
+  )
 ```
 
 ## Editing axes {.smaller}
@@ -775,7 +808,7 @@ p
 
 ```{r}
 #| code-line-numbers: "|3"
-p <- p + 
+p <- p +
   theme(
     legend.position = "none" #odd one - take note
   )
@@ -795,7 +828,7 @@ p
 - And also, text!
 
 ```{r}
-ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) + 
+ggplot(mtcars, aes(wt, mpg, label = rownames(mtcars))) +
   geom_text()
 ```
 
@@ -815,17 +848,23 @@ Text geoms are useful for labeling plots. They can be used by themselves as scat
 <hr>
 ```{r}
 #| code-line-numbers: "|1|2|3"
-p + geom_text(aes(label = scales::label_percent(scale=1)(proportion)),
-              vjust = -0.5,
-              size = 3.5)
+p +
+  geom_text(
+    aes(label = scales::label_percent(scale = 1)(proportion)),
+    vjust = -0.5,
+    size = 3.5
+  )
 ```
 
 ## `geom_label()` {.smaller}
 <hr>
 ```{r}
-p + geom_label(aes(label = scales::label_percent(scale=1)(proportion)),
-               vjust = -0.5,
-               size = 3.5)
+p +
+  geom_label(
+    aes(label = scales::label_percent(scale = 1)(proportion)),
+    vjust = -0.5,
+    size = 3.5
+  )
 ```
 
 ## `annotate()` {.smaller}
@@ -853,16 +892,16 @@ p +
 What if instead of hard coding our numbers, we calculate it from our data?
 
 ```{r}
-pt_pct_1975 <- 
-  staff_long |> 
-  filter(position == "part_time", year == "1975") |> 
+pt_pct_1975 <-
+  staff_long |>
+  filter(position == "part_time", year == "1975") |>
   pull(proportion)
 
 pt_pct_1975
 
-pt_pct_2011 <- 
-  staff_long |> 
-  filter(position == "part_time", year == "2011") |> 
+pt_pct_2011 <-
+  staff_long |>
+  filter(position == "part_time", year == "2011") |>
   pull(proportion)
 
 pt_pct_2011
@@ -872,16 +911,19 @@ pt_pct_2011
 <hr>
 ```{r}
 #| code-line-numbers: "|6|7|8|9|10|11|12"
-p <- p + geom_text(aes(label = scales::label_percent(scale=1)(proportion)),
-                vjust = -0.5,
-                size = 3.5) +
+p <- p +
+  geom_text(
+    aes(label = scales::label_percent(scale = 1)(proportion)),
+    vjust = -0.5,
+    size = 3.5
+  ) +
   annotate(
     geom = "text",
     label = paste0(
       "Part-time faculty percentage has increased\nfrom ",
-      scales::label_percent(scale=1)(pt_pct_1975),
+      scales::label_percent(scale = 1)(pt_pct_1975),
       " in 1975 to ",
-      scales::label_percent(scale=1)(pt_pct_2011),
+      scales::label_percent(scale = 1)(pt_pct_2011),
       " in 2011."
     ),
     x = 5.5,
@@ -909,8 +951,7 @@ library(ggtext)
 prop_pt <-
   staff_long |>
   mutate(prop = proportion / 100) |>
-  filter(year == 2011,
-         position == "part_time") |>
+  filter(year == 2011, position == "part_time") |>
   pull(prop)
 
 p <- p +
@@ -958,8 +999,7 @@ Locale on AP® STEM Success<br><i>Comparison: Suburb</i>")
 ```{r}
 #| code-line-numbers: "|2-3"
 p <- p +
-  theme(plot.title = element_text(size = 18,
-                                  family = "serif"))
+  theme(plot.title = element_text(size = 18, family = "serif"))
 ```
 
 ## `family` aesthetic {.smaller}
@@ -1006,8 +1046,7 @@ font_add_google(name = "Open Sans", family = "open-sans")
 showtext_auto() #necessary for it to work
 
 p <- p +
-  theme(text = element_text(size = 9,
-                            family = "open-sans"))
+  theme(text = element_text(size = 9, family = "open-sans"))
 ```
 
 ::: {.callout-tip}
@@ -1030,8 +1069,7 @@ You can specify fonts for different plot elements, as well.
 font_add_google(name = "Schoolbell", family = "bell")
 
 p <- p +
-  theme(plot.title = element_text(size = 18,
-                                  family = "bell"))
+  theme(plot.title = element_text(size = 18, family = "bell"))
 # Note I could have specified "open-sans" here to fix the earlier issue.
 ```
 
@@ -1050,12 +1088,10 @@ p
 
 ```{r}
 #| code-line-numbers: "|1-2|5-6"
-font_add(family = "Asenine",
-         regular = here::here("week-9", "ASENINE_.ttf"))
+font_add(family = "Asenine", regular = here::here("week-9", "ASENINE_.ttf"))
 
 p <- p +
-  theme(plot.title = element_text(size = 18,
-                                     family = "Asenine"))
+  theme(plot.title = element_text(size = 18, family = "Asenine"))
 ```
 
 ## Using custom fonts with {showtext} {.smaller}
