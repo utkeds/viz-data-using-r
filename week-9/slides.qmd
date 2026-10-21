@@ -1171,7 +1171,7 @@ p
 - Cameras off: 3-5 min to review task
 - Cameras on: collaborative task work
 
-# [Mini-Project #2](https://utk.instructure.com/courses/239375/assignments/2326753)
+# Mini-Project #2
 
 ## Looking Ahead
 <hr>
