@@ -39,7 +39,9 @@ library(tidykids)
 
 :::{.smaller-font}
 - **Weekly Check In**
-- **Last Week:** {ggrepel}
+- **Foundational Ideas**
+    - More with `case_when()`
+    - {ggrepel}
 - **Plot Composition & Design**
     - Compound Plots
         - **{patchwork}**
@@ -48,7 +50,6 @@ library(tidykids)
     - Faceting
     - Annotations (non-text)
 - **Collaborative Discussion**
-    - Mini Project #2 & Final Project
     - Collaborative Rubric for Final Project
     - Start on Wk 10 Hmwk
 - **Looking Ahead**
@@ -1217,6 +1218,7 @@ Two topics:
     - Read Schwabish (2021), Ch 11
 - Assignment: Mini-Project #2, Due 11/6
 - WeeklyAssignment: Assignment 10, Due 11/2
+- No Class Next Tues. (Election Day)
 
 ## Attribution for materials used today
 <hr>
