@@ -44,12 +44,9 @@ library(tidykids)
     - {ggrepel}
 - **Plot Composition & Design**
     - Compound Plots
-        - **{patchwork}**
-        - {cowplot}
-        - {gridExtra}
     - Faceting
     - Annotations (non-text)
-- **Collaborative Discussion**
+- **Collaborative Work**
     - Collaborative Rubric for Final Project
     - Start on Wk 10 Hmwk
 - **Looking Ahead**
@@ -889,6 +886,14 @@ combined_plot_2
   - Also groups {gt} tables with plots
   - More!
 - [Investigate the documentation](https://patchwork.data-imaginist.com/articles/guides/assembly.html) for more details
+:::
+
+## {patchwork}
+<hr>
+![](slides_images/amounts_distributions_line.png){fig-align="center" height="450px"}
+
+:::aside
+Beigel, F et al. (2025). The drain of scientific publishing. arXiv. https://doi.org/10.48550/arXiv.2511.04820
 :::
 
 # {cowplot}
