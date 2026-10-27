@@ -978,7 +978,8 @@ penguins |>
 :::
 
 ```{r, fig.height=4.5}
-ggplot(penguins, aes(x = flipper_length_mm)) +
+penguins |>
+     ggplot(aes(x = flipper_length_mm)) +
      geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") +
      scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
      labs(
