@@ -1,7 +1,7 @@
 ---
 subtitle: "Plot Design in {ggplot2}"
-title: "Week 10 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+title: "Week 10 - CADE 691"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -42,7 +42,7 @@ library(tidykids)
 - **Last Week:** {ggrepel}
 - **Plot Composition & Design**
     - Compound Plots
-        - {patchwork}
+        - **{patchwork}**
         - {cowplot}
         - {gridExtra}
     - Faceting
@@ -50,6 +50,7 @@ library(tidykids)
 - **Collaborative Discussion**
     - Mini Project #2 & Final Project
     - Collaborative Rubric for Final Project
+    - Start on Wk 10 Hmwk
 - **Looking Ahead**
 :::
 
@@ -73,19 +74,27 @@ library(tidykids)
 - There is a way to block comment out multiple lines of code (helpful to save code when you don't want it to run)
 
 1. Highlight the lines of code you want to comment out
-2. `Cmd` (Mac)  OR  `Ctrl` (Windows) + `/`
+2. (Mac) `cmd` + `/` <br> (Windows) `ctrl` + `/`
 
+## PRO TIP
+<hr>
+- If you prefer to use the old R Studio keybindings, you can do that!
+
+1. Enable the `rstudioKeybindings` setting in Positron. Instructions are located [here](https://positron.posit.co/migrate-rstudio-keybindings.html).
+2. Restart Positron
+3. This makes block commenting code:<br>
+ (Mac) `cmd` + `shift` + `C`<br>
+ (Windows) `ctrl` + `shift` + `C`
 
 # Building on Week 9
 
 ## Homework 9: {showtext} font sizing {.smaller}
 <hr>
-- Some of you experienced {showtext} font sizing issues
-- Problem ONE: The annotation gets tiny after using {showtext}
-- One solution: Add the annotation after the {showtext} step
-  - I will change the assignment for next semester so this is less of an issue
+- The plot/preview pane is misleading!
+  - Sometimes it looks horrible in the pane but fine when rendered.
+- Hmwks generally look great! Remember if your text (e.g., title) is too long, use `\n` to split it into multiple lines.
 
-## Homework 9: {showtext} font sizing {.smaller}
+<!-- ## Homework 9: {showtext} font sizing {.smaller}
 <hr>
 - Some of you experienced applying a {showtext} font but it not showing up in the plot pane (although it does when rendered)
 - Problem TWO: The plot pane and the rendering mechanism work differently
@@ -93,184 +102,131 @@ library(tidykids)
 
 ```r
 #| fig.showtext : TRUE
-```
+``` -->
 
-# More on Data Cleaning (Advanced `case_when()`)
+# Adv. Data Wrangling<br>`case_when()`
 
-## `case_when()`{.smaller}
+## `case_when()`{.smallest}
 <hr>
-::::::{.extra-small-font}
+
+::::::{.medium-small-font}
 - We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
 
+:::{.columns}
+::::{.column width="35%"}
+Toy Data
 ```{r, echo=FALSE}
 toy <- as_tibble(as.integer(c("1", "2", "3", NA)))
 colnames(toy) <- "x"
 
 toy
 ```
-
-:::{.columns}
-::::{.column}
-Simple Case
-```{r}
-toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    x == 2 ~ "two"
-  ))
-```
-
-
 ::::
-::::{.column}
-
-
-
+::::{.column width="65%"}
+**#1: Simple Case**
+```{r}
+#| output-location: fragment
+toy |>
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      x == 2 ~ "two"
+    )
+  )
+```
 ::::
 :::
 ::::::
 
 ## `case_when()`{.smallest}
 <hr>
-::::::{.extra-small-font}
+
+::::::{.medium-small-font}
 - We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
 
+:::{.columns}
+::::{.column width="35%"}
+Toy Data
 ```{r, echo=FALSE}
-toy <- as_tibble(as.integer(c("1", "2", "3", NA)))
-colnames(toy) <- "x"
-
 toy
 ```
-
-:::{.columns}
-::::{.column}
-Simple Case
-```{r}
-toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    x == 2 ~ "two"
-  ))
-```
-
-
 ::::
-::::{.column}
-Simple Case + Re-use Variable
+::::{.column width="65%"}
+**#2: Simple Case + Re-use Variable**
 ```{r}
+#| output-location: fragment
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ 0,
-    .default = x
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ 0,
+      .default = x
+    )
+  )
 ```
-
-
 ::::
 :::
 ::::::
 
 ## `case_when()`{.smallest}
 <hr>
-::::::{.extra-small-font}
+
+::::::{.medium-small-font}
 - We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
 
+:::{.columns}
+::::{.column width="35%"}
+Toy Data
 ```{r, echo=FALSE}
-toy <- as_tibble(as.integer(c("1", "2", "3",NA)))
-colnames(toy) <- "x"
-
 toy
 ```
-
-:::{.columns}
-::::{.column}
-Simple Case
-```{r}
-toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    x == 2 ~ "two"
-  ))
-```
-
-Simple Case + Catch All (Note: NAs)
-```{r}
-toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    .default = "not one"
-  ))
-```
 ::::
-::::{.column}
-Simple Case + Re-use Variable
+::::{.column width="65%"}
+**#3: Simple Case + Catch All (Note: NAs)**
 ```{r}
+#| output-location: fragment
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ 0,
-    .default = x
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      .default = "not one"
+    )
+  )
 ```
-
-
 ::::
 :::
 ::::::
 
 ## `case_when()`{.smallest}
 <hr>
-::::::{.extra-small-font}
+
+::::::{.medium-small-font}
 - We've used `case_when()` (with `mutate()`) quite a bit before, but it can do even more!
 
+:::{.columns}
+::::{.column width="35%"}
+Toy Data
 ```{r, echo=FALSE}
-toy <- as_tibble(as.integer(c("1", "2", "3", NA)))
-colnames(toy) <- "x"
-
 toy
 ```
-
-:::{.columns}
-::::{.column}
-Simple Case
-```{r}
-toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    x == 2 ~ "two"
-  ))
-```
-
-Simple Case + Catch All (Note: NAs)
-```{r}
-toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    .default = "not one"
-  ))
-```
 ::::
-::::{.column}
-Simple Case + Re-use Variable
+::::{.column width="65%"}
+**#4: Simple Case + Catch All + Preserve NAs**
 ```{r}
+#| output-location: fragment
 toy |>
-  mutate(y = case_when(
-    x == 1 ~ 0,
-    .default = x
-  ))
-```
-
-Simple Case + Catch All + Preserve NAs
-```{r}
-toy |>
-  mutate(y = case_when(
-    x == 1 ~ "one",
-    is.na(x) ~ NA,
-    .default = "not one"
-  ))
+  mutate(
+    y = case_when(
+      x == 1 ~ "one",
+      is.na(x) ~ NA,
+      .default = "not one"
+    )
+  )
 ```
 ::::
 :::
 ::::::
+
+# {ggrepel}
 
 ## One More Pkg {ggrepel}{.smaller}
 <hr>
@@ -284,13 +240,16 @@ toy |>
 
 ```{r, echo=F}
 library(tidykids)
-tidykids_wider <- tidykids|>
+tidykids_wider <- tidykids |>
   filter(year == 2016) |>
-  pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
+  pivot_wider(
+    names_from = expenditure,
+    values_from = c(raw, inf_adj, inf_adj_perchild)
+  )
 ```
 
-:::{layout="[1,1]" .smaller-font}
-:::column
+::::{.columns .smaller-font}
+:::{.column width="50%"}
 ```{r}
 tidykids_wider |>
   ggplot(aes(x = inf_adj_edsubs, y = inf_adj_parkrec)) +
@@ -299,7 +258,7 @@ tidykids_wider |>
 ```
 :::
 
-:::column
+:::{.column width="50%"}
 ```{r}
 library(ggrepel)
 
@@ -309,7 +268,7 @@ tidykids_wider |>
   geom_text_repel(aes(label = state))
 ```
 :::
-:::
+::::
 
 ## One More Pkg {ggrepel}{.smaller}
 <hr>
@@ -323,13 +282,16 @@ tidykids_wider |>
 
 ```{r, echo=F}
 library(tidykids)
-tidykids_wider <- tidykids|>
+tidykids_wider <- tidykids |>
   filter(year == 2016) |>
-  pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
+  pivot_wider(
+    names_from = expenditure,
+    values_from = c(raw, inf_adj, inf_adj_perchild)
+  )
 ```
 
-:::{layout="[1,1]" .smaller-font}
-:::column
+::::{.columns .smaller-font}
+:::{.column width="50%"}
 ```{r}
 tidykids_wider |>
   filter(state != "California") |>
@@ -339,7 +301,7 @@ tidykids_wider |>
 ```
 :::
 
-:::column
+:::{.column width="50%"}
 ```{r}
 library(ggrepel)
 
@@ -350,7 +312,7 @@ tidykids_wider |>
   geom_text_repel(aes(label = state))
 ```
 :::
-:::
+::::
 
 ## One More Pkg {ggrepel}{.smaller}
 <hr>
@@ -364,13 +326,16 @@ tidykids_wider |>
 
 ```{r, echo=F}
 library(tidykids)
-tidykids_wider <- tidykids|>
+tidykids_wider <- tidykids |>
   filter(year == 2016) |>
-  pivot_wider(names_from = expenditure, values_from = c(raw, inf_adj, inf_adj_perchild))
+  pivot_wider(
+    names_from = expenditure,
+    values_from = c(raw, inf_adj, inf_adj_perchild)
+  )
 ```
 
-:::{layout="[1,1]" .smaller-font}
-:::column
+::::{.columns .smaller-font}
+:::{.column width="50%"}
 ```{r}
 tidykids_wider |>
   filter(state != "California") |>
@@ -380,7 +345,7 @@ tidykids_wider |>
 ```
 :::
 
-:::column
+:::{.column width="50%"}
 ```{r}
 library(ggrepel)
 
@@ -391,7 +356,7 @@ tidykids_wider |>
   geom_label_repel(aes(label = state))
 ```
 :::
-:::
+::::
 
 # Today: Compound Plots
 
@@ -403,7 +368,7 @@ Three packages for combining plots:
 
 - {patchwork} newest (2018)
 - {cowplot}
-- {gridExtra} oldest (2010); we won't cover it today
+- {gridExtra} oldest (2010)
 
 # {patchwork}
 
@@ -424,22 +389,27 @@ Three packages for combining plots:
 
 :::{.columns .extra-small-font}
 :::{.column}
-<br>
+[**p1**]{style="font-size: 1.5em;"}
 ```{r}
 library(palmerpenguins)
 
 p1 <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color=species)) +
-  geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
-  theme_minimal() +
-  labs(title = "Flipper Length vs. Bill Length",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)") +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
-   theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10))
+     geom_point(aes(color = species)) +
+     geom_smooth(method = "lm", se = FALSE, color = "#4F4F4F") +
+     theme_minimal() +
+     labs(
+          title = "Flipper Length vs. Bill Length",
+          x = "Bill Length (mm)",
+          y = "Flipper Length (mm)"
+     ) +
+     scale_color_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     theme(legend.title = element_blank(), plot.title = element_text(size = 10))
 
 p1
 ```
@@ -447,19 +417,27 @@ p1
 :::
 
 :::{.column}
-<br>
+[**p2**]{style="font-size: 1.5em;"}
 ```{r}
-p2 <- ggplot(penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
-  geom_boxplot()+
-  theme_minimal() +
-  labs(title = "Flipper Length by Species",
-       x = "Species",
-       y = "Flipper Length (mm)") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-   theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10))
+p2 <- ggplot(
+     penguins,
+     aes(x = species, y = flipper_length_mm, fill = species)
+) +
+     geom_boxplot() +
+     theme_minimal() +
+     labs(
+          title = "Flipper Length by Species",
+          x = "Species",
+          y = "Flipper Length (mm)"
+     ) +
+     scale_fill_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     theme(legend.title = element_blank(), plot.title = element_text(size = 10))
 
 p2
 ```
@@ -518,6 +496,8 @@ p1 / p1 / p2 / p2
 <hr>
 :::{.smaller-font}
 - Let's combine them
+- **operator precedence rule** = order of operations
+  - e.g. `/` gets evaluated before `+`
 
 ```{r, fig.height=4.5}
 p1 | p2 / p2
@@ -564,54 +544,66 @@ p1 | p2 / p2
 
 ```{r, echo = F}
 p3 <- penguins |>
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(aes(color = species)) +
-  geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
-  theme_minimal() +
-  labs(title = "Body Mass vs. Flipper Length",
-       x = "Flipper Length (mm)",
-       y = "Body Mass (g)") +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
-   theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10))
+     ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+     geom_point(aes(color = species)) +
+     geom_smooth(method = "lm", se = FALSE, color = "#4F4F4F") +
+     theme_minimal() +
+     labs(
+          title = "Body Mass vs. Flipper Length",
+          x = "Flipper Length (mm)",
+          y = "Body Mass (g)"
+     ) +
+     scale_color_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     theme(legend.title = element_blank(), plot.title = element_text(size = 10))
 
 p4 <- penguins |>
-  ggplot(aes(x = species, y = body_mass_g)) +
-  geom_boxplot(aes(fill = species))+
-  theme_minimal() +
-  labs(title = "Body Mass",
-       x = "Species",
-       y = "Body Mass (g)") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10))
+     ggplot(aes(x = species, y = body_mass_g)) +
+     geom_boxplot(aes(fill = species)) +
+     theme_minimal() +
+     labs(title = "Body Mass", x = "Species", y = "Body Mass (g)") +
+     scale_fill_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     theme(legend.title = element_blank(), plot.title = element_text(size = 10))
 
 p5 <- penguins |>
-  group_by(species) |>
-  summarize(mean_body_mass = mean(body_mass_g, na.rm=T),
-            sd_body_mass = sd(body_mass_g, na.rm = T)) |>
-  ungroup() |>
-  ggplot(aes(x = species, y = mean_body_mass, fill = species)) +
-  geom_col() +
-  geom_errorbar(aes(ymin = mean_body_mass - sd_body_mass,
-                    ymax = mean_body_mass + sd_body_mass),
-                width = 0.2, position = position_dodge(0.9)) +
-  theme_minimal() +
-  labs(title = "Mean Body Mass",
-       x = "Species",
-       y = "Mean Body Mass (g)") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  scale_y_continuous(limits = c(0,6500),
-                     breaks = seq(0, 6000, by = 1000)) +
-   theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10))
-  
+     group_by(species) |>
+     summarize(
+          mean_body_mass = mean(body_mass_g, na.rm = T),
+          sd_body_mass = sd(body_mass_g, na.rm = T)
+     ) |>
+     ungroup() |>
+     ggplot(aes(x = species, y = mean_body_mass, fill = species)) +
+     geom_col() +
+     geom_errorbar(
+          aes(
+               ymin = mean_body_mass - sd_body_mass,
+               ymax = mean_body_mass + sd_body_mass
+          ),
+          width = 0.2,
+          position = position_dodge(0.9)
+     ) +
+     theme_minimal() +
+     labs(title = "Mean Body Mass", x = "Species", y = "Mean Body Mass (g)") +
+     scale_fill_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     scale_y_continuous(limits = c(0, 6500), breaks = seq(0, 6000, by = 1000)) +
+     theme(legend.title = element_blank(), plot.title = element_text(size = 10))
 ```
 
 # Welcome to: <br> *What's My Code?!?*
@@ -650,7 +642,6 @@ q5 <- ggplot() +
 <hr>
 - **#2**: In chat! What's my code?...
 ```{r, fig.height=4.5, echo=F}
-
 q1 | (q2 + q3) / q4
 ```
 
@@ -670,7 +661,6 @@ q1 | (q2 | q3) / q4
 <hr>
 - **#3**: In chat! What's my code?...
 ```{r, fig.height=4.5, echo=F}
-
 (q1 + q2 + q3 + q4) / q5
 ```
 
@@ -706,7 +696,7 @@ q1 | (q2 | q3) / q4
 ((p1 + p2)/(p3 + p4)) / p5
 ```
 ```{r, fig.height=4.5, echo=FALSE}
-((q1 + q2)/(q3 + q4)) / q5
+((q1 + q2) / (q3 + q4)) / q5
 ```
 :::
 ::::
@@ -735,7 +725,7 @@ q1 | (q2 | q3) / q4
 ```
 ```{r, fig.height=4.5, echo=FALSE}
 # Three groupings: 33%, 33%, and 33%
-((q1 + q2)/(q3 + q4)) / q5
+((q1 + q2) / (q3 + q4)) / q5
 ```
 :::
 ::::
@@ -782,60 +772,87 @@ combined_plot_2 + plot_layout(guides = 'collect')
 - Otherwise, I can clean the legends up in the original plots with `theme(legend.position = "none")`
 ```{r, echo=F}
 p1 <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
-  geom_point(aes(color=species)) +
-  geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
-  theme_minimal() +
-  labs(title = "Flipper Length vs. Bill Length",
-       x = "Bill Length (mm)",
-       y = "Flipper Length (mm)") +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
-   theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10),
-        legend.position = "none")
+     geom_point(aes(color = species)) +
+     geom_smooth(method = "lm", se = FALSE, color = "#4F4F4F") +
+     theme_minimal() +
+     labs(
+          title = "Flipper Length vs. Bill Length",
+          x = "Bill Length (mm)",
+          y = "Flipper Length (mm)"
+     ) +
+     scale_color_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     theme(
+          legend.title = element_blank(),
+          plot.title = element_text(size = 10),
+          legend.position = "none"
+     )
 
-p2 <- ggplot(penguins, aes(x = species, y = flipper_length_mm, fill = species)) +
-  geom_boxplot()+
-  theme_minimal() +
-  labs(title = "Flipper Length",
-       x = "Species",
-       y = "Flipper Length (mm)") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-   theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10),
-        legend.position = "none")
+p2 <- ggplot(
+     penguins,
+     aes(x = species, y = flipper_length_mm, fill = species)
+) +
+     geom_boxplot() +
+     theme_minimal() +
+     labs(title = "Flipper Length", x = "Species", y = "Flipper Length (mm)") +
+     scale_fill_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     theme(
+          legend.title = element_blank(),
+          plot.title = element_text(size = 10),
+          legend.position = "none"
+     )
 
 p3 <- penguins |>
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(aes(color = species)) +
-  geom_smooth(method = "lm", se = FALSE, color="#4F4F4F") +
-  theme_minimal() +
-  labs(title = "Body Mass vs. Flipper Length",
-       x = "Flipper Length (mm)",
-       y = "Body Mass (g)") +
-  scale_color_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01")) +
-   theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10),
-        legend.position = "none")
+     ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+     geom_point(aes(color = species)) +
+     geom_smooth(method = "lm", se = FALSE, color = "#4F4F4F") +
+     theme_minimal() +
+     labs(
+          title = "Body Mass vs. Flipper Length",
+          x = "Flipper Length (mm)",
+          y = "Body Mass (g)"
+     ) +
+     scale_color_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     theme(
+          legend.title = element_blank(),
+          plot.title = element_text(size = 10),
+          legend.position = "none"
+     )
 
 p4 <- penguins |>
-  ggplot(aes(x = species, y = body_mass_g)) +
-  geom_boxplot(aes(fill = species))+
-  theme_minimal() +
-  labs(title = "Body Mass",
-       x = "Species",
-       y = "Body Mass (g)") +
-  scale_fill_manual(values = c("Chinstrap" = "#C65CCB",
-                               "Gentoo" = "#077175",
-                               "Adelie" = "#FF6A01"))+
-  theme(legend.title = element_blank(),
-        plot.title = element_text(size = 10),
-        legend.position = "none")
+     ggplot(aes(x = species, y = body_mass_g)) +
+     geom_boxplot(aes(fill = species)) +
+     theme_minimal() +
+     labs(title = "Body Mass", x = "Species", y = "Body Mass (g)") +
+     scale_fill_manual(
+          values = c(
+               "Chinstrap" = "#C65CCB",
+               "Gentoo" = "#077175",
+               "Adelie" = "#FF6A01"
+          )
+     ) +
+     theme(
+          legend.title = element_blank(),
+          plot.title = element_text(size = 10),
+          legend.position = "none"
+     )
 ```
 
 ```{r, fig.height=4.5}
@@ -851,9 +868,12 @@ combined_plot_2
 :::{.smaller-font}
 - Let's add a title to the whole figure and tag/labels to each plot
  - Can use numbers, letters, roman numerals for tags (upper/lowercase)
-```{r, fig.height=4.5}
-combined_plot_2 <- combined_plot_2 + plot_annotation(title = 'Fig 1.4: Plotting Portraits of Perplexing Penguins',
-                                                     tag_levels = 'A')
+```{r, fig.height=3.8}
+combined_plot_2 <- combined_plot_2 +
+  plot_annotation(
+    title = 'Fig 1.4: Plotting Portraits of Perplexing Penguins',
+    tag_levels = 'A'
+  )
 combined_plot_2
 ```
 :::
@@ -864,6 +884,8 @@ combined_plot_2
 - It does a lot more
   - Handles redundant axes
   - Manual sizing
+  - Adds blank spacing between plots
+  - Also groups {gt} tables with plots
   - More!
 - [Investigate the documentation](https://patchwork.data-imaginist.com/articles/guides/assembly.html) for more details
 :::
@@ -907,13 +929,16 @@ combined_plot_4
 :::
 
 ```{r, fig.height=4.5}
-ggplot(data = penguins, aes(x = flipper_length_mm)) +
-  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
-  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
-  labs(x = "Flipper length (mm)",
-       y = "Frequency",
-       title = "Distribution of Flipper Lengths")+
-  theme_minimal()
+penguins |>
+     ggplot(aes(x = flipper_length_mm)) +
+     geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") +
+     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+     labs(
+          x = "Flipper length (mm)",
+          y = "Frequency",
+          title = "Distribution of Flipper Lengths by Penguin Species"
+     ) +
+     theme_minimal()
 ```
 
 
@@ -925,15 +950,18 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
 :::
 
 ```{r, fig.height=4.5}
-ggplot(penguins, aes(x = flipper_length_mm)) +
-  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
-  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
-  labs(x = "Flipper length (mm)",
-       y = "Frequency",
-       title = "Distribution of flipper lengths")+
-  theme_minimal()+
-  facet_wrap(~species, nrow = 1)+
-  theme(legend.position = "none")
+penguins |>
+     ggplot(aes(x = flipper_length_mm)) +
+     geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") +
+     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+     labs(
+          x = "Flipper length (mm)",
+          y = "Frequency",
+          title = "Distribution of Flipper Lengths by Penguin Species"
+     ) +
+     theme_minimal() +
+     facet_wrap(~species, nrow = 1) +
+     theme(legend.position = "none")
 ```
 
 ## Faceting {.smaller}
@@ -945,14 +973,39 @@ ggplot(penguins, aes(x = flipper_length_mm)) +
 
 ```{r, fig.height=4.5}
 ggplot(penguins, aes(x = flipper_length_mm)) +
-  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") + 
-  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
-  labs(x = "Flipper length (mm)",
-       y = "Frequency",
-       title = "Distribution of flipper lengths")+
-  theme_minimal()+
-  facet_wrap(~species, nrow = 1, scales = "free_y")+
-  theme(legend.position = "none")
+     geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") +
+     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+     labs(
+          x = "Flipper length (mm)",
+          y = "Frequency",
+          title = "Distribution of flipper lengths"
+     ) +
+     theme_minimal() +
+     facet_wrap(~species, nrow = 1, scales = "free_y") +
+     theme(legend.position = "none")
+```
+
+## Faceting: Shared vs. Free y-axis {.smaller}
+<hr>
+:::{.extra-small-font}
+- **Discuss:** Which version is clearer for the reader? What does each make easier (or harder) to examine?
+:::
+
+```{r, fig.height=5.5, echo=FALSE}
+facet_base <- penguins |>
+     ggplot(aes(x = flipper_length_mm)) +
+     geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") +
+     scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+     labs(x = "Flipper length (mm)", y = "Frequency") +
+     theme_minimal() +
+     theme(legend.position = "none")
+
+(facet_base +
+     facet_wrap(~species, nrow = 1) +
+     labs(title = "Shared y-axis")) /
+     (facet_base +
+          facet_wrap(~species, nrow = 1, scales = "free_y") +
+          labs(title = "Free y-axis (\"free_y\")"))
 ```
 
 ## Faceting {.smaller}
@@ -964,32 +1017,90 @@ ggplot(penguins, aes(x = flipper_length_mm)) +
 
 ```{r, echo=FALSE}
 tidykids <- tidykids |>
-  mutate(region = case_when(
-    state %in% c("Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", 
-                 "Connecticut", "New York", "New Jersey", "Pennsylvania") ~ "Northeast",
-    state %in% c("Ohio", "Indiana", "Illinois", "Michigan", "Wisconsin", "Minnesota",
-                 "Iowa", "Missouri", "North Dakota", "South Dakota", "Nebraska", "Kansas") ~ "Midwest",
-    state %in% c("Delaware", "Maryland", "Virginia", "West Virginia", "North Carolina", 
-                 "South Carolina", "Georgia", "Florida", "Kentucky", "Tennessee", 
-                 "Alabama", "Mississippi", "Arkansas", "Louisiana", "Oklahoma",
-                 "Texas", "District of Columbia") ~ "South",
-    state %in% c("Montana", "Idaho", "Wyoming", "Colorado", "New Mexico", "Arizona", 
-                 "Utah", "Nevada", "California", "Oregon", "Washington", "Hawaii",
-                 "Alaska") ~ "West"))
+  mutate(
+    region = case_when(
+      state %in%
+        c(
+          "Maine",
+          "New Hampshire",
+          "Vermont",
+          "Massachusetts",
+          "Rhode Island",
+          "Connecticut",
+          "New York",
+          "New Jersey",
+          "Pennsylvania"
+        ) ~ "Northeast",
+      state %in%
+        c(
+          "Ohio",
+          "Indiana",
+          "Illinois",
+          "Michigan",
+          "Wisconsin",
+          "Minnesota",
+          "Iowa",
+          "Missouri",
+          "North Dakota",
+          "South Dakota",
+          "Nebraska",
+          "Kansas"
+        ) ~ "Midwest",
+      state %in%
+        c(
+          "Delaware",
+          "Maryland",
+          "Virginia",
+          "West Virginia",
+          "North Carolina",
+          "South Carolina",
+          "Georgia",
+          "Florida",
+          "Kentucky",
+          "Tennessee",
+          "Alabama",
+          "Mississippi",
+          "Arkansas",
+          "Louisiana",
+          "Oklahoma",
+          "Texas",
+          "District of Columbia"
+        ) ~ "South",
+      state %in%
+        c(
+          "Montana",
+          "Idaho",
+          "Wyoming",
+          "Colorado",
+          "New Mexico",
+          "Arizona",
+          "Utah",
+          "Nevada",
+          "California",
+          "Oregon",
+          "Washington",
+          "Hawaii",
+          "Alaska"
+        ) ~ "West"
+    )
+  )
 ```
 
-:::{.smaller-font}
+:::{.extra-small-font}
 
 ```{r, fig.height=3.75}
+#| code-line-numbers: "|6"
 tidykids |>
   filter(year == 2016, expenditure == "PK12ed") |>
   mutate(state = fct_reorder(state, inf_adj_perchild)) |>
   ggplot(aes(x = inf_adj_perchild, y = state)) +
-  geom_col(fill="#007A33", alpha=0.7) +
+  geom_col(fill = "#007A33", alpha = 0.7) +
   facet_wrap(~region, scales = "free_y") +
-  labs(title = "Inflation Adjusted Per Child Expenditure on Pre-K Through 12 Education (2016)")+
+  labs(
+    title = "Inflation Adjusted Per Child Expenditure on Pre-K Through 12 Education (2016)"
+  ) +
   theme_minimal() +
-  theme(axis.title = element_blank())+
+  theme(axis.title = element_blank(), axis.text.y = element_text(size = 7)) +
   scale_x_continuous(labels = scales::label_dollar())
 ```
 
@@ -1002,11 +1113,9 @@ tidykids |>
 - a plot to build on...
 
 ```{r, fig.height=4.5}
-p8 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point()+
-  labs(title = "Weight vs. MPG of Cars",
-    x = "Weight",
-    y= "MPG")
+p8 <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Weight vs. MPG of Cars", x = "Weight", y = "MPG")
 
 p8
 ```
@@ -1016,15 +1125,12 @@ p8
 <hr>
 - We learned about `text` and `label` annotations last week.
 ```{r, fig.height=4.5}
-p9 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point()+
-  labs(title = "Weight vs. MPG of Cars",
-    x = "Weight",
-    y= "MPG") +
+p9 <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Weight vs. MPG of Cars", x = "Weight", y = "MPG") +
   theme_minimal() +
-  annotate("text", x = 3, y = 30,
-          label = "These cars are fuel efficient")
-  
+  annotate("text", x = 3, y = 30, label = "These cars are fuel efficient")
+
 p9
 ```
 
@@ -1032,16 +1138,23 @@ p9
 ## Annotations: Text + Rect {.smaller}
 <hr>
 - Let's add a rectangle to highlight a specific area of the plot
-```{r, fig.height=4.5}
-p10 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point()+
-  labs(title = "Weight vs. MPG of Cars",
-    x = "Weight",
-    y= "MPG") +
+```{r, fig.height=5.5}
+#| output-location: column
+#| code-line-numbers: "6-14"
+p10 <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Weight vs. MPG of Cars", x = "Weight", y = "MPG") +
   theme_minimal() +
-  annotate("text", x = 3, y = 30,
-           label = "These cars are fuel efficient") +
-  annotate("rect", xmin = 1.5, xmax = 2.5, ymin = 25, ymax = 35, alpha = .2, fill = "cornflowerblue")
+  annotate("text", x = 3, y = 30, label = "These cars are fuel efficient") +
+  annotate(
+    "rect",
+    xmin = 1.5,
+    xmax = 2.5,
+    ymin = 25,
+    ymax = 35,
+    alpha = .2,
+    fill = "cornflowerblue"
+  )
 
 p10
 ```
@@ -1053,26 +1166,22 @@ p10
 ```{r, fig.height=4.5}
 library(gghighlight)
 
-p11 <- ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point(color="cornflowerblue")+
-  labs(title = "Weight vs. MPG of Cars",
-    x = "Weight",
-    y= "MPG") +
+p11 <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "orange") +
+  labs(title = "Weight vs. MPG of Cars", x = "Weight", y = "MPG") +
   theme_minimal() +
-  annotate("text", x = 3, y = 30,
-           label = "These cars are fuel efficient")+
+  annotate("text", x = 3, y = 30, label = "These cars are fuel efficient") +
   gghighlight(mpg > 25)
 
 p11
 ```
 
+# Collaborative Work<br>
+`Two Parts`
 
-# [Mini-Project #2 & Final](https://utk.instructure.com/courses/239375/assignments/2326753)
-
-# Collaborative Discussion
-
-## Collaborative Discussion
+## Pt I: Collaborative Discussion
 <hr>
+
 :::{.smaller-font}
 Two topics:
 
@@ -1082,7 +1191,7 @@ Two topics:
     - What graphs are your considering?
     - What concerns do you have?
 
-- **(2) Pull up the Final Project Collaborative Rubric**
+- **(2) Pull up the Final Project Collaborative Rubric for your Group**
 
     - What should be kept?
     - What should be removed?
@@ -1090,24 +1199,24 @@ Two topics:
 
 **Add comments to the document using the comment tool!**
 
-**Be prepared for a spokesperson in your group to share (re: #1 and re: #2)**
+**I will visit your group and discuss any questions you have.**
 :::
+
+## Pt II: Collaborative Work
+<hr>
+- Begin working on assignment #10
+- You will use old plots you've already made (unless you really want to make new ones!)
+- Each group member should submit their own
+
 
 ## Looking Ahead
 <hr>
 - Reading:
-    - Brin, L. D. (n.d.)
-    - Ramler (2023): Sections 13.1 & 13.2 ONLY
-    - {stringr} cheatsheet
-- Assignment: Mini-Project #2, Due 11/7
-- Assignment: Assignment 10, Due 10/29
-
-
-## Next Semester + Beyond {.smaller}
-<hr>
-- If you aren't registered already, please consider the [Educational Data Science Graduate Certificate](https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/#courses).
-- This class completes 25% of what you need.
-- The capstone can be shaped around your interests/research.
+    - Skim Fung (2020)
+    - Work Through Rapp (n.d.), Chs. 1-4
+    - Read Schwabish (2021), Ch 11
+- Assignment: Mini-Project #2, Due 11/6
+- WeeklyAssignment: Assignment 10, Due 11/2
 
 ## Attribution for materials used today
 <hr>

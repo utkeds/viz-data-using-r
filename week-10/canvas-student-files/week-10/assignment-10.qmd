@@ -8,7 +8,6 @@ format:
 execute:
     warning: false
     message: false
-    out-width: "100%"
 ---
 
 ```{r package-load}
@@ -26,9 +25,8 @@ Using a previous data set and related analyses and/or visualizations, combine se
 
 ## Small Multiples with facet_wrap()
 
-Using a previous data set (and analysis), develop a data visualization that uses small multiples. To add a little pizazz and style your facets, consider consulting these resources:
+Using a previous data set (and analysis), develop a data visualization that uses small multiples. To add a little pizazz and style your facets, consider consulting the following resource:
 
-- http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
 - https://www.datanovia.com/en/blog/how-to-change-ggplot-facet-labels/
 
 
@@ -55,14 +53,14 @@ And, please answer this question: How did this assignment go? What went well and
 
 ## 4. Submit
 
-Please be sure to add your name and the date. Knit and submit!
+Please be sure to add your name. Render and submit!
 
 **Rubric**
 
 Name is added: 2 points
-File knits to an HTML: 4 points
-patchwork plot: 6 points
-faceted plot: 6 points
+File rendered to HTML: 4 points
+Patchwork plot: 6 points
+Faceted plot: 6 points
 Annotated plot: 6 points
 Attention to the aesthetics are considered: 6 points
 
