@@ -222,7 +222,7 @@ ggsave("plotname.png", width = ?, height = ?, units = "in")
   - ggplot2 is based on the Grammar of Graphics
   - gt stands for the Grammar of Tables
 - Was developed by the RStudio team
-- Let's have a <a href="https://utkeds.github.io/viz-data-using-r/week-11/gt_talk_wk11/index.html" target="_blank">preview of what it can do</a>[^1]
+- Let's have a <a href="https://utkeds.github.io/viz-data-using-r/week-11/gt_talk_wk12/index.html" target="_blank">preview of what it can do</a>[^1]
 
 [^1]: Note: This only displays correctly in Chrome.
 
