@@ -154,8 +154,12 @@ p1 + p2 + p3 + p4 +
 - Don't go by plot preview pane
 - Render early and often and go by rendered preview
 
-## But what size do I want? {.smaller}
+``` -->
+
+## But what size plot do I want? {.smaller}
 <hr>
+- Plot preview pane is not helpful
+
 **A Hack**
 
 ```r
@@ -172,8 +176,16 @@ data |>
 dev.size("in") #Use these for your cell output specifications (fig-height, fig-width) and ggsave
 
 ggsave("plotname.png", width = ?, height = ?, units = "in")
+```
 
-``` -->
+## Sizing Composite Plots {.smaller}
+<hr>
+- You can also use those values to specify the size of the cell output (inches) within your quarto doc:
+
+```r
+#| fig-width: 8
+#| fig-height: 6
+```
 
 # Tables
 
@@ -571,9 +583,9 @@ gt_tbl |> gtsave("tab_1.docx")
 
 # Adding Additional Features (Tutorial 2)
 
-## The `tab_<something>()` family{.smaller}
+## The `tab_*()` family{.smaller}
 <hr>
-- The `tab_<something>()` family of functions are used to add components and style tables
+- The `tab_*()` family of functions are used to add components and style tables
     - `tab_header()`
     - `tab_stubhead()`
     - `tab_spanner()`
