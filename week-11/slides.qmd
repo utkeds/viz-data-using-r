@@ -69,7 +69,7 @@ library(tidyverse)
 look great, too!
 - Some suggestions:
   - [80 Characters Max/Line](https://style.tidyverse.org/syntax.html#long-function-calls)
-  - [Use Line Breaks/Indention for Multi-Argument Functions](https://style.tidyverse.org/syntax.html#long-function-calls)
+  - [Use Line Breaks/Indention for Multi-Argument Functions](https://style.tidyverse.org/functions.html#multi-line-function-definitions)
   - [Short pipes on single line is okay](https://style.tidyverse.org/pipes.html#short-pipes)
 
 ## Tip for 80-Character Guideline {.smaller}
@@ -176,6 +176,8 @@ data |>
 dev.size("in") #Use these for your cell output specifications (fig-height, fig-width) and ggsave
 
 ggsave("plotname.png", width = ?, height = ?, units = "in")
+
+# Either close the pop-up or run dev.off() in console when finished
 ```
 
 ## Sizing Composite Plots {.smaller}
