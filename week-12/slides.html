@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.11.9">
 
   <meta name="author" content="Dr.&nbsp;Kelly Boles">
-  <title>Week 13 - CADE 691</title>
+  <title>Week 12 - CADE 691</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -197,7 +197,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#4B4B4B" data-background-image="slides_images/UnitShortcut.png" data-background-position="50% 9%" data-background-size="50%" class="quarto-title-block center">
-  <h1 class="title">Week 13 - CADE 691</h1>
+  <h1 class="title">Week 12 - CADE 691</h1>
   <p class="subtitle">Maps with {sf} and {ggplot}</p>
 
 <div class="quarto-title-authors">
@@ -471,11 +471,13 @@ Geodetic CRS:  NAD27
 </div><div class="column" style="width:50%;">
 <p><strong>geom_label_repel()</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb12-2"><a href="" aria-label="2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> ne_states_sf, <span class="at">fill =</span> <span class="st">"#FFFFFF"</span>, <span class="at">color =</span> <span class="st">"#993414"</span>) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="" aria-label="3"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> ne_states_sf, <span class="fu">aes</span>(<span class="at">label =</span> NAME, <span class="at">geometry =</span> geometry),</span>
-<span id="cb12-4"><a href="" aria-label="4"></a>                   <span class="at">stat =</span> <span class="st">"sf_coordinates"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="" aria-label="5"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb12-2"><a href="" aria-label="2"></a></span>
+<span id="cb12-3"><a href="" aria-label="3"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-4"><a href="" aria-label="4"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> ne_states_sf, <span class="at">fill =</span> <span class="st">"#FFFFFF"</span>, <span class="at">color =</span> <span class="st">"#993414"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="" aria-label="5"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> ne_states_sf, <span class="fu">aes</span>(<span class="at">label =</span> NAME, <span class="at">geometry =</span> geometry),</span>
+<span id="cb12-6"><a href="" aria-label="6"></a>                   <span class="at">stat =</span> <span class="st">"sf_coordinates"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="" aria-label="7"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -538,7 +540,7 @@ Geodetic CRS:  NAD27
 <span id="cb13-3"><a href="" aria-label="3"></a>            <span class="at">layer =</span> <span class="st">"Knoxville-Knox_County_Zoning"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `Knoxville-Knox_County_Zoning' from data source 
-  `/Users/kboles2/Documents/Classes/viz-data-using-r/week-13/shapefiles' 
+  `/Users/kboles2/Documents/Classes/viz-data-using-r/week-12/shapefiles' 
   using driver `ESRI Shapefile'</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">

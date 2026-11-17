@@ -36,7 +36,6 @@ ozmap_states_sf <- ozmaps::ozmap_states
 - Make the outlines of each state white.
 - Label each state with geom_label_repel() from {ggrepel} so the labels don't overlap.
   - *Hint:* geom_label_repel(aes(label = NAME, geometry = geometry), stat = "sf_coordinates")
-- Remove the legend (*hint:* show.legend = FALSE inside geom_sf()).
 - Apply theme_void() to remove the background and axes.
 
 ```{r plot1_ozmaps}

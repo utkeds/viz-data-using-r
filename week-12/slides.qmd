@@ -1,6 +1,6 @@
 ---
 subtitle: "Maps with {sf} and {ggplot}"
-title: "Week 13 - CADE 691"
+title: "Week 12 - CADE 691"
 author: "Dr. Kelly Boles"
 format:
   revealjs:
@@ -198,7 +198,6 @@ ggplot() +
 
 ```{r}
 #| echo: false
-library(ggrepel)
 ne_states_sf <- us_states_sf |>
   filter(STUSPS %in% c("ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA", "DE", "MD"))
 ```
@@ -220,6 +219,8 @@ ggplot() +
 **geom_label_repel()**
 ```{r}
 #| fig-height: 4.5
+library(ggrepel)
+
 ggplot() +
   geom_sf(data = ne_states_sf, fill = "#FFFFFF", color = "#993414") +
   geom_label_repel(data = ne_states_sf, aes(label = NAME, geometry = geometry),
