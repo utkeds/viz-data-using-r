@@ -6,21 +6,27 @@
 <script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-1b3e43c72e8be34557c75123b0b69e0d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting-85f7a32731ed2b609fa7be27e34d4366.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.9">
 
-  <meta name="author" content="Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu">
-  <title>Week 13 - STEM 691</title>
+  <meta name="author" content="Dr.&nbsp;Kelly Boles">
+  <title>Week 13 - CADE 691</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -93,7 +99,7 @@
     code span.vs { color: #4e9a06; } /* VerbatimString */
     code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-d21a626542045e24fd9e2a46a94419b5.css">
+  <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto-48ff8c83f2cf0f248c4f68350346aa37.css">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -191,13 +197,13 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#4B4B4B" data-background-image="slides_images/UnitShortcut.png" data-background-position="50% 9%" data-background-size="50%" class="quarto-title-block center">
-  <h1 class="title">Week 13 - STEM 691</h1>
+  <h1 class="title">Week 13 - CADE 691</h1>
   <p class="subtitle">Maps with {sf} and {ggplot}</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu 
+Dr.&nbsp;Kelly Boles
 </div>
 </div>
 </div>
@@ -218,7 +224,8 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 <hr>
 <div class="smaller-font">
 <ul>
-<li>Weekly Check In <!-- - Polygon maps (`geom_polygon()`) --></li>
+<li>Weekly Check In</li>
+<li>Foundational Ideas</li>
 <li>Vector spatial data and {sf}</li>
 <li>Finding geometries/shapefiles: tigris and <code>st_read()</code></li>
 <li>Two Use Cases
@@ -274,157 +281,66 @@ Dr.&nbsp;Kelly Boles &amp; Dr.&nbsp;Zhen Xu
 </tbody>
 </table>
 </div>
-<!-- # Mapping with ggplot2 -->
+</section>
+<section id="foundational-ideas" class="slide level2">
+<h2>Foundational Ideas</h2>
+<hr>
+<ul>
+<li>Feedback on Mini-Project #2</li>
+<li>YAML Headers</li>
+</ul>
 </section>
 <section id="visualizing-data-with-maps" class="slide level2">
 <h2>Visualizing data with maps</h2>
 <hr>
 <p>In addition to being fun and creative, cartography also has important practical applications. A carefully crafted map can be the best way of visualizing data.</p>
 
-<!-- ## Visualizing data with maps -->
-<!-- <hr> -->
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| out.width: 60% -->
-<!-- #| fig-align: center -->
-<!-- knitr::include_graphics("slides_images/heatmap_2x.png") -->
-<!-- ``` -->
-<!-- # Polygon maps -->
-<!-- ## The {maps} package -->
-<!-- <hr> -->
-<!-- The {maps} package contains many outlines of continents, countries, states, and counties. It's not very accurate or up-to-date, but is built into R. -->
-<!-- To install {maps}, run the following: -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- install.packages("maps") -->
-<!-- library(maps) -->
-<!-- ``` -->
-<!-- ## Long/lat data with {maps} -->
-<!-- <hr> -->
-<!-- The {maps} package can access geographic longitude/latitude data with `map_data()`. -->
-<!-- ```{r} -->
-<!-- library(ggplot2) -->
-<!-- library(dplyr) -->
-<!-- nc_counties <- map_data("county", "north carolina")  -->
-<!-- head(nc_counties) -->
-<!-- ``` -->
-<!-- ## The {maps} package{.smaller} -->
-<!-- <hr> -->
-<!-- - `long` is longitude. Things to the west of the prime meridian are negative. -->
-<!-- - `lat` is latitude. -->
-<!-- - `region` and `subregion` tell what region or subregion a set of points surrounds. -->
-<!-- - `group` controls (among other things) whether adjacent points should be connected by lines. If they are in the same group, then they get connected, but if they are in different groups then they don’t. -->
-<!--     - Having points in different groups means that ggplot "lifts the pen" when going between them. -->
-<!-- ```{r} -->
-<!-- head(nc_counties) -->
-<!-- ``` -->
-<!-- ## Plotting long/lat with geom_point(){.smaller} -->
-<!-- <hr> -->
-<!-- We can plot long/lat coordinates with `geom_point()`. -->
-<!-- - `coord_quickmap()` adjusts the axes to ensure that longitude and latitude are rendered on the same scale -->
-<!-- ```{r} -->
-<!-- ggplot(nc_counties, aes(long, lat)) +  -->
-<!--   geom_point(size = .25, show.legend = FALSE) + -->
-<!--   coord_quickmap() -->
-<!-- ``` -->
-<!-- ## geom_polygon() -->
-<!-- <hr> -->
-<!-- `geom_polygon()` "connects" the dots. -->
-<!-- ```{r} -->
-<!-- ggplot(nc_counties, aes(long, lat, group = group)) + -->
-<!--   geom_polygon(fill = "white", colour = "grey50") +  -->
-<!--   coord_quickmap() -->
-<!-- ``` -->
-<!-- ## Danger of long/lat data -->
-<!-- <hr> -->
-<!-- ::: {.callout-warning} -->
-<!-- However, “longitude-latitude” data format is not the primary file type used in real world mapping. -->
-<!-- ::: -->
 <img data-src="slides_images/airbnb-occupancy-eclipse.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section></section>
 <section>
-<section id="vector-spatial-data-and-simple-features-sf" class="title-slide slide level1 center">
-<h1>Vector spatial data and simple features {sf}</h1>
+<section id="vector-spatial-data-and-sf" class="title-slide slide level1 center">
+<h1>Vector spatial data and {sf}</h1>
 
-</section>
-<section id="vector-spatial-data" class="slide level2 smaller">
-<h2>Vector spatial data</h2>
-<hr>
-<ul>
-<li><em>Vector spatial data</em> is a spatial data model that represents geographic features as points, lines, and polygons</li>
-<li>Typically, these are encoded with the simple features (sf) encoding</li>
-<li>We can check if an object is of class sf using <code>class()</code></li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">class</span>(nc_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "sf"         "data.frame"</code></pre>
-</div>
-</div>
-<ul>
-<li>Compatible with the tidyverse packages</li>
-</ul>
 </section>
 <section id="the-sf-package" class="slide level2 smaller">
 <h2>The {sf} package</h2>
 <hr>
 <ul>
-<li>We can use the {sf} package to work with vector spatial data</li>
-<li>Install the package by running:</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co">#install.packages("sf")</span></span>
-<span id="cb3-2"><a href=""></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
+<li>Maps in R are usually stored as <strong>simple features</strong> (sf): points, lines, and polygons</li>
+<li>The {sf} package lets us work with them. An sf object is <strong>just a data frame with a <code>geometry</code> column</strong></li>
 <li><a href="https://github.com/rstudio/cheatsheets/blob/main/sf.pdf">{sf} cheat sheet</a></li>
 </ul>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a><span class="co">#install.packages("sf")</span></span>
+<span id="cb1-2"><a href="" aria-label="2"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a href="" aria-label="3"></a></span>
+<span id="cb1-4"><a href="" aria-label="4"></a><span class="co"># Shapefile of 100 NC counties (comes with {sf})</span></span>
+<span id="cb1-5"><a href="" aria-label="5"></a>nc_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>), <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="the-sf-package-1" class="slide level2 smaller">
 <h2>The {sf} package</h2>
 <hr>
-<div class="extra-small-font">
 <ul>
-<li>{sf} represents vector spatial data much like a regular R data frame, but with a special column, <code>geometry</code>, that represents the shape of each feature
-<ul>
-<li>last column is the geometry, specifically each cell in it is call a simple feature geometry (sfg)</li>
-</ul></li>
-<li>There are different types of sfgs (<code>POINT</code>, <code>LINESTRING</code>, <code>POLYGON</code>, <code>MULTIPOLYGON</code>, etc)</li>
-</ul>
-</div>
-<div class="r-stack">
-<p><img data-src="slides_images/Geometry_Primitives_Wikipedia.png" class="fragment" width="600" height="300"></p>
-<p><img data-src="slides_images/Multipart_Geometries_Wikipedia.png" class="fragment" width="600" height="300"></p>
-</div>
-
-<aside><div>
-<p>Graphics Source: <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">Wikipedia</a></p>
-</div></aside></section>
-<section id="the-sf-package-2" class="slide level2 smaller">
-<h2>The {sf} package</h2>
-<hr>
-<ul>
-<li>An sf object is essentially a dataframe with geometric information stored as a variable (column)</li>
+<li>Looks like a regular data frame: one row per county…</li>
+<li>…plus a <code>geometry</code> column holding each county’s shape</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Shapefile of 100 NC Counties</span></span>
-<span id="cb4-2"><a href=""></a>nc_sf <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href=""></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-label="1"></a>nc_sf <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="" aria-label="2"></a>  <span class="fu">select</span>(NAME, AREA, geometry) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="" aria-label="3"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 100 features and 5 fields
+<pre><code>Simple feature collection with 6 features and 2 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
-Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
+Bounding box:  xmin: -81.74107 ymin: 36.07282 xmax: -75.77316 ymax: 36.58965
 Geodetic CRS:  NAD27
-First 10 features:
-    AREA PERIMETER CNTY_        NAME  FIPS                       geometry
-1  0.114     1.442  1825        Ashe 37009 MULTIPOLYGON (((-81.47276 3...
-2  0.061     1.231  1827   Alleghany 37005 MULTIPOLYGON (((-81.23989 3...
-3  0.143     1.630  1828       Surry 37171 MULTIPOLYGON (((-80.45634 3...
-4  0.070     2.968  1831   Currituck 37053 MULTIPOLYGON (((-76.00897 3...
-5  0.153     2.206  1832 Northampton 37131 MULTIPOLYGON (((-77.21767 3...
-6  0.097     1.670  1833    Hertford 37091 MULTIPOLYGON (((-76.74506 3...
-7  0.062     1.547  1834      Camden 37029 MULTIPOLYGON (((-76.00897 3...
-8  0.091     1.284  1835       Gates 37073 MULTIPOLYGON (((-76.56251 3...
-9  0.118     1.421  1836      Warren 37185 MULTIPOLYGON (((-78.30876 3...
-10 0.124     1.428  1837      Stokes 37169 MULTIPOLYGON (((-80.02567 3...</code></pre>
+         NAME  AREA                       geometry
+1        Ashe 0.114 MULTIPOLYGON (((-81.47276 3...
+2   Alleghany 0.061 MULTIPOLYGON (((-81.23989 3...
+3       Surry 0.143 MULTIPOLYGON (((-80.45634 3...
+4   Currituck 0.070 MULTIPOLYGON (((-76.00897 3...
+5 Northampton 0.153 MULTIPOLYGON (((-77.21767 3...
+6    Hertford 0.097 MULTIPOLYGON (((-76.74506 3...</code></pre>
 </div>
 </div>
 </section>
@@ -432,309 +348,149 @@ First 10 features:
 <h2><code>geom_sf()</code></h2>
 <hr>
 <ul>
-<li><code>geom_sf()</code> allows for visualizing sf objects
-<ul>
-<li>It is a {ggplot} geom, so it can be used in the same way as other geoms</li>
-</ul></li>
-<li>Conveniently, <code>geom_sf()</code> automatically detects the geometry type of spatial objects stored in sf and draw maps accordingly</li>
+<li><code>geom_sf()</code> is a {ggplot2} geom for drawing sf objects</li>
+<li>It figures out the geometry type (points, lines, polygons) for you</li>
 </ul>
-</section>
-<section id="geom_sf-1" class="slide level2">
-<h2><code>geom_sf()</code></h2>
-<hr>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb6-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nc_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-2"><a href="" aria-label="2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nc_sf) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="" aria-label="3"></a>  <span class="fu">theme_void</span>() <span class="co">#removes bg, grids, axes, etc.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="geom_sf-2" class="slide level2">
-<h2><code>geom_sf()</code></h2>
-<hr>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb7-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nc_sf) <span class="sc">+</span> </span>
-<span id="cb7-3"><a href=""></a>  <span class="fu">theme_void</span>() <span class="co">#removes bg, grids, axes, etc.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="specifying-the-aesthetics" class="slide level2 smaller">
 <h2>Specifying the aesthetics</h2>
 <hr>
-<p>Since it is a ggplot2 object, we can define aesthetics as usual, in this case, <code>fill</code> and <code>color</code>:</p>
+<p>Since it is a ggplot2 object, we can set aesthetics as usual, like <code>fill</code> and <code>color</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb8-2"><a href=""></a></span>
-<span id="cb8-3"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nc_sf,<span class="at">fill =</span> <span class="st">"#0C1337"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-2"><a href="" aria-label="2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nc_sf, <span class="at">fill =</span> <span class="st">"#0C1337"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="" aria-label="3"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
-<section id="finding-geometries" class="title-slide slide level1 center">
-<h1>Finding geometries</h1>
+<section id="finding-shapes" class="title-slide slide level1 center">
+<h1>Finding shapes</h1>
 
 </section>
-<section id="finding-geometries-1" class="slide level2 smaller">
-<h2>Finding geometries</h2>
+<section id="finding-shapes-1" class="slide level2 smaller">
+<h2>Finding shapes</h2>
 <hr>
 <ul>
-<li><p>The <code>nc</code> data is included with the {sf} package, but in practice, you will need to find your shapefiles</p></li>
-<li><p>Two major types of files for this:</p>
+<li>The <code>nc</code> data came with {sf}, but usually you’ll need to find the shapes you want to map
+<ul>
+<li>e.g., to color in Tennessee counties, you need the boundaries of each county</li>
+</ul></li>
+<li>Two easy ways to get them:
 <ol type="1">
-<li>Shapefiles (.shp + dependencies)
-<ul>
-<li>Usually download as a .zip</li>
-<li>Contains multiple files with the same name but different extensions</li>
-<li>e.g., <code>my_shapefile.shp</code>, <code>my_shapefile.shx</code>, <code>my_shapefile.dbf</code>, etc.</li>
-</ul></li>
-<li>geoJSON (.geojson)</li>
+<li><strong>A package</strong> that downloads them for you, like {tigris}</li>
+<li><strong>A shapefile</strong> you download and read in with <code>st_read()</code></li>
 </ol></li>
-<li><p>We’ll focus on shapefiles, which are the most common format</p></li>
 </ul>
 </section>
-<section id="shapefiles" class="slide level2 smaller">
-<h2>Shapefiles</h2>
+<section id="the-tigris-package" class="slide level2 smaller">
+<h2>The {tigris} package</h2>
 <hr>
 <ul>
-<li>Shapefiles are a collection of files that store the geometry and attributes of geographic features</li>
-<li>e.g., if you wanted to have a map of the counties in Tennessee, you would need a shapefile that contains the geometry of each county in Tennessee
+<li>{tigris} downloads shapes from the US Census Bureau: <code>states()</code>, <code>counties()</code>, <code>school_districts()</code>, <code>roads()</code>, and more
 <ul>
-<li>Otherwise, you would need to construct the boundaries/geometries yourself.</li>
-</ul></li>
-<li>Some typical use cases:
-<ul>
-<li>You want to fill in counties with colors based on some data</li>
-<li>You want to overlay points on a map, like the locations of schools in Tennessee</li>
+<li>See all the functions: <a href="https://github.com/walkerke/tigris" class="uri">https://github.com/walkerke/tigris</a></li>
 </ul></li>
 </ul>
-</section></section>
-<section>
-<section id="the-tigris-package" class="title-slide slide level1 center">
-<h1>The {tigris} package</h1>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a><span class="co">#install.packages("tigris")</span></span>
+<span id="cb6-2"><a href="" aria-label="2"></a><span class="fu">library</span>(tigris)</span>
+<span id="cb6-3"><a href="" aria-label="3"></a></span>
+<span id="cb6-4"><a href="" aria-label="4"></a>tn_counties_sf <span class="ot">&lt;-</span> <span class="fu">counties</span>(<span class="at">state =</span> <span class="st">"TN"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-2"><a href="" aria-label="2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> tn_counties_sf, <span class="at">color =</span> <span class="st">"#993414"</span>, <span class="at">fill =</span> <span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="" aria-label="3"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
-</section>
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="the-tigris-package-1" class="slide level2 smaller">
 <h2>The {tigris} package</h2>
 <hr>
-<p>One option for shapefiles: {tigris} is an R package that allows users to directly download and use TIGER/Line shapefiles from the US Census Bureau using R.</p>
-<p>TIGER stands for <em>Topologically Integrated Geographic Encoding and Referencing</em> and include three general types of data:</p>
-<ul>
-<li>Legal entities
-<ul>
-<li>States, counties, school districts, etc.</li>
-</ul></li>
-<li>Statistical entities
-<ul>
-<li>Census groups, blocks used for statistical reporting</li>
-</ul></li>
-<li>Geographic features
-<ul>
-<li>Roads, rivers, landmarks, etc.</li>
-</ul></li>
-</ul>
+<p>What about the whole US?</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"tigris"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="the-tigris-package-2" class="slide level2 smaller">
-<h2>The {tigris} package</h2>
-<hr>
-<ul>
-<li>tigris functions return simple features objects with a default year of 2024.
-<ul>
-<li>Many functions in the package like <code>states()</code> and <code>counties()</code> and <code>roads()</code></li>
-<li>See all function options: <a href="https://github.com/walkerke/tigris" class="uri">https://github.com/walkerke/tigris</a></li>
-<li>The functions have different arguments, so check documentation for each (e.g., <code>?states()</code>)</li>
-</ul></li>
-</ul>
-<div class="quarto-layout-panel" data-layout="[1,1,1]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">states</span>(</span>
-<span id="cb10-2"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">counties</span>(</span>
-<span id="cb11-2"><a href=""></a>  <span class="at">state =</span> <span class="st">"TN"</span></span>
-<span id="cb11-3"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">roads</span>(</span>
-<span id="cb12-2"><a href=""></a>  <span class="at">state =</span> <span class="st">"TN"</span>,</span>
-<span id="cb12-3"><a href=""></a>  <span class="at">county =</span> <span class="st">"Knox"</span></span>
-<span id="cb12-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<ul>
-<li>Note: TIGER data is well known to struggle with water features, so be cautious. There are other places to find good shapefiles, too!</li>
-</ul>
-</section>
-<section id="the-tigris-package-3" class="slide level2 smaller">
-<h2>The {tigris} package</h2>
-<hr>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">library</span>(tigris)</span>
-<span id="cb13-2"><a href=""></a></span>
-<span id="cb13-3"><a href=""></a>tn_districts_sf <span class="ot">&lt;-</span> <span class="fu">school_districts</span>(<span class="st">"Tennessee"</span>)</span>
-<span id="cb13-4"><a href=""></a>tn_districts_sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-label="1"></a>us_states_sf <span class="ot">&lt;-</span> <span class="fu">states</span>(<span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">resolution =</span> <span class="st">"20m"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="" aria-label="2"></a>  <span class="fu">filter</span>(STUSPS <span class="sc">!=</span> <span class="st">"PR"</span>) <span class="co"># drop Puerto Rico</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 126 features and 14 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -90.31049 ymin: 34.98292 xmax: -81.6469 ymax: 36.67826
-Geodetic CRS:  NAD83
-First 10 features:
-   STATEFP UNSDLEA   GEOID                                          NAME LSAD
-1       47   00001 4700001                Hamblen County School District   00
-2       47   00060 4700060                    Alcoa City School District   00
-3       47   00078 4700078                         Fort Campbell Schools   00
-4       47   02340 4702340               Lawrence County School District   00
-5       47   03090 4703090                 Morgan County School District   00
-6       47   03180 4703180 Metropolitan Nashville Public School District   00
-7       47   03390 4703390                  Perry County School District   00
-8       47   03420 4703420                Pickett County School District   00
-9       47   04550 4704550                 Wilson County School District   00
-10      47   00090 4700090               Anderson County School District   00
-   LOGRADE HIGRADE MTFCC SDTYP FUNCSTAT      ALAND   AWATER    INTPTLAT
-1       PK      12 G5420  &lt;NA&gt;        E  417476152 37852326 +36.2183967
-2       PK      12 G5420  &lt;NA&gt;        E   38810006  2388278 +35.8095702
-3       PK      12 G5420     B        E  273929183   490282 +36.5982483
-4       PK      12 G5420  &lt;NA&gt;        E 1598359119  2218403 +35.2204764
-5       PK      12 G5420  &lt;NA&gt;        E 1352439680   823018 +36.1386970
-6       PK      12 G5420  &lt;NA&gt;        E 1303999197 56424538 +36.1691287
-7       PK      12 G5420  &lt;NA&gt;        E 1074235994 20984700 +35.6637521
-8       PK      12 G5420  &lt;NA&gt;        E  422090560 29845401 +36.5593638
-9       PK      12 G5420  &lt;NA&gt;        E 1352057025 29867644 +36.1494307
-10      PK      12 G5420  &lt;NA&gt;        E  729446691 10681215 +36.1454415
-       INTPTLON                       geometry
-1  -083.2660711 MULTIPOLYGON (((-83.4687 36...
-2  -083.9758571 MULTIPOLYGON (((-84.02875 3...
-3  -087.6003456 MULTIPOLYGON (((-87.8021 36...
-4  -087.3965460 MULTIPOLYGON (((-87.61192 3...
-5  -084.6392616 MULTIPOLYGON (((-84.91415 3...
-6  -086.7847898 MULTIPOLYGON (((-86.52329 3...
-7  -087.8693256 MULTIPOLYGON (((-88.0435 35...
-8  -085.0757410 MULTIPOLYGON (((-85.28541 3...
-9  -086.2911813 MULTIPOLYGON (((-86.59536 3...
-10 -084.1876563 MULTIPOLYGON (((-84.08317 3...</code></pre>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-2"><a href="" aria-label="2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> us_states_sf, <span class="at">color =</span> <span class="st">"#993414"</span>, <span class="at">fill =</span> <span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="" aria-label="3"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
-<aside><div>
-<p>Codebook of variables available <a href="https://nces.ed.gov/programs/edge/docs/EDGE_SDBOUNDARIES_COMPOSITE_2016.pdf">here</a></p>
-</div></aside></section>
-<section id="the-tigris-package-4" class="slide level2 smaller">
-<h2>The {tigris} package</h2>
-<hr>
-<p>For example, we can pull the following (example plots follow):</p>
-<ul>
-<li>TN School Districts</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>tn_districts_sf <span class="ot">&lt;-</span> <span class="fu">school_districts</span>(<span class="st">"Tennessee"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>TN Counties</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>tn_counties_sf <span class="ot">&lt;-</span> <span class="fu">counties</span>(<span class="at">state=</span><span class="st">"TN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>US States</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>us_states_sf <span class="ot">&lt;-</span> <span class="fu">states</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>YUCK! Alaska and Hawaii are far away.</p>
 </section>
-<section id="the-tigris-package-5" class="slide level2 smaller">
-<h2>The {tigris} package</h2>
+<section id="shift_geometry" class="slide level2">
+<h2><code class="smaller">shift_geometry()</code></h2>
+<hr>
+<ul>
+<li><code>shift_geometry()</code> (also from {tigris}) moves Alaska and Hawaii under the lower 48</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-label="1"></a>us_states_sf <span class="ot">&lt;-</span> us_states_sf <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="" aria-label="2"></a>  <span class="fu">shift_geometry</span>()</span>
+<span id="cb10-3"><a href="" aria-label="3"></a></span>
+<span id="cb10-4"><a href="" aria-label="4"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="" aria-label="5"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> us_states_sf, <span class="at">color =</span> <span class="st">"#993414"</span>, <span class="at">fill =</span> <span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="" aria-label="6"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="labeling-maps" class="slide level2 smaller">
+<h2>Labeling maps</h2>
 <hr>
 <div class="extra-small-font">
-<p>We can plot our output from tigris using ggplot2 and <code>geom_sf()</code>:</p>
 <ul>
-<li>TN School Districts</li>
+<li><code>geom_sf_label()</code> (from {ggplot2}) puts a label in the middle of each shape, but small shapes can overlap</li>
+<li><code>geom_label_repel()</code> from {ggrepel} (remember Week 10?) moves the labels apart. Add <code>stat = "sf_coordinates"</code> so it can find each shape’s location</li>
 </ul>
 </div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>geom_sf_label()</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb18-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> tn_districts_sf, <span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
-<span id="cb18-3"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="the-tigris-package-6" class="slide level2 smaller">
-<h2>The {tigris} package</h2>
-<hr>
-<div class="extra-small-font">
-<p>We can plot our output from tigris using ggplot2 and <code>geom_sf()</code>:</p>
-<ul>
-<li>TN Counties</li>
-</ul>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> tn_counties_sf, <span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
-<span id="cb19-3"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="the-tigris-package-7" class="slide level2 smaller">
-<h2>The {tigris} package</h2>
-<hr>
-<p>We can plot our output from tigris using ggplot2 and <code>geom_sf()</code>:</p>
-<ul>
-<li>US States</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb20-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> us_states_sf,<span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
-<span id="cb20-3"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>YUCK!</p>
-</section>
-<section id="ussf-package" class="slide level2 smaller">
-<h2>{USSF} package</h2>
-<hr>
-<div class="smaller-font">
-<ul>
-<li>I use the <a href="https://github.com/dcl-docs/ussf">{ussf} package</a> for my US states shapefile <sup>1</sup></li>
-</ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb21-2"><a href=""></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"dcl-docs/ussf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">library</span>(ussf)</span>
-<span id="cb22-2"><a href=""></a></span>
-<span id="cb22-3"><a href=""></a><span class="fu">boundaries</span>(<span class="at">geography =</span> <span class="st">"state"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb22-5"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">color=</span><span class="st">"#993414"</span>, <span class="at">fill=</span><span class="st">"#FFFFFF"</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href=""></a>  <span class="fu">theme_void</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-2"><a href="" aria-label="2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> ne_states_sf, <span class="at">fill =</span> <span class="st">"#FFFFFF"</span>, <span class="at">color =</span> <span class="st">"#993414"</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="" aria-label="3"></a>  <span class="fu">geom_sf_label</span>(<span class="at">data =</span> ne_states_sf, <span class="fu">aes</span>(<span class="at">label =</span> NAME), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="" aria-label="4"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
+</div><div class="column" style="width:50%;">
+<p><strong>geom_label_repel()</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-2"><a href="" aria-label="2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> ne_states_sf, <span class="at">fill =</span> <span class="st">"#FFFFFF"</span>, <span class="at">color =</span> <span class="st">"#993414"</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="" aria-label="3"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> ne_states_sf, <span class="fu">aes</span>(<span class="at">label =</span> NAME, <span class="at">geometry =</span> geometry),</span>
+<span id="cb12-4"><a href="" aria-label="4"></a>                   <span class="at">stat =</span> <span class="st">"sf_coordinates"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="" aria-label="5"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Others like <a href="https://github.com/wmurphyrd/fiftystater">{fiftystater}</a></p></li></ol></aside></section></section>
-<section>
-<section id="reading-shapefiles" class="title-slide slide level1 center">
-<h1>Reading shapefiles</h1>
-
+</div>
+</div>
+</div></div>
 </section>
-<section id="reading-shapefiles-1" class="slide level2">
-<h2>Reading shapefiles</h2>
+<section id="where-to-find-shapefiles" class="slide level2 smaller">
+<h2>Where to find shapefiles</h2>
 <hr>
 <ul>
-<li>A second option for shapefiles is to find one on the internet, download it, and read it into R</li>
-<li>There are lots of places to get shapefiles:</li>
+<li>Lots of agencies and organizations share shapefiles for free, including <a href="https://knoxplanning.org/data#tab_opendata">Knox County</a>:</li>
 </ul>
 <div class="quarto-layout-panel" data-layout="[1,1]">
 <div class="quarto-layout-row">
@@ -759,47 +515,34 @@ First 10 features:
 </div>
 </div>
 </section>
-<section id="reading-shapefiles-2" class="slide level2 smaller">
+<section id="reading-shapefiles" class="slide level2 smaller">
 <h2>Reading shapefiles</h2>
 <hr>
 <ul>
-<li><p>Lots of government agencies and organizations provide shapefiles for free, including <a href="https://knoxplanning.org/data/open-data">Knox County</a></p></li>
-<li><p>Let’s say we want to map the Zoning districts from Knox County (available here: <a href="https://www.arcgis.com/home/item.html?id=481b8a768b20403998fb9b454f35d23b" class="uri">https://www.arcgis.com/home/item.html?id=481b8a768b20403998fb9b454f35d23b</a>).</p></li>
-<li><p>I downloaded the shapefile .zip and saved it in my Week 12 folder.</p></li>
-<li><p>When I unpacked the folder, I renamed it to <code>shapefiles</code> for ease.</p></li>
+<li>A shapefile usually downloads as a <code>.zip</code> folder. Unzip it, but keep all the files together</li>
+<li>Let’s map the <a href="https://www.arcgis.com/home/item.html?id=481b8a768b20403998fb9b454f35d23b">Knox County Zoning districts</a>. I unzipped it into a folder called <code>shapefiles</code></li>
 </ul>
 
-<img data-src="slides_images/knox.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section>
-<section id="reading-shapefiles-3" class="slide level2 smaller">
+<img data-src="slides_images/knox.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"></section>
+<section id="reading-shapefiles-1" class="slide level2 smaller">
 <h2>Reading shapefiles</h2>
 <hr>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note: The <code>st_</code> prefix</strong></p>
-</div>
-<div class="callout-content">
-<p>In {sf} spatial functions have the pre-fix <code>st_</code></p>
-</div>
-</div>
-</div>
-<p>I’ll use the function <code>st_read()</code> to read in the shapefile</p>
+<p>Use <code>st_read()</code> (spatial functions in {sf} start with <code>st_</code>):</p>
 <ul>
 <li><code>dsn</code>: the path to the shapefile folder</li>
 <li><code>layer</code>: name of the shapefile</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>knox_zones_sf <span class="ot">&lt;-</span></span>
-<span id="cb23-2"><a href=""></a>    <span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"shapefiles"</span>,</span>
-<span id="cb23-3"><a href=""></a>            <span class="at">layer =</span> <span class="st">"Knoxville-Knox_County_Zoning"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-label="1"></a>knox_zones_sf <span class="ot">&lt;-</span></span>
+<span id="cb13-2"><a href="" aria-label="2"></a>    <span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"shapefiles"</span>,</span>
+<span id="cb13-3"><a href="" aria-label="3"></a>            <span class="at">layer =</span> <span class="st">"Knoxville-Knox_County_Zoning"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `Knoxville-Knox_County_Zoning' from data source 
-  `/Users/kelly/Documents/viz-data-using-r/week-13/shapefiles' 
-  using driver `ESRI Shapefile'
-replacing null geometries with empty geometries
+  `/Users/kboles2/Documents/Classes/viz-data-using-r/week-13/shapefiles' 
+  using driver `ESRI Shapefile'</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>replacing null geometries with empty geometries
 Simple feature collection with 13230 features and 10 fields (with 14 geometries empty)
 Geometry type: GEOMETRY
 Dimension:     XY
@@ -807,10 +550,6 @@ Bounding box:  xmin: 2479441 ymin: 536582.7 xmax: 2663425 ymax: 680917.9
 Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 </div>
 </div>
-</section>
-<section id="reading-shapefiles-4" class="slide level2 smaller">
-<h2>Reading shapefiles</h2>
-<hr>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -820,374 +559,7 @@ Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>When naming objects, I like to use the <code>_sf</code> suffix to indicate that it is a simple feature object. This helps me remember that it is a spatial object and not a regular data frame.</p>
-</div>
-</div>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>knox_zones_sf <span class="ot">&lt;-</span></span>
-<span id="cb25-2"><a href=""></a>    <span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"shapefiles"</span>,</span>
-<span id="cb25-3"><a href=""></a>            <span class="at">layer =</span> <span class="st">"Knoxville-Knox_County_Zoning"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Reading layer `Knoxville-Knox_County_Zoning' from data source 
-  `/Users/kelly/Documents/viz-data-using-r/week-13/shapefiles' 
-  using driver `ESRI Shapefile'
-replacing null geometries with empty geometries
-Simple feature collection with 13230 features and 10 fields (with 14 geometries empty)
-Geometry type: GEOMETRY
-Dimension:     XY
-Bounding box:  xmin: 2479441 ymin: 536582.7 xmax: 2663425 ymax: 680917.9
-Projected CRS: NAD83(HARN) / Tennessee (ftUS)</code></pre>
-</div>
-</div>
-<ul>
-<li>This output says it has a projected CRS. What does that mean ?</li>
-</ul>
-</section></section>
-<section>
-<section id="understanding-crs" class="title-slide slide level1 center">
-<h1>Understanding CRS</h1>
-
-</section>
-<section id="understanding-crs-1" class="slide level2 smaller">
-<h2>Understanding CRS</h2>
-<hr>
-<div class="extra-small-font">
-<ul>
-<li>Geometries can be projected (projected Coordinate Reference System) or unprojected (geodetic Coordinate Reference System)
-<ul>
-<li><strong>Geodetic CRS</strong> = Earth as geodetic sphere (curved coordinates: lat/long)</li>
-<li><strong>Projected CRS</strong> = Earth as a flat surface (flat coordinates: x/y)</li>
-</ul></li>
-</ul>
-<div class="columns">
-<div class="column">
-<p><strong>Geodetic CRS</strong> = sphere</p>
-<p><span class="extra-small-font">- Note: R still flattens, but you aren’t telling it how</span></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">ggplot</span>(world_sf) <span class="sc">+</span></span>
-<span id="cb27-2"><a href=""></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb27-3"><a href=""></a>  <span class="fu">ggtitle</span>(<span class="st">"Geodetic CRS (WGS84, degrees)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column">
-<p><strong>Projected CRS</strong> = flattened</p>
-<p><span class="extra-small-font">- Algorithmically projected (using math)</span></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>world_proj_sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(world_sf, <span class="at">crs =</span> <span class="st">"+proj=moll"</span>) </span>
-<span id="cb28-2"><a href=""></a><span class="co">#reprojecting to Mollweide - good for world maps</span></span>
-<span id="cb28-3"><a href=""></a><span class="fu">ggplot</span>(world_proj_sf) <span class="sc">+</span></span>
-<span id="cb28-4"><a href=""></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb28-5"><a href=""></a>  <span class="fu">ggtitle</span>(<span class="st">"Projected CRS (Mollweide, meters)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</div>
-<!-- ## Understanding projections{.smaller}
-<hr>
-- Geometries can be projected (projected Coordinate Reference System) or unprojected (geodetic Coordinate Reference System)
-  - What's the difference?
-
-**Geodetic CRS** = Earth as geodetic sphere
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-tn_districts_sf |>
-  select(3:4) |>
-  head(1)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-Simple feature collection with 1 feature and 2 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -83.4687 ymin: 36.08129 xmax: -83.08173 ymax: 36.34529
-Geodetic CRS:  NAD83
-    GEOID                           NAME                       geometry
-1 4700001 Hamblen County School District MULTIPOLYGON (((-83.4687 36...
-```
-
-
-:::
-:::
-
-
-- The most common/often default geodetic CRS is WGS84 (EPSG: 4326)
-
-## Understanding projections{.smaller}
-<hr>
-- Geometries can be projected (projected Coordinate Reference System) or unprojected (geodetic Coordinate Reference System)
-  - What's the difference?
-
-**Projected CRS** = Earth as a flat surface
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-knox_zones_sf |>
-  select(1,3,10,11) |>
-  head(1)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-Simple feature collection with 1 feature and 3 fields
-Geometry type: POLYGON
-Dimension:     XY
-Bounding box:  xmin: 2560779 ymin: 611578.9 xmax: 2561690 ymax: 612660.6
-Projected CRS: NAD83(HARN) / Tennessee (ftUS)
-  ZONE1 AREA_ACRES         ZONE_TYPE                       geometry
-1  RN-1   9.629819 City of Knoxville POLYGON ((2561448 612660.5,...
-```
-
-
-:::
-:::
-
-
-## Understanding projections{.smaller}
-<hr>
-- Projected CRS vs. Geodetic CRS: What are implications?
-
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-library(rnaturalearth) #Easy world map
-world_sf <- ne_countries(scale = "medium", returnclass = "sf") #getting world map from pkg
-```
-:::
-
-
-:::{layout="[1,1]"}
-
-:::::{column}
-**Geodetic CRS** = sphere
-
-[- Note: R still flattens, but you aren't telling it how]{.extra-small-font}
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-ggplot(world_sf) +
-  geom_sf() +
-  ggtitle("Geodetic CRS (WGS84, degrees)")
-```
-
-::: {.cell-output-display}
-![](slides_files/figure-revealjs/unnamed-chunk-28-1.png){fig-align='center' width=960}
-:::
-:::
-
-:::::
-
-:::::{column}
-**Projected CRS** = flattened
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-world_proj_sf <- st_transform(world_sf, crs = "+proj=moll")
-#reprojecting to Mollweide - good for world maps
-ggplot(world_proj_sf) +
-  geom_sf() +
-  ggtitle("Projected CRS (Mollweide, meters)")
-```
-
-::: {.cell-output-display}
-![](slides_files/figure-revealjs/unnamed-chunk-29-1.png){fig-align='center' width=960}
-:::
-:::
-
-:::::
-
-:::
-
-<!-- ## Understanding projections{.smaller} -->
-<!-- <hr> -->
-<!-- - Cylindrical, conical, and planar projections are the three main types of map projections -->
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| out.width: 50% -->
-<!-- #| fig-align: center -->
-<!-- knitr::include_graphics("slides_images/projection_families.png") -->
-<!-- ``` -->
-<!-- ::: aside -->
-<!-- Source: [QGIS: Coordinate Reference Systems](https://docs.qgis.org/3.34/en/docs/gentle_gis_introduction/coordinate_reference_systems.html) -->
-<!-- ::: -->
-<!-- ## Understanding projections{.smaller}
-<hr>
-:::{layout="[1,1,]"}
-
-:::{column}
-**Why use a geodetic CRS?**
-
-- Preserves true latitude and longitude
-:::
-
-:::{column}
-**Why use a projected CRS?**
-
-- Preserves area, distance, or direction
-- Distance and area calculations are more accurate
-- Can created local maps with minimal distortion
-:::
-:::
-- All projections have a CRS, not all CRSes have projections
-- Standardized CRSes have a [unique EPSG code](https://spatialreference.org/ref/epsg/) -->
-</section>
-<section id="understanding-crs-2" class="slide level2 smaller">
-<h2>Understanding CRS</h2>
-<hr>
-<div class="quarto-layout-panel" data-layout="[1,1,]">
-<div class="quarto-layout-row">
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>Why use a geodetic CRS?</strong></p>
-<div class="extra-small-font">
-<ul>
-<li>Preserves true latitude and longitude</li>
-</ul>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-30-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="{column} quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>Why use a projected CRS?</strong></p>
-<div class="extra-small-font">
-<ul>
-<li>Preserves area, distance, or direction</li>
-<li>Distance and area calculations are more accurate</li>
-<li>Can created local maps with minimal distortion</li>
-</ul>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-31-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="understanding-projections" class="slide level2 smaller">
-<h2>Understanding Projections</h2>
-<hr>
-<div class="extra-small-font">
-<ul>
-<li>Projected CRS
-<ul>
-<li>Three main projection families (ways to flatten globe):
-<ul>
-<li>Cylindrical (e.g., Mercator)</li>
-<li>Conical (e.g., Albers)</li>
-<li>Planar (e.g., Lambert)</li>
-</ul></li>
-<li>Preserve different things (area, distance, direction, etc.)</li>
-</ul></li>
-</ul>
-</div>
-
-<img data-src="slides_images/projection_families.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section>
-<section id="understanding-epsg-codes" class="slide level2 smaller">
-<h2>Understanding EPSG Codes</h2>
-<hr>
-<div class="smaller-font">
-<ul>
-<li>Each specific combination of:
-<ul>
-<li>Projection (or not)</li>
-<li>Regional Focus</li>
-<li>CRS</li>
-<li>and other characteristics…</li>
-</ul></li>
-<li>… is given an <a href="https://spatialreference.org/ref/epsg/">EPSG code</a></li>
-</ul>
-</div>
-</section>
-<section id="understanding-crs-3" class="slide level2 smaller">
-<h2>Understanding CRS</h2>
-<hr>
-<div class="extra-small-font">
-<!-- - Is the CRS of `knox_zones_sf` geodetic or projected?
-- What is the [EPSG](https://spatialreference.org/ref/epsg/2915/) code for the CRS of `knox_zones_sf`? -->
-<ul>
-<li>The <code>st_crs()</code> function returns the CRS of an sf object (scroll down to see EPSG code)</li>
-<li>EPSG code for knox_zones_sf is <a href="https://spatialreference.org/ref/epsg/2915">2915</a></li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="fu">st_crs</span>(knox_zones_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Coordinate Reference System:
-  User input: NAD83(HARN) / Tennessee (ftUS) 
-  wkt:
-PROJCRS["NAD83(HARN) / Tennessee (ftUS)",
-    BASEGEOGCRS["NAD83(HARN)",
-        DATUM["NAD83 (High Accuracy Reference Network)",
-            ELLIPSOID["GRS 1980",6378137,298.257222101,
-                LENGTHUNIT["metre",1]]],
-        PRIMEM["Greenwich",0,
-            ANGLEUNIT["degree",0.0174532925199433]],
-        ID["EPSG",4152]],
-    CONVERSION["SPCS83 Tennessee zone (US Survey feet)",
-        METHOD["Lambert Conic Conformal (2SP)",
-            ID["EPSG",9802]],
-        PARAMETER["Latitude of false origin",34.3333333333333,
-            ANGLEUNIT["degree",0.0174532925199433],
-            ID["EPSG",8821]],
-        PARAMETER["Longitude of false origin",-86,
-            ANGLEUNIT["degree",0.0174532925199433],
-            ID["EPSG",8822]],
-        PARAMETER["Latitude of 1st standard parallel",36.4166666666667,
-            ANGLEUNIT["degree",0.0174532925199433],
-            ID["EPSG",8823]],
-        PARAMETER["Latitude of 2nd standard parallel",35.25,
-            ANGLEUNIT["degree",0.0174532925199433],
-            ID["EPSG",8824]],
-        PARAMETER["Easting at false origin",1968500,
-            LENGTHUNIT["US survey foot",0.304800609601219],
-            ID["EPSG",8826]],
-        PARAMETER["Northing at false origin",0,
-            LENGTHUNIT["US survey foot",0.304800609601219],
-            ID["EPSG",8827]]],
-    CS[Cartesian,2],
-        AXIS["easting (X)",east,
-            ORDER[1],
-            LENGTHUNIT["US survey foot",0.304800609601219]],
-        AXIS["northing (Y)",north,
-            ORDER[2],
-            LENGTHUNIT["US survey foot",0.304800609601219]],
-    USAGE[
-        SCOPE["Engineering survey, topographic mapping."],
-        AREA["United States (USA) - Tennessee - counties of Anderson; Bedford; Benton; Bledsoe; Blount; Bradley; Campbell; Cannon; Carroll; Carter; Cheatham; Chester; Claiborne; Clay; Cocke; Coffee; Crockett; Cumberland; Davidson; De Kalb; Decatur; Dickson; Dyer; Fayette; Fentress; Franklin; Gibson; Giles; Grainger; Greene; Grundy; Hamblen; Hamilton; Hancock; Hardeman; Hardin; Hawkins; Haywood; Henderson; Henry; Hickman; Houston; Humphreys; Jackson; Jefferson; Johnson; Knox; Lake; Lauderdale; Lawrence; Lewis; Lincoln; Loudon; Macon; Madison; Marion; Marshall; Maury; McMinn; McNairy; Meigs; Monroe; Montgomery; Moore; Morgan; Obion; Overton; Perry; Pickett; Polk; Putnam; Rhea; Roane; Robertson; Rutherford; Scott; Sequatchie; Sevier; Shelby; Smith; Stewart; Sullivan; Sumner; Tipton; Trousdale; Unicoi; Union; Van Buren; Warren; Washington; Wayne; Weakley; White; Williamson; Wilson."],
-        BBOX[34.98,-90.31,36.68,-81.65]],
-    ID["EPSG",2915]]</code></pre>
+<p>I like to add <code>_sf</code> to the names of spatial objects so I remember they aren’t regular data frames.</p>
 </div>
 </div>
 </div>
@@ -1206,20 +578,20 @@ PROJCRS["NAD83(HARN) / Tennessee (ftUS)",
 <h2>Plotting the shapefile</h2>
 <hr>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="co"># Step 1: Plot the shapefile</span></span>
-<span id="cb31-2"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb31-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_zones_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-label="1"></a><span class="co"># Step 1: Plot the shapefile</span></span>
+<span id="cb16-2"><a href="" aria-label="2"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="" aria-label="3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_zones_sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="adding-our-data-as-.csv" class="slide level2 smaller">
 <h2>Adding our data as <code>.csv</code></h2>
 <hr>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="co"># Step 2: Read in the data for the points (lat/long)</span></span>
-<span id="cb32-2"><a href=""></a>knox_sites <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"KnoxSites.csv"</span>)</span>
-<span id="cb32-3"><a href=""></a></span>
-<span id="cb32-4"><a href=""></a>knox_sites</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-label="1"></a><span class="co"># Step 2: Read in the data for the points (lat/long)</span></span>
+<span id="cb17-2"><a href="" aria-label="2"></a>knox_sites <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"KnoxSites.csv"</span>)</span>
+<span id="cb17-3"><a href="" aria-label="3"></a></span>
+<span id="cb17-4"><a href="" aria-label="4"></a>knox_sites</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   Place             Latitude Longitude
@@ -1231,44 +603,106 @@ PROJCRS["NAD83(HARN) / Tennessee (ftUS)",
 </div>
 </div>
 </section>
+<section id="a-quick-word-on-crs" class="slide level2 smaller">
+<h2>A quick word on CRS</h2>
+<hr>
+<div class="extra-small-font">
+<ul>
+<li>Every map has a <strong>coordinate reference system (CRS)</strong>: the rules for turning a round Earth into a flat map</li>
+<li>Each CRS has an <strong>EPSG code</strong>. Look them up at <a href="https://spatialreference.org/ref/epsg/">spatialreference.org</a></li>
+<li>Shapefiles and {tigris} data come with their CRS built in, but a <code>.csv</code> of lat/long is just numbers, so we have to tell R its CRS</li>
+<li>Plain latitude/longitude data uses EPSG <strong>4326</strong>. That’s the only code you need to remember!</li>
+</ul>
+</div>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
 <section id="converting-our-data-to-sf-object" class="slide level2 smaller">
 <h2>Converting our data to sf object</h2>
 <hr>
 <ul>
-<li>Creating an sf object from a data frame requires the <code>st_as_sf()</code> function</li>
+<li><code>st_as_sf()</code> turns a data frame with lat/long columns into an sf object</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="co"># Step 3: Convert the point data to an sf object</span></span>
-<span id="cb34-2"><a href=""></a>knox_sites_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(knox_sites, </span>
-<span id="cb34-3"><a href=""></a>                          <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb34-4"><a href=""></a><span class="co"># Our knox_sites data is in CRS 4326, as it's in latitude/longitude degrees</span></span>
-<span id="cb34-5"><a href=""></a></span>
-<span id="cb34-6"><a href=""></a><span class="fu">class</span>(knox_sites_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-label="1"></a><span class="co"># Step 3: Convert the point data to an sf object</span></span>
+<span id="cb19-2"><a href="" aria-label="2"></a>knox_sites_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(knox_sites,</span>
+<span id="cb19-3"><a href="" aria-label="3"></a>                          <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb19-4"><a href="" aria-label="4"></a></span>
+<span id="cb19-5"><a href="" aria-label="5"></a><span class="fu">class</span>(knox_sites_sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "sf"         "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
 </section>
+<section id="checking-the-crs" class="slide level2 smaller">
+<h2>Checking the CRS</h2>
+<hr>
+<ul>
+<li><code>st_crs()</code> tells us an sf object’s CRS. Add <code>$epsg</code> to get just the EPSG code</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-label="1"></a><span class="fu">st_crs</span>(knox_sites_sf)<span class="sc">$</span>epsg <span class="co"># we set this with st_as_sf()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4326</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-label="1"></a><span class="fu">st_crs</span>(knox_zones_sf)<span class="sc">$</span>epsg <span class="co"># came built into the shapefile</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2915</code></pre>
+</div>
+</div>
+<ul>
+<li><a href="https://spatialreference.org/ref/epsg/2915/">2915</a> is a projected CRS designed for Tennessee (measured in feet, not degrees)</li>
+<li>Our points and our zones use <strong>different</strong> CRSs!</li>
+</ul>
+</section>
+<section id="why-does-the-crs-matter" class="slide level2 smaller">
+<h2>Why does the CRS matter?</h2>
+<hr>
+<div class="extra-small-font">
+<ul>
+<li>The <strong>same</strong> Knox County zones in two CRSs: <span style="color:#58595B"><strong>gray = EPSG 2915 (feet)</strong></span>, <span style="color:#FF8200"><strong>orange = EPSG 4326 (degrees)</strong></span></li>
+<li>Under the hood, coordinates are just numbers, and these are in different units. Plotted as raw numbers, the same place lands in two very different spots</li>
+</ul>
+</div>
+
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="plotting-our-data" class="slide level2 smaller">
 <h2>Plotting our data</h2>
 <hr>
 <div class="extra-small-font">
 <ul>
-<li>Can we just plot it? knox_sites_sf is in 4326 and knox_zones_sf is in 2915…</li>
-<li>Yes! R automatically transforms the CRS of the <code>knox_sites_sf</code> to match the <code>knox_zones_sf</code>
-<ul>
-<li>This is called “projecting-on-the-fly”</li>
-</ul></li>
+<li>The zoning shapefile (2915) uses a different CRS than our points (4326). Can we still plot them together?</li>
+<li>Yes! <code>geom_sf()</code> converts the layers so they line up (“projecting on the fly”)</li>
 </ul>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="co"># Step 4: Add the points sf object as a new geom_sf() layer</span></span>
-<span id="cb36-2"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb36-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_zones_sf) <span class="sc">+</span></span>
-<span id="cb36-4"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_sites_sf, <span class="at">fill =</span> <span class="st">"#FF8200"</span>, <span class="at">color =</span> <span class="st">"#000"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-label="1"></a><span class="co"># Step 4: Add the points sf object as a new geom_sf() layer</span></span>
+<span id="cb25-2"><a href="" aria-label="2"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="" aria-label="3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_zones_sf) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="" aria-label="4"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> knox_sites_sf, <span class="at">fill =</span> <span class="st">"#FF8200"</span>, <span class="at">color =</span> <span class="st">"#000"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">21</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-37-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="choropleth-maps" class="title-slide slide level1 center">
 <h1>#2: Choropleth Maps</h1>
@@ -1277,208 +711,154 @@ PROJCRS["NAD83(HARN) / Tennessee (ftUS)",
 <section id="choropleth-maps-1" class="slide level2">
 <h2>Choropleth maps</h2>
 <hr>
-<p>Geographical heat maps, also known as choropleth maps, are one way of visualizing geographic data.</p>
+<p>Geographical heat maps, also known as choropleth maps, color each area by a value in our data.</p>
 
 <img data-src="slides_images/photo.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section>
-<section id="joining-spatial-data---fips" class="slide level2 smaller">
-<h2>Joining spatial data - FIPS</h2>
+<section id="joining-data-to-shapes" class="slide level2 smaller">
+<h2>Joining data to shapes</h2>
 <hr>
 <ul>
-<li>To make choropleths we often need to join data</li>
-<li>Yay! We have an easy variable to join on:
+<li>Our shapes and our data are usually in separate tables, so we need to <strong>join</strong> them</li>
+<li>We need a shared ID. For US places, that’s usually the <strong>FIPS</strong> code
 <ul>
-<li>The Federal Information Processing Standards (FIPS) have specific codes for <a href="https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt">states, counties</a>, etc.</li>
-<li>FIPS often included in datasets</li>
+<li>The Federal Information Processing Standards (FIPS) have codes for <a href="https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt">states, counties</a>, etc.</li>
 </ul></li>
 </ul>
 
-<img data-src="slides_images/dplyr_joins.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section>
-<section id="joining-spatial-data---fips-1" class="slide level2">
-<h2>Joining spatial data - FIPS</h2>
-<hr>
-<blockquote>
-<p>Keep all rows from <code>x</code>, and all columns from <code>x</code> and <code>y</code>. Rows in <code>x</code> with no match in <code>y</code> will have <code>NA</code> values in the new columns.</p>
-</blockquote>
-
 <img data-src="slides_images/left-join.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section>
-<section id="joining-spatial-data---fips-2" class="slide level2 smaller">
-<h2>Joining spatial data - FIPS</h2>
-<hr>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="co"># Step 1: Identify your shapefile</span></span>
-<span id="cb37-2"><a href=""></a>states_sf <span class="ot">&lt;-</span><span class="fu">boundaries</span>(<span class="st">"state"</span>, <span class="at">resolution =</span> <span class="st">"5m"</span>)</span>
-<span id="cb37-3"><a href=""></a></span>
-<span id="cb37-4"><a href=""></a>states_sf <span class="sc">|&gt;</span></span>
-<span id="cb37-5"><a href=""></a>  <span class="fu">select</span>(<span class="dv">1</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb37-6"><a href=""></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 6 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -2356114 ymin: -1295867 xmax: 236359.5 ymax: 1565782
-Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 6 × 7
-  STATEFP STUSPS NAME         LSAD       ALAND  AWATER                  geometry
-  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;        &lt;MULTIPOLYGON [m]&gt;
-1 31      NE     Nebraska     00       1.99e11 1.37e 9 (((-669722.6 438206.7, -…
-2 53      WA     Washington   00       1.72e11 1.26e10 (((-1955188 1446310, -19…
-3 35      NM     New Mexico   00       3.14e11 7.29e 8 (((-1231344 -588235.8, -…
-4 46      SD     South Dakota 00       1.96e11 3.38e 9 (((-633753 865532.1, -63…
-5 48      TX     Texas        00       6.77e11 1.90e10 (((-1000297 -570209.1, -…
-6 06      CA     California   00       4.04e11 2.05e10 (((-2066842 -203155, -20…</code></pre>
-</div>
-</div>
-</section>
-<section id="joining-spatial-data---fips-3" class="slide level2 smaller">
-<h2>Joining spatial data - FIPS</h2>
-<hr>
-<p>We can plot the states using <code>geom_sf()</code>:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="co"># Step 2 (Optional): Preview the shapefile</span></span>
-<span id="cb39-2"><a href=""></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb39-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>states_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-42-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="joining-spatial-data---fips-4" class="slide level2 smaller">
-<h2>Joining spatial data - FIPS</h2>
-<hr>
-<p>Now, we will use data on state population counts from the 2020 Census from {tidycensus}: <!-- Note: You need to have installed the {tidycensus} API key to render this --></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="co">#install.packages("tidycensus")</span></span>
-<span id="cb40-2"><a href=""></a><span class="fu">library</span>(tidycensus)</span>
-<span id="cb40-3"><a href=""></a></span>
-<span id="cb40-4"><a href=""></a><span class="co"># Step 3: Load in your data</span></span>
-<span id="cb40-5"><a href=""></a>pop_counts_2020 <span class="ot">&lt;-</span> <span class="fu">get_decennial</span>(<span class="at">geography =</span> <span class="st">"state"</span>,</span>
-<span id="cb40-6"><a href=""></a>                                             <span class="at">variables =</span> <span class="st">"DP1_0001C"</span>,</span>
-<span id="cb40-7"><a href=""></a>                                             <span class="at">year =</span> <span class="dv">2020</span>,</span>
-<span id="cb40-8"><a href=""></a>                                             <span class="at">sumfile =</span> <span class="st">"dp"</span>)</span>
-<span id="cb40-9"><a href=""></a></span>
-<span id="cb40-10"><a href=""></a><span class="fu">head</span>(pop_counts_2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  GEOID NAME       variable     value
-  &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;
-1 01    Alabama    DP1_0001C  5024279
-2 02    Alaska     DP1_0001C   733391
-3 04    Arizona    DP1_0001C  7151502
-4 05    Arkansas   DP1_0001C  3011524
-5 06    California DP1_0001C 39538223
-6 08    Colorado   DP1_0001C  5773714</code></pre>
-</div>
-</div>
-</section>
-<section id="joining-spatial-data---fips-5" class="slide level2 smaller">
-<h2>Joining spatial data - FIPS</h2>
+<section id="introducing-left_join" class="slide level2 smaller">
+<h2>Introducing <code>left_join()</code></h2>
 <hr>
 <div class="extra-small-font">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="co"># Step 4: Identify variable(s) to join on</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>left_join(x, y, by = "key")</code> combines two data frames by matching rows on a shared <strong>key</strong> variable
+<ul>
+<li>Keeps <strong>every row of <code>x</code></strong> (the “left” table) and adds the columns from <code>y</code></li>
+<li>If a row in <code>x</code> has no match in <code>y</code>, the new columns get <code>NA</code></li>
+</ul></li>
+</ul>
 </div>
 <div class="columns">
-<div class="column">
+<div class="column" style="width:50%;">
+<p>States</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">head</span>(states_sf)[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 1 field
+<pre><code># A tibble: 3 × 2
+  fips  state    
+  &lt;chr&gt; &lt;chr&gt;    
+1 47    Tennessee
+2 01    Alabama  
+3 13    Georgia  </code></pre>
+</div>
+</div>
+<p>Pops</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  fips  state            pop
+  &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;
+1 47    Tennessee        6.9
+2 01    Alabama          5  
+3 37    North Carolina  10.4</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="" aria-label="1"></a><span class="fu">left_join</span>(states, pops, <span class="at">by =</span> <span class="st">"fips"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  fips  state.x   state.y     pop
+  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;
+1 47    Tennessee Tennessee   6.9
+2 01    Alabama   Alabama     5  
+3 13    Georgia   &lt;NA&gt;       NA  </code></pre>
+</div>
+</div>
+<div class="extra-small-font">
+<ul>
+<li>Georgia (<code>"13"</code>) isn’t in <code>pops</code> → <code>NA</code></li>
+<li>North Carolina (<code>"37"</code>) isn’t in <code>states</code> → dropped</li>
+<li>Both tables have a <code>state</code> column, but we only joined <code>by = "fips"</code> → R keeps both and adds suffixes: <code>state.x</code> (from <code>states</code>) and <code>state.y</code> (from <code>pops</code>)</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="our-data" class="slide level2 smaller">
+<h2>Our data</h2>
+<hr>
+<div class="extra-small-font">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Our shapes (from {tigris}):</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="" aria-label="1"></a>us_states_sf <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="" aria-label="2"></a>  <span class="fu">select</span>(STATEFP, NAME) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="" aria-label="3"></a>  <span class="fu">head</span>(<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 4 features and 2 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
-Bounding box:  xmin: -2356114 ymin: -1295867 xmax: 236359.5 ymax: 1565782
-Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 6 × 2
-  STATEFP                                                               geometry
-  &lt;chr&gt;                                                       &lt;MULTIPOLYGON [m]&gt;
-1 31      (((-669722.6 438206.7, -668534.3 451363.2, -668500.5 451671.3, -66848…
-2 53      (((-1955188 1446310, -1954750 1446030, -1953861 1444130, -1954127 144…
-3 35      (((-1231344 -588235.8, -1231016 -586088.7, -1231013 -586087.7, -12288…
-4 46      (((-633753 865532.1, -633164.2 865497.7, -632286.5 865529.2, -632310.…
-5 48      (((-1000297 -570209.1, -999788.6 -569601.7, -999053 -569102.4, -99830…
-6 06      (((-2066842 -203155, -2066434 -203272.1, -2065390 -203998.6, -2061667…</code></pre>
+Bounding box:  xmin: -2356114 ymin: -1295598 xmax: 1419068 ymax: 845925.2
+Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
+  STATEFP       NAME                       geometry
+1      48      Texas MULTIPOLYGON (((-998043.8 -...
+2      06 California MULTIPOLYGON (((-2066285 -2...
+3      21   Kentucky MULTIPOLYGON (((571924.5 -8...
+4      13    Georgia MULTIPOLYGON (((939223.1 -2...</code></pre>
 </div>
 </div>
-</div><div class="column">
+</div><div class="column" style="width:50%;">
+<p>2020 Census population by state:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a><span class="fu">head</span>(pop_counts_2020)[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="" aria-label="1"></a><span class="co"># Step 1: Load in your data</span></span>
+<span id="cb32-2"><a href="" aria-label="2"></a><span class="co"># (keep GEOID as text so "01" doesn't become 1!)</span></span>
+<span id="cb32-3"><a href="" aria-label="3"></a>pop_counts_2020 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"state_pop_2020.csv"</span>,</span>
+<span id="cb32-4"><a href="" aria-label="4"></a>                            <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">GEOID =</span> <span class="st">"c"</span>))</span>
+<span id="cb32-5"><a href="" aria-label="5"></a></span>
+<span id="cb32-6"><a href="" aria-label="6"></a><span class="fu">head</span>(pop_counts_2020, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 1
-  GEOID
-  &lt;chr&gt;
-1 01   
-2 02   
-3 04   
-4 05   
-5 06   
-6 08   </code></pre>
+<pre><code># A tibble: 4 × 4
+  GEOID NAME     variable    value
+  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt;
+1 01    Alabama  DP1_0001C 5024279
+2 02    Alaska   DP1_0001C  733391
+3 04    Arizona  DP1_0001C 7151502
+4 05    Arkansas DP1_0001C 3011524</code></pre>
 </div>
 </div>
 </div></div>
-<ul>
-<li>Note that both <code>states_sf</code> AND <code>pop_counts_2020</code> have a FIPS code variable
-<ul>
-<li>We can join them together using <code>left_join()</code> and the FIPS code!</li>
-<li>Note that the FIPS code is called <code>STATEFP</code> in <code>states_sf</code> and <code>GEOID</code> in <code>pop_counts_2020</code></li>
-</ul></li>
-</ul>
 </div>
-</section>
-<section id="joining-spatial-data---fips-6" class="slide level2 smaller">
-<h2>Joining spatial data - FIPS</h2>
-<hr>
-<p><strong>Note the syntax when the join variable names are different</strong></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="co"># Step 5: Left Join... left_join(shapefile_sf, data_sf)</span></span>
-<span id="cb47-2"><a href=""></a>joined_state_data_sf <span class="ot">&lt;-</span> <span class="fu">left_join</span>(states_sf, pop_counts_2020, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"STATEFP"</span> <span class="ot">=</span> <span class="st">"GEOID"</span>))</span>
-<span id="cb47-3"><a href=""></a></span>
-<span id="cb47-4"><a href=""></a>joined_state_data_sf <span class="sc">|&gt;</span></span>
-<span id="cb47-5"><a href=""></a>  <span class="fu">select</span>(<span class="dv">1</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>) <span class="sc">|&gt;</span></span>
-<span id="cb47-6"><a href=""></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 6 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -2356114 ymin: -1295867 xmax: 236359.5 ymax: 1565782
-Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 6 × 7
-  STATEFP STUSPS NAME.x                          geometry NAME.y variable  value
-  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                 &lt;MULTIPOLYGON [m]&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
-1 31      NE     Nebraska     (((-669722.6 438206.7, -66… Nebra… DP1_000… 1.96e6
-2 53      WA     Washington   (((-1955188 1446310, -1954… Washi… DP1_000… 7.71e6
-3 35      NM     New Mexico   (((-1231344 -588235.8, -12… New M… DP1_000… 2.12e6
-4 46      SD     South Dakota (((-633753 865532.1, -6331… South… DP1_000… 8.87e5
-5 48      TX     Texas        (((-1000297 -570209.1, -99… Texas  DP1_000… 2.91e7
-6 06      CA     California   (((-2066842 -203155, -2066… Calif… DP1_000… 3.95e7</code></pre>
-</div>
-</div>
-</section>
-<section id="joining-spatial-data---fips-7" class="slide level2 smaller">
-<h2>Joining spatial data - FIPS</h2>
+
+<aside><div>
+<p>Pulled with <a href="https://walker-data.com/tidycensus/">{tidycensus}</a> (needs a free API key): <code>get_decennial(geography = "state", variables = "DP1_0001C", year = 2020, sumfile = "dp")</code></p>
+</div></aside></section>
+<section id="joining-the-data" class="slide level2 smaller">
+<h2>Joining the data</h2>
 <hr>
 <div class="extra-small-font">
-<p>Discussion about <code>left_join()</code>:</p>
-<ol type="1">
-<li>What is <code>NAME.x</code> and <code>NAME.y</code>?</li>
-<li>What happens if states_sf (the <code>x</code> argument) has a state that is not in pop_counts_2020 (the <code>y</code> argument)?</li>
-<li>What happens if pop_counts_2020 has a state that is not in states_sf?</li>
-</ol>
+<ul>
+<li>Both tables have the state FIPS code, but with different names: <code>STATEFP</code> in <code>us_states_sf</code> and <code>GEOID</code> in <code>pop_counts_2020</code></li>
+<li><strong>Put the sf object first</strong> so the result is still an sf object</li>
+</ul>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>joined_state_data_sf <span class="ot">&lt;-</span> <span class="fu">left_join</span>(states_sf, pop_counts_2020, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"STATEFP"</span> <span class="ot">=</span> <span class="st">"GEOID"</span>))</span>
-<span id="cb49-2"><a href=""></a></span>
-<span id="cb49-3"><a href=""></a>joined_state_data_sf <span class="sc">|&gt;</span></span>
-<span id="cb49-4"><a href=""></a>  <span class="fu">select</span>(<span class="dv">1</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>) <span class="sc">|&gt;</span></span>
-<span id="cb49-5"><a href=""></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="" aria-label="1"></a><span class="co"># Step 2: Left join using the FIPS codes</span></span>
+<span id="cb34-2"><a href="" aria-label="2"></a>joined_state_data_sf <span class="ot">&lt;-</span> <span class="fu">left_join</span>(us_states_sf, pop_counts_2020,</span>
+<span id="cb34-3"><a href="" aria-label="3"></a>                                  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"STATEFP"</span> <span class="ot">=</span> <span class="st">"GEOID"</span>))</span>
+<span id="cb34-4"><a href="" aria-label="4"></a></span>
+<span id="cb34-5"><a href="" aria-label="5"></a>joined_state_data_sf <span class="sc">|&gt;</span></span>
+<span id="cb34-6"><a href="" aria-label="6"></a>  <span class="fu">select</span>(STATEFP, NAME.x, NAME.y, value) <span class="sc">|&gt;</span></span>
+<span id="cb34-7"><a href="" aria-label="7"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 3 features and 6 fields
+<pre><code>Simple feature collection with 3 features and 4 fields
 Geometry type: MULTIPOLYGON
 Dimension:     XY
-Bounding box:  xmin: -2138177 ymin: -614973.5 xmax: 58533.8 ymax: 1565782
-Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 3 × 7
-  STATEFP STUSPS NAME.x                          geometry NAME.y variable  value
-  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;                 &lt;MULTIPOLYGON [m]&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
-1 31      NE     Nebraska   (((-669722.6 438206.7, -6685… Nebra… DP1_000… 1.96e6
-2 53      WA     Washington (((-1955188 1446310, -195475… Washi… DP1_000… 7.71e6
-3 35      NM     New Mexico (((-1231344 -588235.8, -1231… New M… DP1_000… 2.12e6</code></pre>
-</div>
+Bounding box:  xmin: -2356114 ymin: -1295598 xmax: 1223687 ymax: 845925.2
+Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
+  STATEFP     NAME.x     NAME.y    value                       geometry
+1      48      Texas      Texas 29145505 MULTIPOLYGON (((-998043.8 -...
+2      06 California California 39538223 MULTIPOLYGON (((-2066285 -2...
+3      21   Kentucky   Kentucky  4505836 MULTIPOLYGON (((571924.5 -8...</code></pre>
 </div>
 </div>
 </section>
@@ -1486,231 +866,73 @@ Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +
 <h2>Plotting spatial data</h2>
 <hr>
 <ul>
-<li>Add the data as an aesthetic in your ggplot object with <code>fill()</code></li>
-<li>Be sure to include in your <code>aes()</code> since it’s referring to data</li>
+<li>Map the data to <code>fill</code> inside <code>aes()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="co"># Step 6: Plot using the joined data</span></span>
-<span id="cb51-2"><a href=""></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb51-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value))<span class="sc">+</span></span>
-<span id="cb51-4"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="" aria-label="1"></a><span class="co"># Step 3: Plot using the joined data</span></span>
+<span id="cb36-2"><a href="" aria-label="2"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb36-3"><a href="" aria-label="3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="" aria-label="4"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="" aria-label="5"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-49-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="plotting-spatial-data-1" class="slide level2 smaller">
-<h2>Plotting spatial data</h2>
-<hr>
-<p><span class="extra-small-font"><strong>STEPS 7 - 10 are a repeat of Case #1</strong></span><br> - If you want to plot points (like state capitals), read in that data</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a><span class="co"># Step 7: Read in state capitals data (lat/long)</span></span>
-<span id="cb52-2"><a href=""></a>state_capitals <span class="ot">&lt;-</span> </span>
-<span id="cb52-3"><a href=""></a>  <span class="fu">read_csv</span>(<span class="st">"us-state-capitals.csv"</span>)</span>
-<span id="cb52-4"><a href=""></a></span>
-<span id="cb52-5"><a href=""></a><span class="fu">head</span>(state_capitals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  name       description latitude longitude
-  &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;
-1 Alabama    Montgomery      32.4     -86.3
-2 Alaska     Juneau          58.3    -134. 
-3 Arizona    Phoenix         33.4    -112. 
-4 Arkansas   Little Rock     34.7     -92.3
-5 California Sacramento      38.6    -121. 
-6 Colorado   Denver          39.7    -105. </code></pre>
-</div>
-</div>
-</section>
-<section id="plotting-spatial-data-2" class="slide level2 smaller">
-<h2>Plotting spatial data</h2>
-<hr>
-<p><span class="extra-small-font"><strong>STEPS 7 - 10 are a repeat of Case #1</strong></span><br> - Check the <code>class()</code> of your new <code>state_capitals</code> object</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="co"># Step 8: Check the class() - we need an sf object!</span></span>
-<span id="cb54-2"><a href=""></a></span>
-<span id="cb54-3"><a href=""></a><span class="fu">class</span>(state_capitals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
-</div>
-</div>
-</section>
-<section id="plotting-spatial-data-3" class="slide level2 smaller">
-<h2>Plotting spatial data</h2>
-<hr>
-<p><span class="extra-small-font"><strong>STEPS 7 - 10 are a repeat of Case #1</strong></span><br> - Convert the <code>state_capitals</code> object to an sf object</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="co"># Step 9: Use `st_as_sf()` to convert to an sf object. We'll use crs = 4326. It's</span></span>
-<span id="cb56-2"><a href=""></a><span class="co"># standard for lat/long coordinates.</span></span>
-<span id="cb56-3"><a href=""></a></span>
-<span id="cb56-4"><a href=""></a>state_capitals_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(state_capitals, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="plotting-spatial-data-4" class="slide level2 smaller">
-<h2>Plotting spatial data</h2>
-<hr>
-<p><span class="extra-small-font"><strong>STEPS 7 - 10 are a repeat of Case #1</strong></span><br> - Add another <code>geom_sf()</code> layer to your plot</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="co"># Step 10: Add capitals to the map</span></span>
-<span id="cb57-2"><a href=""></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb57-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value))<span class="sc">+</span></span>
-<span id="cb57-4"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>state_capitals_sf, <span class="at">shape =</span><span class="dv">8</span>, <span class="at">color=</span><span class="st">"limegreen"</span> )<span class="sc">+</span></span>
-<span id="cb57-5"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-53-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p><span class="extra-small-font">- This is the AK/HI problem.</span></p>
-<!-- # Layering geoms \n(a review)
-
-## Plotting points (State Capitals){.smaller}
-<hr>
-Let's say we have another dataset with longitude/latitude data for each state capital's city center:
-
-:::{layout="[4,3]"}
-
-:::{column}
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-joined_state_data_sf |>
-  select(1,6,13) |>
-  head(3)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-Simple feature collection with 3 features and 3 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -2138177 ymin: -614973.5 xmax: 58533.8 ymax: 1565782
-Projected CRS: +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs
-# A tibble: 3 × 4
-  STATEFP NAME.x       value                                            geometry
-  <chr>   <chr>        <dbl>                                  <MULTIPOLYGON [m]>
-1 31      Nebraska   1961504 (((-669722.6 438206.7, -668534.3 451363.2, -668500…
-2 53      Washington 7705281 (((-1955188 1446310, -1954750 1446030, -1953861 14…
-3 35      New Mexico 2117522 (((-1231344 -588235.8, -1231016 -586088.7, -123101…
-```
-
-
-:::
-:::
-
-:::
-
-:::{column}
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-state_capitals <- 
-  read_csv("us-state-capitals.csv")
-
-head(state_capitals)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 6 × 4
-  name       description latitude longitude
-  <chr>      <chr>          <dbl>     <dbl>
-1 Alabama    Montgomery      32.4     -86.3
-2 Alaska     Juneau          58.3    -134. 
-3 Arizona    Phoenix         33.4    -112. 
-4 Arkansas   Little Rock     34.7     -92.3
-5 California Sacramento      38.6    -121. 
-6 Colorado   Denver          39.7    -105. 
-```
-
-
-:::
-:::
-
-:::
-:::
-
-:::aside
-Capitals data from [jasperdebie's github](https://github.com/jasperdebie/VisInfo/blob/master/us-state-capitals.csv)
-:::
-
-## Add to map{.smaller}
-<hr>
-- Let's plot them
-- Oh no! [{ussf}](https://github.com/dcl-docs/ussf) handled the AK/HI problem, but our `.csv` file still has the AK/HI problem
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-state_capitals_sf <- st_as_sf(state_capitals, coords = c("longitude", "latitude"), crs = 4326)
-
-ggplot() +
-  geom_sf(data=joined_state_data_sf, aes(fill = value))+
-  geom_sf(data=state_capitals_sf, shape =8, color="limegreen" )+
-  scale_fill_viridis(option = "magma", labels = scales::comma, direction = -1)
-```
-
-::: {.cell-output-display}
-![](slides_files/figure-revealjs/unnamed-chunk-56-1.png){fig-align='center' width=960}
-:::
-:::
-
--->
-</section>
-<section id="plotting-spatial-data-5" class="slide level2 smaller">
-<h2>Plotting spatial data</h2>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-32-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="adding-points" class="slide level2 smaller">
+<h2>Adding points</h2>
 <hr>
 <ul>
-<li>This is fixable (but complicated since it’s a custom CRS). Contact me if you need to address this issue in your final project.</li>
+<li>Same steps as Case #1: read in the <code>.csv</code>, <code>st_as_sf()</code>, add a <code>geom_sf()</code> layer</li>
+<li><code>shift_geometry()</code> moves the Alaska and Hawaii capitals to match the shifted map</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb58-2"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value))<span class="sc">+</span></span>
-<span id="cb58-3"><a href=""></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>state_capitals_sf, <span class="at">shape =</span><span class="dv">8</span>, <span class="at">color=</span><span class="st">"limegreen"</span> )<span class="sc">+</span></span>
-<span id="cb58-4"><a href=""></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-label="1"></a><span class="co"># Step 4: Read in the capitals and convert to sf</span></span>
+<span id="cb37-2"><a href="" aria-label="2"></a>state_capitals_sf <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"us-state-capitals.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="" aria-label="3"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="" aria-label="4"></a>  <span class="fu">shift_geometry</span>()</span>
+<span id="cb37-5"><a href="" aria-label="5"></a></span>
+<span id="cb37-6"><a href="" aria-label="6"></a><span class="co"># Step 5: Add the capitals as another geom_sf() layer</span></span>
+<span id="cb37-7"><a href="" aria-label="7"></a>capitals_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb37-8"><a href="" aria-label="8"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> joined_state_data_sf, <span class="fu">aes</span>(<span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb37-9"><a href="" aria-label="9"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> state_capitals_sf, <span class="at">shape =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"limegreen"</span>) <span class="sc">+</span></span>
+<span id="cb37-10"><a href="" aria-label="10"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(), <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb37-11"><a href="" aria-label="11"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="adding-points-1" class="slide level2 smaller">
+<h2>Adding points</h2>
+<hr>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="" aria-label="1"></a>capitals_map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-58-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
-<section>
-<section id="collaborative-practice" class="title-slide slide level1 center">
-<h1>Collaborative Practice</h1>
-
-</section>
+<img data-src="slides_files/figure-revealjs/unnamed-chunk-34-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="next-semester-pt.-i" class="slide level2 smaller">
 <h2>Next Semester (Pt. I)</h2>
 <hr>
 <ul>
-<li><strong>STEM 680:</strong> Foundations of Educational Data Science I (Online, Async)
+<li><strong>STEM 692:</strong> Applied Machine Learning in Education, Health, and Human Sciences (Online, Sync)
 <ul>
-<li>2 Sync Meetings</li>
-<li>Dr.&nbsp;Hanall Sung</li>
+<li>Wed: 9-11am</li>
+<li>Dr.&nbsp;Joshua Rosenberg</li>
 </ul></li>
-<li><strong>STEM 691:</strong> Visualizing Data in R (Online, Sync)
+<li><strong>CADE 691:</strong> Visualizing Data in R (Online, Sync)
 <ul>
 <li>Thurs: 3-5pm</li>
-<li>Dr.&nbsp;Huibin Zhang</li>
+<li>Dr.&nbsp;Joshua Rosenberg</li>
 </ul></li>
-<li><strong>STEM 695:</strong> Capstone in Educational Data Science (Online, Sync)
+<li><strong>CADE 695:</strong> Capstone in Educational Data Science (Online, Async)
 <ul>
 <li>Date/Time: TBD based on student/faculty schedules</li>
 <li>Dr.&nbsp;Joshua Rosenberg</li>
 </ul></li>
-<li><strong>TPTE 595:</strong> AI for Educators (Online, Async)
-<ul>
-<li>Dr.&nbsp;Yukyeong Song</li>
-</ul></li>
 </ul>
-</section>
-<section id="next-semester-pt.-ii" class="slide level2 smaller">
-<h2>Next Semester (Pt. II)</h2>
-<hr>
-<p><span class="smaller-font">A note about STEM 685: While we had planned to offer this course, we’re unable to do so this spring. For those seeking alternate courses that count toward the Educational Data Science graduate certificate, consider AI for Educators (TPTE 495/595) or, for on-campus students, Statistics in Applied Fields (ESM 678; in-person, Wednesday, 4:10–6:35 pm).</span></p>
 </section>
 <section id="grad-certificate" class="slide level2">
 <h2>Grad certificate</h2>
 <hr>
 <p>The University of Tennessee, Knoxville, offers an online graduate certificate in Educational Data Science for students interested in digital data collection, analysis, visualization, and more in educational settings. The certificate can be added to current graduate students’ studies or pursued as a stand-alone certificate for graduate-level students.</p>
 <ul>
-<li><a href="https://volsonline.utk.edu/programs-degrees/educational-data-science-gc/">More Info</a></li>
+<li><a href="https://volsonline.utk.edu/program/certificates/educational-data-science/">More Info</a></li>
 <li><a href="https://gradschool.utk.edu/academics/forms-central/admission-to-a-graduate-certificate-program/">Apply Here</a></li>
 </ul>
 </section></section>
@@ -1724,7 +946,7 @@ ggplot() +
 <hr>
 <ul>
 <li>Test drive zoom timers</li>
-<li><a href="https://docs.google.com/document/d/1RhTHWw_j7MMMcBEc4dE1-acwGPWu5uDBAY7KT2IEQ5I/edit?usp=sharing">Final rubric</a> (incorporating your suggestions)</li>
+<li><a href="https://docs.google.com/document/d/14JZKwX3227a4LdiqJDmWEkiaRZvlHGfQg6JUvqLaLNc/edit?usp=sharing">Final rubric</a> (incorporating your suggestions)</li>
 <li>Preview peer feedback form
 <ul>
 <li><a href="https://airtable.com/appxk3cJS5Wp4CYK4/shrNo1yJwUrKLYtPl">Section A</a></li>
@@ -1749,52 +971,21 @@ ggplot() +
 </ul></li>
 <li>Homework:
 <ul>
-<li>Complete slides in shared Google Slides by Wednesday night <!-- - Complete PingPong post test by Wednesday night
-- Complete TN Voice --></li>
+<li>Complete slides in shared Google Slides by Monday night (see Final Project Assignment)</li>
 <li>Final project Canvas submissions due 12/4, 11:59pm
 <ul>
 <li>Remember to explicitly state your research question for each viz</li>
 <li>Define each variable used and how measured/units</li>
-<li>Preview your .html before submitting. It should like a finished report!</li>
+<li>Preview your .html before submitting. It should like a finished, polished report!</li>
+<li>No late finals accepted.</li>
 </ul></li>
 </ul></li>
 </ul>
-<!-- ## Looking Ahead -->
-<!-- <hr> -->
-<!-- * Assignment: Mapping ACS & Census Data -->
-<!-- * Readings: -->
-<!--   * Leaflet: -->
-<!--       * [Goldstein-Greenwood, J. (2020)](https://library.virginia.edu/data/articles/data-scientist-as-cartographer-an-introduction-to-making-interactive-maps-in-r-with-leaflet) -->
-<!--       * [R Coder (2024)](https://r-charts.com/spatial/interactive-maps-leaflet/) -->
-<!--   * plot_ly: -->
-<!--       * [Sievert, C. (2019), Chapter 2](https://plotly-r.com/overview) -->
-<!--       * [Sievert, C. (2019), Chapter 4](https://plotly-r.com/maps) -->
-<!-- ## Other data sources{.smaller} -->
-<!-- <hr> -->
-<!-- * The USAboundaries package, [https://github.com/ropensci/USAboundaries](https://github.com/ropensci/USAboundaries) contains state, county and zip code data for the US -->
-<!-- * The rnaturalearth package (South 2017) bundles up the free, high-quality data from [https://naturalearthdata.com/](https://naturalearthdata.com/) -->
-<!-- * The osmar package, [https://cran.r-project.org/package=osmar](https://cran.r-project.org/package=osmar) wraps up the OpenStreetMap API so you can access a wide range of vector data including individual streets and buildings -->
-<!-- ## Sources of `.shp` files{.smaller} -->
-<!-- <hr> -->
-<!-- :::{layout="[1,1]"} -->
-<!-- :::{column} -->
-<!-- - [IPUMS](https://international.ipums.org/international/gis.shtml) -->
-<!-- - [GADM](https://gadm.org/) -->
-<!-- - [Natural Earth](https://www.naturalearthdata.com/downloads/) -->
-<!-- - [Eurostat](https://ec.europa.eu/eurostat/web/gisco/geodata) -->
-<!-- - [OpenDataSoft](https://public.opendatasoft.com/explore/dataset/world-administrative-boundaries/table/?location=2,42.07882,0.00845&basemap=jawg.light) -->
-<!-- ::: -->
-<!-- :::{column} -->
-<!-- - [Free GIS Data](https://freegisdata.rtwilson.com/) -->
-<!-- - [Geofabrik/OSM Data](https://download.geofabrik.de/) -->
-<!-- - [U.S. Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html) -->
-<!-- - [SimpleMaps](https://simplemaps.com/data/world-cities) -->
-<!-- - [NCES](https://nces.ed.gov/programs/edge/Geographic/DistrictBoundaries) -->
-<!-- ::: -->
-<!-- ::: -->
-
 </section></section>
+<section id="collaborative-practice" class="title-slide slide level1 center">
+<h1>Collaborative Practice</h1>
 
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -1830,7 +1021,7 @@ ggplot() +
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1984,7 +1175,7 @@ ggplot() +
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -2096,13 +1287,14 @@ ggplot() +
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
@@ -2122,7 +1314,8 @@ ggplot() +
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
           // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
           for (var i=0; i<links.length; i++) {
             const link = links[i];
             if (!isInternal(link.href)) {
@@ -2131,8 +1324,69 @@ ggplot() +
               if (link.dataset.originalHref !== undefined) {
                 link.href = link.dataset.originalHref;
               }
+              if (!link.classList.contains('no-external-icon')) {
+              }
             }
           }
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
+            };
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
+              }
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
         function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
           const config = {
             allowHTML: true,
@@ -2146,6 +1400,7 @@ ggplot() +
             interactiveBorder: 10,
             theme: 'light-border',
             placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
           };
           if (contentFn) {
             config.content = contentFn;

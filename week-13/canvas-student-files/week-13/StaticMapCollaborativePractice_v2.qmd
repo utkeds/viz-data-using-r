@@ -1,0 +1,109 @@
+---
+title: "Maps Collaborative Practice"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE}
+library(ozmaps) # Australian shapefiles
+library(sf)
+library(tidyverse)
+```
+
+## Getting Started: Plotting a Map of Australia
+
+### 1. Load the Australian states and check the class
+- Run the first line to load the `ozmap_states` object from the {ozmaps} package.
+- Then use `class()` (in a new line within the cell) to check that `ozmap_states_sf` is an `sf` object.
+
+```{r load_ozmaps}
+ozmap_states_sf <- ozmaps::ozmap_states
+
+```
+
+### 2. Plot `ozmap_states_sf`
+- Give each state a different fill color (*hint:* `aes(fill = NAME)`).
+- Make the outlines of each state white.
+- Label each state.
+- Remove the legend.
+- Apply `theme_void()` to remove the background and axes.
+
+```{r plot1_ozmaps}
+
+```
+
+### 3. Remove the Australian Capital Territory and Other Territories
+- Use `filter()` to drop the `"Australian Capital Territory"` and `"Other Territories"` rows from `ozmap_states_sf`.
+  - *Hint:* `filter(!NAME %in% c(...))` keeps every row whose `NAME` is **not** in the list.
+- Copy/paste your code from Step 2 and replot the map.
+
+```{r plot2_ozmaps}
+
+```
+
+## Case #2: Choropleth Map
+
+### 4. Load and inspect `oz_pop.csv`
+- `oz_pop.csv` is included in your `.zip` file. Read it in with `read_csv()`.
+- Inspect it and answer the questions below.
+
+```{r oz_pop}
+
+```
+
+**ANSWERS**:
+
+- What variables does it include?
+- Is it an `sf` object?
+- Which variable could we join on with `ozmap_states_sf`? What is it called in each dataset?
+
+### 5. Join `ozmap_states_sf` and `oz_pop`
+- Use `left_join()` to join the two datasets.
+- **Put the sf object first** so the result is still an sf object.
+- The join columns have different names, so use `by = c("name_in_sf" = "name_in_csv")`, like we did with `STATEFP` and `GEOID` in the slides.
+
+```{r join_oz}
+
+```
+
+### 6. Make a choropleth map
+- Plot the joined data and fill each state by `Population`.
+- Make the outlines of each state white.
+- Use `scale_fill_viridis_c(labels = scales::label_comma())` and `theme_void()`.
+
+```{r filled_plot}
+
+```
+
+## Case #1: Adding Points
+
+### 7. Convert the capitals to an sf object
+- `oz_pop.csv` also has the longitude (`long_cap`) and latitude (`lat_cap`) of each state/territory capital.
+- Use `st_as_sf()` to turn `oz_pop` into a new sf object of points. Use `coords = c("long_cap", "lat_cap")` (longitude first!) and `crs = 4326`.
+- Use `st_crs()$epsg` to check the CRS of your new points **and** of `ozmap_states_sf`.
+
+```{r oz_pop_to_sf}
+
+```
+
+**ANSWERS**:
+
+- Do the two objects use the same CRS?
+- Will `geom_sf()` still line them up? Why?
+
+### 8. Plot the capitals
+- Copy/paste your code from Step 6.
+- Add a second `geom_sf()` layer for the capitals. Change the `shape`, `color`, and/or `size` so they stand out from the fill.
+- **Question:** One of the capitals belongs to a territory you removed in Step 3. Which one is it, and why does it still show up on the map?
+
+```{r final_plot}
+
+```
+
+**ANSWER**:

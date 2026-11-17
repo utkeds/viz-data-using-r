@@ -1,0 +1,151 @@
+---
+title: "Maps Collaborative Practice (SOLUTIONS)"
+author: "Fabulous Student"
+date: "`r Sys.Date()`"
+format:
+  html:
+    embed-resources: true
+execute:
+    warning: false
+    message: false
+knitr:
+  opts_chunk:
+    out.width: "100%"
+---
+
+```{r setup, include=FALSE}
+library(ozmaps) # Australian shapefiles
+library(sf)
+library(tidyverse)
+library(ggrepel) # repelling labels
+```
+
+## Getting Started: Plotting a Map of Australia
+
+### 1. Load the Australian states and check the class
+- Run the first line to load the `ozmap_states` object from the {ozmaps} package.
+- Then use `class()` to check that `ozmap_states_sf` is an `sf` object.
+
+```{r load_ozmaps}
+ozmap_states_sf <- ozmaps::ozmap_states
+
+class(ozmap_states_sf)
+```
+
+### 2. Plot `ozmap_states_sf`
+- Give each state a different fill color (*hint:* `aes(fill = NAME)`).
+- Make the outlines of each state white.
+- Label each state with `geom_label_repel()` from {ggrepel} so the labels don't overlap.
+  - *Hint:* `geom_label_repel(aes(label = NAME, geometry = geometry), stat = "sf_coordinates")`
+- Remove the legend (*hint:* `show.legend = FALSE` inside `geom_sf()`).
+- Apply `theme_void()` to remove the background and axes.
+
+```{r plot1_ozmaps}
+ggplot() +
+  geom_sf(data = ozmap_states_sf, aes(fill = NAME), color = "white",
+          show.legend = FALSE) +
+  geom_label_repel(data = ozmap_states_sf,
+                   aes(label = NAME, geometry = geometry),
+                   stat = "sf_coordinates", seed = 1) +
+  theme_void()
+```
+
+### 3. Remove the Australian Capital Territory and Other Territories
+- Use `filter()` to drop the `"Australian Capital Territory"` and `"Other Territories"` rows from `ozmap_states_sf`.
+  - *Hint:* `filter(!NAME %in% c(...))` keeps every row whose `NAME` is **not** in the list.
+- Copy/paste your code from Step 2 and replot the map.
+
+```{r plot2_ozmaps}
+ozmap_states_sf <- ozmap_states_sf |>
+  filter(!NAME %in% c("Australian Capital Territory", "Other Territories"))
+
+ggplot() +
+  geom_sf(data = ozmap_states_sf, aes(fill = NAME), color = "white",
+          show.legend = FALSE) +
+  geom_label_repel(data = ozmap_states_sf,
+                   aes(label = NAME, geometry = geometry),
+                   stat = "sf_coordinates", seed = 1) +
+  theme_void()
+```
+
+## Case #2: Choropleth Map
+
+### 4. Load and inspect `oz_pop.csv`
+- `oz_pop.csv` is included in your `.zip` file. Read it in with `read_csv()`.
+- Inspect it and answer the questions below.
+
+```{r oz_pop}
+oz_pop <- read_csv("oz_pop.csv")
+
+oz_pop
+class(oz_pop)
+```
+
+**ANSWERS**:
+
+- What variables does it include? `State/Territory`, `Population`, `long_cap` (capital longitude), and `lat_cap` (capital latitude).
+- Is it an `sf` object? No. It's a regular tibble/data frame (`spec_tbl_df`, `tbl_df`, `tbl`, `data.frame`) with no `geometry` column.
+- Which variable could we join on with `ozmap_states_sf`? What is it called in each dataset? The state/territory name: `NAME` in `ozmap_states_sf` and `State/Territory` in `oz_pop`.
+
+### 5. Join `ozmap_states_sf` and `oz_pop`
+- Use `left_join()` to join the two datasets.
+- **Put the sf object first** so the result is still an sf object.
+- The join columns have different names, so use `by = c("name_in_sf" = "name_in_csv")`, like we did with `STATEFP` and `GEOID` in the slides.
+  - *Hint:* `State/Territory` has a `/` in it, so you'll need to wrap it in backticks or quotes.
+
+```{r join_oz}
+oz_joined_sf <- left_join(ozmap_states_sf, oz_pop,
+                          by = c("NAME" = "State/Territory"))
+
+oz_joined_sf
+class(oz_joined_sf) # still sf because the sf object came first
+```
+
+### 6. Make a choropleth map
+- Plot the joined data and fill each state by `Population`.
+- Make the outlines of each state white.
+- Use `scale_fill_viridis_c(labels = scales::label_comma())` and `theme_void()`.
+
+```{r filled_plot}
+ggplot() +
+  geom_sf(data = oz_joined_sf, aes(fill = Population), color = "white") +
+  scale_fill_viridis_c(labels = scales::label_comma()) +
+  theme_void()
+```
+
+## Case #1: Adding Points
+
+### 7. Convert the capitals to an sf object
+- `oz_pop.csv` also has the longitude (`long_cap`) and latitude (`lat_cap`) of each state/territory capital.
+- Use `st_as_sf()` to turn `oz_pop` into a new sf object of points. Use `coords = c("long_cap", "lat_cap")` (longitude first!) and `crs = 4326`.
+- Use `st_crs()$epsg` to check the CRS of your new points **and** of `ozmap_states_sf`.
+
+```{r oz_pop_to_sf}
+oz_capitals_sf <- st_as_sf(oz_pop,
+                           coords = c("long_cap", "lat_cap"), crs = 4326)
+
+class(oz_capitals_sf)
+
+st_crs(oz_capitals_sf)$epsg  # we set this with st_as_sf()
+st_crs(ozmap_states_sf)$epsg # came built into {ozmaps}
+```
+
+**ANSWERS**:
+
+- Do the two objects use the same CRS? No. The capitals use EPSG 4326 (WGS 84), and `ozmap_states_sf` uses EPSG 4283 (GDA94, an Australian lat/long system).
+- Will `geom_sf()` still line them up? Why? Yes. `geom_sf()` converts the layers so they match ("projecting on the fly"), just like the Knox County zones (2915) and sites (4326) in the slides.
+
+### 8. Plot the capitals
+- Copy/paste your code from Step 6.
+- Add a second `geom_sf()` layer for the capitals. Change the `shape`, `color`, and/or `size` so they stand out from the fill.
+- **Question:** One of the capitals belongs to a territory you removed in Step 3. Which one is it, and why does it still show up on the map?
+
+```{r final_plot}
+ggplot() +
+  geom_sf(data = oz_joined_sf, aes(fill = Population), color = "white") +
+  geom_sf(data = oz_capitals_sf, shape = 8, color = "red", size = 3) +
+  scale_fill_viridis_c(labels = scales::label_comma()) +
+  theme_void()
+```
+
+**ANSWER**: Canberra, the capital of the Australian Capital Territory. We only removed the ACT's *shape* from `ozmap_states_sf`. The points come from `oz_pop`, which still has all 8 capitals, so Canberra still plots. It lands inside New South Wales because the ACT is a small territory surrounded by NSW. To drop it, you could `filter()` it out of `oz_capitals_sf` too.
