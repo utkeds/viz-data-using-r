@@ -1,5 +1,5 @@
 ---
-title: "Maps Collaborative Practice (SOLUTIONS)"
+title: "Maps Collaborative Practice"
 author: "Fabulous Student"
 date: "`r Sys.Date()`"
 format:
