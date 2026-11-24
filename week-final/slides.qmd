@@ -1,6 +1,6 @@
 ---
 subtitle: "Final Celebrations"
-title: "Week 14 - STEM 691"
+title: "Week 14 - CADE 691"
 author: "Dr. Kelly Boles"
 format:
   revealjs:
