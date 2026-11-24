@@ -71,3 +71,17 @@ library(tidyverse)
 - Modify your plots as you see fit
 - Submit final project by 11:59pm on 12/4
 - No late submissions will be accepted
+- Reminder of AI Use Policy
+
+## AI Policy
+<hr>
+
+:::{.smaller-font}
+This course has a mixed use policy for Generative AI. Note that multiple models are now available to UTK students for free via the UT AI Hub. Specifically, Gen AI may be used to analyze and troubleshoot code *after* you have already manually written it. To maintain academic integrity, students who use Gen AI to analyze and troubleshoot code must disclose such use.
+
+A student should include the following statement in each question where a Generative AI tool was used to analyze and/or troubleshoot code. Again, this statement should be used within each question where AI assistance was used:
+
+:::{.gray-box}
+“I acknowledge the use of [Generative AI Tool Name: Claude/Gemini/ChatGPT/etc.] in the writing of this code. Specifically, I encountered the following issue: [state problem addressed here], and with Generative AI's help, I learned to resolve it by [state how problem addressed here].”
+:::
+:::
