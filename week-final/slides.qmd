@@ -1,7 +1,7 @@
 ---
 subtitle: "Final Celebrations"
 title: "Week 14 - STEM 691"
-author: "Dr. Kelly Boles & Dr. Zhen Xu"
+author: "Dr. Kelly Boles"
 format:
   revealjs:
     theme: [simple, utk_eds_style.scss]
@@ -62,7 +62,6 @@ library(tidyverse)
 
 # Final Projects Celebrations!
 
-# Please do [PingPong Final Survey](https://harvard.pdx1.qualtrics.com/jfe/form/SV_3QtLKIgYn9mURLw)
 # Please do [TNVoice](https://planning.utk.edu/)
 # Slack
 
